@@ -21,12 +21,20 @@ except git.exc.InvalidGitRepositoryError:
 def fetch_csv_data(url):
     try:
         response = requests.get(url)
-        response.raise_for_status()  # HTTP 에러가 발생하면 예외 발생
+        response.raise_for_status()
         csv_data = response.content.decode('utf-8')
-        return pd.read_csv(io.StringIO(csv_data))
+        df = pd.read_csv(io.StringIO(csv_data))
+
+        # 문자열 열에 대해서만 빈 문자열로 채우고, 숫자형 열은 0으로 채우기
+        df[df.select_dtypes(['object']).columns] = df.select_dtypes(['object']).fillna('')
+        df[df.select_dtypes(['number']).columns] = df.select_dtypes(['number']).fillna(0)
+
+        return df
     except requests.exceptions.RequestException as e:
         print(f'Error fetching CSV data: {e}')
         return None
+
+
 
 async def move_files_to_images_folder():
     if repo is None:
