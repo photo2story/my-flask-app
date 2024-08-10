@@ -80,24 +80,31 @@ def save_simplified_csv(file_path, ticker):
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
-    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence'])  # 여기서 Divergence 열을 추가
-
+    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 'Previous_Relative_Divergence'])
+    
     for ticker in tickers:
         df = await fetch_csv(ticker)
-        if df is not None and 'Relative_Divergence' in df.columns and 'Divergence' in df.columns:
-            latest_divergence = df['Divergence'].iloc[-1]
+        if df is not None and 'Relative_Divergence' in df.columns:
             latest_relative_divergence = df['Relative_Divergence'].iloc[-1]
+            latest_divergence = df['Divergence'].iloc[-1]
+            
+            if len(df) > 20:  # 데이터가 충분한지 확인
+                previous_relative_divergence = df['Relative_Divergence'].iloc[-20]
+            else:
+                previous_relative_divergence = None  # 데이터가 충분하지 않다면 None 설정
+            
             results = pd.concat([results, pd.DataFrame({
-                'Ticker': [ticker],
-                'Divergence': [latest_divergence],
-                'Relative_Divergence': [latest_relative_divergence]
+                'Ticker': [ticker], 
+                'Divergence': [latest_divergence], 
+                'Relative_Divergence': [latest_relative_divergence],
+                'Previous_Relative_Divergence': [previous_relative_divergence]
             })], ignore_index=True)
         else:
-            print(f"Data for {ticker} is not available or missing 'Divergence' or 'Relative_Divergence' column.")
+            print(f"Data for {ticker} is not available or missing 'Relative_Divergence' column.")
     
     # 결과를 CSV 파일로 저장
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
-    collect_relative_divergence_path = os.path.join(folder_path, 'results_relative_divergence.csv')
+    collect_relative_divergence_path = os.path.join(folder_path, f'results_relative_divergence.csv')
     results.to_csv(collect_relative_divergence_path, index=False)
 
     print(results)
@@ -106,6 +113,7 @@ async def collect_relative_divergence():
     await move_files_to_images_folder()
     
     return results
+
 
 
 if __name__ == "__main__":
