@@ -210,9 +210,8 @@ if __name__ == '__main__':
     asyncio.run(run_bot())
 
 
-"""
-
-.\.venv\Scripts\activate
+r"""
+\.venv\Scripts\activate
 python3 -m venv .venv
 source .venv/bin/activate
 python bot.py   
