@@ -154,6 +154,10 @@ async def buddy(ctx, *, query: str = None):
         await asyncio.sleep(1)  # 각 명령 호출 사이에 10초 대기
         print(f'Results for {ticker} displayed successfully.')
         
+    # query가 없는 경우에만 collect_relative_divergence 호출
+    if not query:
+        results = await collect_relative_divergence()        
+        
 @bot.command()
 async def ticker(ctx, *, query: str = None):
     print(f'Command received: ticker with query: {query}')
