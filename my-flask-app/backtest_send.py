@@ -1,10 +1,11 @@
-# backtest_and_send.py
+# backtest_send.py
 import requests
 import os, sys
 import pandas as pd
 import matplotlib.pyplot as plt
 from discord.ext import commands
 import discord  # discord 모듈 추가
+import asyncio
 
 # 사용자 정의 모듈 임포트
 from Results_plot import plot_comparison_results
@@ -59,17 +60,9 @@ async def backtest_and_send(ctx, stock, option_strategy='1', bot=None):
         file_path = 'result_VOO_{}.csv'.format(safe_ticker)  # VOO_TSLA(stock1).csv
         combined_df.to_csv(file_path, float_format='%.2f', index=False)        
         
-
-        # min_stock_data_date = str(min_stock_data_date).split(' ')[0]
-        # user_stock_file_path1 = file_path
-
-        # file_path = estimate_snp(stock, 'VOO', option_strategy, result_df)# 검토주식, 비교주식(VOO), 전략, 결과데이터
-        # user_stock_file_path2 = file_path
-        
         # CSV 파일 간소화
         save_simplified_csv(file_path, stock)
 
-        # plot_comparison_results(stock, min_stock_data_date, config.END_DATE)
         # 파일 이동 및 깃헙 커밋/푸시
         await move_files_to_images_folder()        
         await bot.change_presence(status=discord.Status.online, activity=discord.Game("Waiting"))
@@ -77,20 +70,31 @@ async def backtest_and_send(ctx, stock, option_strategy='1', bot=None):
         await ctx.send(f"An error occurred while processing {stock}: {e}")
         print(f"Error processing {stock}: {e}")
         
+# 테스트 코드 추가
+async def test_backtest_and_send():
+    class MockContext:
+        async def send(self, message):
+            print(f"MockContext.send: {message}")
+
+    class MockBot:
+        async def change_presence(self, status=None, activity=None):
+            print(f"MockBot.change_presence: status={status}, activity={activity}")
+
+    ctx = MockContext()
+    bot = MockBot()
+    stock = "AAPL"
+    try:
+        await backtest_and_send(ctx, stock, option_strategy='1', bot=bot)
+        print("Backtesting completed successfully.")
+    except Exception as e:
+        print(f"Error occurred while backtesting: {e}")
+
+# 메인 실행부
 if __name__ == "__main__":
     print("Starting test for back-testing.")
-    stock = "AAPL"
-    start_date = "2019-01-02"
-    end_date = "2024-07-28"
-    print(f"Plotting results for {stock1} from {start_date} to {end_date}")
-
-    try:
-        plot_comparison_results(stock1, start_date, end_date)
-        print("Plotting completed successfully.")
-    except Exception as e:
-        print(f"Error occurred while plotting results: {e}")
+    asyncio.run(test_backtest_and_send())
 
 
-    # python Results_plot.py        
+    # python backtest_send.py        
 
 
