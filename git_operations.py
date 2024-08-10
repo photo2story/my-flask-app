@@ -73,12 +73,13 @@ async def move_files_to_images_folder():
 # CSV 파일 URL
 csv_url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
 
-# CSV 데이터 가져오기 예시
-df = fetch_csv_data(csv_url)
-if df is not None:
-    print(df.head())
-else:
-    print("Failed to fetch CSV data.")
+# 테스트 코드
+if __name__ == "__main__":
+    df = fetch_csv_data(csv_url)
+    if df is not None:
+        print(df.head())
+    else:
+        print("Failed to fetch CSV data.")
 
 
 
