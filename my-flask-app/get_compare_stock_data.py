@@ -80,7 +80,7 @@ def save_simplified_csv(file_path, ticker):
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
-    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 'Previous_Relative_Divergence'])
+    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence'])
     
     for ticker in tickers:
         df = await fetch_csv(ticker)
@@ -90,14 +90,15 @@ async def collect_relative_divergence():
             
             if len(df) > 20:  # 데이터가 충분한지 확인
                 previous_relative_divergence = df['Relative_Divergence'].iloc[-20]
+                delta_previous_relative_divergence = latest_relative_divergence - previous_relative_divergence
             else:
-                previous_relative_divergence = None  # 데이터가 충분하지 않다면 None 설정
+                delta_previous_relative_divergence = None  # 데이터가 충분하지 않다면 None 설정
             
             results = pd.concat([results, pd.DataFrame({
                 'Ticker': [ticker], 
                 'Divergence': [latest_divergence], 
                 'Relative_Divergence': [latest_relative_divergence],
-                'Previous_Relative_Divergence': [previous_relative_divergence]
+                'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence]
             })], ignore_index=True)
         else:
             print(f"Data for {ticker} is not available or missing 'Relative_Divergence' column.")
@@ -113,7 +114,6 @@ async def collect_relative_divergence():
     await move_files_to_images_folder()
     
     return results
-
 
 
 if __name__ == "__main__":
