@@ -16,6 +16,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'my-flas
 
 # 사용자 정의 모듈 임포트
 from git_operations import move_files_to_images_folder
+from gemini import analyze_with_gemini  # gemini.py에서 함수 가져오기
 
 # 명시적으로 .env 파일 경로를 지정하여 환경 변수 로드
 env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
@@ -69,6 +70,25 @@ def get_reviewed_tickers():
                if filename.startswith('comparison_') and filename.endswith('_VOO.png')]
     return jsonify(tickers)
 
+@app.route('/analyze', methods=['POST'])
+async def analyze():
+    data = request.get_json()
+    message = data.get('message')
+    
+    # 메시지 분석 및 적절한 티커 할당 (예: "애플 최근 실적 말해줘")
+    ticker = None
+    if "애플" in message:
+        ticker = "AAPL"
+    elif "마이크로소프트" in message:
+        ticker = "MSFT"
+    # 추가적인 조건을 여기서 처리
+
+    if ticker:
+        result = await analyze_with_gemini(ticker)
+        return jsonify({'response': result})
+    else:
+        return jsonify({'response': '요청을 이해할 수 없습니다. 다른 질문을 해주세요.'})
+    
 def fetch_csv_data(url):
     try:
         response = requests.get(url)
