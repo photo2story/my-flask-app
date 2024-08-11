@@ -1,5 +1,5 @@
 # bot.py
-# bot.py
+
 import os
 import sys
 import asyncio
@@ -44,6 +44,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='', intents=intents)
 
 bot_started = False
+chat_active = False  # 제미니와의 대화 상태를 관리할 변수
 
 @bot.event
 async def on_ready():
@@ -57,18 +58,25 @@ async def on_ready():
             print(f'Failed to get channel with ID {CHANNEL_ID}')
         bot_started = True
 
-@tasks.loop(minutes=5)
-async def buddy_loop():
-    sector_list = list(config.STOCKS.keys())
-    for sector in sector_list:
-        stock_names = config.STOCKS[sector]
-        for stock_name in stock_names:
-            channel = bot.get_channel(CHANNEL_ID)
-            if channel:
-                await channel.send(f'Processing buddy for sector {sector}, stock: {stock_name}')
-                await bot.get_command("buddy")(await bot.get_context(channel.last_message), query=stock_name)
+@bot.command()
+async def gchat(ctx, *, message=None):
+    global chat_active
+    if message is None:
+        await ctx.send("메시지를 입력하세요.")
+        return
 
-processed_message_ids = set()
+    if message.lower() == "start":
+        chat_active = True
+        await ctx.send("제미니와의 대화를 시작합니다.")
+    elif message.lower() == "end":
+        chat_active = False
+        await ctx.send("제미니와의 대화를 종료합니다.")
+    else:
+        if chat_active:
+            response = await analyze_with_gemini(message)
+            await ctx.send(f"제미니: {response}")
+        else:
+            await ctx.send("먼저 'gchat start'로 대화를 시작하세요.")
 
 @bot.command()
 async def stock(ctx, *, query: str = None):
@@ -168,15 +176,6 @@ async def ticker(ctx, *, query: str = None):
     await search_tickers_and_respond(ctx, query)
 
 @bot.command()
-async def show_all(ctx):
-    try:
-        await plot_comparison_results()
-        await ctx.send("All results have been successfully displayed.")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {e}")
-        print(f"Error: {e}")
-
-@bot.command()
 async def ping(ctx):
     if ctx.message.id not in processed_message_ids:
         processed_message_ids.add(ctx.message.id)
@@ -212,6 +211,7 @@ if __name__ == '__main__':
     
     # 봇 실행
     asyncio.run(run_bot())
+
 
 
 r"""
