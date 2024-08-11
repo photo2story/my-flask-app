@@ -36,7 +36,6 @@ CHANNEL_ID = int(os.getenv('DISCORD_CHANNEL_ID'))
 H_APIKEY = os.getenv('H_APIKEY')
 H_SECRET = os.getenv('H_SECRET')
 H_ACCOUNT = os.getenv('H_ACCOUNT')
-
 GEMINI_API_KEY = os.getenv('GOOGLE_API_KEY')  # Gemini API 키 로드
 
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
@@ -47,7 +46,6 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='', intents=intents)
 
 bot_started = False
-gchat_active = False  # 제미니와의 대화 상태를 관리할 변수
 
 # Gemini API 설정
 genai.configure(api_key=GEMINI_API_KEY)
@@ -67,28 +65,17 @@ async def on_ready():
 
 @bot.command()
 async def gchat(ctx, *, query: str = None):
-    global gchat_active
-    if query == "start":
-        if gchat_active:
-            await ctx.send("Gemini와의 대화가 이미 시작되었습니다.")
-        else:
-            gchat_active = True
-            await ctx.send("Gemini와의 대화를 시작합니다.")
-    elif query == "end":
-        if gchat_active:
-            gchat_active = False
-            await ctx.send("Gemini와의 대화를 종료합니다.")
-        else:
-            await ctx.send("현재 Gemini와의 대화가 진행 중이지 않습니다.")
-    elif gchat_active:
-        try:
-            # Gemini와의 대화 요청
-            response = model.generate_content(query)
-            await ctx.send(response.text)
-        except Exception as e:
-            await ctx.send(f"Gemini와의 대화 중 오류가 발생했습니다: {e}")
-    else:
-        await ctx.send("Gemini와의 대화가 활성화되지 않았습니다. 'gchat start' 명령으로 대화를 시작하세요.")
+    if query is None or query.strip() == "":
+        await ctx.send("제미니와 대화하려면 메시지를 입력해주세요.")
+        return
+
+    try:
+        # 제미니와의 대화 요청
+        response = model.generate_content(query)
+        await ctx.send(response.text)
+    except Exception as e:
+        await ctx.send(f"Gemini와의 대화 중 오류가 발생했습니다: {e}")
+
 
 @bot.command()
 async def stock(ctx, *, query: str = None):
