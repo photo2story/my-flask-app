@@ -10,6 +10,7 @@ import certifi
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import threading
 import config  # config.py 임포트
+import google.generativeai as genai
 
 os.environ['SSL_CERT_FILE'] = certifi.where()
 
@@ -36,6 +37,8 @@ H_APIKEY = os.getenv('H_APIKEY')
 H_SECRET = os.getenv('H_SECRET')
 H_ACCOUNT = os.getenv('H_ACCOUNT')
 
+GEMINI_API_KEY = os.getenv('GOOGLE_API_KEY')  # Gemini API 키 로드
+
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
 CSV_PATH = f"{GITHUB_RAW_BASE_URL}/stock_market.csv"
 
@@ -44,7 +47,11 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='', intents=intents)
 
 bot_started = False
-chat_active = False  # 제미니와의 대화 상태를 관리할 변수
+gchat_active = False  # 제미니와의 대화 상태를 관리할 변수
+
+# Gemini API 설정
+genai.configure(api_key=GEMINI_API_KEY)
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 @bot.event
 async def on_ready():
@@ -59,24 +66,29 @@ async def on_ready():
         bot_started = True
 
 @bot.command()
-async def gchat(ctx, *, message=None):
-    global chat_active
-    if message is None:
-        await ctx.send("메시지를 입력하세요.")
-        return
-
-    if message.lower() == "start":
-        chat_active = True
-        await ctx.send("제미니와의 대화를 시작합니다.")
-    elif message.lower() == "end":
-        chat_active = False
-        await ctx.send("제미니와의 대화를 종료합니다.")
-    else:
-        if chat_active:
-            response = await analyze_with_gemini(message)
-            await ctx.send(f"제미니: {response}")
+async def gchat(ctx, *, query: str = None):
+    global gchat_active
+    if query == "start":
+        if gchat_active:
+            await ctx.send("Gemini와의 대화가 이미 시작되었습니다.")
         else:
-            await ctx.send("먼저 'gchat start'로 대화를 시작하세요.")
+            gchat_active = True
+            await ctx.send("Gemini와의 대화를 시작합니다.")
+    elif query == "end":
+        if gchat_active:
+            gchat_active = False
+            await ctx.send("Gemini와의 대화를 종료합니다.")
+        else:
+            await ctx.send("현재 Gemini와의 대화가 진행 중이지 않습니다.")
+    elif gchat_active:
+        try:
+            # Gemini와의 대화 요청
+            response = model.generate_content(query)
+            await ctx.send(response.text)
+        except Exception as e:
+            await ctx.send(f"Gemini와의 대화 중 오류가 발생했습니다: {e}")
+    else:
+        await ctx.send("Gemini와의 대화가 활성화되지 않았습니다. 'gchat start' 명령으로 대화를 시작하세요.")
 
 @bot.command()
 async def stock(ctx, *, query: str = None):
@@ -160,7 +172,7 @@ async def buddy(ctx, *, query: str = None):
         # gemini 명령 호출
         await ctx.invoke(bot.get_command("gemini"), query=stock_name)
         await asyncio.sleep(1)  # 각 명령 호출 사이에 10초 대기
-        print(f'Results for {ticker} displayed successfully.')
+        print(f'Results for {stock_name} displayed successfully.')
         
     # query가 없는 경우에만 collect_relative_divergence 호출
     if not query:
