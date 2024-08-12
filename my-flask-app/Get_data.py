@@ -57,29 +57,20 @@ def get_start_date(ticker):
     # Return the actual start date of the data
     return stock_data.index.min()
 
-def get_stock_data(ticker, start_date, end_date):
-    # FinanceDataReader를 사용하여 주식 데이터 불러오기
-    print('get_stock_data.1:',ticker)
-    # print(start_date)
-    stock_data = fdr.DataReader(ticker, start_date, end_date)
-
-    stock_data.columns = stock_data.columns.astype(str)
-  
-    # Calculate indicators using pandas_ta (기존 코드 유지)
+def calculate_indicators(stock_data):
+    # 지표 계산 로직
     stock_data.ta.rsi(length=14, append=True)
     stock_data.ta.bbands(length=20, std=2, append=True)
     stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     stock_data.ta.aroon(length=25, append=True)
-  
-    # MFI 계산
+
     high_prices = stock_data['High'].values
     low_prices = stock_data['Low'].values
     close_prices = stock_data['Close'].values
     volumes = stock_data['Volume'].values
     stock_data['MFI_14'] = calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14)
-  
-    # 나머지 지표 계산 (기존 코드 유지)
+
     stock_data.ta.sma(close='Close', length=5, append=True)
     stock_data.ta.sma(close='Close', length=10, append=True)
     stock_data.ta.sma(close='Close', length=20, append=True)
@@ -88,6 +79,18 @@ def get_stock_data(ticker, start_date, end_date):
     stock_data.ta.sma(close='Close', length=240, append=True)
     stock_data.ta.stoch(high='high', low='low', k=20, d=10, append=True)
     stock_data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
+
+    return stock_data
+
+def get_stock_data(ticker, start_date, end_date):
+    # FinanceDataReader를 사용하여 주식 데이터 불러오기
+    print('get_stock_data.1:',ticker)
+    # print(start_date)
+    stock_data = fdr.DataReader(ticker, start_date, end_date)
+
+    stock_data.columns = stock_data.columns.astype(str)
+  
+    stock_data = calculate_indicators(stock_data)
     stock_data['Stock'] = ticker
 
 
