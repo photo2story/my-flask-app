@@ -85,8 +85,14 @@ def calculate_indicators(stock_data):
     return stock_data
 
 def get_stock_data(ticker, start_date, end_date):
+    # start_date와 end_date가 문자열인 경우 datetime으로 변환
+    if isinstance(start_date, str):
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+    if isinstance(end_date, str):
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+
     # 파일 경로 설정
-    file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', f'result_VOO_' + ticker + '.csv'))
+    file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', f'result_VOO_{ticker}.csv'))
 
     # CSV 파일이 존재하는지 확인
     if os.path.exists(file_path):
@@ -94,6 +100,12 @@ def get_stock_data(ticker, start_date, end_date):
         stock_data = pd.read_csv(file_path, index_col=0, parse_dates=True)
         first_stock_data_date = stock_data.index.min()
         last_stock_data_date = stock_data.index.max()
+
+        # 날짜 형식을 통일하기 위해 datetime 객체로 변환
+        if isinstance(first_stock_data_date, str):
+            first_stock_data_date = datetime.strptime(first_stock_data_date, '%Y-%m-%d')
+        if isinstance(last_stock_data_date, str):
+            last_stock_data_date = datetime.strptime(last_stock_data_date, '%Y-%m-%d')
 
         # 데이터 범위가 요청된 범위를 모두 포함하는지 확인
         if first_stock_data_date <= start_date and last_stock_data_date >= end_date:
