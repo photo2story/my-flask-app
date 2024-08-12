@@ -47,6 +47,7 @@ def my_strategy(stock_data, option_strategy):
     # Loop over data
     for i, row in stock_data.iterrows():
         current_date = row.name
+        print('current_date:',current_date) # 현재 날짜 출력
         index = stock_data.index.get_loc(i)
         
         # 매달 적립 수행
