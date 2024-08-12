@@ -127,7 +127,13 @@ def calculate_indicators(stock_data):
     return stock_data
 
 
+import pandas as pd
+
 def get_stock_data(ticker, start_date, end_date):
+    # 문자열로 입력된 start_date와 end_date를 Timestamp로 변환
+    start_date = pd.to_datetime(start_date)
+    end_date = pd.to_datetime(end_date)
+
     # 파일 경로 설정
     file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', f'result_VOO_{ticker}.csv'))
 
@@ -137,6 +143,7 @@ def get_stock_data(ticker, start_date, end_date):
         first_stock_data_date = stock_data.index.min()
         last_stock_data_date = stock_data.index.max()
 
+        # Timestamps를 비교하여 캐시된 데이터의 범위 확인
         if first_stock_data_date <= start_date and last_stock_data_date >= end_date:
             print("Using cached data")
             stock_data = calculate_indicators(stock_data)
@@ -162,6 +169,7 @@ def get_stock_data(ticker, start_date, end_date):
         first_stock_data_date = stock_data.index.min()
 
     return stock_data, first_stock_data_date
+
 
 def get_price_info(ticker):
     api_key = 'Alpha_API'
