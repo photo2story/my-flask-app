@@ -60,8 +60,9 @@ def get_start_date(ticker):
     return stock_data.index.min()
 
 def calculate_indicators(stock_data):
-    # RSI 계산
-    stock_data['RSI_14'] = stock_data.ta.rsi(length=14, append=True)
+    # RSI 계산 - 필요한 열만 선택하여 추가
+    rsi_df = stock_data.ta.rsi(length=14, append=True)
+    stock_data['RSI_14'] = rsi_df['RSI_14']
 
     # Bollinger Bands 계산
     stock_data.ta.bbands(length=20, std=2, append=True)
@@ -105,6 +106,7 @@ def calculate_indicators(stock_data):
     stock_data['STOCHd_14_3_3'] = stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)['STOCHd_14_3_3']
 
     return stock_data
+
 
 
 def get_stock_data(ticker, start_date, end_date):
