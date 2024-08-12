@@ -61,7 +61,7 @@ async def backtest_and_send(ctx, stock, option_strategy='1', bot=None):
         combined_df.to_csv(file_path, float_format='%.2f', index=False)        
         
         # CSV 파일 간소화
-        save_simplified_csv(file_path, stock)
+        save_simplified_csv(stock)
 
         # 파일 이동 및 깃헙 커밋/푸시
         await move_files_to_images_folder()        
