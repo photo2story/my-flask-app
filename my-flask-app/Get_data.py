@@ -62,17 +62,17 @@ def get_start_date(ticker):
 def calculate_indicators(stock_data):
     # RSI 계산
     try:
-        rsi_df = stock_data.ta.rsi(length=14)  # append=False로 설정하여 별도의 DataFrame을 반환
-        stock_data['RSI_14'] = rsi_df['RSI_14'] if 'RSI_14' in rsi_df.columns else 0
+        rsi_series = stock_data.ta.rsi(length=14)
+        stock_data['RSI_14'] = rsi_series
     except Exception as e:
         print(f"Error calculating RSI: {e}")
         stock_data['RSI_14'] = 0
 
     # Bollinger Bands 계산
     try:
-        bbands_df = stock_data.ta.bbands(length=20, std=2)  # append=False로 설정하여 별도의 DataFrame을 반환
-        stock_data['UPPER_20'] = bbands_df['BBU_20_2.0'] if 'BBU_20_2.0' in bbands_df.columns else 0
-        stock_data['LOWER_20'] = bbands_df['BBL_20_2.0'] if 'BBL_20_2.0' in bbands_df.columns else 0
+        bbands_df = stock_data.ta.bbands(length=20, std=2)
+        stock_data['UPPER_20'] = bbands_df['BBU_20_2.0'] if 'BBU_20_2.0' in bbands_df else 0
+        stock_data['LOWER_20'] = bbands_df['BBL_20_2.0'] if 'BBL_20_2.0' in bbands_df else 0
     except Exception as e:
         print(f"Error calculating Bollinger Bands: {e}")
         stock_data['UPPER_20'] = 0
@@ -80,9 +80,9 @@ def calculate_indicators(stock_data):
 
     # Aroon 계산
     try:
-        aroon_df = stock_data.ta.aroon(length=25)  # append=False로 설정하여 별도의 DataFrame을 반환
-        stock_data['AROONU_25'] = aroon_df['AROONU_25'] if 'AROONU_25' in aroon_df.columns else 0
-        stock_data['AROOND_25'] = aroon_df['AROOND_25'] if 'AROOND_25' in aroon_df.columns else 0
+        aroon_df = stock_data.ta.aroon(length=25)
+        stock_data['AROONU_25'] = aroon_df['AROONU_25'] if 'AROONU_25' in aroon_df else 0
+        stock_data['AROOND_25'] = aroon_df['AROOND_25'] if 'AROOND_25' in aroon_df else 0
     except Exception as e:
         print(f"Error calculating Aroon: {e}")
         stock_data['AROONU_25'] = 0
@@ -101,19 +101,12 @@ def calculate_indicators(stock_data):
 
     # 이동평균 계산
     try:
-        sma_df_5 = stock_data.ta.sma(close='Close', length=5)
-        sma_df_10 = stock_data.ta.sma(close='Close', length=10)
-        sma_df_20 = stock_data.ta.sma(close='Close', length=20)
-        sma_df_60 = stock_data.ta.sma(close='Close', length=60)
-        sma_df_120 = stock_data.ta.sma(close='Close', length=120)
-        sma_df_240 = stock_data.ta.sma(close='Close', length=240)
-
-        stock_data['SMA_5'] = sma_df_5['SMA_5'] if 'SMA_5' in sma_df_5.columns else 0
-        stock_data['SMA_10'] = sma_df_10['SMA_10'] if 'SMA_10' in sma_df_10.columns else 0
-        stock_data['SMA_20'] = sma_df_20['SMA_20'] if 'SMA_20' in sma_df_20.columns else 0
-        stock_data['SMA_60'] = sma_df_60['SMA_60'] if 'SMA_60' in sma_df_60.columns else 0
-        stock_data['SMA_120'] = sma_df_120['SMA_120'] if 'SMA_120' in sma_df_120.columns else 0
-        stock_data['SMA_240'] = sma_df_240['SMA_240'] if 'SMA_240' in sma_df_240.columns else 0
+        stock_data['SMA_5'] = stock_data.ta.sma(close='Close', length=5)
+        stock_data['SMA_10'] = stock_data.ta.sma(close='Close', length=10)
+        stock_data['SMA_20'] = stock_data.ta.sma(close='Close', length=20)
+        stock_data['SMA_60'] = stock_data.ta.sma(close='Close', length=60)
+        stock_data['SMA_120'] = stock_data.ta.sma(close='Close', length=120)
+        stock_data['SMA_240'] = stock_data.ta.sma(close='Close', length=240)
     except Exception as e:
         print(f"Error calculating SMAs: {e}")
         stock_data['SMA_5'] = stock_data['SMA_10'] = stock_data['SMA_20'] = stock_data['SMA_60'] = stock_data['SMA_120'] = stock_data['SMA_240'] = 0
@@ -121,12 +114,12 @@ def calculate_indicators(stock_data):
     # Stochastic Oscillator 계산
     try:
         stoch_df_20 = stock_data.ta.stoch(high='High', low='Low', k=20, d=10)
-        stock_data['STOCHk_20_10_3'] = stoch_df_20['STOCHk_20_10_3'] if 'STOCHk_20_10_3' in stoch_df_20.columns else 0
-        stock_data['STOCHd_20_10_3'] = stoch_df_20['STOCHd_20_10_3'] if 'STOCHd_20_10_3' in stoch_df_20.columns else 0
+        stock_data['STOCHk_20_10_3'] = stoch_df_20['STOCHk_20_10_3'] if 'STOCHk_20_10_3' in stoch_df_20 else 0
+        stock_data['STOCHd_20_10_3'] = stoch_df_20['STOCHd_20_10_3'] if 'STOCHd_20_10_3' in stoch_df_20 else 0
 
         stoch_df_14 = stock_data.ta.stoch(high='High', low='Low', k=14, d=3)
-        stock_data['STOCHk_14_3_3'] = stoch_df_14['STOCHk_14_3_3'] if 'STOCHk_14_3_3' in stoch_df_14.columns else 0
-        stock_data['STOCHd_14_3_3'] = stoch_df_14['STOCHd_14_3_3'] if 'STOCHd_14_3_3' in stoch_df_14.columns else 0
+        stock_data['STOCHk_14_3_3'] = stoch_df_14['STOCHk_14_3_3'] if 'STOCHk_14_3_3' in stoch_df_14 else 0
+        stock_data['STOCHd_14_3_3'] = stoch_df_14['STOCHd_14_3_3'] if 'STOCHd_14_3_3' in stoch_df_14 else 0
     except Exception as e:
         print(f"Error calculating Stochastic Oscillator: {e}")
         stock_data['STOCHk_20_10_3'] = stock_data['STOCHd_20_10_3'] = stock_data['STOCHk_14_3_3'] = stock_data['STOCHd_14_3_3'] = 0
@@ -134,65 +127,40 @@ def calculate_indicators(stock_data):
     return stock_data
 
 
-
 def get_stock_data(ticker, start_date, end_date):
-    # start_date와 end_date가 문자열인 경우 datetime으로 변환
-    if isinstance(start_date, str):
-        start_date = datetime.strptime(start_date, '%Y-%m-%d')
-    if isinstance(end_date, str):
-        end_date = datetime.strptime(end_date, '%Y-%m-%d')
-
     # 파일 경로 설정
     file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', f'result_VOO_{ticker}.csv'))
 
     # CSV 파일이 존재하는지 확인
     if os.path.exists(file_path):
-        # 기존 파일에서 데이터를 불러옵니다.
         stock_data = pd.read_csv(file_path, index_col=0, parse_dates=True)
         first_stock_data_date = stock_data.index.min()
         last_stock_data_date = stock_data.index.max()
 
-        # 날짜 형식을 통일하기 위해 datetime 객체로 변환
-        if isinstance(first_stock_data_date, str):
-            first_stock_data_date = datetime.strptime(first_stock_data_date, '%Y-%m-%d')
-        if isinstance(last_stock_data_date, str):
-            last_stock_data_date = datetime.strptime(last_stock_data_date, '%Y-%m-%d')
-
-        # 데이터 범위가 요청된 범위를 모두 포함하는지 확인
         if first_stock_data_date <= start_date and last_stock_data_date >= end_date:
             print("Using cached data")
             stock_data = calculate_indicators(stock_data)
             return stock_data.loc[start_date:end_date], first_stock_data_date
 
-        # 필요한 경우 추가 데이터 가져오기
+        # 데이터가 부족한 경우 추가로 데이터를 가져옴
         if last_stock_data_date < end_date:
             print("Fetching additional data after the last date in the cache")
-            additional_data = fdr.DataReader(ticker, last_stock_data_date + timedelta(days=1), end_date)
-            additional_data = calculate_indicators(additional_data)
-            stock_data = pd.concat([stock_data, additional_data])
+            new_data = fdr.DataReader(ticker, last_stock_data_date + timedelta(days=1), end_date)
+            new_data = calculate_indicators(new_data)
+            stock_data = pd.concat([stock_data, new_data])
 
         if first_stock_data_date > start_date:
             print("Fetching additional data before the first date in the cache")
-            additional_data = fdr.DataReader(ticker, start_date, first_stock_data_date - timedelta(days=1))
-            additional_data = calculate_indicators(additional_data)
-            stock_data = pd.concat([additional_data, stock_data])
+            new_data = fdr.DataReader(ticker, start_date, first_stock_data_date - timedelta(days=1))
+            new_data = calculate_indicators(new_data)
+            stock_data = pd.concat([new_data, stock_data])
 
     else:
-        # 캐시된 데이터가 없으면 전체 데이터를 불러옵니다.
+        # 새 데이터를 불러와 초기화
         stock_data = fdr.DataReader(ticker, start_date, end_date)
         stock_data = calculate_indicators(stock_data)
+        first_stock_data_date = stock_data.index.min()
 
-    # Industry 정보 추가
-    sector_df = pd.read_csv(ticker_path)  # stock_market.csv 파일 경로
-    sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
-    if ticker in sector_dict:
-        stock_data['Sector'] = sector_dict[ticker]
-    else:
-        stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
-    
-    stock_data['Stock'] = ticker    
-
-    print(stock_data)
     return stock_data, first_stock_data_date
 
 def get_price_info(ticker):
