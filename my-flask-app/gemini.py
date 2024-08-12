@@ -135,7 +135,7 @@ async def analyze_with_gemini(ticker):
            리뷰주식의 누적수익률 = {final_rate}
            기준이 되는 비교주식(S&P 500, VOO)의 누적수익율 = {final_rate_vs}
            이격도 (max: {max_divergence}, min: {min_divergence}, 현재: {current_divergence}, 상대이격도: {relative_divergence})
-           최근 상대이격도 변화량 = {delta_Previous_Relative_Divergence} , 최근 추세는 상승/하락/유지 중 어떤가?
+           최근 상대이격도 변화량 = {delta_Previous_Relative_Divergence} , (-): 단기하락, (+): 단기상승
         2) 제공된 자료의 최근 주가 변동(간단하게: 5일, 20일, 60일 이동평균 수치로):
            종가 = {Close}
            5일이동평균 = {sma_5}
