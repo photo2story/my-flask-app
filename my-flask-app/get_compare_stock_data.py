@@ -56,7 +56,7 @@ def save_simplified_csv(ticker):
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
 
     # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
-    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence']].iloc[::20].reset_index(drop=True)
+    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence']].iloc[::10].reset_index(drop=True)
     
     # 마지막 데이터 추가 (concat 사용)
     if not simplified_df.iloc[-1].equals(df.iloc[-1]):
