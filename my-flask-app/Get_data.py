@@ -60,57 +60,72 @@ def get_start_date(ticker):
     return stock_data.index.min()
 
 def calculate_indicators(stock_data):
-    # RSI 계산 - 결과 구조 확인
-    rsi_df = stock_data.ta.rsi(length=14, append=True)
-    print("RSI DataFrame columns:", rsi_df.columns)  # 열 이름 확인
-    if 'RSI_14' in rsi_df.columns:
-        stock_data['RSI_14'] = rsi_df['RSI_14']
-    else:
-        print("RSI_14 not found in the DataFrame, setting to 0.")
-        stock_data['RSI_14'] = 0  # 기본값 설정
+    # RSI 계산
+    try:
+        rsi_df = stock_data.ta.rsi(length=14)  # append=False로 설정하여 별도의 DataFrame을 반환
+        stock_data['RSI_14'] = rsi_df['RSI_14'] if 'RSI_14' in rsi_df.columns else 0
+    except Exception as e:
+        print(f"Error calculating RSI: {e}")
+        stock_data['RSI_14'] = 0
 
     # Bollinger Bands 계산
-    stock_data.ta.bbands(length=20, std=2, append=True)
-
-    # Bollinger Bands 상단과 하단 값 계산
-    if 'BBL_20_2.0' in stock_data.columns and 'BBM_20_2.0' in stock_data.columns:
-        stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-        stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    else:
+    try:
+        bbands_df = stock_data.ta.bbands(length=20, std=2)  # append=False로 설정하여 별도의 DataFrame을 반환
+        stock_data['UPPER_20'] = bbands_df['BBU_20_2.0'] if 'BBU_20_2.0' in bbands_df.columns else 0
+        stock_data['LOWER_20'] = bbands_df['BBL_20_2.0'] if 'BBL_20_2.0' in bbands_df.columns else 0
+    except Exception as e:
+        print(f"Error calculating Bollinger Bands: {e}")
         stock_data['UPPER_20'] = 0
         stock_data['LOWER_20'] = 0
 
     # Aroon 계산
-    stock_data.ta.aroon(length=25, append=True)
-
-    # Aroon Up과 Down 계산 결과 확인
-    if 'AROONU_25' not in stock_data.columns:
+    try:
+        aroon_df = stock_data.ta.aroon(length=25)  # append=False로 설정하여 별도의 DataFrame을 반환
+        stock_data['AROONU_25'] = aroon_df['AROONU_25'] if 'AROONU_25' in aroon_df.columns else 0
+        stock_data['AROOND_25'] = aroon_df['AROOND_25'] if 'AROOND_25' in aroon_df.columns else 0
+    except Exception as e:
+        print(f"Error calculating Aroon: {e}")
         stock_data['AROONU_25'] = 0
-    if 'AROOND_25' not in stock_data.columns:
         stock_data['AROOND_25'] = 0
 
     # MFI 계산
-    high_prices = stock_data['High'].values
-    low_prices = stock_data['Low'].values
-    close_prices = stock_data['Close'].values
-    volumes = stock_data['Volume'].values
-    stock_data['MFI_14'] = calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14)
+    try:
+        high_prices = stock_data['High'].values
+        low_prices = stock_data['Low'].values
+        close_prices = stock_data['Close'].values
+        volumes = stock_data['Volume'].values
+        stock_data['MFI_14'] = calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14)
+    except Exception as e:
+        print(f"Error calculating MFI: {e}")
+        stock_data['MFI_14'] = 0
 
     # 이동평균 계산
-    stock_data['SMA_5'] = stock_data.ta.sma(close='Close', length=5, append=True)
-    stock_data['SMA_20'] = stock_data.ta.sma(close='Close', length=20, append=True)
-    stock_data['SMA_60'] = stock_data.ta.sma(close='Close', length=60, append=True)
-    stock_data['SMA_120'] = stock_data.ta.sma(close='Close', length=120, append=True)
-    stock_data['SMA_240'] = stock_data.ta.sma(close='Close', length=240, append=True)
+    try:
+        sma_df = stock_data.ta.sma(close='Close', length=5)  # append=False로 설정하여 별도의 DataFrame을 반환
+        stock_data['SMA_5'] = sma_df['SMA_5'] if 'SMA_5' in sma_df.columns else 0
+        stock_data['SMA_20'] = stock_data.ta.sma(close='Close', length=20)['SMA_20'] if 'SMA_20' in stock_data.columns else 0
+        stock_data['SMA_60'] = stock_data.ta.sma(close='Close', length=60)['SMA_60'] if 'SMA_60' in stock_data.columns else 0
+        stock_data['SMA_120'] = stock_data.ta.sma(close='Close', length=120)['SMA_120'] if 'SMA_120' in stock_data.columns else 0
+        stock_data['SMA_240'] = stock_data.ta.sma(close='Close', length=240)['SMA_240'] if 'SMA_240' in stock_data.columns else 0
+    except Exception as e:
+        print(f"Error calculating SMAs: {e}")
+        stock_data['SMA_5'] = stock_data['SMA_20'] = stock_data['SMA_60'] = stock_data['SMA_120'] = stock_data['SMA_240'] = 0
 
     # Stochastic Oscillator 계산
-    stock_data['STOCHk_20_10_3'] = stock_data.ta.stoch(high='High', low='Low', k=20, d=10, append=True)['STOCHk_20_10_3']
-    stock_data['STOCHd_20_10_3'] = stock_data.ta.stoch(high='High', low='Low', k=20, d=10, append=True)['STOCHd_20_10_3']
+    try:
+        stoch_df_20 = stock_data.ta.stoch(high='High', low='Low', k=20, d=10)
+        stock_data['STOCHk_20_10_3'] = stoch_df_20['STOCHk_20_10_3'] if 'STOCHk_20_10_3' in stoch_df_20.columns else 0
+        stock_data['STOCHd_20_10_3'] = stoch_df_20['STOCHd_20_10_3'] if 'STOCHd_20_10_3' in stoch_df_20.columns else 0
 
-    stock_data['STOCHk_14_3_3'] = stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)['STOCHk_14_3_3']
-    stock_data['STOCHd_14_3_3'] = stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)['STOCHd_14_3_3']
+        stoch_df_14 = stock_data.ta.stoch(high='High', low='Low', k=14, d=3)
+        stock_data['STOCHk_14_3_3'] = stoch_df_14['STOCHk_14_3_3'] if 'STOCHk_14_3_3' in stoch_df_14.columns else 0
+        stock_data['STOCHd_14_3_3'] = stoch_df_14['STOCHd_14_3_3'] if 'STOCHd_14_3_3' in stoch_df_14.columns else 0
+    except Exception as e:
+        print(f"Error calculating Stochastic Oscillator: {e}")
+        stock_data['STOCHk_20_10_3'] = stock_data['STOCHd_20_10_3'] = stock_data['STOCHk_14_3_3'] = stock_data['STOCHd_14_3_3'] = 0
 
     return stock_data
+
 
 
 
