@@ -141,7 +141,7 @@ async def analyze_with_gemini(ticker):
            5일이동평균 = {sma_5}
            20일이동평균 = {sma_20}
            60일이동평균 = {sma_60}
-        3) 제공된 자료의 RSI, PPO 인덱스 지표를 분석해줘 (간단하게):
+        3) 제공된 자료의 RSI, PPO 인덱스 지표와 delta_Previous_Relative_Divergence를 분석해줘 (간단하게):
            RSI = {rsi}
            PPO = {ppo}
            최근 상대이격도 변화량 = {delta_Previous_Relative_Divergence} , (-): 단기하락, (+): 단기상승
