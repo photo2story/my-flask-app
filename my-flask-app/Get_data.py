@@ -62,15 +62,15 @@ def get_start_date(ticker):
 def calculate_indicators(stock_data):
     # RSI 계산
     try:
-        rsi_series = stock_data.ta.rsi(length=14)
-        stock_data['RSI_14'] = rsi_series
+        rsi_df = stock_data.ta.rsi(length=14)  # RSI 데이터프레임 반환
+        stock_data['RSI_14'] = rsi_df  # 단일 Series로 할당
     except Exception as e:
         print(f"Error calculating RSI: {e}")
         stock_data['RSI_14'] = 0
 
     # Bollinger Bands 계산
     try:
-        bbands_df = stock_data.ta.bbands(length=20, std=2)
+        bbands_df = stock_data.ta.bbands(length=20, std=2)  # Bollinger Bands 데이터프레임 반환
         stock_data['UPPER_20'] = bbands_df['BBU_20_2.0'] if 'BBU_20_2.0' in bbands_df else 0
         stock_data['LOWER_20'] = bbands_df['BBL_20_2.0'] if 'BBL_20_2.0' in bbands_df else 0
     except Exception as e:
@@ -80,7 +80,7 @@ def calculate_indicators(stock_data):
 
     # Aroon 계산
     try:
-        aroon_df = stock_data.ta.aroon(length=25)
+        aroon_df = stock_data.ta.aroon(length=25)  # Aroon 데이터프레임 반환
         stock_data['AROONU_25'] = aroon_df['AROONU_25'] if 'AROONU_25' in aroon_df else 0
         stock_data['AROOND_25'] = aroon_df['AROOND_25'] if 'AROOND_25' in aroon_df else 0
     except Exception as e:
@@ -101,12 +101,23 @@ def calculate_indicators(stock_data):
 
     # 이동평균 계산
     try:
-        stock_data['SMA_5'] = stock_data.ta.sma(close='Close', length=5)
-        stock_data['SMA_10'] = stock_data.ta.sma(close='Close', length=10)
-        stock_data['SMA_20'] = stock_data.ta.sma(close='Close', length=20)
-        stock_data['SMA_60'] = stock_data.ta.sma(close='Close', length=60)
-        stock_data['SMA_120'] = stock_data.ta.sma(close='Close', length=120)
-        stock_data['SMA_240'] = stock_data.ta.sma(close='Close', length=240)
+        sma_5_df = stock_data.ta.sma(close='Close', length=5)
+        stock_data['SMA_5'] = sma_5_df
+
+        sma_10_df = stock_data.ta.sma(close='Close', length=10)
+        stock_data['SMA_10'] = sma_10_df
+
+        sma_20_df = stock_data.ta.sma(close='Close', length=20)
+        stock_data['SMA_20'] = sma_20_df
+
+        sma_60_df = stock_data.ta.sma(close='Close', length=60)
+        stock_data['SMA_60'] = sma_60_df
+
+        sma_120_df = stock_data.ta.sma(close='Close', length=120)
+        stock_data['SMA_120'] = sma_120_df
+
+        sma_240_df = stock_data.ta.sma(close='Close', length=240)
+        stock_data['SMA_240'] = sma_240_df
     except Exception as e:
         print(f"Error calculating SMAs: {e}")
         stock_data['SMA_5'] = stock_data['SMA_10'] = stock_data['SMA_20'] = stock_data['SMA_60'] = stock_data['SMA_120'] = stock_data['SMA_240'] = 0
@@ -114,20 +125,18 @@ def calculate_indicators(stock_data):
     # Stochastic Oscillator 계산
     try:
         stoch_df_20 = stock_data.ta.stoch(high='High', low='Low', k=20, d=10)
-        stock_data['STOCHk_20_10_3'] = stoch_df_20['STOCHk_20_10_3'] if 'STOCHk_20_10_3' in stoch_df_20 else 0
-        stock_data['STOCHd_20_10_3'] = stoch_df_20['STOCHd_20_10_3'] if 'STOCHd_20_10_3' in stoch_df_20 else 0
+        stock_data['STOCHk_20_10_3'] = stoch_df_20['STOCHk_20_10_3'] if 'STOCHk_20_10_3' in stoch_df_20.columns else 0
+        stock_data['STOCHd_20_10_3'] = stoch_df_20['STOCHd_20_10_3'] if 'STOCHd_20_10_3' in stoch_df_20.columns else 0
 
         stoch_df_14 = stock_data.ta.stoch(high='High', low='Low', k=14, d=3)
-        stock_data['STOCHk_14_3_3'] = stoch_df_14['STOCHk_14_3_3'] if 'STOCHk_14_3_3' in stoch_df_14 else 0
-        stock_data['STOCHd_14_3_3'] = stoch_df_14['STOCHd_14_3_3'] if 'STOCHd_14_3_3' in stoch_df_14 else 0
+        stock_data['STOCHk_14_3_3'] = stoch_df_14['STOCHk_14_3_3'] if 'STOCHk_14_3_3' in stoch_df_14.columns else 0
+        stock_data['STOCHd_14_3_3'] = stoch_df_14['STOCHd_14_3_3'] if 'STOCHd_14_3_3' in stoch_df_14.columns else 0
     except Exception as e:
         print(f"Error calculating Stochastic Oscillator: {e}")
         stock_data['STOCHk_20_10_3'] = stock_data['STOCHd_20_10_3'] = stock_data['STOCHk_14_3_3'] = stock_data['STOCHd_14_3_3'] = 0
 
     return stock_data
 
-
-import pandas as pd
 
 def get_stock_data(ticker, start_date, end_date):
     # 문자열로 입력된 start_date와 end_date를 Timestamp로 변환
@@ -161,12 +170,15 @@ def get_stock_data(ticker, start_date, end_date):
             new_data = fdr.DataReader(ticker, start_date, first_stock_data_date - timedelta(days=1))
             new_data = calculate_indicators(new_data)
             stock_data = pd.concat([new_data, stock_data])
+            
+        stock_data['Stock'] = ticker   
 
     else:
         # 새 데이터를 불러와 초기화
         stock_data = fdr.DataReader(ticker, start_date, end_date)
         stock_data = calculate_indicators(stock_data)
         first_stock_data_date = stock_data.index.min()
+        stock_data['Stock'] = ticker
 
     return stock_data, first_stock_data_date
 
