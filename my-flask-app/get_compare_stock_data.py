@@ -124,6 +124,6 @@ if __name__ == "__main__":
     ]
     for ticker in tickers:
         save_simplified_csv(ticker)
-    # asyncio.run(collect_relative_divergence())
+    asyncio.run(collect_relative_divergence())
 
 # python get_compare_stock_data.py
