@@ -101,15 +101,22 @@ def calculate_indicators(stock_data):
 
     # 이동평균 계산
     try:
-        sma_df = stock_data.ta.sma(close='Close', length=5)  # append=False로 설정하여 별도의 DataFrame을 반환
-        stock_data['SMA_5'] = sma_df['SMA_5'] if 'SMA_5' in sma_df.columns else 0
-        stock_data['SMA_20'] = stock_data.ta.sma(close='Close', length=20)['SMA_20'] if 'SMA_20' in stock_data.columns else 0
-        stock_data['SMA_60'] = stock_data.ta.sma(close='Close', length=60)['SMA_60'] if 'SMA_60' in stock_data.columns else 0
-        stock_data['SMA_120'] = stock_data.ta.sma(close='Close', length=120)['SMA_120'] if 'SMA_120' in stock_data.columns else 0
-        stock_data['SMA_240'] = stock_data.ta.sma(close='Close', length=240)['SMA_240'] if 'SMA_240' in stock_data.columns else 0
+        sma_df_5 = stock_data.ta.sma(close='Close', length=5)
+        sma_df_10 = stock_data.ta.sma(close='Close', length=10)
+        sma_df_20 = stock_data.ta.sma(close='Close', length=20)
+        sma_df_60 = stock_data.ta.sma(close='Close', length=60)
+        sma_df_120 = stock_data.ta.sma(close='Close', length=120)
+        sma_df_240 = stock_data.ta.sma(close='Close', length=240)
+
+        stock_data['SMA_5'] = sma_df_5['SMA_5'] if 'SMA_5' in sma_df_5.columns else 0
+        stock_data['SMA_10'] = sma_df_10['SMA_10'] if 'SMA_10' in sma_df_10.columns else 0
+        stock_data['SMA_20'] = sma_df_20['SMA_20'] if 'SMA_20' in sma_df_20.columns else 0
+        stock_data['SMA_60'] = sma_df_60['SMA_60'] if 'SMA_60' in sma_df_60.columns else 0
+        stock_data['SMA_120'] = sma_df_120['SMA_120'] if 'SMA_120' in sma_df_120.columns else 0
+        stock_data['SMA_240'] = sma_df_240['SMA_240'] if 'SMA_240' in sma_df_240.columns else 0
     except Exception as e:
         print(f"Error calculating SMAs: {e}")
-        stock_data['SMA_5'] = stock_data['SMA_20'] = stock_data['SMA_60'] = stock_data['SMA_120'] = stock_data['SMA_240'] = 0
+        stock_data['SMA_5'] = stock_data['SMA_10'] = stock_data['SMA_20'] = stock_data['SMA_60'] = stock_data['SMA_120'] = stock_data['SMA_240'] = 0
 
     # Stochastic Oscillator 계산
     try:
@@ -125,8 +132,6 @@ def calculate_indicators(stock_data):
         stock_data['STOCHk_20_10_3'] = stock_data['STOCHd_20_10_3'] = stock_data['STOCHk_14_3_3'] = stock_data['STOCHd_14_3_3'] = 0
 
     return stock_data
-
-
 
 
 
