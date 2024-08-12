@@ -72,7 +72,7 @@ def calculate_indicators(stock_data):
         stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     else:
         stock_data['UPPER_20']  = 0
-        new_data['bb_lower_ta'] = 0
+        stock_data['LOWER_20']  = 0
         
     stock_data.ta.aroon(length=25, append=True)
 
