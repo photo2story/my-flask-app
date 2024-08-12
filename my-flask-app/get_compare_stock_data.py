@@ -31,41 +31,45 @@ async def fetch_csv(ticker):
         return None
 
 def save_simplified_csv(ticker):
+    # 파일 경로 설정
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
     file_path = os.path.join(folder_path, f'result_VOO_{ticker}.csv')
     
-    df = pd.read_csv(file_path)
-    df['Date'] = pd.to_datetime(df['Date'])  # Date 열을 datetime 형식으로 변환
-    
-    if 'rate' in df.columns and 'rate_vs' in df.columns:
-        df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
-        df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
-    else:
-        raise KeyError(f"'rate' or 'rate_vs' columns not found in file: {file_path}")
-    
-    if 'Divergence' in df.columns:
-        max_divergence = df['Divergence'].max()
-        min_divergence = df['Divergence'].min()
-        df['Relative_Divergence'] = ((df['Divergence'] - min_divergence) / (max_divergence - min_divergence)) * 100
-        df['Relative_Divergence'] = np.round(df['Relative_Divergence'], 2)
-    else:
-        print(f"Divergence column not found in dataframe for {ticker}")
+    # 파일이 존재하지 않으면 건너뜁니다.
+    if not os.path.exists(file_path):
+        print(f"File not found for ticker {ticker}, skipping...")
         return
+        
+    # 데이터 로드 및 필요한 열만 선택
+    df = pd.read_csv(file_path, parse_dates=['Date'], usecols=['Date', 'rate', 'rate_vs'])
+    
+    # 이격도(Divergence) 계산
+    df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
+    df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
+    
+    # 상대 이격도(Relative Divergence) 계산
+    max_divergence = df['Divergence'].max()
+    min_divergence = df['Divergence'].min()
+    df['Relative_Divergence'] = np.round(((df['Divergence'] - min_divergence) / (max_divergence - min_divergence)) * 100, 2)
+    
+    # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
+    df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
 
-    simplified_df = df.iloc[::40].reset_index(drop=True)
+    
+    # 간소화된 데이터프레임 생성
+    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence']].iloc[::40].reset_index(drop=True)
+    
+    # 파일 저장
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
 
-    if not df.empty:
-        latest_entry = df.iloc[-1]
-        current_divergence = latest_entry['Divergence']
-        current_relative_divergence = latest_entry['Relative_Divergence']
-        delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
-    
-        print(f"Current Divergence for {ticker}: {current_divergence} (max {max_divergence}, min {min_divergence})")
-        print(f"Current Relative Divergence for {ticker}: {current_relative_divergence}")
-        print(f"Delta Previous Relative Divergence for {ticker}: {delta_previous_relative_divergence}")
+    # 마지막 데이터를 출력
+    latest_entry = df.iloc[-1]
+    print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {max_divergence}, min {min_divergence})")
+    print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
+    print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
+
 
 
 async def collect_relative_divergence():
@@ -103,8 +107,22 @@ async def collect_relative_divergence():
 
 if __name__ == "__main__":
     import asyncio
-    ticker = 'TSLA'
-    save_simplified_csv(ticker)
-    asyncio.run(collect_relative_divergence())
+    # ticker = 'TSLA'
+    tickers = [
+        'AAPL', 'MSFT', 'NVDA', 'GOOG', 'AMZN', 'META', 'CRM', 'ADBE', 'AMD', 'ACN', 'QCOM', 'CSCO',
+        'INTU', 'IBM', 'PDD', 'NOW', 'ARM', 'INTC', 'ANET', 'ADI', 'KLAC', 'PANW', 'AMT', 'V', 'MA',
+        'BAC', 'WFC', 'BLK', 'BX', 'GS', 'C', 'KKR', 'TSLA', 'HD', 'NKE', 'MCD', 'SBUX', 'TJX', 'BKNG',
+        'CMG', 'TGT', 'LOW', 'EXPE', 'DG', 'JD', 'LLY', 'UNH', 'ABBV', 'JNJ', 'MRK', 'TMO', 'ABT', 'PFE',
+        'DHR', 'CVS', 'CI', 'GILD', 'AMGN', 'ISRG', 'REGN', 'VRTX', 'HCA', 'GOOGL', 'NFLX', 'DIS', 'VZ',
+        'T', 'CMCSA', 'SPOT', 'TWTR', 'ROKU', 'LYFT', 'UBER', 'EA', 'GE', 'UPS', 'BA', 'CAT', 'MMM', 'HON',
+        'RTX', 'DE', 'LMT', 'NOC', 'UNP', 'WM', 'ETN', 'CSX', 'FDX', 'WMT', 'KO', 'PEP', 'PG', 'COST',
+        'MDLZ', 'CL', 'PM', 'MO', 'KHC', 'HSY', 'KR', 'GIS', 'EL', 'STZ', 'MKC', 'XOM', 'CVX', 'COP', 'EOG',
+        'PSX', 'MPC', 'VLO', 'OKE', 'KMI', 'WMB', 'SLB', 'HAL', 'BKR', 'LIN', 'ALB', 'NEM', 'FMC', 'APD',
+        'CF', 'ECL', 'LYB', 'PPG', 'SHW', 'CE', 'DD', 'AMT', 'PLD', 'EQIX', 'PSA', 'AVB', 'SPG', 'O', 'VICI',
+        'EXR', 'MAA', 'EQR', 'NEE', 'DUK', 'SO', 'AEP', 'EXC', 'D', 'SRE', 'XEL', 'ED', 'ES', 'PEG', 'WEC'
+    ]
+    for ticker in tickers:
+        save_simplified_csv(ticker)
+    # asyncio.run(collect_relative_divergence())
 
 # python get_compare_stock_data.py

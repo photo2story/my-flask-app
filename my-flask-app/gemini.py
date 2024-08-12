@@ -114,6 +114,7 @@ async def analyze_with_gemini(ticker):
         min_divergence = df_simplified['Divergence'].min()
         current_divergence = df_simplified['Divergence'].iloc[-1]
         relative_divergence = df_simplified['Relative_Divergence'].iloc[-1]
+        # Delta_Previous_Relative_Divergence
 
         recent_earnings = get_recent_eps_and_revenue(ticker)
         if recent_earnings is None or all(entry[3] is None for entry in recent_earnings):

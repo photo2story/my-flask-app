@@ -214,7 +214,7 @@ if __name__ == '__main__':
 
 
 r"""
-\.venv\Scripts\activate
+.\\.venv\Scripts\activate
 python3 -m venv .venv
 source .venv/bin/activate
 python bot.py   
