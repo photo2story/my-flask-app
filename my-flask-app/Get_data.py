@@ -63,8 +63,17 @@ def calculate_indicators(stock_data):
     # 지표 계산 로직
     stock_data.ta.rsi(length=14, append=True)
     stock_data.ta.bbands(length=20, std=2, append=True)
-    stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
+    # stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
+    # stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
+    
+    # 볼린저 밴드 상단과 하단 값 계산
+    if 'BBL_20_2.0' in new_data.columns and 'BBM_20_2.0' in new_data.columns:
+        stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
+        stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
+    else:
+        stock_data['UPPER_20']  = 0
+        new_data['bb_lower_ta'] = 0
+        
     stock_data.ta.aroon(length=25, append=True)
 
     high_prices = stock_data['High'].values
