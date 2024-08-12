@@ -27,7 +27,7 @@ from backtest_send import backtest_and_send
 from get_ticker import is_valid_stock
 from gemini import analyze_with_gemini, send_report_to_discord
 from gpt import analyze_with_gpt
-from get_compare_stock_data import save_simplified_csv, read_and_process_csv  # 추가된 부분
+from get_compare_stock_data import save_simplified_csv  # 추가된 부분
 
 load_dotenv()
 
