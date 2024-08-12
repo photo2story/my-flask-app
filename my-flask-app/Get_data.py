@@ -60,41 +60,52 @@ def get_start_date(ticker):
     return stock_data.index.min()
 
 def calculate_indicators(stock_data):
-    # 지표 계산 로직
-    stock_data.ta.rsi(length=14, append=True)
+    # RSI 계산
+    stock_data['RSI_14'] = stock_data.ta.rsi(length=14, append=True)
+
+    # Bollinger Bands 계산
     stock_data.ta.bbands(length=20, std=2, append=True)
-    # stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    # stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    
-    # 볼린저 밴드 상단과 하단 값 계산
+
+    # Bollinger Bands 상단과 하단 값 계산
     if 'BBL_20_2.0' in stock_data.columns and 'BBM_20_2.0' in stock_data.columns:
         stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
         stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     else:
-        stock_data['UPPER_20']  = 0
-        stock_data['LOWER_20']  = 0
-        
+        stock_data['UPPER_20'] = 0
+        stock_data['LOWER_20'] = 0
+
+    # Aroon 계산
     stock_data.ta.aroon(length=25, append=True)
 
+    # Aroon Up과 Down 계산 결과 확인
+    if 'AROONU_25' not in stock_data.columns:
+        stock_data['AROONU_25'] = 0
+    if 'AROOND_25' not in stock_data.columns:
+        stock_data['AROOND_25'] = 0
+
+    # MFI 계산
     high_prices = stock_data['High'].values
     low_prices = stock_data['Low'].values
     close_prices = stock_data['Close'].values
     volumes = stock_data['Volume'].values
     stock_data['MFI_14'] = calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14)
 
-    stock_data.ta.sma(close='Close', length=5, append=True)
-    stock_data.ta.sma(close='Close', length=10, append=True)
-    stock_data.ta.sma(close='Close', length=20, append=True)
-    stock_data.ta.sma(close='Close', length=60, append=True)
-    stock_data.ta.sma(close='Close', length=120, append=True)
-    stock_data.ta.sma(close='Close', length=240, append=True)
-    stock_data.ta.stoch(high='high', low='low', k=20, d=10, append=True)
-    stock_data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
-    
-    # Check if the RSI column exists and handle cases where it might not
-    if 'RSI_14' not in stock_data.columns:
-        print("RSI_14 not calculated, possibly due to insufficient data.")
+    # 이동평균 계산
+    stock_data['SMA_5'] = stock_data.ta.sma(close='Close', length=5, append=True)
+    stock_data['SMA_20'] = stock_data.ta.sma(close='Close', length=20, append=True)
+    stock_data['SMA_60'] = stock_data.ta.sma(close='Close', length=60, append=True)
+    stock_data['SMA_120'] = stock_data.ta.sma(close='Close', length=120, append=True)
+    stock_data['SMA_240'] = stock_data.ta.sma(close='Close', length=240, append=True)
+
+    # Stochastic Oscillator 계산
+    stock_data['STOCHk_20_10_3'] = stock_data.ta.stoch(high='High', low='Low', k=20, d=10, append=True)['STOCHk_20_10_3']
+    stock_data['STOCHd_20_10_3'] = stock_data.ta.stoch(high='High', low='Low', k=20, d=10, append=True)['STOCHd_20_10_3']
+
+    stock_data['STOCHk_14_3_3'] = stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)['STOCHk_14_3_3']
+    stock_data['STOCHd_14_3_3'] = stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)['STOCHd_14_3_3']
+
     return stock_data
+
 
 def get_stock_data(ticker, start_date, end_date):
     # start_date와 end_date가 문자열인 경우 datetime으로 변환
