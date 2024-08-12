@@ -147,6 +147,8 @@ def get_stock_data(ticker, start_date, end_date):
         stock_data['Sector'] = sector_dict[ticker]
     else:
         stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
+    
+    stock_data['Stock'] = ticker    
 
     print(stock_data)
     return stock_data, first_stock_data_date
