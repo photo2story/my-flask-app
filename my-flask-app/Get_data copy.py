@@ -101,7 +101,7 @@ def get_stock_data(ticker, start_date, end_date):
 
     # 데이터 프레임에서 최소 날짜를 얻습니다.
     min_stock_data_date = stock_data.index.min()
-    print(stock_data)
+    # print(stock_data)
     return stock_data, min_stock_data_date
 
 def get_price_info(ticker):
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     industry_info = load_industry_info()
   
     # 티커와 기간 지정
-    ticker = 'TSLA'
+    ticker = 'BTC/KRW'
     start_date = '2024-01-01'
     end_date = '2024-06-01'
   
