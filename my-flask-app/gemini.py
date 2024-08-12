@@ -163,15 +163,14 @@ async def analyze_with_gemini(ticker):
         destination_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
         report_file_path = os.path.join(destination_dir, report_file)
 
-        existing_files = [f for f in os.listdir(destination_dir) if f.startswith(f"report_{ticker}") and f.endswith('.txt')]
-        for file in existing_files:
-            os.remove(os.path.join(destination_dir, file))
-
+        # 기존 파일이 있을 경우 삭제하지 않고 덮어쓰기 모드로 파일을 열어 작성
         with open(report_file_path, 'w', encoding='utf-8') as file:
             file.write(report_text)
 
+        # 필요한 파일들을 이동
         shutil.move(voo_file, os.path.join(destination_dir, voo_file))
         await move_files_to_images_folder()
+
 
         return f'Gemini Analysis for {ticker} (VOO) has been sent to Discord and saved as a text file.'
 

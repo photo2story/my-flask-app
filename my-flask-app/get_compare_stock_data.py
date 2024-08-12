@@ -30,30 +30,19 @@ async def fetch_csv(ticker):
         print(f"No data found for {ticker}.")
         return None
 
-def read_and_process_csv(file_path):
+def save_simplified_csv(ticker):
+    folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
+    file_path = os.path.join(folder_path, f'result_VOO_{ticker}.csv')
+    
     df = pd.read_csv(file_path)
     df['Date'] = pd.to_datetime(df['Date'])  # Date 열을 datetime 형식으로 변환
-    file_name_parts = os.path.splitext(os.path.basename(file_path))[0].split('_')
-    ticker = file_name_parts[-1]
     
     if 'rate' in df.columns and 'rate_vs' in df.columns:
-        result_df = df[['Date', 'rate', 'rate_vs']].copy()
-        result_df = result_df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
+        df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
+        df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
     else:
         raise KeyError(f"'rate' or 'rate_vs' columns not found in file: {file_path}")
     
-    return result_df
-
-def calculate_divergence(df, ticker):
-    divergence = df[f'rate_{ticker}_5D'] - df['rate_VOO_20D']
-    return divergence
-
-def save_simplified_csv(file_path, ticker):
-    df = read_and_process_csv(file_path)
-    
-    divergence = calculate_divergence(df, ticker)
-    df['Divergence'] = np.round(divergence, 2)
-
     if 'Divergence' in df.columns:
         max_divergence = df['Divergence'].max()
         min_divergence = df['Divergence'].min()
@@ -64,8 +53,6 @@ def save_simplified_csv(file_path, ticker):
         return
 
     simplified_df = df.iloc[::40].reset_index(drop=True)
-    
-    folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
@@ -74,9 +61,12 @@ def save_simplified_csv(file_path, ticker):
         latest_entry = df.iloc[-1]
         current_divergence = latest_entry['Divergence']
         current_relative_divergence = latest_entry['Relative_Divergence']
+        delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
     
         print(f"Current Divergence for {ticker}: {current_divergence} (max {max_divergence}, min {min_divergence})")
         print(f"Current Relative Divergence for {ticker}: {current_relative_divergence}")
+        print(f"Delta Previous Relative Divergence for {ticker}: {delta_previous_relative_divergence}")
+
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
@@ -85,15 +75,11 @@ async def collect_relative_divergence():
     for ticker in tickers:
         df = await fetch_csv(ticker)
         if df is not None and 'Relative_Divergence' in df.columns:
-            latest_relative_divergence = df['Relative_Divergence'].iloc[-1]
-            latest_divergence = df['Divergence'].iloc[-1]
-            
-            if len(df) > 20:  # 데이터가 충분한지 확인
-                previous_relative_divergence = df['Relative_Divergence'].iloc[-20]
-                delta_previous_relative_divergence = latest_relative_divergence - previous_relative_divergence
-            else:
-                delta_previous_relative_divergence = None  # 데이터가 충분하지 않다면 None 설정
-            
+            latest_entry = df.iloc[-1]  # 마지막 데이터를 가져옴
+            latest_relative_divergence = latest_entry['Relative_Divergence']
+            latest_divergence = latest_entry['Divergence']
+            delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
+
             results = pd.concat([results, pd.DataFrame({
                 'Ticker': [ticker], 
                 'Divergence': [latest_divergence], 
@@ -101,7 +87,7 @@ async def collect_relative_divergence():
                 'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence]
             })], ignore_index=True)
         else:
-            print(f"Data for {ticker} is not available or missing 'Relative_Divergence' column.")
+            print(f"Data for {ticker} is not available or missing necessary columns.")
     
     # 결과를 CSV 파일로 저장
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
@@ -115,9 +101,10 @@ async def collect_relative_divergence():
     
     return results
 
-
 if __name__ == "__main__":
     import asyncio
+    ticker = 'TSLA'
+    save_simplified_csv(ticker)
     asyncio.run(collect_relative_divergence())
 
 # python get_compare_stock_data.py
