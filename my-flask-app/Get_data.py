@@ -90,7 +90,10 @@ def calculate_indicators(stock_data):
     stock_data.ta.sma(close='Close', length=240, append=True)
     stock_data.ta.stoch(high='high', low='low', k=20, d=10, append=True)
     stock_data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
-
+    
+    # Check if the RSI column exists and handle cases where it might not
+    if 'RSI_14' not in stock_data.columns:
+        print("RSI_14 not calculated, possibly due to insufficient data.")
     return stock_data
 
 def get_stock_data(ticker, start_date, end_date):
