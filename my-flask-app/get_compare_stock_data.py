@@ -55,9 +55,12 @@ def save_simplified_csv(ticker):
     # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
 
+    # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
+    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence']].iloc[::20].reset_index(drop=True)
     
-    # 간소화된 데이터프레임 생성
-    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence']].iloc[::40].reset_index(drop=True)
+    # 마지막 데이터 추가 (concat 사용)
+    if not simplified_df.iloc[-1].equals(df.iloc[-1]):
+        simplified_df = pd.concat([simplified_df, df.iloc[[-1]]], ignore_index=True)
     
     # 파일 저장
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
@@ -69,8 +72,6 @@ def save_simplified_csv(ticker):
     print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {max_divergence}, min {min_divergence})")
     print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
     print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
-
-
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
