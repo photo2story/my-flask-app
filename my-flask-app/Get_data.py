@@ -67,7 +67,7 @@ def calculate_indicators(stock_data):
     # stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     
     # 볼린저 밴드 상단과 하단 값 계산
-    if 'BBL_20_2.0' in new_data.columns and 'BBM_20_2.0' in new_data.columns:
+    if 'BBL_20_2.0' in stock_data.columns and 'BBM_20_2.0' in stock_data.columns:
         stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
         stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     else:
