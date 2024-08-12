@@ -8,6 +8,7 @@ import requests
 import numpy as np
 import FinanceDataReader as fdr
 from github_operations import ticker_path # stock_market.csv 파일 경로
+from datetime import datetime, timedelta
 NaN = np.nan
 
 def calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14):
@@ -83,29 +84,50 @@ def calculate_indicators(stock_data):
     return stock_data
 
 def get_stock_data(ticker, start_date, end_date):
-    # FinanceDataReader를 사용하여 주식 데이터 불러오기
-    print('get_stock_data.1:',ticker)
-    # print(start_date)
-    stock_data = fdr.DataReader(ticker, start_date, end_date)
+    # 파일 경로 설정
+    file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', f'result_VOO_' + ticker + '.csv'))
 
-    stock_data.columns = stock_data.columns.astype(str)
-  
-    stock_data = calculate_indicators(stock_data)
-    stock_data['Stock'] = ticker
+    # CSV 파일이 존재하는지 확인
+    if os.path.exists(file_path):
+        # 기존 파일에서 데이터를 불러옵니다.
+        stock_data = pd.read_csv(file_path, index_col=0, parse_dates=True)
+        first_stock_data_date = stock_data.index.min()
+        last_stock_data_date = stock_data.index.max()
 
+        # 데이터 범위가 요청된 범위를 모두 포함하는지 확인
+        if first_stock_data_date <= start_date and last_stock_data_date >= end_date:
+            print("Using cached data")
+            stock_data = calculate_indicators(stock_data)
+            return stock_data.loc[start_date:end_date], first_stock_data_date
+
+        # 필요한 경우 추가 데이터 가져오기
+        if last_stock_data_date < end_date:
+            print("Fetching additional data after the last date in the cache")
+            additional_data = fdr.DataReader(ticker, last_stock_data_date + timedelta(days=1), end_date)
+            additional_data = calculate_indicators(additional_data)
+            stock_data = pd.concat([stock_data, additional_data])
+
+        if first_stock_data_date > start_date:
+            print("Fetching additional data before the first date in the cache")
+            additional_data = fdr.DataReader(ticker, start_date, first_stock_data_date - timedelta(days=1))
+            additional_data = calculate_indicators(additional_data)
+            stock_data = pd.concat([additional_data, stock_data])
+
+    else:
+        # 캐시된 데이터가 없으면 전체 데이터를 불러옵니다.
+        stock_data = fdr.DataReader(ticker, start_date, end_date)
+        stock_data = calculate_indicators(stock_data)
 
     # Industry 정보 추가
-    sector_df = pd.read_csv(ticker_path)# stock_market.csv 파일 경로
+    sector_df = pd.read_csv(ticker_path)  # stock_market.csv 파일 경로
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     if ticker in sector_dict:
         stock_data['Sector'] = sector_dict[ticker]
     else:
         stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
 
-    # 데이터 프레임에서 최소 날짜를 얻습니다.
-    min_stock_data_date = stock_data.index.min()
     print(stock_data)
-    return stock_data, min_stock_data_date
+    return stock_data, first_stock_data_date
 
 def get_price_info(ticker):
     api_key = 'Alpha_API'
