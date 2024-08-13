@@ -62,7 +62,7 @@ def get_start_date(ticker):
 def calculate_indicators(stock_data):
     # RSI 계산 및 추가
     try:
-        stock_data['RSI_14']= stock_data.ta.rsi()  # RSI_14 열이 수동으로 추가됩니다.
+        stock_data.ta.rsi(length=14, append=True) # RSI_14 열이 수동으로 추가됩니다.
     except Exception as e:
         print(f"Error calculating RSI: {e}")
         stock_data['RSI_14'] = 0
