@@ -61,9 +61,12 @@ def get_start_date(ticker):
 
 def calculate_indicators(stock_data):
     try:
-        stock_data.ta.rsi(length=14, append=True)
-        if 'RSI_14' not in stock_data.columns:
-            raise ValueError("RSI_14 calculation failed or column not found.")
+        if 'Close' in stock_data.columns:
+            stock_data.ta.rsi(length=14, append=True)
+            if 'RSI_14' not in stock_data.columns:
+                raise ValueError("RSI_14 calculation failed or column not found.")
+        else:
+            raise ValueError("Column 'Close' not found in stock data.")
     except Exception as e:
         logging.error(f"Error calculating RSI: {e}")
         stock_data['RSI_14'] = NaN
@@ -77,6 +80,11 @@ def calculate_indicators(stock_data):
         logging.error(f"Error calculating Bollinger Bands: {e}")
         stock_data['UPPER_20'] = NaN
         stock_data['LOWER_20'] = NaN
+
+    # 나머지 지표들도 동일한 방식으로 처리
+
+    return stock_data
+
 
     try:
         aroon_df = stock_data.ta.aroon(length=25)
