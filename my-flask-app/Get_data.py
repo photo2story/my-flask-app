@@ -61,18 +61,22 @@ def get_start_date(ticker):
 
 def calculate_indicators(stock_data):
     try:
-        stock_data.ta.rsi(length=14, append=True) 
+        stock_data.ta.rsi(length=14, append=True)
+        if 'RSI_14' not in stock_data.columns:
+            raise ValueError("RSI_14 calculation failed or column not found.")
     except Exception as e:
         logging.error(f"Error calculating RSI: {e}")
-        stock_data['RSI_14'] = 0
+        stock_data['RSI_14'] = NaN
 
+    # 다른 지표 계산 부분도 동일하게 처리
     try:
         bbands_df = stock_data.ta.bbands(length=20, std=2)
-        stock_data['UPPER_20'] = bbands_df['BBU_20_2.0'] if 'BBU_20_2.0' in bbands_df.columns else 0
-        stock_data['LOWER_20'] = bbands_df['BBL_20_2.0'] if 'BBL_20_2.0' in bbands_df.columns else 0
+        stock_data['UPPER_20'] = bbands_df['BBU_20_2.0'] if 'BBU_20_2.0' in bbands_df.columns else NaN
+        stock_data['LOWER_20'] = bbands_df['BBL_20_2.0'] if 'BBL_20_2.0' in bbands_df.columns else NaN
     except Exception as e:
         logging.error(f"Error calculating Bollinger Bands: {e}")
-        stock_data['UPPER_20'] = stock_data['LOWER_20'] = 0
+        stock_data['UPPER_20'] = NaN
+        stock_data['LOWER_20'] = NaN
 
     try:
         aroon_df = stock_data.ta.aroon(length=25)
