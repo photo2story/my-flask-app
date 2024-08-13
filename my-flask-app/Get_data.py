@@ -121,11 +121,29 @@ def calculate_indicators(stock_data):
 
 def fetch_and_update_data(ticker, start_date, end_date, existing_data=None):
     new_data = fdr.DataReader(ticker, start_date, end_date)
-    new_data.columns = existing_data.columns.astype(str) if existing_data is not None else new_data.columns.astype(str)
+    
+    # Ensure columns match between existing_data and new_data
+    if existing_data is not None:
+        missing_cols_in_new = set(existing_data.columns) - set(new_data.columns)
+        missing_cols_in_existing = set(new_data.columns) - set(existing_data.columns)
+        
+        # Add missing columns to new_data with NaN values
+        for col in missing_cols_in_new:
+            new_data[col] = NaN
+        
+        # Add missing columns to existing_data with NaN values
+        for col in missing_cols_in_existing:
+            existing_data[col] = NaN
+        
+        # Ensure the order of columns matches
+        new_data = new_data[existing_data.columns]
+
     new_data = calculate_indicators(new_data)
+    
     if existing_data is not None:
         return pd.concat([existing_data, new_data])
     return new_data
+
 
 def get_stock_data(ticker, start_date, end_date):
     start_date = pd.to_datetime(start_date)
