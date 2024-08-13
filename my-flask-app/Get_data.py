@@ -60,35 +60,34 @@ def get_start_date(ticker):
     return stock_data.index.min()
 
 def calculate_indicators(stock_data):
-    # RSI 계산
+    # RSI 계산 및 추가
     try:
-        rsi_series = stock_data.ta.rsi(length=14)
-        stock_data['RSI_14'] = rsi_series
+        stock_data.ta.rsi(length=14, append=True)  # RSI_14 열이 자동으로 추가됩니다.
     except Exception as e:
         print(f"Error calculating RSI: {e}")
         stock_data['RSI_14'] = 0
 
-    # Bollinger Bands 계산
+    # Bollinger Bands 계산 및 추가
     try:
         bbands_df = stock_data.ta.bbands(length=20, std=2)
-        stock_data['UPPER_20'] = bbands_df['BBU_20_2.0'] if 'BBU_20_2.0' in bbands_df else 0
-        stock_data['LOWER_20'] = bbands_df['BBL_20_2.0'] if 'BBL_20_2.0' in bbands_df else 0
+        stock_data['UPPER_20'] = bbands_df['BBU_20_2.0'] if 'BBU_20_2.0' in bbands_df.columns else 0
+        stock_data['LOWER_20'] = bbands_df['BBL_20_2.0'] if 'BBL_20_2.0' in bbands_df.columns else 0
     except Exception as e:
         print(f"Error calculating Bollinger Bands: {e}")
         stock_data['UPPER_20'] = 0
         stock_data['LOWER_20'] = 0
 
-    # Aroon 계산
+    # Aroon 계산 및 추가
     try:
         aroon_df = stock_data.ta.aroon(length=25)
-        stock_data['AROONU_25'] = aroon_df['AROONU_25'] if 'AROONU_25' in aroon_df else 0
-        stock_data['AROOND_25'] = aroon_df['AROOND_25'] if 'AROOND_25' in aroon_df else 0
+        stock_data['AROONU_25'] = aroon_df['AROONU_25'] if 'AROONU_25' in aroon_df.columns else 0
+        stock_data['AROOND_25'] = aroon_df['AROOND_25'] if 'AROOND_25' in aroon_df.columns else 0
     except Exception as e:
         print(f"Error calculating Aroon: {e}")
         stock_data['AROONU_25'] = 0
         stock_data['AROOND_25'] = 0
 
-    # MFI 계산
+    # MFI 계산 및 추가
     try:
         high_prices = stock_data['High'].values
         low_prices = stock_data['Low'].values
@@ -99,7 +98,7 @@ def calculate_indicators(stock_data):
         print(f"Error calculating MFI: {e}")
         stock_data['MFI_14'] = 0
 
-    # 이동평균 계산 (pandas의 rolling을 사용)
+    # 이동평균 계산 및 추가 (pandas의 rolling을 사용)
     try:
         stock_data['SMA_5'] = stock_data['Close'].rolling(window=5).mean()
         stock_data['SMA_10'] = stock_data['Close'].rolling(window=10).mean()
@@ -111,7 +110,7 @@ def calculate_indicators(stock_data):
         print(f"Error calculating SMAs: {e}")
         stock_data['SMA_5'] = stock_data['SMA_10'] = stock_data['SMA_20'] = stock_data['SMA_60'] = stock_data['SMA_120'] = stock_data['SMA_240'] = 0
 
-    # Stochastic Oscillator 계산
+    # Stochastic Oscillator 계산 및 추가
     try:
         stoch_df_20 = stock_data.ta.stoch(high='High', low='Low', k=20, d=10)
         stock_data['STOCHk_20_10_3'] = stoch_df_20['STOCHk_20_10_3'] if 'STOCHk_20_10_3' in stoch_df_20.columns else 0
@@ -125,6 +124,7 @@ def calculate_indicators(stock_data):
         stock_data['STOCHk_20_10_3'] = stock_data['STOCHd_20_10_3'] = stock_data['STOCHk_14_3_3'] = stock_data['STOCHd_14_3_3'] = 0
 
     return stock_data
+
 
 
 
