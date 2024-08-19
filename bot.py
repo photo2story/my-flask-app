@@ -64,7 +64,7 @@ async def on_ready():
         bot_started = True
 
 @bot.command()
-async def gchat(ctx, *, query: str = None):
+async def Gchat(ctx, *, query: str = None):
     if query is None or query.strip() == "":
         await ctx.send("제미니와 대화하려면 메시지를 입력해주세요.")
         return
@@ -78,7 +78,7 @@ async def gchat(ctx, *, query: str = None):
 
 
 @bot.command()
-async def stock(ctx, *, query: str = None):
+async def Stock(ctx, *, query: str = None):
     if query:
         stock_names = [query.upper()]
     else:
@@ -112,7 +112,7 @@ async def stock(ctx, *, query: str = None):
         await asyncio.sleep(1)
 
 @bot.command()
-async def gemini(ctx, *, query: str = None):
+async def Gemini(ctx, *, query: str = None):
     if query:
         tickers = [query.upper()]
     else:
@@ -145,7 +145,7 @@ async def gemini(ctx, *, query: str = None):
 
 
 @bot.command()
-async def buddy(ctx, *, query: str = None):
+async def Buddy(ctx, *, query: str = None):
     if query:
         stock_names = [query.upper()]
     else:
@@ -166,7 +166,7 @@ async def buddy(ctx, *, query: str = None):
         results = await collect_relative_divergence()        
         
 @bot.command()
-async def ticker(ctx, *, query: str = None):
+async def Ticker(ctx, *, query: str = None):
     print(f'Command received: ticker with query: {query}')
     if query is None:
         await ctx.send("Please enter ticker stock name or ticker.")
@@ -181,13 +181,13 @@ async def ticker(ctx, *, query: str = None):
 #         await ctx.send(f'pong: {bot.user.name}')
 #         print(f'Ping command received and responded with pong.')
         
-async def ping(ctx):
+async def Ping(ctx):
     await ctx.send(f'pong: {bot.user.name}')
     print(f'Ping command received and responded with pong.')
     
     
 @bot.command()
-async def account(ctx, ticker: str):
+async def Account(ctx, ticker: str):
     try:
         ticker = ticker.upper()  # 티커를 대문자로 변환
         exchange = get_market_from_ticker(ticker)
