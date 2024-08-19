@@ -47,7 +47,7 @@ bot = commands.Bot(command_prefix='', intents=intents)
 
 bot_started = False
 
-# Gemini API 설정
+# Gemini API 설정,디스코드에서 제미니와 대화하기 위한 모델 생성
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
