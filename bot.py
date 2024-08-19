@@ -175,12 +175,17 @@ async def ticker(ctx, *, query: str = None):
     await search_tickers_and_respond(ctx, query)
 
 @bot.command()
+# async def ping(ctx):
+#     if ctx.message.id not in processed_message_ids:
+#         processed_message_ids.add(ctx.message.id)
+#         await ctx.send(f'pong: {bot.user.name}')
+#         print(f'Ping command received and responded with pong.')
+        
 async def ping(ctx):
-    if ctx.message.id not in processed_message_ids:
-        processed_message_ids.add(ctx.message.id)
-        await ctx.send(f'pong: {bot.user.name}')
-        print(f'Ping command received and responded with pong.')
-
+    await ctx.send(f'pong: {bot.user.name}')
+    print(f'Ping command received and responded with pong.')
+    
+    
 @bot.command()
 async def account(ctx, ticker: str):
     try:
