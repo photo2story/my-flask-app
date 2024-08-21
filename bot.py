@@ -158,6 +158,7 @@ async def gemini(ctx, *, query: str = None):
 
 
 @bot.command()
+@check_duplicate_message()
 async def buddy(ctx, *, query: str = None):
     if query:
         stock_names = [query.upper()]
