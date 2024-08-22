@@ -186,9 +186,11 @@ async def ticker(ctx, *, query: str = None):
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send(f'pong: {bot.user.name}')
-    print(f'Ping command received and responded with pong.')
-    
+    try:
+        await ctx.send(f'pong: {bot.user.name}')
+        print(f'Ping command received and responded with pong.')
+    except Exception as e:
+        print(f"Error in ping command: {e}")
     
 @bot.command()
 async def account(ctx, ticker: str):

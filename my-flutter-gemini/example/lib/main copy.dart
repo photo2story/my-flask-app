@@ -8,12 +8,14 @@ import 'package:example/sections/response_widget_stream.dart';
 import 'package:example/sections/stream.dart';
 import 'package:example/sections/text_and_image.dart';
 import 'package:example/sections/text_only.dart';
-import 'package:example/sections/stock_comparison.dart';
-import 'package:example/sections/bot_stock.dart';  // bot_stock.dart 추가
+import 'stock_comparison.dart';  // stock_comparison.dart 파일을 import
 
 void main() async {
+  /// flutter run --dart-define=apiKey='Your Api Key'
   Gemini.init(
-    apiKey: const String.fromEnvironment('apiKey'), enableDebugging: true);
+      apiKey: const String.fromEnvironment('apiKey'), enableDebugging: true);
+
+  // Gemini.reInitialize(apiKey: "new api key", enableDebugging: false);
 
   runApp(const MyApp());
 }
@@ -28,9 +30,8 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        cardTheme: CardTheme(color: Colors.blue.shade900),
-      ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          cardTheme: CardTheme(color: Colors.blue.shade900)),
       home: const MyHomePage(),
     );
   }
@@ -62,9 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
     SectionItem(4, 'text', const SectionTextInput()),
     SectionItem(5, 'embedContent', const SectionEmbedContent()),
     SectionItem(6, 'batchEmbedContents', const SectionBatchEmbedContents()),
-    SectionItem(7, 'Stock Comparison', StockComparison()),
-    SectionItem(8, 'Bot Stock Command', BotStock()),  // BotStock 섹션 추가
-    SectionItem(9, 'response without setState()', const ResponseWidgetSection()),
+    SectionItem(7, 'Stock Comparison', StockComparison(stockTicker: 'TSLA')), // 주식 비교 섹션 추가
+    SectionItem(8, 'response without setState()', const ResponseWidgetSection()),
   ];
 
   @override
