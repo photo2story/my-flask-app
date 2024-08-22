@@ -74,7 +74,6 @@ async def on_ready():
         bot_started = True
 
 @bot.command()
-@check_duplicate_message()
 async def gchat(ctx, *, query: str = None):
     if query is None or query.strip() == "":
         await ctx.send("제미니와 대화하려면 메시지를 입력해주세요.")
@@ -89,7 +88,6 @@ async def gchat(ctx, *, query: str = None):
 
 
 @bot.command()
-@check_duplicate_message()
 async def stock(ctx, *, query: str = None):
     if query:
         stock_names = [query.upper()]
@@ -124,7 +122,6 @@ async def stock(ctx, *, query: str = None):
         await asyncio.sleep(1)
 
 @bot.command()
-@check_duplicate_message()
 async def gemini(ctx, *, query: str = None):
     if query:
         tickers = [query.upper()]
@@ -158,7 +155,6 @@ async def gemini(ctx, *, query: str = None):
 
 
 @bot.command()
-@check_duplicate_message()
 async def buddy(ctx, *, query: str = None):
     if query:
         stock_names = [query.upper()]
@@ -180,7 +176,6 @@ async def buddy(ctx, *, query: str = None):
         results = await collect_relative_divergence()        
         
 @bot.command()
-@check_duplicate_message()
 async def ticker(ctx, *, query: str = None):
     print(f'Command received: ticker with query: {query}')
     if query is None:
@@ -190,15 +185,13 @@ async def ticker(ctx, *, query: str = None):
     await search_tickers_and_respond(ctx, query)
 
 @bot.command()
-@check_duplicate_message()
 async def ping(ctx):
     await ctx.send(f'pong: {bot.user.name}')
     print(f'Ping command received and responded with pong.')
     
     
 @bot.command()
-@check_duplicate_message()
-async def accountcheck_duplicate_message(ctx, ticker: str):
+async def account(ctx, ticker: str):
     try:
         ticker = ticker.upper()  # 티커를 대문자로 변환
         exchange = get_market_from_ticker(ticker)
