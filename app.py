@@ -112,22 +112,17 @@ def data():
 def execute_stock_command():
     data = request.get_json()
     stock_ticker = data.get('stock_ticker')
-
     if not stock_ticker:
         return jsonify({'error': 'No stock ticker provided'}), 400
 
     try:
-        # 주식 분석 수행
-        asyncio.run(backtest_and_send(stock_ticker, 'modified_monthly'))
-        asyncio.run(plot_comparison_results(stock_ticker, config.START_DATE, config.END_DATE))
-        asyncio.run(plot_results_mpl(stock_ticker, config.START_DATE, config.END_DATE))
-        
-        # 결과를 디스코드로 전송
-        webhook = Webhook.from_url(DISCORD_WEBHOOK_URL, adapter=RequestsWebhookAdapter())
-        webhook.send(f'Results for {stock_ticker} displayed successfully.')
+        async def send_stock_command():
+            await send_command_to_bot(stock_ticker)
 
-        return jsonify({'message': 'Stock command executed successfully and results sent to Discord'}), 200
+        asyncio.create_task(send_stock_command())
+        return jsonify({'message': 'Command executed successfully'}), 200
     except Exception as e:
+        print(f"Error while executing stock command: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/send_discord_command', methods=['POST'])
@@ -135,18 +130,16 @@ def send_discord_command():
     data = request.json
     command = data.get('command')
     if command:
-        # 여기서 디스코드 봇에게 명령을 전달하도록 수정
         response = requests.post(
             DISCORD_WEBHOOK_URL,
             json={'content': command},
             headers={'Content-Type': 'application/json'}
         )
         if response.status_code == 204:
-            return jsonify({'message': 'Command sent successfully to Discord'}), 200
+            return jsonify({'message': 'Command sent successfully'}), 200
         else:
-            return jsonify({'message': 'Failed to send command to Discord'}), 500
+            return jsonify({'message': 'Failed to send command'}), 500
     return jsonify({'message': 'Invalid command'}), 400
-
 
 def run_flask():
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
@@ -155,6 +148,21 @@ if __name__ == '__main__':
     from bot import run_bot
     threading.Thread(target=run_flask).start()
     asyncio.run(run_bot())
+
+# source .venv/bin/activate
+# #  .\.venv\Scripts\activate
+# #  python app.py 
+# pip install huggingface_hub
+# huggingface-cli login
+# EEVE-Korean-Instruct-10.8B-v1.0-GGUF
+# ollama create EEVE-Korean-Instruct-10.8B -f Modelfile-V02
+# ollama create EEVE-Korean-10.8B -f EEVE-Korean-Instruct-10.8B-v1.0-GGUF/Modelfile
+# pip install ollama
+# pip install chromadb
+# pip install langchain
+# ollama create EEVE-Korean-10.8B -f Modelfile
+# git push heroku main
+# heroku logs --tail -a he-flutter-app
 
 # source .venv/bin/activate
 # #  .\.venv\Scripts\activate

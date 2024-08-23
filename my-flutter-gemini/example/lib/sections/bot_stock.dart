@@ -11,14 +11,14 @@ class _BotStockState extends State<BotStock> {
   final TextEditingController _controller = TextEditingController();
   String _responseMessage = '';
 
-  // 서버에 주식 명령을 전송하는 함수
-  Future<void> sendStockCommand(String stockTicker) async {
-    final url = Uri.parse('http://192.168.0.5:5000/execute_stock_command');  // Flask 서버의 URL로 설정
+  // 서버에 명령을 전송하는 함수
+  Future<void> sendDiscordCommand(String command) async {
+    final url = Uri.parse('http://192.168.0.5:5000/send_discord_command');  // Flask 서버의 URL로 설정
     try {
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
-        body: json.encode({'stock_ticker': stockTicker}),
+        body: json.encode({'command': command}),
       );
 
       print('Response status: ${response.statusCode}');
@@ -26,11 +26,11 @@ class _BotStockState extends State<BotStock> {
 
       if (response.statusCode == 200) {
         setState(() {
-          _responseMessage = 'Stock command executed successfully!';
+          _responseMessage = 'Command sent successfully!';
         });
       } else {
         setState(() {
-          _responseMessage = 'Failed to execute stock command: ${response.statusCode}';
+          _responseMessage = 'Failed to send command: ${response.statusCode}';
         });
       }
     } catch (e) {
@@ -45,7 +45,7 @@ class _BotStockState extends State<BotStock> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bot Stock Command'),
+        title: Text('Send Discord Command'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -55,14 +55,14 @@ class _BotStockState extends State<BotStock> {
             TextField(
               controller: _controller,
               decoration: InputDecoration(
-                labelText: 'Enter Stock Ticker',
+                labelText: 'Enter Command',
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                sendStockCommand(_controller.text);
+                sendDiscordCommand(_controller.text);
               },
               child: Text('Send Command'),
             ),
