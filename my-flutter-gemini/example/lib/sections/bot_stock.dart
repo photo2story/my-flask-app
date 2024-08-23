@@ -26,11 +26,11 @@ class _BotStockState extends State<BotStock> {
 
       if (response.statusCode == 200) {
         setState(() {
-          _responseMessage = 'Command sent successfully!';
+          _responseMessage = 'Command executed successfully!';
         });
       } else {
         setState(() {
-          _responseMessage = 'Failed to send command: ${response.statusCode}';
+          _responseMessage = 'Failed to execute command: ${response.statusCode}';
         });
       }
     } catch (e) {

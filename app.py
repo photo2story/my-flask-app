@@ -17,6 +17,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'my-flas
 # 사용자 정의 모듈 임포트
 from git_operations import move_files_to_images_folder
 from gemini import analyze_with_gemini  # gemini.py에서 함수 가져오기
+from bot import ping_command
 
 # 명시적으로 .env 파일 경로를 지정하여 환경 변수 로드
 env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
@@ -129,24 +130,28 @@ def execute_stock_command():
 def send_discord_command():
     data = request.json
     command = data.get('command')
+    print(f"Received command: {command}")  # 디버깅 메시지 추가
     if command:
         try:
-            # 봇의 특정 명령을 실행 (예: ping)
             if command.lower() == "ping":
-                asyncio.run(ping_command())
+                print("Executing ping command...")  # 디버깅 메시지 추가
+                asyncio.run_coroutine_threadsafe(ping_command(), asyncio.new_event_loop())
                 return jsonify({'message': 'Ping command executed successfully'}), 200
             else:
                 return jsonify({'message': 'Unknown command'}), 400
         except Exception as e:
+            print(f"Error executing command: {str(e)}")
             return jsonify({'message': f'Error executing command: {str(e)}'}), 500
     return jsonify({'message': 'Invalid command'}), 400
 
-async def ping_command():
-    channel = bot.get_channel(CHANNEL_ID)  # CHANNEL_ID는 봇이 메시지를 보낼 채널의 ID입니다.
-    if channel:
-        await channel.send("pong: cocoBot")
-    else:
-        print("Channel not found.")
+
+
+# async def ping_command():
+#     channel = bot.get_channel(CHANNEL_ID)  # CHANNEL_ID는 봇이 메시지를 보낼 채널의 ID입니다.
+#     if channel:
+#         await channel.send("pong: cocoBot")
+#     else:
+#         print("Channel not found.")
 
 
 def run_flask():

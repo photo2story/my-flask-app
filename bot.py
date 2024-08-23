@@ -6,6 +6,7 @@ import asyncio
 from dotenv import load_dotenv
 import discord
 from discord.ext import tasks, commands
+from discord.ext.commands import Context
 import certifi
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import threading
@@ -61,6 +62,21 @@ bot_started = False
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
+# ping_command 비동기 함수 정의
+async def ping_command():
+    try:
+        print("Executing ping command...")
+        # Context를 생성하고 명령어 실행
+        ctx = Context(bot=bot, prefix="", command=bot.get_command("ping"))
+        await ctx.invoke(bot.get_command("ping"))
+
+        
+        await bot.invoke(ctx)  # ping 명령어 실행
+        print("Ping command executed.")
+    except Exception as e:
+        print(f"Error in ping command: {e}")
+
+        
 @bot.event
 async def on_ready():
     global bot_started
