@@ -130,16 +130,24 @@ def send_discord_command():
     data = request.json
     command = data.get('command')
     if command:
-        response = requests.post(
-            DISCORD_WEBHOOK_URL,
-            json={'content': command},
-            headers={'Content-Type': 'application/json'}
-        )
-        if response.status_code == 204:
-            return jsonify({'message': 'Command sent successfully'}), 200
-        else:
-            return jsonify({'message': 'Failed to send command'}), 500
+        try:
+            # 봇의 특정 명령을 실행 (예: ping)
+            if command.lower() == "ping":
+                asyncio.run(ping_command())
+                return jsonify({'message': 'Ping command executed successfully'}), 200
+            else:
+                return jsonify({'message': 'Unknown command'}), 400
+        except Exception as e:
+            return jsonify({'message': f'Error executing command: {str(e)}'}), 500
     return jsonify({'message': 'Invalid command'}), 400
+
+async def ping_command():
+    channel = bot.get_channel(CHANNEL_ID)  # CHANNEL_ID는 봇이 메시지를 보낼 채널의 ID입니다.
+    if channel:
+        await channel.send("pong: cocoBot")
+    else:
+        print("Channel not found.")
+
 
 def run_flask():
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
