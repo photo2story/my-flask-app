@@ -5,6 +5,11 @@ $(function() {
     const tickerListContainer = $('#ticker-list');
     const searchedTickersContainer = $('#searched-tickers');
 
+    // Markdown 변환 함수 추가
+    function convertMarkdown(text) {
+        return marked.parse(text);
+    }
+
     function fetchImagesAndReport(stockTicker) {
         const apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
 
@@ -30,7 +35,9 @@ $(function() {
 
                     if (reportFile) {
                         $.get(reportFile.download_url, function(data) {
-                            reviewList.append(`<pre>${data}</pre>`);
+                            // Markdown을 HTML로 변환
+                            const htmlContent = convertMarkdown(data);
+                            reviewList.append(`<div class="report-content">${htmlContent}</div>`);
                         });
                     }
                     alert(`Successfully fetched review for ${stockTicker}.`);
@@ -76,7 +83,7 @@ $(function() {
                 const tickers = data
                     .filter(file => file.name.startsWith('comparison_') && file.name.endsWith('_VOO.png'))
                     .map(file => file.name.replace('comparison_', '').replace('_VOO.png', ''))
-                    .sort(); // 알파벳 순으로 정렬
+                    .sort();
 
                 tickerListContainer.empty();
 
@@ -110,6 +117,6 @@ $(function() {
         }
     });
 
-    loadTickerList(); // 페이지 로드 시 티커 목록 불러오기
-    displaySearchedTickers(); // 페이지 로드 시 검색된 티커 목록 불러오기
+    loadTickerList();
+    displaySearchedTickers();
 });
