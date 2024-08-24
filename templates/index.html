@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Comparison Review</title>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <!-- marked.js를 CDN으로 연결 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- jQuery 추가 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- jQuery UI 추가 -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <meta name="DISCORD_WEBHOOK_URL" content="https://your-discord-webhook-url"> <!-- 환경 변수 추가 -->
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,7 +34,7 @@
 
         .right-panel {
             width: 75%;
-            margin-left: 25%; /* To avoid overlap with the fixed left panel */
+            margin-left: 25%;
             padding-left: 20px;
             overflow-y: auto;
             height: 100vh;
@@ -77,8 +82,11 @@
             margin-top: 20px;
             white-space: pre-wrap;
             background-color: #f9f9f9;
-            padding: 10px;
+            padding: 20px;
             border: 1px solid #ccc;
+            line-height: 1.6;
+            font-size: 14px;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -94,16 +102,129 @@
 
     <div class="right-panel">
         <div id="reviewList"></div>
-        <div id="report"></div>
+        <div id="report"></div> <!-- 리포트 내용이 여기에 동적으로 추가됨 -->
     </div>
 
     <script>
-        // This script will set the variables for the Dart code to read
-        window.env = {
-            DISCORD_WEBHOOK_URL: document.querySelector('meta[name="DISCORD_WEBHOOK_URL"]').content,
-        };
-    </script>
-    <script src="/scripts.js"></script> <!-- 스크립트 경로 수정 -->
-</body>
+        $(function() {
+            const stockInput = $('#stockName');
+            const searchReviewButton = $('#searchReviewButton');
+            const reviewList = $('#reviewList');
+            const tickerListContainer = $('#ticker-list');
+            const searchedTickersContainer = $('#searched-tickers');
 
+            function fetchImagesAndReport(stockTicker) {
+                const apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+
+                $.ajax({
+                    url: apiUrl,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        const comparisonFile = data.find(file => file.name === `comparison_${stockTicker}_VOO.png`);
+                        const resultFile = data.find(file => file.name === `result_mpl_${stockTicker}.png`);
+                        const reportFile = data.find(file => file.name === `report_${stockTicker}.txt`);
+
+                        reviewList.empty();
+
+                        if (comparisonFile && resultFile) {
+                            reviewList.append(`
+                                <div class="review">
+                                    <h3>${stockTicker} vs VOO</h3>
+                                    <img src="${comparisonFile.download_url}" alt="${stockTicker} vs VOO" style="width: 100%;">
+                                    <img src="${resultFile.download_url}" alt="${stockTicker} Result" style="width: 100%; margin-top: 20px;">
+                                </div>
+                            `);
+
+                            if (reportFile) {
+                                $.get(reportFile.download_url, function(data) {
+                                    // 마크다운 텍스트를 HTML로 변환
+                                    const htmlContent = marked(data.trim()); // 불필요한 공백 제거
+                                    // 변환된 HTML을 페이지에 추가
+                                    reviewList.append(`<div class="markdown-content">${htmlContent}</div>`);
+                                }).fail(function() {
+                                    alert('Failed to load the report file.');
+                                });
+                            }
+                        } else {
+                            alert(`Unable to find images or report for the stock ticker ${stockTicker}.`);
+                            saveSearchedTicker(stockTicker);
+                            displaySearchedTickers();
+                        }
+                    },
+                    error: function() {
+                        alert('Error occurred while fetching data.');
+                    }
+                });
+            }
+
+            function saveSearchedTicker(ticker) {
+                let searchedTickers = JSON.parse(localStorage.getItem('searchedTickers')) || {};
+                if (searchedTickers[ticker]) {
+                    searchedTickers[ticker]++;
+                } else {
+                    searchedTickers[ticker] = 1;
+                }
+                localStorage.setItem('searchedTickers', JSON.stringify(searchedTickers));
+            }
+
+            function displaySearchedTickers() {
+                let searchedTickers = JSON.parse(localStorage.getItem('searchedTickers')) || {};
+                searchedTickersContainer.empty();
+                searchedTickersContainer.append('<h2>Searched Stocks</h2>');
+                for (let ticker in searchedTickers) {
+                    searchedTickersContainer.append(`<span class="ticker-item">${ticker} (${searchedTickers[ticker]})</span>`);
+                }
+            }
+
+            function loadTickerList() {
+                const apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+
+                $.ajax({
+                    url: apiUrl,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        const tickers = data
+                            .filter(file => file.name.startsWith('comparison_') && file.name.endsWith('_VOO.png'))
+                            .map(file => file.name.replace('comparison_', '').replace('_VOO.png', ''))
+                            .sort(); // 알파벳 순으로 정렬
+
+                        tickerListContainer.empty();
+
+                        tickers.forEach(ticker => {
+                            tickerListContainer.append(`<span class="ticker-item">${ticker}</span>`);
+                        });
+
+                        $('.ticker-item').on('click', function() {
+                            const stockTicker = $(this).text();
+                            stockInput.val(stockTicker);
+                            fetchImagesAndReport(stockTicker);
+                        });
+                    },
+                    error: function() {
+                        alert('Error occurred while loading ticker list.');
+                    }
+                });
+            }
+
+            searchReviewButton.click(function() {
+                const stockTicker = stockInput.val().toUpperCase();
+                if (stockTicker) {
+                    fetchImagesAndReport(stockTicker);
+                }
+            });
+
+            stockInput.on('keypress', function(e) {
+                if (e.which === 13) { // Enter key
+                    searchReviewButton.click();
+                    return false;
+                }
+            });
+
+            loadTickerList(); // 페이지 로드 시 티커 목록 불러오기
+            displaySearchedTickers(); // 페이지 로드 시 검색된 티커 목록 불러오기
+        });
+    </script>
+</body>
 </html>
