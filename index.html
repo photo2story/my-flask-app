@@ -12,59 +12,118 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: white;
         }
-        h1 {
-            font-size: 24px;
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #2c2c2c;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar h2 {
+            color: white;
+            font-size: 1.5em;
             margin-bottom: 20px;
         }
-        label {
-            font-size: 14px;
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
         }
-        input[type="text"] {
-            padding: 5px;
-            font-size: 14px;
+        .sidebar ul li {
+            margin: 10px 0;
         }
-        button {
-            padding: 5px 10px;
-            font-size: 14px;
+        .sidebar ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .sidebar ul li a:hover {
+            color: #fff;
+        }
+        .main-content {
+            flex-grow: 1;
+            background-color: #242424;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .main-content h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .main-content label {
+            font-size: 1.2em;
+        }
+        .main-content input[type="text"] {
+            padding: 10px;
+            font-size: 1.2em;
+            margin-right: 10px;
+            width: 300px;
+        }
+        .main-content button {
+            padding: 10px 20px;
+            font-size: 1.2em;
             cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
         }
-        .ticker-list {
+        .main-content .ticker-list {
             margin-top: 20px;
         }
-        .ticker-item {
+        .main-content .ticker-item {
             cursor: pointer;
-            color: blue;
+            color: #4CAF50;
             text-decoration: underline;
             display: inline-block;
             margin: 5px 10px;
-            font-size: 12px; /* 글씨 크기 줄이기 */
-            line-height: 1.0; /* 줄 간격 줄이기 */
+            font-size: 1.1em;
         }
-        #reviewList {
+        .main-content #reviewList {
             margin-top: 20px;
         }
-        #report {
+        .main-content #report {
             margin-top: 20px;
             white-space: pre-wrap; /* 줄바꿈과 공백을 유지 */
-            background-color: #f9f9f9;
-            padding: 10px;
-            border: 1px solid #ccc;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
         }
     </style>
 </head>
 <body>
-    <h1>Stock Comparison Review</h1>
-    <label for="stockName">Stock name:</label>
-    <input type="text" id="stockName" name="stockName">
-    <button id="searchReviewButton">Search Review</button>
-    <div id="ticker-list" class="ticker-list"></div>
-    <div id="reviewList"></div>
-    <div id="searched-tickers" class="ticker-list">
-        <h2>Searched Stocks</h2>
+    <div class="container">
+        <div class="sidebar">
+            <h2>TigerGPT</h2>
+            <ul>
+                <li><a href="#">Tesla Motors</a></li>
+                <li><a href="#">Apple</a></li>
+                <li><a href="#">NVIDIA Corp</a></li>
+                <li><a href="#">Microsoft</a></li>
+                <li><a href="#">Palantir Technologies</a></li>
+                <!-- Add more items as needed -->
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>Stock Comparison Review</h1>
+            <label for="stockName">Stock name:</label>
+            <input type="text" id="stockName" name="stockName">
+            <button id="searchReviewButton">Search Review</button>
+            <div id="ticker-list" class="ticker-list"></div>
+            <div id="reviewList"></div>
+            <div id="searched-tickers" class="ticker-list">
+                <h2>Searched Stocks</h2>
+            </div>
+            <div id="report"></div> <!-- 리포트를 표시할 영역 추가 -->
+        </div>
     </div>
-    <div id="report"></div> <!-- 리포트를 표시할 영역 추가 -->
     <script>
         // This script will set the variables for the Dart code to read
         window.env = {
@@ -74,4 +133,3 @@
     <script src="/scripts.js"></script> <!-- 스크립트 경로 수정 -->
 </body>
 </html>
-
