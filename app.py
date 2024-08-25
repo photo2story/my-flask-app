@@ -153,17 +153,17 @@ def send_discord_command():
                     await ctx.send(f'Analyzing {stock_name}...')
                     try:
                         await backtest_and_send(ctx, stock_name, 'modified_monthly', bot)
-                    except Exception:
+                    except Exception as e:
                         await ctx.send(f'Error during analysis of {stock_name}.')
-                        print(f'Error processing {stock_name}')
+                        print(f'Error processing {stock_name}: {e}')
 
                     try:
                         await plot_comparison_results(stock_name, config.START_DATE, config.END_DATE)
                         await plot_results_mpl(stock_name, config.START_DATE, config.END_DATE)
                         await ctx.send(f'Results for {stock_name} ready.')
-                    except Exception:
+                    except Exception as e:
                         await ctx.send(f"Error plotting {stock_name}.")
-                        print(f"Error plotting {stock_name}")
+                        print(f"Error plotting {stock_name}: {e}")
 
                     await asyncio.sleep(1)
 
@@ -174,16 +174,16 @@ def send_discord_command():
                     await ctx.send(f'Gemini analysis for {ticker} is starting...')
                     try:
                         result = await analyze_with_gemini(ticker)
-                    except Exception:
+                    except Exception as e:
                         await ctx.send(f'Error during Gemini analysis of {ticker}.')
-                        print(f'Error analyzing {ticker} with Gemini.')
+                        print(f'Error analyzing {ticker} with Gemini: {e}')
                         continue
 
                     try:
                         await ctx.send(f'Results for {ticker} displayed successfully.')
-                    except Exception:
+                    except Exception as e:
                         await ctx.send(f"Error displaying results for {ticker}.")
-                        print(f"Error displaying results for {ticker}.")
+                        print(f"Error displaying results for {ticker}: {e}")
 
                     await asyncio.sleep(1)
 
@@ -216,8 +216,8 @@ def send_discord_command():
             asyncio.run(execute_command())
 
             return jsonify({'message': f'{main_command} command executed successfully'}), 200
-        except Exception:
-            print("Error executing command.")
+        except Exception as e:
+            print(f"Error executing command: {e}")
             return jsonify({'message': 'Error executing command'}), 500
     return jsonify({'message': 'Invalid command'}), 400
 
