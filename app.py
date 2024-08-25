@@ -30,7 +30,7 @@ from get_compare_stock_data import save_simplified_csv  # 추가된 부분
 env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
 load_dotenv(dotenv_path=env_path)
 
-app = Flask(__name__, static_url_path='', static_folder='')
+app = Flask(__name__)
 CORS(app)
 
 app.secret_key = os.getenv("FLASK_SECRET_KEY")

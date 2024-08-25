@@ -40,9 +40,8 @@ $(function() {
                             reviewList.append(`<div class="report-content">${htmlContent}</div>`);
                         });
                     }
-                    alert(`Successfully fetched review for ${stockTicker}.`);
                 } else {
-                    alert(`Unable to find images for the stock ticker ${stockTicker}.`);
+                    alert(`Unable to find images or report for the stock ticker ${stockTicker}.`);
                     saveSearchedTicker(stockTicker);
                     displaySearchedTickers();
                 }
