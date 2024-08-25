@@ -44,7 +44,7 @@ class _BotStockState extends State<BotStock> {
 
       if (response.statusCode == 200) {
         setState(() {
-          _responseMessage = 'Command executed successfully!';
+          _responseMessage = 'Command executed successfully! Command: $command';
         });
       } else {
         setState(() {
