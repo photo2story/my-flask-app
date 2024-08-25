@@ -130,25 +130,28 @@ async def analyze_with_gemini(ticker):
 
         # Generate the full report
         prompt_voo = f"""
-        1) 제공된 자료의 수익율(rate)와 S&P 500(VOO)의 수익율(rate_vs)과 비교해서 이격된 정도를 알려줘:
+        1) 제공된 자료의 수익율(rate)와 S&P 500(VOO)의 수익율(rate_vs)과 비교해서 이격된 정도를 알려줘 (간단하게 자료 맨마지막날의 누적수익율차이):
            리뷰할 주식티커명 = {ticker}
            회사이름과 회사 개요 설명해줘(1줄로)(MS:Morgan Stanley, VOO:S&P 500 ETF)
            리뷰주식의 누적수익률 = {final_rate}
            기준이 되는 비교주식(S&P 500, VOO)의 누적수익율 = {final_rate_vs}
            이격도 (max: {max_divergence}, min: {min_divergence}, 현재: {current_divergence}, 상대이격도: {relative_divergence})
-        2) 제공된 자료의 최근 주가 변동:
+            (상대이격도는 최소~최대 변동폭을 100으로 했을 때 현재의 위치를 나타내고 있어, 
+            예를 들면 상대이격도 90이면 비교주식(S&P 500, VOO)보다 90% 더 우월하다는 것이 아니라 과거 데이터의 90% 위치한다는 의미야)
+        2) 제공된 자료의 최근 주가 변동(간단하게: 5일, 20일, 60일 이동평균 수치로):
            종가 = {Close}
            5일이동평균 = {sma_5}
            20일이동평균 = {sma_20}
            60일이동평균 = {sma_60}
-        3) 제공된 자료의 RSI, PPO 인덱스 지표와 Delta_Previous_Relative_Divergence를 분석해줘:
+        3) 제공된 자료의 RSI, PPO 인덱스 지표와 Delta_Previous_Relative_Divergence를 분석해줘 (간단하게):
            RSI = {rsi}
            PPO = {ppo}
            최근 상대이격도 변화량 = {delta_Previous_Relative_Divergence} , (-): 단기하락, (+): 단기상승
-        4) 최근 실적 및 전망:
+        4) 최근 실적 및 전망: 제공된 자료의 실적을 분석해줘(간단하게)
            실적 = {earnings_text} 표로 제공된 실적을 분석해줘
+           가장 최근 실적은 예상치도 함께 포함해서 검토해줘
         5) 종합적으로 분석해줘(1~4번까지의 요약)
-        6) 레포트는 영어로 만들어줘(2000자 이내로)
+        6) 레포트는 영어로 만들어줘
         """
 
         print(f"Sending prompt to Gemini API for {ticker}")
@@ -186,18 +189,9 @@ async def analyze_with_gemini(ticker):
         print(error_message)
         requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
 
-
-# 환경 변수 로드
-# load_dotenv()
-# DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
-# GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
-
 if __name__ == '__main__':
     ticker = 'AAPL'
     asyncio.run(analyze_with_gemini(ticker))
-
-
-
 
 # source .venv/bin/activate
 # python gemini.py     
