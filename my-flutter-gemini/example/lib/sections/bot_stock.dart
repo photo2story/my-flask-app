@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class BotStock extends StatefulWidget {
   @override
@@ -11,32 +10,16 @@ class BotStock extends StatefulWidget {
 class _BotStockState extends State<BotStock> {
   final TextEditingController _controller = TextEditingController();
   String _responseMessage = '';
-  bool _isLoading = false;
 
   // 서버에 명령을 전송하는 함수
   Future<void> sendDiscordCommand(String command) async {
-    setState(() {
-      _isLoading = true;
-      _responseMessage = '';
-    });
-
-    final String? baseUrl = dotenv.env['DDNS_KEY'];
-    if (baseUrl == null || baseUrl.isEmpty) {
-      setState(() {
-        _responseMessage = 'Error: DDNS_KEY is not set in .env file';
-        _isLoading = false;
-      });
-      return;
-    }
-
-    final url = Uri.parse('http://$baseUrl:5000/send_discord_command');
-
+    final url = Uri.parse('http://photo3story.iptime.org:5000/send_discord_command');  // Flask 서버의 URL로 설정 https://photo2story.github.io/my-flutter-app/
     try {
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'command': command}),
-      ).timeout(Duration(seconds: 10)); // 10초 타임아웃 설정
+      );
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
@@ -47,25 +30,17 @@ class _BotStockState extends State<BotStock> {
         });
       } else {
         setState(() {
-          _responseMessage = 'Failed to execute command. Status: ${response.statusCode}, Body: ${response.body}';
+          _responseMessage = 'Failed to execute command: ${response.statusCode}';
         });
       }
     } catch (e) {
       setState(() {
-        if (e is TimeoutException) {
-          _responseMessage = 'Error: Connection timed out. Please check your network.';
-        } else {
-          _responseMessage = 'Error: ${e.toString()}';
-        }
+        _responseMessage = 'Error: $e';
       });
       print('Error: $e');
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,11 +76,4 @@ class _BotStockState extends State<BotStock> {
       ),
     );
   }
-}
-
-void main() async {
-  await dotenv.load(fileName: ".env");  // .env 파일 로드
-  runApp(MaterialApp(
-    home: BotStock(),
-  ));
 }
