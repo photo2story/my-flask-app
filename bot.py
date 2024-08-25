@@ -157,7 +157,7 @@ async def gemini(ctx, *, query: str = None):
 
         # 2) 레포트 전송
         try:
-            await send_report_to_discord(ticker)
+            # await send_report_to_discord(ticker)
             await ctx.send(f'Results for {ticker} displayed successfully.')
         except Exception as e:
             await ctx.send(f"Error displaying results for {ticker}: {e}")
