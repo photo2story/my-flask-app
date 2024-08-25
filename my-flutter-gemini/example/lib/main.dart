@@ -10,11 +10,16 @@ import 'package:example/sections/text_and_image.dart';
 import 'package:example/sections/text_only.dart';
 import 'package:example/sections/stock_comparison.dart';
 import 'package:example/sections/bot_stock.dart';  // bot_stock.dart 추가
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   Gemini.init(
     apiKey: const String.fromEnvironment('apiKey'), enableDebugging: true);
-
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    print("Error loading .env file: $e");
+  }  
   runApp(const MyApp());
 }
 
