@@ -128,53 +128,56 @@ async def analyze_with_gemini(ticker):
         earnings_text = format_earnings_text(recent_earnings)
         print(f"Earnings Text for {ticker}: {earnings_text}")
 
+        # Generate the full report
         prompt_voo = f"""
-        1) 제공된 자료의 수익율(rate)와 S&P 500(VOO)의 수익율(rate_vs)과 비교해서 이격된 정도를 알려줘 (간단하게 자료 맨마지막날의 누적수익율차이):
+        1) 제공된 자료의 수익율(rate)와 S&P 500(VOO)의 수익율(rate_vs)과 비교해서 이격된 정도를 알려줘:
            리뷰할 주식티커명 = {ticker}
            회사이름과 회사 개요 설명해줘(1줄로)(MS:Morgan Stanley, VOO:S&P 500 ETF)
            리뷰주식의 누적수익률 = {final_rate}
            기준이 되는 비교주식(S&P 500, VOO)의 누적수익율 = {final_rate_vs}
            이격도 (max: {max_divergence}, min: {min_divergence}, 현재: {current_divergence}, 상대이격도: {relative_divergence})
-            (상대이격도는 최소~최대 변동폭을 100으로 했을 때 현재의 위치를 나타내고 있어, 
-            예를 들면 상대이격도 90이면 비교주식(S&P 500, VOO)보다 90% 더 우월하다는 것이 아니라 과거 데이터의 90% 위치한다는 의미야)
-        2) 제공된 자료의 최근 주가 변동(간단하게: 5일, 20일, 60일 이동평균 수치로):
+        2) 제공된 자료의 최근 주가 변동:
            종가 = {Close}
            5일이동평균 = {sma_5}
            20일이동평균 = {sma_20}
            60일이동평균 = {sma_60}
-        3) 제공된 자료의 RSI, PPO 인덱스 지표와 Delta_Previous_Relative_Divergence를 분석해줘 (간단하게):
+        3) 제공된 자료의 RSI, PPO 인덱스 지표와 Delta_Previous_Relative_Divergence를 분석해줘:
            RSI = {rsi}
            PPO = {ppo}
            최근 상대이격도 변화량 = {delta_Previous_Relative_Divergence} , (-): 단기하락, (+): 단기상승
-        4) 최근 실적 및 전망: 제공된 자료의 실적을 분석해줘(간단하게)
+        4) 최근 실적 및 전망:
            실적 = {earnings_text} 표로 제공된 실적을 분석해줘
-           가장 최근 실적은 예상치도 함께 포함해서 검토해줘
         5) 종합적으로 분석해줘(1~4번까지의 요약)
         6) 레포트는 영어로 만들어줘(2000자 이내로)
         """
-        
+
         print(f"Sending prompt to Gemini API for {ticker}")
         response_ticker = model.generate_content(prompt_voo)
         
+        # Split the report into two parts
         report_text = f"{datetime.now().strftime('%Y-%m-%d')} - Analysis Report\n" + response_ticker.text
-        # print(report_text)
+        part1 = report_text[:2000]  # First part (1~3)
+        part2 = report_text[2000:]  # Second part (4~6)
 
-        success_message = f"Gemini API 분석 완료: {ticker}\n{report_text}"
-        print(success_message)
-        requests.post(DISCORD_WEBHOOK_URL, json={'content': success_message})
+        # Send the first part to Discord
+        print(f"Sending part 1 to Discord for {ticker}")
+        requests.post(DISCORD_WEBHOOK_URL, json={'content': part1})
 
+        # Send the second part to Discord
+        print(f"Sending part 2 to Discord for {ticker}")
+        requests.post(DISCORD_WEBHOOK_URL, json={'content': part2})
+
+        # Save the full report to a text file
         report_file = f'report_{ticker}.txt'
         destination_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
         report_file_path = os.path.join(destination_dir, report_file)
 
-        # 기존 파일이 있을 경우 삭제하지 않고 덮어쓰기 모드로 파일을 열어 작성
         with open(report_file_path, 'w', encoding='utf-8') as file:
             file.write(report_text)
 
         # 필요한 파일들을 이동
         shutil.move(voo_file, os.path.join(destination_dir, voo_file))
         await move_files_to_images_folder()
-
 
         return f'Gemini Analysis for {ticker} (VOO) has been sent to Discord and saved as a text file.'
 
@@ -183,30 +186,11 @@ async def analyze_with_gemini(ticker):
         print(error_message)
         requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
 
+
 # 환경 변수 로드
-load_dotenv()
-DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
-GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
-
-async def send_report_to_discord(ticker):
-    """기존에 생성된 보고서를 Discord로 전송합니다."""
-    try:
-        report_file_url = f"{GITHUB_RAW_BASE_URL}/report_{ticker}.txt"
-        response = requests.get(report_file_url)
-        response.raise_for_status()
-        report_text = response.text
-        success_message = f"Existing Gemini Analysis for {ticker}:\n{report_text}"
-        print(success_message)
-        requests.post(DISCORD_WEBHOOK_URL, data={'content': success_message})
-    except requests.exceptions.RequestException as e:
-        error_message = f"Error retrieving report for {ticker}: {e}"
-        print(error_message)
-        requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
-    except Exception as e:
-        error_message = f"Error sending report to Discord: {e}"
-        print(error_message)
-        requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
-
+# load_dotenv()
+# DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
+# GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
 
 if __name__ == '__main__':
     ticker = 'AAPL'
