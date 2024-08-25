@@ -3,6 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:photo_view/photo_view.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'dart:async';
+import 'bot_stock.dart'; // sendDiscordCommand 함수를 가져오기 위해 bot_stock.dart를 임포트
 
 class StockComparison extends StatefulWidget {
   @override
@@ -17,6 +20,7 @@ class _StockComparisonState extends State<StockComparison> {
   String _reportText = '';
   List<String> _tickers = [];
   final TextEditingController _controller = TextEditingController();
+  bool _isLoading = false;
 
   final String apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
 
@@ -92,15 +96,19 @@ class _StockComparisonState extends State<StockComparison> {
           setState(() {
             _comparisonImageUrl = '';
             _resultImageUrl = '';
-            _reportText = ''; // Clear the report text if no images or report are found
+            _reportText = '';
             _message = 'Unable to find images or report for the stock ticker $stockTicker';
+          });
+          String responseMessage = await sendDiscordCommand('buddy $stockTicker'); // 명령 실행
+          setState(() {
+            _message += '\n$responseMessage';
           });
         }
       } else {
         setState(() {
           _comparisonImageUrl = '';
           _resultImageUrl = '';
-          _reportText = ''; // Clear the report text on API call failure
+          _reportText = '';
           _message = 'GitHub API call failed: ${response.statusCode}';
         });
       }
@@ -108,8 +116,47 @@ class _StockComparisonState extends State<StockComparison> {
       setState(() {
         _comparisonImageUrl = '';
         _resultImageUrl = '';
-        _reportText = ''; // Clear the report text on exception
+        _reportText = '';
         _message = 'Error occurred: $e';
+      });
+    }
+  }
+
+  Future<String> sendDiscordCommand(String command) async {
+    setState(() {
+      _isLoading = true;
+      _message = '';
+    });
+
+    final String? baseUrl = dotenv.env['DDNS_KEY'];
+    if (baseUrl == null || baseUrl.isEmpty) {
+      setState(() {
+        _isLoading = false;
+      });
+      return 'Error: DDNS_KEY is not set in .env file';
+    }
+
+    final url = Uri.parse('http://$baseUrl:5000/send_discord_command');
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({'command': command}),
+      ).timeout(Duration(seconds: 30)); // 30초 타임아웃 설정
+
+      if (response.statusCode == 200) {
+        return 'Command executed successfully! Command: $command';
+      } else {
+        return 'Failed to execute command. Status: ${response.statusCode}, Body: ${response.body}';
+      }
+    } on TimeoutException {
+      return 'Error: Connection timed out. Please check your network.';
+    } catch (e) {
+      return 'Error: ${e.toString()}';
+    } finally {
+      setState(() {
+        _isLoading = false;
       });
     }
   }

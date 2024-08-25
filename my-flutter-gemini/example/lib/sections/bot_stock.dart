@@ -53,7 +53,7 @@ class _BotStockState extends State<BotStock> {
       }
     } on TimeoutException {
       setState(() {
-        _responseMessage = 'Error: Connection timed out. Please check your network.';
+        // _responseMessage = 'Error: Connection timed out. Please check your network.';
       });
     } catch (e) {
       setState(() {
