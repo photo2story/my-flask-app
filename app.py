@@ -142,48 +142,86 @@ def send_discord_command():
     if command:
         try:
             command_parts = command.split()
-            if command_parts[0].lower() == "stock":
-                if len(command_parts) > 1:
-                    # 특정 주식 티커가 주어진 경우
-                    stock_names = [command_parts[1].upper()]
+            main_command = command_parts[0].lower()
+            query = command_parts[1].upper() if len(command_parts) > 1 else None
+
+            async def process_stock_command(stock_names):
+                ctx = MockContext()
+                bot = MockBot()
+
+                for stock_name in stock_names:
+                    await ctx.send(f'Analyzing {stock_name}...')
+                    try:
+                        await backtest_and_send(ctx, stock_name, 'modified_monthly', bot)
+                    except Exception:
+                        await ctx.send(f'Error during analysis of {stock_name}.')
+                        print(f'Error processing {stock_name}')
+
+                    try:
+                        await plot_comparison_results(stock_name, config.START_DATE, config.END_DATE)
+                        await plot_results_mpl(stock_name, config.START_DATE, config.END_DATE)
+                        await ctx.send(f'Results for {stock_name} ready.')
+                    except Exception:
+                        await ctx.send(f"Error plotting {stock_name}.")
+                        print(f"Error plotting {stock_name}")
+
+                    await asyncio.sleep(1)
+
+            async def process_gemini_command(tickers):
+                ctx = MockContext()
+
+                for ticker in tickers:
+                    await ctx.send(f'Gemini analysis for {ticker} is starting...')
+                    try:
+                        result = await analyze_with_gemini(ticker)
+                    except Exception:
+                        await ctx.send(f'Error during Gemini analysis of {ticker}.')
+                        print(f'Error analyzing {ticker} with Gemini.')
+                        continue
+
+                    try:
+                        await ctx.send(f'Results for {ticker} displayed successfully.')
+                    except Exception:
+                        await ctx.send(f"Error displaying results for {ticker}.")
+                        print(f"Error displaying results for {ticker}.")
+
+                    await asyncio.sleep(1)
+
+            async def process_buddy_command(stock_names):
+                ctx = MockContext()
+                bot = MockBot()
+
+                for stock_name in stock_names:
+                    await ctx.invoke(bot.get_command("stock"), query=stock_name)
+                    await asyncio.sleep(1)
+                    await ctx.invoke(bot.get_command("gemini"), query=stock_name)
+                    await asyncio.sleep(1)
+                    print(f'Results for {stock_name} displayed successfully.')
+
+                if not query:
+                    results = await collect_relative_divergence()
+
+            async def execute_command():
+                if main_command == "stock":
+                    stock_names = [query] if query else [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
+                    await process_stock_command(stock_names)
+                elif main_command == "gemini":
+                    tickers = [query] if query else [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
+                    await process_gemini_command(tickers)
+                elif main_command == "buddy":
+                    stock_names = [query] if query else [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
+                    await process_buddy_command(stock_names)
                 else:
-                    # 주식 티커가 주어지지 않은 경우, 모든 주식 순환
-                    stock_names = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
+                    return jsonify({'message': 'Unknown command'}), 400
 
-                async def process_stock_command():
-                    ctx = MockContext()
-                    bot = MockBot()
+            asyncio.run(execute_command())
 
-                    for stock_name in stock_names:
-                        await ctx.send(f'Stock analysis for {stock_name} is starting.')
-                        try:
-                            # Analysis logic
-                            await backtest_and_send(ctx, stock_name, 'modified_monthly', bot)
-                        except Exception as e:
-                            await ctx.send(f'An error occurred while processing {stock_name}: {e}')
-                            print(f'Error processing {stock_name}: {e}')
-
-                        # Display results
-                        try:
-                            await plot_comparison_results(stock_name, config.START_DATE, config.END_DATE)
-                            await plot_results_mpl(stock_name, config.START_DATE, config.END_DATE)
-                            await ctx.send(f'Results for {stock_name} displayed successfully.')
-                        except Exception as e:
-                            await ctx.send(f"An error occurred while plotting {stock_name}: {e}")
-                            print(f"Error plotting {stock_name}: {e}")
-
-                        await asyncio.sleep(1)
-
-                # 비동기 함수를 동기적으로 실행하기 위해 asyncio.run 사용
-                asyncio.run(process_stock_command())
-
-                return jsonify({'message': 'stock command executed successfully'}), 200
-            else:
-                return jsonify({'message': 'Unknown command'}), 400
-        except Exception as e:
-            print(f"Error executing command: {str(e)}")
-            return jsonify({'message': f'Error executing command: {str(e)}'}), 500
+            return jsonify({'message': f'{main_command} command executed successfully'}), 200
+        except Exception:
+            print("Error executing command.")
+            return jsonify({'message': 'Error executing command'}), 500
     return jsonify({'message': 'Invalid command'}), 400
+
 
 
 def run_flask():
