@@ -16,8 +16,15 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'my-flas
 
 # 사용자 정의 모듈 임포트
 from git_operations import move_files_to_images_folder
-from gemini import analyze_with_gemini  # gemini.py에서 함수 가져오기
-from bot import ping_command
+from get_ticker import load_tickers, search_tickers_and_respond, get_ticker_name, update_stock_market_csv, get_ticker_from_korean_name
+from Results_plot import plot_comparison_results
+from Results_plot_mpl import plot_results_mpl
+from github_operations import ticker_path
+from backtest_send import backtest_and_send
+from get_ticker import is_valid_stock
+from gemini import analyze_with_gemini, send_report_to_discord
+from gpt import analyze_with_gpt
+from get_compare_stock_data import save_simplified_csv  # 추가된 부분
 
 # 명시적으로 .env 파일 경로를 지정하여 환경 변수 로드
 env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
@@ -131,27 +138,34 @@ def send_discord_command():
     data = request.json
     command = data.get('command')
     print(f"Received command: {command}")  # 디버깅 메시지 추가
+
     if command:
         try:
             if command.lower() == "ping":
                 print("Executing ping command...")  # 디버깅 메시지 추가
-                asyncio.run_coroutine_threadsafe(ping_command(), asyncio.new_event_loop())
-                return jsonify({'message': 'Ping command executed successfully'}), 200
+                
+                # ctx를 직접 생성하지 않기 때문에 MockContext와 MockBot을 사용합니다.
+                class MockContext:
+                    async def send(self, message):
+                        print(f"MockContext.send: {message}")
+
+                class MockBot:
+                    async def change_presence(self, status=None, activity=None):
+                        print(f"MockBot.change_presence: status={status}, activity={activity}")
+
+                ctx = MockContext()
+                bot = MockBot()
+                
+                # 비동기 함수를 동기 컨텍스트에서 실행하기 위해 asyncio.run 사용
+                asyncio.run(backtest_and_send(ctx, 'AAPL', 'modified_monthly', bot))
+
+                return jsonify({'message': 'ping command executed successfully'}), 200
             else:
                 return jsonify({'message': 'Unknown command'}), 400
         except Exception as e:
             print(f"Error executing command: {str(e)}")
             return jsonify({'message': f'Error executing command: {str(e)}'}), 500
     return jsonify({'message': 'Invalid command'}), 400
-
-
-
-# async def ping_command():
-#     channel = bot.get_channel(CHANNEL_ID)  # CHANNEL_ID는 봇이 메시지를 보낼 채널의 ID입니다.
-#     if channel:
-#         await channel.send("pong: cocoBot")
-#     else:
-#         print("Channel not found.")
 
 
 def run_flask():

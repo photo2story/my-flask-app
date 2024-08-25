@@ -67,12 +67,8 @@ async def ping_command():
     try:
         print("Executing ping command...")
         # Context를 생성하고 명령어 실행
-        ctx = Context(bot=bot, prefix="", command=bot.get_command("ping"))
-        await ctx.invoke(bot.get_command("ping"))
-
-        
-        await bot.invoke(ctx)  # ping 명령어 실행
-        print("Ping command executed.")
+        # Analysis logic
+        await backtest_and_send(ctx, 'AAPL', 'modified_monthly', bot)
     except Exception as e:
         print(f"Error in ping command: {e}")
 
