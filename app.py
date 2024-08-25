@@ -141,41 +141,49 @@ def send_discord_command():
 
     if command:
         try:
-            if command.lower() == "ping":
-                print("Executing ping command...")  # 디버깅 메시지 추가
-                
-                # ctx를 직접 생성하지 않기 때문에 MockContext와 MockBot을 사용합니다.
-                class MockContext:
-                    async def send(self, message):
-                        print(f"MockContext.send: {message}")
+            command_parts = command.split()
+            if command_parts[0].lower() == "stock":
+                if len(command_parts) > 1:
+                    # 특정 주식 티커가 주어진 경우
+                    stock_names = [command_parts[1].upper()]
+                else:
+                    # 주식 티커가 주어지지 않은 경우, 모든 주식 순환
+                    stock_names = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
 
-                class MockBot:
-                    async def change_presence(self, status=None, activity=None):
-                        print(f"MockBot.change_presence: status={status}, activity={activity}")
+                async def process_stock_command():
+                    ctx = MockContext()
+                    bot = MockBot()
 
-                ctx = MockContext()
-                bot = MockBot()
-                
-                # 비동기 함수를 동기 컨텍스트에서 실행하기 위해 asyncio.run 사용
-                asyncio.run(backtest_and_send(ctx, 'AAPL', 'modified_monthly', bot))
+                    for stock_name in stock_names:
+                        await ctx.send(f'Stock analysis for {stock_name} is starting.')
+                        try:
+                            # Analysis logic
+                            await backtest_and_send(ctx, stock_name, 'modified_monthly', bot)
+                        except Exception as e:
+                            await ctx.send(f'An error occurred while processing {stock_name}: {e}')
+                            print(f'Error processing {stock_name}: {e}')
 
-                # 결과 플롯팅 및 전송
-                try:
-                    asyncio.run(plot_comparison_results('AAPL', config.START_DATE, config.END_DATE))
-                    asyncio.run(plot_results_mpl('AAPL', config.START_DATE, config.END_DATE))
-                    ctx.send(f'Results for AAPL displayed successfully.')
-                except Exception as e:
-                    ctx.send(f"An error occurred while plotting AAPL: {e}")
-                    print(f"Error plotting AAPL: {e}")
+                        # Display results
+                        try:
+                            await plot_comparison_results(stock_name, config.START_DATE, config.END_DATE)
+                            await plot_results_mpl(stock_name, config.START_DATE, config.END_DATE)
+                            await ctx.send(f'Results for {stock_name} displayed successfully.')
+                        except Exception as e:
+                            await ctx.send(f"An error occurred while plotting {stock_name}: {e}")
+                            print(f"Error plotting {stock_name}: {e}")
 
-                return jsonify({'message': 'ping command executed successfully'}), 200
+                        await asyncio.sleep(1)
+
+                # 비동기 함수를 동기적으로 실행하기 위해 asyncio.run 사용
+                asyncio.run(process_stock_command())
+
+                return jsonify({'message': 'stock command executed successfully'}), 200
             else:
                 return jsonify({'message': 'Unknown command'}), 400
         except Exception as e:
             print(f"Error executing command: {str(e)}")
             return jsonify({'message': f'Error executing command: {str(e)}'}), 500
     return jsonify({'message': 'Invalid command'}), 400
-
 
 
 def run_flask():
