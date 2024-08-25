@@ -150,7 +150,7 @@ async def analyze_with_gemini(ticker):
            실적 = {earnings_text} 표로 제공된 실적을 분석해줘
            가장 최근 실적은 예상치도 함께 포함해서 검토해줘
         5) 종합적으로 분석해줘(1~4번까지의 요약)
-        6) 레포트는 한글로 만들어줘
+        6) 레포트는 영어로 만들어줘
         """
         
         print(f"Sending prompt to Gemini API for {ticker}")
