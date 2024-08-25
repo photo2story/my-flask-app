@@ -189,6 +189,7 @@ def send_discord_command():
                         continue
 
                     try:
+                        await send_report_to_discord(ticker)
                         await ctx.send(f'Results for {ticker} displayed successfully.')
                     except Exception as e:
                         await ctx.send(f"Error displaying results for {ticker}.")
