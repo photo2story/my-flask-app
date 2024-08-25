@@ -202,14 +202,13 @@ def send_discord_command():
                     results = await collect_relative_divergence()
 
             async def execute_command():
+                stock_names = [query] if query else [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
+
                 if main_command == "stock":
-                    stock_names = [query] if query else [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
                     await process_stock_command(stock_names)
                 elif main_command == "gemini":
-                    tickers = [query] if query else [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
-                    await process_gemini_command(tickers)
+                    await process_gemini_command(stock_names)
                 elif main_command == "buddy":
-                    stock_names = [query] if query else [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
                     await process_buddy_command(stock_names)
                 else:
                     return jsonify({'message': 'Unknown command'}), 400
@@ -221,7 +220,6 @@ def send_discord_command():
             print("Error executing command.")
             return jsonify({'message': 'Error executing command'}), 500
     return jsonify({'message': 'Invalid command'}), 400
-
 
 
 def run_flask():
