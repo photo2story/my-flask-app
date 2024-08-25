@@ -209,7 +209,7 @@ async def send_report_to_discord(ticker):
 
 
 if __name__ == '__main__':
-    ticker = 'NVDA'
+    ticker = 'AAPL'
     asyncio.run(analyze_with_gemini(ticker))
 
 
