@@ -159,6 +159,15 @@ def send_discord_command():
                 # 비동기 함수를 동기 컨텍스트에서 실행하기 위해 asyncio.run 사용
                 asyncio.run(backtest_and_send(ctx, 'AAPL', 'modified_monthly', bot))
 
+                # 결과 플롯팅 및 전송
+                try:
+                    asyncio.run(plot_comparison_results('AAPL', config.START_DATE, config.END_DATE))
+                    asyncio.run(plot_results_mpl('AAPL', config.START_DATE, config.END_DATE))
+                    ctx.send(f'Results for AAPL displayed successfully.')
+                except Exception as e:
+                    ctx.send(f"An error occurred while plotting AAPL: {e}")
+                    print(f"Error plotting AAPL: {e}")
+
                 return jsonify({'message': 'ping command executed successfully'}), 200
             else:
                 return jsonify({'message': 'Unknown command'}), 400
@@ -166,6 +175,7 @@ def send_discord_command():
             print(f"Error executing command: {str(e)}")
             return jsonify({'message': f'Error executing command: {str(e)}'}), 500
     return jsonify({'message': 'Invalid command'}), 400
+
 
 
 def run_flask():
