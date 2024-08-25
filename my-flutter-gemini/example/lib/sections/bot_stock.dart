@@ -13,7 +13,7 @@ class _BotStockState extends State<BotStock> {
 
   // 서버에 명령을 전송하는 함수
   Future<void> sendDiscordCommand(String command) async {
-    final url = Uri.parse('http://192.168.0.5:5000/send_discord_command');  // Flask 서버의 URL로 설정
+    final url = Uri.parse('http://http://www.happyeng.co.kr/send_discord_command');  // Flask 서버의 URL로 설정
     try {
       final response = await http.post(
         url,
