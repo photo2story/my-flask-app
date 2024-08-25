@@ -201,9 +201,9 @@ def send_discord_command():
                 bot = MockBot()
 
                 for stock_name in stock_names:
-                    await ctx.invoke(bot.get_command("stock"), query=stock_name)
+                    await process_stock_command([stock_name])  # stock 명령 호출
                     await asyncio.sleep(1)
-                    await ctx.invoke(bot.get_command("gemini"), query=stock_name)
+                    await process_gemini_command([stock_name])  # gemini 명령 호출
                     await asyncio.sleep(1)
                     print(f'Results for {stock_name} displayed successfully.')
 
