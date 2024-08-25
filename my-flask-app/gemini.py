@@ -8,16 +8,14 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 import shutil
 import asyncio
-from datetime import datetime  # 추가된 부분
+from datetime import datetime
 
-# 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from git_operations import move_files_to_images_folder
 from get_earning import get_recent_eps_and_revenue
 from get_earning_fmp import get_recent_eps_and_revenue_fmp
 
-# 환경 변수 로드
 load_dotenv()
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
@@ -25,17 +23,14 @@ FMP_API_KEY = os.getenv('FMP_API_KEY')
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
 CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', 'stock_market.csv'))
 
-# Gemini API 구성
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-# CSV 파일에서 티커명과 회사 이름을 매핑하는 딕셔너리 생성
 def create_ticker_to_name_dict(csv_path):
     df = pd.read_csv(csv_path)
     ticker_to_name = dict(zip(df['Symbol'], df['Name']))
     return ticker_to_name
 
-# 기존에 있는 create_ticker_to_name_dict 함수에 있는 df 출력문을 제거합니다.
 ticker_to_name = create_ticker_to_name_dict(CSV_PATH)
 
 def download_csv(ticker):
@@ -116,19 +111,22 @@ async def analyze_with_gemini(ticker):
         relative_divergence = df_simplified['Relative_Divergence'].iloc[-1]
         delta_Previous_Relative_Divergence = df_simplified['Delta_Previous_Relative_Divergence'].iloc[-1]
 
-        recent_earnings = get_recent_eps_and_revenue(ticker)
-        if recent_earnings is None or all(entry[3] is None for entry in recent_earnings):
-            print(f"Primary data source failed for {ticker}, attempting secondary source...")
-            recent_earnings = get_recent_eps_and_revenue_fmp(ticker)
-            if recent_earnings is None:
-                raise Exception("No recent earnings data found from secondary source.")
-                
-        print(f"Recent earnings data for {ticker}: {recent_earnings}")
-        
-        earnings_text = format_earnings_text(recent_earnings)
+        earnings_text = "No earnings data available."  # 기본값 설정
+
+        try:
+            recent_earnings = get_recent_eps_and_revenue(ticker)
+            if recent_earnings is None or all(entry[3] is None for entry in recent_earnings):
+                print(f"Primary data source failed for {ticker}, attempting secondary source...")
+                recent_earnings = get_recent_eps_and_revenue_fmp(ticker)
+                if recent_earnings is not None:
+                    earnings_text = format_earnings_text(recent_earnings)
+            else:
+                earnings_text = format_earnings_text(recent_earnings)
+        except Exception as e:
+            print(f"No earnings data found for {ticker}. Skipping earnings section. Error: {e}")
+
         print(f"Earnings Text for {ticker}: {earnings_text}")
 
-        # Generate the full report
         prompt_voo = f"""
         1) 제공된 자료의 수익율(rate)와 S&P 500(VOO)의 수익율(rate_vs)과 비교해서 이격된 정도를 알려줘 (간단하게 자료 맨마지막날의 누적수익율차이):
            리뷰할 주식티커명 = {ticker}
