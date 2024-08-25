@@ -139,6 +139,15 @@ def send_discord_command():
     command = data.get('command')
     print(f"Received command: {command}")  # 디버깅 메시지 추가
 
+    # MockContext와 MockBot 클래스 정의
+    class MockContext:
+        async def send(self, message):
+            print(f"MockContext.send: {message}")
+
+    class MockBot:
+        async def change_presence(self, status=None, activity=None):
+            print(f"MockBot.change_presence: status={status}, activity={activity}")
+
     if command:
         try:
             command_parts = command.split()
