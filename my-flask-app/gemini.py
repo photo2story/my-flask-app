@@ -188,24 +188,38 @@ load_dotenv()
 DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
 
+import aiohttp
+
 async def send_report_to_discord(ticker):
     """기존에 생성된 보고서를 Discord로 전송합니다."""
     try:
         report_file_url = f"{GITHUB_RAW_BASE_URL}/report_{ticker}.txt"
-        response = requests.get(report_file_url)
-        response.raise_for_status()
-        report_text = response.text
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(report_file_url) as response:
+                response.raise_for_status()
+                report_text = await response.text()
+                
         success_message = f"Existing Gemini Analysis for {ticker}:\n{report_text}"
         print(success_message)
-        requests.post(DISCORD_WEBHOOK_URL, data={'content': success_message})
-    except requests.exceptions.RequestException as e:
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.post(DISCORD_WEBHOOK_URL, json={'content': success_message}) as discord_response:
+                if discord_response.status != 204:
+                    print(f"Failed to send message to Discord: {discord_response.status}")
+                else:
+                    print(f"Successfully sent report to Discord for {ticker}")
+    
+    except aiohttp.ClientError as e:
         error_message = f"Error retrieving report for {ticker}: {e}"
         print(error_message)
-        requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
+        async with aiohttp.ClientSession() as session:
+            await session.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
     except Exception as e:
         error_message = f"Error sending report to Discord: {e}"
         print(error_message)
-        requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
+        async with aiohttp.ClientSession() as session:
+            await session.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
 
 
 if __name__ == '__main__':
