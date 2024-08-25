@@ -37,7 +37,7 @@ class _BotStockState extends State<BotStock> {
         url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'command': command}),
-      ).timeout(Duration(seconds: 10)); // 10초 타임아웃 설정
+      ).timeout(Duration(seconds: 30)); // 30초 타임아웃 설정
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
