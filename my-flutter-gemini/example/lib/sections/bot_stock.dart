@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class BotStock extends StatefulWidget {
   @override
@@ -13,7 +14,9 @@ class _BotStockState extends State<BotStock> {
 
   // 서버에 명령을 전송하는 함수
   Future<void> sendDiscordCommand(String command) async {
-    final url = Uri.parse('http://waterlee.iptime.org:5000/send_discord_command');  // Flask 서버의 URL로 설정 https://photo2story.github.io/my-flutter-app/
+    final String? baseUrl = dotenv.env['DDNS_KEY']; // .env 파일에서 DDNS_KEY 불러오기
+    final url = Uri.parse('http://$baseUrl:5000/send_discord_command');  // Flask 서버의 URL로 설정
+    
     try {
       final response = await http.post(
         url,
@@ -76,4 +79,11 @@ class _BotStockState extends State<BotStock> {
       ),
     );
   }
+}
+
+void main() async {
+  await dotenv.load(fileName: ".env");  // .env 파일 로드
+  runApp(MaterialApp(
+    home: BotStock(),
+  ));
 }
