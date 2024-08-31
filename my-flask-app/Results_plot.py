@@ -59,13 +59,13 @@ async def plot_comparison_results(ticker, start_date, end_date):
         raise
 
     # 중간 데이터 확인
-    print("=== df1_graph ===")
-    print(df1_graph.head())
-    print(df1_graph.describe())
+    # print("=== df1_graph ===")
+    # print(df1_graph.head())
+    # print(df1_graph.describe())
     
-    print("=== df2_graph ===")
-    print(df2_graph.head())
-    print(df2_graph.describe())
+    # print("=== df2_graph ===")
+    # print(df2_graph.head())
+    # print(df2_graph.describe())
 
     print("=== df1 (Simplified) ===")
     print(df1.head())
