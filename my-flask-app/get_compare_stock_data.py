@@ -165,5 +165,4 @@ if __name__ == "__main__":
     # collect_relative_divergence 함수는 한 번만 실행합니다.
     asyncio.run(collect_relative_divergence())
 
-
 # python get_compare_stock_data.py
