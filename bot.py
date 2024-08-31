@@ -237,6 +237,8 @@ if __name__ == '__main__':
 
 
 r"""
+Remove-Item -Recurse -Force .venv
+
 python3 -m venv .venv
 .\\.venv\Scripts\activate
 pip install -r requirements.txt
