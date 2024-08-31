@@ -31,9 +31,10 @@ print("Path exists:", os.path.exists(font_path))
 # 폰트 속성 설정
 if os.path.exists(font_path):
     font_prop = fm.FontProperties(fname=font_path)
-    plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['font.sans-serif'] = ['Noto Sans KR']  # 폰트 이름을 직접 지정
-
+    fm.fontManager.addfont(font_path)  # 폰트를 매트플롯립에 추가
+    plt.rcParams['font.family'] = font_prop.get_name()
+    plt.rcParams['font.sans-serif'] = [font_prop.get_name()]
+    
     # 폰트가 제대로 설정되었는지 확인
     print("Font name:", font_prop.get_name())
 else:
