@@ -55,8 +55,12 @@ def save_simplified_csv(ticker):
     # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
 
+    # max_divergence와 expected_profit 필드를 추가합니다.
+    df['Max_Divergence'] = max_divergence
+    df['Expected_Profit'] = ((100 - df['Relative_Divergence']) / 100 * max_divergence).round(2)
+
     # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
-    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence']].iloc[::20].reset_index(drop=True)
+    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Profit']].iloc[::20].reset_index(drop=True)
     
     # 마지막 데이터 추가 (concat 사용)
     if not simplified_df.iloc[-1].equals(df.iloc[-1]):
@@ -72,21 +76,6 @@ def save_simplified_csv(ticker):
     print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {max_divergence}, min {min_divergence})")
     print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
     print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
-
-
-def calculate_potential_profit_and_loss(df, current_relative_divergence):
-    try:
-        # Max divergence를 계산
-        max_divergence = round(df['Divergence'].max(), 2)
-        
-        # Expected profit 계산
-        expected_profit = round((100 - current_relative_divergence) / 100 * max_divergence, 2)
-
-        return max_divergence, expected_profit
-    except Exception as e:
-        print(f"Error calculating potential profit/loss: {e}")
-        return None, None
-
 
 
 async def collect_relative_divergence():
@@ -140,8 +129,6 @@ async def collect_relative_divergence():
     await move_files_to_images_folder()
     
     return results
-
-
 
 
 if __name__ == "__main__":
