@@ -19,7 +19,7 @@ import matplotlib.font_manager as fm
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Noto Sans KR 폰트 파일 경로 (Regular 스타일 사용)
-font_path = os.path.join(current_dir, '..', 'Noto_Sans_KR', 'static', 'NotoSansKR-Regular.ttf')
+font_path = os.path.join(current_dir, '..', 'Noto_Sans_KR', 'NotoSansKR-Regular.ttf')
 
 # 폰트 속성 설정
 font_prop = fm.FontProperties(fname=font_path)
