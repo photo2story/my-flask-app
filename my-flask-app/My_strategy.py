@@ -35,7 +35,7 @@ def my_strategy(stock_data, option_strategy):
     currency = 1300
     stock_ticker = stock_data.iloc[0]['Stock']
     
-    if '.K' in stock_ticker or (len(stock_ticker) == 6 and stock_ticker.isdigit()):
+    if '.K' in stock_ticker or stock_data.iloc[0]['Sector'] == 'KRX':
         currency = 1
     
     PPO_BUY = False  # Initialize neither buy nor sell signal is active
@@ -86,7 +86,9 @@ def my_strategy(stock_data, option_strategy):
 
         # PPO 매수 및 매도 신호 계산
         PPO_BUY, PPO_SELL, ppo_histogram, SMA_20_turn, SMA_60_turn = calculate_ppo_buy_sell_signals(stock_data, index, short_window=12, long_window=26, signal_window=9)
-
+        # print('PPO_BUY:', PPO_BUY)  # 매수 신호
+        # print('ppo_histogram:', stock_data['ppo_histogram'])   
+        
         # 수수료 적용
         buy_price = price * 1.005  # 매수 시 수수료 0.5% 적용
         sell_price = price * 0.995  # 매도 시 수수료 0.5% 적용

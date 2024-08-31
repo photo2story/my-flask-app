@@ -10,6 +10,23 @@ import FinanceDataReader as fdr
 from github_operations import ticker_path # stock_market.csv 파일 경로
 NaN = np.nan
 
+
+def calculate_rsi(prices, window=14):
+    delta = prices.diff()
+    gain = (delta.where(delta > 0, 0)).rolling(window=window).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=window).mean()
+    rs = gain / loss
+    rsi = 100 - (100 / (1 + rs))
+    return rsi
+
+def calculate_ppo(prices, short_window=12, long_window=26, signal_window=9):
+    short_ema = prices.ewm(span=short_window, adjust=False).mean()
+    long_ema = prices.ewm(span=long_window, adjust=False).mean()
+    ppo = ((short_ema - long_ema) / long_ema) * 100
+    ppo_signal = ppo.ewm(span=signal_window, adjust=False).mean()
+    ppo_histogram = ppo - ppo_signal
+    return ppo, ppo_signal, ppo_histogram
+
 def calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14):
     typical_prices = (high_prices + low_prices + close_prices) / 3
     raw_money_flows = typical_prices * volumes

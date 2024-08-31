@@ -1,4 +1,3 @@
-
 ## Results_plot_mpl.py
 
 
@@ -14,10 +13,9 @@ from dotenv import load_dotenv
 import asyncio
 import matplotlib.font_manager as fm
 
-# 한글 폰트 설정
+# 한글 폰트 설정 (주석 처리된 부분은 필요에 따라 사용할 수 있습니다)
 # font_url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/MALGUN.ttf'
 
-# # 폰트를 로컬에 다운로드하지 않고 직접 사용
 # response = requests.get(font_url)
 # with open('MALGUN.ttf', 'wb') as f:
 #     f.write(response.content)
@@ -25,10 +23,11 @@ import matplotlib.font_manager as fm
 # fontprop = fm.FontProperties(fname='MALGUN.ttf', size=10)
 # plt.rcParams['font.family'] = fontprop.get_name()
 
-# # 루트 디렉토리를 sys.path에 추가
+# 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from git_operations import move_files_to_images_folder
 from get_ticker import get_ticker_name
+from Get_data import calculate_rsi, calculate_ppo  # 통일된 함수 가져오기
 
 # 환경 변수 로드
 load_dotenv()
@@ -45,14 +44,15 @@ async def plot_results_mpl(ticker, start_date, end_date):
     prices = fdr.DataReader(ticker, start_date, end_date)
     prices.dropna(inplace=True)
     
-    # 이동 평균과 PPO 계산 (전체 데이터를 사용)
+    # 이동 평균 계산 (전체 데이터를 사용)
     prices['SMA20'] = prices['Close'].rolling(window=20).mean()
     prices['SMA60'] = prices['Close'].rolling(window=60).mean()
-    short_ema = prices['Close'].ewm(span=12, adjust=False).mean()
-    long_ema = prices['Close'].ewm(span=26, adjust=False).mean()
-    prices['PPO_value'] = ((short_ema - long_ema) / long_ema) * 100
-    prices['PPO_signal'] = prices['PPO_value'].ewm(span=9, adjust=False).mean()
-    prices['PPO_histogram'] = prices['PPO_value'] - prices['PPO_signal']
+
+    # PPO 계산 (통일된 함수 사용)
+    prices['PPO_value'], prices['PPO_signal'], prices['PPO_histogram'] = calculate_ppo(prices['Close'])
+
+    # RSI 계산 (통일된 함수 사용)
+    prices['RSI'] = calculate_rsi(prices['Close'])
 
     # 최신 6개월 데이터로 필터링
     end_date = pd.to_datetime(end_date)
@@ -78,6 +78,7 @@ async def plot_results_mpl(ticker, start_date, end_date):
                f"Close: {filtered_prices['Close'].iloc[-1]:,.2f}\n"
                f"SMA 20: {filtered_prices['SMA20'].iloc[-1]:,.2f}\n"
                f"SMA 60: {filtered_prices['SMA60'].iloc[-1]:,.2f}\n"
+               f"RSI: {filtered_prices['RSI'].iloc[-1]:,.2f}\n"  # RSI 추가
                f"PPO Histogram: {filtered_prices['PPO_histogram'].iloc[-1]:,.2f}\n")
 
     # Discord로 메시지 전송
@@ -114,6 +115,7 @@ if __name__ == "__main__":
         print("Plotting completed successfully.")
     except Exception as e:
         print(f"Error occurred while plotting results: {e}")
+
 
 
 """

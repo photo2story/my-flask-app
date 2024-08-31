@@ -13,8 +13,9 @@ def strategy_buy(current_date, price, performance, PPO_BUY, option_strategy):
     
     # 변형 적립식 전략: 수익률이 양수일 때만 투자하지 않음
     elif option_strategy == 'modified_monthly':
-        if performance > 0:
-            perform_buy_amount = 0
+        current_month = current_date.month
+        if performance > 0 and (current_month >= 5 and current_month <= 10):
+            perform_buy_amount = 0  # 5월부터 10월까지 수익률이 양수인 경우 매수하지 않음
         else:
             perform_buy_amount = 1.0 if PPO_BUY else 0.5
     
