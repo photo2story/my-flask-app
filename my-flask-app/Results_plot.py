@@ -25,6 +25,32 @@ DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
 CSV_PATH = os.getenv('CSV_PATH', 'static/images/stock_market.csv')
 
+import matplotlib.font_manager as fm
+# 현재 스크립트 파일의 디렉토리 경로
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# 프로젝트 루트 경로를 찾기 위해 상위 폴더로 이동
+project_root = os.path.abspath(os.path.join(current_dir, '..'))
+
+# Noto Sans KR 폰트 파일 경로
+font_path = os.path.join(project_root, 'Noto_Sans_KR', 'static', 'NotoSansKR-Regular.ttf')
+
+# 경로가 올바르게 지정되었는지 확인
+print("Font path:", font_path)
+print("Path exists:", os.path.exists(font_path))
+
+# 폰트 속성 설정
+if os.path.exists(font_path):
+    font_prop = fm.FontProperties(fname=font_path)
+    fm.fontManager.addfont(font_path)  # 폰트를 매트플롯립에 추가
+    plt.rcParams['font.family'] = font_prop.get_name()
+    plt.rcParams['font.sans-serif'] = [font_prop.get_name()]
+    
+    # 폰트가 제대로 설정되었는지 확인
+    print("Font name:", font_prop.get_name())
+else:
+    print("Font file not found.")
+
 def convert_file_path_for_saving(file_path):
     return file_path.replace('/', '-')
 
@@ -59,14 +85,6 @@ async def plot_comparison_results(ticker, start_date, end_date):
         raise
 
     # 중간 데이터 확인
-    # print("=== df1_graph ===")
-    # print(df1_graph.head())
-    # print(df1_graph.describe())
-    
-    # print("=== df2_graph ===")
-    # print(df2_graph.head())
-    # print(df2_graph.describe())
-
     print("=== df1 (Simplified) ===")
     print(df1.head())
     print(df1.describe())
