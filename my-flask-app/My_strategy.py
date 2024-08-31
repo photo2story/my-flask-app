@@ -170,6 +170,7 @@ def my_strategy(stock_data, option_strategy):
             signal, rsi_ta, stochk_ta, stochd_ta, stock_ticker
         ])
     # result 리스트를 데이터프레임으로 변환하여 반환
+    print(f"Final invested_amount: {invested_amount}")
     result_df = pd.DataFrame(result, columns=[
         'Date', 'price', 'Open', 'High', 'Low', 'Close', 'Volume', 
         'bb_upper_ta', 'bb_lower_ta', 'sma05_ta', 'sma20_ta', 'sma60_ta', 'sma120_ta', 
@@ -180,3 +181,5 @@ def my_strategy(stock_data, option_strategy):
     ])
 
     return result_df
+
+# python My_strategy.py
