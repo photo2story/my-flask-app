@@ -76,20 +76,21 @@ def get_start_date(ticker):
 
 def get_stock_data(ticker, start_date, end_date):
     # FinanceDataReader를 사용하여 주식 데이터 불러오기
-    print('get_stock_data.1:',ticker)
-    # print(start_date)
+    print('get_stock_data.1:', ticker)
     stock_data = fdr.DataReader(ticker, start_date, end_date)
 
     stock_data.columns = stock_data.columns.astype(str)
   
-    # Calculate indicators using pandas_ta (기존 코드 유지)
-    stock_data.ta.rsi(length=14, append=True)
+    # Calculate indicators using custom functions (일관된 방식 사용)
+    stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
+  
+    # 볼린저 밴드와 Aroon 지표 계산 (기존 코드 유지)
     stock_data.ta.bbands(length=20, std=2, append=True)
     stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     stock_data.ta.aroon(length=25, append=True)
-  
-    # MFI 계산
+
+    # MFI 계산 (기존 코드 유지)
     high_prices = stock_data['High'].values
     low_prices = stock_data['Low'].values
     close_prices = stock_data['Close'].values
@@ -107,9 +108,8 @@ def get_stock_data(ticker, start_date, end_date):
     stock_data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
     stock_data['Stock'] = ticker
 
-
     # Industry 정보 추가
-    sector_df = pd.read_csv(ticker_path)# stock_market.csv 파일 경로
+    sector_df = pd.read_csv(ticker_path)  # stock_market.csv 파일 경로
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     if ticker in sector_dict:
         stock_data['Sector'] = sector_dict[ticker]
@@ -118,8 +118,8 @@ def get_stock_data(ticker, start_date, end_date):
 
     # 데이터 프레임에서 최소 날짜를 얻습니다.
     min_stock_data_date = stock_data.index.min()
-    # print(stock_data)
     return stock_data, min_stock_data_date
+
 
 def get_price_info(ticker):
     api_key = 'Alpha_API'
