@@ -7,25 +7,20 @@ NaN = np.nan
 from Get_data import calculate_rsi, calculate_ppo  # 통일된 함수를 utils.py에 작성했다고 가정
 
 def calculate_ppo_buy_sell_signals(stock_data, index, short_window, long_window, signal_window):
-    PPO_BUY = False
-    PPO_SELL = False
-    SMA_20_turn = False
-    SMA_60_turn = False
-
-    # SMA 조건 판단
-    if index >= 7 and stock_data['SMA_20'].iloc[index] > stock_data['SMA_60'].iloc[index] and stock_data['SMA_60'].iloc[index] > stock_data['SMA_120'].iloc[index]:
-        SMA_60_turn = True
-    if index >= 7 and stock_data['SMA_10'].iloc[index] > stock_data['SMA_20'].iloc[index]:
-        SMA_20_turn = True
-    
-    # PPO 히스토그램 계산 (통일된 함수 사용)
-    _, _, ppo_histogram = calculate_ppo(stock_data['Close'], short_window, long_window, signal_window)
+    # PPO 히스토그램 계산
+    ppo, ppo_signal, ppo_histogram = calculate_ppo(stock_data['Close'], short_window, long_window, signal_window)
     
     # 매수/매도 신호 결정
-    PPO_BUY = True if SMA_60_turn and ppo_histogram.iloc[index] > 1.1 else False
-    PPO_SELL = True if not SMA_20_turn and ppo_histogram.iloc[index] < 1.1 else False
+    SMA_20_turn = stock_data['SMA_10'].iloc[index] > stock_data['SMA_20'].iloc[index]
+    SMA_60_turn = stock_data['SMA_20'].iloc[index] > stock_data['SMA_60'].iloc[index] and stock_data['SMA_60'].iloc[index] > stock_data['SMA_120'].iloc[index]
+    PPO_BUY = SMA_60_turn and ppo_histogram.iloc[index] > 1.1
+    PPO_SELL = not SMA_20_turn and ppo_histogram.iloc[index] < 1.1
 
+    # ppo_histogram을 stock_data에 저장
+    stock_data.loc[index, 'ppo_histogram'] = ppo_histogram.iloc[index]
+    
     return PPO_BUY, PPO_SELL, ppo_histogram.iloc[index], SMA_20_turn, SMA_60_turn
+
 
 
 # 테스트를 위한 예제 데이터 생성
