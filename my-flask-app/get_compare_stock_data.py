@@ -74,43 +74,58 @@ def save_simplified_csv(ticker):
     print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
 
 
-def calculate_potential_profit_and_loss(df, current_rel_divergence):
-    max_rel_divergence = df['Relative_Divergence'].max()
-    min_rel_divergence = df['Relative_Divergence'].min()
-    
-    max_potential_profit = max_rel_divergence - current_rel_divergence
-    max_potential_loss = current_rel_divergence - min_rel_divergence
-    
-    max_time = df[df['Relative_Divergence'] == max_rel_divergence]['Date'].values[0]
-    min_time = df[df['Relative_Divergence'] == min_rel_divergence]['Date'].values[0]
-    current_time = df.iloc[-1]['Date']
-    
-    time_to_max = (pd.to_datetime(max_time) - pd.to_datetime(current_time)).days
-    time_to_min = (pd.to_datetime(min_time) - pd.to_datetime(current_time)).days
-    
-    return max_potential_profit, max_potential_loss, time_to_max, time_to_min
+def calculate_potential_profit_and_loss(df, current_relative_divergence):
+    try:
+        max_divergence = df['Relative_Divergence'].max()
+        min_divergence = df['Relative_Divergence'].min()
+        max_potential_profit = max_divergence - current_relative_divergence
+        max_potential_loss = current_relative_divergence - min_divergence
+
+        time_to_max = (df[df['Relative_Divergence'] == max_divergence].index[-1] - df.index[-1]).days
+        time_to_min = (df[df['Relative_Divergence'] == min_divergence].index[-1] - df.index[-1]).days
+
+        return max_potential_profit, max_potential_loss, time_to_max, time_to_min
+    except Exception as e:
+        print(f"Error calculating potential profit/loss: {e}")
+        return None, None, None, None
+
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
-    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence'])
+    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
+                                    'Delta_Previous_Relative_Divergence', 'Max_Potential_Profit', 
+                                    'Max_Potential_Loss', 'Time_To_Max', 'Time_To_Min'])
     
     for ticker in tickers:
         df = await fetch_csv(ticker)
-        if df is None or 'Relative_Divergence' not in df.columns:
-            print(f"Data for {ticker} is not available or missing necessary columns. Skipping...")
+        if df is None or df.empty or 'Relative_Divergence' not in df.columns:
+            print(f"Data for {ticker} is not available or missing necessary columns.")
             continue
         
-        latest_entry = df.iloc[-1]  # 마지막 데이터를 가져옴
-        latest_relative_divergence = latest_entry['Relative_Divergence']
-        latest_divergence = latest_entry['Divergence']
-        delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
+        try:
+            latest_entry = df.iloc[-1]  # 마지막 데이터를 가져옴
+            if latest_entry.isna().all():
+                print(f"Data for {ticker} is empty or contains only NA values, skipping...")
+                continue
 
-        results = pd.concat([results, pd.DataFrame({
-            'Ticker': [ticker], 
-            'Divergence': [latest_divergence], 
-            'Relative_Divergence': [latest_relative_divergence],
-            'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence]
-        })], ignore_index=True)
+            latest_relative_divergence = latest_entry['Relative_Divergence']
+            latest_divergence = latest_entry['Divergence']
+            delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
+            max_potential_profit, max_potential_loss, time_to_max, time_to_min = calculate_potential_profit_and_loss(df, latest_relative_divergence)
+
+            results = pd.concat([results, pd.DataFrame({
+                'Ticker': [ticker], 
+                'Divergence': [latest_divergence], 
+                'Relative_Divergence': [latest_relative_divergence],
+                'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
+                'Max_Potential_Profit': [max_potential_profit],
+                'Max_Potential_Loss': [max_potential_loss],
+                'Time_To_Max': [time_to_max],
+                'Time_To_Min': [time_to_min]
+            })], ignore_index=True)
+        except Exception as e:
+            print(f"Error processing data for {ticker}: {e}")
+            continue
     
     # 결과를 CSV 파일로 저장
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
