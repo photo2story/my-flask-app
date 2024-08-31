@@ -82,7 +82,7 @@ async def test_backtest_and_send():
 
     ctx = MockContext()
     bot = MockBot()
-    stock = "AAPL"
+    stock = "005930"
     try:
         await backtest_and_send(ctx, stock, option_strategy ='monthly', bot=bot)
         print("Backtesting completed successfully.")
