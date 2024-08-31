@@ -1,4 +1,4 @@
-# Results_plot2.py
+# Results_plot.py
 
 import matplotlib.dates as dates
 import matplotlib
@@ -11,8 +11,6 @@ import requests
 import asyncio
 import time
 from dotenv import load_dotenv
-
-import asyncio
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -44,26 +42,36 @@ def load_image(file_path):
     return image
 
 async def plot_comparison_results(ticker, start_date, end_date):
-    stock2 ='VOO'
+    stock2 = 'VOO'
     fig, ax2 = plt.subplots(figsize=(8, 6))
 
+    # 전체 데이터를 로드하여 플라스크 서버에서 그래프를 그립니다.
     full_path1 = f"{GITHUB_RAW_BASE_URL}/result_VOO_{ticker}.csv"
-    full_path2 = f"{GITHUB_RAW_BASE_URL}/result_VOO_{ticker}.csv"
-    simplified_df_path1 = f"{GITHUB_RAW_BASE_URL}/result_{ticker}.csv"
-
     df1_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
-    df2_graph = pd.read_csv(full_path2, parse_dates=['Date'], index_col='Date')
+    df2_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
 
-    last_signal_row = df1_graph.dropna(subset=['signal']).iloc[-1] if 'signal' in df1_graph.columns else None
-    last_signal = last_signal_row['signal'] if last_signal_row is not None else 'N/A'
-    current_signal = df1_graph['ppo_histogram'].iloc[-1] if 'ppo_histogram' in df1_graph.columns else 'N/A'
-
+    # 간략화된 데이터를 로드하여 챗GPT에서 그래프를 그릴 수 있게 합니다.
+    simplified_df_path1 = f"{GITHUB_RAW_BASE_URL}/result_{ticker}.csv"
     try:
         df1 = pd.read_csv(simplified_df_path1, parse_dates=['Date'], index_col='Date')
     except FileNotFoundError as e:
         print(f"Error: {e}")
         raise
 
+    # 중간 데이터 확인
+    print("=== df1_graph ===")
+    print(df1_graph.head())
+    print(df1_graph.describe())
+    
+    print("=== df2_graph ===")
+    print(df2_graph.head())
+    print(df2_graph.describe())
+
+    print("=== df1 (Simplified) ===")
+    print(df1.head())
+    print(df1.describe())
+
+    # 날짜 필터링 및 데이터 준비
     if start_date is None:
         start_date = df1_graph.index.min()
     if end_date is None:
@@ -86,6 +94,10 @@ async def plot_comparison_results(ticker, start_date, end_date):
     min_divergence = df1['Divergence'].min()
     current_divergence = df1['Divergence'].iloc[-1]
     relative_divergence = df1['Relative_Divergence'].iloc[-1]
+
+    last_signal_row = df1_graph.dropna(subset=['signal']).iloc[-1] if 'signal' in df1_graph.columns else None
+    last_signal = last_signal_row['signal'] if last_signal_row is not None else 'N/A'
+    current_signal = df1_graph['ppo_histogram'].iloc[-1] if 'ppo_histogram' in df1_graph.columns else 'N/A'
 
     plt.title(f"{ticker} ({get_ticker_name(ticker)}) vs {stock2}\n" +
               f"Total Rate: {df1_graph['rate'].iloc[-1]:.2f}% (VOO: {voo_rate:.2f}%), Relative_Divergence: {relative_divergence:.2f}%\n" +
@@ -145,7 +157,7 @@ if __name__ == "__main__":
         print("Plotting completed successfully.")
     except Exception as e:
         print(f"Error occurred while plotting results: {e}")
-        
+
         
 # python Results_plot.py
 
