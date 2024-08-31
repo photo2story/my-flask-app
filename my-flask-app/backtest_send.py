@@ -20,6 +20,7 @@ import config
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+option_strategy =config.option_strategy # 시뮬레이션 전략 설정
 
 # backtest_and_send.py
 

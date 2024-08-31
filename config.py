@@ -16,6 +16,7 @@ START_DATE = os.getenv('START_DATE', '2019-01-02')
 END_DATE = datetime.today().strftime('%Y-%m-%d')
 INITIAL_INVESTMENT = int(os.getenv('INITIAL_INVESTMENT', 100000))
 MONTHLY_INVESTMENT = int(os.getenv('MONTHLY_INVESTMENT', 1000))
+option_strategy = 'default'
 
 # Data URLs
 CSV_URL = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')

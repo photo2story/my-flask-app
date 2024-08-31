@@ -68,7 +68,7 @@ async def ping_command():
         print("Executing ping command...")
         # Context를 생성하고 명령어 실행
         # Analysis logic
-        await backtest_and_send(ctx, 'AAPL', 'monthly', bot)
+        await backtest_and_send(ctx, 'AAPL', option_strategy, bot)
     except Exception as e:
         print(f"Error in ping command: {e}")
 
@@ -101,6 +101,8 @@ async def gchat(ctx, *, query: str = None):
 
 @bot.command()
 async def stock(ctx, *, query: str = None):
+    
+    option_strategy =config.option_strategy # 시뮬레이션 전략 설정
     if query:
         stock_names = [query.upper()]
     else:
@@ -111,13 +113,13 @@ async def stock(ctx, *, query: str = None):
 
         if stock_analysis_complete:
             await ctx.send(f"Stock analysis for {stock_name} is already complete. Displaying results.")
-            await backtest_and_send(ctx, stock_name, 'monthly', bot)
+            await backtest_and_send(ctx, stock_name, option_strategy, bot)
 
         else:
             await ctx.send(f'Stock analysis for {stock_name} is not complete. Proceeding with analysis.')
             try:
                 # Analysis logic
-                await backtest_and_send(ctx, stock_name, 'monthly', bot)
+                await backtest_and_send(ctx, stock_name, option_strategy, bot)
             except Exception as e:
                 await ctx.send(f'An error occurred while processing {stock_name}: {e}')
                 print(f'Error processing {stock_name}: {e}')
