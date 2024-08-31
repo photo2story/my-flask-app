@@ -52,7 +52,8 @@ def my_strategy(stock_data, option_strategy):
         
         # 매달 적립 수행
         cash, invested_amount, signal, prev_month = config.monthly_deposit(current_date, prev_month, monthly_investment, cash, invested_amount)
-
+        print('current_date:', current_date, 'cash:', cash, 'invested_amount:', invested_amount, 'signal:', signal)
+        
         # 투자 결정 확인
         Invest_day = config.should_invest_today(current_date, first_trading_day)
 
