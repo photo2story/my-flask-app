@@ -110,28 +110,33 @@ async def collect_relative_divergence():
     
     for ticker in tickers:
         df = await fetch_csv(ticker)
-        if df is not None and 'Relative_Divergence' in df.columns:
-            try:
-                latest_entry = df.iloc[-1]  # 마지막 데이터를 가져옴
-                latest_relative_divergence = latest_entry['Relative_Divergence']
-                latest_divergence = latest_entry['Divergence']
-                delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
-                max_potential_profit, max_potential_loss, time_to_max, time_to_min = calculate_potential_profit_and_loss(df, latest_relative_divergence)
-
-                results = pd.concat([results, pd.DataFrame({
-                    'Ticker': [ticker], 
-                    'Divergence': [latest_divergence], 
-                    'Relative_Divergence': [latest_relative_divergence],
-                    'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
-                    'Max_Potential_Profit': [max_potential_profit],
-                    'Max_Potential_Loss': [max_potential_loss],
-                    'Time_To_Max': [time_to_max],
-                    'Time_To_Min': [time_to_min]
-                })], ignore_index=True)
-            except Exception as e:
-                print(f"Error processing data for {ticker}: {e}")
-        else:
+        if df is None or df.empty or 'Relative_Divergence' not in df.columns:
             print(f"Data for {ticker} is not available or missing necessary columns.")
+            continue
+        
+        try:
+            latest_entry = df.iloc[-1]  # 마지막 데이터를 가져옴
+            latest_relative_divergence = latest_entry['Relative_Divergence']
+            latest_divergence = latest_entry['Divergence']
+            delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
+            max_potential_profit, max_potential_loss, time_to_max, time_to_min = calculate_potential_profit_and_loss(df, latest_relative_divergence)
+
+            if latest_entry.isna().all():
+                print(f"Data for {ticker} is empty or contains only NA values, skipping...")
+                continue
+
+            results = pd.concat([results, pd.DataFrame({
+                'Ticker': [ticker], 
+                'Divergence': [latest_divergence], 
+                'Relative_Divergence': [latest_relative_divergence],
+                'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
+                'Max_Potential_Profit': [max_potential_profit],
+                'Max_Potential_Loss': [max_potential_loss],
+                'Time_To_Max': [time_to_max],
+                'Time_To_Min': [time_to_min]
+            })], ignore_index=True)
+        except Exception as e:
+            print(f"Error processing data for {ticker}: {e}")
     
     # 결과를 CSV 파일로 저장
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
@@ -144,7 +149,6 @@ async def collect_relative_divergence():
     await move_files_to_images_folder()
     
     return results
-
 
 
 if __name__ == "__main__":
