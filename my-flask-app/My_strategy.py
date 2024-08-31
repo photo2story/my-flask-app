@@ -32,7 +32,7 @@ def my_strategy(stock_data, option_strategy):
     Sudden_fall = False
     signal = ''
     prev_month = None  # 현재 월을 비교하여 다르다면, 이는 새로운 달이 시작
-    currency = 1300
+    currency = 1
     stock_ticker = stock_data.iloc[0]['Stock']
     
     if '.K' in stock_ticker or stock_data.iloc[0]['Sector'] == 'KRX':
