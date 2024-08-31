@@ -104,7 +104,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     ax2.plot(df1_graph.index, df1_graph['rate_7d_avg'], label=f'{ticker} 7-Day Avg Return')
     ax2.plot(df2_graph.index, df2_graph['rate_20d_avg'], label=f'{stock2} 20-Day Avg Return')
 
-    plt.ylabel('rate (%)')
+    plt.ylabel('total return (%)')
     plt.legend(loc='upper left')
 
     voo_rate = df2_graph['rate_vs'].iloc[-1] if not df2_graph.empty else 0
@@ -124,7 +124,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
               pad=10)
 
     ax2.xaxis.set_major_locator(dates.YearLocator())
-    plt.xlabel('Year')
+    # plt.xlabel('Year')
 
     save_path = f'comparison_{ticker}_VOO.png'
     plt.subplots_adjust(top=0.8)
