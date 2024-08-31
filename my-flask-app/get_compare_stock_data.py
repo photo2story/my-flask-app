@@ -81,14 +81,19 @@ def calculate_potential_profit_and_loss(df, current_relative_divergence):
         max_potential_profit = max_divergence - current_relative_divergence
         max_potential_loss = current_relative_divergence - min_divergence
 
-        time_to_max = (df[df['Relative_Divergence'] == max_divergence].index[-1] - df.index[-1]).days
-        time_to_min = (df[df['Relative_Divergence'] == min_divergence].index[-1] - df.index[-1]).days
+        # Calculate time differences
+        max_divergence_date = df[df['Relative_Divergence'] == max_divergence].index[-1]
+        min_divergence_date = df[df['Relative_Divergence'] == min_divergence].index[-1]
+        current_date = df.index[-1]
+
+        time_to_max = (max_divergence_date - current_date).days
+        time_to_min = (min_divergence_date - current_date).days
 
         return max_potential_profit, max_potential_loss, time_to_max, time_to_min
     except Exception as e:
         print(f"Error calculating potential profit/loss: {e}")
         return None, None, None, None
-
+    
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
