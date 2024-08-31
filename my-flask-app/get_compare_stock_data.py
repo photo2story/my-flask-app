@@ -48,16 +48,17 @@ def save_simplified_csv(ticker):
     df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
     
     # 상대 이격도(Relative Divergence) 계산
-    max_divergence = df['Divergence'].max()
     min_divergence = df['Divergence'].min()
-    df['Relative_Divergence'] = np.round(((df['Divergence'] - min_divergence) / (max_divergence - min_divergence)) * 100, 2)
+    df['Relative_Divergence'] = np.round(((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100, 2)
+
+    # max_divergence 값 업데이트: 현재까지의 최대 이격도
+    df['Max_Divergence'] = df['Divergence'].cummax()
     
     # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
 
-    # max_divergence와 expected_profit 필드를 추가합니다.
-    df['Max_Divergence'] = max_divergence
-    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * max_divergence).round(2)
+    # expected_return 필드를 추가합니다.
+    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
 
     # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
@@ -73,10 +74,10 @@ def save_simplified_csv(ticker):
 
     # 마지막 데이터를 출력
     latest_entry = df.iloc[-1]
-    print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {max_divergence}, min {min_divergence})")
+    print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {latest_entry['Max_Divergence']}, min {min_divergence})")
     print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
     print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
-
+    print(f"Expected Return for {ticker}: {latest_entry['Expected_Return']}")
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
