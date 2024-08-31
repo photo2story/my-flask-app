@@ -84,7 +84,7 @@ async def test_backtest_and_send():
     bot = MockBot()
     stock = "AAPL"
     try:
-        await backtest_and_send(ctx, stock, option_strategy, bot=bot)
+        await backtest_and_send(ctx, stock, option_strategy ='monthly', bot=bot)
         print("Backtesting completed successfully.")
     except Exception as e:
         print(f"Error occurred while backtesting: {e}")

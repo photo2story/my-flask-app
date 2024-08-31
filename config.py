@@ -56,12 +56,16 @@ def should_invest_today(current_date, first_trading_day):
 
 def monthly_deposit(current_date, prev_month, monthly_investment, cash, invested_amount):
     signal = ''
-    if prev_month != f"{current_date.year}-{current_date.month}":
+    current_month = f"{current_date.year}-{current_date.month}"
+
+    if prev_month != current_month:
        cash += monthly_investment
        invested_amount += monthly_investment
        signal = 'Monthly invest'
-       prev_month = f"{current_date.year}-{current_date.month}"
+       prev_month = current_month
+
     return cash, invested_amount, signal, prev_month
+
 
 # 추가된 함수: 분석 검증
 # 미국 동부 표준시(EST)로 시간 설정
