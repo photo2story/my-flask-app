@@ -22,7 +22,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '..'))
 
 # Noto Sans KR 폰트 파일 경로
-font_path = os.path.join(project_root, 'Noto_Sans_KR', 'static','NotoSansKR-Regular.ttf')
+font_path = os.path.join(project_root, 'Noto_Sans_KR', 'static', 'NotoSansKR-Regular.ttf')
 
 # 경로가 올바르게 지정되었는지 확인
 print("Font path:", font_path)
@@ -32,8 +32,13 @@ print("Path exists:", os.path.exists(font_path))
 if os.path.exists(font_path):
     font_prop = fm.FontProperties(fname=font_path)
     plt.rcParams['font.family'] = font_prop.get_name()
+    plt.rcParams['font.sans-serif'] = [font_prop.get_name()]
+    
+    # 폰트가 제대로 설정되었는지 확인
+    print("Font name:", font_prop.get_name())
 else:
     print("Font file not found.")
+    
 import warnings
 
 # 경고 무시 설정
