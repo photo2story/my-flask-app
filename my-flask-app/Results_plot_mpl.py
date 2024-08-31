@@ -13,15 +13,23 @@ from dotenv import load_dotenv
 import asyncio
 import matplotlib.font_manager as fm
 
-# 한글 폰트 설정 (주석 처리된 부분은 필요에 따라 사용할 수 있습니다)
-# font_url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/MALGUN.ttf'
+import warnings
+import matplotlib.pyplot as plt
 
-# response = requests.get(font_url)
-# with open('MALGUN.ttf', 'wb') as f:
-#     f.write(response.content)
+# 경고 무시 설정
+warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
 
-# fontprop = fm.FontProperties(fname='MALGUN.ttf', size=10)
-# plt.rcParams['font.family'] = fontprop.get_name()
+# 나머지 코드
+import matplotlib.pyplot as plt
+from mplchart.chart import Chart
+from mplchart.primitives import Candlesticks, Volume, TradeSpan
+from mplchart.indicators import SMA, PPO, RSI
+import pandas as pd
+import requests
+import FinanceDataReader as fdr
+import os, sys
+from dotenv import load_dotenv
+import asyncio
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -115,7 +123,6 @@ if __name__ == "__main__":
         print("Plotting completed successfully.")
     except Exception as e:
         print(f"Error occurred while plotting results: {e}")
-
 
 
 r"""
