@@ -77,29 +77,22 @@ def save_simplified_csv(ticker):
 def calculate_potential_profit_and_loss(df, current_relative_divergence):
     try:
         max_divergence = df['Relative_Divergence'].max()
-        min_divergence = df['Relative_Divergence'].min()
-        max_potential_profit = max_divergence - current_relative_divergence
-        max_potential_loss = current_relative_divergence - min_divergence
+        max_potential_profit = round(max_divergence - current_relative_divergence, 2)
 
-        # Calculate time differences
-        max_divergence_date = pd.to_datetime(df[df['Relative_Divergence'] == max_divergence].iloc[-1]['Date'])
-        min_divergence_date = pd.to_datetime(df[df['Relative_Divergence'] == min_divergence].iloc[-1]['Date'])
-        current_date = pd.to_datetime(df.iloc[-1]['Date'])
+        # 기대 수익 계산
+        expected_profit = round(max_potential_profit * current_relative_divergence / 100, 2)
 
-        time_to_max = (max_divergence_date - current_date).days
-        time_to_min = (min_divergence_date - current_date).days
-
-        return max_potential_profit, max_potential_loss, time_to_max, time_to_min
+        return max_potential_profit, expected_profit
     except Exception as e:
         print(f"Error calculating potential profit/loss: {e}")
-        return None, None, None, None
+        return None, None
 
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
     results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
                                     'Delta_Previous_Relative_Divergence', 'Max_Potential_Profit', 
-                                    'Max_Potential_Loss', 'Time_To_Max', 'Time_To_Min'])
+                                    'Expected_Profit'])
     
     for ticker in tickers:
         df = await fetch_csv(ticker)
@@ -116,7 +109,7 @@ async def collect_relative_divergence():
             latest_relative_divergence = latest_entry['Relative_Divergence']
             latest_divergence = latest_entry['Divergence']
             delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
-            max_potential_profit, max_potential_loss, time_to_max, time_to_min = calculate_potential_profit_and_loss(df, latest_relative_divergence)
+            max_potential_profit, expected_profit = calculate_potential_profit_and_loss(df, latest_relative_divergence)
 
             results = pd.concat([results, pd.DataFrame({
                 'Ticker': [ticker], 
@@ -124,9 +117,7 @@ async def collect_relative_divergence():
                 'Relative_Divergence': [latest_relative_divergence],
                 'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
                 'Max_Potential_Profit': [max_potential_profit],
-                'Max_Potential_Loss': [max_potential_loss],
-                'Time_To_Max': [time_to_max],
-                'Time_To_Min': [time_to_min]
+                'Expected_Profit': [expected_profit]
             })], ignore_index=True)
         except Exception as e:
             print(f"Error processing data for {ticker}: {e}")
@@ -143,6 +134,7 @@ async def collect_relative_divergence():
     await move_files_to_images_folder()
     
     return results
+
 
 
 if __name__ == "__main__":
