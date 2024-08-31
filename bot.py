@@ -242,6 +242,8 @@ Remove-Item -Recurse -Force .venv
 python3 -m venv .venv
 .\\.venv\Scripts\activate
 pip install -r requirements.txt
+pip install --force-reinstall ./mplchart-0.0.8-py3-none-any.whl
+
 
 source .venv/bin/activate
 python bot.py   

@@ -1,6 +1,8 @@
 ## Results_plot_mpl.py
 
 
+import matplotlib
+matplotlib.use('Agg')  # IPython 환경에서 발생할 수 있는 백엔드 관련 오류 방지
 import matplotlib.pyplot as plt
 from mplchart.chart import Chart
 from mplchart.primitives import Candlesticks, Volume, TradeSpan
@@ -14,22 +16,9 @@ import asyncio
 import matplotlib.font_manager as fm
 
 import warnings
-import matplotlib.pyplot as plt
 
 # 경고 무시 설정
 warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
-
-# 나머지 코드
-import matplotlib.pyplot as plt
-from mplchart.chart import Chart
-from mplchart.primitives import Candlesticks, Volume, TradeSpan
-from mplchart.indicators import SMA, PPO, RSI
-import pandas as pd
-import requests
-import FinanceDataReader as fdr
-import os, sys
-from dotenv import load_dotenv
-import asyncio
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
