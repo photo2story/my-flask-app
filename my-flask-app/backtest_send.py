@@ -23,7 +23,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # backtest_and_send.py
 
-async def backtest_and_send(ctx, stock, option_strategy='1', bot=None):
+async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     if bot is None:
         raise ValueError("bot 변수는 None일 수 없습니다.")
 
@@ -84,7 +84,7 @@ async def test_backtest_and_send():
     bot = MockBot()
     stock = "AAPL"
     try:
-        await backtest_and_send(ctx, stock, option_strategy='1', bot=bot)
+        await backtest_and_send(ctx, stock, option_strategy, bot=bot)
         print("Backtesting completed successfully.")
     except Exception as e:
         print(f"Error occurred while backtesting: {e}")

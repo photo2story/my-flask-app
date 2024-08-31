@@ -14,8 +14,8 @@ DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL', 'your_webhook_url_here')
 # Investment and backtest configuration
 START_DATE = os.getenv('START_DATE', '2019-01-02')
 END_DATE = datetime.today().strftime('%Y-%m-%d')
-INITIAL_INVESTMENT = int(os.getenv('INITIAL_INVESTMENT', 1000000))
-MONTHLY_INVESTMENT = int(os.getenv('MONTHLY_INVESTMENT', 0))
+INITIAL_INVESTMENT = int(os.getenv('INITIAL_INVESTMENT', 100000))
+MONTHLY_INVESTMENT = int(os.getenv('MONTHLY_INVESTMENT', 1000))
 
 # Data URLs
 CSV_URL = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
