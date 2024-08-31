@@ -66,7 +66,7 @@ async def plot_results_mpl(ticker, start_date, end_date):
     chart = Chart(title=chart_title, max_bars=250)
     chart.plot(filtered_prices, indicators)
     fig = chart.figure
-    fig.tight_layout()  # 레이아웃 조정 추가
+    # fig.tight_layout()  # 레이아웃 조정 추가
     image_filename = f'result_mpl_{ticker}.png'
     save_figure(fig, image_filename)
 
