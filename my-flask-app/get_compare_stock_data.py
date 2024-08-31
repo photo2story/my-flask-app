@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import requests
 import io
-
+import datetime
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -29,6 +29,23 @@ async def fetch_csv(ticker):
     except pd.errors.EmptyDataError:
         print(f"No data found for {ticker}.")
         return None
+
+def calculate_potential_profit_and_loss(df, current_rel_divergence):
+    max_rel_divergence = df['Relative_Divergence'].max()
+    min_rel_divergence = df['Relative_Divergence'].min()
+    
+    max_potential_profit = max_rel_divergence - current_rel_divergence
+    max_potential_loss = current_rel_divergence - min_rel_divergence
+    
+    # 최대와 최소에 도달하는데 걸린 시간 계산
+    max_time = df[df['Relative_Divergence'] == max_rel_divergence]['Date'].values[0]
+    min_time = df[df['Relative_Divergence'] == min_rel_divergence]['Date'].values[0]
+    current_time = df.iloc[-1]['Date']
+    
+    time_to_max = (pd.to_datetime(max_time) - pd.to_datetime(current_time)).days
+    time_to_min = (pd.to_datetime(min_time) - pd.to_datetime(current_time)).days
+    
+    return max_potential_profit, max_potential_loss, time_to_max, time_to_min
 
 def save_simplified_csv(ticker):
     # 파일 경로 설정
@@ -55,8 +72,16 @@ def save_simplified_csv(ticker):
     # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
 
+    # 현재 Relative Divergence
+    current_rel_divergence = df.iloc[-1]['Relative_Divergence']
+    
+    # 추가된 필드: 최대 수익, 최대 손실, 최대 및 최소 도달 시간
+    df['Max_Potential_Profit'], df['Max_Potential_Loss'], df['Time_To_Max'], df['Time_To_Min'] = calculate_potential_profit_and_loss(df, current_rel_divergence)
+    
     # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
-    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence']].iloc[::20].reset_index(drop=True)
+    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 
+                        'Delta_Previous_Relative_Divergence', 'Max_Potential_Profit', 'Max_Potential_Loss', 
+                        'Time_To_Max', 'Time_To_Min']].iloc[::20].reset_index(drop=True)
     
     # 마지막 데이터 추가 (concat 사용)
     if not simplified_df.iloc[-1].equals(df.iloc[-1]):
@@ -72,10 +97,16 @@ def save_simplified_csv(ticker):
     print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {max_divergence}, min {min_divergence})")
     print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
     print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
+    print(f"Max Potential Profit for {ticker}: {latest_entry['Max_Potential_Profit']}")
+    print(f"Max Potential Loss for {ticker}: {latest_entry['Max_Potential_Loss']}")
+    print(f"Time To Max for {ticker}: {latest_entry['Time_To_Max']} days")
+    print(f"Time To Min for {ticker}: {latest_entry['Time_To_Min']} days")
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
-    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence'])
+    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
+                                    'Delta_Previous_Relative_Divergence', 'Max_Potential_Profit', 
+                                    'Max_Potential_Loss', 'Time_To_Max', 'Time_To_Min'])
     
     for ticker in tickers:
         df = await fetch_csv(ticker)
@@ -84,12 +115,17 @@ async def collect_relative_divergence():
             latest_relative_divergence = latest_entry['Relative_Divergence']
             latest_divergence = latest_entry['Divergence']
             delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
+            max_potential_profit, max_potential_loss, time_to_max, time_to_min = calculate_potential_profit_and_loss(df, latest_relative_divergence)
 
             results = pd.concat([results, pd.DataFrame({
                 'Ticker': [ticker], 
                 'Divergence': [latest_divergence], 
                 'Relative_Divergence': [latest_relative_divergence],
-                'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence]
+                'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
+                'Max_Potential_Profit': [max_potential_profit],
+                'Max_Potential_Loss': [max_potential_loss],
+                'Time_To_Max': [time_to_max],
+                'Time_To_Min': [time_to_min]
             })], ignore_index=True)
         else:
             print(f"Data for {ticker} is not available or missing necessary columns.")
@@ -105,6 +141,7 @@ async def collect_relative_divergence():
     await move_files_to_images_folder()
     
     return results
+
 
 if __name__ == "__main__":
     import asyncio
