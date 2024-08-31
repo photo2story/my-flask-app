@@ -56,7 +56,8 @@ def my_strategy(stock_data, option_strategy):
         
         # 투자 결정 확인
         Invest_day = config.should_invest_today(current_date, first_trading_day)
-
+        print('Invest_day:', Invest_day)
+        
         # Calculate current price and performance
         price = row['Close'] * currency  # 종가(원화환산)
         Open = row['Open'] * currency  # 개장가(원화환산)
