@@ -18,17 +18,22 @@ import matplotlib.font_manager as fm
 # 현재 스크립트 파일의 디렉토리 경로
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Noto Sans KR 폰트 파일 경로 (Regular 스타일 사용)
-font_path = os.path.join(current_dir, '..', 'Noto_Sans_KR', 'NotoSansKR-Regular.ttf')
+# 프로젝트 루트 경로를 찾기 위해 상위 폴더로 이동
+project_root = os.path.abspath(os.path.join(current_dir, '..'))
+
+# Noto Sans KR 폰트 파일 경로
+font_path = os.path.join(project_root, 'Noto_Sans_KR', 'NotoSansKR-Regular.ttf')
+
+# 경로가 올바르게 지정되었는지 확인
 print("Font path:", font_path)
+print("Path exists:", os.path.exists(font_path))
 
 # 폰트 속성 설정
-font_prop = fm.FontProperties(fname=font_path)
-
-# Matplotlib 기본 폰트 설정
-plt.rcParams['font.family'] = 'Noto Sans KR'
-plt.rcParams['font.sans-serif'] = ['Noto Sans KR']
-
+if os.path.exists(font_path):
+    font_prop = fm.FontProperties(fname=font_path)
+    plt.rcParams['font.family'] = font_prop.get_name()
+else:
+    print("Font file not found.")
 import warnings
 
 # 경고 무시 설정
