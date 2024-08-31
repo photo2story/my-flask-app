@@ -15,6 +15,19 @@ from dotenv import load_dotenv
 import asyncio
 import matplotlib.font_manager as fm
 
+# 현재 스크립트 파일의 디렉토리 경로
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Noto Sans KR 폰트 파일 경로 (Regular 스타일 사용)
+font_path = os.path.join(current_dir, '..', 'Noto_Sans_KR', 'static', 'NotoSansKR-Regular.ttf')
+
+# 폰트 속성 설정
+font_prop = fm.FontProperties(fname=font_path)
+
+# Matplotlib 기본 폰트 설정
+plt.rcParams['font.family'] = 'Noto Sans KR'
+plt.rcParams['font.sans-serif'] = ['Noto Sans KR']
+
 import warnings
 
 # 경고 무시 설정
