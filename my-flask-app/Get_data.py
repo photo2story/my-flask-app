@@ -78,6 +78,7 @@ def get_stock_data(ticker, start_date, end_date):
     # FinanceDataReader를 사용하여 주식 데이터 불러오기
     print('get_stock_data.1:', ticker)
     stock_data = fdr.DataReader(ticker, start_date, end_date)
+    print('get_stock_data.2:', stock_data)
 
     stock_data.columns = stock_data.columns.astype(str)
   
