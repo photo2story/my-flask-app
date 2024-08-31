@@ -57,10 +57,10 @@ def save_simplified_csv(ticker):
 
     # max_divergence와 expected_profit 필드를 추가합니다.
     df['Max_Divergence'] = max_divergence
-    df['Expected_Profit'] = ((100 - df['Relative_Divergence']) / 100 * max_divergence).round(2)
+    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * max_divergence).round(2)
 
     # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
-    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Profit']].iloc[::20].reset_index(drop=True)
+    simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
     
     # 마지막 데이터 추가 (concat 사용)
     if not simplified_df.iloc[-1].equals(df.iloc[-1]):
@@ -82,7 +82,7 @@ async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
     results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
                                     'Delta_Previous_Relative_Divergence', 'Max_Divergence', 
-                                    'Expected_Profit'])
+                                    'Expected_Return'])
     
     for ticker in tickers:
         df = await fetch_csv(ticker)
@@ -104,7 +104,7 @@ async def collect_relative_divergence():
             max_divergence = df['Divergence'].max().round(2)
             
             # Expected profit 계산
-            expected_profit = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
+            expected_return = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
 
             results = pd.concat([results, pd.DataFrame({
                 'Ticker': [ticker], 
@@ -112,7 +112,7 @@ async def collect_relative_divergence():
                 'Relative_Divergence': [latest_relative_divergence],
                 'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
                 'Max_Divergence': [max_divergence],
-                'Expected_Profit': [expected_profit]
+                'Expected_Return': [expected_return]
             })], ignore_index=True)
         except Exception as e:
             print(f"Error processing data for {ticker}: {e}")
