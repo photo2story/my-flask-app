@@ -171,7 +171,7 @@ if __name__ == "__main__":
     print(f"Plotting results for {ticker} from {start_date} to {end_date}")
 
     try:
-        asyncio.run(plot_comparison_results(ticker, '2019-01-01', '2021-12-31'))
+        asyncio.run(plot_comparison_results(ticker, start_date, end_date))
         print("Plotting completed successfully.")
     except Exception as e:
         print(f"Error occurred while plotting results: {e}")
