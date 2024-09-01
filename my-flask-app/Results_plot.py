@@ -109,17 +109,18 @@ async def plot_comparison_results(ticker, start_date, end_date):
     plt.legend(loc='upper left')
 
     voo_rate = df2_graph['rate'].iloc[-1] if not df2_graph.empty else 0 # VOO의 최종 수익률
-    max_divergence = df1['Divergence'].max()
+    total_rate = df1_graph['rate'].iloc[-1] if not df1_graph.empty else 0 # {ticker}의 최종 수익률
+    max_divergence = df1['Divergence'].max() 
     min_divergence = df1['Divergence'].min()
-    current_divergence = df1['Divergence'].iloc[-1]
-    relative_divergence = df1['Relative_Divergence'].iloc[-1]
+    current_divergence = df1['Divergence'].iloc[-1] if not df1_graph.empty else 0 # 현재 이격도
+    relative_divergence = df1['Relative_Divergence'].iloc[-1] if not df1_graph.empty else 0 # 상대 이격도
     expected_return = df1['Expected_Return'].iloc[-1]
 
     last_signal_row = df1_graph.dropna(subset=['signal']).iloc[-1] if 'signal' in df1_graph.columns else None
     last_signal = last_signal_row['signal'] if last_signal_row is not None else 'N/A'
 
     plt.title(f"{ticker} ({get_ticker_name(ticker)}) vs {stock2}\n" +
-              f"Total Rate: {df1_graph['rate'].iloc[-1]:.2f}% (VOO: {voo_rate:.2f}%), Relative_Divergence: {relative_divergence:.2f}%\n" +
+              f"Total Rate: {total_rate:.2f}% (VOO: {voo_rate:.2f}%), Relative_Divergence: {relative_divergence:.2f}%\n" +
               f"Current Divergence: {current_divergence:.2f} (max: {max_divergence:.2f}, min: {min_divergence:.2f})\n" +
               f"Expected Return: {expected_return:.2f}, Last Signal: {last_signal}",
               pad=10)
