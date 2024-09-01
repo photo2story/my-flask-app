@@ -85,9 +85,9 @@ async def plot_comparison_results(ticker, start_date, end_date):
         raise
 
     # 중간 데이터 확인
-    # print("=== df1 (Simplified) ===")
-    # print(df1.head())
-    # print(df1.describe())
+    print("=== df1 (Simplified) ===")
+    print(df1.head())
+    print(df1.describe())
 
     # 날짜 필터링 및 데이터 준비
     if start_date is None:
