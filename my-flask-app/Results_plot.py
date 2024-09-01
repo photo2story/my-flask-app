@@ -169,7 +169,7 @@ if __name__ == "__main__":
     print("Starting test for plotting results.")
     ticker = "BTC-USD"
     start_date = "2019-01-02"
-    end_date = "2024-08-31"
+    end_date = "2024-08-30"
     print(f"Plotting results for {ticker} from {start_date} to {end_date}")
 
     try:
