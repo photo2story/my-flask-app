@@ -112,7 +112,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     total_rate = df1_graph['rate'].iloc[-1] if not df1_graph.empty else 0 # {ticker}의 최종 수익률
     max_divergence = df1['Divergence'].max() 
     min_divergence = df1['Divergence'].min()
-    current_divergence = df1['Divergence'].iloc[-1] if not df1_graph.empty else 0 # 현재 이격도
+    current_divergence = df1['Divergence'].dropna().iloc[-1] if not df1.empty else 0 # 현재 이격도
     relative_divergence = df1['Relative_Divergence'].iloc[-1] if not df1_graph.empty else 0 # 상대 이격도
     expected_return = df1['Expected_Return'].iloc[-1]
 
