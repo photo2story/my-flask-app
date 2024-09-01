@@ -45,8 +45,8 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         result_df = My_strategy.my_strategy(stock_data, option_strategy)
         
         # 비교 주식 데이터 가져오기, 전략 실행
-        stock_data, min_stock_data_date = get_stock_data('VOO', config.START_DATE, config.END_DATE)
-        result_df2 = My_strategy.my_strategy(stock_data, option_strategy)
+        stock_data2, min_stock_data_date2 = get_stock_data('VOO', config.START_DATE, config.END_DATE)
+        result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
         
         # result_df2의 'rate' 컬럼 이름을 'rate_vs'로 변경
         result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
@@ -86,6 +86,8 @@ async def test_backtest_and_send():
     stock = "BTC-USD"
     try:
         await backtest_and_send(ctx, stock, option_strategy ='monthly', bot=bot)
+        await plot_comparison_results(stock_name, config.START_DATE, config.END_DATE)
+
         print("Backtesting completed successfully.")
     except Exception as e:
         print(f"Error occurred while backtesting: {e}")
