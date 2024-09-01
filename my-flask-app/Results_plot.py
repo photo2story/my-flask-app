@@ -112,15 +112,15 @@ async def plot_comparison_results(ticker, start_date, end_date):
     min_divergence = df1['Divergence'].min()
     current_divergence = df1['Divergence'].iloc[-1]
     relative_divergence = df1['Relative_Divergence'].iloc[-1]
+    expected_return = df1['Expected_Return'].iloc[-1]
 
     last_signal_row = df1_graph.dropna(subset=['signal']).iloc[-1] if 'signal' in df1_graph.columns else None
     last_signal = last_signal_row['signal'] if last_signal_row is not None else 'N/A'
-    current_signal = df1_graph['ppo_histogram'].iloc[-1] if 'ppo_histogram' in df1_graph.columns else 'N/A'
 
     plt.title(f"{ticker} ({get_ticker_name(ticker)}) vs {stock2}\n" +
               f"Total Rate: {df1_graph['rate'].iloc[-1]:.2f}% (VOO: {voo_rate:.2f}%), Relative_Divergence: {relative_divergence:.2f}%\n" +
               f"Current Divergence: {current_divergence:.2f} (max: {max_divergence:.2f}, min: {min_divergence:.2f})\n" +
-              f"Current Signal(PPO): {current_signal}, Last Signal: {last_signal}",
+              f"Expected Return: {expected_return:.2f}, Last Signal: {last_signal}",
               pad=10)
 
     ax2.xaxis.set_major_locator(dates.YearLocator())
@@ -136,7 +136,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     message = f"Stock: {ticker} ({get_ticker_name(ticker)}) vs VOO\n" \
               f"Total Rate: {df1_graph['rate'].iloc[-1]:.2f}% (VOO: {voo_rate:.2f}%), Relative_Divergence: {relative_divergence:.2f}\n" \
               f"Current Divergence: {current_divergence:.2f} (max: {max_divergence:.2f}, min: {min_divergence:.2f})\n" \
-              f"Current Signal(PPO): {current_signal}, Last Signal: {last_signal}"
+              f"Expected Return: {expected_return:.2f}, Last Signal: {last_signal}"
     response = requests.post(DISCORD_WEBHOOK_URL, data={'content': message})
 
     if response.status_code != 204:

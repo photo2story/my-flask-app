@@ -145,7 +145,7 @@ async def analyze_with_gemini(ticker):
            RSI = {rsi}
            PPO = {ppo}
            최근(20일) 상대이격도 변화량 = {delta_Previous_Relative_Divergence} , (-): 단기하락, (+): 단기상승
-           기대수익 = {Expected_Return}, 현재 적립 투자금에 대한 최대 예상 기대 수익
+           기대수익(%) = {Expected_Return}, 현재 적립 투자금에 대한 최대 예상 기대 수익율
         4) 최근 실적 및 전망: 제공된 자료의 실적을 분석해줘(간단하게)
            실적 = {earnings_text} 표로 제공된 실적을 분석해줘
            가장 최근 실적은 예상치도 함께 포함해서 검토해줘
