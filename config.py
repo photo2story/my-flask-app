@@ -127,6 +127,33 @@ def is_gemini_analysis_complete(ticker):
         print(f"Error reading report file for {ticker}: {e}")
         return False
 
+import os
+from datetime import datetime
+
+# VOO 데이터를 저장할 파일 경로
+VOO_CACHE_FILE = os.path.join('static', 'images', 'cached_voo_data.csv')
+
+def is_cache_valid(cache_file, start_date):
+    """
+    캐시 파일이 유효한지 확인합니다.    - 파일이 존재하는지
+    - 파일의 마지막 수정 날짜가 START_DATE 이후인지 확인
+    """
+    if not os.path.exists(cache_file):
+        return False
+    
+    df = pd.read_csv(cache_file, parse_dates=['Date'])
+    
+    # 캐시된 데이터의 가장 오래된 날짜가 START_DATE 이후인지 확인
+    if df['Date'].min().strftime('%Y-%m-%d') != start_date:
+        return False
+    
+    latest_data_date = df['Date'].max()
+    
+    # 최신 데이터 날짜 출력
+    print(f"Latest data date in cached data: {latest_data_date.strftime('%Y-%m-%d')}")
+    
+    return True
+
 
 if __name__ == '__main__':
     # 분석할 티커 설정
