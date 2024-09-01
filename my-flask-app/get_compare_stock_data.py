@@ -34,6 +34,7 @@ def save_simplified_csv(ticker):
     # 파일 경로 설정
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
     file_path = os.path.join(folder_path, f'result_VOO_{ticker}.csv')
+    file_path2 = os.path.join(folder_path, f'result_VOO_VOO.csv')
     
     # 파일이 존재하지 않으면 건너뜁니다.
     if not os.path.exists(file_path):
@@ -42,6 +43,9 @@ def save_simplified_csv(ticker):
         
     # 데이터 로드 및 필요한 열만 선택
     df = pd.read_csv(file_path, parse_dates=['Date'], usecols=['Date', 'rate', 'rate_vs'])
+    df2 = pd.read_csv(file_path2, parse_dates=['Date'], usecols=['Date', 'rate'])
+    # VOO 데이터를 rate_vs 컬럼으로 복사
+    df['rate_vs'] = df2['rate']
     
     # 이격도(Divergence) 계산
     df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
