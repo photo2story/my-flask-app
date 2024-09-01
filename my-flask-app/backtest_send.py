@@ -108,7 +108,7 @@ async def test_backtest_and_send():
 
     ctx = MockContext()
     bot = MockBot()
-    stock = "BTC-USD"
+    stock = "TSLA"
     
     try:
         # VOO 데이터가 캐시되어 있는지 확인하고 출력
