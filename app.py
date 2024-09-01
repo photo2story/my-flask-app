@@ -235,16 +235,16 @@ def run_flask():
     app.run(host='0.0.0.0', port=5000)
     # app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
 
-try:
-    # 이 코드는 Jupyter Notebook 환경에서만 실행됩니다.
-    from IPython import get_ipython
-    ipython = get_ipython()
-    if ipython is not None:
-        # Jupyter Notebook 환경에서만 실행되는 코드
-        pass
-except AttributeError:
-    # Jupyter 환경이 아닐 때 실행될 코드
-    print("IPython environment is not available. Skipping IPython-specific code.")
+# try:
+#     # 이 코드는 Jupyter Notebook 환경에서만 실행됩니다.
+#     from IPython import get_ipython
+#     ipython = get_ipython()
+#     if ipython is not None:
+#         # Jupyter Notebook 환경에서만 실행되는 코드
+#         pass
+# except AttributeError:
+#     # Jupyter 환경이 아닐 때 실행될 코드
+#     print("IPython environment is not available. Skipping IPython-specific code.")
 
 if __name__ == '__main__':
     from bot import run_bot
