@@ -73,8 +73,9 @@ async def plot_comparison_results(ticker, start_date, end_date):
 
     # 전체 데이터를 로드하여 플라스크 서버에서 그래프를 그립니다.
     full_path1 = f"{GITHUB_RAW_BASE_URL}/result_VOO_{ticker}.csv"
+    full_path2 = f"{GITHUB_RAW_BASE_URL}/result_VOO_VOO.csv"
     df1_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
-    df2_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
+    df2_graph = pd.read_csv(full_path2, parse_dates=['Date'], index_col='Date')
 
     # 간략화된 데이터를 로드하여 챗GPT에서 그래프를 그릴 수 있게 합니다.
     simplified_df_path1 = f"{GITHUB_RAW_BASE_URL}/result_{ticker}.csv"
@@ -85,9 +86,9 @@ async def plot_comparison_results(ticker, start_date, end_date):
         raise
 
     # 중간 데이터 확인
-    print("=== df1 (Simplified) ===")
-    print(df1.head())
-    print(df1.describe())
+    # print("=== df1 (Simplified) ===")
+    # print(df1.head())
+    # print(df1.describe())
 
     # 날짜 필터링 및 데이터 준비
     if start_date is None:
@@ -99,7 +100,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     df2_graph = df2_graph.loc[start_date:end_date]
 
     df1_graph['rate_7d_avg'] = df1_graph['rate'].rolling('7D').mean()
-    df2_graph['rate_20d_avg'] = df2_graph['rate_vs'].rolling('20D').mean()
+    df2_graph['rate_20d_avg'] = df2_graph['rate'].rolling('20D').mean() # VOO
 
     ax2.plot(df1_graph.index, df1_graph['rate_7d_avg'], label=f'{ticker} 7-Day Avg Return')
     ax2.plot(df2_graph.index, df2_graph['rate_20d_avg'], label=f'{stock2} 20-Day Avg Return')
@@ -107,7 +108,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     plt.ylabel('total return (%)')
     plt.legend(loc='upper left')
 
-    voo_rate = df2_graph['rate_vs'].iloc[-1] if not df2_graph.empty else 0
+    voo_rate = df2_graph['rate'].iloc[-1] if not df2_graph.empty else 0 # VOO의 최종 수익률
     max_divergence = df1['Divergence'].max()
     min_divergence = df1['Divergence'].min()
     current_divergence = df1['Divergence'].iloc[-1]
@@ -166,7 +167,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
 if __name__ == "__main__":
     print("Starting test for plotting results.")
     ticker = "BTC-USD"
-    start_date = "2024-01-02"
+    start_date = "2019-01-02"
     end_date = "2024-07-28"
     print(f"Plotting results for {ticker} from {start_date} to {end_date}")
 
