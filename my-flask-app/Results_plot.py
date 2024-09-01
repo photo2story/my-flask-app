@@ -109,7 +109,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     plt.legend(loc='upper left')
 
     voo_rate = df2_graph['rate'].iloc[-1] if not df2_graph.empty else 0 # VOO의 최종 수익률
-    total_rate = df1_graph['rate'].iloc[-1] if not df1_graph.empty else 0 # {ticker}의 최종 수익률
+    total_rate = df1_graph['rate'].iloc[-2] if not df1_graph.empty else 0 # {ticker}의 최종 수익률
     max_divergence = df1['Divergence'].max() 
     min_divergence = df1['Divergence'].min()
     current_divergence = df1['Divergence'].dropna().iloc[-1] if not df1.empty else 0 # 현재 이격도
