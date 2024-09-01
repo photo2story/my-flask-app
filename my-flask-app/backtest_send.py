@@ -86,7 +86,7 @@ async def test_backtest_and_send():
     stock = "BTC-USD"
     try:
         await backtest_and_send(ctx, stock, option_strategy ='monthly', bot=bot)
-        await plot_comparison_results(stock_name, config.START_DATE, config.END_DATE)
+        await plot_comparison_results(stock, config.START_DATE, config.END_DATE)
 
         print("Backtesting completed successfully.")
     except Exception as e:
