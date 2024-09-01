@@ -55,7 +55,9 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         combined_df = result_df.join(result_df2['rate_vs'])
         combined_df.fillna(0, inplace=True)  # 누락된 값을 0으로 채우기
   
-        
+        # 유효하지 않은 끝부분 제거: 'rate' 또는 'rate_vs'가 0인 행 제거
+        combined_df = combined_df[(combined_df[f'rate'] != 0) & (combined_df['rate_vs'] != 0)]
+  
         # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')
         file_path = 'result_VOO_{}.csv'.format(safe_ticker)  # VOO_TSLA(stock1).csv
@@ -70,6 +72,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     except Exception as e:
         await ctx.send(f"An error occurred while processing {stock}: {e}")
         print(f"Error processing {stock}: {e}")
+
         
 # 테스트 코드 추가
 async def test_backtest_and_send():

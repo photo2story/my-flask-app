@@ -41,17 +41,3 @@ def export_csv(file_path, result_dict):
     result_df.to_csv(file_path, float_format='%.2f', index=False)
     return result_df
 
-# # 예제 데이터
-# result_dict = {
-#     "result": [
-#         ["2022-01-01", 100, 102, 105, 99, 101, 1000, 106, 98, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, "AAPL"],
-#         # 추가 데이터
-#     ]
-# }
-
-# # 파일 경로
-# file_path = 'results/stock_results.csv'
-
-# # CSV 파일로 내보내기
-# df = export_csv(file_path, result_dict)
-# print(df)
