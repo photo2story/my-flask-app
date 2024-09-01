@@ -166,7 +166,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
 if __name__ == "__main__":
     print("Starting test for plotting results.")
     ticker = "BTC-USD"
-    start_date = "2023-01-02"
+    start_date = "2024-01-02"
     end_date = "2024-07-28"
     print(f"Plotting results for {ticker} from {start_date} to {end_date}")
 
