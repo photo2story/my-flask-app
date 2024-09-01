@@ -136,7 +136,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     plt.close(fig)
 
     message = f"Stock: {ticker} ({get_ticker_name(ticker)}) vs VOO\n" \
-              f"Total Rate: {df1_graph['rate'].iloc[-1]:.2f}% (VOO: {voo_rate:.2f}%), Relative_Divergence: {relative_divergence:.2f}\n" \
+              f"Total Rate: {total_rate:.2f}% (VOO: {voo_rate:.2f}%), Relative_Divergence: {relative_divergence:.2f}\n" \
               f"Current Divergence: {current_divergence:.2f} (max: {max_divergence:.2f}, min: {min_divergence:.2f})\n" \
               f"Expected Return: {expected_return:.2f}, Last Signal: {last_signal}"
     response = requests.post(DISCORD_WEBHOOK_URL, data={'content': message})
