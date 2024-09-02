@@ -81,13 +81,17 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         combined_df = result_df.merge(result_df2[['Date', 'rate_vs']], on='Date', how='left')
 
         # 누락된 값을 0으로 채우기
-        combined_df.fillna(0, inplace=True)
+        combined_df.fillna(method='ffill', inplace=True)  # 이전 값으로 채우기
 
         # 주요 거래 데이터 열 정의
-        main_columns = ['price']
+        main_columns = ['price', 'Open', 'High', 'Low', 'Close', 'Volume']
 
         # 주요 거래 데이터가 모두 유효한 행만 유지
         combined_df = combined_df[combined_df[main_columns].apply(lambda row: all(row != 0) and all(row.notna()), axis=1)]
+
+        # 병합 후 마지막 날짜 점검
+        last_date_combined = combined_df['Date'].max()
+        await ctx.send(f'Final date in combined data: {last_date_combined}')
 
         # 현재 작업 디렉토리 가져오기
         current_directory = os.getcwd()
@@ -121,6 +125,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
+
 
 
 # 테스트 코드 추가
