@@ -73,17 +73,26 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         await ctx.send(f'Combining data for {stock} with VOO data.')
         # VOO 데이터와 합침
+        # 주식 데이터와 VOO 데이터 병합
         combined_df = result_df.join(result_df2['rate_vs'])
-        combined_df.fillna(0, inplace=True)  # 누락된 값을 0으로 채우기
-        
+
+        # 날짜 컬럼을 기준으로 병합된 데이터프레임을 필터링
+        # VOO 데이터의 마지막 날짜 기준으로 데이터를 자릅니다.
+        voo_last_date = result_df2.index[-1]  # VOO 데이터의 마지막 날짜
+        combined_df = combined_df[combined_df.index <= voo_last_date]
+
+        # 누락된 값을 0으로 채우기
+        combined_df.fillna(0, inplace=True)
+
         # 유효하지 않은 끝부분 제거: 'rate' 또는 'rate_vs'가 0인 행 제거
-        combined_df = combined_df[(combined_df[f'rate'] != 0) & (combined_df['rate_vs'] != 0)]
-        
+        combined_df = combined_df[(combined_df['rate'] != 0) & (combined_df['rate_vs'] != 0)]
+
         # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')
         file_path = os.path.join('static', 'images', f'result_VOO_{safe_ticker}.csv')
         await ctx.send(f'Saving results to {file_path}.')
         combined_df.to_csv(file_path, float_format='%.2f', index=False)
+
         
         # CSV 파일 간소화
         await ctx.send(f'Simplifying CSV for {stock}.')
