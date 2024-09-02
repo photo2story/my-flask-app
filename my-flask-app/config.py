@@ -140,24 +140,37 @@ def is_cache_valid(cache_file, start_date):
     - Check if the file's latest date matches today's date.
     - Check if the file's data starts from START_DATE or later.
     """
+    # 파일이 존재하는지 확인
     if not os.path.exists(cache_file):
+        print("Cache file does not exist.")
         return False
     
+    # 캐시 파일 읽기
     df = pd.read_csv(cache_file, parse_dates=['Date'])
+
+    # 시작 날짜를 확인
+    min_date_in_cache = df['Date'].min().strftime('%Y-%m-%d')
+    print(f"Start date in cache: {min_date_in_cache}")
     
-    # Check if the earliest date in the cache is after the start date
-    if df['Date'].min().strftime('%Y-%m-%d') != start_date:
+    if min_date_in_cache != start_date:
+        print(f"Start date mismatch: {min_date_in_cache} != {start_date}")
         return False
     
-    latest_data_date = df['Date'].max().date()  # Convert to datetime.date
+    # 마지막 날짜를 확인
+    latest_data_date = df['Date'].max().date()
     today = datetime.today().date()
-    
-    # Check if the latest data date matches today's date
+
+    print(f"Latest data date in cache: {latest_data_date}, Today's date: {today}")
+
+    # 마지막 날짜가 오늘 날짜와 일치하는지 확인
     if latest_data_date != today:
+        print(f"Data is not up-to-date. Latest data date: {latest_data_date}, Today's date: {today}")
         return False
-    
-    print(f"Latest data date in cached data: {latest_data_date.strftime('%Y-%m-%d')}")
+
+    # 모든 조건이 충족되면 True 반환
+    print(f"Cache is valid. Latest data date: {latest_data_date.strftime('%Y-%m-%d')}")
     return True
+
 
 def get_end_date_from_cache(cache_file):
     """
