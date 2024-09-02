@@ -63,29 +63,23 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         stock_data, _ = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
         result_df = My_strategy.my_strategy(stock_data, option_strategy)
-        print(result_df)
-
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
         result_df2 = await get_voo_data(option_strategy, ctx)
-        print(result_df)
-
         
         await ctx.send(f'Combining data for {stock} with VOO data.')
-        # VOO 데이터와 합침
         # 주식 데이터와 VOO 데이터 병합
-        combined_df = result_df.join(result_df2['rate_vs'])
-
+        combined_df = result_df.merge(result_df2[['Date', 'rate_vs']], on='Date', how='left')
+        
         # VOO 데이터의 마지막 날짜를 기준으로 데이터를 자릅니다.
-        voo_last_date = result_df2.index[-1]  # VOO 데이터의 마지막 날짜
-        combined_df = combined_df.loc[:voo_last_date]  # VOO의 마지막 날짜까지만 포함
+        voo_last_date = result_df2['Date'].max()
+        combined_df = combined_df[combined_df['Date'] <= voo_last_date]
 
         # 누락된 값을 0으로 채우기
         combined_df.fillna(0, inplace=True)
 
-        # 유효하지 않은 끝부분 제거: 'rate', 'rate_vs', 'price'가 0인 행 제거
-        # 유효하지 않은 끝부분 제거: 'rate' 또는 'rate_vs'가 0인 행 제거
-        combined_df = combined_df[(combined_df['price'] != 0)]
+        # price가 0인 행 제거
+        combined_df = combined_df[combined_df['price'] != 0]
 
         # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')
