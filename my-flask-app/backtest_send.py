@@ -84,7 +84,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         combined_df.fillna(0, inplace=True)
 
         # 주요 거래 데이터 열 정의
-        main_columns = ['price', 'Open', 'High', 'Low', 'Close', 'Volume']
+        main_columns = ['price']
 
         # 주요 거래 데이터가 모두 유효한 행만 유지
         combined_df = combined_df[combined_df[main_columns].apply(lambda row: all(row != 0) and all(row.notna()), axis=1)]
