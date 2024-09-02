@@ -1,31 +1,33 @@
 # backtest_send.py
-# backtest_send.py
 import requests
 import os, sys
 import pandas as pd
 import matplotlib.pyplot as plt
 from discord.ext import commands
-import discord  # discord 모듈 추가
+import discord
 import asyncio
-from datetime import datetime  # 날짜 처리 추가
+from datetime import datetime
 
 # 사용자 정의 모듈 임포트
 from Results_plot import plot_comparison_results
-from get_ticker import get_ticker_name, is_valid_stock
-from get_compare_stock_data import save_simplified_csv  # 추가된 부분
+from get_ticker import is_valid_stock
+from get_compare_stock_data import save_simplified_csv
 from git_operations import move_files_to_images_folder
 from Get_data import get_stock_data
 import My_strategy
 from Data_export import export_csv
-# Import configuration
-import config
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import config  # config 모듈에서 설정을 가져옵니다.
 
 option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
 async def get_voo_data(option_strategy, ctx):
+    """
+    VOO 데이터를 가져옵니다. 캐시된 데이터가 유효하면 캐시 데이터를 사용하고,
+    그렇지 않으면 새 데이터를 가져와 캐시에 저장합니다.
+    """
     if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
         await ctx.send("Using cached VOO data.")
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE)
@@ -40,9 +42,10 @@ async def get_voo_data(option_strategy, ctx):
         result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
         return result_df2
 
-from datetime import datetime
-
 async def backtest_and_send(ctx, stock, option_strategy, bot=None):
+    """
+    주어진 주식 티커에 대한 백테스트를 수행하고 결과를 저장합니다.
+    """
     if bot is None:
         raise ValueError("bot 변수는 None일 수 없습니다.")
     
@@ -80,8 +83,8 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         # 주식 데이터와 VOO 데이터 병합
         combined_df = result_df.merge(result_df2[['Date', 'rate_vs']], on='Date', how='left')
 
-        # 누락된 값을 0으로 채우기
-        combined_df.fillna(method='ffill', inplace=True)  # 이전 값으로 채우기
+        # 누락된 값을 0으로 채우기 (이전 값으로 채우기)
+        combined_df.fillna(method='ffill', inplace=True)
 
         # 주요 거래 데이터 열 정의
         main_columns = ['price', 'Open', 'High', 'Low', 'Close', 'Volume']
@@ -125,8 +128,6 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
-
-
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
