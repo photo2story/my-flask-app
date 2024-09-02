@@ -171,6 +171,7 @@ def is_cache_valid(cache_file, start_date):
     print(f"Latest data date in cached data: {latest_data_date.strftime('%Y-%m-%d')}")
     return True
 
+
 def get_end_date_from_cache(cache_file):
     """
     Get the latest date from the cache file.

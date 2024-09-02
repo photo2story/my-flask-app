@@ -35,6 +35,7 @@ async def get_voo_data(option_strategy, ctx):
         result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
         return result_df2
 
+
 async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     if bot is None:
         raise ValueError("bot 변수는 None일 수 없습니다.")
