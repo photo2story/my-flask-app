@@ -182,9 +182,6 @@ def get_end_date_from_cache(cache_file):
         return latest_data_date
     return datetime.today().strftime('%Y-%m-%d')
 
-# Set END_DATE based on the cache file
-END_DATE = get_end_date_from_cache(VOO_CACHE_FILE)
-
 
 if __name__ == '__main__':
     # 분석할 티커 설정
