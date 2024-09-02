@@ -64,6 +64,10 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         result_df2, voo_last_date = await get_voo_data(option_strategy, ctx)
         
         # END_DATE 재설정
+        # voo_last_date를 문자열로 변환
+        if isinstance(voo_last_date, pd.Timestamp):
+            voo_last_date = voo_last_date.strftime('%Y-%m-%d')
+        
         end_date = min(datetime.strptime(voo_last_date, '%Y-%m-%d').date(), config.END_DATE)
         
         await ctx.send(f'Fetching data for {stock} up to {end_date}.')
@@ -123,6 +127,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
+
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
