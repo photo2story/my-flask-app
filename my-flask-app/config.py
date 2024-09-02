@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import pandas as pd
 import pytz
+import pandas_market_calendars as mcal
+
 load_dotenv()
 
 # Discord configuration
@@ -96,6 +98,15 @@ def is_us_market_holiday(date):
         if (date.month, date.day) == holiday:
             return True
     return False
+
+def get_us_last_trading_day(date):
+    """
+    주어진 날짜에 가장 가까운 미국 주식시장의 마지막 거래일을 반환합니다.
+    """
+    nyse = mcal.get_calendar('NYSE')
+    schedule = nyse.schedule.loc[date - pd.DateOffset(days=7):date]
+    last_trading_day = schedule.index[-1]
+    return last_trading_day
 
 def is_stock_analysis_complete(ticker):
     result_file_path = os.path.join(STATIC_IMAGES_PATH, f'result_VOO_{ticker}.csv')
