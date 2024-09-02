@@ -3,7 +3,7 @@ import os, sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import asyncio
-from datetime import datetime  # 날짜 처리 추가
+from datetime import datetime
 
 # 루트 디렉토리를 sys.path에 추가하여 config.py를 불러올 수 있게 설정
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'my-flask-app')))
@@ -23,7 +23,7 @@ option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 async def get_voo_data(option_strategy, ctx):
     if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
         await ctx.send("Using cached VOO data.")
-        cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE)
+        cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
         return cached_voo_data
     else:
         await ctx.send("Fetching new VOO data.")
@@ -34,7 +34,6 @@ async def get_voo_data(option_strategy, ctx):
         await ctx.send("Saving new VOO data to cache.")
         result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
         return result_df2
-
 
 async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     if bot is None:
@@ -71,8 +70,9 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
-        # 주식 데이터와 VOO 데이터 병합
+        # 주식 데이터와 VOO 데이터 병합 및 날짜 순으로 정렬
         combined_df = result_df.merge(result_df2[['Date', 'rate_vs']], on='Date', how='left')
+        combined_df = combined_df.sort_values(by='Date').reset_index(drop=True)
 
         # 누락된 값을 0으로 채우기
         combined_df.fillna(method='ffill', inplace=True)  # 이전 값으로 채우기
@@ -144,6 +144,7 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
+
 
 
     # python backtest_send.py        
