@@ -27,12 +27,18 @@ async def get_voo_data(option_strategy, ctx):
     else:
         await ctx.send("Fetching new VOO data.")
         stock_data2, _ = get_stock_data('VOO', config.START_DATE, config.END_DATE)
+        
+        # 데이터를 제대로 불러왔는지 확인
+        print("Fetched VOO data:")
+        print(stock_data2)
+        
         result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
         result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
         
         await ctx.send("Saving new VOO data to cache.")
         result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
         return result_df2
+
 
 async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     if bot is None:
