@@ -1,7 +1,10 @@
 # backtest_send.py
+import requests
 import os, sys
 import pandas as pd
 import matplotlib.pyplot as plt
+from discord.ext import commands
+import discord  # discord 모듈 추가
 import asyncio
 from datetime import datetime
 
@@ -20,6 +23,9 @@ import My_strategy
 option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
 async def get_voo_data(option_strategy, ctx):
+    # config.END_DATE 값을 출력
+    print(f"Config END_DATE: {config.END_DATE}")
+    
     if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
         await ctx.send("Using cached VOO data.")
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
@@ -27,11 +33,6 @@ async def get_voo_data(option_strategy, ctx):
     else:
         await ctx.send("Fetching new VOO data.")
         stock_data2, _ = get_stock_data('VOO', config.START_DATE, config.END_DATE)
-        
-        # 데이터를 제대로 불러왔는지 확인
-        print("Fetched VOO data:")
-        print(stock_data2)
-        
         result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
         result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
         
