@@ -58,10 +58,10 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         result_df2 = await get_voo_data(option_strategy, ctx)
         
         # VOO 데이터의 최종 날짜 가져오기 및 변환
-        voo_last_date = result_df2['Date'].max().date()  # 날짜만 추출
-        
-        # END_DATE와 비교하여 더 작은 값 선택
-        end_date = min(voo_last_date, datetime.strptime(config.END_DATE, '%Y-%m-%d').date())
+        voo_last_date = pd.to_datetime(result_df2['Date'].max().date())
+
+        # END_DATE와 비교하여 더 작은 값 선택 (날짜만 비교)
+        end_date = min(voo_last_date, pd.to_datetime(config.END_DATE).date())
         
         await ctx.send(f'Fetching data for {stock} up to {end_date}.')
         
@@ -86,7 +86,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         combined_df = combined_df[combined_df[main_columns].apply(lambda row: all(row != 0) and all(row.notna()), axis=1)]
 
         # 병합 후 마지막 날짜 점검
-        last_date_combined = combined_df['Date'].max().date()  # 날짜만 추출
+        last_date_combined = pd.to_datetime(combined_df['Date'].max().date())
         await ctx.send(f'Final date in combined data: {last_date_combined.strftime("%Y-%m-%d")}')
 
         # 안전한 파일 이름 생성
@@ -110,7 +110,6 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
-
 
 
 # 테스트 코드 추가
