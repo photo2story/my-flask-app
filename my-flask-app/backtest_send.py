@@ -68,6 +68,11 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         result_df2 = await get_voo_data(option_strategy, ctx)
         
         await ctx.send(f'Combining data for {stock} with VOO data.')
+        
+        # Date 컬럼을 문자열로 변환
+        result_df['Date'] = result_df['Date'].astype(str)
+        result_df2['Date'] = result_df2['Date'].astype(str)
+        
         # 주식 데이터와 VOO 데이터 병합
         combined_df = result_df.merge(result_df2[['Date', 'rate_vs']], on='Date', how='left')
         
@@ -100,7 +105,6 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
-        
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
