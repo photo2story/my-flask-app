@@ -23,10 +23,11 @@ CSV_URL = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my
 GITHUB_API_URL = os.getenv('GITHUB_API_URL', 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images')
 
 # 프로젝트 루트 경로 설정
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # static/images 폴더 경로 설정
 STATIC_IMAGES_PATH = os.path.join(PROJECT_ROOT, 'static', 'images')
+
 # VOO 캐시 파일 경로 설정
 VOO_CACHE_FILE = os.path.join(STATIC_IMAGES_PATH, 'cached_voo_data.csv')
 # 기타 CSV 파일 경로 설정 (예: stock_market.csv)

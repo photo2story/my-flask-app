@@ -94,6 +94,9 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         safe_ticker = stock.replace('/', '-')
         file_path = os.path.join(config.STATIC_IMAGES_PATH, f'result_VOO_{safe_ticker}.csv')
 
+        # 파일 저장을 위해 폴더 생성 (존재하지 않으면)
+        os.makedirs(config.STATIC_IMAGES_PATH, exist_ok=True)
+
         await ctx.send(f'Saving results to {file_path}.')
         combined_df.to_csv(file_path, float_format='%.2f', index=False)
         
@@ -138,7 +141,6 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
-
 
     # python backtest_send.py        
 
