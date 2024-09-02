@@ -1,15 +1,19 @@
 ## Get_data.py
 
-
 import yfinance as yf
 import pandas_ta as ta
 import pandas as pd
 import requests
 import numpy as np
 import FinanceDataReader as fdr
-from github_operations import ticker_path # stock_market.csv 파일 경로
+from github_operations import ticker_path  # stock_market.csv 파일 경로
+import os
+import sys
+
 NaN = np.nan
 
+# 루트 디렉토리를 sys.path에 추가
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def calculate_rsi(prices, window=14):
     delta = prices.diff()
@@ -64,41 +68,51 @@ def calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14):
     return mfi_values_full
 
 def load_industry_info():
-    industry_df = pd.read_csv(ticker_path)# stock_market.csv 파일 경로
+    industry_df = pd.read_csv(ticker_path)  # stock_market.csv 파일 경로
     industry_dict = dict(zip(industry_df['Symbol'], industry_df['Industry']))
     return industry_dict
-  
-def get_start_date(ticker):
-    # Fetch stock data for the past year or more to ensure we get the earliest available data
-    stock_data = fdr.DataReader(ticker, '2021-01-01')  # Replace with a date far enough back in time
-    # Return the actual start date of the data
-    return stock_data.index.min()
 
 def get_stock_data(ticker, start_date, end_date):
-    # FinanceDataReader를 사용하여 주식 데이터 불러오기
-    print('get_stock_data.1:', ticker)
-    stock_data = fdr.DataReader(ticker, start_date, end_date)
-    # print('get_stock_data.2:', stock_data)
+    # 파일 경로 지정
+    safe_ticker = ticker.replace('/', '-')
+    file_path = os.path.join('static', 'images', f'data_{safe_ticker}.csv')
 
-    stock_data.columns = stock_data.columns.astype(str)
-  
-    # Calculate indicators using custom functions (일관된 방식 사용)
+    # 기존 데이터가 있으면 읽어오기
+    if os.path.exists(file_path):
+        existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
+        last_date = existing_data.index.max().strftime('%Y-%m-%d')
+
+        # 마지막 날짜 이후의 데이터만 가져오기
+        if last_date < end_date:
+            new_data = fdr.DataReader(ticker, last_date, end_date)
+            new_data = process_data(new_data)  # 데이터 처리 함수 호출
+            combined_data = pd.concat([existing_data, new_data])
+            combined_data = combined_data[~combined_data.index.duplicated(keep='last')]
+            combined_data.to_csv(file_path)
+        else:
+            combined_data = existing_data
+    else:
+        combined_data = fdr.DataReader(ticker, start_date, end_date)
+        combined_data = process_data(combined_data)
+        combined_data.to_csv(file_path)
+
+    return combined_data
+
+def process_data(stock_data):
+    # Custom indicator calculations (RSI, MFI, etc.)
     stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
   
-    # 볼린저 밴드와 Aroon 지표 계산 (기존 코드 유지)
     stock_data.ta.bbands(length=20, std=2, append=True)
     stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
     stock_data.ta.aroon(length=25, append=True)
 
-    # MFI 계산 (기존 코드 유지)
     high_prices = stock_data['High'].values
     low_prices = stock_data['Low'].values
     close_prices = stock_data['Close'].values
     volumes = stock_data['Volume'].values
     stock_data['MFI_14'] = calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14)
   
-    # 나머지 지표 계산 (기존 코드 유지)
     stock_data.ta.sma(close='Close', length=5, append=True)
     stock_data.ta.sma(close='Close', length=10, append=True)
     stock_data.ta.sma(close='Close', length=20, append=True)
@@ -109,7 +123,6 @@ def get_stock_data(ticker, start_date, end_date):
     stock_data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
     stock_data['Stock'] = ticker
 
-    # Industry 정보 추가
     sector_df = pd.read_csv(ticker_path)  # stock_market.csv 파일 경로
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     if ticker in sector_dict:
@@ -117,10 +130,7 @@ def get_stock_data(ticker, start_date, end_date):
     else:
         stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
 
-    # 데이터 프레임에서 최소 날짜를 얻습니다.
-    min_stock_data_date = stock_data.index.min()
-    return stock_data, min_stock_data_date
-
+    return stock_data
 
 def get_price_info(ticker):
     api_key = 'Alpha_API'
@@ -133,8 +143,6 @@ def get_price_info(ticker):
         return market
     else:
         return "알 수 없음"
-
-
 
 if __name__ == "__main__":
     # Industry 정보 불러오기
@@ -151,5 +159,6 @@ if __name__ == "__main__":
     print(np.__version__)
     print(pd.__version__)
     print(ta.__version__)
-    
+
+
 ## python Get_data.py    
