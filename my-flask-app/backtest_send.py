@@ -83,8 +83,11 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         # 누락된 값을 0으로 채우기
         combined_df.fillna(0, inplace=True)
 
-        # price가 0인 행 제거
-        combined_df = combined_df[combined_df['price'] != 0]
+        # 주요 거래 데이터 열 정의
+        main_columns = ['price', 'Open', 'High', 'Low', 'Close', 'Volume']
+
+        # 주요 거래 데이터가 모두 유효한 행만 유지
+        combined_df = combined_df[combined_df[main_columns].apply(lambda row: all(row != 0) and all(row.notna()), axis=1)]
 
         # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')
