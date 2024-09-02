@@ -131,12 +131,15 @@ import os
 from datetime import datetime
 
 # VOO 데이터를 저장할 파일 경로
+# 캐시 파일 경로
 VOO_CACHE_FILE = os.path.join('static', 'images', 'cached_voo_data.csv')
 
 def is_cache_valid(cache_file, start_date):
     """
-    캐시 파일이 유효한지 확인합니다.    - 파일이 존재하는지
-    - 파일의 마지막 수정 날짜가 START_DATE 이후인지 확인
+    캐시 파일이 유효한지 확인합니다.
+    - 파일이 존재하는지 확인
+    - 파일의 최종 날짜가 오늘 날짜와 일치하는지 확인
+    - 파일의 데이터가 START_DATE 이후인지 확인
     """
     if not os.path.exists(cache_file):
         return False
@@ -147,12 +150,33 @@ def is_cache_valid(cache_file, start_date):
     if df['Date'].min().strftime('%Y-%m-%d') != start_date:
         return False
     
-    latest_data_date = df['Date'].max()
+    latest_data_date = df['Date'].max().date()  # 최종 날짜를 datetime.date로 변환
+    today = datetime.today().date()
+    
+    # 캐시된 데이터의 최종 날짜가 오늘 날짜와 일치하는지 확인
+    if latest_data_date != today:
+        return False
     
     # 최신 데이터 날짜 출력
     print(f"Latest data date in cached data: {latest_data_date.strftime('%Y-%m-%d')}")
     
     return True
+
+def get_end_date_from_cache(cache_file):
+    """
+    캐시 파일에서 최종 날짜를 가져옵니다.
+    """
+    if os.path.exists(cache_file):
+        df = pd.read_csv(cache_file, parse_dates=['Date'])
+        latest_data_date = df['Date'].max().strftime('%Y-%m-%d')
+        return latest_data_date
+    return datetime.today().strftime('%Y-%m-%d')
+
+# START_DATE는 고정되어 있으므로, 별도로 정의
+START_DATE = os.getenv('START_DATE', '2019-01-02')
+
+# END_DATE를 캐시 파일에서 가져오도록 설정
+END_DATE = get_end_date_from_cache(VOO_CACHE_FILE)
 
 
 if __name__ == '__main__':

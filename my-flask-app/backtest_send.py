@@ -19,24 +19,17 @@ import My_strategy
 from Data_export import export_csv
 # Import configuration
 import config
+
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
-def get_voo_last_date(cache_file):
-    if os.path.exists(cache_file):
-        df = pd.read_csv(cache_file)
-        return df['Date'].max()
-    return None
-
 async def get_voo_data(option_strategy, ctx):
-    voo_last_date = get_voo_last_date(config.VOO_CACHE_FILE)
-    
-    if voo_last_date and config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
+    if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
         await ctx.send("Using cached VOO data.")
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE)
-        return cached_voo_data, voo_last_date
+        return cached_voo_data
     else:
         await ctx.send("Fetching new VOO data.")
         stock_data2, _ = get_stock_data('VOO', config.START_DATE, config.END_DATE)
@@ -45,9 +38,7 @@ async def get_voo_data(option_strategy, ctx):
         
         await ctx.send("Saving new VOO data to cache.")
         result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
-        return result_df2, result_df2['Date'].max()
-
-from datetime import datetime
+        return result_df2
 
 async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     if bot is None:
@@ -63,13 +54,10 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     
     try:
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
-        result_df2, voo_last_date = await get_voo_data(option_strategy, ctx)
-        
-        # voo_last_date를 문자열로 변환 후 다시 datetime 객체로 변환
-        if isinstance(voo_last_date, str):
-            voo_last_date = datetime.strptime(voo_last_date, '%Y-%m-%d').date()
+        result_df2 = await get_voo_data(option_strategy, ctx)
         
         # END_DATE 재설정
+        voo_last_date = result_df2['Date'].max()
         end_date = min(voo_last_date, config.END_DATE)
         
         await ctx.send(f'Fetching data for {stock} up to {end_date}.')
@@ -80,10 +68,6 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         result_df = My_strategy.my_strategy(stock_data, option_strategy)
         
         await ctx.send(f'Combining data for {stock} with VOO data.')
-        
-        # Date 컬럼을 문자열로 변환
-        result_df['Date'] = result_df['Date'].astype(str)
-        result_df2['Date'] = result_df2['Date'].astype(str)
         
         # 주식 데이터와 VOO 데이터 병합
         combined_df = result_df.merge(result_df2[['Date', 'rate_vs']], on='Date', how='left')
