@@ -58,12 +58,8 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         result_df2 = await get_voo_data(option_strategy, ctx)
         
         # VOO 데이터의 최종 날짜 가져오기 및 변환
-        voo_last_date = result_df2['Date'].max()
-
-        # voo_last_date가 Timestamp 객체일 경우, 이를 datetime.date 객체로 변환
-        if isinstance(voo_last_date, pd.Timestamp):
-            voo_last_date = voo_last_date.date()
-
+        voo_last_date = result_df2['Date'].max().date()  # 날짜만 추출
+        
         # END_DATE와 비교하여 더 작은 값 선택
         end_date = min(voo_last_date, datetime.strptime(config.END_DATE, '%Y-%m-%d').date())
         
@@ -76,7 +72,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
-        # 주식 데이터와 VOO 데이터 병합 (merge 사용)
+        # 주식 데이터와 VOO 데이터 병합 및 날짜 순으로 정렬
         combined_df = pd.merge(result_df, result_df2[['Date', 'rate_vs']], on='Date', how='left')
         combined_df.sort_values(by='Date', inplace=True)
 
@@ -90,7 +86,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         combined_df = combined_df[combined_df[main_columns].apply(lambda row: all(row != 0) and all(row.notna()), axis=1)]
 
         # 병합 후 마지막 날짜 점검
-        last_date_combined = combined_df['Date'].max()
+        last_date_combined = combined_df['Date'].max().date()  # 날짜만 추출
         await ctx.send(f'Final date in combined data: {last_date_combined.strftime("%Y-%m-%d")}')
 
         # 안전한 파일 이름 생성
@@ -114,6 +110,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
+
 
 
 # 테스트 코드 추가
