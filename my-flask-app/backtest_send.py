@@ -21,37 +21,19 @@ from Data_export import export_csv
 option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
 async def get_voo_data(option_strategy, ctx):
-    """
-    VOO 데이터를 가져옵니다. 캐시된 데이터가 유효하면 캐시 데이터를 사용하고,
-    그렇지 않으면 새 데이터를 가져와 캐시에 저장합니다.
-    """
     if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
         await ctx.send("Using cached VOO data.")
-        cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE)
+        cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
         return cached_voo_data
     else:
         await ctx.send("Fetching new VOO data.")
-        
-        # 기존 캐시 파일을 읽어오기
-        if os.path.exists(config.VOO_CACHE_FILE):
-            cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
-        else:
-            cached_voo_data = pd.DataFrame()
-
-        # 새로운 데이터를 가져오기
         stock_data2, _ = get_stock_data('VOO', config.START_DATE, config.END_DATE)
         result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
         result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
-
-        # 기존 데이터와 새 데이터를 병합하고 중복을 제거합니다.
-        if not cached_voo_data.empty:
-            result_df2 = pd.concat([cached_voo_data, result_df2]).drop_duplicates(subset=['Date']).reset_index(drop=True)
-
-        # 병합된 데이터를 캐시 파일에 저장
+        
         await ctx.send("Saving new VOO data to cache.")
         result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
         return result_df2
-
 
 async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     if bot is None:
@@ -162,8 +144,6 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
-
-
 
     # python backtest_send.py        
 
