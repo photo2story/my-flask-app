@@ -9,12 +9,13 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, send_from_directory, jsonify, request
 from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
 from flask_cors import CORS
-import config  # config.py 임포트
+
 
 # Add my-flutter-app directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'my-flask-app')))
 
 # 사용자 정의 모듈 임포트
+import config  # config.py 임포트
 from git_operations import move_files_to_images_folder
 from get_ticker import load_tickers, search_tickers_and_respond, get_ticker_name, update_stock_market_csv, get_ticker_from_korean_name
 from Results_plot import plot_comparison_results
