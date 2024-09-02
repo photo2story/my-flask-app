@@ -40,6 +40,8 @@ async def get_voo_data(option_strategy, ctx):
         result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
         return result_df2
 
+from datetime import datetime
+
 async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     if bot is None:
         raise ValueError("bot 변수는 None일 수 없습니다.")
@@ -56,9 +58,15 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
         result_df2 = await get_voo_data(option_strategy, ctx)
         
-        # END_DATE 재설정
+        # VOO 데이터의 최종 날짜 가져오기 및 변환
         voo_last_date = result_df2['Date'].max()
-        end_date = min(voo_last_date, config.END_DATE)
+
+        # voo_last_date가 Timestamp 객체일 경우, 이를 datetime.date 객체로 변환
+        if isinstance(voo_last_date, pd.Timestamp):
+            voo_last_date = voo_last_date.date()
+
+        # END_DATE와 비교하여 더 작은 값 선택
+        end_date = min(voo_last_date, datetime.strptime(config.END_DATE, '%Y-%m-%d').date())
         
         await ctx.send(f'Fetching data for {stock} up to {end_date}.')
         
@@ -113,6 +121,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
+
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
