@@ -22,11 +22,14 @@ from Results_plot_mpl import plot_results_mpl
 
 import matplotlib.font_manager as fm
 
-# 루트 디렉토리 경로 설정
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# 현재 스크립트 파일의 디렉토리 경로
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# 프로젝트 루트 경로를 찾기 위해 상위 폴더로 이동
+project_root = os.path.abspath(os.path.join(current_dir, '..'))
 
 # Noto Sans KR 폰트 파일 경로 설정 (루트에 위치한 폰트 폴더)
-font_path = os.path.join(PROJECT_ROOT, 'Noto_Sans_KR', 'NotoSansKR-Regular.ttf')
+font_path = os.path.join(config.PROJECT_ROOT, 'Noto_Sans_KR','static', 'NotoSansKR-Regular.ttf')
 
 # 경로가 올바르게 지정되었는지 확인
 print("Font path:", font_path)
@@ -68,7 +71,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     full_path1 = os.path.join(config.STATIC_IMAGES_PATH, f"result_VOO_{ticker}.csv")
     full_path2 = os.path.join(config.STATIC_IMAGES_PATH, "result_VOO_VOO.csv")
     df1_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
-    df2_graph = pd.read_csv(full_path2, parse_dates['Date'], index_col='Date')
+    df2_graph = pd.read_csv(full_path2, parse_dates=['Date'], index_col='Date')
 
     # 간략화된 데이터를 로드하여 챗GPT에서 그래프를 그릴 수 있게 합니다.
     simplified_df_path1 = os.path.join(config.STATIC_IMAGES_PATH, f"result_{ticker}.csv")
@@ -86,6 +89,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
 
     df1_graph = df1_graph.loc[start_date:end_date]
     df2_graph = df2_graph.loc[start_date:end_date]
+
 
     df1_graph['rate_7d_avg'] = df1_graph['rate'].rolling('7D').mean()
     df2_graph['rate_20d_avg'] = df2_graph['rate'].rolling('20D').mean() # VOO

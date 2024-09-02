@@ -15,14 +15,15 @@ from dotenv import load_dotenv
 import asyncio
 import matplotlib.font_manager as fm
 
+# 루트 디렉토리를 sys.path에 추가하여 config.py를 불러올 수 있게 설정
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import config  # config 모듈을 불러옵니다.
+
 # 현재 스크립트 파일의 디렉토리 경로
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# 프로젝트 루트 경로를 찾기 위해 상위 폴더로 이동
-project_root = os.path.abspath(os.path.join(current_dir, '..'))
-
 # Noto Sans KR 폰트 파일 경로
-font_path = os.path.join(project_root, 'Noto_Sans_KR', 'static', 'NotoSansKR-Regular.ttf')
+font_path = os.path.join(config.PROJECT_ROOT, 'Noto_Sans_KR','static', 'NotoSansKR-Regular.ttf')
 
 # 경로가 올바르게 지정되었는지 확인
 print("Font path:", font_path)
@@ -45,19 +46,16 @@ import warnings
 # 경고 무시 설정
 warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
 
-# 루트 디렉토리를 sys.path에 추가
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from git_operations import move_files_to_images_folder
 from get_ticker import get_ticker_name
 from Get_data import calculate_rsi, calculate_ppo  # 통일된 함수 가져오기
 
 # 환경 변수 로드
 load_dotenv()
-DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
 
 def save_figure(fig, file_path):
     """파일 경로를 처리하여 그림을 저장하고 닫습니다."""
-    file_path = file_path.replace('/', '-')
+    file_path = os.path.join(config.STATIC_IMAGES_PATH, file_path.replace('/', '-'))
     fig.savefig(file_path, bbox_inches='tight')
     plt.close(fig)
 
@@ -91,7 +89,7 @@ async def plot_results_mpl(ticker, start_date, end_date):
     chart = Chart(title=chart_title, max_bars=250)
     chart.plot(filtered_prices, indicators)
     fig = chart.figure
-    # fig.tight_layout()  # 레이아웃 조정 추가
+
     image_filename = f'result_mpl_{ticker}.png'
     save_figure(fig, image_filename)
 
@@ -104,7 +102,7 @@ async def plot_results_mpl(ticker, start_date, end_date):
                f"PPO Histogram: {filtered_prices['PPO_histogram'].iloc[-1]:,.2f}\n")
 
     # Discord로 메시지 전송
-    response = requests.post(DISCORD_WEBHOOK_URL, data={'content': message})
+    response = requests.post(config.DISCORD_WEBHOOK_URL, data={'content': message})
     if response.status_code != 204:
         print('Discord 메시지 전송 실패')
         print(f"Response: {response.status_code} {response.text}")
@@ -113,8 +111,8 @@ async def plot_results_mpl(ticker, start_date, end_date):
 
     # Discord로 이미지 전송
     try:
-        with open(image_filename, 'rb') as image_file:
-            response = requests.post(DISCORD_WEBHOOK_URL, files={'file': image_file})
+        with open(os.path.join(config.STATIC_IMAGES_PATH, image_filename), 'rb') as image_file:
+            response = requests.post(config.DISCORD_WEBHOOK_URL, files={'file': image_file})
             if response.status_code in [200, 204]:
                 print(f'Graph 전송 성공: {ticker}')
             else:
@@ -128,12 +126,12 @@ async def plot_results_mpl(ticker, start_date, end_date):
 if __name__ == "__main__":
     print("Starting test for plotting results.")
     ticker = "005930"
-    start_date = "2019-01-02"
-    end_date = "2024-07-28"
+    start_date = config.START_DATE
+    end_date = config.END_DATE
     print(f"Plotting results for {ticker} from {start_date} to {end_date}")
 
     try:
-        asyncio.run(plot_results_mpl(ticker, '2021-01-01', '2021-12-31'))
+        asyncio.run(plot_results_mpl(ticker, start_date, end_date))
         print("Plotting completed successfully.")
     except Exception as e:
         print(f"Error occurred while plotting results: {e}")
