@@ -63,9 +63,13 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         stock_data, _ = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
         result_df = My_strategy.my_strategy(stock_data, option_strategy)
+        print(result_df)
+
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
         result_df2 = await get_voo_data(option_strategy, ctx)
+        print(result_df)
+
         
         await ctx.send(f'Combining data for {stock} with VOO data.')
         # VOO 데이터와 합침

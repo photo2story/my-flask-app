@@ -141,9 +141,9 @@ if __name__ == "__main__":
     industry_info = load_industry_info()
   
     # 티커와 기간 지정
-    ticker = 'BTC/KRW'
-    start_date = '2024-01-01'
-    end_date = '2024-06-01'
+    ticker = 'BTC-USD'
+    start_date = '2019-01-01'
+    end_date = '2024-09-02'
   
     # 주식 데이터 가져오기
     stock_data = get_stock_data(ticker, start_date, end_date)
