@@ -76,19 +76,22 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
-        # 주식 데이터와 VOO 데이터 병합 및 날짜 순으로 정렬
-        combined_df = result_df.join(result_df2['rate_vs'])
-        combined_df.fillna(0, inplace=True)  # 누락된 값을 0으로 채우기
+        # 주식 데이터와 VOO 데이터 병합 (merge 사용)
+        combined_df = pd.merge(result_df, result_df2[['Date', 'rate_vs']], on='Date', how='left')
+        combined_df.sort_values(by='Date', inplace=True)
+
+        # 결측치 처리
+        combined_df.fillna(method='ffill', inplace=True)
 
         # 주요 거래 데이터 열 정의
-        main_columns = ['price']
+        main_columns = ['price', 'rate_vs']
 
         # 주요 거래 데이터가 모두 유효한 행만 유지
         combined_df = combined_df[combined_df[main_columns].apply(lambda row: all(row != 0) and all(row.notna()), axis=1)]
 
         # 병합 후 마지막 날짜 점검
         last_date_combined = combined_df['Date'].max()
-        await ctx.send(f'Final date in combined data: {last_date_combined}')
+        await ctx.send(f'Final date in combined data: {last_date_combined.strftime("%Y-%m-%d")}')
 
         # 안전한 파일 이름 생성
         safe_ticker = stock.replace('/', '-')
@@ -111,6 +114,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
+
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
