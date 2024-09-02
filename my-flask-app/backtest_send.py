@@ -81,13 +81,13 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         combined_df.sort_values(by='Date', inplace=True)
 
         # 결측치 처리
-        combined_df.fillna(method='ffill', inplace=True)
+        combined_df.ffill(inplace=True)  # fillna(method='ffill') 대신 ffill() 사용
 
-        # # 주요 거래 데이터 열 정의
-        # main_columns = ['price', 'rate_vs']
+        # 주요 거래 데이터 열 정의
+        main_columns = ['price', 'rate_vs']
 
-        # # 주요 거래 데이터가 모두 유효한 행만 유지
-        # combined_df = combined_df[combined_df[main_columns].apply(lambda row: all(row != 0) and all(row.notna()), axis=1)]
+        # 주요 거래 데이터가 모두 유효한 행만 유지
+        combined_df = combined_df[combined_df[main_columns].apply(lambda row: all(row != 0) and all(row.notna()), axis=1)]
 
         # 병합 후 마지막 날짜 점검
         last_date_combined = combined_df['Date'].max()
