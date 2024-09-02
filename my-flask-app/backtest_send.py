@@ -74,8 +74,10 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         combined_df = result_df.merge(result_df2[['Date', 'rate_vs']], on='Date', how='left')
         combined_df = combined_df.sort_values(by='Date').reset_index(drop=True)
 
-        # 누락된 값을 0으로 채우기
-        combined_df.fillna(method='ffill', inplace=True)  # 이전 값으로 채우기
+        # 병합 후 누락된 날짜가 있는지 확인하고, 필요한 경우 채우기
+        full_date_range = pd.date_range(start=combined_df['Date'].min(), end=combined_df['Date'].max())
+        combined_df = combined_df.set_index('Date').reindex(full_date_range).rename_axis('Date').reset_index()
+        combined_df.fillna(method='ffill', inplace=True)
 
         # 주요 거래 데이터 열 정의
         main_columns = ['price', 'Open', 'High', 'Low', 'Close', 'Volume']
@@ -144,6 +146,7 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
+
 
     # python backtest_send.py        
 
