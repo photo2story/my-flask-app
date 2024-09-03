@@ -22,11 +22,7 @@ import config  # config 모듈을 불러옵니다.
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Noto Sans KR 폰트 파일 경로
-font_path = os.path.join(config.PROJECT_ROOT, 'Noto_Sans_KR','static', 'NotoSansKR-Regular.ttf')
-
-# 경로가 올바르게 지정되었는지 확인
-print("Font path:", font_path)
-print("Path exists:", os.path.exists(font_path))
+font_path = os.path.join(config.PROJECT_ROOT, 'Noto_Sans_KR', 'static', 'NotoSansKR-Regular.ttf')
 
 # 폰트 속성 설정
 if os.path.exists(font_path):
@@ -34,12 +30,7 @@ if os.path.exists(font_path):
     fm.fontManager.addfont(font_path)  # 폰트를 매트플롯립에 추가
     plt.rcParams['font.family'] = font_prop.get_name()
     plt.rcParams['font.sans-serif'] = [font_prop.get_name()]
-    
-    # 폰트가 제대로 설정되었는지 확인
-    print("Font name:", font_prop.get_name())
-else:
-    print("Font file not found.")
-    
+
 import warnings
 
 # 경고 무시 설정
@@ -47,6 +38,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
 
 from git_operations import move_files_to_images_folder
 from get_ticker import get_ticker_name
+from Get_data import calculate_rsi, calculate_ppo  # 통일된 함수 가져오기
 
 # 환경 변수 로드
 load_dotenv()
@@ -67,7 +59,16 @@ async def plot_results_mpl(ticker, start_date, end_date):
         raise FileNotFoundError(f"No cached data found for {ticker}. Please generate the data first.")
     
     prices = pd.read_csv(result_file_path, parse_dates=['Date'], index_col='Date')
-    
+
+    # 모든 컬럼 이름을 소문자로 변환
+    prices.columns = prices.columns.str.lower()
+
+    # 필요한 컬럼들이 있는지 확인하고 없으면 예외 처리
+    required_columns = ['sma20_ta', 'sma60_ta', 'ppo_histogram', 'rsi_ta', 'close']
+    for col in required_columns:
+        if col not in prices.columns:
+            raise ValueError(f"Missing required column '{col}' in data for {ticker}. Please ensure all indicators are calculated.")
+
     # 최신 6개월 데이터로 필터링
     end_date = pd.to_datetime(end_date)
     start_date_6m = end_date - pd.DateOffset(months=6)
@@ -94,10 +95,10 @@ async def plot_results_mpl(ticker, start_date, end_date):
 
     # 메시지 작성
     message = (f"Stock: {ticker} ({name})\n"
-               f"Close: {filtered_prices['Close'].iloc[-1]:,.2f}\n"
-               f"SMA 20: {filtered_prices['SMA20'].iloc[-1]:,.2f}\n"
-               f"SMA 60: {filtered_prices['SMA60'].iloc[-1]:,.2f}\n"
-               f"RSI: {filtered_prices['RSI_14'].iloc[-1]:,.2f}\n"  # RSI를 필터링된 데이터에서 사용
+               f"Close: {filtered_prices['close'].iloc[-1]:,.2f}\n"
+               f"SMA 20: {filtered_prices['sma20_ta'].iloc[-1]:,.2f}\n"
+               f"SMA 60: {filtered_prices['sma60_ta'].iloc[-1]:,.2f}\n"
+               f"RSI: {filtered_prices['rsi_ta'].iloc[-1]:,.2f}\n"  # RSI를 필터링된 데이터에서 사용
                f"PPO Histogram: {filtered_prices['ppo_histogram'].iloc[-1]:,.2f}\n")
 
     # Discord로 메시지 전송
@@ -124,7 +125,7 @@ async def plot_results_mpl(ticker, start_date, end_date):
 
 if __name__ == "__main__":
     print("Starting test for plotting results.")
-    ticker = "005930"
+    ticker = "AAPL"
     start_date = config.START_DATE
     end_date = config.END_DATE
     print(f"Plotting results for {ticker} from {start_date} to {end_date}")
@@ -134,6 +135,7 @@ if __name__ == "__main__":
         print("Plotting completed successfully.")
     except Exception as e:
         print(f"Error occurred while plotting results: {e}")
+
 
 r"""
 python3 -m venv .venv
