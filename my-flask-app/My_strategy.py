@@ -18,7 +18,6 @@ import config  # config.py 모듈 임포트
 
 def my_strategy(stock_data, option_strategy):
     result = []  # 거래 결과를 초기화, 저장하는 용도
-    # Initialize variables
     portfolio_value = 0  # 계좌 잔고
     cash = config.INITIAL_INVESTMENT  # 현금
     deposit = 0  # 보관금
@@ -47,16 +46,13 @@ def my_strategy(stock_data, option_strategy):
     # Loop over data
     for i, row in stock_data.iterrows():
         current_date = row.name
-        # print('current_date:',current_date) # 현재 날짜 출력
         index = stock_data.index.get_loc(i)
         
         # 매달 적립 수행
         cash, invested_amount, signal, prev_month = config.monthly_deposit(current_date, prev_month, monthly_investment, cash, invested_amount)
-        # print('current_date:', current_date, 'cash:', cash, 'invested_amount:', invested_amount, 'signal:', signal)
         
         # 투자 결정 확인
         Invest_day = config.should_invest_today(current_date, first_trading_day)
-        # print('Invest_day:', Invest_day)
         
         # Calculate current price and performance
         price = row['Close'] * currency  # 종가(원화환산)
@@ -74,8 +70,8 @@ def my_strategy(stock_data, option_strategy):
         # 사용할 지표들
         rsi_ta = row['RSI_14']
         mfi_ta = row['MFI_14']
-        bb_upper_ta = row['UPPER_20']
-        bb_lower_ta = row['LOWER_20']
+        bb_upper_ta = row['bb_upper_ta']
+        bb_lower_ta = row['bb_lower_ta']
         aroon_up_ta = row['AROONU_25']
         aroon_down_ta = row['AROOND_25']
         sma05_ta = row['SMA_5']
@@ -88,8 +84,6 @@ def my_strategy(stock_data, option_strategy):
 
         # PPO 매수 및 매도 신호 계산
         PPO_BUY, PPO_SELL, ppo_histogram, SMA_20_turn, SMA_60_turn = calculate_ppo_buy_sell_signals(stock_data, index, short_window=12, long_window=26, signal_window=9)
-        # print('PPO_BUY:', PPO_BUY)  # 매수 신호
-        # print('ppo_histogram:', stock_data['ppo_histogram'])   
         
         # 수수료 적용
         buy_price = price * 1.005  # 매수 시 수수료 0.5% 적용
@@ -105,7 +99,6 @@ def my_strategy(stock_data, option_strategy):
             signal = 'sell 50 %' + ' ' + signal
 
         if Sudden_fall:
-            # "Sudden Fall" 이후 매수 신호가 발생한 경우에만 매수
             if SMA_60_turn or PPO_BUY:
                 shares_to_buy_depot = 0.5 * max(0, deposit) // buy_price 
                 shares_to_buy_cash = 1.0 * max(0, cash) // buy_price 
@@ -170,7 +163,6 @@ def my_strategy(stock_data, option_strategy):
             signal, rsi_ta, stochk_ta, stochd_ta, stock_ticker
         ])
     # result 리스트를 데이터프레임으로 변환하여 반환
-    print(f"Final invested_amount: {invested_amount}")
     result_df = pd.DataFrame(result, columns=[
         'Date', 'price', 'Open', 'High', 'Low', 'Close', 'Volume', 
         'bb_upper_ta', 'bb_lower_ta', 'sma05_ta', 'sma20_ta', 'sma60_ta', 'sma120_ta', 
@@ -181,5 +173,6 @@ def my_strategy(stock_data, option_strategy):
     ])
 
     return result_df
+
 
 # python My_strategy.py
