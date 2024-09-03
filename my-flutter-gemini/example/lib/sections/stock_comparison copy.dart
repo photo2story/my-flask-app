@@ -176,103 +176,109 @@ class _StockComparisonState extends State<StockComparison> {
       appBar: AppBar(
         title: Text('Stock Comparison Review'),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: _controller,
-                  textCapitalization: TextCapitalization.characters,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter Stock Ticker',
-                  ),
-                  onChanged: (value) {
-                    _controller.value = TextEditingValue(
-                      text: value.toUpperCase(),
-                      selection: _controller.selection,
-                    );
-                  },
-                  onSubmitted: (value) {
-                    fetchImagesAndReport(_controller.text.toUpperCase());
-                  },
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  fetchImagesAndReport(_controller.text.toUpperCase());
-                },
-                child: Text('Search Review'),
-              ),
-              SizedBox(height: 20),
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Reviewed Stocks:',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Wrap(
-                children: _tickers.map((ticker) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        fetchImagesAndReport(ticker);
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _controller,
+                      textCapitalization: TextCapitalization.characters,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter Stock Ticker',
+                      ),
+                      onChanged: (value) {
+                        _controller.value = TextEditingValue(
+                          text: value.toUpperCase(),
+                          selection: _controller.selection,
+                        );
                       },
-                      child: Text(
-                        ticker,
-                        style: TextStyle(fontSize: 14, color: Colors.blue),
-                      ),
+                      onSubmitted: (value) {
+                        fetchImagesAndReport(_controller.text.toUpperCase());
+                      },
                     ),
-                  );
-                }).toList(),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      fetchImagesAndReport(_controller.text.toUpperCase());
+                    },
+                    child: Text('Search Review'),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Reviewed Stocks:',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Wrap(
+                    children: _tickers.map((ticker) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            fetchImagesAndReport(ticker);
+                          },
+                          child: Text(
+                            ticker,
+                            style: TextStyle(fontSize: 14, color: Colors.blue),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  SizedBox(height: 20),
+                  _comparisonImageUrl.isNotEmpty
+                      ? GestureDetector(
+                          onTap: () => _openImage(context, _comparisonImageUrl),
+                          child: Image.network(
+                            _comparisonImageUrl,
+                            height: orientation == Orientation.portrait ? 200 : 400, // 세로 모드에서는 200, 가로 모드에서는 400
+                            errorBuilder: (context, error, stackTrace) {
+                              return Text('Failed to load comparison image');
+                            },
+                          ),
+                        )
+                      : Container(),
+                  SizedBox(height: 20),
+                  _resultImageUrl.isNotEmpty
+                      ? GestureDetector(
+                          onTap: () => _openImage(context, _resultImageUrl),
+                          child: Image.network(
+                            _resultImageUrl,
+                            height: orientation == Orientation.portrait ? 200 : 400, // 세로 모드에서는 200, 가로 모드에서는 400
+                            errorBuilder: (context, error, stackTrace) {
+                              return Text('Failed to load result image');
+                            },
+                          ),
+                        )
+                      : Container(),
+                  SizedBox(height: 20),
+                  _reportText.isNotEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: MarkdownBody(
+                            data: _reportText,
+                          ),
+                        )
+                      : Container(),
+                  _message.isNotEmpty
+                      ? Text(
+                          _message,
+                          style: TextStyle(fontSize: 16, color: Colors.red),
+                        )
+                      : Container(),
+                ],
               ),
-              SizedBox(height: 20),
-              _comparisonImageUrl.isNotEmpty
-                  ? GestureDetector(
-                      onTap: () => _openImage(context, _comparisonImageUrl),
-                      child: Image.network(
-                        _comparisonImageUrl,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Text('Failed to load comparison image');
-                        },
-                      ),
-                    )
-                  : Container(),
-              SizedBox(height: 20),
-              _resultImageUrl.isNotEmpty
-                  ? GestureDetector(
-                      onTap: () => _openImage(context, _resultImageUrl),
-                      child: Image.network(
-                        _resultImageUrl,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Text('Failed to load result image');
-                        },
-                      ),
-                    )
-                  : Container(),
-              SizedBox(height: 20),
-              _reportText.isNotEmpty
-                  ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MarkdownBody(
-                        data: _reportText,
-                      ),
-                    )
-                  : Container(),
-              _message.isNotEmpty
-                  ? Text(
-                      _message,
-                      style: TextStyle(fontSize: 16, color: Colors.red),
-                    )
-                  : Container(),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
