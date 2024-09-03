@@ -31,6 +31,23 @@ def calculate_ppo(prices, short_window=12, long_window=26, signal_window=9):
     ppo_histogram = ppo - ppo_signal
     return ppo, ppo_signal, ppo_histogram
 
+
+def calculate_bollinger_bands(prices, window=20, num_std_dev=2):
+    """
+    볼린저 밴드를 계산하는 함수
+    :param prices: 종가 데이터 (pandas Series)
+    :param window: 이동 평균을 계산할 기간 (기본값은 20일)
+    :param num_std_dev: 표준 편차의 배수 (기본값은 2)
+    :return: 상단 밴드, 중간 밴드(이동 평균), 하단 밴드
+    """
+    rolling_mean = prices.rolling(window=window).mean()  # 이동 평균 계산
+    rolling_std = prices.rolling(window=window).std()    # 표준 편차 계산
+
+    upper_band = rolling_mean + (rolling_std * num_std_dev)  # 상단 밴드
+    lower_band = rolling_mean - (rolling_std * num_std_dev)  # 하단 밴드
+
+    return upper_band, rolling_mean, lower_band
+
 def calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14):
     typical_prices = (high_prices + low_prices + close_prices) / 3
     raw_money_flows = typical_prices * volumes
@@ -100,19 +117,20 @@ def get_stock_data(ticker, start_date, end_date):
 
     return combined_data, first_date  # 두 개의 값을 반환
 
-def process_data(stock_data, ticker):  # ticker 변수를 함수 인자로 추가
+def process_data(stock_data, ticker):
+    # 데이터가 충분한지 확인
+    if len(stock_data) < 20:
+        raise ValueError(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
+    
+    # 결측치 처리
+    stock_data.fillna(method='ffill', inplace=True)  # 이전 값으로 채우기
+    stock_data.fillna(method='bfill', inplace=True)  # 이후 값으로 채우기
+
     # RSI 계산
     stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
-  
+
     # 볼린저 밴드 계산
-    stock_data.ta.bbands(length=20, std=2, append=True)
-    
-    # 'BBL_20_2.0' 컬럼이 존재하는지 확인
-    if 'BBL_20_2.0' in stock_data.columns:
-        stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-        stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    else:
-        raise ValueError(f"Bollinger Bands columns not found in the data for {ticker}")
+    stock_data['bb_upper_ta'], stock_data['bb_middle_ta'], stock_data['bb_lower_ta'] = calculate_bollinger_bands(stock_data['Close'])
 
     # 기타 지표 계산
     stock_data.ta.aroon(length=25, append=True)
@@ -135,6 +153,7 @@ def process_data(stock_data, ticker):  # ticker 변수를 함수 인자로 추�
         stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
 
     return stock_data
+
 
 def get_price_info(ticker):
     api_key = 'Alpha_API'
