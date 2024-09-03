@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 import requests
 import io
-import datetime
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import config
@@ -14,30 +13,33 @@ from git_operations import move_files_to_images_folder  # git_operations 모듈�
 
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
 
-async def fetch_csv(ticker):
-    url = f"{GITHUB_RAW_BASE_URL}/result_{ticker}.csv"
+# GitHub에서 CSV 파일을 가져오는 함수
+def fetch_csv(ticker):
+    # GitHub에서 CSV 파일 URL을 설정 ('result_VOO_{ticker}.csv' 파일을 읽어옴)
+    url = f"{GITHUB_RAW_BASE_URL}/result_VOO_{ticker}.csv"
+    
     try:
         response = requests.get(url)
-        response.raise_for_status()
+        response.raise_for_status()  # HTTP 에러 발생 시 예외 발생
         df = pd.read_csv(io.StringIO(response.text))
+        print(f"DataFrame for {ticker} loaded successfully from GitHub:\n{df.head()}")
         return df
-    except requests.exceptions.RequestException as e:
-        print(f"Failed to fetch data for {ticker}: {e}")
+    except Exception as e:
+        print(f"Failed to load data for {ticker} from GitHub: {e}")
         return None
-    except pd.errors.EmptyDataError:
-        print(f"No data found for {ticker}.")
-        return None
-    
+
+# CSV 파일을 간소화하고 로컬에 저장하는 함수
 def save_simplified_csv(ticker):
-    # 파일 경로 설정
-    folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
-    file_path = os.path.join(folder_path, f'result_VOO_{ticker}.csv')
+    # GitHub에서 데이터를 가져오기 위해 fetch_csv 함수를 사용
+    df = fetch_csv(ticker)
     
-    if not os.path.exists(file_path):
-        print(f"File not found for ticker {ticker}, skipping...")
+    if df is None:
+        print(f"Skipping processing for {ticker} due to missing data.")
         return
-        
-    df = pd.read_csv(file_path, parse_dates=['Date'], usecols=['Date', 'rate', 'rate_vs'])
+    
+    if df.empty or len(df) < 20:
+        print(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
+        return
     
     # 이격도(Divergence) 계산
     df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
@@ -46,49 +48,48 @@ def save_simplified_csv(ticker):
     # 상대 이격도(Relative Divergence) 계산
     min_divergence = df['Divergence'].min()
     df['Relative_Divergence'] = np.round(((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100, 2)
-
-    # max_divergence 값 업데이트: 현재까지의 최대 이격도
+    
+    # max_divergence 값 업데이트
     df['Max_Divergence'] = df['Divergence'].cummax()
     
     # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
+    
+    # Expected_Return 필드를 추가
+    print(f"Divergence for {ticker}:\n{df['Divergence'].head()}")
+    print(f"Relative_Divergence for {ticker}:\n{df['Relative_Divergence'].head()}")
+    print(f"Max_Divergence for {ticker}:\n{df['Max_Divergence'].head()}")
 
-    # expected_return 필드를 추가합니다.
     if 'Relative_Divergence' in df.columns and 'Max_Divergence' in df.columns:
         df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
+        print(f"Expected_Return for {ticker} calculated:\n{df['Expected_Return'].head()}")
     else:
-        df['Expected_Return'] = np.nan  # 필요한 데이터가 없을 경우 NaN 처리
+        print(f"Skipping Expected_Return calculation for {ticker} due to missing fields.")
+        df['Expected_Return'] = np.nan
     
-    # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
+    # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
+    folder_path = config.STATIC_IMAGES_PATH
+    simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
+    
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
     
-    # 마지막 데이터가 유효한지 확인 후 추가
+    # 마지막 행 추가 (필요시)
     if not simplified_df.iloc[-1].equals(df.iloc[-1]):
         last_row = df.iloc[-1]
         if last_row[f'rate_{ticker}_5D'] != 0 or last_row['rate_VOO_20D'] != 0:
             simplified_df = pd.concat([simplified_df, last_row.to_frame().T], ignore_index=True)
     
-    # 파일 저장
-    simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
 
-    # 마지막 데이터를 출력
-    latest_entry = df.iloc[-1]
-    print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {latest_entry['Max_Divergence']}, min {min_divergence})")
-    print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
-    print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
-    print(f"Expected Return for {ticker}: {latest_entry['Expected_Return']}")
-
-
-async def collect_relative_divergence():
+def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
     results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
                                     'Delta_Previous_Relative_Divergence', 'Max_Divergence', 
                                     'Expected_Return'])
     
     for ticker in tickers:
-        df = await fetch_csv(ticker)
+        df = fetch_csv(ticker)
         if df is None or df.empty or 'Relative_Divergence' not in df.columns:
             print(f"Data for {ticker} is not available or missing necessary columns.")
             continue
@@ -98,15 +99,11 @@ async def collect_relative_divergence():
             if latest_entry.isna().all():
                 print(f"Data for {ticker} is empty or contains only NA values, skipping...")
                 continue
-
+            
             latest_relative_divergence = latest_entry['Relative_Divergence']
             latest_divergence = latest_entry['Divergence']
             delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
-            
-            # Max divergence 계산
             max_divergence = df['Divergence'].max().round(2)
-            
-            # Expected profit 계산
             expected_return = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
 
             results = pd.concat([results, pd.DataFrame({
@@ -121,38 +118,40 @@ async def collect_relative_divergence():
             print(f"Error processing data for {ticker}: {e}")
             continue
     
-    # 결과를 CSV 파일로 저장
-    folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
-    collect_relative_divergence_path = os.path.join(folder_path, f'results_relative_divergence.csv')
+    collect_relative_divergence_path = os.path.join(config.STATIC_IMAGES_PATH, 'results_relative_divergence.csv')
     results.to_csv(collect_relative_divergence_path, index=False)
 
     print(results)
     
-    # 파일 이동 및 깃 커밋 푸시 작업
-    await move_files_to_images_folder()
+    move_files_to_images_folder()
     
     return results
 
 
 if __name__ == "__main__":
-    import asyncio
-    tickers = [
-        'AAPL', 'MSFT', 'NVDA', 'GOOG', 'AMZN', 'META', 'CRM', 'ADBE', 'AMD', 'ACN', 'QCOM', 'CSCO',
-        'INTU', 'IBM', 'PDD', 'NOW', 'ARM', 'INTC', 'ANET', 'ADI', 'KLAC', 'PANW', 'AMT', 'V', 'MA',
-        'BAC', 'WFC', 'BLK', 'BX', 'GS', 'C', 'KKR', 'TSLA', 'HD', 'NKE', 'MCD', 'SBUX', 'TJX', 'BKNG',
-        'CMG', 'TGT', 'LOW', 'EXPE', 'DG', 'JD', 'LLY', 'UNH', 'ABBV', 'JNJ', 'MRK', 'TMO', 'ABT', 'PFE',
-        'DHR', 'CVS', 'CI', 'GILD', 'AMGN', 'ISRG', 'REGN', 'VRTX', 'HCA', 'GOOGL', 'NFLX', 'DIS', 'VZ',
-        'T', 'CMCSA', 'SPOT', 'TWTR', 'ROKU', 'LYFT', 'UBER', 'EA', 'GE', 'UPS', 'BA', 'CAT', 'MMM', 'HON',
-        'RTX', 'DE', 'LMT', 'NOC', 'UNP', 'WM', 'ETN', 'CSX', 'FDX', 'WMT', 'KO', 'PEP', 'PG', 'COST',
-        'MDLZ', 'CL', 'PM', 'MO', 'KHC', 'HSY', 'KR', 'GIS', 'EL', 'STZ', 'MKC', 'XOM', 'CVX', 'COP', 'EOG',
-        'PSX', 'MPC', 'VLO', 'OKE', 'KMI', 'WMB', 'SLB', 'HAL', 'BKR', 'LIN', 'ALB', 'NEM', 'FMC', 'APD',
-        'CF', 'ECL', 'LYB', 'PPG', 'SHW', 'CE', 'DD', 'AMT', 'PLD', 'EQIX', 'PSA', 'AVB', 'SPG', 'O', 'VICI',
-        'EXR', 'MAA', 'EQR', 'NEE', 'DUK', 'SO', 'AEP', 'EXC', 'D', 'SRE', 'XEL', 'ED', 'ES', 'PEG', 'WEC', 'BTC-USD'
-    ]
-    for ticker in tickers:
-        save_simplified_csv(ticker)
-    
-    # collect_relative_divergence 함수는 한 번만 실행합니다.
-    asyncio.run(collect_relative_divergence())
+    print("Starting data processing...")
+    ticker = 'QQQ'
+    save_simplified_csv(ticker)
 
+    
 # python get_compare_stock_data.py
+# if __name__ == "__main__":
+#     import asyncio
+#     tickers = [
+#         'AAPL', 'MSFT', 'NVDA', 'GOOG', 'AMZN', 'META', 'CRM', 'ADBE', 'AMD', 'ACN', 'QCOM', 'CSCO',
+#         'INTU', 'IBM', 'PDD', 'NOW', 'ARM', 'INTC', 'ANET', 'ADI', 'KLAC', 'PANW', 'AMT', 'V', 'MA',
+#         'BAC', 'WFC', 'BLK', 'BX', 'GS', 'C', 'KKR', 'TSLA', 'HD', 'NKE', 'MCD', 'SBUX', 'TJX', 'BKNG',
+#         'CMG', 'TGT', 'LOW', 'EXPE', 'DG', 'JD', 'LLY', 'UNH', 'ABBV', 'JNJ', 'MRK', 'TMO', 'ABT', 'PFE',
+#         'DHR', 'CVS', 'CI', 'GILD', 'AMGN', 'ISRG', 'REGN', 'VRTX', 'HCA', 'GOOGL', 'NFLX', 'DIS', 'VZ',
+#         'T', 'CMCSA', 'SPOT', 'TWTR', 'ROKU', 'LYFT', 'UBER', 'EA', 'GE', 'UPS', 'BA', 'CAT', 'MMM', 'HON',
+#         'RTX', 'DE', 'LMT', 'NOC', 'UNP', 'WM', 'ETN', 'CSX', 'FDX', 'WMT', 'KO', 'PEP', 'PG', 'COST',
+#         'MDLZ', 'CL', 'PM', 'MO', 'KHC', 'HSY', 'KR', 'GIS', 'EL', 'STZ', 'MKC', 'XOM', 'CVX', 'COP', 'EOG',
+#         'PSX', 'MPC', 'VLO', 'OKE', 'KMI', 'WMB', 'SLB', 'HAL', 'BKR', 'LIN', 'ALB', 'NEM', 'FMC', 'APD',
+#         'CF', 'ECL', 'LYB', 'PPG', 'SHW', 'CE', 'DD', 'AMT', 'PLD', 'EQIX', 'PSA', 'AVB', 'SPG', 'O', 'VICI',
+#         'EXR', 'MAA', 'EQR', 'NEE', 'DUK', 'SO', 'AEP', 'EXC', 'D', 'SRE', 'XEL', 'ED', 'ES', 'PEG', 'WEC', 'BTC-USD'
+#     ]
+#     for ticker in tickers:
+#         save_simplified_csv(ticker)
+    
+#     # collect_relative_divergence 함수는 한 번만 실행합니다.
+#     asyncio.run(collect_relative_divergence())
