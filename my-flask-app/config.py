@@ -110,18 +110,28 @@ def get_us_last_trading_day(date):
 
 def is_stock_analysis_complete(ticker):
     result_file_path = os.path.join(STATIC_IMAGES_PATH, f'result_VOO_{ticker}.csv')
+    
+    # 파일이 존재하지 않으면 False 반환
     if not os.path.exists(result_file_path):
         return False
     
+    # 파일을 읽어옴
     df = pd.read_csv(result_file_path, parse_dates=['Date'])
+    
+    # 파일의 시작 날짜가 설정된 START_DATE와 일치하는지 확인
     if df['Date'].min().strftime('%Y-%m-%d') != START_DATE:
         return False
     
-    latest_data_date = df['Date'].max()
+    # 파일의 마지막 날짜가 현재 설정된 END_DATE와 일치하는지 확인
+    latest_data_date = df['Date'].max().strftime('%Y-%m-%d')
+    if latest_data_date != END_DATE:
+        print(f"Data is incomplete for {ticker}. Latest date: {latest_data_date}, Expected end date: {END_DATE}")
+        return False
     
     # 최신 데이터 날짜 출력
-    print(f"Latest data date in dataset for {ticker}: {latest_data_date.strftime('%Y-%m-%d')}")
+    print(f"Latest data date in dataset for {ticker}: {latest_data_date}")
 
+    # 시작 날짜와 마지막 날짜가 모두 일치하면 True 반환
     return True
 
 
