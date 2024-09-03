@@ -73,6 +73,8 @@ def save_simplified_csv(ticker):
     
     # 파일 저장
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
+    # GITHUB_RAW_BASE_URL 에 저장
+    
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
