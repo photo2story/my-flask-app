@@ -8,9 +8,7 @@ import requests
 import io
 import datetime
 
-# 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 import config
 from git_operations import move_files_to_images_folder  # git_operations 모듈에서 함수 가져오기
 
@@ -35,12 +33,10 @@ def save_simplified_csv(ticker):
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
     file_path = os.path.join(folder_path, f'result_VOO_{ticker}.csv')
     
-    # 파일이 존재하지 않으면 건너뜁니다.
     if not os.path.exists(file_path):
         print(f"File not found for ticker {ticker}, skipping...")
         return
         
-    # 데이터 로드 및 필요한 열만 선택
     df = pd.read_csv(file_path, parse_dates=['Date'], usecols=['Date', 'rate', 'rate_vs'])
     
     # 이격도(Divergence) 계산
@@ -58,8 +54,11 @@ def save_simplified_csv(ticker):
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
 
     # expected_return 필드를 추가합니다.
-    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
-
+    if 'Relative_Divergence' in df.columns and 'Max_Divergence' in df.columns:
+        df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
+    else:
+        df['Expected_Return'] = np.nan  # 필요한 데이터가 없을 경우 NaN 처리
+    
     # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
     
@@ -95,7 +94,7 @@ async def collect_relative_divergence():
             continue
         
         try:
-            latest_entry = df.iloc[-1]  # 마지막 데이터를 가져옴
+            latest_entry = df.iloc[-1]
             if latest_entry.isna().all():
                 print(f"Data for {ticker} is empty or contains only NA values, skipping...")
                 continue
