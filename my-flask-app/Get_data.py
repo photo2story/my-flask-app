@@ -91,12 +91,15 @@ def get_stock_data(ticker, start_date, end_date):
             combined_data.to_csv(file_path)
         else:
             combined_data = existing_data
+        first_date = existing_data.index.min()  # 첫 번째 날짜도 반환
     else:
         combined_data = fdr.DataReader(ticker, start_date, end_date)
         combined_data = process_data(combined_data, ticker)  # ticker 변수를 process_data로 전달
         combined_data.to_csv(file_path)
+        first_date = combined_data.index.min()  # 첫 번째 날짜도 반환
 
-    return combined_data
+    return combined_data, first_date  # 두 개의 값을 반환
+
 
 def process_data(stock_data, ticker):  # ticker 변수를 함수 인자로 추가
     # Custom indicator calculations (RSI, MFI, etc.)
