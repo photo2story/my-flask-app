@@ -100,6 +100,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         await ctx.send(error_message)
         print(error_message)
 
+
 # 테스트 코드 추가
 async def test_backtest_and_send():
     class MockContext:
