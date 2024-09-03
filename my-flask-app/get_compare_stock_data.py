@@ -14,8 +14,8 @@ from git_operations import move_files_to_images_folder  # git_operations 모듈�
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
 
 # GitHub에서 CSV 파일을 가져오는 함수
-async def fetch_csv(ticker):
-    url = f"{GITHUB_RAW_BASE_URL}/result_{ticker}.csv"
+def fetch_csv(ticker):
+    url = f"{GITHUB_RAW_BASE_URL}/result_VOO_{ticker}.csv"
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -40,6 +40,9 @@ def save_simplified_csv(ticker):
     if df.empty or len(df) < 20:
         print(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
         return
+    
+    # 원하는 열만 선택하여 새로운 DataFrame 생성
+    df_selected = df[['Date', 'rate', 'rate_vs']]
     
     # 이격도(Divergence) 계산
     df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
@@ -68,18 +71,17 @@ def save_simplified_csv(ticker):
         df['Expected_Return'] = np.nan
     
     # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
-    folder_path = config.STATIC_IMAGES_PATH
-    simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
-    
+    # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
     
-    # 마지막 행 추가 (필요시)
+    # 마지막 데이터가 유효한지 확인 후 추가
     if not simplified_df.iloc[-1].equals(df.iloc[-1]):
         last_row = df.iloc[-1]
         if last_row[f'rate_{ticker}_5D'] != 0 or last_row['rate_VOO_20D'] != 0:
             simplified_df = pd.concat([simplified_df, last_row.to_frame().T], ignore_index=True)
     
     # 파일 저장
+    folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
