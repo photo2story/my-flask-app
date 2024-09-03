@@ -14,18 +14,18 @@ from git_operations import move_files_to_images_folder  # git_operations 모듈�
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
 
 # GitHub에서 CSV 파일을 가져오는 함수
-def fetch_csv(ticker):
-    # GitHub에서 CSV 파일 URL을 설정 ('result_VOO_{ticker}.csv' 파일을 읽어옴)
-    url = f"{GITHUB_RAW_BASE_URL}/result_VOO_{ticker}.csv"
-    
+async def fetch_csv(ticker):
+    url = f"{GITHUB_RAW_BASE_URL}/result_{ticker}.csv"
     try:
         response = requests.get(url)
-        response.raise_for_status()  # HTTP 에러 발생 시 예외 발생
+        response.raise_for_status()
         df = pd.read_csv(io.StringIO(response.text))
-        print(f"DataFrame for {ticker} loaded successfully from GitHub:\n{df.head()}")
         return df
-    except Exception as e:
-        print(f"Failed to load data for {ticker} from GitHub: {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to fetch data for {ticker}: {e}")
+        return None
+    except pd.errors.EmptyDataError:
+        print(f"No data found for {ticker}.")
         return None
 
 # CSV 파일을 간소화하고 로컬에 저장하는 함수
@@ -79,8 +79,17 @@ def save_simplified_csv(ticker):
         if last_row[f'rate_{ticker}_5D'] != 0 or last_row['rate_VOO_20D'] != 0:
             simplified_df = pd.concat([simplified_df, last_row.to_frame().T], ignore_index=True)
     
+    # 파일 저장
+    simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
+
+    # 마지막 데이터를 출력
+    latest_entry = df.iloc[-1]
+    print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {latest_entry['Max_Divergence']}, min {min_divergence})")
+    print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
+    print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
+    print(f"Expected Return for {ticker}: {latest_entry['Expected_Return']}")
 
 def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
