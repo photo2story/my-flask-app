@@ -59,16 +59,8 @@ def save_simplified_csv(ticker):
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
     
     # Expected_Return 필드를 추가
-    print(f"Divergence for {ticker}:\n{df['Divergence'].head()}")
-    print(f"Relative_Divergence for {ticker}:\n{df['Relative_Divergence'].head()}")
-    print(f"Max_Divergence for {ticker}:\n{df['Max_Divergence'].head()}")
-
-    if 'Relative_Divergence' in df.columns and 'Max_Divergence' in df.columns:
-        df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
-        print(f"Expected_Return for {ticker} calculated:\n{df['Expected_Return'].head()}")
-    else:
-        print(f"Skipping Expected_Return calculation for {ticker} due to missing fields.")
-        df['Expected_Return'] = np.nan
+    # expected_return 필드를 추가합니다.
+    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
     
     # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
     # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
