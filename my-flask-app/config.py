@@ -47,7 +47,8 @@ STOCKS = {
     'Energy': ['XOM', 'CVX', 'COP', 'EOG', 'PSX', 'MPC', 'VLO', 'OKE', 'KMI', 'WMB', 'SLB', 'HAL', 'BKR'],
     'Basic Materials': ['LIN', 'ALB', 'NEM', 'FMC', 'APD', 'CF', 'ECL', 'LYB', 'PPG', 'SHW', 'CE', 'DD'],
     'Real Estate': ['AMT', 'PLD', 'EQIX', 'PSA', 'AVB', 'SPG', 'O', 'VICI', 'EXR', 'MAA', 'EQR'],
-    'Utilities': ['NEE', 'DUK', 'SO', 'AEP', 'EXC', 'D', 'SRE', 'XEL', 'ED', 'ES', 'PEG', 'WEC']
+    'Utilities': ['NEE', 'DUK', 'SO', 'AEP', 'EXC', 'D', 'SRE', 'XEL', 'ED', 'ES', 'PEG', 'WEC'],
+    'Index, Coin': ['VOO', 'QQQ', 'BTC-USD']
 }
 
 def initialize_trading_days(stock_data):
