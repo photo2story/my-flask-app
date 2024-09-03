@@ -29,6 +29,7 @@ def fetch_csv(ticker):
         return None
 
 # CSV 파일을 간소화하고 로컬에 저장하는 함수
+# CSV 파일을 간소화하고 로컬에 저장하는 함수
 def save_simplified_csv(ticker):
     # GitHub에서 데이터를 가져오기 위해 fetch_csv 함수를 사용
     df = fetch_csv(ticker)
@@ -41,8 +42,8 @@ def save_simplified_csv(ticker):
         print(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
         return
     
-    # 원하는 열만 선택하여 새로운 DataFrame 생성
-    df_selected = df[['Date', 'rate', 'rate_vs']]
+    # 필요한 열만 선택하여 새로운 DataFrame 생성
+    df = df[['Date', 'rate', 'rate_vs']]
     
     # 이격도(Divergence) 계산
     df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
@@ -59,11 +60,9 @@ def save_simplified_csv(ticker):
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
     
     # Expected_Return 필드를 추가
-    # expected_return 필드를 추가합니다.
     df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
     
     # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
-    # 간소화된 데이터프레임 생성 (20개 단위로 샘플링)
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
     
     # 마지막 데이터가 유효한지 확인 후 추가
