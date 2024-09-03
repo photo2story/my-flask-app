@@ -85,7 +85,7 @@ def get_stock_data(ticker, start_date, end_date):
         # 마지막 날짜 이후의 데이터만 가져오기
         if last_date < end_date:
             new_data = fdr.DataReader(ticker, last_date, end_date)
-            new_data = process_data(new_data)  # 데이터 처리 함수 호출
+            new_data = process_data(new_data, ticker)  # ticker 변수를 process_data로 전달
             combined_data = pd.concat([existing_data, new_data])
             combined_data = combined_data[~combined_data.index.duplicated(keep='last')]
             combined_data.to_csv(file_path)
@@ -93,12 +93,12 @@ def get_stock_data(ticker, start_date, end_date):
             combined_data = existing_data
     else:
         combined_data = fdr.DataReader(ticker, start_date, end_date)
-        combined_data = process_data(combined_data)
+        combined_data = process_data(combined_data, ticker)  # ticker 변수를 process_data로 전달
         combined_data.to_csv(file_path)
 
     return combined_data
 
-def process_data(stock_data):
+def process_data(stock_data, ticker):  # ticker 변수를 함수 인자로 추가
     # Custom indicator calculations (RSI, MFI, etc.)
     stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
   
@@ -131,6 +131,7 @@ def process_data(stock_data):
         stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
 
     return stock_data
+
 
 def get_price_info(ticker):
     api_key = 'Alpha_API'
