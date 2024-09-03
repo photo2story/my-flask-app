@@ -101,28 +101,27 @@ async def gchat(ctx, *, query: str = None):
 
 @bot.command()
 async def stock(ctx, *, query: str = None):
+    option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
     
-    option_strategy =config.option_strategy # 시뮬레이션 전략 설정
     if query:
-        stock_names = [query.upper()]
+        stock_names = [query.upper()]  # 특정 티커에 대해 강제로 실행
+        force_execution = True
     else:
         stock_names = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
+        force_execution = False
 
     for stock_name in stock_names:
-        stock_analysis_complete = config.is_stock_analysis_complete(stock_name)
+        if not force_execution and config.is_stock_analysis_complete(stock_name):
+            await ctx.send(f"Stock analysis for {stock_name} is already complete. Skipping.")
+            continue  # 이미 분석이 완료된 티커는 건너뜀
 
-        if stock_analysis_complete:
-            await ctx.send(f"Stock analysis for {stock_name} is already complete. Displaying results.")
+        await ctx.send(f'Stock analysis for {stock_name} is starting.')
+        try:
+            # Analysis logic
             await backtest_and_send(ctx, stock_name, option_strategy, bot)
-
-        else:
-            await ctx.send(f'Stock analysis for {stock_name} is not complete. Proceeding with analysis.')
-            try:
-                # Analysis logic
-                await backtest_and_send(ctx, stock_name, option_strategy, bot)
-            except Exception as e:
-                await ctx.send(f'An error occurred while processing {stock_name}: {e}')
-                print(f'Error processing {stock_name}: {e}')
+        except Exception as e:
+            await ctx.send(f'An error occurred while processing {stock_name}: {e}')
+            print(f'Error processing {stock_name}: {e}')
 
         # Display results
         try:
@@ -133,61 +132,77 @@ async def stock(ctx, *, query: str = None):
             await ctx.send(f"An error occurred while plotting {stock_name}: {e}")
             print(f"Error plotting {stock_name}: {e}")
 
-        await asyncio.sleep(1)
+        await asyncio.sleep(1)  # 각 명령 호출 사이에 1초 대기
+
 
 @bot.command()
 async def gemini(ctx, *, query: str = None):
     if query:
-        tickers = [query.upper()]
+        tickers = [query.upper()]  # 특정 티커에 대해 강제로 실행
+        force_execution = True
     else:
         tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
-        
-    for ticker in tickers: 
-        # 1) 제미니 분석 리포트 유효성 확인
-        gemini_analysis_complete = config.is_gemini_analysis_complete(ticker)
-        gemini_analysis_complete = False
-        if not gemini_analysis_complete: # 1.1) 유효하지 않다면 분석 실행
-            await ctx.send(f'Gemini analysis for {ticker} is not complete. Proceeding with analysis.')
-            try:
-                result = await analyze_with_gemini(ticker)
-                # await ctx.send(result)
-            except Exception as e:
-                error_message = f'An error occurred while analyzing {ticker} with Gemini: {e}'
-                await ctx.send(error_message)
-                print(f'Error analyzing {ticker} with Gemini: {e}')
-                continue  # 다음 티커로 넘어감
+        force_execution = False
 
-        # 2) 레포트 전송
+    for ticker in tickers:
+        if not force_execution and config.is_gemini_analysis_complete(ticker):
+            await ctx.send(f"Gemini analysis for {ticker} is already complete. Skipping.")
+            continue  # 이미 분석이 완료된 티커는 건너뜀
+
+        await ctx.send(f'Gemini analysis for {ticker} is starting.')
         try:
-            # await send_report_to_discord(ticker)
+            # 분석 수행
+            result = await analyze_with_gemini(ticker)
+            # 결과 전송
+            await ctx.send(f'Gemini analysis for {ticker} completed.')
+        except Exception as e:
+            error_message = f'An error occurred while analyzing {ticker} with Gemini: {e}'
+            await ctx.send(error_message)
+            print(f'Error analyzing {ticker} with Gemini: {e}')
+            continue  # 다음 티커로 넘어감
+
+        # 2) 결과 전송
+        try:
+            # 여기서 보고서를 전송하거나 결과를 시각화하여 전송
             await ctx.send(f'Results for {ticker} displayed successfully.')
         except Exception as e:
             await ctx.send(f"Error displaying results for {ticker}: {e}")
             print(f"Error displaying results for {ticker}: {e}")
 
-        await asyncio.sleep(1)  # 각 티커 처리 사이에 5초 대기
+        await asyncio.sleep(1)  # 각 티커 처리 사이에 1초 대기
+
 
 
 @bot.command()
 async def buddy(ctx, *, query: str = None):
-    if query:
-        stock_names = [query.upper()]
-    else:
+    # 모든 티커에 대해 강제 실행
+    force_execution = False
+
+    if query and query.strip().lower() == "all":
         stock_names = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
+        force_execution = True  # 모든 티커에 대해 강제로 실행
+    else:
+        stock_names = [query.upper()] if query else [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
 
     for stock_name in stock_names:
+        if not force_execution and config.is_stock_analysis_complete(stock_name):
+            await ctx.send(f"Stock analysis for {stock_name} is already complete. Skipping.")
+            continue
+
         # stock 명령 호출
         await ctx.invoke(bot.get_command("stock"), query=stock_name)
-        await asyncio.sleep(1)  # 각 명령 호출 사이에 10초 대기
+        await asyncio.sleep(1)  # 각 명령 호출 사이에 1초 대기
 
         # gemini 명령 호출
         await ctx.invoke(bot.get_command("gemini"), query=stock_name)
-        await asyncio.sleep(1)  # 각 명령 호출 사이에 10초 대기
+        await asyncio.sleep(1)  # 각 명령 호출 사이에 1초 대기
+
         print(f'Results for {stock_name} displayed successfully.')
-        
-    # query가 없는 경우에만 collect_relative_divergence 호출
-    if not query:
-        results = await collect_relative_divergence()        
+
+    # query가 없는 경우 또는 "all"인 경우에만 collect_relative_divergence 호출
+    if not query or query.strip().lower() == "all":
+        results = await collect_relative_divergence()
+
         
 @bot.command()
 async def ticker(ctx, *, query: str = None):

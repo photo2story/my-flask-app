@@ -146,10 +146,10 @@ def is_gemini_analysis_complete(ticker):
 
 def is_cache_valid(cache_file, start_date):
     """
-    캐시 파일이 유효한지 확인합니다.
-    - 파일이 존재하는지 확인합니다.
-    - 파일의 마지막 날짜가 미국 주식시장의 마지막 거래일과 일치하는지 확인합니다.
-    - 파일의 데이터가 START_DATE 이후인지 확인합니다.
+    캐시 파일이 유효한지 확인:
+    - 파일이 존재하는지 확인.
+    - 파일의 마지막 날짜가 미국 주식시장의 마지막 거래일과 일치하는지 확인.
+    - 파일의 데이터가 START_DATE 이후인지 확인.
     """
     if not os.path.exists(cache_file):
         print("Cache file does not exist.")
@@ -184,19 +184,26 @@ def is_cache_valid(cache_file, start_date):
     print("Cache is valid.")
     return True
 
-
-
-def get_end_date_from_cache(cache_file):
+# Example function to ensure that the dates match the US market close:
+def ensure_valid_dates(df):
     """
-    Get the latest date from the cache file.
+    주어진 DataFrame의 날짜가 미국 시장 종료 시간에 맞는지 확인합니다.
     """
-    if os.path.exists(cache_file):
-        df = pd.read_csv(cache_file, parse_dates=['Date'])
-        latest_data_date = df['Date'].max().strftime('%Y-%m-%d')
-        return latest_data_date
-    return datetime.today().strftime('%Y-%m-%d')
+    df['Date'] = pd.to_datetime(df['Date'])
+    # 미국 시간으로 종가를 확인하기 위해 날짜를 동부 표준시로 변환
+    df['Date'] = df['Date'].dt.tz_localize('UTC').dt.tz_convert(us_eastern)
+    
+    # 장 마감 이후 데이터가 맞는지 확인 (16:00:00 이후)
+    valid_dates = df[df['Date'].dt.time >= datetime.time(16, 0)]
+    
+    if valid_dates.empty:
+        print("No valid dates found matching the US market close times.")
+    else:
+        print(f"Valid dates found: {valid_dates['Date'].min()} to {valid_dates['Date'].max()}")
 
+    return valid_dates
 
+# 이 함수들을 봇의 다른 부분에서 호출하여 유효성을 검토할 수 있습니다.
 if __name__ == '__main__':
     # 분석할 티커 설정
     ticker = 'TSLA'
@@ -206,3 +213,13 @@ if __name__ == '__main__':
     print(f"Gemini analysis complete for {ticker}: {gemini_analysis_complete}")
     
 # python config.py
+
+# def get_end_date_from_cache(cache_file):
+#     """
+#     Get the latest date from the cache file.
+#     """
+#     if os.path.exists(cache_file):
+#         df = pd.read_csv(cache_file, parse_dates=['Date'])
+#         latest_data_date = df['Date'].max().strftime('%Y-%m-%d')
+#         return latest_data_date
+#     return datetime.today().strftime('%Y-%m-%d')
