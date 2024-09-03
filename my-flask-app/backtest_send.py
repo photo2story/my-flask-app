@@ -31,7 +31,7 @@ async def get_voo_data(option_strategy, ctx):
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
     else:
         await ctx.send("Fetching new VOO data.")
-        stock_data2, _ = get_stock_data('VOO', config.START_DATE, config.END_DATE)
+        stock_data2, first_stock_data_date = get_stock_data('VOO', config.START_DATE, config.END_DATE)
         result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
         result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
         
@@ -58,7 +58,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         await ctx.send(f'Fetching data for {stock}.')
         
         # 주식 데이터 가져오기
-        stock_data, _ = get_stock_data(stock, config.START_DATE, config.END_DATE)
+        stock_data, first_stock_data_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
         result_df = My_strategy.my_strategy(stock_data, option_strategy)
         
@@ -99,6 +99,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
+
 
 # 테스트 코드 추가
 async def test_backtest_and_send():

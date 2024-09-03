@@ -1,15 +1,19 @@
 ## Get_data.py
 
-
 import yfinance as yf
 import pandas_ta as ta
 import pandas as pd
 import requests
 import numpy as np
 import FinanceDataReader as fdr
-from github_operations import ticker_path # stock_market.csv 파일 경로
+from github_operations import ticker_path  # stock_market.csv 파일 경로
+import os
+import sys
+
 NaN = np.nan
 
+# 루트 디렉토리를 sys.path에 추가
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def calculate_rsi(prices, window=14):
     delta = prices.diff()
@@ -26,6 +30,23 @@ def calculate_ppo(prices, short_window=12, long_window=26, signal_window=9):
     ppo_signal = ppo.ewm(span=signal_window, adjust=False).mean()
     ppo_histogram = ppo - ppo_signal
     return ppo, ppo_signal, ppo_histogram
+
+
+def calculate_bollinger_bands(prices, window=20, num_std_dev=2):
+    """
+    볼린저 밴드를 계산하는 함수
+    :param prices: 종가 데이터 (pandas Series)
+    :param window: 이동 평균을 계산할 기간 (기본값은 20일)
+    :param num_std_dev: 표준 편차의 배수 (기본값은 2)
+    :return: 상단 밴드, 중간 밴드(이동 평균), 하단 밴드
+    """
+    rolling_mean = prices.rolling(window=window).mean()  # 이동 평균 계산
+    rolling_std = prices.rolling(window=window).std()    # 표준 편차 계산
+
+    upper_band = rolling_mean + (rolling_std * num_std_dev)  # 상단 밴드
+    lower_band = rolling_mean - (rolling_std * num_std_dev)  # 하단 밴드
+
+    return upper_band, rolling_mean, lower_band
 
 def calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14):
     typical_prices = (high_prices + low_prices + close_prices) / 3
@@ -64,52 +85,66 @@ def calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14):
     return mfi_values_full
 
 def load_industry_info():
-    industry_df = pd.read_csv(ticker_path)# stock_market.csv 파일 경로
+    industry_df = pd.read_csv(ticker_path)  # stock_market.csv 파일 경로
     industry_dict = dict(zip(industry_df['Symbol'], industry_df['Industry']))
     return industry_dict
-  
-def get_start_date(ticker):
-    # Fetch stock data for the past year or more to ensure we get the earliest available data
-    stock_data = fdr.DataReader(ticker, '2021-01-01')  # Replace with a date far enough back in time
-    # Return the actual start date of the data
-    return stock_data.index.min()
 
 def get_stock_data(ticker, start_date, end_date):
-    # FinanceDataReader를 사용하여 주식 데이터 불러오기
-    print('get_stock_data.1:', ticker)
-    stock_data = fdr.DataReader(ticker, start_date, end_date)
-    # print('get_stock_data.2:', stock_data)
+    # 파일 경로 지정
+    safe_ticker = ticker.replace('/', '-')
+    file_path = os.path.join('static', 'images', f'data_{safe_ticker}.csv')
 
-    stock_data.columns = stock_data.columns.astype(str)
-  
-    # Calculate indicators using custom functions (일관된 방식 사용)
+    # 기존 데이터가 있으면 읽어오기
+    if os.path.exists(file_path):
+        existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
+        last_date = existing_data.index.max().strftime('%Y-%m-%d')
+
+        # 마지막 날짜 이후의 데이터만 가져오기
+        if last_date < end_date:
+            new_data = fdr.DataReader(ticker, last_date, end_date)
+            new_data = process_data(new_data, ticker)  # ticker 변수를 process_data로 전달
+            combined_data = pd.concat([existing_data, new_data])
+            combined_data = combined_data[~combined_data.index.duplicated(keep='last')]
+            combined_data.to_csv(file_path)
+        else:
+            combined_data = existing_data
+        first_date = existing_data.index.min()  # 첫 번째 날짜도 반환
+    else:
+        combined_data = fdr.DataReader(ticker, start_date, end_date)
+        combined_data = process_data(combined_data, ticker)  # ticker 변수를 process_data로 전달
+        combined_data.to_csv(file_path)
+        first_date = combined_data.index.min()  # 첫 번째 날짜도 반환
+
+    return combined_data, first_date  # 두 개의 값을 반환
+
+def process_data(stock_data, ticker):
+    # 데이터가 충분한지 확인
+    if len(stock_data) < 20:
+        raise ValueError(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
+    
+    # 결측치 처리
+    stock_data.fillna(method='ffill', inplace=True)  # 이전 값으로 채우기
+    stock_data.fillna(method='bfill', inplace=True)  # 이후 값으로 채우기
+
+    # RSI 계산
     stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
-  
-    # 볼린저 밴드와 Aroon 지표 계산 (기존 코드 유지)
-    stock_data.ta.bbands(length=20, std=2, append=True)
-    stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    stock_data.ta.aroon(length=25, append=True)
 
-    # MFI 계산 (기존 코드 유지)
-    high_prices = stock_data['High'].values
-    low_prices = stock_data['Low'].values
-    close_prices = stock_data['Close'].values
-    volumes = stock_data['Volume'].values
-    stock_data['MFI_14'] = calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14)
-  
-    # 나머지 지표 계산 (기존 코드 유지)
+    # 볼린저 밴드 계산
+    stock_data['bb_upper_ta'], stock_data['bb_middle_ta'], stock_data['bb_lower_ta'] = calculate_bollinger_bands(stock_data['Close'])
+
+    # 기타 지표 계산
+    stock_data.ta.aroon(length=25, append=True)
+    stock_data['MFI_14'] = calculate_mfi(stock_data['High'].values, stock_data['Low'].values, stock_data['Close'].values, stock_data['Volume'].values, length=14)
     stock_data.ta.sma(close='Close', length=5, append=True)
     stock_data.ta.sma(close='Close', length=10, append=True)
     stock_data.ta.sma(close='Close', length=20, append=True)
     stock_data.ta.sma(close='Close', length=60, append=True)
     stock_data.ta.sma(close='Close', length=120, append=True)
     stock_data.ta.sma(close='Close', length=240, append=True)
-    stock_data.ta.stoch(high='high', low='low', k=20, d=10, append=True)
-    stock_data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
+    stock_data.ta.stoch(high='High', low='Low', k=20, d=10, append=True)
+    stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)
     stock_data['Stock'] = ticker
 
-    # Industry 정보 추가
     sector_df = pd.read_csv(ticker_path)  # stock_market.csv 파일 경로
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     if ticker in sector_dict:
@@ -117,9 +152,7 @@ def get_stock_data(ticker, start_date, end_date):
     else:
         stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
 
-    # 데이터 프레임에서 최소 날짜를 얻습니다.
-    min_stock_data_date = stock_data.index.min()
-    return stock_data, min_stock_data_date
+    return stock_data
 
 
 def get_price_info(ticker):
@@ -134,8 +167,6 @@ def get_price_info(ticker):
     else:
         return "알 수 없음"
 
-
-
 if __name__ == "__main__":
     # Industry 정보 불러오기
     industry_info = load_industry_info()
@@ -146,10 +177,10 @@ if __name__ == "__main__":
     end_date = '2024-09-02'
   
     # 주식 데이터 가져오기
-    stock_data = get_stock_data(ticker, start_date, end_date)
+    stock_data, first_stock_data_date = get_stock_data(ticker, start_date, end_date)
     print(stock_data)
     print(np.__version__)
     print(pd.__version__)
     print(ta.__version__)
-    
+
 ## python Get_data.py    
