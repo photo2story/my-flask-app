@@ -9,7 +9,6 @@ from mplchart.primitives import Candlesticks, Volume, TradeSpan
 from mplchart.indicators import SMA, PPO, RSI
 import pandas as pd
 import requests
-import FinanceDataReader as fdr
 import os, sys
 from dotenv import load_dotenv
 import asyncio
@@ -48,7 +47,6 @@ warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
 
 from git_operations import move_files_to_images_folder
 from get_ticker import get_ticker_name
-from Get_data import calculate_rsi, calculate_ppo  # 통일된 함수 가져오기
 
 # 환경 변수 로드
 load_dotenv()
@@ -61,19 +59,15 @@ def save_figure(fig, file_path):
 
 async def plot_results_mpl(ticker, start_date, end_date):
     """주어진 티커와 기간에 대한 데이터를 사용하여 차트를 생성하고, 결과를 Discord로 전송합니다."""
-    prices = fdr.DataReader(ticker, start_date, end_date)
-    prices.dropna(inplace=True)
     
-    # 이동 평균 계산 (전체 데이터를 사용)
-    prices['SMA20'] = prices['Close'].rolling(window=20).mean()
-    prices['SMA60'] = prices['Close'].rolling(window=60).mean()
-
-    # PPO 계산 (통일된 함수 사용)
-    prices['PPO_value'], prices['PPO_signal'], prices['PPO_histogram'] = calculate_ppo(prices['Close'])
-
-    # RSI 계산 (통일된 함수 사용)
-    prices['RSI'] = calculate_rsi(prices['Close'])
-
+    # 이미 계산된 데이터를 로드
+    result_file_path = os.path.join(config.STATIC_IMAGES_PATH, f'result_VOO_{ticker}.csv')
+    
+    if not os.path.exists(result_file_path):
+        raise FileNotFoundError(f"No cached data found for {ticker}. Please generate the data first.")
+    
+    prices = pd.read_csv(result_file_path, parse_dates=['Date'], index_col='Date')
+    
     # 최신 6개월 데이터로 필터링
     end_date = pd.to_datetime(end_date)
     start_date_6m = end_date - pd.DateOffset(months=6)
@@ -81,8 +75,13 @@ async def plot_results_mpl(ticker, start_date, end_date):
 
     # 차트 생성
     indicators = [
-        Candlesticks(), SMA(20), SMA(60), Volume(),
-        RSI(), PPO(), TradeSpan('ppohist>0')
+        Candlesticks(), 
+        SMA(20), 
+        SMA(60), 
+        Volume(),
+        RSI(), 
+        PPO(), 
+        TradeSpan('ppo_histogram>0')  # ppo_histogram을 사용하여 TradeSpan 설정
     ]
     name = get_ticker_name(ticker)
     chart_title = f'{ticker} ({name}) vs VOO'.encode('utf-8').decode('utf-8')
@@ -98,8 +97,8 @@ async def plot_results_mpl(ticker, start_date, end_date):
                f"Close: {filtered_prices['Close'].iloc[-1]:,.2f}\n"
                f"SMA 20: {filtered_prices['SMA20'].iloc[-1]:,.2f}\n"
                f"SMA 60: {filtered_prices['SMA60'].iloc[-1]:,.2f}\n"
-               f"RSI: {filtered_prices['RSI'].iloc[-1]:,.2f}\n"  # RSI 추가
-               f"PPO Histogram: {filtered_prices['PPO_histogram'].iloc[-1]:,.2f}\n")
+               f"RSI: {filtered_prices['RSI_14'].iloc[-1]:,.2f}\n"  # RSI를 필터링된 데이터에서 사용
+               f"PPO Histogram: {filtered_prices['ppo_histogram'].iloc[-1]:,.2f}\n")
 
     # Discord로 메시지 전송
     response = requests.post(config.DISCORD_WEBHOOK_URL, data={'content': message})
@@ -135,7 +134,6 @@ if __name__ == "__main__":
         print("Plotting completed successfully.")
     except Exception as e:
         print(f"Error occurred while plotting results: {e}")
-
 
 r"""
 python3 -m venv .venv
