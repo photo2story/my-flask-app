@@ -100,30 +100,31 @@ def get_stock_data(ticker, start_date, end_date):
 
     return combined_data, first_date  # 두 개의 값을 반환
 
-
 def process_data(stock_data, ticker):  # ticker 변수를 함수 인자로 추가
-    # Custom indicator calculations (RSI, MFI, etc.)
+    # RSI 계산
     stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
   
+    # 볼린저 밴드 계산
     stock_data.ta.bbands(length=20, std=2, append=True)
-    stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
-    stock_data.ta.aroon(length=25, append=True)
+    
+    # 'BBL_20_2.0' 컬럼이 존재하는지 확인
+    if 'BBL_20_2.0' in stock_data.columns:
+        stock_data['UPPER_20'] = stock_data['BBL_20_2.0'] + 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
+        stock_data['LOWER_20'] = stock_data['BBM_20_2.0'] - 2 * (stock_data['BBM_20_2.0'] - stock_data['BBL_20_2.0'])
+    else:
+        raise ValueError(f"Bollinger Bands columns not found in the data for {ticker}")
 
-    high_prices = stock_data['High'].values
-    low_prices = stock_data['Low'].values
-    close_prices = stock_data['Close'].values
-    volumes = stock_data['Volume'].values
-    stock_data['MFI_14'] = calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14)
-  
+    # 기타 지표 계산
+    stock_data.ta.aroon(length=25, append=True)
+    stock_data['MFI_14'] = calculate_mfi(stock_data['High'].values, stock_data['Low'].values, stock_data['Close'].values, stock_data['Volume'].values, length=14)
     stock_data.ta.sma(close='Close', length=5, append=True)
     stock_data.ta.sma(close='Close', length=10, append=True)
     stock_data.ta.sma(close='Close', length=20, append=True)
     stock_data.ta.sma(close='Close', length=60, append=True)
     stock_data.ta.sma(close='Close', length=120, append=True)
     stock_data.ta.sma(close='Close', length=240, append=True)
-    stock_data.ta.stoch(high='high', low='low', k=20, d=10, append=True)
-    stock_data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
+    stock_data.ta.stoch(high='High', low='Low', k=20, d=10, append=True)
+    stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)
     stock_data['Stock'] = ticker
 
     sector_df = pd.read_csv(ticker_path)  # stock_market.csv 파일 경로
@@ -134,7 +135,6 @@ def process_data(stock_data, ticker):  # ticker 변수를 함수 인자로 추�
         stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
 
     return stock_data
-
 
 def get_price_info(ticker):
     api_key = 'Alpha_API'
@@ -158,11 +158,10 @@ if __name__ == "__main__":
     end_date = '2024-09-02'
   
     # 주식 데이터 가져오기
-    stock_data = get_stock_data(ticker, start_date, end_date)
+    stock_data, first_stock_data_date = get_stock_data(ticker, start_date, end_date)
     print(stock_data)
     print(np.__version__)
     print(pd.__version__)
     print(ta.__version__)
-
 
 ## python Get_data.py    
