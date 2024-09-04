@@ -60,26 +60,26 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         # 주식 데이터 가져오기
         stock_data, first_stock_data_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
-        result_df = My_strategy.my_strategy(stock_data, option_strategy)
+        stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)  # 변수 이름 변경
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
-        result_df2 = await get_voo_data(option_strategy, ctx)
+        voo_data_df = await get_voo_data(option_strategy, ctx)  # 변수 이름 변경
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
         # 날짜 형식 통일
-        result_df['Date'] = pd.to_datetime(result_df['Date'])
-        result_df2['Date'] = pd.to_datetime(result_df2['Date'])
+        stock_result_df['Date'] = pd.to_datetime(stock_result_df['Date'])
+        voo_data_df['Date'] = pd.to_datetime(voo_data_df['Date'])
         
         # 날짜를 기준으로 병합
-        combined_df = pd.merge(result_df, result_df2[['Date', 'rate_vs']], on='Date', how='inner')
+        combined_df = pd.merge(stock_result_df, voo_data_df[['Date', 'rate_vs']], on='Date', how='inner')
         
         # 병합 후 결측치 채우기
         combined_df.fillna(0, inplace=True)
         print(combined_df)
 
         # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
-        combined_df = combined_df[(combined_df['price'] != 0) ]
+        combined_df = combined_df[(combined_df['price'] != 0)]
 
         # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')
@@ -102,6 +102,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         print(error_message)
 
 
+
 # 테스트 코드 추가
 async def test_backtest_and_send():
     class MockContext:
@@ -114,7 +115,7 @@ async def test_backtest_and_send():
 
     ctx = MockContext()
     bot = MockBot()
-    stock = "BTC-USD"
+    stock = "QQQ"
     
     try:
         if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
@@ -123,7 +124,7 @@ async def test_backtest_and_send():
             print(f"VOO cache is not valid or missing. New data will be fetched.")
 
         # backtest_and_send 함수 실행
-        await backtest_and_send(ctx, stock, option_strategy='monthly', bot=bot)
+        await backtest_and_send(ctx, stock, option_strategy='default', bot=bot)
         
         # 결과 비교를 위한 그래프 생성 함수 실행
         await plot_comparison_results(stock, config.START_DATE, config.END_DATE)
