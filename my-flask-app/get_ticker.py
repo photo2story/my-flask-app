@@ -8,9 +8,9 @@ import investpy
 import config
 
 
-# ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
-# CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
-ticker_path = config.CSV_PATH
+ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
+CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+# ticker_path = config.CSV_PATH
 
 def get_ticker_name(ticker):
     df = pd.read_csv(ticker_path, encoding='utf-8')  # stock_market.csv 파일 경로 인코딩 설정
