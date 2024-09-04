@@ -29,7 +29,6 @@ def fetch_csv(ticker):
         return None
 
 # CSV 파일을 간소화하고 로컬에 저장하는 함수
-# CSV 파일을 간소화하고 로컬에 저장하는 함수
 def save_simplified_csv(ticker):
     # GitHub에서 데이터를 가져오기 위해 fetch_csv 함수를 사용
     df = fetch_csv(ticker)
@@ -64,17 +63,16 @@ def save_simplified_csv(ticker):
     
     # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
+    print(simplified_df)
     
-    # 마지막 데이터가 유효한지 확인 후 추가
-    if not simplified_df.iloc[-1].equals(df.iloc[-1]):
+    # 마지막 데이터가 이미 포함되지 않았다면 추가
+    if simplified_df.iloc[-1]['Date'] != df.iloc[-1]['Date']:
         last_row = df.iloc[-1]
         if last_row[f'rate_{ticker}_5D'] != 0 or last_row['rate_VOO_20D'] != 0:
             simplified_df = pd.concat([simplified_df, last_row.to_frame().T], ignore_index=True)
     
     # 파일 저장
     folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
-    # GITHUB_RAW_BASE_URL 에 저장
-    
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
@@ -85,6 +83,7 @@ def save_simplified_csv(ticker):
     print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
     print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
     print(f"Expected Return for {ticker}: {latest_entry['Expected_Return']}")
+
 
 def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
