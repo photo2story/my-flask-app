@@ -48,7 +48,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     
     await ctx.send(f"Backtesting and sending command for: {stock}")
     
-    if not get_ticker.is_valid_stock(stock):
+    if not is_valid_stock(stock):
         message = f"Stock market information updates needed for {stock}."
         await ctx.send(message)
         print(message)
