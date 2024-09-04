@@ -76,6 +76,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         # 병합 후 결측치 채우기
         combined_df.fillna(0, inplace=True)
+        print(combined_df)
 
         # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
         combined_df = combined_df[(combined_df['price'] != 0) ]
