@@ -48,7 +48,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     
     await ctx.send(f"Backtesting and sending command for: {stock}")
     
-    if not is_valid_stock(stock):
+    if not get_ticker.is_valid_stock(stock):
         message = f"Stock market information updates needed for {stock}."
         await ctx.send(message)
         print(message)
@@ -61,6 +61,9 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         stock_data, first_stock_data_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
         stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)  # 변수 이름 변경
+        print('stock_result_df:', stock_result_df)
+        
+        await ctx.send(f'Exporting data for {stock}.')
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
         voo_data_df = await get_voo_data(option_strategy, ctx)  # 변수 이름 변경

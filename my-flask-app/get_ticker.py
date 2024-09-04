@@ -5,11 +5,12 @@ import csv, os, io, requests
 from github_operations import ticker_path  # stock_market.csv 파일 경로
 import yfinance as yf
 import investpy
+import config
 
 
-ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
-CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
-
+# ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
+# CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+ticker_path = config.CSV_PATH
 
 def get_ticker_name(ticker):
     df = pd.read_csv(ticker_path, encoding='utf-8')  # stock_market.csv 파일 경로 인코딩 설정
@@ -216,7 +217,7 @@ if __name__ == "__main__":
 
     
     
-    tickers_to_update = ['BTC/KRW']
+    tickers_to_update = ['QQQ']
     update_stock_market_csv(ticker_path, tickers_to_update)
     print("Stock information updated.")
     
