@@ -1,0 +1,1457 @@
+.
+├── app.py
+├── botcopy copy.py
+├── bot.py
+├── CNAME
+├── docs
+│   ├── index copy.html
+│   ├── index.html
+│   ├── scripts copy.js
+│   └── scripts.js
+├── folder_structure.txt
+├── git_operations.py
+├── index copy.html
+├── index.html
+├── marked.js
+├── mplchart-0.0.8-py3-none-any.whl
+├── my-flask-app
+│   ├── backtest_send.py
+│   ├── config.py
+│   ├── Data_export.py
+│   ├── flask_secrets_key.py
+│   ├── fonts
+│   │   └── MALGUN.ttf
+│   ├── gemini copy.py
+│   ├── gemini.py
+│   ├── get_account_balance.py
+│   ├── get_classify_stock.py
+│   ├── get_compare_stock_data.py
+│   ├── Get_data2.py
+│   ├── Get_data.py
+│   ├── get_drive_data.py
+│   ├── get_earning_fmp.py
+│   ├── get_earning.py
+│   ├── get_signal.py
+│   ├── get_ticker.py
+│   ├── github_operations.py
+│   ├── gpt.py
+│   ├── gunicorn_config.py
+│   ├── My_strategy.py
+│   ├── __pycache__
+│   │   ├── backtest_send.cpython-312.pyc
+│   │   ├── config.cpython-312.pyc
+│   │   ├── Data_export.cpython-312.pyc
+│   │   ├── gemini.cpython-312.pyc
+│   │   ├── get_compare_stock_data.cpython-312.pyc
+│   │   ├── Get_data.cpython-312.pyc
+│   │   ├── get_earning.cpython-312.pyc
+│   │   ├── get_earning_fmp.cpython-312.pyc
+│   │   ├── get_signal.cpython-312.pyc
+│   │   ├── get_ticker.cpython-312.pyc
+│   │   ├── github_operations.cpython-312.pyc
+│   │   ├── gpt.cpython-312.pyc
+│   │   ├── My_strategy.cpython-312.pyc
+│   │   ├── Results_plot.cpython-312.pyc
+│   │   ├── Results_plot_mpl.cpython-312.pyc
+│   │   ├── Strategy_buy.cpython-312.pyc
+│   │   └── Strategy_sell.cpython-312.pyc
+│   ├── Results_plot_mpl.py
+│   ├── Results_plot.py
+│   ├── static
+│   │   └── images
+│   │       └── stock_market.csv
+│   ├── stock_market.csv
+│   ├── Strategy_buy.py
+│   ├── Strategy_sell.py
+│   └── token.dat
+├── my_flutter_app
+│   ├── analysis_options.yaml
+│   ├── android
+│   │   ├── app
+│   │   │   ├── build.gradle
+│   │   │   └── src
+│   │   │       ├── debug
+│   │   │       │   └── AndroidManifest.xml
+│   │   │       ├── main
+│   │   │       │   ├── AndroidManifest.xml
+│   │   │       │   ├── kotlin
+│   │   │       │   │   └── com
+│   │   │       │   │       └── example
+│   │   │       │   │           └── my_flutter_app
+│   │   │       │   │               └── MainActivity.kt
+│   │   │       │   └── res
+│   │   │       │       ├── drawable
+│   │   │       │       │   └── launch_background.xml
+│   │   │       │       ├── drawable-v21
+│   │   │       │       │   └── launch_background.xml
+│   │   │       │       ├── mipmap-hdpi
+│   │   │       │       │   └── ic_launcher.png
+│   │   │       │       ├── mipmap-mdpi
+│   │   │       │       │   └── ic_launcher.png
+│   │   │       │       ├── mipmap-xhdpi
+│   │   │       │       │   └── ic_launcher.png
+│   │   │       │       ├── mipmap-xxhdpi
+│   │   │       │       │   └── ic_launcher.png
+│   │   │       │       ├── mipmap-xxxhdpi
+│   │   │       │       │   └── ic_launcher.png
+│   │   │       │       ├── values
+│   │   │       │       │   └── styles.xml
+│   │   │       │       └── values-night
+│   │   │       │           └── styles.xml
+│   │   │       └── profile
+│   │   │           └── AndroidManifest.xml
+│   │   ├── build.gradle
+│   │   ├── gradle
+│   │   │   └── wrapper
+│   │   │       └── gradle-wrapper.properties
+│   │   ├── gradle.properties
+│   │   └── settings.gradle
+│   ├── flutter_01.png
+│   ├── flutter_02.png
+│   ├── ios
+│   │   ├── Flutter
+│   │   │   ├── AppFrameworkInfo.plist
+│   │   │   ├── Debug.xcconfig
+│   │   │   └── Release.xcconfig
+│   │   ├── Runner
+│   │   │   ├── AppDelegate.swift
+│   │   │   ├── Assets.xcassets
+│   │   │   │   ├── AppIcon.appiconset
+│   │   │   │   │   ├── Contents.json
+│   │   │   │   │   ├── Icon-App-1024x1024@1x.png
+│   │   │   │   │   ├── Icon-App-20x20@1x.png
+│   │   │   │   │   ├── Icon-App-20x20@2x.png
+│   │   │   │   │   ├── Icon-App-20x20@3x.png
+│   │   │   │   │   ├── Icon-App-29x29@1x.png
+│   │   │   │   │   ├── Icon-App-29x29@2x.png
+│   │   │   │   │   ├── Icon-App-29x29@3x.png
+│   │   │   │   │   ├── Icon-App-40x40@1x.png
+│   │   │   │   │   ├── Icon-App-40x40@2x.png
+│   │   │   │   │   ├── Icon-App-40x40@3x.png
+│   │   │   │   │   ├── Icon-App-60x60@2x.png
+│   │   │   │   │   ├── Icon-App-60x60@3x.png
+│   │   │   │   │   ├── Icon-App-76x76@1x.png
+│   │   │   │   │   ├── Icon-App-76x76@2x.png
+│   │   │   │   │   └── Icon-App-83.5x83.5@2x.png
+│   │   │   │   └── LaunchImage.imageset
+│   │   │   │       ├── Contents.json
+│   │   │   │       ├── LaunchImage@2x.png
+│   │   │   │       ├── LaunchImage@3x.png
+│   │   │   │       ├── LaunchImage.png
+│   │   │   │       └── README.md
+│   │   │   ├── Base.lproj
+│   │   │   │   ├── LaunchScreen.storyboard
+│   │   │   │   └── Main.storyboard
+│   │   │   ├── Info.plist
+│   │   │   └── Runner-Bridging-Header.h
+│   │   ├── RunnerTests
+│   │   │   └── RunnerTests.swift
+│   │   ├── Runner.xcodeproj
+│   │   │   ├── project.pbxproj
+│   │   │   ├── project.xcworkspace
+│   │   │   │   ├── contents.xcworkspacedata
+│   │   │   │   └── xcshareddata
+│   │   │   │       ├── IDEWorkspaceChecks.plist
+│   │   │   │       └── WorkspaceSettings.xcsettings
+│   │   │   └── xcshareddata
+│   │   │       └── xcschemes
+│   │   │           └── Runner.xcscheme
+│   │   └── Runner.xcworkspace
+│   │       ├── contents.xcworkspacedata
+│   │       └── xcshareddata
+│   │           ├── IDEWorkspaceChecks.plist
+│   │           └── WorkspaceSettings.xcsettings
+│   ├── lib
+│   │   ├── main copy.dart
+│   │   ├── main copyOK.dart
+│   │   └── main.dart
+│   ├── linux
+│   │   ├── CMakeLists.txt
+│   │   ├── flutter
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── generated_plugin_registrant.cc
+│   │   │   ├── generated_plugin_registrant.h
+│   │   │   └── generated_plugins.cmake
+│   │   ├── main.cc
+│   │   ├── my_application.cc
+│   │   └── my_application.h
+│   ├── macos
+│   │   ├── Flutter
+│   │   │   ├── Flutter-Debug.xcconfig
+│   │   │   ├── Flutter-Release.xcconfig
+│   │   │   └── GeneratedPluginRegistrant.swift
+│   │   ├── Runner
+│   │   │   ├── AppDelegate.swift
+│   │   │   ├── Assets.xcassets
+│   │   │   │   └── AppIcon.appiconset
+│   │   │   │       ├── app_icon_1024.png
+│   │   │   │       ├── app_icon_128.png
+│   │   │   │       ├── app_icon_16.png
+│   │   │   │       ├── app_icon_256.png
+│   │   │   │       ├── app_icon_32.png
+│   │   │   │       ├── app_icon_512.png
+│   │   │   │       ├── app_icon_64.png
+│   │   │   │       └── Contents.json
+│   │   │   ├── Base.lproj
+│   │   │   │   └── MainMenu.xib
+│   │   │   ├── Configs
+│   │   │   │   ├── AppInfo.xcconfig
+│   │   │   │   ├── Debug.xcconfig
+│   │   │   │   ├── Release.xcconfig
+│   │   │   │   └── Warnings.xcconfig
+│   │   │   ├── DebugProfile.entitlements
+│   │   │   ├── Info.plist
+│   │   │   ├── MainFlutterWindow.swift
+│   │   │   └── Release.entitlements
+│   │   ├── RunnerTests
+│   │   │   └── RunnerTests.swift
+│   │   ├── Runner.xcodeproj
+│   │   │   ├── project.pbxproj
+│   │   │   ├── project.xcworkspace
+│   │   │   │   └── xcshareddata
+│   │   │   │       └── IDEWorkspaceChecks.plist
+│   │   │   └── xcshareddata
+│   │   │       └── xcschemes
+│   │   │           └── Runner.xcscheme
+│   │   └── Runner.xcworkspace
+│   │       ├── contents.xcworkspacedata
+│   │       └── xcshareddata
+│   │           └── IDEWorkspaceChecks.plist
+│   ├── pubspec.yaml
+│   ├── README.md
+│   ├── test
+│   │   └── widget_test.dart
+│   ├── web
+│   │   ├── favicon.png
+│   │   ├── icons
+│   │   │   ├── Icon-192.png
+│   │   │   ├── Icon-512.png
+│   │   │   ├── Icon-maskable-192.png
+│   │   │   └── Icon-maskable-512.png
+│   │   ├── index.html
+│   │   └── manifest.json
+│   └── windows
+│       ├── CMakeLists.txt
+│       ├── flutter
+│       │   ├── CMakeLists.txt
+│       │   ├── generated_plugin_registrant.cc
+│       │   ├── generated_plugin_registrant.h
+│       │   └── generated_plugins.cmake
+│       └── runner
+│           ├── CMakeLists.txt
+│           ├── flutter_window.cpp
+│           ├── flutter_window.h
+│           ├── main.cpp
+│           ├── resource.h
+│           ├── resources
+│           │   └── app_icon.ico
+│           ├── Runner.rc
+│           ├── utils.cpp
+│           ├── utils.h
+│           ├── win32_window.cpp
+│           └── win32_window.h
+├── my-flutter-gemini
+│   ├── analysis_options.yaml
+│   ├── assets
+│   │   ├── img.png
+│   │   ├── json_models
+│   │   │   ├── embeding_response.json
+│   │   │   ├── embedings_response.json
+│   │   │   ├── gemini_model.json
+│   │   │   ├── gemini_response.json
+│   │   │   └── generation_config.json
+│   │   └── moon.jpg
+│   ├── CHANGELOG.md
+│   ├── example
+│   │   ├── analysis_options.yaml
+│   │   ├── android
+│   │   │   ├── app
+│   │   │   │   ├── build.gradle
+│   │   │   │   └── src
+│   │   │   │       ├── debug
+│   │   │   │       │   └── AndroidManifest.xml
+│   │   │   │       ├── main
+│   │   │   │       │   ├── AndroidManifest.xml
+│   │   │   │       │   ├── java
+│   │   │   │       │   │   └── io
+│   │   │   │       │   │       └── flutter
+│   │   │   │       │   │           └── plugins
+│   │   │   │       │   │               └── GeneratedPluginRegistrant.java
+│   │   │   │       │   ├── kotlin
+│   │   │   │       │   │   └── com
+│   │   │   │       │   │       └── example
+│   │   │   │       │   │           └── example
+│   │   │   │       │   │               └── MainActivity.kt
+│   │   │   │       │   └── res
+│   │   │   │       │       ├── drawable
+│   │   │   │       │       │   └── launch_background.xml
+│   │   │   │       │       ├── drawable-v21
+│   │   │   │       │       │   └── launch_background.xml
+│   │   │   │       │       ├── mipmap-hdpi
+│   │   │   │       │       │   └── ic_launcher.png
+│   │   │   │       │       ├── mipmap-mdpi
+│   │   │   │       │       │   └── ic_launcher.png
+│   │   │   │       │       ├── mipmap-xhdpi
+│   │   │   │       │       │   └── ic_launcher.png
+│   │   │   │       │       ├── mipmap-xxhdpi
+│   │   │   │       │       │   └── ic_launcher.png
+│   │   │   │       │       ├── mipmap-xxxhdpi
+│   │   │   │       │       │   └── ic_launcher.png
+│   │   │   │       │       ├── values
+│   │   │   │       │       │   └── styles.xml
+│   │   │   │       │       └── values-night
+│   │   │   │       │           └── styles.xml
+│   │   │   │       └── profile
+│   │   │   │           └── AndroidManifest.xml
+│   │   │   ├── build.gradle
+│   │   │   ├── gradle
+│   │   │   │   └── wrapper
+│   │   │   │       ├── gradle-wrapper.jar
+│   │   │   │       └── gradle-wrapper.properties
+│   │   │   ├── gradle.properties
+│   │   │   ├── gradlew
+│   │   │   ├── gradlew.bat
+│   │   │   ├── local.properties
+│   │   │   └── settings.gradle
+│   │   ├── assets
+│   │   │   └── lottie
+│   │   │       └── ai.json
+│   │   ├── ios
+│   │   │   ├── Flutter
+│   │   │   │   ├── AppFrameworkInfo.plist
+│   │   │   │   ├── Debug.xcconfig
+│   │   │   │   ├── flutter_export_environment.sh
+│   │   │   │   ├── Generated.xcconfig
+│   │   │   │   └── Release.xcconfig
+│   │   │   ├── Runner
+│   │   │   │   ├── AppDelegate.swift
+│   │   │   │   ├── Assets.xcassets
+│   │   │   │   │   ├── AppIcon.appiconset
+│   │   │   │   │   │   ├── Contents.json
+│   │   │   │   │   │   ├── Icon-App-1024x1024@1x.png
+│   │   │   │   │   │   ├── Icon-App-20x20@1x.png
+│   │   │   │   │   │   ├── Icon-App-20x20@2x.png
+│   │   │   │   │   │   ├── Icon-App-20x20@3x.png
+│   │   │   │   │   │   ├── Icon-App-29x29@1x.png
+│   │   │   │   │   │   ├── Icon-App-29x29@2x.png
+│   │   │   │   │   │   ├── Icon-App-29x29@3x.png
+│   │   │   │   │   │   ├── Icon-App-40x40@1x.png
+│   │   │   │   │   │   ├── Icon-App-40x40@2x.png
+│   │   │   │   │   │   ├── Icon-App-40x40@3x.png
+│   │   │   │   │   │   ├── Icon-App-60x60@2x.png
+│   │   │   │   │   │   ├── Icon-App-60x60@3x.png
+│   │   │   │   │   │   ├── Icon-App-76x76@1x.png
+│   │   │   │   │   │   ├── Icon-App-76x76@2x.png
+│   │   │   │   │   │   └── Icon-App-83.5x83.5@2x.png
+│   │   │   │   │   └── LaunchImage.imageset
+│   │   │   │   │       ├── Contents.json
+│   │   │   │   │       ├── LaunchImage@2x.png
+│   │   │   │   │       ├── LaunchImage@3x.png
+│   │   │   │   │       ├── LaunchImage.png
+│   │   │   │   │       └── README.md
+│   │   │   │   ├── Base.lproj
+│   │   │   │   │   ├── LaunchScreen.storyboard
+│   │   │   │   │   └── Main.storyboard
+│   │   │   │   ├── GeneratedPluginRegistrant.h
+│   │   │   │   ├── GeneratedPluginRegistrant.m
+│   │   │   │   ├── Info.plist
+│   │   │   │   └── Runner-Bridging-Header.h
+│   │   │   ├── RunnerTests
+│   │   │   │   └── RunnerTests.swift
+│   │   │   ├── Runner.xcodeproj
+│   │   │   │   ├── project.pbxproj
+│   │   │   │   ├── project.xcworkspace
+│   │   │   │   │   ├── contents.xcworkspacedata
+│   │   │   │   │   └── xcshareddata
+│   │   │   │   │       ├── IDEWorkspaceChecks.plist
+│   │   │   │   │       └── WorkspaceSettings.xcsettings
+│   │   │   │   └── xcshareddata
+│   │   │   │       └── xcschemes
+│   │   │   │           └── Runner.xcscheme
+│   │   │   └── Runner.xcworkspace
+│   │   │       ├── contents.xcworkspacedata
+│   │   │       └── xcshareddata
+│   │   │           ├── IDEWorkspaceChecks.plist
+│   │   │           └── WorkspaceSettings.xcsettings
+│   │   ├── lib
+│   │   │   ├── chat_page.dart
+│   │   │   ├── main copy.dart
+│   │   │   ├── main.dart
+│   │   │   ├── sections
+│   │   │   │   ├── bot_stock.dart
+│   │   │   │   ├── chat.dart
+│   │   │   │   ├── chat_stream.dart
+│   │   │   │   ├── embed_batch_contents.dart
+│   │   │   │   ├── embed_content.dart
+│   │   │   │   ├── flutter
+│   │   │   │   ├── rasa_chat.dart
+│   │   │   │   ├── response_widget_stream.dart
+│   │   │   │   ├── stock_comparison copy.dart
+│   │   │   │   ├── stock_comparison.dart
+│   │   │   │   ├── stream.dart
+│   │   │   │   ├── text_and_image.dart
+│   │   │   │   └── text_only.dart
+│   │   │   └── widgets
+│   │   │       ├── chat_input_box.dart
+│   │   │       └── item_image_view.dart
+│   │   ├── linux
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── flutter
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── ephemeral
+│   │   │   │   ├── generated_plugin_registrant.cc
+│   │   │   │   ├── generated_plugin_registrant.h
+│   │   │   │   └── generated_plugins.cmake
+│   │   │   ├── main.cc
+│   │   │   ├── my_application.cc
+│   │   │   └── my_application.h
+│   │   ├── macos
+│   │   │   ├── Flutter
+│   │   │   │   ├── ephemeral
+│   │   │   │   │   ├── flutter_export_environment.sh
+│   │   │   │   │   └── Flutter-Generated.xcconfig
+│   │   │   │   ├── Flutter-Debug.xcconfig
+│   │   │   │   ├── Flutter-Release.xcconfig
+│   │   │   │   └── GeneratedPluginRegistrant.swift
+│   │   │   ├── Runner
+│   │   │   │   ├── AppDelegate.swift
+│   │   │   │   ├── Assets.xcassets
+│   │   │   │   │   └── AppIcon.appiconset
+│   │   │   │   │       ├── app_icon_1024.png
+│   │   │   │   │       ├── app_icon_128.png
+│   │   │   │   │       ├── app_icon_16.png
+│   │   │   │   │       ├── app_icon_256.png
+│   │   │   │   │       ├── app_icon_32.png
+│   │   │   │   │       ├── app_icon_512.png
+│   │   │   │   │       ├── app_icon_64.png
+│   │   │   │   │       └── Contents.json
+│   │   │   │   ├── Base.lproj
+│   │   │   │   │   └── MainMenu.xib
+│   │   │   │   ├── Configs
+│   │   │   │   │   ├── AppInfo.xcconfig
+│   │   │   │   │   ├── Debug.xcconfig
+│   │   │   │   │   ├── Release.xcconfig
+│   │   │   │   │   └── Warnings.xcconfig
+│   │   │   │   ├── DebugProfile.entitlements
+│   │   │   │   ├── Info.plist
+│   │   │   │   ├── MainFlutterWindow.swift
+│   │   │   │   └── Release.entitlements
+│   │   │   ├── RunnerTests
+│   │   │   │   └── RunnerTests.swift
+│   │   │   ├── Runner.xcodeproj
+│   │   │   │   ├── project.pbxproj
+│   │   │   │   ├── project.xcworkspace
+│   │   │   │   │   └── xcshareddata
+│   │   │   │   │       └── IDEWorkspaceChecks.plist
+│   │   │   │   └── xcshareddata
+│   │   │   │       └── xcschemes
+│   │   │   │           └── Runner.xcscheme
+│   │   │   └── Runner.xcworkspace
+│   │   │       ├── contents.xcworkspacedata
+│   │   │       └── xcshareddata
+│   │   │           └── IDEWorkspaceChecks.plist
+│   │   ├── pubspec.yaml
+│   │   ├── README.md
+│   │   ├── screenshots
+│   │   │   ├── gemini_cover.jpeg
+│   │   │   └── gemini_screenshot.png
+│   │   ├── test
+│   │   │   └── widget_test.dart
+│   │   ├── web
+│   │   │   ├── favicon.png
+│   │   │   ├── icons
+│   │   │   │   ├── Icon-192.png
+│   │   │   │   ├── Icon-512.png
+│   │   │   │   ├── Icon-maskable-192.png
+│   │   │   │   └── Icon-maskable-512.png
+│   │   │   ├── index.html
+│   │   │   └── manifest.json
+│   │   └── windows
+│   │       ├── CMakeLists.txt
+│   │       ├── flutter
+│   │       │   ├── CMakeLists.txt
+│   │       │   ├── ephemeral
+│   │       │   ├── generated_plugin_registrant.cc
+│   │       │   ├── generated_plugin_registrant.h
+│   │       │   └── generated_plugins.cmake
+│   │       └── runner
+│   │           ├── CMakeLists.txt
+│   │           ├── flutter_window.cpp
+│   │           ├── flutter_window.h
+│   │           ├── main.cpp
+│   │           ├── resource.h
+│   │           ├── resources
+│   │           │   └── app_icon.ico
+│   │           ├── Runner.rc
+│   │           ├── utils.cpp
+│   │           ├── utils.h
+│   │           ├── win32_window.cpp
+│   │           └── win32_window.h
+│   ├── lib
+│   │   ├── flutter_gemini.dart
+│   │   └── src
+│   │       ├── config
+│   │       │   └── constants.dart
+│   │       ├── implement
+│   │       │   ├── gemini_implement.dart
+│   │       │   └── gemini_service.dart
+│   │       ├── init.dart
+│   │       ├── models
+│   │       │   ├── candidates
+│   │       │   │   ├── candidates.dart
+│   │       │   │   ├── candidates.freezed.dart
+│   │       │   │   └── candidates.g.dart
+│   │       │   ├── content
+│   │       │   │   ├── content.dart
+│   │       │   │   ├── content.freezed.dart
+│   │       │   │   └── content.g.dart
+│   │       │   ├── gemini_model
+│   │       │   │   ├── gemini_model.dart
+│   │       │   │   ├── gemini_model.freezed.dart
+│   │       │   │   └── gemini_model.g.dart
+│   │       │   ├── gemini_response
+│   │       │   │   ├── gemini_response.dart
+│   │       │   │   ├── gemini_response.freezed.dart
+│   │       │   │   └── gemini_response.g.dart
+│   │       │   ├── gemini_safety
+│   │       │   │   ├── gemini_safety_category.dart
+│   │       │   │   ├── gemini_safety.dart
+│   │       │   │   └── gemini_safety_threshold.dart
+│   │       │   ├── generation_config
+│   │       │   │   ├── generation_config.dart
+│   │       │   │   ├── generation_config.freezed.dart
+│   │       │   │   └── generation_config.g.dart
+│   │       │   ├── prompt_feedback
+│   │       │   │   ├── prompt_feedback.dart
+│   │       │   │   ├── prompt_feedback.freezed.dart
+│   │       │   │   └── prompt_feedback.g.dart
+│   │       │   └── safety_ratings
+│   │       │       ├── safety_ratings.dart
+│   │       │       ├── safety_ratings.freezed.dart
+│   │       │       └── safety_ratings.g.dart
+│   │       ├── provider
+│   │       │   └── gemini_response_provider.dart
+│   │       ├── repository
+│   │       │   ├── api_interface.dart
+│   │       │   └── gemini_interface.dart
+│   │       ├── utils
+│   │       │   ├── candidate_extension.dart
+│   │       │   ├── gemini_exception.dart
+│   │       │   └── gemini_exception_handler_mixin.dart
+│   │       └── widgets
+│   │           └── gemini_response_type_view.dart
+│   ├── LICENSE
+│   ├── pubspec.yaml
+│   ├── README.md
+│   └── test
+│       ├── features
+│       │   ├── chat_test.dart
+│       │   ├── count_tokens_test.dart
+│       │   ├── info_test.dart
+│       │   ├── list_models_test.dart
+│       │   ├── text_and_image_test.dart
+│       │   └── text_test.dart
+│       └── flutter_gemini_test.dart
+├── Noto_Sans_KR
+│   ├── NotoSansKR-VariableFont_wght.ttf
+│   ├── OFL.txt
+│   ├── README.txt
+│   └── static
+│       ├── NotoSansKR-Black.ttf
+│       ├── NotoSansKR-Bold.ttf
+│       ├── NotoSansKR-ExtraBold.ttf
+│       ├── NotoSansKR-ExtraLight.ttf
+│       ├── NotoSansKR-Light.ttf
+│       ├── NotoSansKR-Medium.ttf
+│       ├── NotoSansKR-Regular.ttf
+│       ├── NotoSansKR-SemiBold.ttf
+│       └── NotoSansKR-Thin.ttf
+├── Procfile
+├── __pycache__
+│   ├── bot.cpython-312.pyc
+│   └── git_operations.cpython-312.pyc
+├── README.md
+├── requirement.org
+├── scripts copy.js
+├── scripts.js
+├── static
+│   ├── images
+│   │   ├── cached_voo_data.csv
+│   │   ├── comparison_005930_VOO.png
+│   │   ├── comparison_302450_VOO.png
+│   │   ├── comparison_453810_VOO.png
+│   │   ├── comparison_453870_VOO.png
+│   │   ├── comparison_457480_VOO.png
+│   │   ├── comparison_AAPL_VOO.png
+│   │   ├── comparison_ABBV_VOO.png
+│   │   ├── comparison_ABT_VOO.png
+│   │   ├── comparison_ACN_VOO.png
+│   │   ├── comparison_ADBE_VOO.png
+│   │   ├── comparison_ADI_VOO.png
+│   │   ├── comparison_AEP_VOO.png
+│   │   ├── comparison_ALB_VOO.png
+│   │   ├── comparison_AMD_VOO.png
+│   │   ├── comparison_AMGN_VOO.png
+│   │   ├── comparison_AMT_VOO.png
+│   │   ├── comparison_AMZN_VOO.png
+│   │   ├── comparison_ANET_VOO.png
+│   │   ├── comparison_APD_VOO.png
+│   │   ├── comparison_ARM_VOO.png
+│   │   ├── comparison_AVB_VOO.png
+│   │   ├── comparison_BAC_VOO.png
+│   │   ├── comparison_BA_VOO.png
+│   │   ├── comparison_BKNG_VOO.png
+│   │   ├── comparison_BKR_VOO.png
+│   │   ├── comparison_BLK_VOO.png
+│   │   ├── comparison_BTC-KRW_VOO.png
+│   │   ├── comparison_BTC-USD_VOO.png
+│   │   ├── comparison_BX_VOO.png
+│   │   ├── comparison_CAT_VOO.png
+│   │   ├── comparison_CE_VOO.png
+│   │   ├── comparison_CF_VOO.png
+│   │   ├── comparison_CI_VOO.png
+│   │   ├── comparison_CL_VOO.png
+│   │   ├── comparison_CMCSA_VOO.png
+│   │   ├── comparison_CMG_VOO.png
+│   │   ├── comparison_COIN_VOO.png
+│   │   ├── comparison_COP_VOO.png
+│   │   ├── comparison_COST_VOO.png
+│   │   ├── comparison_CRM_VOO.png
+│   │   ├── comparison_CSCO_VOO.png
+│   │   ├── comparison_CSX_VOO.png
+│   │   ├── comparison_C_VOO.png
+│   │   ├── comparison_CVS_VOO.png
+│   │   ├── comparison_CVX_VOO.png
+│   │   ├── comparison_DD_VOO.png
+│   │   ├── comparison_DE_VOO.png
+│   │   ├── comparison_DG_VOO.png
+│   │   ├── comparison_DHR_VOO.png
+│   │   ├── comparison_DIA_VOO.png
+│   │   ├── comparison_DIS_VOO.png
+│   │   ├── comparison_DOW_VOO.png
+│   │   ├── comparison_DUK_VOO.png
+│   │   ├── comparison_D_VOO.png
+│   │   ├── comparison_EA_VOO.png
+│   │   ├── comparison_ECL_VOO.png
+│   │   ├── comparison_ED_VOO.png
+│   │   ├── comparison_EL_VOO.png
+│   │   ├── comparison_EOG_VOO.png
+│   │   ├── comparison_EQIX_VOO.png
+│   │   ├── comparison_EQR_VOO.png
+│   │   ├── comparison_ES_VOO.png
+│   │   ├── comparison_ETN_VOO.png
+│   │   ├── comparison_EXC_VOO.png
+│   │   ├── comparison_EXPE_VOO.png
+│   │   ├── comparison_EXR_VOO.png
+│   │   ├── comparison_FDX_VOO.png
+│   │   ├── comparison_FMC_VOO.png
+│   │   ├── comparison_F_VOO.png
+│   │   ├── comparison_GE_VOO.png
+│   │   ├── comparison_GILD_VOO.png
+│   │   ├── comparison_GIS_VOO.png
+│   │   ├── comparison_GOOGL_VOO.png
+│   │   ├── comparison_GOOG_VOO.png
+│   │   ├── comparison_GS_VOO.png
+│   │   ├── comparison_HAL_VOO.png
+│   │   ├── comparison_HCA_VOO.png
+│   │   ├── comparison_HD_VOO.png
+│   │   ├── comparison_HON_VOO.png
+│   │   ├── comparison_HSY_VOO.png
+│   │   ├── comparison_IBM_VOO.png
+│   │   ├── comparison_ICLN_VOO.png
+│   │   ├── comparison_INTC_VOO.png
+│   │   ├── comparison_INTU_VOO.png
+│   │   ├── comparison_IONQ_VOO.png
+│   │   ├── comparison_ISRG_VOO.png
+│   │   ├── comparison_JD_VOO.png
+│   │   ├── comparison_JNJ_VOO.png
+│   │   ├── comparison_KHC_VOO.png
+│   │   ├── comparison_KKR_VOO.png
+│   │   ├── comparison_KLAC_VOO.png
+│   │   ├── comparison_KMI_VOO.png
+│   │   ├── comparison_KO_VOO.png
+│   │   ├── comparison_KR_VOO.png
+│   │   ├── comparison_LIN_VOO.png
+│   │   ├── comparison_LLY_VOO.png
+│   │   ├── comparison_LMT_VOO.png
+│   │   ├── comparison_LOW_VOO.png
+│   │   ├── comparison_LYB_VOO.png
+│   │   ├── comparison_LYFT_VOO.png
+│   │   ├── comparison_MAA_VOO.png
+│   │   ├── comparison_MA_VOO.png
+│   │   ├── comparison_MCD_VOO.png
+│   │   ├── comparison_MDLZ_VOO.png
+│   │   ├── comparison_META_VOO.png
+│   │   ├── comparison_MKC_VOO.png
+│   │   ├── comparison_MMM_VOO.png
+│   │   ├── comparison_MO_VOO.png
+│   │   ├── comparison_MPC_VOO.png
+│   │   ├── comparison_MRK_VOO.png
+│   │   ├── comparison_MSFT_VOO.png
+│   │   ├── comparison_MS_VOO.png
+│   │   ├── comparison_NEE_VOO.png
+│   │   ├── comparison_NEM_VOO.png
+│   │   ├── comparison_NFLX_VOO.png
+│   │   ├── comparison_NKE_VOO.png
+│   │   ├── comparison_NOC_VOO.png
+│   │   ├── comparison_NOW_VOO.png
+│   │   ├── comparison_NVDA_VOO.png
+│   │   ├── comparison_OKE_VOO.png
+│   │   ├── comparison_O_VOO.png
+│   │   ├── comparison_PANW_VOO.png
+│   │   ├── comparison_PDD_VOO.png
+│   │   ├── comparison_PEG_VOO.png
+│   │   ├── comparison_PEP_VOO.png
+│   │   ├── comparison_PFE_VOO.png
+│   │   ├── comparison_PG_VOO.png
+│   │   ├── comparison_PLD_VOO.png
+│   │   ├── comparison_PLTR_VOO.png
+│   │   ├── comparison_PM_VOO.png
+│   │   ├── comparison_PPG_VOO.png
+│   │   ├── comparison_PSA_VOO.png
+│   │   ├── comparison_PSX_VOO.png
+│   │   ├── comparison_QCLN_VOO.png
+│   │   ├── comparison_QCOM_VOO.png
+│   │   ├── comparison_QQQ_VOO.png
+│   │   ├── comparison_REGN_VOO.png
+│   │   ├── comparison_ROKU_VOO.png
+│   │   ├── comparison_RTX_VOO.png
+│   │   ├── comparison_SBUX_VOO.png
+│   │   ├── comparison_SHW_VOO.png
+│   │   ├── comparison_SLB_VOO.png
+│   │   ├── comparison_SO_VOO.png
+│   │   ├── comparison_SPG_VOO.png
+│   │   ├── comparison_SPOT_VOO.png
+│   │   ├── comparison_SRE_VOO.png
+│   │   ├── comparison_STZ_VOO.png
+│   │   ├── comparison_TGT_VOO.png
+│   │   ├── comparison_TJX_VOO.png
+│   │   ├── comparison_TMO_VOO.png
+│   │   ├── comparison_TSLA_VOO.png
+│   │   ├── comparison_TSM_VOO.png
+│   │   ├── comparison_T_VOO.png
+│   │   ├── comparison_UBER_VOO.png
+│   │   ├── comparison_UNH_VOO.png
+│   │   ├── comparison_UNP_VOO.png
+│   │   ├── comparison_UPS_VOO.png
+│   │   ├── comparison_VICI_VOO.png
+│   │   ├── comparison_VLO_VOO.png
+│   │   ├── comparison_VOO_VOO.png
+│   │   ├── comparison_VRTX_VOO.png
+│   │   ├── comparison_V_VOO.png
+│   │   ├── comparison_VZ_VOO.png
+│   │   ├── comparison_WEC_VOO.png
+│   │   ├── comparison_WFC_VOO.png
+│   │   ├── comparison_WMB_VOO.png
+│   │   ├── comparison_WMT_VOO.png
+│   │   ├── comparison_WM_VOO.png
+│   │   ├── comparison_XEL_VOO.png
+│   │   ├── comparison_XOM_VOO.png
+│   │   ├── data_AAPL.csv
+│   │   ├── data_VOO.csv
+│   │   ├── process_csv.py
+│   │   ├── report_005930.txt
+│   │   ├── report_AAPL.txt
+│   │   ├── report_ABBV.txt
+│   │   ├── report_ABT.txt
+│   │   ├── report_ACN.txt
+│   │   ├── report_ADBE.txt
+│   │   ├── report_ADI.txt
+│   │   ├── report_ADSK.txt
+│   │   ├── report_AEP.txt
+│   │   ├── report_ALB.txt
+│   │   ├── report_AMAT.txt
+│   │   ├── report_AMD.txt
+│   │   ├── report_AMGN.txt
+│   │   ├── report_AMT.txt
+│   │   ├── report_AMZN.txt
+│   │   ├── report_ANET.txt
+│   │   ├── report_APD.txt
+│   │   ├── report_ARM.txt
+│   │   ├── report_AVB.txt
+│   │   ├── report_AVGO.txt
+│   │   ├── report_BAC.txt
+│   │   ├── report_BA.txt
+│   │   ├── report_BKNG.txt
+│   │   ├── report_BKR.txt
+│   │   ├── report_BLK.txt
+│   │   ├── report_BMY.txt
+│   │   ├── report_BR.txt
+│   │   ├── report_BTC-KRW.txt
+│   │   ├── report_BTC-USD.txt
+│   │   ├── report_BX.txt
+│   │   ├── report_CAT.txt
+│   │   ├── report_CE.txt
+│   │   ├── report_CF.txt
+│   │   ├── report_CI.txt
+│   │   ├── report_CL.txt
+│   │   ├── report_CMCSA.txt
+│   │   ├── report_CMG.txt
+│   │   ├── report_COIN.txt
+│   │   ├── report_COP.txt
+│   │   ├── report_COST.txt
+│   │   ├── report_CRM.txt
+│   │   ├── report_CSCO.txt
+│   │   ├── report_CSX.txt
+│   │   ├── report_C.txt
+│   │   ├── report_CVS.txt
+│   │   ├── report_CVX.txt
+│   │   ├── report_DD.txt
+│   │   ├── report_DE.txt
+│   │   ├── report_DG.txt
+│   │   ├── report_DHR.txt
+│   │   ├── report_DIA.txt
+│   │   ├── report_DIS.txt
+│   │   ├── report_DOW.txt
+│   │   ├── report_D.txt
+│   │   ├── report_DUK.txt
+│   │   ├── report_EA.txt
+│   │   ├── report_ECL.txt
+│   │   ├── report_ED.txt
+│   │   ├── report_EL.txt
+│   │   ├── report_EOG.txt
+│   │   ├── report_EQIX.txt
+│   │   ├── report_EQR.txt
+│   │   ├── report_ES.txt
+│   │   ├── report_ETN.txt
+│   │   ├── report_EXC.txt
+│   │   ├── report_EXPE.txt
+│   │   ├── report_EXR.txt
+│   │   ├── report_FDX.txt
+│   │   ├── report_FMC.txt
+│   │   ├── report_FSLR.txt
+│   │   ├── report_F.txt
+│   │   ├── report_GE.txt
+│   │   ├── report_GILD.txt
+│   │   ├── report_GIS.txt
+│   │   ├── report_GOOGL.txt
+│   │   ├── report_GOOG.txt
+│   │   ├── report_GS.txt
+│   │   ├── report_HAL.txt
+│   │   ├── report_HCA.txt
+│   │   ├── report_HD.txt
+│   │   ├── report_HON.txt
+│   │   ├── report_HSY.txt
+│   │   ├── report_IBM.txt
+│   │   ├── report_ICLN.txt
+│   │   ├── report_INTC.txt
+│   │   ├── report_INTU.txt
+│   │   ├── report_IONQ.txt
+│   │   ├── report_ISRG.txt
+│   │   ├── report_JD.txt
+│   │   ├── report_JNJ.txt
+│   │   ├── report_KHC.txt
+│   │   ├── report_KKR.txt
+│   │   ├── report_KLAC.txt
+│   │   ├── report_KMI.txt
+│   │   ├── report_KO.txt
+│   │   ├── report_KR.txt
+│   │   ├── report_LIN.txt
+│   │   ├── report_LLY.txt
+│   │   ├── report_LMT.txt
+│   │   ├── report_LOW.txt
+│   │   ├── report_LRCX.txt
+│   │   ├── report_LUCD.txt
+│   │   ├── report_LULU.txt
+│   │   ├── report_LYB.txt
+│   │   ├── report_LYFT.txt
+│   │   ├── report_MAA.txt
+│   │   ├── report_MA.txt
+│   │   ├── report_MCD.txt
+│   │   ├── report_MDLZ.txt
+│   │   ├── report_MDT.txt
+│   │   ├── report_META.txt
+│   │   ├── report_MKC.txt
+│   │   ├── report_MMM.txt
+│   │   ├── report_MO.txt
+│   │   ├── report_MPC.txt
+│   │   ├── report_MRK.txt
+│   │   ├── report_MSFT.txt
+│   │   ├── report_MS.txt
+│   │   ├── report_NEE.txt
+│   │   ├── report_NEM.txt
+│   │   ├── report_NFLX.txt
+│   │   ├── report_NKE.txt
+│   │   ├── report_NOC.txt
+│   │   ├── report_NOW.txt
+│   │   ├── report_NVDA.txt
+│   │   ├── report_NXPI.txt
+│   │   ├── report_OKE.txt
+│   │   ├── report_O.txt
+│   │   ├── report_PANW.txt
+│   │   ├── report_PDD.txt
+│   │   ├── report_PEG.txt
+│   │   ├── report_PEP.txt
+│   │   ├── report_PFE.txt
+│   │   ├── report_PG.txt
+│   │   ├── report_PLD.txt
+│   │   ├── report_PLTR.txt
+│   │   ├── report_PM.txt
+│   │   ├── report_PPG.txt
+│   │   ├── report_PSA.txt
+│   │   ├── report_PSX.txt
+│   │   ├── report_PYPL.txt
+│   │   ├── report_QCLN.txt
+│   │   ├── report_QCOM.txt
+│   │   ├── report_QQQ.txt
+│   │   ├── report_REGN.txt
+│   │   ├── report_ROKU.txt
+│   │   ├── report_RTX.txt
+│   │   ├── report_SBUX.txt
+│   │   ├── report_SHW.txt
+│   │   ├── report_SLB.txt
+│   │   ├── report_SO.txt
+│   │   ├── report_SPG.txt
+│   │   ├── report_SPOT.txt
+│   │   ├── report_SQ.txt
+│   │   ├── report_SRE.txt
+│   │   ├── report_STZ.txt
+│   │   ├── report_TGT.txt
+│   │   ├── report_TJX.txt
+│   │   ├── report_TMO.txt
+│   │   ├── report_TSLA.txt
+│   │   ├── report_T.txt
+│   │   ├── report_UBER.txt
+│   │   ├── report_UNH.txt
+│   │   ├── report_UNP.txt
+│   │   ├── report_UPS.txt
+│   │   ├── report_VICI.txt
+│   │   ├── report_VLO.txt
+│   │   ├── report_VOO.txt
+│   │   ├── report_VRTX.txt
+│   │   ├── report_V.txt
+│   │   ├── report_VZ.txt
+│   │   ├── report_WEC.txt
+│   │   ├── report_WFC.txt
+│   │   ├── report_WMB.txt
+│   │   ├── report_WMT.txt
+│   │   ├── report_WM.txt
+│   │   ├── report_XEL.txt
+│   │   ├── report_XOM.txt
+│   │   ├── requirements copy.txt
+│   │   ├── requirements.txt
+│   │   ├── result_005930.csv
+│   │   ├── result_302450.csv
+│   │   ├── result_453810.csv
+│   │   ├── result_453870.csv
+│   │   ├── result_457480.csv
+│   │   ├── result_AAPL.csv
+│   │   ├── result_ABBV.csv
+│   │   ├── result_ABT.csv
+│   │   ├── result_ACN.csv
+│   │   ├── result_ADBE.csv
+│   │   ├── result_ADI.csv
+│   │   ├── result_AEP.csv
+│   │   ├── result_ALB.csv
+│   │   ├── result_AMD.csv
+│   │   ├── result_AMGN.csv
+│   │   ├── result_AMT.csv
+│   │   ├── result_AMZN.csv
+│   │   ├── result_ANET.csv
+│   │   ├── result_APD.csv
+│   │   ├── result_ARM.csv
+│   │   ├── result_AVB.csv
+│   │   ├── result_BAC.csv
+│   │   ├── result_BA.csv
+│   │   ├── result_BKNG.csv
+│   │   ├── result_BKR.csv
+│   │   ├── result_BLK.csv
+│   │   ├── result_BTC-KRW.csv
+│   │   ├── result_BTC-USD.csv
+│   │   ├── result_BX.csv
+│   │   ├── result_CAT.csv
+│   │   ├── result_C.csv
+│   │   ├── result_CE.csv
+│   │   ├── result_CF.csv
+│   │   ├── result_CI.csv
+│   │   ├── result_CL.csv
+│   │   ├── result_CMCSA.csv
+│   │   ├── result_CMG.csv
+│   │   ├── result_COIN.csv
+│   │   ├── result_COP.csv
+│   │   ├── result_COST.csv
+│   │   ├── result_CRM.csv
+│   │   ├── result_CSCO.csv
+│   │   ├── result_CSX.csv
+│   │   ├── result_CVS.csv
+│   │   ├── result_CVX.csv
+│   │   ├── result_D.csv
+│   │   ├── result_DD.csv
+│   │   ├── result_DE.csv
+│   │   ├── result_DG.csv
+│   │   ├── result_DHR.csv
+│   │   ├── result_DIA.csv
+│   │   ├── result_DIS.csv
+│   │   ├── result_DOW.csv
+│   │   ├── result_DUK.csv
+│   │   ├── result_EA.csv
+│   │   ├── result_ECL.csv
+│   │   ├── result_ED.csv
+│   │   ├── result_EL.csv
+│   │   ├── result_EOG.csv
+│   │   ├── result_EQIX.csv
+│   │   ├── result_EQR.csv
+│   │   ├── result_ES.csv
+│   │   ├── result_ETN.csv
+│   │   ├── result_EXC.csv
+│   │   ├── result_EXPE.csv
+│   │   ├── result_EXR.csv
+│   │   ├── result_F.csv
+│   │   ├── result_FDX.csv
+│   │   ├── result_FMC.csv
+│   │   ├── result_GE.csv
+│   │   ├── result_GILD.csv
+│   │   ├── result_GIS.csv
+│   │   ├── result_GOOG.csv
+│   │   ├── result_GOOGL.csv
+│   │   ├── result_GS.csv
+│   │   ├── result_HAL.csv
+│   │   ├── result_HCA.csv
+│   │   ├── result_HD.csv
+│   │   ├── result_HON.csv
+│   │   ├── result_HSY.csv
+│   │   ├── result_IBM.csv
+│   │   ├── result_ICLN.csv
+│   │   ├── result_INTC.csv
+│   │   ├── result_INTU.csv
+│   │   ├── result_IONQ.csv
+│   │   ├── result_ISRG.csv
+│   │   ├── result_JD.csv
+│   │   ├── result_JNJ.csv
+│   │   ├── result_KHC.csv
+│   │   ├── result_KKR.csv
+│   │   ├── result_KLAC.csv
+│   │   ├── result_KMI.csv
+│   │   ├── result_KO.csv
+│   │   ├── result_KR.csv
+│   │   ├── result_LIN.csv
+│   │   ├── result_LLY.csv
+│   │   ├── result_LMT.csv
+│   │   ├── result_LOW.csv
+│   │   ├── result_LYB.csv
+│   │   ├── result_LYFT.csv
+│   │   ├── result_MAA.csv
+│   │   ├── result_MA.csv
+│   │   ├── result_MCD.csv
+│   │   ├── result_MDLZ.csv
+│   │   ├── result_META.csv
+│   │   ├── result_MKC.csv
+│   │   ├── result_MMM.csv
+│   │   ├── result_MO.csv
+│   │   ├── result_MPC.csv
+│   │   ├── result_mpl_005930.png
+│   │   ├── result_mpl_302450.png
+│   │   ├── result_mpl_453810.png
+│   │   ├── result_mpl_453870.png
+│   │   ├── result_mpl_457480.png
+│   │   ├── result_mpl_AAPL.png
+│   │   ├── result_mpl_ABBV.png
+│   │   ├── result_mpl_ABT.png
+│   │   ├── result_mpl_ACN.png
+│   │   ├── result_mpl_ADBE.png
+│   │   ├── result_mpl_ADI.png
+│   │   ├── result_mpl_AEP.png
+│   │   ├── result_mpl_ALB.png
+│   │   ├── result_mpl_AMD.png
+│   │   ├── result_mpl_AMGN.png
+│   │   ├── result_mpl_AMT.png
+│   │   ├── result_mpl_AMZN.png
+│   │   ├── result_mpl_ANET.png
+│   │   ├── result_mpl_APD.png
+│   │   ├── result_mpl_ARM.png
+│   │   ├── result_mpl_AVB.png
+│   │   ├── result_mpl_BAC.png
+│   │   ├── result_mpl_BA.png
+│   │   ├── result_mpl_BKNG.png
+│   │   ├── result_mpl_BKR.png
+│   │   ├── result_mpl_BLK.png
+│   │   ├── result_mpl_BTC-KRW.png
+│   │   ├── result_mpl_BTC-USD.png
+│   │   ├── result_mpl_BX.png
+│   │   ├── result_mpl_CAT.png
+│   │   ├── result_mpl_CE.png
+│   │   ├── result_mpl_CF.png
+│   │   ├── result_mpl_CI.png
+│   │   ├── result_mpl_CL.png
+│   │   ├── result_mpl_CMCSA.png
+│   │   ├── result_mpl_CMG.png
+│   │   ├── result_mpl_COIN.png
+│   │   ├── result_mpl_COP.png
+│   │   ├── result_mpl_COST.png
+│   │   ├── result_mpl_C.png
+│   │   ├── result_mpl_CRM.png
+│   │   ├── result_mpl_CSCO.png
+│   │   ├── result_mpl_CSX.png
+│   │   ├── result_mpl_CVS.png
+│   │   ├── result_mpl_CVX.png
+│   │   ├── result_mpl_DD.png
+│   │   ├── result_mpl_DE.png
+│   │   ├── result_mpl_DG.png
+│   │   ├── result_mpl_DHR.png
+│   │   ├── result_mpl_DIA.png
+│   │   ├── result_mpl_DIS.png
+│   │   ├── result_mpl_DOW.png
+│   │   ├── result_mpl_D.png
+│   │   ├── result_mpl_DUK.png
+│   │   ├── result_mpl_EA.png
+│   │   ├── result_mpl_ECL.png
+│   │   ├── result_mpl_ED.png
+│   │   ├── result_mpl_EL.png
+│   │   ├── result_mpl_EOG.png
+│   │   ├── result_mpl_EQIX.png
+│   │   ├── result_mpl_EQR.png
+│   │   ├── result_mpl_ES.png
+│   │   ├── result_mpl_ETN.png
+│   │   ├── result_mpl_EXC.png
+│   │   ├── result_mpl_EXPE.png
+│   │   ├── result_mpl_EXR.png
+│   │   ├── result_mpl_FDX.png
+│   │   ├── result_mpl_FMC.png
+│   │   ├── result_mpl_F.png
+│   │   ├── result_mpl_GE.png
+│   │   ├── result_mpl_GILD.png
+│   │   ├── result_mpl_GIS.png
+│   │   ├── result_mpl_GOOGL.png
+│   │   ├── result_mpl_GOOG.png
+│   │   ├── result_mpl_GS.png
+│   │   ├── result_mpl_HAL.png
+│   │   ├── result_mpl_HCA.png
+│   │   ├── result_mpl_HD.png
+│   │   ├── result_mpl_HON.png
+│   │   ├── result_mpl_HSY.png
+│   │   ├── result_mpl_IBM.png
+│   │   ├── result_mpl_ICLN.png
+│   │   ├── result_mpl_INTC.png
+│   │   ├── result_mpl_INTU.png
+│   │   ├── result_mpl_IONQ.png
+│   │   ├── result_mpl_ISRG.png
+│   │   ├── result_mpl_JD.png
+│   │   ├── result_mpl_JNJ.png
+│   │   ├── result_mpl_KHC.png
+│   │   ├── result_mpl_KKR.png
+│   │   ├── result_mpl_KLAC.png
+│   │   ├── result_mpl_KMI.png
+│   │   ├── result_mpl_KO.png
+│   │   ├── result_mpl_KR.png
+│   │   ├── result_mpl_LIN.png
+│   │   ├── result_mpl_LLY.png
+│   │   ├── result_mpl_LMT.png
+│   │   ├── result_mpl_LOW.png
+│   │   ├── result_mpl_LYB.png
+│   │   ├── result_mpl_LYFT.png
+│   │   ├── result_mpl_MAA.png
+│   │   ├── result_mpl_MA.png
+│   │   ├── result_mpl_MCD.png
+│   │   ├── result_mpl_MDLZ.png
+│   │   ├── result_mpl_META.png
+│   │   ├── result_mpl_MKC.png
+│   │   ├── result_mpl_MMM.png
+│   │   ├── result_mpl_MO.png
+│   │   ├── result_mpl_MPC.png
+│   │   ├── result_mpl_MRK.png
+│   │   ├── result_mpl_MSFT.png
+│   │   ├── result_mpl_MS.png
+│   │   ├── result_mpl_NEE.png
+│   │   ├── result_mpl_NEM.png
+│   │   ├── result_mpl_NFLX.png
+│   │   ├── result_mpl_NKE.png
+│   │   ├── result_mpl_NOC.png
+│   │   ├── result_mpl_NOW.png
+│   │   ├── result_mpl_NVDA.png
+│   │   ├── result_mpl_OKE.png
+│   │   ├── result_mpl_O.png
+│   │   ├── result_mpl_PANW.png
+│   │   ├── result_mpl_PDD.png
+│   │   ├── result_mpl_PEG.png
+│   │   ├── result_mpl_PEP.png
+│   │   ├── result_mpl_PFE.png
+│   │   ├── result_mpl_PG.png
+│   │   ├── result_mpl_PLD.png
+│   │   ├── result_mpl_PLTR.png
+│   │   ├── result_mpl_PM.png
+│   │   ├── result_mpl_PPG.png
+│   │   ├── result_mpl_PSA.png
+│   │   ├── result_mpl_PSX.png
+│   │   ├── result_mpl_QCLN.png
+│   │   ├── result_mpl_QCOM.png
+│   │   ├── result_mpl_QQQ.png
+│   │   ├── result_mpl_REGN.png
+│   │   ├── result_mpl_ROKU.png
+│   │   ├── result_mpl_RTX.png
+│   │   ├── result_mpl_SBUX.png
+│   │   ├── result_mpl_SHW.png
+│   │   ├── result_mpl_SLB.png
+│   │   ├── result_mpl_SO.png
+│   │   ├── result_mpl_SPG.png
+│   │   ├── result_mpl_SPOT.png
+│   │   ├── result_mpl_SRE.png
+│   │   ├── result_mpl_STZ.png
+│   │   ├── result_mpl_TGT.png
+│   │   ├── result_mpl_TJX.png
+│   │   ├── result_mpl_TMO.png
+│   │   ├── result_mpl_T.png
+│   │   ├── result_mpl_TSLA.png
+│   │   ├── result_mpl_TSM.png
+│   │   ├── result_mpl_UBER.png
+│   │   ├── result_mpl_UNH.png
+│   │   ├── result_mpl_UNP.png
+│   │   ├── result_mpl_UPS.png
+│   │   ├── result_mpl_VICI.png
+│   │   ├── result_mpl_VLO.png
+│   │   ├── result_mpl_VOO.png
+│   │   ├── result_mpl_V.png
+│   │   ├── result_mpl_VRTX.png
+│   │   ├── result_mpl_VZ.png
+│   │   ├── result_mpl_WEC.png
+│   │   ├── result_mpl_WFC.png
+│   │   ├── result_mpl_WMB.png
+│   │   ├── result_mpl_WM.png
+│   │   ├── result_mpl_WMT.png
+│   │   ├── result_mpl_XEL.png
+│   │   ├── result_mpl_XOM.png
+│   │   ├── result_MRK.csv
+│   │   ├── result_MS.csv
+│   │   ├── result_MSFT.csv
+│   │   ├── result_NEE.csv
+│   │   ├── result_NEM.csv
+│   │   ├── result_NFLX.csv
+│   │   ├── result_NKE.csv
+│   │   ├── result_NOC.csv
+│   │   ├── result_NOW.csv
+│   │   ├── result_NVDA.csv
+│   │   ├── result_O.csv
+│   │   ├── result_OKE.csv
+│   │   ├── result_PANW.csv
+│   │   ├── result_PDD.csv
+│   │   ├── result_PEG.csv
+│   │   ├── result_PEP.csv
+│   │   ├── result_PFE.csv
+│   │   ├── result_PG.csv
+│   │   ├── result_PLD.csv
+│   │   ├── result_PLTR.csv
+│   │   ├── result_PM.csv
+│   │   ├── result_PPG.csv
+│   │   ├── result_PSA.csv
+│   │   ├── result_PSX.csv
+│   │   ├── result_QCLN.csv
+│   │   ├── result_QCOM.csv
+│   │   ├── result_QQQ.csv
+│   │   ├── result_REGN.csv
+│   │   ├── result_ROKU.csv
+│   │   ├── result_RTX.csv
+│   │   ├── result_SBUX.csv
+│   │   ├── result_SHW.csv
+│   │   ├── result_SLB.csv
+│   │   ├── result_SO.csv
+│   │   ├── result_SPG.csv
+│   │   ├── result_SPOT.csv
+│   │   ├── result_SRE.csv
+│   │   ├── results_relative_divergence.csv
+│   │   ├── results-stock_results.csv
+│   │   ├── result_STZ.csv
+│   │   ├── result_T.csv
+│   │   ├── result_TGT.csv
+│   │   ├── result_TJX.csv
+│   │   ├── result_TMO.csv
+│   │   ├── result_TSLA.csv
+│   │   ├── result_TSM.csv
+│   │   ├── result_UBER.csv
+│   │   ├── result_UNH.csv
+│   │   ├── result_UNP.csv
+│   │   ├── result_UPS.csv
+│   │   ├── result_V.csv
+│   │   ├── result_VICI.csv
+│   │   ├── result_VLO.csv
+│   │   ├── result_VOO_005930.csv
+│   │   ├── result_VOO_302450.csv
+│   │   ├── result_VOO_453810.csv
+│   │   ├── result_VOO_453870.csv
+│   │   ├── result_VOO_457480.csv
+│   │   ├── result_VOO_AAPL.csv
+│   │   ├── result_VOO_ABBV.csv
+│   │   ├── result_VOO_ABT.csv
+│   │   ├── result_VOO_ACN.csv
+│   │   ├── result_VOO_ADBE.csv
+│   │   ├── result_VOO_ADI.csv
+│   │   ├── result_VOO_AEP.csv
+│   │   ├── result_VOO_ALB.csv
+│   │   ├── result_VOO_AMD.csv
+│   │   ├── result_VOO_AMGN.csv
+│   │   ├── result_VOO_AMT.csv
+│   │   ├── result_VOO_AMZN.csv
+│   │   ├── result_VOO_ANET.csv
+│   │   ├── result_VOO_APD.csv
+│   │   ├── result_VOO_ARM.csv
+│   │   ├── result_VOO_AVB.csv
+│   │   ├── result_VOO_BAC.csv
+│   │   ├── result_VOO_BA.csv
+│   │   ├── result_VOO_BKNG.csv
+│   │   ├── result_VOO_BKR.csv
+│   │   ├── result_VOO_BLK.csv
+│   │   ├── result_VOO_BTC-KRW.csv
+│   │   ├── result_VOO_BTC-USD.csv
+│   │   ├── result_VOO_BX.csv
+│   │   ├── result_VOO_CAT.csv
+│   │   ├── result_VOO_C.csv
+│   │   ├── result_VOO_CE.csv
+│   │   ├── result_VOO_CF.csv
+│   │   ├── result_VOO_CI.csv
+│   │   ├── result_VOO_CL.csv
+│   │   ├── result_VOO_CMCSA.csv
+│   │   ├── result_VOO_CMG.csv
+│   │   ├── result_VOO_COIN.csv
+│   │   ├── result_VOO_COP.csv
+│   │   ├── result_VOO_COST.csv
+│   │   ├── result_VOO_CRM.csv
+│   │   ├── result_VOO_CSCO.csv
+│   │   ├── result_VOO.csv
+│   │   ├── result_VOO_CSX.csv
+│   │   ├── result_VOO_CVS.csv
+│   │   ├── result_VOO_CVX.csv
+│   │   ├── result_VOO_D.csv
+│   │   ├── result_VOO_DD.csv
+│   │   ├── result_VOO_DE.csv
+│   │   ├── result_VOO_DG.csv
+│   │   ├── result_VOO_DHR.csv
+│   │   ├── result_VOO_DIA.csv
+│   │   ├── result_VOO_DIS.csv
+│   │   ├── result_VOO_DOW.csv
+│   │   ├── result_VOO_DUK.csv
+│   │   ├── result_VOO_EA.csv
+│   │   ├── result_VOO_ECL.csv
+│   │   ├── result_VOO_ED.csv
+│   │   ├── result_VOO_EL.csv
+│   │   ├── result_VOO_EOG.csv
+│   │   ├── result_VOO_EQIX.csv
+│   │   ├── result_VOO_EQR.csv
+│   │   ├── result_VOO_ES.csv
+│   │   ├── result_VOO_ETN.csv
+│   │   ├── result_VOO_EXC.csv
+│   │   ├── result_VOO_EXPE.csv
+│   │   ├── result_VOO_EXR.csv
+│   │   ├── result_VOO_F.csv
+│   │   ├── result_VOO_FDX.csv
+│   │   ├── result_VOO_FMC.csv
+│   │   ├── result_VOO_GE.csv
+│   │   ├── result_VOO_GILD.csv
+│   │   ├── result_VOO_GIS.csv
+│   │   ├── result_VOO_GOOG.csv
+│   │   ├── result_VOO_GOOGL.csv
+│   │   ├── result_VOO_GS.csv
+│   │   ├── result_VOO_HAL.csv
+│   │   ├── result_VOO_HCA.csv
+│   │   ├── result_VOO_HD.csv
+│   │   ├── result_VOO_HON.csv
+│   │   ├── result_VOO_HSY.csv
+│   │   ├── result_VOO_IBM.csv
+│   │   ├── result_VOO_ICLN.csv
+│   │   ├── result_VOO_INTC.csv
+│   │   ├── result_VOO_INTU.csv
+│   │   ├── result_VOO_IONQ.csv
+│   │   ├── result_VOO_ISRG.csv
+│   │   ├── result_VOO_JD.csv
+│   │   ├── result_VOO_JNJ.csv
+│   │   ├── result_VOO_KHC.csv
+│   │   ├── result_VOO_KKR.csv
+│   │   ├── result_VOO_KLAC.csv
+│   │   ├── result_VOO_KMI.csv
+│   │   ├── result_VOO_KO.csv
+│   │   ├── result_VOO_KR.csv
+│   │   ├── result_VOO_LIN.csv
+│   │   ├── result_VOO_LLY.csv
+│   │   ├── result_VOO_LMT.csv
+│   │   ├── result_VOO_LOW.csv
+│   │   ├── result_VOO_LYB.csv
+│   │   ├── result_VOO_LYFT.csv
+│   │   ├── result_VOO_MAA.csv
+│   │   ├── result_VOO_MA.csv
+│   │   ├── result_VOO_MCD.csv
+│   │   ├── result_VOO_MDLZ.csv
+│   │   ├── result_VOO_META.csv
+│   │   ├── result_VOO_MKC.csv
+│   │   ├── result_VOO_MMM.csv
+│   │   ├── result_VOO_MO.csv
+│   │   ├── result_VOO_MPC.csv
+│   │   ├── result_VOO_MRK.csv
+│   │   ├── result_VOO_MS.csv
+│   │   ├── result_VOO_MSFT.csv
+│   │   ├── result_VOO_NEE.csv
+│   │   ├── result_VOO_NEM.csv
+│   │   ├── result_VOO_NFLX.csv
+│   │   ├── result_VOO_NKE.csv
+│   │   ├── result_VOO_NOC.csv
+│   │   ├── result_VOO_NOW.csv
+│   │   ├── result_VOO_NVDA.csv
+│   │   ├── result_VOO_O.csv
+│   │   ├── result_VOO_OKE.csv
+│   │   ├── result_VOO_PANW.csv
+│   │   ├── result_VOO_PDD.csv
+│   │   ├── result_VOO_PEG.csv
+│   │   ├── result_VOO_PEP.csv
+│   │   ├── result_VOO_PFE.csv
+│   │   ├── result_VOO_PG.csv
+│   │   ├── result_VOO_PLD.csv
+│   │   ├── result_VOO_PLTR.csv
+│   │   ├── result_VOO_PM.csv
+│   │   ├── result_VOO_PPG.csv
+│   │   ├── result_VOO_PSA.csv
+│   │   ├── result_VOO_PSX.csv
+│   │   ├── result_VOO_QCLN.csv
+│   │   ├── result_VOO_QCOM.csv
+│   │   ├── result_VOO_QQQ.csv
+│   │   ├── result_VOO_REGN.csv
+│   │   ├── result_VOO_ROKU.csv
+│   │   ├── result_VOO_RTX.csv
+│   │   ├── result_VOO_SBUX.csv
+│   │   ├── result_VOO_SHW.csv
+│   │   ├── result_VOO_SLB.csv
+│   │   ├── result_VOO_SO.csv
+│   │   ├── result_VOO_SPG.csv
+│   │   ├── result_VOO_SPOT.csv
+│   │   ├── result_VOO_SRE.csv
+│   │   ├── result_VOO_STZ.csv
+│   │   ├── result_VOO_T.csv
+│   │   ├── result_VOO_TGT.csv
+│   │   ├── result_VOO_TJX.csv
+│   │   ├── result_VOO_TMO.csv
+│   │   ├── result_VOO_TSLA.csv
+│   │   ├── result_VOO_TSM.csv
+│   │   ├── result_VOO_UBER.csv
+│   │   ├── result_VOO_UNH.csv
+│   │   ├── result_VOO_UNP.csv
+│   │   ├── result_VOO_UPS.csv
+│   │   ├── result_VOO_V.csv
+│   │   ├── result_VOO_VICI.csv
+│   │   ├── result_VOO_VLO.csv
+│   │   ├── result_VOO_VOO.csv
+│   │   ├── result_VOO_VRTX.csv
+│   │   ├── result_VOO_VZ.csv
+│   │   ├── result_VOO_WEC.csv
+│   │   ├── result_VOO_WFC.csv
+│   │   ├── result_VOO_WMB.csv
+│   │   ├── result_VOO_WM.csv
+│   │   ├── result_VOO_WMT.csv
+│   │   ├── result_VOO_XEL.csv
+│   │   ├── result_VOO_XOM.csv
+│   │   ├── result_VRTX.csv
+│   │   ├── result_VZ.csv
+│   │   ├── result_WEC.csv
+│   │   ├── result_WFC.csv
+│   │   ├── result_WMB.csv
+│   │   ├── result_WM.csv
+│   │   ├── result_WMT.csv
+│   │   ├── result_XEL.csv
+│   │   ├── result_XOM.csv
+│   │   └── stock_market.csv
+│   └── js
+│       ├── scripts copy.js
+│       └── scripts.js
+├── templates
+│   ├── index copy.html
+│   └── index.html
+├── test
+│   └── flask-discord.py
+└── test.html
+
+176 directories, 1278 files
+tree is not installed, but available in the following packages, pick one to run it, Ctrl+C to cancel.
