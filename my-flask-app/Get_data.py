@@ -109,8 +109,8 @@ def process_data(stock_data, ticker):
     if len(stock_data) < 20:
         raise ValueError(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
     
-    stock_data.fillna(method='ffill', inplace=True)
-    stock_data.fillna(method='bfill', inplace=True)
+    stock_data.ffill(inplace=True)
+    stock_data.bfill(inplace=True)
 
     stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
     stock_data['bb_upper_ta'], stock_data['bb_middle_ta'], stock_data['bb_lower_ta'] = calculate_bollinger_bands(stock_data['Close'])
