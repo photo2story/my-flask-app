@@ -26,18 +26,13 @@ option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
 # VOO 데이터를 가져오거나 캐시된 데이터를 사용하는 함수
 async def get_voo_data(option_strategy, ctx):
-    if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
+    if is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
         await ctx.send("Using cached VOO data.")
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
     else:
         await ctx.send("Fetching new VOO data.")
         stock_data2, first_stock_data_date = get_stock_data('VOO', config.START_DATE, config.END_DATE)
         result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
-        
-        # 여기서 result_df2가 DataFrame인지 확인
-        if not isinstance(result_df2, pd.DataFrame):
-            raise TypeError(f"Expected DataFrame from my_strategy, got {type(result_df2)}")
-        
         result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
         
         await ctx.send("Saving new VOO data to cache.")
@@ -65,28 +60,13 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         # 주식 데이터 가져오기
         stock_data, first_stock_data_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
-        
-        # my_strategy 함수 호출 및 반환값 확인
-        stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)
-        
-        if not isinstance(stock_result_df, pd.DataFrame):
-            raise TypeError(f"my_strategy returned {type(stock_result_df)} instead of DataFrame")
-        
-        if stock_result_df.empty:
-            raise ValueError("my_strategy returned an empty DataFrame")
-        
-        print('stock_result_df:', stock_result_df.head())  # 첫 몇 줄만 출력
+        stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)  # 변수 이름 변경
+        print('stock_result_df:', stock_result_df)
         
         await ctx.send(f'Exporting data for {stock}.')
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
-        voo_data_df = await get_voo_data(option_strategy, ctx)
-        
-        if not isinstance(voo_data_df, pd.DataFrame):
-            raise TypeError(f"get_voo_data returned {type(voo_data_df)} instead of DataFrame")
-        
-        if voo_data_df.empty:
-            raise ValueError("get_voo_data returned an empty DataFrame")
+        voo_data_df = await get_voo_data(option_strategy, ctx)  # 변수 이름 변경
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
@@ -99,7 +79,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         # 병합 후 결측치 채우기
         combined_df.fillna(0, inplace=True)
-        print(combined_df.head())  # 첫 몇 줄만 출력
+        print(combined_df)
 
         # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
         combined_df = combined_df[(combined_df['price'] != 0)]
@@ -120,11 +100,11 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         await ctx.send(f"Backtest and send process completed successfully for {stock}.")
     
     except Exception as e:
-        error_message = f"An error occurred while processing {stock}: {str(e)}\n"
-        error_message += f"Error type: {type(e)}\n"
-        error_message += f"Error location: {e.__traceback__.tb_frame.f_code.co_filename}, line {e.__traceback__.tb_lineno}"
+        error_message = f"An error occurred while processing {stock}: {e}"
         await ctx.send(error_message)
         print(error_message)
+
+
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
@@ -141,36 +121,18 @@ async def test_backtest_and_send():
     stock = "QQQ"
     
     try:
-        # 캐시 유효성 검사 및 결과 출력
         if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
             print(f"Using cached VOO data for testing.")
         else:
             print(f"VOO cache is not valid or missing. New data will be fetched.")
-        
+
         # backtest_and_send 함수 실행
         await backtest_and_send(ctx, stock, option_strategy='default', bot=bot)
         
-        # VOO 데이터가 유효한 데이터프레임인지 확인
-        voo_data_df = await get_voo_data(option_strategy, ctx)
-        if isinstance(voo_data_df, pd.DataFrame):
-            print("VOO data is a valid DataFrame.")
-            print(f"VOO data head:\n{voo_data_df.head()}")
-        else:
-            raise ValueError("VOO data is not a valid DataFrame.")
-        
-        # 주식 데이터가 유효한 데이터프레임인지 확인
-        stock_data, first_stock_data_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
-        if isinstance(stock_data, pd.DataFrame):
-            print(f"{stock} data is a valid DataFrame.")
-            print(f"{stock} data head:\n{stock_data.head()}")
-        else:
-            raise ValueError(f"{stock} data is not a valid DataFrame.")
-        
         # 결과 비교를 위한 그래프 생성 함수 실행
-        await plot_comparison_results(stock, START_DATE, END_DATE)
+        await plot_comparison_results(stock, config.START_DATE, config.END_DATE)
 
         print("Backtesting completed successfully.")
-    
     except Exception as e:
         print(f"Error occurred while backtesting: {e}")
 
@@ -178,6 +140,7 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
+
 
     # python backtest_send.py        
 
