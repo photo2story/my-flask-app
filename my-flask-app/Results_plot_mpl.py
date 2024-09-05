@@ -125,7 +125,7 @@ async def plot_results_mpl(ticker, start_date, end_date):
 
 if __name__ == "__main__":
     print("Starting test for plotting results.")
-    ticker = "QQQ"
+    ticker = "AAPL"
     start_date = config.START_DATE
     end_date = config.END_DATE
     print(f"Plotting results for {ticker} from {start_date} to {end_date}")
@@ -135,6 +135,7 @@ if __name__ == "__main__":
         print("Plotting completed successfully.")
     except Exception as e:
         print(f"Error occurred while plotting results: {e}")
+
 
 
 r"""
