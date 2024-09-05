@@ -46,7 +46,7 @@ def my_strategy(stock_data, option_strategy):
     # Loop over data
     for i, row in stock_data.iterrows():
         current_date = row.name
-        index = stock_data.index.get_loc(i)
+        # index = stock_data.index.get_loc(i)
         
         # 매달 적립 수행
         cash, invested_amount, signal, prev_month = config.monthly_deposit(current_date, prev_month, monthly_investment, cash, invested_amount)

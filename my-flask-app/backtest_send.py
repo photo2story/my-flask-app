@@ -1,18 +1,15 @@
 # backtest_send.py
-import requests
-import os, sys
+import os
 import pandas as pd
-import matplotlib.pyplot as plt
-from discord.ext import commands
 import discord
 import asyncio
+from discord.ext import commands
 
 # 사용자 정의 모듈 임포트
 from Results_plot import plot_comparison_results
-from get_ticker import get_ticker_name, is_valid_stock
 from get_compare_stock_data import save_simplified_csv
 from git_operations import move_files_to_images_folder
-from Get_data import get_stock_data
+from Get_data import get_stock_data  # 여기에서 stock 데이터를 가져옴
 import My_strategy
 from Data_export import export_csv
 
@@ -25,19 +22,20 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
 # VOO 데이터를 가져오거나 캐시된 데이터를 사용하는 함수
-async def get_voo_data(option_strategy, ctx):
-    if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
+async def get_voo_data(option_strategy, first_date, last_date, ctx):
+    if config.is_cache_valid(config.VOO_CACHE_FILE, first_date, last_date):
         await ctx.send("Using cached VOO data.")
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
     else:
-        await ctx.send("Fetching new VOO data.")
-        stock_data2, first_stock_data_date = get_stock_data('VOO', config.START_DATE, config.END_DATE)
-        result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
-        result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
+        await ctx.send(f"Fetching new VOO data from {first_date} to {last_date}")
+        voo_data, _, _ = get_stock_data('VOO', first_date, last_date)
+        voo_data_df = My_strategy.my_strategy(voo_data, option_strategy)
+        voo_data_df.rename(columns={'rate': 'rate_vs'}, inplace=True)  # 'rate' 열을 'rate_vs'로 이름 변경
         
+        # 새로운 데이터를 캐시에 저장
         await ctx.send("Saving new VOO data to cache.")
-        result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
-        cached_voo_data = result_df2
+        voo_data_df.to_csv(config.VOO_CACHE_FILE, index=False)
+        cached_voo_data = voo_data_df
     
     return cached_voo_data
 
@@ -97,18 +95,6 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         await ctx.send(error_message)
         print(error_message)
 
-        save_simplified_csv(stock)
-
-        # 파일 이동 및 깃헙 커밋/푸시
-        await move_files_to_images_folder()
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("Waiting"))
-        await ctx.send(f"Backtest and send process completed successfully for {stock}.")
-    
-    except Exception as e:
-        error_message = f"An error occurred while processing {stock}: {e}"
-        await ctx.send(error_message)
-        print(error_message)
-
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
@@ -122,16 +108,17 @@ async def test_backtest_and_send():
 
     ctx = MockContext()
     bot = MockBot()
-    stock = "BTC-USD"
+    stock = "QQQ"
     
     try:
-        if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
+        # 캐시 확인 및 데이터 가져오기
+        if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE, config.END_DATE):
             print(f"Using cached VOO data for testing.")
         else:
             print(f"VOO cache is not valid or missing. New data will be fetched.")
 
         # backtest_and_send 함수 실행
-        await backtest_and_send(ctx, stock, option_strategy='monthly', bot=bot)
+        await backtest_and_send(ctx, stock, option_strategy='default', bot=bot)
         
         # 결과 비교를 위한 그래프 생성 함수 실행
         await plot_comparison_results(stock, config.START_DATE, config.END_DATE)
@@ -144,6 +131,8 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
+
+
 
 
     # python backtest_send.py        
