@@ -8,6 +8,7 @@ import numpy as np
 import FinanceDataReader as fdr
 import os
 import sys
+import config
 
 from github_operations import ticker_path  # stock_market.csv 파일 경로
 
@@ -88,7 +89,7 @@ def get_stock_data(ticker, start_date, end_date):
     safe_ticker = ticker.replace('/', '-')
     
     # static/images 폴더 경로 설정
-    folder_path = os.path.join('static', 'images')
+    folder_path = config.STATIC_IMAGES_PATH
     
     # 폴더가 없을 경우 생성
     os.makedirs(folder_path, exist_ok=True)
@@ -125,11 +126,13 @@ def get_stock_data(ticker, start_date, end_date):
     return combined_data, first_date, last_date
 
 def process_data(stock_data, ticker):
+    # 데이터가 20개 미만일 경우 경고 메시지를 출력하고 처리 건너뛰기
     if len(stock_data) < 20:
-        raise ValueError(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
+        print(f"Warning: Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
+        return stock_data  # 데이터가 부족한 경우 기존 데이터 반환
     
-    stock_data.fillna(method='ffill', inplace=True)
-    stock_data.fillna(method='bfill', inplace=True)
+    stock_data.ffill(inplace=True)
+    stock_data.bfill(inplace=True)
 
     # RSI, Bollinger Bands
     stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
@@ -152,7 +155,11 @@ def process_data(stock_data, ticker):
     stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)
 
     # PPO (Price Percentage Oscillator)
-    stock_data['ppo'], stock_data['ppo_signal'], stock_data['ppo_histogram'] = calculate_ppo(stock_data['Close'])
+    try:
+        stock_data['ppo'], stock_data['ppo_signal'], stock_data['ppo_histogram'] = calculate_ppo(stock_data['Close'])
+    except Exception as e:
+        print(f"Error calculating PPO for {ticker}: {e}")
+        stock_data['ppo'], stock_data['ppo_signal'], stock_data['ppo_histogram'] = np.nan, np.nan, np.nan
 
     stock_data['Stock'] = ticker
 
@@ -179,11 +186,11 @@ def get_price_info(ticker):
 if __name__ == "__main__":
     industry_info = load_industry_info()
 
-    ticker = 'BTC-USD'
+    ticker = 'tsla'
     start_date = '2019-01-01'
-    end_date = '2024-09-02'
+    end_date = '2024-09-05'
 
-    stock_data, first_stock_data_date = get_stock_data(ticker, start_date, end_date)
+    stock_data, start_date, end_date = get_stock_data(ticker, start_date, end_date)
     print(stock_data)
     print(np.__version__)
     print(pd.__version__)
