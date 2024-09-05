@@ -124,51 +124,69 @@ def get_stock_data(ticker, start_date, end_date):
     
     return combined_data, first_date, last_date
 
-
-
 def process_data(stock_data, ticker):
-    """
-    주가 데이터를 처리하고, 필요한 경우 여러 기술적 지표를 추가합니다.
-    """
     if len(stock_data) < 20:
-        print(f"Warning: Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
-        return None  # 데이터가 부족한 경우 처리하지 않고 반환
+        raise ValueError(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
+    
+    stock_data.fillna(method='ffill', inplace=True)
+    stock_data.fillna(method='bfill', inplace=True)
 
-    stock_data.ffill(inplace=True)
-    stock_data.bfill(inplace=True)
-
+    # RSI, Bollinger Bands
     stock_data['RSI_14'] = calculate_rsi(stock_data['Close'], window=14)
     stock_data['bb_upper_ta'], stock_data['bb_middle_ta'], stock_data['bb_lower_ta'] = calculate_bollinger_bands(stock_data['Close'])
 
+    # Aroon, MFI
     stock_data.ta.aroon(length=25, append=True)
     stock_data['MFI_14'] = calculate_mfi(stock_data['High'].values, stock_data['Low'].values, stock_data['Close'].values, stock_data['Volume'].values, length=14)
+    
+    # SMA (이동평균선)
     stock_data.ta.sma(close='Close', length=5, append=True)
     stock_data.ta.sma(close='Close', length=10, append=True)
     stock_data.ta.sma(close='Close', length=20, append=True)
     stock_data.ta.sma(close='Close', length=60, append=True)
     stock_data.ta.sma(close='Close', length=120, append=True)
     stock_data.ta.sma(close='Close', length=240, append=True)
+
+    # Stochastic
     stock_data.ta.stoch(high='High', low='Low', k=20, d=10, append=True)
     stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)
+
+    # PPO (Price Percentage Oscillator)
+    stock_data['ppo'], stock_data['ppo_signal'], stock_data['ppo_histogram'] = calculate_ppo(stock_data['Close'])
+
     stock_data['Stock'] = ticker
 
+    # Sector 정보 추가
     sector_df = pd.read_csv(ticker_path)
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
 
     return stock_data
 
+
+def get_price_info(ticker):
+    api_key = 'Alpha_API'
+    url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker}&apikey={api_key}'
+    response = requests.get(url)
+    data = response.json()
+
+    if 'Exchange' in data:
+        market = data['Exchange']
+        return market
+    else:
+        return "알 수 없음"
+
 if __name__ == "__main__":
     industry_info = load_industry_info()
 
-    ticker = 'QQQ'
+    ticker = 'BTC-USD'
     start_date = '2019-01-01'
     end_date = '2024-09-02'
 
-    stock_data, first_stock_data_date, last_stock_data_date = get_stock_data(ticker, start_date, end_date)
+    stock_data, first_stock_data_date = get_stock_data(ticker, start_date, end_date)
     print(stock_data)
-    print(f"First data date: {first_stock_data_date}")
-    print(f"Last data date: {last_stock_data_date}")
-
+    print(np.__version__)
+    print(pd.__version__)
+    print(ta.__version__)
 
 ## python Get_data.py    
