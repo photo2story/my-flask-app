@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Python App",  // Task 이름
+            "type": "shell",  // 셸 명령 사용
+            "command": "python app.py",  // 실행할 명령어
+            "group": {
+                "kind": "build",
+                "isDefault": true  // Ctrl + Shift + B를 눌렀을 때 기본 실행
+            },
+            "presentation": {
+                "reveal": "always",  // 터미널을 항상 표시
+                "panel": "shared"  // 같은 터미널을 사용
+            },
+            "problemMatcher": []
+        }
+    ]
+}
