@@ -110,8 +110,10 @@ def get_stock_data(ticker, start_date, end_date):
 
 
 def process_data(stock_data, ticker):
-   # if len(stock_data) < 20:
-   #     raise ValueError(f"Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
+    if len(stock_data) < 20:
+        print(f"Warning: Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
+        return None  # 데이터가 부족한 경우 처리하지 않고 반환
+
     
     stock_data.ffill(inplace=True)
     stock_data.bfill(inplace=True)
