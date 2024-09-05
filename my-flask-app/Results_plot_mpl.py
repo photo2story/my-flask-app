@@ -59,6 +59,7 @@ async def plot_results_mpl(ticker, start_date, end_date):
         raise FileNotFoundError(f"No cached data found for {ticker}. Please generate the data first.")
     
     prices = pd.read_csv(result_file_path, parse_dates=['Date'], index_col='Date')
+    print(prices)
 
     # 모든 컬럼 이름을 소문자로 변환
     prices.columns = prices.columns.str.lower()
