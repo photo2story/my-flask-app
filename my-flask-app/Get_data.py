@@ -87,6 +87,7 @@ def get_stock_data(ticker, start_date, end_date):
     if os.path.exists(file_path):
         existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
         last_date = existing_data.index.max().strftime('%Y-%m-%d')
+        first_date = existing_data.index.min().strftime('%Y-%m-%d')
 
         if last_date < end_date:
             new_data = fdr.DataReader(ticker, last_date, end_date)
@@ -96,16 +97,17 @@ def get_stock_data(ticker, start_date, end_date):
             combined_data.to_csv(file_path)
         else:
             combined_data = existing_data
-        first_date = existing_data.index.min()
     else:
         combined_data = fdr.DataReader(ticker, start_date, end_date)
         combined_data = process_data(combined_data, ticker)
         combined_data.to_csv(file_path)
-        first_date = combined_data.index.min()
+        first_date = combined_data.index.min().strftime('%Y-%m-%d')
+        last_date = combined_data.index.max().strftime('%Y-%m-%d')  # 첫 데이터 생성 시 마지막 날짜 추가
 
     print(f"Loaded data for {ticker} from {first_date} to {end_date}")
     
-    return combined_data, first_date
+    return combined_data, first_date, last_date
+
 
 def process_data(stock_data, ticker):
    # if len(stock_data) < 20:
@@ -150,7 +152,7 @@ def get_price_info(ticker):
 if __name__ == "__main__":
     industry_info = load_industry_info()
 
-    ticker = 'BTC-USD'
+    ticker = 'QQQ'
     start_date = '2019-01-01'
     end_date = '2024-09-02'
 

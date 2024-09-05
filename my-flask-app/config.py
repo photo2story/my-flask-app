@@ -155,12 +155,12 @@ def is_gemini_analysis_complete(ticker):
         print(f"Error reading report file for {ticker}: {e}")
         return False
 
-def is_cache_valid(cache_file, start_date):
+def is_cache_valid(cache_file, start_date, end_date):
     """
     캐시 파일이 유효한지 확인:
     - 파일이 존재하는지 확인.
+    - 파일의 시작 날짜가 원하는 시작 날짜와 일치하는지 확인.
     - 파일의 마지막 날짜가 미국 주식시장의 마지막 거래일과 일치하는지 확인.
-    - 파일의 데이터가 START_DATE 이후인지 확인.
     """
     if not os.path.exists(cache_file):
         print("Cache file does not exist.")
@@ -170,30 +170,20 @@ def is_cache_valid(cache_file, start_date):
     
     # 시작 날짜 확인
     min_date_in_cache = df['Date'].min().strftime('%Y-%m-%d')
-    print(f"Start date in cache: {min_date_in_cache}")
-    
     if min_date_in_cache != start_date:
         print(f"Start date mismatch: {min_date_in_cache} != {start_date}")
         return False
     
-    # 마지막 거래일 확인
-    latest_data_date = df['Date'].max()
-    last_trading_day = get_us_last_trading_day(datetime.today())
-
-    # 현재 시간이 장 마감 이후인지 확인
-    current_time = datetime.now(us_eastern)
-    if current_time < us_market_close:
-        print("Market is not closed yet, using previous trading day's data.")
-        last_trading_day = get_us_last_trading_day(datetime.today() - timedelta(days=1))
-
-    print(f"Latest data date in cache: {latest_data_date}, Last trading day: {last_trading_day}")
-
-    if latest_data_date != last_trading_day:
-        print(f"Data is not up-to-date. Latest data date: {latest_data_date}, Last trading day: {last_trading_day}")
+    # 마지막 날짜 확인
+    max_date_in_cache = df['Date'].max().strftime('%Y-%m-%d')
+    if max_date_in_cache < end_date:
+        print(f"End date mismatch: {max_date_in_cache} < {end_date}")
         return False
-
+    
     print("Cache is valid.")
     return True
+
+
 
 # Example function to ensure that the dates match the US market close:
 def ensure_valid_dates(df):

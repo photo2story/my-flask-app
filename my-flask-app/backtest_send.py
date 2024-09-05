@@ -31,7 +31,7 @@ async def get_voo_data(option_strategy, ctx):
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
     else:
         await ctx.send("Fetching new VOO data.")
-        stock_data2, first_stock_data_date = get_stock_data('VOO', config.START_DATE, config.END_DATE)
+        stock_data2, first_date, last_date = get_stock_data('VOO', config.START_DATE, config.END_DATE)
         result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
         result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
         
@@ -58,7 +58,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         await ctx.send(f'Fetching data for {stock}.')
         
         # 주식 데이터 가져오기
-        stock_data, first_stock_data_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
+        stock_data, first_date, last_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
         stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)  # 변수 이름 변경
         print('stock_result_df:', stock_result_df)
@@ -121,7 +121,8 @@ async def test_backtest_and_send():
     stock = "QQQ"
     
     try:
-        if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
+        # is_cache_valid 함수에 START_DATE와 END_DATE를 전달
+        if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE, config.END_DATE):
             print(f"Using cached VOO data for testing.")
         else:
             print(f"VOO cache is not valid or missing. New data will be fetched.")
@@ -140,6 +141,7 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
+
 
 
     # python backtest_send.py        
