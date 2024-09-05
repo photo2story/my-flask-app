@@ -147,7 +147,7 @@ def process_data(stock_data, ticker):
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
     
-    print(stock_data)
+    # print(stock_data)
     return stock_data
 
 
