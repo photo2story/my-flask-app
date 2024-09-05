@@ -81,10 +81,18 @@ def my_strategy(stock_data, option_strategy):
         sma240_ta = row['SMA_240']
         stochk_ta = row['STOCHk_20_10_3']
         stochd_ta = row['STOCHd_20_10_3']
-
-        # PPO 매수 및 매도 신호 계산
-        PPO_BUY, PPO_SELL, ppo_histogram, SMA_20_turn, SMA_60_turn = calculate_ppo_buy_sell_signals(stock_data, index, short_window=12, long_window=26, signal_window=9)
         
+        # Get_data에서 이미 계산된 PPO histogram 값 사용
+        ppo_histogram = row['ppo_histogram']
+
+        # SMA 20 및 SMA 60 교차점 체크
+        SMA_20_turn = sma20_ta > sma60_ta
+        SMA_60_turn = sma60_ta > sma120_ta
+
+        # PPO 매수 및 매도 신호 계산 (이미 ppo_histogram이 계산됨)
+        PPO_BUY = SMA_60_turn and ppo_histogram > 1.1
+        PPO_SELL = not SMA_20_turn and ppo_histogram < 1.1
+
         # 수수료 적용
         buy_price = price * 1.005  # 매수 시 수수료 0.5% 적용
         sell_price = price * 0.995  # 매도 시 수수료 0.5% 적용
@@ -173,6 +181,7 @@ def my_strategy(stock_data, option_strategy):
     ])
 
     return result_df
+
 
 
 # python My_strategy.py

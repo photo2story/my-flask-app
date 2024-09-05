@@ -58,29 +58,26 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         await ctx.send(f'Fetching data for {stock}.')
         
         # 주식 데이터 가져오기
-        stock_data, first_stock_data_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
+        stock_data, first_date, last_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
-        result_df = My_strategy.my_strategy(stock_data, option_strategy)
+        stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
-        result_df2 = await get_voo_data(option_strategy, ctx)
+        voo_data_df = await get_voo_data(option_strategy, ctx)
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
-        # 날짜 형식 통일
-        result_df['Date'] = pd.to_datetime(result_df['Date'])
-        result_df2['Date'] = pd.to_datetime(result_df2['Date'])
-        
         # 날짜를 기준으로 병합
-        combined_df = pd.merge(result_df, result_df2[['Date', 'rate_vs']], on='Date', how='inner')
+        combined_df = pd.merge(stock_result_df, voo_data_df[['Date', 'rate_vs']], on='Date', how='inner')
         
         # 병합 후 결측치 채우기
         combined_df.fillna(0, inplace=True)
+        print(combined_df)
 
-        # 유효하지 않은 끝부분 제거: 'rate' 또는 'rate_vs'가 0인 행 제거
-        combined_df = combined_df[(combined_df['rate'] != 0) & (combined_df['rate_vs'] != 0)]
+        # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
+        combined_df = combined_df[combined_df['price'] != 0]
 
-        # 결과 CSV 파일로 저장하기
+        # 결과 CSV 파일로 저장
         safe_ticker = stock.replace('/', '-')
         file_path = os.path.join('static', 'images', f'result_VOO_{safe_ticker}.csv')
         await ctx.send(f'Saving results to {file_path}.')
@@ -88,6 +85,18 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         # CSV 파일 간소화
         await ctx.send(f'Simplifying CSV for {stock}.')
+        save_simplified_csv(stock)
+
+        # 파일 이동 및 깃헙 커밋/푸시
+        await move_files_to_images_folder()
+        await bot.change_presence(status=discord.Status.online, activity=discord.Game("Waiting"))
+        await ctx.send(f"Backtest and send process completed successfully for {stock}.")
+    
+    except Exception as e:
+        error_message = f"An error occurred while processing {stock}: {e}"
+        await ctx.send(error_message)
+        print(error_message)
+
         save_simplified_csv(stock)
 
         # 파일 이동 및 깃헙 커밋/푸시

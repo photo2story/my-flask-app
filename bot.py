@@ -261,6 +261,8 @@ python3 -m venv .venv
 pip install --force-reinstall ./mplchart-0.0.8-py3-none-any.whl
 pip install -r requirements.txt
 
+git reset --hard 9219981
+
 
 
 source .venv/bin/activate
