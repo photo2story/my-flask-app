@@ -64,7 +64,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
-        voo_data_df = await get_voo_data(option_strategy, ctx)
+        voo_data_df = await get_voo_data(option_strategy, first_date, last_date, ctx)
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
@@ -99,7 +99,6 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         print(error_message)
 
 
-
 # 테스트 코드 추가
 async def test_backtest_and_send():
     class MockContext:
@@ -116,7 +115,7 @@ async def test_backtest_and_send():
     
     try:
         # 캐시 확인 및 데이터 가져오기
-        if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE, config.END_DATE):
+        if config.is_cache_valid(config.VOO_CACHE_FILE, first_date, last_date):
             print(f"Using cached VOO data for testing.")
         else:
             print(f"VOO cache is not valid or missing. New data will be fetched.")
