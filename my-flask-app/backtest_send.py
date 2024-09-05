@@ -1,15 +1,18 @@
 # backtest_send.py
-import os,sys
+import requests
+import os, sys
 import pandas as pd
+import matplotlib.pyplot as plt
+from discord.ext import commands
 import discord
 import asyncio
-from discord.ext import commands
 
 # 사용자 정의 모듈 임포트
 from Results_plot import plot_comparison_results
+from get_ticker import get_ticker_name, is_valid_stock
 from get_compare_stock_data import save_simplified_csv
 from git_operations import move_files_to_images_folder
-from Get_data import get_stock_data  # 여기에서 stock 데이터를 가져옴
+from Get_data import get_stock_data
 import My_strategy
 from Data_export import export_csv
 
