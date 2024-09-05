@@ -83,6 +83,11 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
 
         # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
         combined_df = combined_df[(combined_df['price'] != 0)]
+        print(combined_df)
+
+        # CSV 파일로 내보내기
+        await ctx.send(f'Exporting data to CSV for {stock}.')
+        export_csv(combined_df, stock)
 
         # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')

@@ -67,7 +67,7 @@ def save_simplified_csv(ticker):
     print(simplified_df)
     
     # 마지막 데이터가 이미 포함되지 않았다면 추가
-    if simplified_df.iloc[-1]['Date'] != df.iloc[-1]['Date']:
+    if not simplified_df['Date'].iloc[-1] == df['Date'].iloc[-1]:
         last_row = df.iloc[-1]
         if last_row[f'rate_{ticker}_5D'] != 0 or last_row['rate_VOO_20D'] != 0:
             simplified_df = pd.concat([simplified_df, last_row.to_frame().T], ignore_index=True)
@@ -84,6 +84,7 @@ def save_simplified_csv(ticker):
     print(f"Current Relative Divergence for {ticker}: {latest_entry['Relative_Divergence']}")
     print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
     print(f"Expected Return for {ticker}: {latest_entry['Expected_Return']}")
+
 
 
 def collect_relative_divergence():

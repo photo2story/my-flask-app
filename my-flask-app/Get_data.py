@@ -82,8 +82,17 @@ def load_industry_info():
 
 def get_stock_data(ticker, start_date, end_date):
     safe_ticker = ticker.replace('/', '-')
-    file_path = os.path.join('static', 'images', f'data_{safe_ticker}.csv')
+    
+    # static/images 폴더 경로 설정
+    folder_path = os.path.join('static', 'images')
+    
+    # 폴더가 없을 경우 생성
+    os.makedirs(folder_path, exist_ok=True)
+    
+    # 파일을 static/images 폴더 아래에 저장
+    file_path = os.path.join(folder_path, f'result_VOO_{safe_ticker}.csv')
 
+    # 파일이 이미 존재하는지 확인
     if os.path.exists(file_path):
         existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
         last_date = existing_data.index.max().strftime('%Y-%m-%d')
@@ -102,7 +111,7 @@ def get_stock_data(ticker, start_date, end_date):
         combined_data = process_data(combined_data, ticker)
         combined_data.to_csv(file_path)
         first_date = combined_data.index.min().strftime('%Y-%m-%d')
-        last_date = combined_data.index.max().strftime('%Y-%m-%d')  # 첫 데이터 생성 시 마지막 날짜 추가
+        last_date = combined_data.index.max().strftime('%Y-%m-%d')
 
     print(f"Loaded data for {ticker} from {first_date} to {end_date}")
     
