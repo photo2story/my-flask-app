@@ -45,6 +45,11 @@ def my_strategy(stock_data, option_strategy):
 
     # Loop over data
     for i, row in stock_data.iterrows():
+<<<<<<< HEAD
+=======
+        current_date = row.name
+        # index = stock_data.index.get_loc(i)
+>>>>>>> temp-branch
         
         current_date = row.name
         # 매달 적립 수행
@@ -183,4 +188,8 @@ def my_strategy(stock_data, option_strategy):
 
 
 
+<<<<<<< HEAD
 # python My_strategy.py
+=======
+# python My_strategy.py
+>>>>>>> temp-branch

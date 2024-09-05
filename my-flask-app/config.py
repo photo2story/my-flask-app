@@ -184,7 +184,10 @@ def is_cache_valid(cache_file, start_date, end_date):
     return True
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> temp-branch
 # Example function to ensure that the dates match the US market close:
 def ensure_valid_dates(df):
     """

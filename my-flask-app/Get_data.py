@@ -89,7 +89,11 @@ def get_stock_data(ticker, start_date, end_date):
     safe_ticker = ticker.replace('/', '-')
     
     # static/images 폴더 경로 설정
+<<<<<<< HEAD
     folder_path = config.STATIC_IMAGES_PATH
+=======
+    folder_path = os.path.join('static', 'images')
+>>>>>>> temp-branch
     
     # 폴더가 없을 경우 생성
     os.makedirs(folder_path, exist_ok=True)
@@ -120,10 +124,18 @@ def get_stock_data(ticker, start_date, end_date):
         combined_data.to_csv(file_path)  # 파일로 처음 저장
         first_date = combined_data.index.min().strftime('%Y-%m-%d')
         last_date = combined_data.index.max().strftime('%Y-%m-%d')
+<<<<<<< HEAD
 
     print(f"Loaded data for {ticker} from {first_date} to {end_date}")
     
     return combined_data, first_date, last_date
+=======
+
+    print(f"Loaded data for {ticker} from {first_date} to {end_date}")
+    
+    return combined_data, first_date, last_date
+
+>>>>>>> temp-branch
 
 def process_data(stock_data, ticker):
     # 데이터가 20개 미만일 경우 경고 메시지를 출력하고 처리 건너뛰기

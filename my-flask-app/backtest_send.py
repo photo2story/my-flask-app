@@ -73,7 +73,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         # 병합 후 결측치 채우기
         combined_df.fillna(0, inplace=True)
-        # print(combined_df)
+        print(combined_df)
 
         # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
         combined_df = combined_df[combined_df['price'] != 0]
@@ -100,6 +100,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
 
 
 # 테스트 코드 추가
+# 테스트 코드 추가
 async def test_backtest_and_send():
     class MockContext:
         async def send(self, message):
@@ -123,6 +124,11 @@ async def test_backtest_and_send():
         # backtest_and_send 함수 실행
         await backtest_and_send(ctx, stock, option_strategy='default', bot=bot)
         
+        # get_stock_data 함수를 통해 데이터 로드 및 first_date, last_date 값 확인
+        print("Fetching stock data for testing...")
+        stock_data, first_date, last_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
+        print(f"First Date: {first_date}, Last Date: {last_date}")
+
         # 결과 비교를 위한 그래프 생성 함수 실행
         await plot_comparison_results(stock, config.START_DATE, config.END_DATE)
 
@@ -134,6 +140,9 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
+
+
+
 
 
     # python backtest_send.py        
