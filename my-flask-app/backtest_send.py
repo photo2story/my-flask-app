@@ -64,7 +64,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
-        voo_data_df = await get_voo_data(option_strategy, ctx)
+        voo_data_df = await get_voo_data(option_strategy, first_date, last_date, ctx)
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
@@ -100,6 +100,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
 
 
 # 테스트 코드 추가
+# 테스트 코드 추가
 async def test_backtest_and_send():
     class MockContext:
         async def send(self, message):
@@ -114,8 +115,7 @@ async def test_backtest_and_send():
     stock = "QQQ"
     
     try:
-        # 캐시 확인 및 데이터 가져오기
-        if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE, config.END_DATE):
+        if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
             print(f"Using cached VOO data for testing.")
         else:
             print(f"VOO cache is not valid or missing. New data will be fetched.")
@@ -123,6 +123,11 @@ async def test_backtest_and_send():
         # backtest_and_send 함수 실행
         await backtest_and_send(ctx, stock, option_strategy='default', bot=bot)
         
+        # get_stock_data 함수를 통해 데이터 로드 및 first_date, last_date 값 확인
+        print("Fetching stock data for testing...")
+        stock_data, first_date, last_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
+        print(f"First Date: {first_date}, Last Date: {last_date}")
+
         # 결과 비교를 위한 그래프 생성 함수 실행
         await plot_comparison_results(stock, config.START_DATE, config.END_DATE)
 
@@ -134,6 +139,7 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
+
 
 
 
