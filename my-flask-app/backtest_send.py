@@ -25,19 +25,20 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
 # VOO 데이터를 가져오거나 캐시된 데이터를 사용하는 함수
-async def get_voo_data(option_strategy, ctx, first_date, last_date):
-    if is_cache_valid(config.VOO_CACHE_FILE, first_date, last_date):
+async def get_voo_data(option_strategy, first_date, last_date, ctx):
+    if config.is_cache_valid(config.VOO_CACHE_FILE, first_date, last_date):
         await ctx.send("Using cached VOO data.")
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
     else:
-        await ctx.send(f"Fetching new VOO data from {first_date} to {last_date}.")
-        stock_data2, first_date, last_date = get_stock_data('VOO', first_date, last_date)
-        result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
-        result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
+        await ctx.send(f"Fetching new VOO data from {first_date} to {last_date}")
+        voo_data, _, _ = get_stock_data('VOO', first_date, last_date)
+        voo_data_df = My_strategy.my_strategy(voo_data, option_strategy)
+        voo_data_df.rename(columns={'rate': 'rate_vs'}, inplace=True)  # 'rate' 열을 'rate_vs'로 이름 변경
         
+        # 새로운 데이터를 캐시에 저장
         await ctx.send("Saving new VOO data to cache.")
-        result_df2.to_csv(config.VOO_CACHE_FILE, index=False)
-        cached_voo_data = result_df2
+        voo_data_df.to_csv(config.VOO_CACHE_FILE, index=False)
+        cached_voo_data = voo_data_df
     
     return cached_voo_data
 
@@ -60,19 +61,12 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         # 주식 데이터 가져오기
         stock_data, first_date, last_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
         await ctx.send(f'Running strategy for {stock}.')
-        stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)  # 변수 이름 변경
-        print('stock_result_df:', stock_result_df)
+        stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)
         
-        await ctx.send(f'Exporting data for {stock}.')
-        
-        # VOO 데이터 가져오기 (주식 데이터에서 얻은 시작일과 마지막일을 기준으로)
-        voo_data_df = await get_voo_data(option_strategy, ctx, first_date, last_date)  # first_date와 last_date 추가
+        # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
+        voo_data_df = await get_voo_data(option_strategy, ctx)
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
-        
-        # 날짜 형식 통일
-        stock_result_df['Date'] = pd.to_datetime(stock_result_df['Date'])
-        voo_data_df['Date'] = pd.to_datetime(voo_data_df['Date'])
         
         # 날짜를 기준으로 병합
         combined_df = pd.merge(stock_result_df, voo_data_df[['Date', 'rate_vs']], on='Date', how='inner')
@@ -82,14 +76,9 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         print(combined_df)
 
         # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
-        combined_df = combined_df[(combined_df['price'] != 0)]
-        print(combined_df)
+        combined_df = combined_df[combined_df['price'] != 0]
 
-        # CSV 파일로 내보내기
-        await ctx.send(f'Exporting data to CSV for {stock}.')
-        export_csv(combined_df, stock)
-
-        # 결과 CSV 파일로 저장하기
+        # 결과 CSV 파일로 저장
         safe_ticker = stock.replace('/', '-')
         file_path = os.path.join('static', 'images', f'result_VOO_{safe_ticker}.csv')
         await ctx.send(f'Saving results to {file_path}.')
@@ -110,6 +99,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         print(error_message)
 
 
+
 # 테스트 코드 추가
 async def test_backtest_and_send():
     class MockContext:
@@ -125,7 +115,7 @@ async def test_backtest_and_send():
     stock = "QQQ"
     
     try:
-        # is_cache_valid 함수에 START_DATE와 END_DATE를 전달
+        # 캐시 확인 및 데이터 가져오기
         if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE, config.END_DATE):
             print(f"Using cached VOO data for testing.")
         else:

@@ -81,18 +81,17 @@ def load_industry_info():
     return industry_dict
 
 def get_stock_data(ticker, start_date, end_date):
+    """
+    주어진 티커와 날짜 범위에 해당하는 주가 데이터를 가져오고, 필요한 경우 새 데이터를 불러옵니다.
+    데이터를 파일로 저장하지 않고, 처리된 데이터만 반환합니다.
+    """
     safe_ticker = ticker.replace('/', '-')
-    
-    # static/images 폴더 경로 설정
+
+    # static/images 폴더 경로 설정 (파일 저장용 아님)
     folder_path = os.path.join('static', 'images')
     
-    # 폴더가 없을 경우 생성
-    os.makedirs(folder_path, exist_ok=True)
-    
-    # 파일을 static/images 폴더 아래에 저장
-    file_path = os.path.join(folder_path, f'result_VOO_{safe_ticker}.csv')
-
     # 파일이 이미 존재하는지 확인
+    file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
     if os.path.exists(file_path):
         existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
         last_date = existing_data.index.max().strftime('%Y-%m-%d')
@@ -103,13 +102,11 @@ def get_stock_data(ticker, start_date, end_date):
             new_data = process_data(new_data, ticker)
             combined_data = pd.concat([existing_data, new_data])
             combined_data = combined_data[~combined_data.index.duplicated(keep='last')]
-            combined_data.to_csv(file_path)
         else:
             combined_data = existing_data
     else:
         combined_data = fdr.DataReader(ticker, start_date, end_date)
         combined_data = process_data(combined_data, ticker)
-        combined_data.to_csv(file_path)
         first_date = combined_data.index.min().strftime('%Y-%m-%d')
         last_date = combined_data.index.max().strftime('%Y-%m-%d')
 
@@ -119,11 +116,13 @@ def get_stock_data(ticker, start_date, end_date):
 
 
 def process_data(stock_data, ticker):
+    """
+    주가 데이터를 처리하고, 필요한 경우 여러 기술적 지표를 추가합니다.
+    """
     if len(stock_data) < 20:
         print(f"Warning: Not enough data to calculate Bollinger Bands for {ticker}. Minimum 20 data points required.")
         return None  # 데이터가 부족한 경우 처리하지 않고 반환
 
-    
     stock_data.ffill(inplace=True)
     stock_data.bfill(inplace=True)
 
@@ -148,18 +147,6 @@ def process_data(stock_data, ticker):
 
     return stock_data
 
-def get_price_info(ticker):
-    api_key = 'Alpha_API'
-    url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker}&apikey={api_key}'
-    response = requests.get(url)
-    data = response.json()
-
-    if 'Exchange' in data:
-        market = data['Exchange']
-        return market
-    else:
-        return "알 수 없음"
-
 if __name__ == "__main__":
     industry_info = load_industry_info()
 
@@ -167,10 +154,10 @@ if __name__ == "__main__":
     start_date = '2019-01-01'
     end_date = '2024-09-02'
 
-    stock_data, first_stock_data_date = get_stock_data(ticker, start_date, end_date)
+    stock_data, first_stock_data_date, last_stock_data_date = get_stock_data(ticker, start_date, end_date)
     print(stock_data)
-    print(np.__version__)
-    print(pd.__version__)
-    print(ta.__version__)
+    print(f"First data date: {first_stock_data_date}")
+    print(f"Last data date: {last_stock_data_date}")
+
 
 ## python Get_data.py    
