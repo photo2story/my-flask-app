@@ -43,6 +43,7 @@ def save_simplified_csv(ticker):
     
     # 필요한 열만 선택하여 새로운 DataFrame 생성
     df = df[['Date', 'rate', 'rate_vs']]
+    print(df)
     
     # 이격도(Divergence) 계산
     df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
