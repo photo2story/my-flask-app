@@ -1,5 +1,5 @@
 # backtest_send.py
-import os
+import os,sys
 import pandas as pd
 import discord
 import asyncio
