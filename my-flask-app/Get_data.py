@@ -83,48 +83,27 @@ def load_industry_info():
 
 def get_stock_data(ticker, start_date, end_date):
     """
-    주어진 티커와 날짜 범위에 해당하는 주가 데이터를 가져오고, 파일에 저장.
-    필요한 경우 새 데이터를 불러오고, 저장된 데이터에 이어서 업데이트를 수행합니다.
+    주어진 티커와 날짜 범위에 해당하는 주가 데이터를 가져오고 새로 생성하여 처리합니다.
     """
     safe_ticker = ticker.replace('/', '-')
     
     # static/images 폴더 경로 설정
     folder_path = config.STATIC_IMAGES_PATH
-
     
     # 폴더가 없을 경우 생성
     os.makedirs(folder_path, exist_ok=True)
     
-    # 파일을 static/images 폴더 아래에 저장
+    # 새 데이터를 가져옴
+    combined_data = fdr.DataReader(ticker, start_date, end_date)
+    combined_data = process_data(combined_data, ticker)
+
+    # 데이터 파일을 static/images 폴더 아래에 저장
     file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
+    combined_data.to_csv(file_path)  # 새로운 데이터를 파일로 저장
 
-    # 파일이 이미 존재하는지 확인
-    if os.path.exists(file_path):
-        # 기존 데이터를 로드
-        existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
-        last_date = existing_data.index.max().strftime('%Y-%m-%d')
-        first_date = existing_data.index.min().strftime('%Y-%m-%d')
-
-        if last_date < end_date:
-            # 마지막 날짜 이후의 데이터를 새로 가져옴
-            new_data = fdr.DataReader(ticker, last_date, end_date)
-            new_data = process_data(new_data, ticker)
-            combined_data = pd.concat([existing_data, new_data])
-            combined_data = combined_data[~combined_data.index.duplicated(keep='last')]  # 중복된 날짜 제거
-            combined_data.to_csv(file_path)  # 업데이트된 데이터를 파일에 저장
-        else:
-            combined_data = existing_data
-    else:
-        # 파일이 없으면 전체 데이터를 가져옴
-        combined_data = fdr.DataReader(ticker, start_date, end_date)
-        combined_data = process_data(combined_data, ticker)
-        combined_data.to_csv(file_path)  # 파일로 처음 저장
-        first_date = combined_data.index.min().strftime('%Y-%m-%d')
-        last_date = combined_data.index.max().strftime('%Y-%m-%d')
-
-    print(f"Loaded data for {ticker} from {first_date} to {end_date}")
+    print(f"Loaded data for {ticker} from {start_date} to {end_date}")
     
-    return combined_data, first_date, last_date
+    return combined_data, start_date, end_date
 
 def process_data(stock_data, ticker):
     # 데이터가 20개 미만일 경우 경고 메시지를 출력하고 처리 건너뛰기
@@ -156,11 +135,10 @@ def process_data(stock_data, ticker):
     stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)
 
     # PPO (Price Percentage Oscillator)
-    try:
-        stock_data['ppo'], stock_data['ppo_signal'], stock_data['ppo_histogram'] = calculate_ppo(stock_data['Close'])
-    except Exception as e:
-        print(f"Error calculating PPO for {ticker}: {e}")
-        stock_data['ppo'], stock_data['ppo_signal'], stock_data['ppo_histogram'] = np.nan, np.nan, np.nan
+    ppo, ppo_signal, ppo_histogram = calculate_ppo(stock_data['Close'])
+    stock_data['ppo'] = ppo
+    stock_data['ppo_signal'] = ppo_signal
+    stock_data['ppo_histogram'] = ppo_histogram
 
     stock_data['Stock'] = ticker
 
@@ -168,7 +146,8 @@ def process_data(stock_data, ticker):
     sector_df = pd.read_csv(ticker_path)
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
-
+    
+    print(stock_data)
     return stock_data
 
 
