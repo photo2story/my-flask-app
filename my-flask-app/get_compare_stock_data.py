@@ -43,7 +43,7 @@ def save_simplified_csv(ticker):
     
     # 필요한 열만 선택하여 새로운 DataFrame 생성
     df = df[['Date', 'rate', 'rate_vs']]
-    print(df)
+    # print(df)
     
     # 이격도(Divergence) 계산
     df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
@@ -64,7 +64,7 @@ def save_simplified_csv(ticker):
     
     # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
-    print(simplified_df)
+    # print(simplified_df)
     
     # 마지막 데이터가 이미 포함되지 않았다면 추가
     if not simplified_df['Date'].iloc[-1] == df['Date'].iloc[-1]:
@@ -126,7 +126,7 @@ def collect_relative_divergence():
     collect_relative_divergence_path = os.path.join(config.STATIC_IMAGES_PATH, 'results_relative_divergence.csv')
     results.to_csv(collect_relative_divergence_path, index=False)
 
-    print(results)
+    # print(results)
     
     move_files_to_images_folder()
     
