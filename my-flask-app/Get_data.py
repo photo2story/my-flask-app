@@ -103,6 +103,8 @@ def get_stock_data(ticker, start_date, end_date):
         combined_data.to_csv(file_path)
         first_date = combined_data.index.min()
 
+    print(f"Loaded data for {ticker} from {first_date} to {end_date}")
+    
     return combined_data, first_date
 
 def process_data(stock_data, ticker):
