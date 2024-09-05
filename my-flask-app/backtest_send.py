@@ -25,13 +25,13 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
 # VOO 데이터를 가져오거나 캐시된 데이터를 사용하는 함수
-async def get_voo_data(option_strategy, ctx):
-    if is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE):
+async def get_voo_data(option_strategy, ctx, first_date, last_date):
+    if is_cache_valid(config.VOO_CACHE_FILE, first_date, last_date):
         await ctx.send("Using cached VOO data.")
         cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
     else:
-        await ctx.send("Fetching new VOO data.")
-        stock_data2, first_date, last_date = get_stock_data('VOO', config.START_DATE, config.END_DATE)
+        await ctx.send(f"Fetching new VOO data from {first_date} to {last_date}.")
+        stock_data2, first_date, last_date = get_stock_data('VOO', first_date, last_date)
         result_df2 = My_strategy.my_strategy(stock_data2, option_strategy)
         result_df2.rename(columns={'rate': 'rate_vs'}, inplace=True)
         
@@ -65,8 +65,8 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         await ctx.send(f'Exporting data for {stock}.')
         
-        # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
-        voo_data_df = await get_voo_data(option_strategy, ctx)  # 변수 이름 변경
+        # VOO 데이터 가져오기 (주식 데이터에서 얻은 시작일과 마지막일을 기준으로)
+        voo_data_df = await get_voo_data(option_strategy, ctx, first_date, last_date)  # first_date와 last_date 추가
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
@@ -110,7 +110,6 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         print(error_message)
 
 
-
 # 테스트 코드 추가
 async def test_backtest_and_send():
     class MockContext:
@@ -146,7 +145,6 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
-
 
 
     # python backtest_send.py        
