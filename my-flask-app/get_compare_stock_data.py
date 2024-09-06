@@ -12,6 +12,7 @@ import config
 from git_operations import move_files_to_images_folder  # git_operations 모듈에서 함수 가져오기
 
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
+folder_path = config.STATIC_IMAGES_PATH
 
 # GitHub에서 CSV 파일을 가져오는 함수
 def fetch_csv(ticker):
