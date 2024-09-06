@@ -22,7 +22,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 # static/images 폴더 경로 설정 (프로젝트 루트 기준)
 STATIC_IMAGES_PATH = os.path.join(PROJECT_ROOT, 'static', 'images')
 
-# 기타 CSV 파일 경로 설정 (예: stock_market.csv)
+# 기타 CSV 파일 경로 설정
 CSV_PATH = os.path.join(STATIC_IMAGES_PATH, 'stock_market.csv')
 
 # 환경 변수 로드
