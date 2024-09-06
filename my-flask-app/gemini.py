@@ -16,34 +16,42 @@ from git_operations import move_files_to_images_folder
 from get_earning import get_recent_eps_and_revenue
 from get_earning_fmp import get_recent_eps_and_revenue_fmp
 
+# 프로젝트 루트 경로 설정
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# static/images 폴더 경로 설정 (프로젝트 루트 기준)
+STATIC_IMAGES_PATH = os.path.join(PROJECT_ROOT, 'static', 'images')
+
+# 기타 CSV 파일 경로 설정 (예: stock_market.csv)
+CSV_PATH = os.path.join(STATIC_IMAGES_PATH, 'stock_market.csv')
+
+# 환경 변수 로드
 load_dotenv()
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
 FMP_API_KEY = os.getenv('FMP_API_KEY')
-GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
-CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', 'stock_market.csv'))
 
+# Google Generative AI 설정
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
+# 주식 티커와 이름 매칭 딕셔너리 생성
 def create_ticker_to_name_dict(csv_path):
     df = pd.read_csv(csv_path)
     ticker_to_name = dict(zip(df['Symbol'], df['Name']))
     return ticker_to_name
 
+# CSV 파일에서 티커 정보를 읽어옴
 ticker_to_name = create_ticker_to_name_dict(CSV_PATH)
 
+# CSV 파일을 다운로드 대신 로컬 폴더에서 찾는 함수
 def download_csv(ticker):
-    ticker_vs_voo_url = f"{GITHUB_RAW_BASE_URL}/result_VOO_{ticker}.csv"
-    simplified_ticker_url = f"{GITHUB_RAW_BASE_URL}/result_{ticker}.csv"
-    response_ticker = requests.get(ticker_vs_voo_url)
-    response_simplified = requests.get(simplified_ticker_url)
+    # GitHub 대신 로컬 폴더 경로에서 CSV 파일을 찾음
+    ticker_vs_voo_path = os.path.join(STATIC_IMAGES_PATH, f'result_VOO_{ticker}.csv')
+    simplified_ticker_path = os.path.join(STATIC_IMAGES_PATH, f'result_{ticker}.csv')
 
-    if response_ticker.status_code == 200 and response_simplified.status_code == 200:
-        with open(f'result_VOO_{ticker}.csv', 'wb') as f:
-            f.write(response_ticker.content)
-        with open(f'result_{ticker}.csv', 'wb') as f:
-            f.write(response_simplified.content)
+    # 파일이 존재하는지 확인
+    if os.path.exists(ticker_vs_voo_path) and os.path.exists(simplified_ticker_path):
         return True
     else:
         return False
@@ -91,8 +99,9 @@ async def analyze_with_gemini(ticker):
             requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
             return
 
-        voo_file = f'result_VOO_{ticker}.csv'
-        simplified_file = f'result_{ticker}.csv'
+        # 로컬에서 CSV 파일을 읽어옴
+        voo_file = os.path.join(STATIC_IMAGES_PATH, f'result_VOO_{ticker}.csv')
+        simplified_file = os.path.join(STATIC_IMAGES_PATH, f'result_{ticker}.csv')
         df_voo = pd.read_csv(voo_file)
         df_simplified = pd.read_csv(simplified_file)
 
