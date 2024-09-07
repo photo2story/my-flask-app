@@ -107,8 +107,8 @@ def get_stock_data(ticker, start_date, end_date):
         return pd.DataFrame(), start_date, end_date
 
     # 데이터 파일을 static/images 폴더 아래에 저장
-    # file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
-    # combined_data.to_csv(file_path)  # 새로운 데이터를 파일로 저장
+    file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
+    combined_data.to_csv(file_path)  # 새로운 데이터를 파일로 저장
 
     print(f"Loaded data for {ticker} from {start_date} to {end_date}")
     
