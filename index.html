@@ -144,8 +144,9 @@
 
                 // 보고서 파일을 로드하여 추가
                 $.get(reportUrl, function(data) {
-                    const htmlContent = convertMarkdown(data);
-                    $('#report').html(`<div class="markdown-content">${htmlContent}</div>`);
+                    // 마크다운 텍스트를 HTML로 변환
+                    const htmlContent = marked(data.trim());  // 마크다운을 예전 방식으로 처리
+                    $('#report').html(htmlContent);  // 변환된 HTML을 리포트에 넣음
                 }).fail(function() {
                     alert('Failed to load the report file.');
                 });
