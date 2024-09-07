@@ -85,7 +85,6 @@
             line-height: 1.6;
             font-size: 14px;
             overflow-y: auto;
-            text-align: left; /* 리포트 텍스트를 왼쪽 정렬 */
         }
 
         /* 이미지 크기를 80%로 조정하고 중앙 정렬하는 CSS */
@@ -127,26 +126,25 @@
 
             // 주식 이미지 및 보고서 불러오기
             function fetchImagesAndReport(stockTicker) {
-                const comparisonUrl = `http://localhost:5000/static/images/comparison_${stockTicker}_VOO.png`;
-                const resultUrl = `http://localhost:5000/static/images/result_mpl_${stockTicker}.png`;
-                const reportUrl = `http://localhost:5000/static/images/report_${stockTicker}.txt`;
+                const comparisonUrl = http://localhost:5000/static/images/comparison_${stockTicker}_VOO.png;
+                const resultUrl = http://localhost:5000/static/images/result_mpl_${stockTicker}.png;
+                const reportUrl = http://localhost:5000/static/images/report_${stockTicker}.txt;
 
                 reviewList.empty();
 
                 // 비교 이미지와 결과 이미지 추가 (이미지 크기를 80%로 조정하고 중앙에 정렬)
-                reviewList.append(`
+                reviewList.append(
                     <div class="review">
                         <h3>${stockTicker} vs VOO</h3>
                         <img src="${comparisonUrl}" alt="${stockTicker} vs VOO">
                         <img src="${resultUrl}" alt="${stockTicker} Result" style="margin-top: 20px;">
                     </div>
-                `);
+                );
 
                 // 보고서 파일을 로드하여 추가
                 $.get(reportUrl, function(data) {
-                    // 마크다운 텍스트를 HTML로 변환
-                    const htmlContent = marked(data.trim());  // 마크다운을 예전 방식으로 처리
-                    $('#report').html(htmlContent);  // 변환된 HTML을 리포트에 넣음
+                    const htmlContent = convertMarkdown(data);
+                    reviewList.append(<div class="markdown-content">${htmlContent}</div>);
                 }).fail(function() {
                     alert('Failed to load the report file.');
                 });
@@ -169,7 +167,7 @@
                 searchedTickersContainer.empty();
                 searchedTickersContainer.append('<h2>Searched Stocks</h2>');
                 for (let ticker in searchedTickers) {
-                    searchedTickersContainer.append(`<span class="ticker-item">${ticker} (${searchedTickers[ticker]})</span>`);
+                    searchedTickersContainer.append(<span class="ticker-item">${ticker} (${searchedTickers[ticker]})</span>);
                 }
             }
 
@@ -187,7 +185,7 @@
                         tickerListContainer.empty();
 
                         tickers.forEach(ticker => {
-                            tickerListContainer.append(`<span class="ticker-item">${ticker}</span>`);
+                            tickerListContainer.append(<span class="ticker-item">${ticker}</span>);
                         });
 
                         // 티커를 클릭하면 해당 주식 정보를 로드

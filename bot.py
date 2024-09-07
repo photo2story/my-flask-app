@@ -268,6 +268,7 @@ pip install -r requirements.txt
 
 source .venv/bin/activate
 python bot.py   
+python app.py   
 docker build -t asia.gcr.io/my-flask-app-429017/bot .
 docker push asia.gcr.io/my-flask-app-429017/bot
 gcloud run deploy bot --image asia.gcr.io/my-flask-app-429017/bot --platform managed --region asia-northeast3 --allow-unauthenticated
