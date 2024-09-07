@@ -5,13 +5,14 @@ import csv, os, io, requests
 from github_operations import ticker_path  # stock_market.csv 파일 경로
 import yfinance as yf
 import investpy
-from config import CSV_PATH, CSV_URL,STATIC_IMAGES_PATH, GITHUB_REPO_OWNER, GITHUB_REPO_NAME, GITHUB_TOKEN
+import config  # config 파일을 import
+
 
 
 #ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
 #CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
-CSV_URL = config.CSV_PATH
-ticker_path = config.CSV_PATH
+CSV_URL = config.CSV_PATH  # config.py에서 정의된 CSV_PATH를 사용
+ticker_path = config.CSV_PATH  # 동일한 경로를 사용
 
 def get_ticker_name(ticker):
     df = pd.read_csv(ticker_path, encoding='utf-8')  # stock_market.csv 파일 경로 인코딩 설정

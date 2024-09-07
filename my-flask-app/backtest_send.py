@@ -125,7 +125,7 @@ async def test_backtest_and_send():
 
     ctx = MockContext()
     bot = MockBot()
-    stock = "QQQ"
+    stock = "AAPL"
     
     try:
         # 캐시 확인 및 데이터 가져오기

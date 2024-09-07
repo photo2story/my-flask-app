@@ -17,7 +17,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import config  # config 모듈을 불러옵니다.
 
 from git_operations import move_files_to_images_folder
-from get_ticker import get_ticker_name, is_valid_stock
+from get_ticker import get_ticker_name, is_valid_stock  
 from Results_plot_mpl import plot_results_mpl
 
 import matplotlib.font_manager as fm
