@@ -90,11 +90,12 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
 
         # CSV 파일로 내보내기
         await ctx.send(f'Exporting data to CSV for {stock}.')
-        export_csv(combined_df, stock)
+        # export_csv(combined_df, stock)
 
         # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')
-        file_path = os.path.join('static', 'images', f'result_VOO_{safe_ticker}.csv')
+        # file_path = os.path.join('static', 'images', f'result_VOO_{safe_ticker}.csv')
+        file_path = os.path.join(config.STATIC_IMAGES_PATH, f'result_VOO_{safe_ticker}.csv')
         await ctx.send(f'Saving results to {file_path}.')
         combined_df.to_csv(file_path, float_format='%.2f', index=False)
         
