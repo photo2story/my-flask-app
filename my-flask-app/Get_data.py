@@ -8,6 +8,7 @@ import FinanceDataReader as fdr
 import os
 import sys
 import config
+import yfinance as yf
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -104,8 +105,8 @@ def get_stock_data(ticker, start_date, end_date):
         return pd.DataFrame(), start_date, end_date
 
     # 데이터 파일을 static/images 폴더 아래에 저장
-    file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
-    combined_data.to_csv(file_path)  # 새로운 데이터를 파일로 저장
+    # file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
+    # combined_data.to_csv(file_path)  # 새로운 데이터를 파일로 저장
 
     print(f"Loaded data for {ticker} from {start_date} to {end_date}")
     
@@ -174,10 +175,11 @@ if __name__ == "__main__":
     ticker = 'AAPL'
     # Apple 주식(AAPL) 데이터를 테스트로 가져오기
     try:
-        stock_data = fdr.DataReader('AAPL', '2023-01-01', '2023-12-31')
+        stock_data = yf.download('AAPL', '2023-01-01', '2023-12-31')
         print(stock_data)  # 데이터가 정상적으로 가져와지는지 확인
     except Exception as e:
         print(f"오류 발생: {e}")
+
 
 
 ## python Get_data.py    
