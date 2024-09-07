@@ -192,6 +192,7 @@ def is_cache_valid(cache_file, start_date, end_date):
     print("Cache is valid.")
     return True
 
+
 def ensure_valid_dates(df):
     """
     주어진 DataFrame의 날짜가 미국 시장 종료 시간에 맞는지 확인합니다.

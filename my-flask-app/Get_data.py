@@ -85,13 +85,14 @@ def get_stock_data(ticker, start_date, end_date):
     주어진 티커와 날짜 범위에 해당하는 주가 데이터를 가져오고 새로 생성하여 처리합니다.
     """
     safe_ticker = ticker.replace('/', '-')
+    print(safe_ticker)
     
     # static/images 폴더 경로 설정
     folder_path = config.STATIC_IMAGES_PATH
     
     try:
         # 새 데이터를 가져옴
-        combined_data = fdr.DataReader(ticker, start_date, end_date)
+        combined_data = fdr.DataReader(safe_ticker, start_date, end_date)
         
         if combined_data.empty:
             print(f"No data found for {ticker}.")
@@ -171,12 +172,11 @@ def get_price_info(ticker):
 
 if __name__ == "__main__":
     # 테스트 실행
-    ticker = 'aapl'
-    start_date = '2024-01-02'
-    end_date = '2024-09-05'
-
-    print(f"Fetching data for {ticker} from {start_date} to {end_date}")
-    stock_data, start_date, end_date = get_stock_data(ticker, start_date, end_date)
+    ticker = 'AAPL'
+    print(f"Fetching data for {ticker} from {'2024-01-02'} to {'2024-01-10'}")
+    combined_data = fdr.DataReader('AAPL', '2024-01-02', '2024-01-10')
+    print(combined_data)
+    stock_data, start_date, end_date = get_stock_data('AAPL', '2024-01-02', '2024-01-10')
     if not stock_data.empty:
         print(stock_data.head())
     else:

@@ -9,12 +9,12 @@ import asyncio
 
 # 사용자 정의 모듈 임포트
 from Results_plot import plot_comparison_results
-from get_ticker import get_ticker_name, is_valid_stock
 from get_compare_stock_data import save_simplified_csv
 from git_operations import move_files_to_images_folder
-from Get_data import get_stock_data
+from Get_data import get_stock_data  # 여기에서 stock 데이터를 가져옴
 import My_strategy
 from Data_export import export_csv
+from get_ticker import is_valid_stock
 
 # Import configuration
 import config
@@ -56,29 +56,43 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         return
     
     try:
-        await ctx.send(f'Fetching data for {stock}.')
+        await ctx.send(f'get_data for {stock}.')
         
-        # 주식 데이터 가져오기
+        # 주식 데이터 가져오기 (기초 주가 데이터를 가져오는 것만 수행)
         stock_data, first_date, last_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
+        print('stock_data:', stock_data)
+        
+        # 시뮬레이션 실행
         await ctx.send(f'Running strategy for {stock}.')
         stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)
+        print('stock_result_df:', stock_result_df)
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
         voo_data_df = await get_voo_data(option_strategy, first_date, last_date, ctx)
+        print('voo_data_df:', voo_data_df)
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
-        # 날짜를 기준으로 병합
+        # 날짜 형식 통일
+        stock_result_df['Date'] = pd.to_datetime(stock_result_df['Date'])
+        voo_data_df['Date'] = pd.to_datetime(voo_data_df['Date'])
+        
+        # stock_result_df와 voo_data_df 병합
         combined_df = pd.merge(stock_result_df, voo_data_df[['Date', 'rate_vs']], on='Date', how='inner')
         
         # 병합 후 결측치 채우기
         combined_df.fillna(0, inplace=True)
-        # print(combined_df)
+        print(combined_df)
 
         # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
-        combined_df = combined_df[combined_df['price'] != 0]
+        combined_df = combined_df[(combined_df['price'] != 0)]
+        print(combined_df)
 
-        # 결과 CSV 파일로 저장
+        # CSV 파일로 내보내기
+        await ctx.send(f'Exporting data to CSV for {stock}.')
+        export_csv(combined_df, stock)
+
+        # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')
         file_path = os.path.join('static', 'images', f'result_VOO_{safe_ticker}.csv')
         await ctx.send(f'Saving results to {file_path}.')
@@ -100,7 +114,6 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
 
 
 # 테스트 코드 추가
-# 테스트 코드 추가
 async def test_backtest_and_send():
     class MockContext:
         async def send(self, message):
@@ -116,7 +129,7 @@ async def test_backtest_and_send():
     
     try:
         # 캐시 확인 및 데이터 가져오기
-        if config.is_cache_valid(config.VOO_CACHE_FILE, first_date, last_date):
+        if config.is_cache_valid(config.VOO_CACHE_FILE, config.START_DATE, config.END_DATE):
             print(f"Using cached VOO data for testing.")
         else:
             print(f"VOO cache is not valid or missing. New data will be fetched.")
@@ -124,11 +137,6 @@ async def test_backtest_and_send():
         # backtest_and_send 함수 실행
         await backtest_and_send(ctx, stock, option_strategy='default', bot=bot)
         
-        # get_stock_data 함수를 통해 데이터 로드 및 first_date, last_date 값 확인
-        print("Fetching stock data for testing...")
-        stock_data, first_date, last_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
-        print(f"First Date: {first_date}, Last Date: {last_date}")
-
         # 결과 비교를 위한 그래프 생성 함수 실행
         await plot_comparison_results(stock, config.START_DATE, config.END_DATE)
 
@@ -140,7 +148,6 @@ async def test_backtest_and_send():
 if __name__ == "__main__":
     print("Starting test for back-testing.")
     asyncio.run(test_backtest_and_send())
-
 
 
 

@@ -5,7 +5,7 @@ import csv, os, io, requests
 from github_operations import ticker_path  # stock_market.csv 파일 경로
 import yfinance as yf
 import investpy
-import config
+from config import CSV_PATH, CSV_URL,STATIC_IMAGES_PATH, GITHUB_REPO_OWNER, GITHUB_REPO_NAME, GITHUB_TOKEN
 
 
 #ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
