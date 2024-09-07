@@ -100,8 +100,6 @@ def get_stock_data(ticker, start_date, end_date):
     # 데이터 파일을 static/images 폴더 아래에 저장
     file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
     combined_data.to_csv(file_path)  # 새로운 데이터를 파일로 저장
-    start_date = combined_data.index.min().strftime('%Y-%m-%d')
-    end_date= combined_data.index.max().strftime('%Y-%m-%d')
 
     print(f"Loaded data for {ticker} from {start_date} to {end_date}")
     
@@ -149,7 +147,7 @@ def process_data(stock_data, ticker):
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
     
-    # print(stock_data)
+    print(stock_data)
     return stock_data
 
 
