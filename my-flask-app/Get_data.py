@@ -10,10 +10,11 @@ import os
 import sys
 import config
 
-from github_operations import ticker_path  # stock_market.csv 파일 경로
+# from github_operations import ticker_path  # stock_market.csv 파일 경로
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', 'stock_market.csv'))
 
 NaN = np.nan
 
@@ -77,7 +78,7 @@ def calculate_mfi(high_prices, low_prices, close_prices, volumes, length=14):
     return mfi_values_full
 
 def load_industry_info():
-    industry_df = pd.read_csv(ticker_path)
+    industry_df = pd.read_csv(CSV_PATH)
     industry_dict = dict(zip(industry_df['Symbol'], industry_df['Industry']))
     return industry_dict
 
@@ -94,7 +95,8 @@ def get_stock_data(ticker, start_date, end_date):
     os.makedirs(folder_path, exist_ok=True)
     
     # 새 데이터를 가져옴
-    combined_data = fdr.DataReader(ticker, start_date, end_date)
+    combined_data = fdr.DataReader(ticker, config.START_DATE, config.END_DATE)
+    print(combined_data)
     combined_data = process_data(combined_data, ticker)
 
     # 데이터 파일을 static/images 폴더 아래에 저장
@@ -135,19 +137,19 @@ def process_data(stock_data, ticker):
     stock_data.ta.stoch(high='High', low='Low', k=14, d=3, append=True)
 
     # PPO (Price Percentage Oscillator)
-    ppo, ppo_signal, ppo_histogram = calculate_ppo(stock_data['Close'])
-    stock_data['ppo'] = ppo
-    stock_data['ppo_signal'] = ppo_signal
-    stock_data['ppo_histogram'] = ppo_histogram
+    try:
+        stock_data['ppo'], stock_data['ppo_signal'], stock_data['ppo_histogram'] = calculate_ppo(stock_data['Close'])
+    except Exception as e:
+        print(f"Error calculating PPO for {ticker}: {e}")
+        stock_data['ppo'], stock_data['ppo_signal'], stock_data['ppo_histogram'] = np.nan, np.nan, np.nan
 
     stock_data['Stock'] = ticker
 
     # Sector 정보 추가
-    sector_df = pd.read_csv(ticker_path)
+    sector_df = pd.read_csv(CSV_PATH)
     sector_dict = dict(zip(sector_df['Symbol'], sector_df['Sector']))
     stock_data['Sector'] = sector_dict.get(ticker, 'Unknown')
-    
-    print(stock_data)
+
     return stock_data
 
 
@@ -164,13 +166,14 @@ def get_price_info(ticker):
         return "알 수 없음"
 
 if __name__ == "__main__":
+    print('csv_path:', CSV_PATH)
     industry_info = load_industry_info()
 
     ticker = 'tsla'
-    start_date = '2019-01-01'
-    end_date = '2024-09-05'
+    combined_data = fdr.DataReader(ticker, config.START_DATE, config.END_DATE)
+    print(combined_data)
 
-    stock_data, start_date, end_date = get_stock_data(ticker, start_date, end_date)
+    stock_data, start_date, end_date = get_stock_data(ticker, config.START_DATE, config.END_DATE)
     print(stock_data)
     print(np.__version__)
     print(pd.__version__)
