@@ -72,6 +72,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     full_path2 = os.path.join(config.STATIC_IMAGES_PATH, "result_VOO_VOO.csv")
     df1_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
     df2_graph = pd.read_csv(full_path2, parse_dates=['Date'], index_col='Date')
+    print(full_path1)
 
     # 간략화된 데이터를 로드하여 챗GPT에서 그래프를 그릴 수 있게 합니다.
     simplified_df_path1 = os.path.join(config.STATIC_IMAGES_PATH, f"result_{ticker}.csv")
@@ -159,7 +160,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
 
 if __name__ == "__main__":
     print("Starting test for plotting results.")
-    ticker = "QQQ"
+    ticker = "TSLA"
     start_date = config.START_DATE
     end_date = config.END_DATE
     print(f"Plotting results for {ticker} from {start_date} to {end_date}")
