@@ -59,12 +59,16 @@ async def plot_results_mpl(ticker, start_date, end_date):
         raise FileNotFoundError(f"No cached data found for {ticker}. Please generate the data first.")
     
     prices = pd.read_csv(result_file_path, parse_dates=['Date'], index_col='Date')
+    # print(prices)
 
-    # 필요한 컬럼들이 있는지 확인
-    required_columns = ['sma20_ta', 'sma60_ta', 'ppo_histogram', 'rsi_ta', 'Close']
+    # 모든 컬럼 이름을 소문자로 변환
+    prices.columns = prices.columns.str.lower()
+
+    # 필요한 컬럼들이 있는지 확인하고 없으면 예외 처리
+    required_columns = ['sma20_ta', 'sma60_ta', 'ppo_histogram', 'rsi_ta', 'close']
     for col in required_columns:
         if col not in prices.columns:
-            raise ValueError(f"Missing required column '{col}' in data for {ticker}.")
+            raise ValueError(f"Missing required column '{col}' in data for {ticker}. Please ensure all indicators are calculated.")
 
     # 최신 6개월 데이터로 필터링
     end_date = pd.to_datetime(end_date)
@@ -72,51 +76,51 @@ async def plot_results_mpl(ticker, start_date, end_date):
     filtered_prices = prices[prices.index >= start_date_6m]
 
     # 차트 생성
-    chart_title = f'{ticker} vs VOO'
-    fig, ax = plt.subplots()
-    ax.plot(filtered_prices.index, filtered_prices['Close'])
-    ax.set_title(chart_title)
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Close Price')
+    indicators = [
+        Candlesticks(), 
+        SMA(20), 
+        SMA(60), 
+        Volume(),
+        RSI(), 
+        PPO(), 
+        TradeSpan('ppo_histogram>0')  # ppo_histogram을 사용하여 TradeSpan 설정
+    ]
+    name = get_ticker_name(ticker)
+    chart_title = f'{ticker} ({name}) vs VOO'.encode('utf-8').decode('utf-8')
+    chart = Chart(title=chart_title, max_bars=250)
+    chart.plot(filtered_prices, indicators)
+    fig = chart.figure
 
-    # 이미지 파일 경로 설정
     image_filename = f'result_mpl_{ticker}.png'
-    image_path = os.path.join(config.STATIC_IMAGES_PATH, image_filename)
-    
-    # 이미지 저장
-    fig.savefig(image_path)
-    plt.close(fig)
+    save_figure(fig, image_filename)
 
     # 메시지 작성
-    message = (f"Stock: {ticker}\n"
-               f"Close: {filtered_prices['Close'].iloc[-1]:,.2f}\n"
+    message = (f"Stock: {ticker} ({name})\n"
+               f"Close: {filtered_prices['close'].iloc[-1]:,.2f}\n"
                f"SMA 20: {filtered_prices['sma20_ta'].iloc[-1]:,.2f}\n"
                f"SMA 60: {filtered_prices['sma60_ta'].iloc[-1]:,.2f}\n"
-               f"RSI: {filtered_prices['rsi_ta'].iloc[-1]:,.2f}\n"
+               f"RSI: {filtered_prices['rsi_ta'].iloc[-1]:,.2f}\n"  # RSI를 필터링된 데이터에서 사용
                f"PPO Histogram: {filtered_prices['ppo_histogram'].iloc[-1]:,.2f}\n")
 
     # Discord로 메시지 전송
     response = requests.post(config.DISCORD_WEBHOOK_URL, data={'content': message})
     if response.status_code != 204:
-        print(f'Discord 메시지 전송 실패: {response.status_code} {response.text}')
+        print('Discord 메시지 전송 실패')
+        print(f"Response: {response.status_code} {response.text}")
     else:
         print('Discord 메시지 전송 성공')
 
     # Discord로 이미지 전송
     try:
-        # 이미지 파일 경로가 유효한지 확인
-        if os.path.exists(image_path):
-            with open(image_path, 'rb') as image_file:
-                response = requests.post(config.DISCORD_WEBHOOK_URL, files={'file': image_file})
-                if response.status_code in [200, 204]:
-                    print(f'Graph 전송 성공: {ticker}')
-                else:
-                    print(f'Graph 전송 실패: {ticker}')
-                    print(f"Response: {response.status_code} {response.text}")
-        else:
-            print(f"Image file not found: {image_path}")
+        with open(os.path.join(config.STATIC_IMAGES_PATH, image_filename), 'rb') as image_file:
+            response = requests.post(config.DISCORD_WEBHOOK_URL, files={'file': image_file})
+            if response.status_code in [200, 204]:
+                print(f'Graph 전송 성공: {ticker}')
+            else:
+                print(f'Graph 전송 실패: {ticker}')
+                print(f"Response: {response.status_code} {response.text}")
                 
-        await move_files_to_images_folder()
+        await move_files_to_images_folder()              
     except Exception as e:
         print(f"Error occurred while sending image: {e}")
 
