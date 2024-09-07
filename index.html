@@ -11,9 +11,6 @@
     <!-- jQuery 추가 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
-    <!-- jQuery UI 추가 -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -76,6 +73,7 @@
 
         #reviewList {
             margin-top: 20px;
+            text-align: center; /* 이미지를 중앙 정렬 */
         }
 
         #report {
@@ -87,6 +85,14 @@
             line-height: 1.6;
             font-size: 14px;
             overflow-y: auto;
+        }
+
+        /* 이미지 크기를 80%로 조정하고 중앙 정렬하는 CSS */
+        img {
+            width: 80%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* 중앙 정렬 */
         }
     </style>
 </head>
@@ -113,51 +119,38 @@
             const tickerListContainer = $('#ticker-list');
             const searchedTickersContainer = $('#searched-tickers');
 
+            // Markdown 변환 함수 추가
+            function convertMarkdown(text) {
+                return marked.parse(text);
+            }
+
+            // 주식 이미지 및 보고서 불러오기
             function fetchImagesAndReport(stockTicker) {
-                const apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+                const comparisonUrl = `http://localhost:5000/static/images/comparison_${stockTicker}_VOO.png`;
+                const resultUrl = `http://localhost:5000/static/images/result_mpl_${stockTicker}.png`;
+                const reportUrl = `http://localhost:5000/static/images/report_${stockTicker}.txt`;
 
-                $.ajax({
-                    url: apiUrl,
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        const comparisonFile = data.find(file => file.name === `comparison_${stockTicker}_VOO.png`);
-                        const resultFile = data.find(file => file.name === `result_mpl_${stockTicker}.png`);
-                        const reportFile = data.find(file => file.name === `report_${stockTicker}.txt`);
+                reviewList.empty();
 
-                        reviewList.empty();
+                // 비교 이미지와 결과 이미지 추가 (이미지 크기를 80%로 조정하고 중앙에 정렬)
+                reviewList.append(`
+                    <div class="review">
+                        <h3>${stockTicker} vs VOO</h3>
+                        <img src="${comparisonUrl}" alt="${stockTicker} vs VOO">
+                        <img src="${resultUrl}" alt="${stockTicker} Result" style="margin-top: 20px;">
+                    </div>
+                `);
 
-                        if (comparisonFile && resultFile) {
-                            reviewList.append(`
-                                <div class="review">
-                                    <h3>${stockTicker} vs VOO</h3>
-                                    <img src="${comparisonFile.download_url}" alt="${stockTicker} vs VOO" style="width: 100%;">
-                                    <img src="${resultFile.download_url}" alt="${stockTicker} Result" style="width: 100%; margin-top: 20px;">
-                                </div>
-                            `);
-
-                            if (reportFile) {
-                                $.get(reportFile.download_url, function(data) {
-                                    // 마크다운 텍스트를 HTML로 변환
-                                    const htmlContent = marked(data.trim()); // 불필요한 공백 제거
-                                    // 변환된 HTML을 페이지에 추가
-                                    reviewList.append(`<div class="markdown-content">${htmlContent}</div>`);
-                                }).fail(function() {
-                                    alert('Failed to load the report file.');
-                                });
-                            }
-                        } else {
-                            alert(`Unable to find images or report for the stock ticker ${stockTicker}.`);
-                            saveSearchedTicker(stockTicker);
-                            displaySearchedTickers();
-                        }
-                    },
-                    error: function() {
-                        alert('Error occurred while fetching data.');
-                    }
+                // 보고서 파일을 로드하여 추가
+                $.get(reportUrl, function(data) {
+                    const htmlContent = convertMarkdown(data);
+                    reviewList.append(`<div class="markdown-content">${htmlContent}</div>`);
+                }).fail(function() {
+                    alert('Failed to load the report file.');
                 });
             }
 
+            // 검색한 티커를 로컬 스토리지에 저장
             function saveSearchedTicker(ticker) {
                 let searchedTickers = JSON.parse(localStorage.getItem('searchedTickers')) || {};
                 if (searchedTickers[ticker]) {
@@ -168,6 +161,7 @@
                 localStorage.setItem('searchedTickers', JSON.stringify(searchedTickers));
             }
 
+            // 저장된 티커를 화면에 표시
             function displaySearchedTickers() {
                 let searchedTickers = JSON.parse(localStorage.getItem('searchedTickers')) || {};
                 searchedTickersContainer.empty();
@@ -177,18 +171,16 @@
                 }
             }
 
+            // Flask API에서 티커 목록 불러오기
             function loadTickerList() {
-                const apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+                const apiUrl = 'http://localhost:5000/api/get_reviewed_tickers';  // Flask 서버에서 제공하는 API
 
                 $.ajax({
                     url: apiUrl,
                     method: 'GET',
                     dataType: 'json',
                     success: function(data) {
-                        const tickers = data
-                            .filter(file => file.name.startsWith('comparison_') && file.name.endsWith('_VOO.png'))
-                            .map(file => file.name.replace('comparison_', '').replace('_VOO.png', ''))
-                            .sort(); // 알파벳 순으로 정렬
+                        const tickers = data.sort();  // 알파벳 순으로 정렬
 
                         tickerListContainer.empty();
 
@@ -196,6 +188,7 @@
                             tickerListContainer.append(`<span class="ticker-item">${ticker}</span>`);
                         });
 
+                        // 티커를 클릭하면 해당 주식 정보를 로드
                         $('.ticker-item').on('click', function() {
                             const stockTicker = $(this).text();
                             stockInput.val(stockTicker);
@@ -208,6 +201,7 @@
                 });
             }
 
+            // 검색 버튼 클릭 시 호출
             searchReviewButton.click(function() {
                 const stockTicker = stockInput.val().toUpperCase();
                 if (stockTicker) {
@@ -215,15 +209,17 @@
                 }
             });
 
+            // Enter 키 입력 시 검색 실행
             stockInput.on('keypress', function(e) {
-                if (e.which === 13) { // Enter key
+                if (e.which === 13) {  // Enter key
                     searchReviewButton.click();
                     return false;
                 }
             });
 
-            loadTickerList(); // 페이지  로드 시 티커 목록 불러오기
-            displaySearchedTickers(); // 페이지 로드 시 검색된 티커 목록 불러오기
+            // 초기 로드 시 티커 목록과 검색된 티커 표시
+            loadTickerList();
+            displaySearchedTickers();
         });
     </script>
 </body>
