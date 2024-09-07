@@ -117,23 +117,29 @@ def is_stock_analysis_complete(ticker):
         return False
     
     # 파일을 읽어옴
-    df = pd.read_csv(result_file_path, parse_dates=['Date'])
+    df = pd.read_csv(result_file_path, parse_dates=['Date'])  # 'Date' 열을 datetime으로 변환
     
-    # 파일의 시작 날짜가 설정된 START_DATE와 일치하는지 확인
-    if df['Date'].min().strftime('%Y-%m-%d') != START_DATE:
-        return False
-    
-    # 파일의 마지막 날짜가 현재 설정된 END_DATE와 일치하는지 확인
-    latest_data_date = df['Date'].max().strftime('%Y-%m-%d')
-    if latest_data_date != END_DATE:
-        print(f"Data is incomplete for {ticker}. Latest date: {latest_data_date}, Expected end date: {END_DATE}")
-        return False
-    
-    # 최신 데이터 날짜 출력
-    print(f"Latest data date in dataset for {ticker}: {latest_data_date}")
+    # float 타입이 아닌지 확인하고 strftime을 적용
+    try:
+        df['Date'] = pd.to_datetime(df['Date'])  # 명확히 datetime으로 변환
+        # 파일의 시작 날짜가 설정된 START_DATE와 일치하는지 확인
+        if df['Date'].min().strftime('%Y-%m-%d') != START_DATE:
+            return False
 
-    # 시작 날짜와 마지막 날짜가 모두 일치하면 True 반환
-    return True
+        # 파일의 마지막 날짜가 현재 설정된 END_DATE와 일치하는지 확인
+        latest_data_date = df['Date'].max().strftime('%Y-%m-%d')
+        if latest_data_date != END_DATE:
+            print(f"Data is incomplete for {ticker}. Latest date: {latest_data_date}, Expected end date: {END_DATE}")
+            return False
+        
+        # 최신 데이터 날짜 출력
+        print(f"Latest data date in dataset for {ticker}: {latest_data_date}")
+
+        return True
+    except Exception as e:
+        print(f"Error processing date for {ticker}: {e}")
+        return False
+
 
 
 def is_gemini_analysis_complete(ticker):

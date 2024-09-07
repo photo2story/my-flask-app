@@ -66,18 +66,66 @@ def save_search_history():
     print(f'Saved {stock_name} to search history.')
     return jsonify({"success": True})
 
-@app.route('/api/get_images', methods=['GET'])
-def get_images():
-    image_folder = os.path.join(app.static_folder, 'images')
-    images = [filename for filename in os.listdir(image_folder) if filename.endswith('.png')]
-    return jsonify(images)
+# @app.route('/api/get_images', methods=['GET'])
+# def get_images():
+#     image_folder = os.path.join(app.static_folder, 'images')
+#     images = [filename for filename in os.listdir(image_folder) if filename.endswith('.png')]
+#     return jsonify(images)
 
+# 로컬의 이미지 파일 경로 설정 (예: static/images 폴더 경로)
+LOCAL_IMAGES_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'static', 'images'))
+
+# 이미지 파일이 저장된 디렉토리 경로
+IMAGE_DIRECTORY = 'static/images'
+
+# 검토된 티커 목록 제공 API
 @app.route('/api/get_reviewed_tickers', methods=['GET'])
 def get_reviewed_tickers():
-    image_folder = os.path.join(app.static_folder, 'images')
-    tickers = [filename.split('_')[1] for filename in os.listdir(image_folder)
-               if filename.startswith('comparison_') and filename.endswith('_VOO.png')]
-    return jsonify(tickers)
+    try:
+        # "comparison_"으로 시작하고 "_VOO.png"로 끝나는 파일을 검색하여 티커 추출
+        tickers = [filename.split('_')[1] for filename in os.listdir(IMAGE_DIRECTORY)
+                   if filename.startswith('comparison_') and filename.endswith('_VOO.png')]
+        return jsonify(tickers)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+# 리포트 및 이미지 제공 API
+@app.route('/api/get_images', methods=['GET'])
+def get_images():
+    ticker = request.args.get('ticker')
+    if not ticker:
+        return jsonify({'error': 'No ticker provided'}), 400
+
+    # 이미지 파일 경로
+    comparison_image = f'comparison_{ticker}_VOO.png'
+    result_image = f'result_mpl_{ticker}.png'
+    report_file = f'report_{ticker}.txt'
+
+    # 이미지 파일 경로 설정
+    comparison_url = f'/static/images/{comparison_image}' if os.path.exists(os.path.join(IMAGE_DIRECTORY, comparison_image)) else ''
+    result_url = f'/static/images/{result_image}' if os.path.exists(os.path.join(IMAGE_DIRECTORY, result_image)) else ''
+
+    # 리포트 파일 로드
+    report_text = ''
+    if os.path.exists(os.path.join(IMAGE_DIRECTORY, report_file)):
+        with open(os.path.join(IMAGE_DIRECTORY, report_file), 'r') as file:
+            report_text = file.read()
+
+    return jsonify({
+        'comparison_image': comparison_url,
+        'result_image': result_url,
+        'report': report_text
+    })
+        
+# 파일을 서빙하는 엔드포인트
+@app.route('/static/images/<path:filename>')
+def serve_image(filename):
+    try:
+        print(f"Serving image: {filename}")
+        return send_from_directory(IMAGE_DIRECTORY, filename)
+    except Exception as e:
+        print(f"Error serving image {filename}: {e}")
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/analyze', methods=['POST'])
 async def analyze():

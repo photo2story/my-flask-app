@@ -261,13 +261,10 @@ python3 -m venv .venv
 pip install --force-reinstall ./mplchart-0.0.8-py3-none-any.whl
 pip install -r requirements.txt
 
-git reset --hard 9219981
-
 
 
 source .venv/bin/activate
 python bot.py   
-python app.py   
 docker build -t asia.gcr.io/my-flask-app-429017/bot .
 docker push asia.gcr.io/my-flask-app-429017/bot
 gcloud run deploy bot --image asia.gcr.io/my-flask-app-429017/bot --platform managed --region asia-northeast3 --allow-unauthenticated
@@ -277,7 +274,11 @@ git fetch origin
 git checkout main
 git reset --hard origin/main
 로컬내용을 원격저장소에 강제업데이트
+
+git reset --hard 68edde1
 git push origin main --force
+git add .
+git commit -m "Reverted to commit 68edde1 and continued work"
 
 nix-shell
 """

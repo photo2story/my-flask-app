@@ -31,12 +31,11 @@ class _MyHomePageState extends State<MyHomePage> {
   String _comparisonImageUrl = '';
   String _resultImageUrl = '';
   String _message = '';
-  String _description = '';
   String _reportText = '';
   List<String> _tickers = [];
   final TextEditingController _controller = TextEditingController();
 
-  final String apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+  final String apiUrl = 'http://localhost:5000/api';
 
   @override
   void initState() {
@@ -46,16 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> fetchReviewedTickers() async {
     try {
-      final response = await http.get(Uri.parse(apiUrl));
+      final response = await http.get(Uri.parse('$apiUrl/get_reviewed_tickers'));
       if (response.statusCode == 200) {
-        final List<dynamic> files = json.decode(response.body);
-        final tickers = files
-            .where((file) => file['name'].startsWith('comparison_') && file['name'].endsWith('_VOO.png'))
-            .map<String>((file) => file['name'].replaceAll('comparison_', '').replaceAll('_VOO.png', ''))
-            .toList();
-
+        final List<dynamic> tickers = json.decode(response.body);
         setState(() {
-          _tickers = tickers;
+          _tickers = tickers.cast<String>();
         });
       } else {
         setState(() {
@@ -70,68 +64,33 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> fetchImagesAndReport(String stockTicker) async {
-      try {
-        final response = await http.get(Uri.parse(apiUrl));
-        if (response.statusCode == 200) {
-          final List<dynamic> files = json.decode(response.body);
-          final comparisonFile = files.firstWhere(
-              (file) => file['name'] == 'comparison_${stockTicker}_VOO.png',
-              orElse: () => null);
-          final resultFile = files.firstWhere(
-              (file) => file['name'] == 'result_mpl_${stockTicker}.png',
-              orElse: () => null);
-          final reportFile = files.firstWhere(
-              (file) => file['name'] == 'report_${stockTicker}.txt',
-              orElse: () => null);
-
-          if (comparisonFile != null && resultFile != null) {
-            setState(() {
-              _comparisonImageUrl = comparisonFile['download_url'];
-              _resultImageUrl = resultFile['download_url'];
-              _message = '';
-            });
-            if (reportFile != null) {
-              final reportResponse = await http.get(Uri.parse(reportFile['download_url']));
-              if (reportResponse.statusCode == 200) {
-                setState(() {
-                  _reportText = reportResponse.body;
-                });
-              } else {
-                setState(() {
-                  _reportText = 'Failed to load report text';
-                });
-              }
-            } else {
-              setState(() {
-                _reportText = ''; // Clear the report text if no report is found
-              });
-            }
-          } else {
-            setState(() {
-              _comparisonImageUrl = '';
-              _resultImageUrl = '';
-              _reportText = ''; // Clear the report text if no images or report are found
-              _message = 'Unable to find images or report for the stock ticker $stockTicker';
-            });
-          }
-        } else {
-          setState(() {
-            _comparisonImageUrl = '';
-            _resultImageUrl = '';
-            _reportText = ''; // Clear the report text on API call failure
-            _message = 'GitHub API call failed: ${response.statusCode}';
-          });
-        }
-      } catch (e) {
+    try {
+      final response = await http.get(Uri.parse('$apiUrl/get_images?ticker=$stockTicker'));
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        setState(() {
+          _comparisonImageUrl = data['comparison_image'] ?? '';
+          _resultImageUrl = data['result_image'] ?? '';
+          _reportText = data['report'] ?? '';
+          _message = '';
+        });
+      } else {
         setState(() {
           _comparisonImageUrl = '';
           _resultImageUrl = '';
-          _reportText = ''; // Clear the report text on exception
-          _message = 'Error occurred: $e';
+          _reportText = '';
+          _message = 'Failed to fetch images and report: ${response.statusCode}';
         });
       }
+    } catch (e) {
+      setState(() {
+        _comparisonImageUrl = '';
+        _resultImageUrl = '';
+        _reportText = '';
+        _message = 'Error occurred: $e';
+      });
     }
-
+  }
 
   void _openImage(BuildContext context, String imageUrl) {
     Navigator.push(
@@ -272,6 +231,7 @@ class ImageScreen extends StatelessWidget {
     );
   }
 }
+
 
 // flutter devices
 
