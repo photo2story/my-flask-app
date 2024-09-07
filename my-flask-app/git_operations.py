@@ -6,10 +6,12 @@ import shutil
 import requests
 import pandas as pd
 import io
+import config
 
 # 리포지토리 경로 설정
-repo_path = os.path.abspath(os.path.dirname(__file__))  # 현재 디렉토리의 절대 경로를 사용
-
+# repo_path = os.path.abspath(os.path.dirname(__file__))  # 현재 디렉토리의 절대 경로를 사용
+# 프로젝트 루트 경로 설정
+repo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 # 리포지토리 객체 생성
 try:
     repo = git.Repo(repo_path)
@@ -42,22 +44,23 @@ async def move_files_to_images_folder():
         return
 
     patterns = ["*.png", "*.csv", "*.report","*.txt"]
-    destination_folder = os.path.join('static', 'images')  # 'app.static_folder' 대신 경로를 명시적으로 설정
+    # destination_folder = os.path.join('static', 'images')  # 'app.static_folder' 대신 경로를 명시적으로 설정
+    destination_folder = config.STATIC_IMAGES_PATH
 
     # 외부 URL에서 CSV 데이터 다운로드
-    df = fetch_csv_data(csv_url)
-    if df is not None:
-        csv_path = os.path.join(destination_folder, 'stock_market.csv')
-        os.makedirs(destination_folder, exist_ok=True)
-        df.to_csv(csv_path, index=False)
-        print(f"Downloaded CSV to {csv_path}")
-    else:
-        print("Failed to download CSV data.")
+    # df = fetch_csv_data(csv_url)
+    # if df is not None:
+    #     csv_path = os.path.join(destination_folder, 'stock_market.csv')
+    #     os.makedirs(destination_folder, exist_ok=True)
+    #     df.to_csv(csv_path, index=False)
+    #     print(f"Downloaded CSV to {csv_path}")
+    # else:
+    #     print("Failed to download CSV data.")
 
     for pattern in patterns:
         for file in glob.glob(pattern):
             if file != "stock_market.csv":
-                shutil.move(file, os.path.join(destination_folder, os.path.basename(file)))
+                shutil.move(file, os.path.join(destination_folder, os.path.basename(file)))# 파일 이동
                 print(f"Moved {file} to {destination_folder}")
 
     # 파일 이동 후 깃허브 커밋 및 푸시
@@ -71,15 +74,19 @@ async def move_files_to_images_folder():
         print(f'Error during git operations: {e}')
 
 # CSV 파일 URL
-csv_url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+# csv_url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+csv_url = config.CSV_PATH
 
 # 테스트 코드
 if __name__ == "__main__":
-    df = fetch_csv_data(csv_url)
+    # df = fetch_csv_data(csv_url)
+    # csv파일을 읽어온다.
+    df = pd.read_csv(csv_url)
     if df is not None:
         print(df.head())
     else:
         print("Failed to fetch CSV data.")
 
+# python git_operations.py
 
 

@@ -10,11 +10,8 @@ import os
 import sys
 import config
 
-# from github_operations import ticker_path  # stock_market.csv 파일 경로
-
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-# CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', 'stock_market.csv'))
 CSV_PATH = config.CSV_PATH
 
 NaN = np.nan
@@ -92,13 +89,19 @@ def get_stock_data(ticker, start_date, end_date):
     # static/images 폴더 경로 설정
     folder_path = config.STATIC_IMAGES_PATH
     
-    # 폴더가 없을 경우 생성
-    os.makedirs(folder_path, exist_ok=True)
-    
-    # 새 데이터를 가져옴
-    combined_data = fdr.DataReader(ticker, config.START_DATE, config.END_DATE)
-    print(combined_data)
-    combined_data = process_data(combined_data, ticker)
+    try:
+        # 새 데이터를 가져옴
+        combined_data = fdr.DataReader(ticker, start_date, end_date)
+        
+        if combined_data.empty:
+            print(f"No data found for {ticker}.")
+            return pd.DataFrame(), start_date, end_date
+            
+        print(combined_data)
+        combined_data = process_data(combined_data, ticker)
+    except Exception as e:
+        print(f"Error fetching data for {ticker}: {e}")
+        return pd.DataFrame(), start_date, end_date
 
     # 데이터 파일을 static/images 폴더 아래에 저장
     file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
@@ -107,6 +110,7 @@ def get_stock_data(ticker, start_date, end_date):
     print(f"Loaded data for {ticker} from {start_date} to {end_date}")
     
     return combined_data, start_date, end_date
+
 
 def process_data(stock_data, ticker):
     # 데이터가 20개 미만일 경우 경고 메시지를 출력하고 처리 건너뛰기
@@ -153,7 +157,6 @@ def process_data(stock_data, ticker):
 
     return stock_data
 
-
 def get_price_info(ticker):
     api_key = 'Alpha_API'
     url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker}&apikey={api_key}'
@@ -168,11 +171,16 @@ def get_price_info(ticker):
 
 if __name__ == "__main__":
     # 테스트 실행
-    ticker = 'TSLA'
-    start_date = '2019-01-01'
-    end_date = '2024-09-07'
+    ticker = 'aapl'
+    start_date = '2024-01-02'
+    end_date = '2024-09-05'
 
     print(f"Fetching data for {ticker} from {start_date} to {end_date}")
     stock_data, start_date, end_date = get_stock_data(ticker, start_date, end_date)
+    if not stock_data.empty:
+        print(stock_data.head())
+    else:
+        print(f"No data to display for {ticker}.")
+
 
 ## python Get_data.py    

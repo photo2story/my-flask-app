@@ -33,7 +33,9 @@ def fetch_csv(ticker):
 # CSV 파일을 간소화하고 로컬에 저장하는 함수
 def save_simplified_csv(ticker):
     # GitHub에서 데이터를 가져오기 위해 fetch_csv 함수를 사용
-    df = fetch_csv(ticker)
+    # df = fetch_csv(ticker)
+    # result_VOO_{ticker}.csv을 읽어와서 데이터프레임으로 변환
+    df= pd.read_csv(f"{config.STATIC_IMAGES_PATH}/result_VOO_{ticker}.csv")
     
     if df is None:
         print(f"Skipping processing for {ticker} due to missing data.")
@@ -75,7 +77,7 @@ def save_simplified_csv(ticker):
             simplified_df = pd.concat([simplified_df, last_row.to_frame().T], ignore_index=True)
     
     # 파일 저장
-    folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images'))
+    folder_path = config.STATIC_IMAGES_PATH
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
@@ -96,7 +98,10 @@ def collect_relative_divergence():
                                     'Expected_Return'])
     
     for ticker in tickers:
+        # GitHub에서 데이터를 가져오기 위해 fetch_csv 함수를 사용
         df = fetch_csv(ticker)
+        # result_{ticker}.csv을 읽어와서 데이터프레임으로 변환
+        df= pd.read_csv(f"{folder_path}/result_{ticker}.csv")
         if df is None or df.empty or 'Relative_Divergence' not in df.columns:
             print(f"Data for {ticker} is not available or missing necessary columns.")
             continue
