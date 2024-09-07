@@ -85,6 +85,7 @@
             line-height: 1.6;
             font-size: 14px;
             overflow-y: auto;
+            text-align: left; /* 리포트 텍스트를 왼쪽 정렬 */
         }
 
         /* 이미지 크기를 80%로 조정하고 중앙 정렬하는 CSS */
@@ -144,7 +145,7 @@
                 // 보고서 파일을 로드하여 추가
                 $.get(reportUrl, function(data) {
                     const htmlContent = convertMarkdown(data);
-                    reviewList.append(`<div class="markdown-content">${htmlContent}</div>`);
+                    $('#report').html(`<div class="markdown-content">${htmlContent}</div>`);
                 }).fail(function() {
                     alert('Failed to load the report file.');
                 });
