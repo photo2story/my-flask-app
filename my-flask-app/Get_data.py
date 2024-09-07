@@ -14,7 +14,8 @@ import config
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', 'stock_market.csv'))
+# CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'images', 'stock_market.csv'))
+CSV_PATH = config.CSV_PATH
 
 NaN = np.nan
 
@@ -166,17 +167,12 @@ def get_price_info(ticker):
         return "알 수 없음"
 
 if __name__ == "__main__":
-    print('csv_path:', CSV_PATH)
-    industry_info = load_industry_info()
+    # 테스트 실행
+    ticker = 'TSLA'
+    start_date = '2019-01-01'
+    end_date = '2024-09-07'
 
-    ticker = 'tsla'
-    combined_data = fdr.DataReader(ticker, config.START_DATE, config.END_DATE)
-    print(combined_data)
-
-    stock_data, start_date, end_date = get_stock_data(ticker, config.START_DATE, config.END_DATE)
-    print(stock_data)
-    print(np.__version__)
-    print(pd.__version__)
-    print(ta.__version__)
+    print(f"Fetching data for {ticker} from {start_date} to {end_date}")
+    stock_data, start_date, end_date = get_stock_data(ticker, start_date, end_date)
 
 ## python Get_data.py    
