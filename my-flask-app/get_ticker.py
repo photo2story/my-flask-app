@@ -152,7 +152,8 @@ async def search_tickers_and_respond(ctx, query):
 
 def is_valid_stock(stock):  # Check if the stock is in the stock market CSV
     try:
-        url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+        # url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+        url = config.CSV_PATH
         stock_market_df = pd.read_csv(url, encoding='utf-8')  # Specify encoding
         return stock in stock_market_df['Symbol'].values
     except Exception as e:
