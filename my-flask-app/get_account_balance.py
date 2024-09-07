@@ -7,9 +7,11 @@ import os
 import pandas as pd
 import yfinance as yf
 from dotenv import load_dotenv
+import config
 
 load_dotenv()
-ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
+# ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
+ticker_path = config.CSV_PATH
 
 def get_balance(key, secret, acc_no):
     broker = mojito.KoreaInvestment(

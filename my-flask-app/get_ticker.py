@@ -10,6 +10,7 @@ import config
 
 #ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
 #CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+CSV_URL = config.CSV_PATH
 ticker_path = config.CSV_PATH
 
 def get_ticker_name(ticker):

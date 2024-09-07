@@ -6,13 +6,16 @@ from io import StringIO
 from dotenv import load_dotenv
 import openai
 from git_operations import move_files_to_images_folder
+import config
 
 # 환경 변수 로드
 load_dotenv()
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
-GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
-CSV_PATH = os.getenv('CSV_PATH', 'static/images/stock_market.csv')
+# GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
+GITHUB_RAW_BASE_URL =config.STATIC_IMAGES_PATH
+# CSV_PATH = os.getenv('CSV_PATH', 'static/images/stock_market.csv')
+CSV_PATH = config.CSV_PATH
 
 # OpenAI API 구성
 openai.api_key = OPENAI_API_KEY

@@ -4,6 +4,7 @@ import base64
 import os
 import pandas as pd
 from dotenv import load_dotenv
+import config
 
 load_dotenv()
 
@@ -12,6 +13,7 @@ GITHUB_REPO_OWNER = os.getenv('GITHUB_REPO_OWNER')
 GITHUB_REPO_NAME = os.getenv('GITHUB_REPO_NAME')
 
 ticker_path = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+ticker_path = config.CSV_PATH
 
 def save_csv_to_github(dataframe, file_name, commit_message):
     url = f'https://api.github.com/repos/{GITHUB_REPO_OWNER}/{GITHUB_REPO_NAME}/contents/{file_name}'
