@@ -92,7 +92,9 @@ def get_stock_data(ticker, start_date, end_date):
     
     try:
         # 새 데이터를 가져옴
-        combined_data = fdr.DataReader(safe_ticker, start_date, end_date)
+        # combined_data = fdr.DataReader(safe_ticker, start_date, end_date)
+        combined_data = yf.download(safe_ticker, start_date, end_date)
+
         
         if combined_data.empty:
             print(f"No data found for {ticker}.")
