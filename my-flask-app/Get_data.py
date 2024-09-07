@@ -1,6 +1,5 @@
 ## Get_data.py
 
-import yfinance as yf
 import pandas_ta as ta
 import pandas as pd
 import requests
@@ -173,14 +172,12 @@ def get_price_info(ticker):
 if __name__ == "__main__":
     # 테스트 실행
     ticker = 'AAPL'
-    print(f"Fetching data for {ticker} from {'2024-01-02'} to {'2024-01-10'}")
-    combined_data = fdr.DataReader('AAPL', '2024-01-02', '2024-01-10')
-    print(combined_data)
-    stock_data, start_date, end_date = get_stock_data('AAPL', '2024-01-02', '2024-01-10')
-    if not stock_data.empty:
-        print(stock_data.head())
-    else:
-        print(f"No data to display for {ticker}.")
+    # Apple 주식(AAPL) 데이터를 테스트로 가져오기
+    try:
+        stock_data = fdr.DataReader('AAPL', '2023-01-01', '2023-12-31')
+        print(stock_data)  # 데이터가 정상적으로 가져와지는지 확인
+    except Exception as e:
+        print(f"오류 발생: {e}")
 
 
 ## python Get_data.py    

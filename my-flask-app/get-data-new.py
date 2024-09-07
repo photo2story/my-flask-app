@@ -8,4 +8,4 @@ except Exception as e:
     print(f"오류 발생: {e}")
 
 
-## python Get_data2.py    
+## python get-data-new.py 실행 결과    
