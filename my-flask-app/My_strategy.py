@@ -1,21 +1,4 @@
 # My_strategy.py
-import datetime
-from typing import Union, Any
-import requests 
-import yaml
-import os, sys
-import pandas_ta as ta
-import pandas as pd
-
-# 경로 설정
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-# 사용자 정의 모듈 임포트
-from Strategy_sell import strategy_sell
-from Strategy_buy import strategy_buy
-from get_signal import calculate_ppo_buy_sell_signals
-import config  # config.py 모듈 임포트
-
 def my_strategy(stock_data, option_strategy):
     result = []  # 거래 결과를 초기화, 저장하는 용도
     portfolio_value = 0  # 계좌 잔고
@@ -38,6 +21,8 @@ def my_strategy(stock_data, option_strategy):
         currency = 1
     
     PPO_BUY = False  # Initialize neither buy nor sell signal is active
+   
+
     PPO_SELL = False
 
     # Initialize the first trading day and first saving day
@@ -45,7 +30,6 @@ def my_strategy(stock_data, option_strategy):
 
     # Loop over data
     for i, row in stock_data.iterrows():
-        
         current_date = row.name
         
         # 매달 적립 수행
