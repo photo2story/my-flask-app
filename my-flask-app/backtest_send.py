@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from discord.ext import commands
 import discord
 import asyncio
+import traceback  # 추가
 
 # 사용자 정의 모듈 임포트
 from Results_plot import plot_comparison_results
@@ -60,16 +61,24 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         # 주식 데이터 가져오기 (기초 주가 데이터를 가져오는 것만 수행)
         stock_data, first_date, last_date = get_stock_data(stock, config.START_DATE, config.END_DATE)
-        print('stock_data:', stock_data)
+        print('Fetched stock_data:', stock_data.head())  # 디버깅 출력
         
+        if stock_data.empty:
+            await ctx.send(f"No stock data found for {stock}.")
+            return
+
         # 시뮬레이션 실행
         await ctx.send(f'Running strategy for {stock}.')
         stock_result_df = My_strategy.my_strategy(stock_data, option_strategy)
-        print('stock_result_df:', stock_result_df)
+        print('Strategy result (stock_result_df):', stock_result_df.head())  # 디버깅 출력
+        
+        if stock_result_df.empty:
+            await ctx.send(f"No strategy result data for {stock}.")
+            return
         
         # VOO 데이터 가져오기 (캐시된 데이터 사용 또는 새로 가져오기)
         voo_data_df = await get_voo_data(option_strategy, first_date, last_date, ctx)
-        print('voo_data_df:', voo_data_df)
+        print('Fetched voo_data_df:', voo_data_df.head())  # 디버깅 출력
 
         await ctx.send(f'Combining data for {stock} with VOO data.')
         
@@ -78,23 +87,25 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         voo_data_df['Date'] = pd.to_datetime(voo_data_df['Date'])
         
         # stock_result_df와 voo_data_df 병합
+        print(f"Merging stock data and VOO data for {stock}.")  # 병합 전 디버깅 메시지
         combined_df = pd.merge(stock_result_df, voo_data_df[['Date', 'rate_vs']], on='Date', how='inner')
+        
+        if combined_df.empty:
+            await ctx.send(f"No combined data for {stock}.")
+            return
         
         # 병합 후 결측치 채우기
         combined_df.fillna(0, inplace=True)
-        print(combined_df)
+        print('Merged and filled combined_df:', combined_df.head())  # 병합 후 디버깅 출력
 
         # 유효하지 않은 끝부분 제거: 'price' 가 0인 행 제거
+        print(f"Filtering combined data for {stock}.")  # 필터링 전 디버깅 메시지
         combined_df = combined_df[(combined_df['price'] != 0)]
-        print(combined_df)
+        print('Filtered combined_df:', combined_df.head())  # 필터링 후 디버깅 출력
 
         # CSV 파일로 내보내기
         await ctx.send(f'Exporting data to CSV for {stock}.')
-        # export_csv(combined_df, stock)
-
-        # 결과 CSV 파일로 저장하기
         safe_ticker = stock.replace('/', '-')
-        # file_path = os.path.join('static', 'images', f'result_VOO_{safe_ticker}.csv')
         file_path = os.path.join(config.STATIC_IMAGES_PATH, f'result_VOO_{safe_ticker}.csv')
         await ctx.send(f'Saving results to {file_path}.')
         combined_df.to_csv(file_path, float_format='%.2f', index=False)
@@ -110,9 +121,11 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
     
     except Exception as e:
         error_message = f"An error occurred while processing {stock}: {e}"
+        error_trace = traceback.format_exc()  # 스택 트레이스 추가
         await ctx.send(error_message)
+        await ctx.send(f"Traceback: {error_trace}")  # 스택 트레이스도 전송
         print(error_message)
-
+        print(error_trace)  # 스택 트레이스 콘솔에도 출력
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
