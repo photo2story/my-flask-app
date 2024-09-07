@@ -1,4 +1,5 @@
 import FinanceDataReader as fdr
+import os
 
 # Apple 주식(AAPL) 데이터를 테스트로 가져오기
 try:
