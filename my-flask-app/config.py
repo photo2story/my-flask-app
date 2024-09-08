@@ -179,7 +179,7 @@ def is_cache_valid(cache_file, start_date, end_date):
     
     # 시작 날짜 확인
     min_date_in_cache = df['Date'].min().strftime('%Y-%m-%d')
-    if min_date_in_cache != start_date:
+    if min_date_in_cache > start_date:
         print(f"Start date mismatch: {min_date_in_cache} != {start_date}")
         return False
     

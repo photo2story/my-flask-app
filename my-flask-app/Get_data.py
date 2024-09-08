@@ -9,6 +9,7 @@ import os
 import sys
 import config
 import yfinance as yf
+from datetime import datetime, timedelta
 
 # 루트 디렉토리를 sys.path에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -175,9 +176,11 @@ def get_price_info(ticker):
 if __name__ == "__main__":
     # 테스트 실행
     ticker = 'AAPL'
+    start_date = '2019-01-01'
+    end_date = datetime.today().strftime('%Y-%m-%d')
     # Apple 주식(AAPL) 데이터를 테스트로 가져오기
     try:
-        stock_data = yf.download('AAPL', '2023-01-01', '2023-12-31')
+        stock_data = yf.download('AAPL', start_date, end_date)
         print(stock_data)  # 데이터가 정상적으로 가져와지는지 확인
     except Exception as e:
         print(f"오류 발생: {e}")
