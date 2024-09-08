@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.15,
               padding: const EdgeInsets.all(8.0),
-              color: Colors.grey[850], // 다크모드용 배경색
+              color: Colors.grey[900], // 조금 더 밝은 회색을 사용하여 구분감 줌
               child: ListView(
                 children: _tickers.map((ticker) {
                   return Padding(
@@ -166,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: Text(
                         ticker,
-                        style: TextStyle(fontSize: 11, color: Colors.blue[300], height: 1.2),
+                        style: TextStyle(fontSize: 11, color: Colors.cyanAccent, height: 1.2), // 더 밝은 파란색 설정
                       ),
                     ),
                   );
@@ -241,6 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
 
 
 // flutter devices
