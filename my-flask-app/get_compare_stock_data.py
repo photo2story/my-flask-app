@@ -91,7 +91,11 @@ def save_simplified_csv(ticker):
 
 
 
-def collect_relative_divergence():
+import os
+import pandas as pd
+import asyncio  # 추가
+
+async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
     results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
                                     'Delta_Previous_Relative_Divergence', 'Max_Divergence', 
@@ -122,14 +126,16 @@ def collect_relative_divergence():
             max_divergence = df['Divergence'].max().round(2)
             expected_return = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
 
-            results = pd.concat([results, pd.DataFrame({
-                'Ticker': [ticker], 
-                'Divergence': [latest_divergence], 
-                'Relative_Divergence': [latest_relative_divergence],
-                'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
-                'Max_Divergence': [max_divergence],
-                'Expected_Return': [expected_return]
-            })], ignore_index=True)
+            # 빈 데이터프레임 혹은 NA 값을 제외하고 결과에 추가
+            if not pd.isna(latest_divergence) and not pd.isna(latest_relative_divergence):
+                results = pd.concat([results, pd.DataFrame({
+                    'Ticker': [ticker], 
+                    'Divergence': [latest_divergence], 
+                    'Relative_Divergence': [latest_relative_divergence],
+                    'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
+                    'Max_Divergence': [max_divergence],
+                    'Expected_Return': [expected_return]
+                })], ignore_index=True)
 
         except Exception as e:
             print(f"Error processing data for {ticker}: {e}")
@@ -138,11 +144,16 @@ def collect_relative_divergence():
     collect_relative_divergence_path = os.path.join(folder_path, 'results_relative_divergence.csv')
     results.to_csv(collect_relative_divergence_path, index=False)
 
-    move_files_to_images_folder()
-    
+    # move_files_to_images_folder() 함수를 await로 호출
+    await move_files_to_images_folder()  # 수정
+
     return results
 
 if __name__ == "__main__":
+    print("Starting data processing...")
+    asyncio.run(collect_relative_divergence())  # asyncio.run()으로 비동기 함수 실행
+    print("Data processing complete...")
+
     print("Starting data processing...")
     collect_relative_divergence()
     print("Data processing complete...")
