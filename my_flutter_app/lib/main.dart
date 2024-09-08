@@ -13,7 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Stock Comparison Review',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.dark, // 다크 테마 적용
+        primarySwatch: Colors.blueGrey,
+        scaffoldBackgroundColor: Colors.black, // 배경색을 검은색으로 설정
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey[900], // AppBar 배경색 설정
+        ),
       ),
       home: MyHomePage(),
     );
@@ -147,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.15,
               padding: const EdgeInsets.all(8.0),
-              color: Colors.grey[200],
+              color: Colors.grey[850], // 다크모드용 배경색
               child: ListView(
                 children: _tickers.map((ticker) {
                   return Padding(
@@ -161,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: Text(
                         ticker,
-                        style: TextStyle(fontSize: 11, color: Colors.blue, height: 1.2),
+                        style: TextStyle(fontSize: 11, color: Colors.blue[300], height: 1.2),
                       ),
                     ),
                   );
@@ -184,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   _comparisonImageUrl.isNotEmpty
                       ? Container(
                           padding: const EdgeInsets.all(8.0),
-                          height: 230, // 고정 크기 설정
+                          height: 250, // 고정 크기 설정
                           child: Image.network(
                             _comparisonImageUrl,
                             errorBuilder: (context, error, stackTrace) {
@@ -217,6 +222,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: MarkdownBody(
                                     data: _reportText,
+                                    styleSheet: MarkdownStyleSheet(
+                                      p: TextStyle(color: Colors.white70), // 텍스트 색상 설정
+                                    ),
                                   ),
                                 )
                               : Container(),
