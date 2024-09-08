@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:photo_view/photo_view.dart';  // 추가
+import 'package:photo_view/photo_view_gallery.dart'; // 여러 이미지일 경우
 
 void main() {
   runApp(MyApp());
@@ -136,6 +138,26 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  // 이미지를 클릭하면 별도 페이지에서 확대/축소 가능하게 보여주는 함수
+  void _openImageInNewScreen(String imageUrl) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: Text('Zoomable Image'),
+          ),
+          body: Center(
+            child: PhotoView(
+              imageProvider: NetworkImage(imageUrl),
+              backgroundDecoration: BoxDecoration(color: Colors.black), // 배경색을 검은색으로
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.15,
               padding: const EdgeInsets.all(8.0),
-              color: Colors.grey[900], // 조금 더 밝은 회색을 사용하여 구분감 줌
+              color: Colors.grey[900], // 다크모드용 배경색
               child: ListView(
                 children: _tickers.map((ticker) {
                   return Padding(
@@ -185,33 +207,46 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: CircularProgressIndicator(),
                     ),
 
-                  // 고정된 comparison_${stockTicker}_VOO.png 이미지
+                  // 고정된 comparison_${stockTicker}_VOO.png 이미지 (클릭 시 확대 가능)
                   _comparisonImageUrl.isNotEmpty
-                      ? Container(
-                          padding: const EdgeInsets.all(8.0),
-                          height: 250, // 고정 크기 설정
-                          child: Image.network(
-                            _comparisonImageUrl,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Text('Failed to load comparison image');
-                            },
+                      ? GestureDetector(
+                          onTap: () {
+                            _openImageInNewScreen(_comparisonImageUrl); // 클릭하면 확대 화면으로 이동
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            height: 250, // 고정 크기 설정
+                            child: Image.network(
+                              _comparisonImageUrl,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Text('Failed to load comparison image');
+                              },
+                            ),
                           ),
                         )
                       : Container(),
 
+                  // 아래 패널을 스크롤 가능하게 설정
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          // 스크롤 가능한 result_mpl_${stockTicker}.png 이미지
+                          // 스크롤 가능한 result_mpl_${stockTicker}.png 이미지 (클릭 시 확대 가능)
                           _resultImageUrl.isNotEmpty
-                              ? Container(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.network(
-                                    _resultImageUrl,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Text('Failed to load result image');
-                                    },
+                              ? GestureDetector(
+                                  onTap: () {
+                                    _openImageInNewScreen(_resultImageUrl); // 클릭하면 확대 화면으로 이동
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    height: 250, // 제한된 높이
+                                    child: Image.network(
+                                      _resultImageUrl,
+                                      fit: BoxFit.contain,
+                                      errorBuilder: (context, error, stackTrace) {
+                                        return Text('Failed to load result image');
+                                      },
+                                    ),
                                   ),
                                 )
                               : Container(),
@@ -223,7 +258,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: MarkdownBody(
                                     data: _reportText,
                                     styleSheet: MarkdownStyleSheet(
-                                      p: TextStyle(color: Colors.white70), // 텍스트 색상 설정
+                                      p: TextStyle(color: Colors.white70), // 다크모드에 맞는 텍스트 색상
                                     ),
                                   ),
                                 )
@@ -241,7 +276,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
 
 
 // flutter devices
