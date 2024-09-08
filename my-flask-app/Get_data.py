@@ -115,9 +115,9 @@ def get_stock_data(ticker, start_date, end_date):
     last_available_date = combined_data.index[-1].strftime('%Y-%m-%d')
 
     # 로깅 메시지에서 실제 데이터를 사용하여 출력
-    print(f"Loaded data for {ticker} from {start_date} to {last_available_date(=end_date)}")
-    
-    return combined_data, start_date, last_available_date 
+    print(f"Loaded data for {ticker} from {start_date} to {last_available_date}=end_date")
+    end_date = last_available_date
+    return combined_data, start_date, end_date
 
 
 def process_data(stock_data, ticker):
