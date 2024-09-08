@@ -93,7 +93,7 @@ def save_simplified_csv(ticker):
 
 import os
 import pandas as pd
-import asyncio  # 추가
+import asyncio
 
 async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
@@ -126,7 +126,7 @@ async def collect_relative_divergence():
             max_divergence = df['Divergence'].max().round(2)
             expected_return = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
 
-            # 빈 데이터프레임 혹은 NA 값을 제외하고 결과에 추가
+            # 빈 데이터프레임 또는 NA 값을 포함한 데이터는 필터링
             if not pd.isna(latest_divergence) and not pd.isna(latest_relative_divergence):
                 results = pd.concat([results, pd.DataFrame({
                     'Ticker': [ticker], 
@@ -145,18 +145,16 @@ async def collect_relative_divergence():
     results.to_csv(collect_relative_divergence_path, index=False)
 
     # move_files_to_images_folder() 함수를 await로 호출
-    await move_files_to_images_folder()  # 수정
+    await move_files_to_images_folder()
 
     return results
 
 if __name__ == "__main__":
     print("Starting data processing...")
-    asyncio.run(collect_relative_divergence())  # asyncio.run()으로 비동기 함수 실행
+    # 비동기 함수는 asyncio.run()을 통해 실행해야 함
+    asyncio.run(collect_relative_divergence())
     print("Data processing complete...")
 
-    print("Starting data processing...")
-    collect_relative_divergence()
-    print("Data processing complete...")
 
 # if __name__ == "__main__":
     # print("Starting data processing...")
