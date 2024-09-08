@@ -111,9 +111,13 @@ def get_stock_data(ticker, start_date, end_date):
     file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
     combined_data.to_csv(file_path)  # 새로운 데이터를 파일로 저장
 
-    print(f"Loaded data for {ticker} from {start_date} to {end_date}")
+    # 마지막 데이터의 실제 날짜 가져오기
+    last_available_date = combined_data.index[-1].strftime('%Y-%m-%d')
+
+    # 로깅 메시지에서 실제 데이터를 사용하여 출력
+    print(f"Loaded data for {ticker} from {start_date} to {last_available_date}")
     
-    return combined_data, start_date, end_date
+    return combined_data, start_date, last_available_date 
 
 
 def process_data(stock_data, ticker):
