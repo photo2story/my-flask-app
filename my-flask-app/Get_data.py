@@ -116,9 +116,9 @@ def get_stock_data(ticker, start_date, end_date):
                 if new_data.empty:
                     print(f"No new data found for {ticker}.")
                     return existing_data, start_date, last_saved_date
-                
-                # 새로운 데이터를 기존 데이터에 추가
-                combined_data = pd.concat([existing_data, new_data])
+
+                # **중복된 인덱스 제거**
+                combined_data = pd.concat([existing_data, new_data]).loc[~pd.concat([existing_data, new_data]).index.duplicated(keep='last')]
         else:
             # 기존 파일이 없으면 전체 데이터를 가져옴
             print(f"No existing data found for {ticker}, fetching from {start_date} to {end_date}.")
@@ -147,6 +147,7 @@ def get_stock_data(ticker, start_date, end_date):
     # end_date 값을 실제 마지막 데이터 날짜로 갱신
     end_date = last_available_date
     return combined_data, start_date, end_date
+
 
 def process_data(stock_data, ticker):
     # 데이터가 20개 미만일 경우 경고 메시지를 출력하고 처리 건너뛰기
