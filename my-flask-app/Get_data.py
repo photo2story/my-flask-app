@@ -81,6 +81,10 @@ def load_industry_info():
     industry_dict = dict(zip(industry_df['Symbol'], industry_df['Industry']))
     return industry_dict
 
+import os
+import pandas as pd
+import yfinance as yf
+
 def get_stock_data(ticker, start_date, end_date):
     """
     주어진 티커와 날짜 범위에 해당하는 주가 데이터를 가져오고 새로 생성하여 처리합니다.
@@ -90,35 +94,59 @@ def get_stock_data(ticker, start_date, end_date):
     
     # static/images 폴더 경로 설정
     folder_path = config.STATIC_IMAGES_PATH
-    
-    try:
-        # 새 데이터를 가져옴
-        # combined_data = fdr.DataReader(safe_ticker, start_date, end_date)
-        combined_data = yf.download(safe_ticker, start_date, end_date)
+    file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
 
-        
-        if combined_data.empty:
-            print(f"No data found for {ticker}.")
-            return pd.DataFrame(), start_date, end_date
-            
-        print(combined_data)
+    try:
+        # 기존 파일이 있으면 불러오기
+        if os.path.exists(file_path):
+            existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
+            last_saved_date = existing_data.index[-1].strftime('%Y-%m-%d')
+            print(f"Existing data found for {ticker}, last saved date: {last_saved_date}")
+
+            # 새 데이터 필요 여부 확인
+            if last_saved_date >= end_date:
+                print(f"Data is already up-to-date for {ticker}.")
+                return existing_data, start_date, last_saved_date
+            else:
+                # 새 데이터 가져오기 (마지막 저장된 날짜 이후부터)
+                new_start_date = (pd.to_datetime(last_saved_date) + pd.Timedelta(days=1)).strftime('%Y-%m-%d')
+                print(f"Fetching new data from {new_start_date} to {end_date} for {ticker}.")
+                new_data = yf.download(safe_ticker, start=new_start_date, end=end_date)
+
+                if new_data.empty:
+                    print(f"No new data found for {ticker}.")
+                    return existing_data, start_date, last_saved_date
+                
+                # 새로운 데이터를 기존 데이터에 추가
+                combined_data = pd.concat([existing_data, new_data])
+        else:
+            # 기존 파일이 없으면 전체 데이터를 가져옴
+            print(f"No existing data found for {ticker}, fetching from {start_date} to {end_date}.")
+            combined_data = yf.download(safe_ticker, start=start_date, end=end_date)
+
+            if combined_data.empty:
+                print(f"No data found for {ticker}.")
+                return pd.DataFrame(), start_date, end_date
+
+        # 데이터 처리
         combined_data = process_data(combined_data, ticker)
+    
     except Exception as e:
         print(f"Error fetching data for {ticker}: {e}")
         return pd.DataFrame(), start_date, end_date
 
     # 데이터 파일을 static/images 폴더 아래에 저장
-    file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
-    combined_data.to_csv(file_path)  # 새로운 데이터를 파일로 저장
+    combined_data.to_csv(file_path)  # 업데이트된 데이터를 파일로 저장
 
     # 마지막 데이터의 실제 날짜 가져오기
     last_available_date = combined_data.index[-1].strftime('%Y-%m-%d')
 
     # 로깅 메시지에서 실제 데이터를 사용하여 출력
-    print(f"Loaded data for {ticker} from {start_date} to {last_available_date}=end_date")
+    print(f"Loaded data for {ticker} from {start_date} to {last_available_date}")
+    
+    # end_date 값을 실제 마지막 데이터 날짜로 갱신
     end_date = last_available_date
     return combined_data, start_date, end_date
-
 
 def process_data(stock_data, ticker):
     # 데이터가 20개 미만일 경우 경고 메시지를 출력하고 처리 건너뛰기
