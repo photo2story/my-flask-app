@@ -23,43 +23,44 @@
         }
 
         .left-panel {
-            width: 15%; /* 왼쪽 패널 */
+            width: 10%; /* 티커 리스트 패널 */
             padding: 10px;
-            background-color: #000; /* 패널 배경색 */
+            background-color: #012; /* 티커 백그라운드 색상 */
             color: #ccc; /* 패널 내 텍스트 색상 */
             height: 100vh;
-            overflow-y: auto;
+            overflow-y: scroll; /* 스크롤 가능 */
+        }
+
+        .middle-panel {
+            width: 55%; /* 레포트 패널 */
+            padding: 20px;
+            overflow-y: scroll; /* 스크롤 가능 */
+            line-height: 1.0; /* 줄간격 설정 */
         }
 
         .right-panel {
-            width: 85%; /* 오른쪽 패널 */
+            width: 35%; /* 그래프 패널 */
             padding: 20px;
-            margin-left: 15%;
-            height: 100vh;
-            overflow-y: auto;
             display: flex;
-            flex-direction: column; /* 세로로 정렬 */
-            align-items: center; /* 중앙 정렬 */
+            flex-direction: column;
+            justify-content: flex-start; /* 상단 정렬로 변경 */
+            align-items: center;
+            height: 100vh;
+            overflow-y: scroll; /* 스크롤 가능 */
         }
 
         img {
-            width: 70%; /* 모든 이미지의 크기를 동일하게 설정 */
+            width: 100%; /* 그래프 이미지를 패널 너비에 맞춤 */
             height: auto;
             margin-top: 20px;
-        }
-
-        #comparisonSection {
-            width: 70%; /* 모든 그래프와 리포트 섹션의 폭을 80%로 통일 */
-            text-align: center;
+            cursor: pointer; /* 클릭할 수 있도록 설정 */
         }
 
         #report {
             white-space: pre-wrap;
             padding: 20px;
-            margin-top: 10px;
-            border: none; /* 바탕색 제거 */
-            width: 60%;
-            color: #fff; /* 텍스트 색상 설정 */
+            border: none;
+            color: #fff; /* 텍스트 색상 */
         }
 
         .ticker-item {
@@ -74,20 +75,39 @@
             font-size: 18px;
             color: #00ff00;
         }
+
+        /* 줄간격 및 여백 줄이기 */
+        h1, h2, h3, h4, p {
+            margin-top: 1px;
+            margin-bottom: 1px;
+        }
+
+        /* 스크롤바 숨기기 */
+        ::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+        -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+        scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
     </style>
 </head>
 
 <body>
     <div class="left-panel">
         <h1>Stock Comparison</h1>
-
         <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
     </div>
 
-    <div class="right-panel">
-        <div id="comparisonSection"></div> <!-- 이미지들이 여기 표시됨 -->
+    <div class="middle-panel">
+        <!-- 리포트 섹션 -->
         <div id="report"></div> <!-- 리포트 내용이 여기에 표시됨 -->
         <div id="loading" class="loading" style="display: none;">Loading...</div> <!-- 로딩 표시 -->
+    </div>
+
+    <div class="right-panel">
+        <!-- 그래프 섹션 -->
+        <div id="comparisonSection"></div> <!-- 비교 이미지 섹션 -->
+        <div id="resultSection"></div> <!-- 추가 이미지 섹션 -->
     </div>
 
     <script>
@@ -122,6 +142,7 @@
             function fetchImagesAndReport(stockTicker) {
                 $('#loading').show(); // 로딩 표시
                 $('#comparisonSection').empty();
+                $('#resultSection').empty();
                 $('#report').empty();
 
                 const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/comparison_${stockTicker}_VOO.png`;
@@ -130,8 +151,10 @@
 
                 // 비교 이미지와 결과 이미지 추가
                 $('#comparisonSection').append(`
-                    <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" />
-                    <img src="${resultImageUrl}" alt="${stockTicker} Result" />
+                    <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image"/>
+                `);
+                $('#resultSection').append(`
+                    <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image"/>
                 `);
 
                 // 리포트 파일을 로드 및 마크다운 변환
@@ -142,8 +165,32 @@
                     $('#report').html('Failed to load report.');
                 }).always(function () {
                     $('#loading').hide(); // 로딩 숨기기
+                    enableImageWindow();  // 이미지 클릭 시 새 창 열기 기능 활성화
                 });
             }
+
+            // 이미지를 클릭했을 때 새 창으로 띄우는 함수
+            function enableImageWindow() {
+                $('.clickable-image').on('click', function () {
+                    const imageUrl = $(this).attr('src');
+                    
+                    // 창 크기
+                    const windowWidth = 800;
+                    const windowHeight = 600;
+
+                    // 화면 크기
+                    const screenWidth = window.screen.width;
+                    const screenHeight = window.screen.height;
+
+                    // 화면 중앙에 창 배치
+                    const left = (screenWidth - windowWidth) / 2;
+                    const top = (screenHeight - windowHeight) / 2;
+
+                    // 새 창 열기
+                    window.open(imageUrl, '_blank', `width=${windowWidth},height=${windowHeight},left=${left},top=${top},scrollbars=yes`);
+                });
+            }
+
 
             // 페이지 로드 시 티커 목록 불러오기
             fetchTickers();
