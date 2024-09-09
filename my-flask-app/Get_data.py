@@ -90,13 +90,6 @@ import pandas as pd
 import yfinance as yf
 
 def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start_date=None):
-    """
-    주어진 티커와 날짜 범위에 해당하는 주가 데이터를 가져오고 새로 생성하여 처리합니다.
-    필요 시 과거 데이터를 추가로 가져옵니다.
-    
-    add_past_data: 과거 데이터를 추가로 가져올지 여부
-    past_start_date: 과거 데이터를 가져오는 경우의 시작일
-    """
     safe_ticker = ticker.replace('/', '-')
     print(safe_ticker)
     
@@ -118,7 +111,10 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
                 new_data = yf.download(safe_ticker, start=new_start_date, end=end_date)
 
                 if not new_data.empty:
+                    # 중복된 인덱스(날짜) 제거
+                    new_data = new_data[~new_data.index.duplicated(keep='first')]
                     existing_data = pd.concat([existing_data, new_data])
+                    existing_data = existing_data[~existing_data.index.duplicated(keep='first')]  # 중복 제거
                 else:
                     print(f"No new data found for {ticker}.")
 
@@ -128,7 +124,9 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
                 past_data = yf.download(safe_ticker, start=past_start_date, end=first_saved_date)
 
                 if not past_data.empty:
+                    past_data = past_data[~past_data.index.duplicated(keep='first')]  # 중복 제거
                     existing_data = pd.concat([past_data, existing_data])
+                    existing_data = existing_data[~existing_data.index.duplicated(keep='first')]  # 중복 제거
                 else:
                     print(f"No past data found for {ticker}.")
         
@@ -159,8 +157,6 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
     print(f"Loaded data for {ticker} from {first_available_date} to {last_available_date}")
     
     return existing_data, first_available_date, last_available_date
-
-
 
 def process_data(stock_data, ticker):
     # 데이터가 20개 미만일 경우 경고 메시지를 출력하고 처리 건너뛰기
