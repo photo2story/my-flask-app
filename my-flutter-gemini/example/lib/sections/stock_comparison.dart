@@ -103,11 +103,23 @@ class _StockComparisonState extends State<StockComparison> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Stock Comparison Review'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Stock Comparison Review'),
+      // ),
       body: Column(
         children: [
+          // 상단에 고정된 티커 타이틀
+          Container(
+            width: double.infinity,
+            color: Colors.black,
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Entered Ticker: $_enteredTicker',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          
           // 티커 입력 필드
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -126,13 +138,18 @@ class _StockComparisonState extends State<StockComparison> {
             ),
           ),
 
-          // 비교 그래프 이미지 표시
+          // 비교 그래프 이미지 표시 (전폭으로 표시)
+          // 비교 그래프 이미지 표시 (크기를 지정하여 표시)
           if (_comparisonImageUrl.isNotEmpty)
-            Expanded(
+            Container(
+              height: 300,  // 그래프의 고정된 높이 설정
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: PhotoView(
                   imageProvider: NetworkImage(_comparisonImageUrl),  // 불러온 이미지 URL 사용
+                  backgroundDecoration: BoxDecoration(color: Colors.black),  // 그래프 배경 검정색
+                  maxScale: PhotoViewComputedScale.contained * 2.0,  // 확대 범위 설정
+                  minScale: PhotoViewComputedScale.contained,  // 최소 축소 범위 설정
                 ),
               ),
             ),
