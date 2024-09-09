@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:photo_view/photo_view.dart';  // PhotoView 추가
 
 class StockComparison extends StatefulWidget {
   @override
@@ -10,13 +11,11 @@ class StockComparison extends StatefulWidget {
 }
 
 class _StockComparisonState extends State<StockComparison> {
-  String _comparisonImageUrl = '';
-  String _resultImageUrl = '';
-  bool _isLoading = false;
-  String? _finishReason;
-  final TextEditingController _controller = TextEditingController(); // 입력 박스를 위한 컨트롤러
+  String _comparisonImageUrl = '';  // 비교 그래프 이미지 URL을 저장할 변수
   String _enteredTicker = '';  // 입력된 티커를 저장할 변수
-  List<Content> _chats = [];  // Chat 형식으로 데이터를 저장할 리스트
+  bool _isLoading = false;
+  final TextEditingController _controller = TextEditingController();
+  final List<Content> _chats = [];  // Chat 형식으로 데이터를 저장할 리스트
   final gemini = Gemini.instance;
 
   final String apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
@@ -24,16 +23,6 @@ class _StockComparisonState extends State<StockComparison> {
   @override
   void initState() {
     super.initState();
-    // 처음에는 데이터를 불러오지 않고 사용자가 직접 입력하게 설정.
-  }
-
-  // finishReason 변수 설정을 위한 getter/setter
-  String? get finishReason => _finishReason;
-
-  set finishReason(String? reason) {
-    setState(() {
-      _finishReason = reason;
-    });
   }
 
   // 티커를 입력받아 이미지를 불러오고, 보고서를 번역
@@ -41,16 +30,33 @@ class _StockComparisonState extends State<StockComparison> {
     try {
       setState(() {
         _isLoading = true;
-        _chats = [];  // 새로운 요청을 시작할 때 채팅 리스트 초기화
+        _chats.clear();  // 새로운 요청을 시작할 때 채팅 리스트 초기화
         _enteredTicker = stockTicker;  // 입력된 티커를 저장
       });
 
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         final List<dynamic> files = json.decode(response.body);
+
+        // 비교 그래프 파일 찾기
+        final comparisonFile = files.firstWhere(
+          (file) => file['name'].startsWith('comparison_${stockTicker}') && file['name'].endsWith('_VOO.png'),
+          orElse: () => null,
+        );
+
         final reportFile = files.firstWhere(
             (file) => file['name'] == 'report_${stockTicker}.txt',
             orElse: () => null);
+
+        if (comparisonFile != null) {
+          setState(() {
+            _comparisonImageUrl = comparisonFile['download_url'];  // 비교 그래프 URL 저장
+          });
+        } else {
+          setState(() {
+            _comparisonImageUrl = '';  // 그래프를 찾지 못하면 비움
+          });
+        }
 
         if (reportFile != null) {
           // 영문 레포트 불러오기
@@ -102,27 +108,36 @@ class _StockComparisonState extends State<StockComparison> {
       ),
       body: Column(
         children: [
-          // 상단에 입력된 티커가 있으면 고정 텍스트로 표시
-          _enteredTicker.isNotEmpty
-              ? Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Entered Ticker: $_enteredTicker', // 입력된 티커를 고정 텍스트로 표시
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                )
-              : ChatInputBox(
-                  controller: _controller,  // 사용자가 입력할 수 있도록 컨트롤러 추가
-                  onSend: () {
-                    if (_controller.text.isNotEmpty) {
-                      final ticker = _controller.text.toUpperCase();  // 티커를 대문자로 변환
-                      _chats = [];  // 새로운 요청을 할 때 이전 채팅 기록 초기화
-                      _chats.add(Content(role: 'user', parts: [Parts(text: '티커: $ticker 로 분석을 요청합니다.')]));
-                      fetchImagesAndReport(ticker);  // 입력된 티커로 데이터와 보고서 요청
-                      _controller.clear();
-                    }
-                  },
+          // 티커 입력 필드
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: _controller,
+              onSubmitted: (value) {
+                if (value.isNotEmpty) {
+                  fetchImagesAndReport(value.toUpperCase());  // 티커 입력 후 데이터를 불러옴
+                  _controller.clear();  // 입력 후 텍스트 필드 비움
+                }
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter stock ticker',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ),
+
+          // 비교 그래프 이미지 표시
+          if (_comparisonImageUrl.isNotEmpty)
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PhotoView(
+                  imageProvider: NetworkImage(_comparisonImageUrl),  // 불러온 이미지 URL 사용
                 ),
+              ),
+            ),
+
+          // 보고서 출력
           Expanded(
             child: _chats.isNotEmpty
                 ? Align(
@@ -138,8 +153,9 @@ class _StockComparisonState extends State<StockComparison> {
                       ),
                     ),
                   )
-                : const Center(child: Text('레포트를 불러오세요!')),  // 초기 메시지
+                : const Center(child: Text('레포트를 불러오세요!')),
           ),
+
           if (_isLoading) const CircularProgressIndicator(),
         ],
       ),
@@ -152,7 +168,7 @@ class _StockComparisonState extends State<StockComparison> {
 
     return Card(
       elevation: 0,
-      color: content.role == 'model' ? Colors.black : Colors.transparent, // 답변창 배경을 검정색으로 변경
+      color: content.role == 'model' ? Colors.blue.shade800 : Colors.transparent,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -166,39 +182,6 @@ class _StockComparisonState extends State<StockComparison> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-// 채팅 입력 박스를 위한 위젯
-class ChatInputBox extends StatelessWidget {
-  final TextEditingController controller;
-  final VoidCallback onSend;
-
-  ChatInputBox({required this.controller, required this.onSend});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                labelText: 'Enter stock ticker',
-                border: OutlineInputBorder(),
-              ),
-              textCapitalization: TextCapitalization.characters,  // 대문자 입력 강제
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.send),
-            onPressed: onSend,
-          ),
-        ],
       ),
     );
   }
