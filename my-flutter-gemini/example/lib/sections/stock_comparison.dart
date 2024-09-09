@@ -168,7 +168,7 @@ class _StockComparisonState extends State<StockComparison> {
 
     return Card(
       elevation: 0,
-      color: content.role == 'model' ? Colors.blue.shade800 : Colors.transparent,
+      color: content.role == 'model' ? Colors.black : Colors.transparent,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
