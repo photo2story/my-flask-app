@@ -23,31 +23,43 @@
         }
 
         .left-panel {
-            width: 15%; /* 플러터 UI처럼 왼쪽 패널을 15%로 설정 */
+            width: 15%; /* 왼쪽 패널 */
             padding: 10px;
-            background-color: #333; /* 패널 배경색 어둡게 */
+            background-color: #000; /* 패널 배경색 */
             color: #ccc; /* 패널 내 텍스트 색상 */
             height: 100vh;
             overflow-y: auto;
         }
 
         .right-panel {
-            width: 85%; /* 오른쪽 패널 넓게 */
+            width: 85%; /* 오른쪽 패널 */
             padding: 20px;
             margin-left: 15%;
             height: 100vh;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column; /* 세로로 정렬 */
+            align-items: center; /* 중앙 정렬 */
         }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
+        img {
+            width: 70%; /* 모든 이미지의 크기를 동일하게 설정 */
+            height: auto;
+            margin-top: 20px;
         }
 
-        input[type="text"], button {
-            font-size: 16px;
-            padding: 5px;
-            margin: 10px 0;
+        #comparisonSection {
+            width: 70%; /* 모든 그래프와 리포트 섹션의 폭을 80%로 통일 */
+            text-align: center;
+        }
+
+        #report {
+            white-space: pre-wrap;
+            padding: 20px;
+            margin-top: 10px;
+            border: none; /* 바탕색 제거 */
+            width: 60%;
+            color: #fff; /* 텍스트 색상 설정 */
         }
 
         .ticker-item {
@@ -62,28 +74,12 @@
             font-size: 18px;
             color: #00ff00;
         }
-
-        img {
-            max-width: 100%; /* 이미지를 너비에 맞춰 조정 */
-            height: auto;
-            margin-top: 20px;
-        }
-
-        #report {
-            white-space: pre-wrap;
-            background-color: #222;
-            padding: 20px;
-            margin-top: 20px;
-            border: 1px solid #444;
-        }
     </style>
 </head>
 
 <body>
     <div class="left-panel">
         <h1>Stock Comparison</h1>
-        <input type="text" id="stockName" placeholder="Enter Stock Ticker" />
-        <button id="searchButton">Search</button>
 
         <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
     </div>
@@ -97,6 +93,7 @@
     <script>
         $(function () {
             const apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+            const defaultTicker = 'AAPL'; // 기본 티커 설정
 
             function fetchTickers() {
                 $.get(apiUrl, function (data) {
@@ -109,10 +106,12 @@
                         $('#tickerList').append(`<span class="ticker-item">${ticker}</span>`);
                     });
 
+                    // 기본 티커 데이터 불러오기
+                    fetchImagesAndReport(defaultTicker);
+
                     // 티커 아이템을 클릭하면 데이터를 불러옴
                     $('.ticker-item').on('click', function () {
                         const ticker = $(this).text();
-                        $('#stockName').val(ticker);
                         fetchImagesAndReport(ticker);
                     });
                 }).fail(function () {
@@ -135,23 +134,16 @@
                     <img src="${resultImageUrl}" alt="${stockTicker} Result" />
                 `);
 
-                // 리포트 파일을 로드
+                // 리포트 파일을 로드 및 마크다운 변환
                 $.get(reportUrl, function (data) {
-                    $('#report').html('<pre>' + data + '</pre>');
+                    const htmlContent = marked.parse(data);  // 마크다운을 HTML로 변환
+                    $('#report').html(htmlContent);  // 변환된 HTML을 보고서에 표시
                 }).fail(function () {
                     $('#report').html('Failed to load report.');
                 }).always(function () {
                     $('#loading').hide(); // 로딩 숨기기
                 });
             }
-
-            // 검색 버튼을 클릭했을 때 이벤트 처리
-            $('#searchButton').click(function () {
-                const stockTicker = $('#stockName').val().toUpperCase();
-                if (stockTicker) {
-                    fetchImagesAndReport(stockTicker);
-                }
-            });
 
             // 페이지 로드 시 티커 목록 불러오기
             fetchTickers();
