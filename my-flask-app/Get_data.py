@@ -90,8 +90,15 @@ import pandas as pd
 import yfinance as yf
 
 def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start_date=None):
+    """
+    주어진 티커와 날짜 범위에 해당하는 주가 데이터를 가져오고 새로 생성하여 처리합니다.
+    필요 시 과거 데이터를 추가로 가져옵니다.
+
+    add_past_data: 과거 데이터를 추가로 가져올지 여부
+    past_start_date: 과거 데이터를 가져오는 경우의 시작일
+    """
     safe_ticker = ticker.replace('/', '-')
-    print(safe_ticker)
+    print(f"Processing data for ticker: {safe_ticker}")
     
     # static/images 폴더 경로 설정
     folder_path = config.STATIC_IMAGES_PATH
@@ -99,12 +106,13 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
 
     try:
         if os.path.exists(file_path):
+            # 기존 데이터가 존재하는 경우
             existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
             first_saved_date = existing_data.index[0].strftime('%Y-%m-%d')  # 기존 데이터의 첫 날짜
             last_saved_date = existing_data.index[-1].strftime('%Y-%m-%d')  # 기존 데이터의 마지막 날짜
-            print(f"Existing data found for {ticker}, last saved date: {last_saved_date}, first saved date: {first_saved_date}")
+            print(f"Existing data found for {ticker}, first saved date: {first_saved_date}, last saved date: {last_saved_date}")
 
-            # 새로운 데이터를 가져와서 업데이트 (현재 마지막 날짜 이후 데이터)
+            # 새로운 데이터를 가져와서 업데이트
             if last_saved_date < end_date:
                 new_start_date = (pd.to_datetime(last_saved_date) + pd.Timedelta(days=1)).strftime('%Y-%m-%d')
                 print(f"Fetching new data from {new_start_date} to {end_date} for {ticker}.")
@@ -115,8 +123,11 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
                     new_data = new_data[~new_data.index.duplicated(keep='first')]
                     existing_data = pd.concat([existing_data, new_data])
                     existing_data = existing_data[~existing_data.index.duplicated(keep='first')]  # 중복 제거
+                    print(f"New data successfully added for {ticker}.")
                 else:
                     print(f"No new data found for {ticker}.")
+            else:
+                print(f"No new data needed for {ticker}. Data is already up-to-date.")
 
             # 과거 데이터 추가 (현재 첫 번째 날짜 이전 데이터)
             if add_past_data and past_start_date and first_saved_date > past_start_date:
@@ -127,8 +138,11 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
                     past_data = past_data[~past_data.index.duplicated(keep='first')]  # 중복 제거
                     existing_data = pd.concat([past_data, existing_data])
                     existing_data = existing_data[~existing_data.index.duplicated(keep='first')]  # 중복 제거
+                    print(f"Past data successfully added for {ticker}.")
                 else:
                     print(f"No past data found for {ticker}.")
+            else:
+                print(f"No past data fetching required for {ticker}.")
         
         else:
             # 기존 파일이 없으면 전체 데이터를 가져옴
@@ -139,6 +153,8 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
                 print(f"No data found for {ticker}.")
                 return pd.DataFrame(), start_date, end_date
 
+            print(f"Data successfully fetched for {ticker} from {start_date} to {end_date}.")
+
         # 데이터 처리
         existing_data = process_data(existing_data, ticker)
     
@@ -148,6 +164,7 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
 
     # 데이터 파일을 static/images 폴더 아래에 저장
     existing_data.to_csv(file_path)  # 업데이트된 데이터를 파일로 저장
+    print(f"Data saved for {ticker} at {file_path}")
 
     # 마지막 데이터의 실제 날짜 가져오기
     last_available_date = existing_data.index[-1].strftime('%Y-%m-%d')
@@ -157,6 +174,7 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
     print(f"Loaded data for {ticker} from {first_available_date} to {last_available_date}")
     
     return existing_data, first_available_date, last_available_date
+
 
 def process_data(stock_data, ticker):
     # 데이터가 20개 미만일 경우 경고 메시지를 출력하고 처리 건너뛰기
