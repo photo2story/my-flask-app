@@ -91,22 +91,30 @@ def save_simplified_csv(ticker):
 
 
 
-def collect_relative_divergence():
+import os
+import pandas as pd
+import asyncio
+
+async def collect_relative_divergence():
     tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
     results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
                                     'Delta_Previous_Relative_Divergence', 'Max_Divergence', 
                                     'Expected_Return'])
     
     for ticker in tickers:
-        # GitHub에서 데이터를 가져오기 위해 fetch_csv 함수를 사용
-        df = fetch_csv(ticker)
-        # result_{ticker}.csv을 읽어와서 데이터프레임으로 변환
-        df= pd.read_csv(f"{folder_path}/result_{ticker}.csv")
-        if df is None or df.empty or 'Relative_Divergence' not in df.columns:
-            print(f"Data for {ticker} is not available or missing necessary columns.")
+        file_path = os.path.join(folder_path, f"result_{ticker}.csv")
+        
+        # 파일이 존재하는지 확인
+        if not os.path.exists(file_path):
+            print(f"File for {ticker} does not exist. Skipping...")
             continue
         
         try:
+            df = pd.read_csv(file_path)
+            if df.empty or 'Relative_Divergence' not in df.columns:
+                print(f"Data for {ticker} is not available or missing necessary columns.")
+                continue
+
             latest_entry = df.iloc[-1]
             if latest_entry.isna().all():
                 print(f"Data for {ticker} is empty or contains only NA values, skipping...")
@@ -118,35 +126,48 @@ def collect_relative_divergence():
             max_divergence = df['Divergence'].max().round(2)
             expected_return = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
 
-            results = pd.concat([results, pd.DataFrame({
-                'Ticker': [ticker], 
-                'Divergence': [latest_divergence], 
-                'Relative_Divergence': [latest_relative_divergence],
-                'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
-                'Max_Divergence': [max_divergence],
-                'Expected_Return': [expected_return]
-            })], ignore_index=True)
+            # 빈 데이터프레임 또는 NA 값을 포함한 데이터는 필터링
+            if not pd.isna(latest_divergence) and not pd.isna(latest_relative_divergence):
+                results = pd.concat([results, pd.DataFrame({
+                    'Ticker': [ticker], 
+                    'Divergence': [latest_divergence], 
+                    'Relative_Divergence': [latest_relative_divergence],
+                    'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
+                    'Max_Divergence': [max_divergence],
+                    'Expected_Return': [expected_return]
+                })], ignore_index=True)
+
         except Exception as e:
             print(f"Error processing data for {ticker}: {e}")
             continue
     
-    collect_relative_divergence_path = os.path.join(config.STATIC_IMAGES_PATH, 'results_relative_divergence.csv')
-    results.to_csv(collect_relative_divergence_path, index=False)
+    # 기대수익(Expect_Return)으로 높은 순으로 정렬
+    sorted_results = results.sort_values(by='Expected_Return', ascending=False)
 
-    # print(results)
-    
-    move_files_to_images_folder()
-    
-    return results
+    # 정렬된 데이터를 CSV로 저장
+    collect_relative_divergence_path = os.path.join(folder_path, 'results_relative_divergence.csv')
+    sorted_results.to_csv(collect_relative_divergence_path, index=False)
 
+    # move_files_to_images_folder() 함수를 await로 호출
+    await move_files_to_images_folder()
+
+    return sorted_results
 
 if __name__ == "__main__":
     print("Starting data processing...")
-    ticker = 'QQQ'
-    save_simplified_csv(ticker)
+    # 비동기 함수는 asyncio.run()을 통해 실행해야 함
+    asyncio.run(collect_relative_divergence())
+    print("Data processing complete...")
 
-    
-# python get_compare_stock_data.py
+
+
+# if __name__ == "__main__":
+    # print("Starting data processing...")
+    # ticker = 'QQQ'
+    # save_simplified_csv(ticker)
+
+
+#  python get_compare_stock_data.py
 # if __name__ == "__main__":
 #     import asyncio
 #     tickers = [
@@ -165,5 +186,3 @@ if __name__ == "__main__":
 #     for ticker in tickers:
 #         save_simplified_csv(ticker)
     
-#     # collect_relative_divergence 함수는 한 번만 실행합니다.
-#     asyncio.run(collect_relative_divergence())

@@ -31,12 +31,11 @@ class _MyHomePageState extends State<MyHomePage> {
   String _comparisonImageUrl = '';
   String _resultImageUrl = '';
   String _message = '';
-  String _description = '';
   String _reportText = '';
   List<String> _tickers = [];
   final TextEditingController _controller = TextEditingController();
 
-  final String apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+  final String apiUrl = 'http://192.168.0.5:5000/api';
 
   @override
   void initState() {
@@ -46,68 +45,67 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> fetchReviewedTickers() async {
     try {
-      final response = await http.get(Uri.parse(apiUrl));
+      print('Fetching reviewed tickers from: $apiUrl/get_reviewed_tickers');
+      final response = await http.get(Uri.parse('$apiUrl/get_reviewed_tickers'));
+      print('Response status for tickers: ${response.statusCode}');
       if (response.statusCode == 200) {
-        final List<dynamic> files = json.decode(response.body);
-        final tickers = files
-            .where((file) => file['name'].startsWith('comparison_') && file['name'].endsWith('_VOO.png'))
-            .map<String>((file) => file['name'].replaceAll('comparison_', '').replaceAll('_VOO.png', ''))
-            .toList();
-
+        final List<dynamic> tickers = json.decode(response.body);
+        print('Fetched tickers: $tickers');
         setState(() {
-          _tickers = tickers;
+          _tickers = tickers.cast<String>();
+          print('State updated with tickers: $_tickers');
         });
       } else {
         setState(() {
           _message = 'Error occurred while fetching tickers: ${response.statusCode}';
+          print(_message);
         });
       }
     } catch (e) {
       setState(() {
         _message = 'Error occurred while fetching tickers: $e';
+        print(_message);
       });
     }
   }
 
-Future<void> fetchImagesAndReport(String stockTicker) async {
-  try {
-    // API에서 티커에 맞는 이미지를 가져오는 요청을 보냄
-    final response = await http.get(Uri.parse('$apiUrl/get_images?ticker=$stockTicker'));
-    
-    // 응답이 성공적일 때 처리
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-
-      // 가져온 데이터를 상태에 반영
-      setState(() {
-        _comparisonImageUrl = data['comparison_image'] ?? ''; // 비교 이미지
-        _resultImageUrl = data['result_image'] ?? '';         // 결과 이미지
-        _reportText = data['report'] ?? '';                   // 리포트 텍스트
-        _message = '';
-      });
-    } else {
-      // 실패 시 상태 업데이트
+  Future<void> fetchImagesAndReport(String stockTicker) async {
+    try {
+      print('Fetching images and report for ticker: $stockTicker');
+      final response = await http.get(Uri.parse('$apiUrl/get_images?ticker=$stockTicker'));
+      print('Response status for images and report: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        print('Fetched data: $data');
+        setState(() {
+          _comparisonImageUrl = data['comparison_image'] ?? '';
+          _resultImageUrl = data['result_image'] ?? '';
+          _reportText = data['report'] ?? '';
+          _message = '';
+          print('State updated with images and report');
+        });
+      } else {
+        setState(() {
+          _comparisonImageUrl = '';
+          _resultImageUrl = '';
+          _reportText = '';
+          _message = 'Failed to fetch images and report: ${response.statusCode}';
+          print(_message);
+        });
+      }
+    } catch (e) {
       setState(() {
         _comparisonImageUrl = '';
         _resultImageUrl = '';
         _reportText = '';
-        _message = 'Failed to fetch images and report: ${response.statusCode}';
+        _message = 'Error occurred: $e';
+        print(_message);
       });
     }
-  } catch (e) {
-    // 에러 발생 시 처리
-    setState(() {
-      _comparisonImageUrl = '';
-      _resultImageUrl = '';
-      _reportText = '';
-      _message = 'Error occurred: $e';
-    });
   }
-}
-
-
 
   void _openImage(BuildContext context, String imageUrl) {
+    print('Opening image: $imageUrl');
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -137,18 +135,21 @@ Future<void> fetchImagesAndReport(String stockTicker) async {
                     labelText: 'Enter Stock Ticker',
                   ),
                   onChanged: (value) {
+                    print('Ticker input changed: $value');
                     _controller.value = TextEditingValue(
                       text: value.toUpperCase(),
                       selection: _controller.selection,
                     );
                   },
                   onSubmitted: (value) {
+                    print('Ticker submitted: $value');
                     fetchImagesAndReport(_controller.text.toUpperCase());
                   },
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
+                  print('Search button clicked for ticker: ${_controller.text}');
                   fetchImagesAndReport(_controller.text.toUpperCase());
                 },
                 child: Text('Search Review'),
@@ -167,6 +168,7 @@ Future<void> fetchImagesAndReport(String stockTicker) async {
                     padding: const EdgeInsets.all(4.0),
                     child: GestureDetector(
                       onTap: () {
+                        print('Ticker clicked: $ticker');
                         fetchImagesAndReport(ticker);
                       },
                       child: Text(
@@ -184,6 +186,7 @@ Future<void> fetchImagesAndReport(String stockTicker) async {
                       child: Image.network(
                         _comparisonImageUrl,
                         errorBuilder: (context, error, stackTrace) {
+                          print('Failed to load comparison image: $error');
                           return Text('Failed to load comparison image');
                         },
                       ),
@@ -196,6 +199,7 @@ Future<void> fetchImagesAndReport(String stockTicker) async {
                       child: Image.network(
                         _resultImageUrl,
                         errorBuilder: (context, error, stackTrace) {
+                          print('Failed to load result image: $error');
                           return Text('Failed to load result image');
                         },
                       ),
@@ -231,6 +235,7 @@ class ImageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Displaying image in full view: $imageUrl');
     return Scaffold(
       appBar: AppBar(
         title: Text('Image Preview'),
@@ -239,6 +244,7 @@ class ImageScreen extends StatelessWidget {
         child: PhotoView(
           imageProvider: NetworkImage(imageUrl),
           errorBuilder: (context, error, stackTrace) {
+            print('Failed to load image in full view: $error');
             return Text('Failed to load image');
           },
         ),
@@ -246,6 +252,7 @@ class ImageScreen extends StatelessWidget {
     );
   }
 }
+
 
 // flutter devices
 

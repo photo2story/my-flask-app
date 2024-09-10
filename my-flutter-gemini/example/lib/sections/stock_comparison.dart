@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:photo_view/photo_view.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'dart:async';
-import 'bot_stock.dart'; // sendDiscordCommand 함수를 가져오기 위해 bot_stock.dart를 임포트
+import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:photo_view/photo_view.dart';  // PhotoView 추가
 
 class StockComparison extends StatefulWidget {
   @override
@@ -13,288 +11,193 @@ class StockComparison extends StatefulWidget {
 }
 
 class _StockComparisonState extends State<StockComparison> {
-  String _comparisonImageUrl = '';
-  String _resultImageUrl = '';
-  String _message = '';
-  String _description = '';
-  String _reportText = '';
-  List<String> _tickers = [];
-  final TextEditingController _controller = TextEditingController();
+  String _comparisonImageUrl = '';  // 비교 그래프 이미지 URL을 저장할 변수
+  String _enteredTicker = '';  // 입력된 티커를 저장할 변수
   bool _isLoading = false;
+  final TextEditingController _controller = TextEditingController();
+  final List<Content> _chats = [];  // Chat 형식으로 데이터를 저장할 리스트
+  final gemini = Gemini.instance;
 
   final String apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
 
   @override
   void initState() {
     super.initState();
-    fetchReviewedTickers();
   }
 
-  Future<void> fetchReviewedTickers() async {
-    try {
-      final response = await http.get(Uri.parse(apiUrl));
-      if (response.statusCode == 200) {
-        final List<dynamic> files = json.decode(response.body);
-        final tickers = files
-            .where((file) => file['name'].startsWith('comparison_') && file['name'].endsWith('_VOO.png'))
-            .map<String>((file) => file['name'].replaceAll('comparison_', '').replaceAll('_VOO.png', ''))
-            .toList();
-
-        setState(() {
-          _tickers = tickers;
-        });
-      } else {
-        setState(() {
-          _message = 'Error occurred while fetching tickers: ${response.statusCode}';
-        });
-      }
-    } catch (e) {
-      setState(() {
-        _message = 'Error occurred while fetching tickers: $e';
-      });
-    }
-  }
-
+  // 티커를 입력받아 이미지를 불러오고, 보고서를 번역
   Future<void> fetchImagesAndReport(String stockTicker) async {
     try {
+      setState(() {
+        _isLoading = true;
+        _chats.clear();  // 새로운 요청을 시작할 때 채팅 리스트 초기화
+        _enteredTicker = stockTicker;  // 입력된 티커를 저장
+      });
+
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         final List<dynamic> files = json.decode(response.body);
+
+        // 비교 그래프 파일 찾기
         final comparisonFile = files.firstWhere(
-            (file) => file['name'] == 'comparison_${stockTicker}_VOO.png',
-            orElse: () => null);
-        final resultFile = files.firstWhere(
-            (file) => file['name'] == 'result_mpl_${stockTicker}.png',
-            orElse: () => null);
+          (file) => file['name'].startsWith('comparison_${stockTicker}') && file['name'].endsWith('_VOO.png'),
+          orElse: () => null,
+        );
+
         final reportFile = files.firstWhere(
             (file) => file['name'] == 'report_${stockTicker}.txt',
             orElse: () => null);
 
-        if (comparisonFile != null && resultFile != null) {
+        if (comparisonFile != null) {
           setState(() {
-            _comparisonImageUrl = comparisonFile['download_url'];
-            _resultImageUrl = resultFile['download_url'];
-            _message = '';
+            _comparisonImageUrl = comparisonFile['download_url'];  // 비교 그래프 URL 저장
           });
-          if (reportFile != null) {
-            final reportResponse = await http.get(Uri.parse(reportFile['download_url']));
-            if (reportResponse.statusCode == 200) {
+        } else {
+          setState(() {
+            _comparisonImageUrl = '';  // 그래프를 찾지 못하면 비움
+          });
+        }
+
+        if (reportFile != null) {
+          // 영문 레포트 불러오기
+          final reportResponse = await http.get(Uri.parse(reportFile['download_url']));
+          if (reportResponse.statusCode == 200) {
+            setState(() {
+              _chats.add(Content(role: 'user', parts: [Parts(text: '한글로 번역해줘')]));
+              _chats.add(Content(role: 'user', parts: [Parts(text: reportResponse.body)])); // 영문 텍스트를 chats에 추가
+            });
+
+            // Gemini 플래시(무료)를 이용해 한글로 번역
+            gemini.chat(_chats).then((value) {
               setState(() {
-                _reportText = reportResponse.body;
+                _chats.add(Content(role: 'model', parts: [Parts(text: value?.output)]));  // 번역된 한글 텍스트를 chats에 추가
+                _isLoading = false;
               });
-            } else {
-              setState(() {
-                _reportText = 'Failed to load report text';
-              });
-            }
+            });
           } else {
             setState(() {
-              _reportText = ''; // Clear the report text if no report is found
+              _chats.add(Content(role: 'error', parts: [Parts(text: '레포트를 불러오는 데 실패했습니다: ${reportResponse.statusCode}')]));
+              _isLoading = false;
             });
           }
         } else {
           setState(() {
-            _comparisonImageUrl = '';
-            _resultImageUrl = '';
-            _reportText = '';
-            _message = 'Unable to find images or report for the stock ticker $stockTicker';
-          });
-          String responseMessage = await sendDiscordCommand('buddy $stockTicker'); // 명령 실행
-          setState(() {
-            _message += '\n$responseMessage';
+            _chats.add(Content(role: 'error', parts: [Parts(text: '레포트를 찾을 수 없습니다.')]));
+            _isLoading = false;
           });
         }
       } else {
         setState(() {
-          _comparisonImageUrl = '';
-          _resultImageUrl = '';
-          _reportText = '';
-          _message = 'GitHub API call failed: ${response.statusCode}';
+          _chats.add(Content(role: 'error', parts: [Parts(text: 'GitHub API 호출 실패: ${response.statusCode}')]));
+          _isLoading = false;
         });
       }
     } catch (e) {
       setState(() {
-        _comparisonImageUrl = '';
-        _resultImageUrl = '';
-        _reportText = '';
-        _message = 'Error occurred: $e';
-      });
-    }
-  }
-
-  Future<String> sendDiscordCommand(String command) async {
-    setState(() {
-      _isLoading = true;
-      _message = '';
-    });
-
-    final String? baseUrl = dotenv.env['DDNS_KEY'];
-    if (baseUrl == null || baseUrl.isEmpty) {
-      setState(() {
-        _isLoading = false;
-      });
-      return 'Error: DDNS_KEY is not set in .env file';
-    }
-
-    final url = Uri.parse('http://$baseUrl:5000/send_discord_command');
-
-    try {
-      final response = await http.post(
-        url,
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({'command': command}),
-      ).timeout(Duration(seconds: 30)); // 30초 타임아웃 설정
-
-      if (response.statusCode == 200) {
-        return 'Command executed successfully! Command: $command';
-      } else {
-        return 'Failed to execute command. Status: ${response.statusCode}, Body: ${response.body}';
-      }
-    } on TimeoutException {
-      return 'Error: Connection timed out. Please check your network.';
-    } catch (e) {
-      return 'Error: ${e.toString()}';
-    } finally {
-      setState(() {
+        _chats.add(Content(role: 'error', parts: [Parts(text: '오류 발생: $e')]));
         _isLoading = false;
       });
     }
-  }
-
-  void _openImage(BuildContext context, String imageUrl) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ImageScreen(imageUrl: imageUrl),
-      ),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Stock Comparison Review'),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
+      // appBar: AppBar(
+      //   title: Text('Stock Comparison Review'),
+      // ),
+      body: Column(
+        children: [
+          // 상단에 고정된 티커 타이틀
+          Container(
+            width: double.infinity,
+            color: Colors.black,
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Entered Ticker: $_enteredTicker',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          
+          // 티커 입력 필드
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: _controller,
+              onSubmitted: (value) {
+                if (value.isNotEmpty) {
+                  fetchImagesAndReport(value.toUpperCase());  // 티커 입력 후 데이터를 불러옴
+                  _controller.clear();  // 입력 후 텍스트 필드 비움
+                }
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter stock ticker',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ),
+
+          // 비교 그래프 이미지 표시 (전폭으로 표시)
+          // 비교 그래프 이미지 표시 (크기를 지정하여 표시)
+          if (_comparisonImageUrl.isNotEmpty)
+            Container(
+              height: 300,  // 그래프의 고정된 높이 설정
+              child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: _controller,
-                  textCapitalization: TextCapitalization.characters,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter Stock Ticker',
-                  ),
-                  onChanged: (value) {
-                    _controller.value = TextEditingValue(
-                      text: value.toUpperCase(),
-                      selection: _controller.selection,
-                    );
-                  },
-                  onSubmitted: (value) {
-                    fetchImagesAndReport(_controller.text.toUpperCase());
-                  },
+                child: PhotoView(
+                  imageProvider: NetworkImage(_comparisonImageUrl),  // 불러온 이미지 URL 사용
+                  backgroundDecoration: BoxDecoration(color: Colors.black),  // 그래프 배경 검정색
+                  maxScale: PhotoViewComputedScale.contained * 2.0,  // 확대 범위 설정
+                  minScale: PhotoViewComputedScale.contained,  // 최소 축소 범위 설정
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  fetchImagesAndReport(_controller.text.toUpperCase());
-                },
-                child: Text('Search Review'),
-              ),
-              SizedBox(height: 20),
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Reviewed Stocks:',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Wrap(
-                children: _tickers.map((ticker) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        fetchImagesAndReport(ticker);
-                      },
-                      child: Text(
-                        ticker,
-                        style: TextStyle(fontSize: 14, color: Colors.blue),
+            ),
+
+          // 보고서 출력
+          Expanded(
+            child: _chats.isNotEmpty
+                ? Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SingleChildScrollView(
+                      reverse: true,
+                      child: ListView.builder(
+                        itemBuilder: chatItem,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: _chats.length,
+                        reverse: false,
                       ),
                     ),
-                  );
-                }).toList(),
-              ),
-              SizedBox(height: 20),
-              _comparisonImageUrl.isNotEmpty
-                  ? GestureDetector(
-                      onTap: () => _openImage(context, _comparisonImageUrl),
-                      child: Image.network(
-                        _comparisonImageUrl,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Text('Failed to load comparison image');
-                        },
-                      ),
-                    )
-                  : Container(),
-              SizedBox(height: 20),
-              _resultImageUrl.isNotEmpty
-                  ? GestureDetector(
-                      onTap: () => _openImage(context, _resultImageUrl),
-                      child: Image.network(
-                        _resultImageUrl,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Text('Failed to load result image');
-                        },
-                      ),
-                    )
-                  : Container(),
-              SizedBox(height: 20),
-              _reportText.isNotEmpty
-                  ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MarkdownBody(
-                        data: _reportText,
-                      ),
-                    )
-                  : Container(),
-              _message.isNotEmpty
-                  ? Text(
-                      _message,
-                      style: TextStyle(fontSize: 16, color: Colors.red),
-                    )
-                  : Container(),
-            ],
+                  )
+                : const Center(child: Text('레포트를 불러오세요!')),
           ),
-        ),
+
+          if (_isLoading) const CircularProgressIndicator(),
+        ],
       ),
     );
   }
-}
 
-class ImageScreen extends StatelessWidget {
-  final String imageUrl;
+  // 채팅 아이템을 표시하는 함수
+  Widget chatItem(BuildContext context, int index) {
+    final Content content = _chats[index];
 
-  ImageScreen({required this.imageUrl});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Image Preview'),
-      ),
-      body: Center(
-        child: PhotoView(
-          imageProvider: NetworkImage(imageUrl),
-          errorBuilder: (context, error, stackTrace) {
-            return Text('Failed to load image');
-          },
+    return Card(
+      elevation: 0,
+      color: content.role == 'model' ? Colors.black : Colors.transparent,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(content.role ?? 'role'),
+            Markdown(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              data: content.parts?.lastOrNull?.text ?? 'cannot generate data!',
+            ),
+          ],
         ),
       ),
     );

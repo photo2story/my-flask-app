@@ -213,16 +213,85 @@ def update_market_cap_in_csv(csv_url):
     df.to_csv('updated_stock_market.csv', index=False)
     print(f"Updated CSV saved to updated_stock_market.csv")
 
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+def fetch_finviz_data(ticker):
+    """
+    주어진 티커의 Finviz 팩터 데이터를 가져오는 함수
+    :param ticker: 주식 티커
+    :return: 팩터 데이터를 포함한 Pandas 데이터프레임
+    """
+    url = f'https://finviz.com/quote.ashx?t={ticker}'
+    headers = {'User-Agent': 'Mozilla/5.0'}
+
+    try:
+        # 페이지 요청
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # 요청이 성공했는지 확인
+
+        # 페이지 파싱
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Finviz 테이블 확인
+        tables = soup.find_all('table')
+        print(f"Total tables found: {len(tables)}")  # 테이블 개수 확인
+
+        # Finviz 테이블 출력 (디버그용)
+        for idx, table in enumerate(tables):
+            print(f"\n--- Table {idx + 1} ---")
+            print(table.prettify())  # 테이블의 구조를 출력 (디버그용)
+
+        if len(tables) < 8:
+            print(f"Finviz 테이블이 제대로 로드되지 않았습니다. 티커: {ticker}")
+            return pd.DataFrame()
+
+        # 필요한 테이블 선택 (여기서는 8번째 테이블이 주로 데이터임)
+        finviz_table = tables[7]
+
+        # 데이터 파싱
+        rows = finviz_table.find_all('tr')
+
+        # 데이터를 저장할 딕셔너리
+        data = {}
+
+        # 행을 순회하며 데이터 추출
+        for row in rows:
+            columns = row.find_all('td')
+            if len(columns) == 2:
+                key = columns[0].text.strip()
+                value = columns[1].text.strip()
+                data[key] = value
+
+        # 데이터프레임으로 변환
+        df = pd.DataFrame(list(data.items()), columns=['Factor', 'Value'])
+
+        return df
+
+    except Exception as e:
+        print(f"Error fetching data from Finviz for {ticker}: {e}")
+        return pd.DataFrame()
+
 if __name__ == "__main__":
-    # 시가총액 업데이트
-    # update_market_cap_in_csv(CSV_URL)
+    ticker = 'AAPL'  # 테스트를 위한 기본 티커
+    finviz_data = fetch_finviz_data(ticker)
+
+    if finviz_data is not None and not finviz_data.empty:
+        print(finviz_data)
+    else:
+        print(f"{ticker}에 대한 데이터를 가져오지 못했습니다.")
+
+# if __name__ == "__main__":
+#     # 시가총액 업데이트
+#     # update_market_cap_in_csv(CSV_URL)
 
 
     
     
-    tickers_to_update = ['QQQ']
-    update_stock_market_csv(ticker_path, tickers_to_update)
-    print("Stock information updated.")
+#     tickers_to_update = ['QQQ']
+#     update_stock_market_csv(ticker_path, tickers_to_update)
+#     print("Stock information updated.")
     
 #  .\.venv\Scripts\activate
 #  python get_ticker.py
