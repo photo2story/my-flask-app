@@ -132,6 +132,7 @@ async def collect_relative_divergence(ticker, simplified_df):
         # 기대수익으로 정렬하여 CSV 저장
         sorted_results = updated_results.sort_values(by='Expected_Return', ascending=False)
         sorted_results.to_csv(results_file_path, index=False)
+        print('sorted_results:', sorted_results)
 
         print(f"Updated relative divergence data for {ticker} saved to {results_file_path}")
 
