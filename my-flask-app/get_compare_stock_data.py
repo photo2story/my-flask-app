@@ -44,6 +44,7 @@ async def save_simplified_csv(ticker):
     
     # 필요한 열만 선택하여 새로운 DataFrame 생성
     df = df[['Date', 'rate', 'rate_vs']]
+    df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
     
     # 이격도(Divergence) 계산
     df['Divergence'] = df['rate'] - df['rate_vs']
