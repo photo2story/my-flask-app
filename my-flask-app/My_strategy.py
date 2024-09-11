@@ -35,7 +35,7 @@ def my_strategy(stock_data, option_strategy):
     stock_ticker = stock_data.iloc[0]['Stock']
     
     if '.K' in stock_ticker or stock_data.iloc[0]['Sector'] == 'KRX':
-        currency = 1300
+        currency = 1
     
     PPO_BUY = False  # Initialize neither buy nor sell signal is active
    
