@@ -71,6 +71,11 @@ async def save_simplified_csv(ticker):
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 
                         'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
     
+    # 마지막 데이터가 이미 포함되지 않았다면 추가
+    if not simplified_df['Date'].iloc[-1] == df['Date'].iloc[-1]:
+        last_row = df.iloc[-1]
+        simplified_df = pd.concat([simplified_df, last_row.to_frame().T], ignore_index=True)
+        
     # simplified_df가 비어있는지 체크
     if simplified_df.empty:
         print(f"Skipping {ticker} because simplified_df is empty.")
@@ -102,11 +107,12 @@ async def collect_relative_divergence(ticker, simplified_df):
         latest_relative_divergence = latest_entry['Relative_Divergence']
         latest_divergence = latest_entry['Divergence']
         delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
-        max_divergence = simplified_df['Divergence'].max().round(2)
-        expected_return = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
+        max_divergence = round(simplified_df['Divergence'].max(), 2)  # round() 함수 사용
+        expected_return = round(((100 - latest_relative_divergence) / 100 * max_divergence), 2)
 
         # results_relative_divergence.csv 파일이 존재하면 읽어오기
         results_file_path = os.path.join(config.STATIC_IMAGES_PATH, 'results_relative_divergence.csv')
+        
         if os.path.exists(results_file_path):
             results = pd.read_csv(results_file_path)
         else:
@@ -133,7 +139,9 @@ async def collect_relative_divergence(ticker, simplified_df):
         # 기대수익으로 정렬하여 CSV 저장
         sorted_results = updated_results.sort_values(by='Expected_Return', ascending=False)
         sorted_results.to_csv(results_file_path, index=False)
-        print('sorted_results:', sorted_results)
+        
+        print('sorted_results:')
+        print(sorted_results)  # 보기 좋게 출력
 
         print(f"Updated relative divergence data for {ticker} saved to {results_file_path}")
 
@@ -142,6 +150,7 @@ async def collect_relative_divergence(ticker, simplified_df):
 
     except Exception as e:
         print(f"Error processing data for {ticker}: {e}")
+
 
 
     # return sorted_results
