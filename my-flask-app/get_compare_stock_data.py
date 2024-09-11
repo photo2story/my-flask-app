@@ -33,7 +33,7 @@ def fetch_csv(ticker):
 # CSV 파일을 간소화하고 로컬에 저장하는 함수
 async def save_simplified_csv(ticker):
     # result_VOO_{ticker}.csv을 읽어와서 데이터프레임으로 변환
-    df= pd.read_csv(f"{config.STATIC_IMAGES_PATH}/result_VOO_{ticker}.csv")
+    df = pd.read_csv(f"{config.STATIC_IMAGES_PATH}/result_VOO_{ticker}.csv")
     
     if df is None:
         print(f"Skipping processing for {ticker} due to missing data.")
@@ -45,18 +45,21 @@ async def save_simplified_csv(ticker):
     
     # 필요한 열만 선택하여 새로운 DataFrame 생성
     df = df[['Date', 'rate', 'rate_vs']]
-    # print(df)
     
     # 이격도(Divergence) 계산
-    df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
+    df['Divergence'] = df['rate'] - df['rate_vs']
+    df['Divergence'] = df['Divergence'].round(2)  # 소수점 둘째 자리까지 반올림
+    
+    # 열 이름 변경
     df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
     
     # 상대 이격도(Relative Divergence) 계산
     min_divergence = df['Divergence'].min()
-    df['Relative_Divergence'] = np.round(((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100, 2)
+    df['Relative_Divergence'] = ((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100
+    df['Relative_Divergence'] = df['Relative_Divergence'].round(2)  # 소수점 둘째 자리까지 반올림
     
     # max_divergence 값 업데이트
-    df['Max_Divergence'] = df['Divergence'].cummax()
+    df['Max_Divergence'] = df['Divergence'].cummax().round(2)
     
     # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
     df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
@@ -66,7 +69,6 @@ async def save_simplified_csv(ticker):
     
     # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
-    # print(simplified_df)
     
     # 마지막 데이터가 이미 포함되지 않았다면 추가
     if not simplified_df['Date'].iloc[-1] == df['Date'].iloc[-1]:
@@ -89,6 +91,7 @@ async def save_simplified_csv(ticker):
 
     # collect_relative_divergence 호출 (비동기로)
     await collect_relative_divergence(ticker, simplified_df)
+
 
 
 async def collect_relative_divergence(ticker, simplified_df):
