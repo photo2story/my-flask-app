@@ -81,13 +81,6 @@ def load_industry_info():
     industry_dict = dict(zip(industry_df['Symbol'], industry_df['Industry']))
     return industry_dict
 
-import os
-import pandas as pd
-import yfinance as yf
-
-import os
-import pandas as pd
-import yfinance as yf
 
 def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start_date=None):
     """
@@ -97,81 +90,97 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
     add_past_data: 과거 데이터를 추가로 가져올지 여부
     past_start_date: 과거 데이터를 가져오는 경우의 시작일
     """
-    safe_ticker = ticker.replace('/', '-')
+    # 티커가 6글자 이상인 경우, 한국 주식으로 판단하고 '.KS' 접미사를 붙임
+    original_ticker = ticker
+    if len(ticker) == 6 and ticker.isdigit():
+        safe_ticker = f'{ticker}.KS'
+    else:
+        safe_ticker = ticker.replace('/', '-')
+
     print(f"Processing data for ticker: {safe_ticker}")
-    
+
     # static/images 폴더 경로 설정
     folder_path = config.STATIC_IMAGES_PATH
-    file_path = os.path.join(folder_path, f'data_{safe_ticker}.csv')
+
+    # 경로가 존재하는지 확인 (존재하지 않으면 강제 종료)
+    if not os.path.exists(folder_path):
+        print(f"Error: Directory {folder_path} does not exist.")
+        raise FileNotFoundError(f"Critical error: Required directory {folder_path} not found. Exiting.")
+    
+    # 저장할 파일 경로는 원래의 티커명으로 설정
+    file_path = os.path.join(folder_path, f'data_{original_ticker}.csv')
 
     try:
+        # 기존 파일이 존재하면 데이터를 로드
         if os.path.exists(file_path):
-            # 기존 데이터가 존재하는 경우
             existing_data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
-            first_saved_date = existing_data.index[0].strftime('%Y-%m-%d')  # 기존 데이터의 첫 날짜
-            last_saved_date = existing_data.index[-1].strftime('%Y-%m-%d')  # 기존 데이터의 마지막 날짜
-            print(f"Existing data found for {ticker}, first saved date: {first_saved_date}, last saved date: {last_saved_date}")
+            first_saved_date = existing_data.index[0].strftime('%Y-%m-%d')
+            last_saved_date = existing_data.index[-1].strftime('%Y-%m-%d')
+            print(f"Existing data found for {original_ticker}, first saved date: {first_saved_date}, last saved date: {last_saved_date}")
 
-            # 새로운 데이터를 가져와서 업데이트
+            # 새로운 데이터를 추가
             if last_saved_date < end_date:
                 new_start_date = (pd.to_datetime(last_saved_date) + pd.Timedelta(days=1)).strftime('%Y-%m-%d')
-                print(f"Fetching new data from {new_start_date} to {end_date} for {ticker}.")
+                print(f"Fetching new data from {new_start_date} to {end_date} for {original_ticker}.")
                 new_data = yf.download(safe_ticker, start=new_start_date, end=end_date)
 
                 if not new_data.empty:
-                    # 중복된 인덱스(날짜) 제거
                     new_data = new_data[~new_data.index.duplicated(keep='first')]
                     existing_data = pd.concat([existing_data, new_data])
                     existing_data = existing_data[~existing_data.index.duplicated(keep='first')]  # 중복 제거
-                    print(f"New data successfully added for {ticker}.")
+                    print(f"New data successfully added for {original_ticker}.")
                 else:
-                    print(f"No new data found for {ticker}.")
+                    print(f"No new data found for {original_ticker}.")
             else:
-                print(f"No new data needed for {ticker}. Data is already up-to-date.")
+                print(f"No new data needed for {original_ticker}. Data is already up-to-date.")
 
-            # 과거 데이터 추가 (현재 첫 번째 날짜 이전 데이터)
+            # 과거 데이터 추가
             if add_past_data and past_start_date and first_saved_date > past_start_date:
-                print(f"Fetching past data from {past_start_date} to {first_saved_date} for {ticker}.")
+                print(f"Fetching past data from {past_start_date} to {first_saved_date} for {original_ticker}.")
                 past_data = yf.download(safe_ticker, start=past_start_date, end=first_saved_date)
 
                 if not past_data.empty:
-                    past_data = past_data[~past_data.index.duplicated(keep='first')]  # 중복 제거
+                    past_data = past_data[~past_data.index.duplicated(keep='first')]
                     existing_data = pd.concat([past_data, existing_data])
                     existing_data = existing_data[~existing_data.index.duplicated(keep='first')]  # 중복 제거
-                    print(f"Past data successfully added for {ticker}.")
+                    print(f"Past data successfully added for {original_ticker}.")
                 else:
-                    print(f"No past data found for {ticker}.")
+                    print(f"No past data found for {original_ticker}.")
             else:
-                print(f"No past data fetching required for {ticker}.")
+                print(f"No past data fetching required for {original_ticker}.")
         
         else:
-            # 기존 파일이 없으면 전체 데이터를 가져옴
-            print(f"No existing data found for {ticker}, fetching from {start_date} to {end_date}.")
+            # 기존 파일이 없으면 전체 데이터를 새로 가져옴
+            print(f"No existing data found for {original_ticker}, fetching from {start_date} to {end_date}.")
             existing_data = yf.download(safe_ticker, start=start_date, end=end_date)
 
             if existing_data.empty:
-                print(f"No data found for {ticker}.")
+                print(f"No data found for {original_ticker}.")
                 return pd.DataFrame(), start_date, end_date
 
-            print(f"Data successfully fetched for {ticker} from {start_date} to {end_date}.")
+            print(f"Data successfully fetched for {original_ticker} from {start_date} to {end_date}.")
 
-        # 데이터 처리
-        existing_data = process_data(existing_data, ticker)
+        # 데이터 처리 (필요한 추가 분석 또는 수정)
+        existing_data = process_data(existing_data, original_ticker)
     
     except Exception as e:
-        print(f"Error fetching data for {ticker}: {e}")
+        print(f"Error fetching data for {original_ticker}: {e}")
         return pd.DataFrame(), start_date, end_date
 
-    # 데이터 파일을 static/images 폴더 아래에 저장
-    existing_data.to_csv(file_path)  # 업데이트된 데이터를 파일로 저장
-    print(f"Data saved for {ticker} at {file_path}")
-
-    # 마지막 데이터의 실제 날짜 가져오기
+    # 데이터를 저장
+    try:
+        existing_data.to_csv(file_path)
+        print(f"Data saved successfully for {original_ticker} at {file_path}")
+    except PermissionError:
+        print(f"Permission error: Unable to save data for {original_ticker} at {file_path}. Please check folder permissions.")
+    except Exception as e:
+        print(f"Error saving data for {original_ticker} at {file_path}: {e}")
+    
+    # 마지막 데이터의 날짜 반환
     last_available_date = existing_data.index[-1].strftime('%Y-%m-%d')
     first_available_date = existing_data.index[0].strftime('%Y-%m-%d')
 
-    # 로깅 메시지에서 실제 데이터를 사용하여 출력
-    print(f"Loaded data for {ticker} from {first_available_date} to {last_available_date}")
+    print(f"Loaded data for {original_ticker} from {first_available_date} to {last_available_date}")
     
     return existing_data, first_available_date, last_available_date
 
@@ -233,18 +242,41 @@ def get_price_info(ticker):
     else:
         return "알 수 없음"
 
-if __name__ == "__main__":
-    # 테스트 실행
-    ticker = 'AAPL'
-    start_date = '2015-01-01'
+def test_fetch_and_process_stock_data():
+    """
+    Test function to verify stock data fetching and processing.
+    """
+    tickers = ['005380']  # Test with different tickers (Apple, Hyundai, Microsoft)
+    start_date = '2019-01-01'
     end_date = datetime.today().strftime('%Y-%m-%d')
-    # Apple 주식(AAPL) 데이터를 테스트로 가져오기
+
+    for ticker in tickers:
+        print(f"\nTesting ticker: {ticker}")
+        try:
+            stock_data, first_available_date, last_available_date = get_stock_data(ticker, start_date, end_date)
+            
+            if stock_data.empty:
+                print(f"Test failed: No data fetched for {ticker}")
+            else:
+                print(f"Test passed: Data fetched for {ticker} from {first_available_date} to {last_available_date}")
+                print(stock_data.head())  # Display sample data for validation
+
+        except Exception as e:
+            print(f"Test failed: Error fetching data for {ticker}: {e}")
+            continue
+
+    # Additional testing for invalid ticker
+    print("\nTesting invalid ticker: INVALID_TICKER")
     try:
-        stock_data = yf.download('AAPL', start_date, end_date)
-        print(stock_data)  # 데이터가 정상적으로 가져와지는지 확인
+        stock_data, first_available_date, last_available_date = get_stock_data('INVALID_TICKER', start_date, end_date)
+        if stock_data.empty:
+            print("Test passed: No data returned for invalid ticker.")
+        else:
+            print("Test failed: Data should not have been returned for invalid ticker.")
     except Exception as e:
-        print(f"오류 발생: {e}")
+        print(f"Test passed: Error handled correctly for invalid ticker: {e}")
 
-
+if __name__ == "__main__":
+    test_fetch_and_process_stock_data()
 
 ## python Get_data.py    
