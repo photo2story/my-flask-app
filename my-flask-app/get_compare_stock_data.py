@@ -46,22 +46,28 @@ async def save_simplified_csv(ticker):
     df = df[['Date', 'rate', 'rate_vs']]
     
     # 이격도(Divergence) 계산
-    df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
-    df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
+    df['Divergence'] = df['rate'] - df['rate_vs']
     
     # 상대 이격도(Relative Divergence) 계산
     min_divergence = df['Divergence'].min()
-    df['Relative_Divergence'] = np.round(((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100, 2)
+    df['Relative_Divergence'] = ((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100
     
     # max_divergence 값 업데이트
     df['Max_Divergence'] = df['Divergence'].cummax()
     
     # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
-    df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
+    df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0)
     
     # Expected_Return 필드를 추가
-    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
+    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence'])
     
+    # 숫자 값들은 round() 메소드를 열 전체에 적용
+    df['Divergence'] = df['Divergence'].round(2)
+    df['Relative_Divergence'] = df['Relative_Divergence'].round(2)
+    df['Delta_Previous_Relative_Divergence'] = df['Delta_Previous_Relative_Divergence'].round(2)
+    df['Max_Divergence'] = df['Max_Divergence'].round(2)
+    df['Expected_Return'] = df['Expected_Return'].round(2)
+
     # 간소화된 CSV를 저장할 로컬 경로 설정
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
     
@@ -76,6 +82,7 @@ async def save_simplified_csv(ticker):
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
+
 
     # collect_relative_divergence 호출 (비동기로)
     await collect_relative_divergence(ticker, simplified_df)
