@@ -1,17 +1,19 @@
 #### get_ticker.py
 import pandas as pd
 import FinanceDataReader as fdr
-import csv, os, io, requests
+import csv, os, io, requests, sys
 from github_operations import ticker_path  # stock_market.csv 파일 경로
 import yfinance as yf
 import investpy
 import config  # config 파일을 import
-
+# 루트 디렉토리를 sys.path에 추가
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+CSV_PATH = config.CSV_PATH
 
 
 #ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
-#CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
-CSV_URL = config.CSV_PATH  # config.py에서 정의된 CSV_PATH를 사용
+CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+# CSV_URL = config.CSV_PATH  # config.py에서 정의된 CSV_PATH를 사용
 ticker_path = config.CSV_PATH  # 동일한 경로를 사용
 
 def get_ticker_name(ticker):
@@ -274,13 +276,27 @@ def fetch_finviz_data(ticker):
         return pd.DataFrame()
 
 if __name__ == "__main__":
-    ticker = 'AAPL'  # 테스트를 위한 기본 티커
-    finviz_data = fetch_finviz_data(ticker)
-
-    if finviz_data is not None and not finviz_data.empty:
-        print(finviz_data)
+    # 티커 검색 테스트
+    ticker_dict = load_tickers()
+    search_query = 'Apple'  # 테스트를 위한 검색어
+    matching_tickers = search_tickers(search_query, ticker_dict)
+    
+    if matching_tickers:
+        print(f"Search results for '{search_query}':")
+        for symbol, name in matching_tickers:
+            print(f"Ticker: {symbol}, Name: {name}")
     else:
-        print(f"{ticker}에 대한 데이터를 가져오지 못했습니다.")
+        print(f"No results found for '{search_query}'.")
+
+
+# if __name__ == "__main__":
+#     ticker = 'AAPL'  # 테스트를 위한 기본 티커
+#     finviz_data = fetch_finviz_data(ticker)
+
+#     if finviz_data is not None and not finviz_data.empty:
+#         print(finviz_data)
+#     else:
+#         print(f"{ticker}에 대한 데이터를 가져오지 못했습니다.")
 
 # if __name__ == "__main__":
 #     # 시가총액 업데이트
