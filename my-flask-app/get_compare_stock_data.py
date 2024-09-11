@@ -32,7 +32,8 @@ def fetch_csv(ticker):
 
 # CSV 파일을 간소화하고 로컬에 저장하는 함수
 async def save_simplified_csv(ticker):
-    df = pd.read_csv(f"{config.STATIC_IMAGES_PATH}/result_VOO_{ticker}.csv")
+    # result_VOO_{ticker}.csv을 읽어와서 데이터프레임으로 변환
+    df= pd.read_csv(f"{config.STATIC_IMAGES_PATH}/result_VOO_{ticker}.csv")
     
     if df is None:
         print(f"Skipping processing for {ticker} due to missing data.")
@@ -44,33 +45,28 @@ async def save_simplified_csv(ticker):
     
     # 필요한 열만 선택하여 새로운 DataFrame 생성
     df = df[['Date', 'rate', 'rate_vs']]
-    df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
+    # print(df)
     
     # 이격도(Divergence) 계산
-    df['Divergence'] = df['rate'] - df['rate_vs']
+    df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
+    df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
     
     # 상대 이격도(Relative Divergence) 계산
     min_divergence = df['Divergence'].min()
-    df['Relative_Divergence'] = ((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100
+    df['Relative_Divergence'] = np.round(((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100, 2)
     
     # max_divergence 값 업데이트
     df['Max_Divergence'] = df['Divergence'].cummax()
     
     # 이전 상대 이격도 변화량(Delta Previous Relative Divergence) 계산
-    df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0)
+    df['Delta_Previous_Relative_Divergence'] = df['Relative_Divergence'].diff(periods=20).fillna(0).round(2)
     
     # Expected_Return 필드를 추가
-    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence'])
+    df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
     
-    # 숫자 값들은 round() 메소드를 열 전체에 적용
-    df['Divergence'] = df['Divergence'].round(2)
-    df['Relative_Divergence'] = df['Relative_Divergence'].round(2)
-    df['Delta_Previous_Relative_Divergence'] = df['Delta_Previous_Relative_Divergence'].round(2)
-    df['Max_Divergence'] = df['Max_Divergence'].round(2)
-    df['Expected_Return'] = df['Expected_Return'].round(2)
-
-    # 간소화된 CSV를 저장할 로컬 경로 설정
+    # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
+    # print(simplified_df)
     
     # 마지막 데이터가 이미 포함되지 않았다면 추가
     if not simplified_df['Date'].iloc[-1] == df['Date'].iloc[-1]:
@@ -84,11 +80,6 @@ async def save_simplified_csv(ticker):
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
 
-
-    # collect_relative_divergence 호출 (비동기로)
-    await collect_relative_divergence(ticker, simplified_df)
-
-
     # 마지막 데이터를 출력
     latest_entry = df.iloc[-1]
     print(f"Current Divergence for {ticker}: {latest_entry['Divergence']} (max {latest_entry['Max_Divergence']}, min {min_divergence})")
@@ -96,11 +87,9 @@ async def save_simplified_csv(ticker):
     print(f"Delta Previous Relative Divergence for {ticker}: {latest_entry['Delta_Previous_Relative_Divergence']}")
     print(f"Expected Return for {ticker}: {latest_entry['Expected_Return']}")
 
+    # collect_relative_divergence 호출 (비동기로)
+    await collect_relative_divergence(ticker, simplified_df)
 
-
-import os
-import pandas as pd
-import asyncio
 
 async def collect_relative_divergence(ticker, simplified_df):
     try:
