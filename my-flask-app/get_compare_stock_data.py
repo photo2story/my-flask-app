@@ -101,11 +101,19 @@ async def collect_relative_divergence(ticker, simplified_df):
     try:
         # 마지막 데이터 추출
         latest_entry = simplified_df.iloc[-1]
+
+        # simplified_df에 있는 값을 바로 참조
         latest_relative_divergence = latest_entry['Relative_Divergence']
         latest_divergence = latest_entry['Divergence']
         delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
-        max_divergence = round(simplified_df['Divergence'].max(), 2)
-        expected_return = round(((100 - latest_relative_divergence) / 100 * max_divergence), 2)
+        max_divergence = latest_entry['Max_Divergence']  # 계산된 값 가져오기
+        expected_return = latest_entry['Expected_Return']  # 계산된 값 가져오기
+
+        # 디버깅 출력을 추가하여 값들을 확인
+        print(f"Processing {ticker}:")
+        print(f"Latest Divergence: {latest_divergence}")
+        print(f"Max Divergence: {max_divergence}")
+        print(f"Expected Return: {expected_return}")
 
         # results_relative_divergence.csv 파일이 존재하면 읽어오기
         results_file_path = os.path.join(config.STATIC_IMAGES_PATH, 'results_relative_divergence.csv')
@@ -118,7 +126,7 @@ async def collect_relative_divergence(ticker, simplified_df):
                                             'Expected_Return'])
 
         # 기존 티커 제거 (중복 방지)
-        print(f"Before removing duplicates, results size: {len(results)}")
+        print(f"Before removing {ticker}, results size: {len(results)}")
         results = results[results['Ticker'] != ticker]
         print(f"After removing {ticker}, results size: {len(results)}")
 
@@ -137,17 +145,9 @@ async def collect_relative_divergence(ticker, simplified_df):
         print(f"Added {ticker}, updated results size: {len(updated_results)}")
 
         # 기대수익으로 정렬하여 CSV 저장
-        sorted_results = updated_results.sort_values(by='Expected_Return', ascending=False)
-        
-        # CSV 파일을 강제로 덮어쓰기
-        sorted_results.to_csv(results_file_path, mode='w', index=False)
+        updated_results.sort_values(by='Expected_Return', ascending=False).to_csv(results_file_path, mode='w', index=False)
         
         print(f"Updated relative divergence data for {ticker} saved to {results_file_path}")
-        print('sorted_results:')
-        print(sorted_results.tail(10))  # 마지막 10개 항목을 출력해 확인
-
-        # move_files_to_images_folder 함수를 비동기적으로 호출
-        await move_files_to_images_folder()
 
     except Exception as e:
         print(f"Error processing data for {ticker}: {e}")
