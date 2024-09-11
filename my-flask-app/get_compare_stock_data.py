@@ -47,16 +47,12 @@ async def save_simplified_csv(ticker):
     df = df[['Date', 'rate', 'rate_vs']]
     
     # 이격도(Divergence) 계산
-    df['Divergence'] = df['rate'] - df['rate_vs']
-    df['Divergence'] = df['Divergence'].round(2)  # 소수점 둘째 자리까지 반올림
-    
-    # 열 이름 변경
+    df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
     df = df.rename(columns={'rate': f'rate_{ticker}_5D', 'rate_vs': 'rate_VOO_20D'})
     
     # 상대 이격도(Relative Divergence) 계산
     min_divergence = df['Divergence'].min()
-    df['Relative_Divergence'] = ((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100
-    df['Relative_Divergence'] = df['Relative_Divergence'].round(2)  # 소수점 둘째 자리까지 반올림
+    df['Relative_Divergence'] = np.round(((df['Divergence'] - min_divergence) / (df['Divergence'].cummax() - min_divergence)) * 100, 2)
     
     # max_divergence 값 업데이트
     df['Max_Divergence'] = df['Divergence'].cummax().round(2)
