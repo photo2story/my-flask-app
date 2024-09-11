@@ -104,7 +104,7 @@ async def collect_relative_divergence(ticker, simplified_df):
         latest_relative_divergence = latest_entry['Relative_Divergence']
         latest_divergence = latest_entry['Divergence']
         delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
-        max_divergence = round(simplified_df['Divergence'].max(), 2)  # round() 함수 사용
+        max_divergence = round(simplified_df['Divergence'].max(), 2)
         expected_return = round(((100 - latest_relative_divergence) / 100 * max_divergence), 2)
 
         # results_relative_divergence.csv 파일이 존재하면 읽어오기
@@ -138,7 +138,9 @@ async def collect_relative_divergence(ticker, simplified_df):
 
         # 기대수익으로 정렬하여 CSV 저장
         sorted_results = updated_results.sort_values(by='Expected_Return', ascending=False)
-        sorted_results.to_csv(results_file_path, index=False)
+        
+        # CSV 파일을 강제로 덮어쓰기
+        sorted_results.to_csv(results_file_path, mode='w', index=False)
         
         print(f"Updated relative divergence data for {ticker} saved to {results_file_path}")
         print('sorted_results:')
@@ -149,7 +151,6 @@ async def collect_relative_divergence(ticker, simplified_df):
 
     except Exception as e:
         print(f"Error processing data for {ticker}: {e}")
-
 
 if __name__ == "__main__":
     print("Starting data processing...")
