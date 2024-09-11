@@ -142,7 +142,7 @@ async def collect_relative_divergence(ticker, simplified_df):
         print(f"Error processing data for {ticker}: {e}")
 
 
-    return sorted_results
+    # return sorted_results
 
 if __name__ == "__main__":
     print("Starting data processing...")
