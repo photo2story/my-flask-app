@@ -31,11 +31,8 @@ def fetch_csv(ticker):
         return None
 
 # CSV 파일을 간소화하고 로컬에 저장하는 함수
-def save_simplified_csv(ticker):
-    # GitHub에서 데이터를 가져오기 위해 fetch_csv 함수를 사용
-    # df = fetch_csv(ticker)
-    # result_VOO_{ticker}.csv을 읽어와서 데이터프레임으로 변환
-    df= pd.read_csv(f"{config.STATIC_IMAGES_PATH}/result_VOO_{ticker}.csv")
+async def save_simplified_csv(ticker):
+    df = pd.read_csv(f"{config.STATIC_IMAGES_PATH}/result_VOO_{ticker}.csv")
     
     if df is None:
         print(f"Skipping processing for {ticker} due to missing data.")
@@ -47,7 +44,6 @@ def save_simplified_csv(ticker):
     
     # 필요한 열만 선택하여 새로운 DataFrame 생성
     df = df[['Date', 'rate', 'rate_vs']]
-    # print(df)
     
     # 이격도(Divergence) 계산
     df['Divergence'] = np.round(df['rate'] - df['rate_vs'], 2)
@@ -66,9 +62,8 @@ def save_simplified_csv(ticker):
     # Expected_Return 필드를 추가
     df['Expected_Return'] = ((100 - df['Relative_Divergence']) / 100 * df['Max_Divergence']).round(2)
     
-    # 간소화된 CSV를 저장할 로컬 경로 설정 ('result_{ticker}.csv' 파일로 저장)
+    # 간소화된 CSV를 저장할 로컬 경로 설정
     simplified_df = df[['Date', f'rate_{ticker}_5D', 'rate_VOO_20D', 'Divergence', 'Relative_Divergence', 'Delta_Previous_Relative_Divergence', 'Max_Divergence', 'Expected_Return']].iloc[::20].reset_index(drop=True)
-    # print(simplified_df)
     
     # 마지막 데이터가 이미 포함되지 않았다면 추가
     if not simplified_df['Date'].iloc[-1] == df['Date'].iloc[-1]:
@@ -81,6 +76,10 @@ def save_simplified_csv(ticker):
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
     print(f"Simplified CSV saved: {simplified_file_path}")
+
+    # collect_relative_divergence 호출 (비동기로)
+    await collect_relative_divergence(ticker, simplified_df)
+
 
     # 마지막 데이터를 출력
     latest_entry = df.iloc[-1]
@@ -95,61 +94,53 @@ import os
 import pandas as pd
 import asyncio
 
-async def collect_relative_divergence():
-    tickers = [stock for sector, stocks in config.STOCKS.items() for stock in stocks]
-    results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
-                                    'Delta_Previous_Relative_Divergence', 'Max_Divergence', 
-                                    'Expected_Return'])
-    
-    for ticker in tickers:
-        file_path = os.path.join(folder_path, f"result_{ticker}.csv")
-        
-        # 파일이 존재하는지 확인
-        if not os.path.exists(file_path):
-            print(f"File for {ticker} does not exist. Skipping...")
-            continue
-        
-        try:
-            df = pd.read_csv(file_path)
-            if df.empty or 'Relative_Divergence' not in df.columns:
-                print(f"Data for {ticker} is not available or missing necessary columns.")
-                continue
+async def collect_relative_divergence(ticker, simplified_df):
+    try:
+        # 마지막 데이터 추출
+        latest_entry = simplified_df.iloc[-1]
+        latest_relative_divergence = latest_entry['Relative_Divergence']
+        latest_divergence = latest_entry['Divergence']
+        delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
+        max_divergence = simplified_df['Divergence'].max().round(2)
+        expected_return = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
 
-            latest_entry = df.iloc[-1]
-            if latest_entry.isna().all():
-                print(f"Data for {ticker} is empty or contains only NA values, skipping...")
-                continue
-            
-            latest_relative_divergence = latest_entry['Relative_Divergence']
-            latest_divergence = latest_entry['Divergence']
-            delta_previous_relative_divergence = latest_entry.get('Delta_Previous_Relative_Divergence', 0)
-            max_divergence = df['Divergence'].max().round(2)
-            expected_return = ((100 - latest_relative_divergence) / 100 * max_divergence).round(2)
+        # results_relative_divergence.csv 파일이 존재하면 읽어오기
+        results_file_path = os.path.join(config.STATIC_IMAGES_PATH, 'results_relative_divergence.csv')
+        if os.path.exists(results_file_path):
+            results = pd.read_csv(results_file_path)
+        else:
+            results = pd.DataFrame(columns=['Ticker', 'Divergence', 'Relative_Divergence', 
+                                            'Delta_Previous_Relative_Divergence', 'Max_Divergence', 
+                                            'Expected_Return'])
 
-            # 빈 데이터프레임 또는 NA 값을 포함한 데이터는 필터링
-            if not pd.isna(latest_divergence) and not pd.isna(latest_relative_divergence):
-                results = pd.concat([results, pd.DataFrame({
-                    'Ticker': [ticker], 
-                    'Divergence': [latest_divergence], 
-                    'Relative_Divergence': [latest_relative_divergence],
-                    'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
-                    'Max_Divergence': [max_divergence],
-                    'Expected_Return': [expected_return]
-                })], ignore_index=True)
+        # 해당 티커의 기존 데이터 제거 (있다면)
+        results = results[results['Ticker'] != ticker]
 
-        except Exception as e:
-            print(f"Error processing data for {ticker}: {e}")
-            continue
-    
-    # 기대수익(Expect_Return)으로 높은 순으로 정렬
-    sorted_results = results.sort_values(by='Expected_Return', ascending=False)
+        # 새로운 데이터 추가
+        new_entry = pd.DataFrame({
+            'Ticker': [ticker], 
+            'Divergence': [latest_divergence], 
+            'Relative_Divergence': [latest_relative_divergence],
+            'Delta_Previous_Relative_Divergence': [delta_previous_relative_divergence],
+            'Max_Divergence': [max_divergence],
+            'Expected_Return': [expected_return]
+        })
 
-    # 정렬된 데이터를 CSV로 저장
-    collect_relative_divergence_path = os.path.join(folder_path, 'results_relative_divergence.csv')
-    sorted_results.to_csv(collect_relative_divergence_path, index=False)
+        # 기존 데이터에 새로운 데이터 추가
+        updated_results = pd.concat([results, new_entry], ignore_index=True)
 
-    # move_files_to_images_folder() 함수를 await로 호출
-    await move_files_to_images_folder()
+        # 기대수익으로 정렬하여 CSV 저장
+        sorted_results = updated_results.sort_values(by='Expected_Return', ascending=False)
+        sorted_results.to_csv(results_file_path, index=False)
+
+        print(f"Updated relative divergence data for {ticker} saved to {results_file_path}")
+
+        # move_files_to_images_folder 함수를 비동기적으로 호출
+        await move_files_to_images_folder()
+
+    except Exception as e:
+        print(f"Error processing data for {ticker}: {e}")
+
 
     return sorted_results
 

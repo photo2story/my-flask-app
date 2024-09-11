@@ -112,7 +112,9 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         # CSV 파일 간소화
         await ctx.send(f'Simplifying CSV for {stock}.')
-        save_simplified_csv(stock)
+        # save_simplified_csv 비동기로 호출
+        await save_simplified_csv(stock)
+
 
         # 파일 이동 및 깃헙 커밋/푸시
         await move_files_to_images_folder()

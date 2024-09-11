@@ -203,8 +203,8 @@ async def buddy(ctx, *, query: str = None):
         print(f'Results for {stock_name} displayed successfully.')
 
     # query가 없는 경우 또는 "all"인 경우에만 collect_relative_divergence 호출
-    if not query or query.strip().lower() == "all":
-        results = await collect_relative_divergence()
+    # if not query or query.strip().lower() == "all":
+    #     results = await collect_relative_divergence()
 
         
 @bot.command()
