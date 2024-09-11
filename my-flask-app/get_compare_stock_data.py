@@ -97,9 +97,6 @@ async def save_simplified_csv(ticker):
     # collect_relative_divergence 호출
     await collect_relative_divergence(ticker, simplified_df)
 
-
-
-
 async def collect_relative_divergence(ticker, simplified_df):
     try:
         # 마지막 데이터 추출
@@ -120,8 +117,10 @@ async def collect_relative_divergence(ticker, simplified_df):
                                             'Delta_Previous_Relative_Divergence', 'Max_Divergence', 
                                             'Expected_Return'])
 
-        # 해당 티커의 기존 데이터 제거 (있다면)
+        # 기존 티커 제거 (중복 방지)
+        print(f"Before removing duplicates, results size: {len(results)}")
         results = results[results['Ticker'] != ticker]
+        print(f"After removing {ticker}, results size: {len(results)}")
 
         # 새로운 데이터 추가
         new_entry = pd.DataFrame({
@@ -133,17 +132,17 @@ async def collect_relative_divergence(ticker, simplified_df):
             'Expected_Return': [expected_return]
         })
 
-        # 기존 데이터에 새로운 데이터 추가
+        # 새로운 데이터가 추가되는지 확인
         updated_results = pd.concat([results, new_entry], ignore_index=True)
+        print(f"Added {ticker}, updated results size: {len(updated_results)}")
 
         # 기대수익으로 정렬하여 CSV 저장
         sorted_results = updated_results.sort_values(by='Expected_Return', ascending=False)
         sorted_results.to_csv(results_file_path, index=False)
         
-        print('sorted_results:')
-        print(sorted_results)  # 보기 좋게 출력
-
         print(f"Updated relative divergence data for {ticker} saved to {results_file_path}")
+        print('sorted_results:')
+        print(sorted_results.tail(10))  # 마지막 10개 항목을 출력해 확인
 
         # move_files_to_images_folder 함수를 비동기적으로 호출
         await move_files_to_images_folder()
@@ -151,9 +150,6 @@ async def collect_relative_divergence(ticker, simplified_df):
     except Exception as e:
         print(f"Error processing data for {ticker}: {e}")
 
-
-
-    # return sorted_results
 
 if __name__ == "__main__":
     print("Starting data processing...")
