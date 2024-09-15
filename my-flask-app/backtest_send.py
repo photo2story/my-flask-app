@@ -85,7 +85,12 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         # 날짜 형식 통일
         stock_result_df['Date'] = pd.to_datetime(stock_result_df['Date'])
         voo_data_df['Date'] = pd.to_datetime(voo_data_df['Date'])
-        
+
+        # first_date에 맞춰 VOO의 rate_vs 값을 변환
+        reset_date = pd.to_datetime(first_date)  # 검토할 티커의 처음 날짜 (first_date)
+        reset_value = voo_data_df.loc[voo_data_df['Date'] == reset_date, 'rate_vs'].values[0]  # first_date의 rate_vs 값
+        voo_data_df['rate_vs'] = voo_data_df['rate_vs'] - reset_value  # first_date부터 rate_vs 값을 0으로 설정
+
         # stock_result_df와 voo_data_df 병합
         print(f"Merging stock data and VOO data for {stock}.")  # 병합 전 디버깅 메시지
         combined_df = pd.merge(stock_result_df, voo_data_df[['Date', 'rate_vs']], on='Date', how='inner')
@@ -112,9 +117,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         
         # CSV 파일 간소화
         await ctx.send(f'Simplifying CSV for {stock}.')
-        # save_simplified_csv 비동기로 호출
         await save_simplified_csv(stock)
-
 
         # 파일 이동 및 깃헙 커밋/푸시
         await move_files_to_images_folder()
@@ -128,6 +131,7 @@ async def backtest_and_send(ctx, stock, option_strategy, bot=None):
         await ctx.send(f"Traceback: {error_trace}")  # 스택 트레이스도 전송
         print(error_message)
         print(error_trace)  # 스택 트레이스 콘솔에도 출력
+
 
 # 테스트 코드 추가
 async def test_backtest_and_send():
