@@ -67,43 +67,50 @@ async def plot_comparison_results(ticker, start_date, end_date):
     stock2 = 'VOO'
     fig, ax2 = plt.subplots(figsize=(8, 6))
 
-    # "result_VOO_{ticker}.csv" 파일에서 데이터를 불러옴
-    result_file_path = os.path.join(config.STATIC_IMAGES_PATH, f"result_VOO_{ticker}.csv")
+    # 전체 데이터를 로드하여 플라스크 서버에서 그래프를 그립니다.
+    full_path1 = os.path.join(config.STATIC_IMAGES_PATH, f"result_VOO_{ticker}.csv")
+    full_path2 = os.path.join(config.STATIC_IMAGES_PATH, "result_VOO_VOO.csv")
+    df1_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
+    df2_graph = pd.read_csv(full_path2, parse_dates=['Date'], index_col='Date')
+    print(full_path1)
+
+    # 간략화된 데이터를 로드하여 챗GPT에서 그래프를 그릴 수 있게 합니다.
+    simplified_df_path1 = os.path.join(config.STATIC_IMAGES_PATH, f"result_{ticker}.csv")
     try:
-        combined_df = pd.read_csv(result_file_path, parse_dates=['Date'], index_col='Date')
+        df1 = pd.read_csv(simplified_df_path1, parse_dates=['Date'], index_col='Date')
     except FileNotFoundError as e:
         print(f"Error: {e}")
         raise
 
-    # 날짜 필터링 (start_date, end_date 사용)
+    # 날짜 필터링 및 데이터 준비
     if start_date is None:
-        start_date = combined_df.index.min()
+        start_date = df1_graph.index.min()
     if end_date is None:
-        end_date = combined_df.index.max()
+        end_date = min(df1_graph.index.max(), df2_graph.index.max())
 
-    combined_df = combined_df.loc[start_date:end_date]
+    # **필터링 추가**: ARM 상장일 이후로 VOO 데이터를 필터링
+    df1_graph = df1_graph.loc[start_date:end_date]
+    df2_graph = df2_graph.loc[start_date:end_date]  # VOO 데이터도 동일한 기간으로 필터링
 
-    # rate와 rate_vs를 사용하여 그래프를 그리기
-    combined_df['rate_7d_avg'] = combined_df['rate'].rolling('7D').mean()
-    combined_df['rate_vs_20d_avg'] = combined_df['rate_vs'].rolling('20D').mean()
 
-    # 그래프 그리기
-    ax2.plot(combined_df.index, combined_df['rate_7d_avg'], label=f'{ticker} 7-Day Avg Return')
-    ax2.plot(combined_df.index, combined_df['rate_vs_20d_avg'], label=f'{stock2} 20-Day Avg Return')
+    df1_graph['rate_7d_avg'] = df1_graph['rate'].rolling('7D').mean()
+    df2_graph['rate_20d_avg'] = df2_graph['rate'].rolling('20D').mean()  # VOO
+
+    ax2.plot(df1_graph.index, df1_graph['rate_7d_avg'], label=f'{ticker} 7-Day Avg Return')
+    ax2.plot(df2_graph.index, df2_graph['rate_20d_avg'], label=f'{stock2} 20-Day Avg Return')
 
     plt.ylabel('total return (%)')
     plt.legend(loc='upper left')
 
-    # 계산 및 분석 값 가져오기
-    voo_rate = combined_df['rate_vs'].iloc[-1]  # VOO의 최종 수익률
-    total_rate = combined_df['rate'].iloc[-1]  # {ticker}의 최종 수익률
-    max_divergence = combined_df['Divergence'].max() 
-    min_divergence = combined_df['Divergence'].min()
-    current_divergence = combined_df['Divergence'].dropna().iloc[-1]  # 현재 이격도
-    relative_divergence = combined_df['Relative_Divergence'].iloc[-1]  # 상대 이격도
-    expected_return = combined_df['Expected_Return'].iloc[-1]
+    voo_rate = df2_graph['rate'].iloc[-1] if not df2_graph.empty else 0  # VOO의 최종 수익률
+    total_rate = df1_graph['rate'].iloc[-1]  # {ticker}의 최종 수익률
+    max_divergence = df1['Divergence'].max() 
+    min_divergence = df1['Divergence'].min()
+    current_divergence = df1['Divergence'].dropna().iloc[-1] if not df1.empty else 0  # 현재 이격도
+    relative_divergence = df1['Relative_Divergence'].iloc[-1] if not df1_graph.empty else 0  # 상대 이격도
+    expected_return = df1['Expected_Return'].iloc[-1]
 
-    last_signal_row = combined_df.dropna(subset=['signal']).iloc[-1] if 'signal' in combined_df.columns else None
+    last_signal_row = df1_graph.dropna(subset=['signal']).iloc[-1] if 'signal' in df1_graph.columns else None
     last_signal = last_signal_row['signal'] if last_signal_row is not None else 'N/A'
 
     plt.title(f"{ticker} ({get_ticker_name(ticker)}) vs {stock2}\n" +
@@ -114,7 +121,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
 
     ax2.xaxis.set_major_locator(dates.YearLocator())
 
-    # 그래프 저장 경로
+    # 저장 경로
     save_path = os.path.join(config.STATIC_IMAGES_PATH, f'comparison_{ticker}_VOO.png')
     plt.subplots_adjust(top=0.8)
     fig.savefig(save_path)
@@ -122,7 +129,6 @@ async def plot_comparison_results(ticker, start_date, end_date):
     plt.clf()
     plt.close(fig)
 
-    # Discord 메시지 전송
     message = f"Stock: {ticker} ({get_ticker_name(ticker)}) vs VOO\n" \
               f"Total Rate: {total_rate:.2f}% (VOO: {voo_rate:.2f}%), Relative_Divergence: {relative_divergence:.2f}\n" \
               f"Current Divergence: {current_divergence:.2f} (max: {max_divergence:.2f}, min: {min_divergence:.2f})\n" \
