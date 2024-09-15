@@ -88,12 +88,13 @@ async def plot_comparison_results(ticker, start_date, end_date):
     if end_date is None:
         end_date = min(df1_graph.index.max(), df2_graph.index.max())
 
+    # **필터링 추가**: ARM 상장일 이후로 VOO 데이터를 필터링
     df1_graph = df1_graph.loc[start_date:end_date]
-    df2_graph = df2_graph.loc[start_date:end_date]
+    df2_graph = df2_graph.loc[start_date:end_date]  # VOO 데이터도 동일한 기간으로 필터링
 
 
     df1_graph['rate_7d_avg'] = df1_graph['rate'].rolling('7D').mean()
-    df2_graph['rate_20d_avg'] = df2_graph['rate'].rolling('20D').mean() # VOO
+    df2_graph['rate_20d_avg'] = df2_graph['rate'].rolling('20D').mean()  # VOO
 
     ax2.plot(df1_graph.index, df1_graph['rate_7d_avg'], label=f'{ticker} 7-Day Avg Return')
     ax2.plot(df2_graph.index, df2_graph['rate_20d_avg'], label=f'{stock2} 20-Day Avg Return')
@@ -101,12 +102,12 @@ async def plot_comparison_results(ticker, start_date, end_date):
     plt.ylabel('total return (%)')
     plt.legend(loc='upper left')
 
-    voo_rate = df2_graph['rate'].iloc[-1] if not df2_graph.empty else 0 # VOO의 최종 수익률
+    voo_rate = df2_graph['rate'].iloc[-1] if not df2_graph.empty else 0  # VOO의 최종 수익률
     total_rate = df1_graph['rate'].iloc[-1]  # {ticker}의 최종 수익률
     max_divergence = df1['Divergence'].max() 
     min_divergence = df1['Divergence'].min()
-    current_divergence = df1['Divergence'].dropna().iloc[-1] if not df1.empty else 0 # 현재 이격도
-    relative_divergence = df1['Relative_Divergence'].iloc[-1] if not df1_graph.empty else 0 # 상대 이격도
+    current_divergence = df1['Divergence'].dropna().iloc[-1] if not df1.empty else 0  # 현재 이격도
+    relative_divergence = df1['Relative_Divergence'].iloc[-1] if not df1_graph.empty else 0  # 상대 이격도
     expected_return = df1['Expected_Return'].iloc[-1]
 
     last_signal_row = df1_graph.dropna(subset=['signal']).iloc[-1] if 'signal' in df1_graph.columns else None
@@ -119,8 +120,8 @@ async def plot_comparison_results(ticker, start_date, end_date):
               pad=10)
 
     ax2.xaxis.set_major_locator(dates.YearLocator())
-    # plt.xlabel('Year')
 
+    # 저장 경로
     save_path = os.path.join(config.STATIC_IMAGES_PATH, f'comparison_{ticker}_VOO.png')
     plt.subplots_adjust(top=0.8)
     fig.savefig(save_path)
@@ -156,6 +157,7 @@ async def plot_comparison_results(ticker, start_date, end_date):
     
     except Exception as e:
         print(f"Error occurred while sending image: {e}")
+
 
 
 if __name__ == "__main__":
