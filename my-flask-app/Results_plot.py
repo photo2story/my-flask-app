@@ -68,49 +68,48 @@ async def plot_comparison_results(ticker, start_date, end_date):
     fig, ax2 = plt.subplots(figsize=(8, 6))
 
     # 전체 데이터를 로드하여 플라스크 서버에서 그래프를 그립니다.
-    full_path1 = os.path.join(config.STATIC_IMAGES_PATH, f"result_VOO_{ticker}.csv")
-    # full_path2 = os.path.join(config.STATIC_IMAGES_PATH, "result_VOO_VOO.csv")
-    df1_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
+    full_path= os.path.join(config.STATIC_IMAGES_PATH, f"result_VOO_{ticker}.csv")
+    df_graph = pd.read_csv(full_path, parse_dates=['Date'], index_col='Date')
     # df2_graph = pd.read_csv(full_path2, parse_dates=['Date'], index_col='Date')
-    print(full_path1)
+    print(full_path)
 
     # 간략화된 데이터를 로드하여 챗GPT에서 그래프를 그릴 수 있게 합니다.
-    simplified_df_path1 = os.path.join(config.STATIC_IMAGES_PATH, f"result_{ticker}.csv")
+    simplified_df_path = os.path.join(config.STATIC_IMAGES_PATH, f"result_{ticker}.csv")
     try:
-        df1 = pd.read_csv(simplified_df_path1, parse_dates=['Date'], index_col='Date')
+        df = pd.read_csv(simplified_df_path, parse_dates=['Date'], index_col='Date')
     except FileNotFoundError as e:
         print(f"Error: {e}")
         raise
 
     # 날짜 필터링 및 데이터 준비
     if start_date is None:
-        start_date = df1_graph.index.min()
+        start_date = df_graph.index.min()
     if end_date is None:
-        end_date = min(df1_graph.index.max(), df2_graph.index.max())
+        end_date = df_graph.index.max()
 
     # **필터링 추가**: ARM 상장일 이후로 VOO 데이터를 필터링
-    df1_graph = df1_graph.loc[start_date:end_date]
+    df_graph = df_graph.loc[start_date:end_date]
     # df2_graph = df2_graph.loc[start_date:end_date]  # VOO 데이터도 동일한 기간으로 필터링
 
 
-    df1_graph['rate_7d_avg'] = df1_graph['rate'].rolling('7D').mean()
-    df1_graph['rate_20d_avg'] = df1_graph['rate_vs'].rolling('20D').mean()  # VOO
+    df_graph['rate_7d_avg'] = df_graph['rate'].rolling('7D').mean()
+    df_graph['rate_20d_avg'] = df_graph['rate_vs'].rolling('20D').mean()  # VOO
 
-    ax2.plot(df1_graph.index, df1_graph['rate_7d_avg'], label=f'{ticker} 7-Day Avg Return')
-    ax2.plot(df1_graph.index, df1_graph['rate_20d_avg'], label=f'VOO 20-Day Avg Return')
+    ax2.plot(df_graph.index, df_graph['rate_7d_avg'], label=f'{ticker} 7-Day Avg Return')
+    ax2.plot(df_graph.index, df_graph['rate_20d_avg'], label=f'VOO 20-Day Avg Return')
 
     plt.ylabel('total return (%)')
     plt.legend(loc='upper left')
 
-    voo_rate = df1_graph['rate_vs'].iloc[-1] if not df1_graph.empty else 0  # VOO의 최종 수익률
-    total_rate = df1_graph['rate'].iloc[-1]  # {ticker}의 최종 수익률
-    max_divergence = df1['Divergence'].max() 
-    min_divergence = df1['Divergence'].min()
-    current_divergence = df1['Divergence'].dropna().iloc[-1] if not df1.empty else 0  # 현재 이격도
-    relative_divergence = df1['Relative_Divergence'].iloc[-1] if not df1_graph.empty else 0  # 상대 이격도
-    expected_return = df1['Expected_Return'].iloc[-1]
+    voo_rate = df_graph['rate_vs'].iloc[-1] if not df_graph.empty else 0  # VOO의 최종 수익률
+    total_rate = df_graph['rate'].iloc[-1]  # {ticker}의 최종 수익률
+    max_divergence = df['Divergence'].max() 
+    min_divergence = df['Divergence'].min()
+    current_divergence = df['Divergence'].dropna().iloc[-1] if not df.empty else 0  # 현재 이격도
+    relative_divergence = df['Relative_Divergence'].iloc[-1] if not df_graph.empty else 0  # 상대 이격도
+    expected_return = df['Expected_Return'].iloc[-1]
 
-    last_signal_row = df1_graph.dropna(subset=['signal']).iloc[-1] if 'signal' in df1_graph.columns else None
+    last_signal_row = df_graph.dropna(subset=['signal']).iloc[-1] if 'signal' in df_graph.columns else None
     last_signal = last_signal_row['signal'] if last_signal_row is not None else 'N/A'
 
     plt.title(f"{ticker} ({get_ticker_name(ticker)}) vs {stock2}\n" +
