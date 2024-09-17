@@ -34,7 +34,7 @@ async def get_voo_data(option_strategy, first_date, last_date, ctx):
         await ctx.send(f"Fetching new VOO data from {first_date} to {last_date}")
         voo_data, _, _ = get_stock_data('VOO', first_date, last_date)
         voo_data_df = My_strategy.my_strategy(voo_data, option_strategy)
-        # voo_data_df.rename(columns={'rate': 'rate_vs'}, inplace=True)  # 'rate' 열을 'rate_vs'로 이름 변경
+        voo_data_df.rename(columns={'rate': 'rate_vs'}, inplace=True)  # 'rate' 열을 'rate_vs'로 이름 변경
         
         # 새로운 데이터를 캐시에 저장
         await ctx.send("Saving new VOO data to cache.")
