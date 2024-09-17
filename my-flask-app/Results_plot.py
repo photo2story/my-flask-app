@@ -69,9 +69,9 @@ async def plot_comparison_results(ticker, start_date, end_date):
 
     # 전체 데이터를 로드하여 플라스크 서버에서 그래프를 그립니다.
     full_path1 = os.path.join(config.STATIC_IMAGES_PATH, f"result_VOO_{ticker}.csv")
-    full_path2 = os.path.join(config.STATIC_IMAGES_PATH, "result_VOO_VOO.csv")
+    # full_path2 = os.path.join(config.STATIC_IMAGES_PATH, "result_VOO_VOO.csv")
     df1_graph = pd.read_csv(full_path1, parse_dates=['Date'], index_col='Date')
-    df2_graph = pd.read_csv(full_path2, parse_dates=['Date'], index_col='Date')
+    # df2_graph = pd.read_csv(full_path2, parse_dates=['Date'], index_col='Date')
     print(full_path1)
 
     # 간략화된 데이터를 로드하여 챗GPT에서 그래프를 그릴 수 있게 합니다.
@@ -90,19 +90,19 @@ async def plot_comparison_results(ticker, start_date, end_date):
 
     # **필터링 추가**: ARM 상장일 이후로 VOO 데이터를 필터링
     df1_graph = df1_graph.loc[start_date:end_date]
-    df2_graph = df2_graph.loc[start_date:end_date]  # VOO 데이터도 동일한 기간으로 필터링
+    # df2_graph = df2_graph.loc[start_date:end_date]  # VOO 데이터도 동일한 기간으로 필터링
 
 
     df1_graph['rate_7d_avg'] = df1_graph['rate'].rolling('7D').mean()
-    df2_graph['rate_20d_avg'] = df2_graph['rate'].rolling('20D').mean()  # VOO
+    df1_graph['rate_20d_avg'] = df1_graph['rate_vs'].rolling('20D').mean()  # VOO
 
     ax2.plot(df1_graph.index, df1_graph['rate_7d_avg'], label=f'{ticker} 7-Day Avg Return')
-    ax2.plot(df2_graph.index, df2_graph['rate_20d_avg'], label=f'{stock2} 20-Day Avg Return')
+    ax2.plot(df1_graph.index, df1_graph['rate_20d_avg'], label=f'VOO 20-Day Avg Return')
 
     plt.ylabel('total return (%)')
     plt.legend(loc='upper left')
 
-    voo_rate = df2_graph['rate'].iloc[-1] if not df2_graph.empty else 0  # VOO의 최종 수익률
+    voo_rate = df1_graph['rate_vs'].iloc[-1] if not df1_graph.empty else 0  # VOO의 최종 수익률
     total_rate = df1_graph['rate'].iloc[-1]  # {ticker}의 최종 수익률
     max_divergence = df1['Divergence'].max() 
     min_divergence = df1['Divergence'].min()
