@@ -1,5 +1,12 @@
-<!-- android/app/src/main/res/values/styles.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Theme (기본 앱 테마) -->
+    <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">#6200EE</item>
+        <item name="android:colorPrimaryDark">#3700B3</item>
+        <item name="android:colorAccent">#03DAC5</item>
+    </style>
+
     <!-- Launch theme when app is starting -->
     <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">@drawable/launch_background</item>
@@ -8,13 +15,5 @@
     <!-- Normal theme for the app after launch -->
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
-    </style>
-
-    <!-- Main App Theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your app theme here -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
 </resources>
