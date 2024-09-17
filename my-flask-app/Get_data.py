@@ -122,7 +122,11 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
             if last_saved_date < end_date:
                 new_start_date = (pd.to_datetime(last_saved_date) + pd.Timedelta(days=1)).strftime('%Y-%m-%d')
                 print(f"Fetching new data from {new_start_date} to {end_date} for {original_ticker}.")
-                new_data = yf.download(safe_ticker, start=new_start_date, end=end_date)
+                try:
+                    new_data = yf.download(safe_ticker, start=new_start_date, end=end_date)
+                except Exception as e:
+                    print(f"Failed to download new data for {original_ticker}: {e}")
+                    new_data = pd.DataFrame()  # 비어있는 데이터프레임으로 초기화
 
                 if not new_data.empty:
                     new_data = new_data[~new_data.index.duplicated(keep='first')]
@@ -137,7 +141,11 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
             # 과거 데이터 추가
             if add_past_data and past_start_date and first_saved_date > past_start_date:
                 print(f"Fetching past data from {past_start_date} to {first_saved_date} for {original_ticker}.")
-                past_data = yf.download(safe_ticker, start=past_start_date, end=first_saved_date)
+                try:
+                    past_data = yf.download(safe_ticker, start=past_start_date, end=first_saved_date)
+                except Exception as e:
+                    print(f"Failed to download past data for {original_ticker}: {e}")
+                    past_data = pd.DataFrame()  # 비어있는 데이터프레임으로 초기화
 
                 if not past_data.empty:
                     past_data = past_data[~past_data.index.duplicated(keep='first')]
@@ -152,7 +160,11 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
         else:
             # 기존 파일이 없으면 전체 데이터를 새로 가져옴
             print(f"No existing data found for {original_ticker}, fetching from {start_date} to {end_date}.")
-            existing_data = yf.download(safe_ticker, start=start_date, end=end_date)
+            try:
+                existing_data = yf.download(safe_ticker, start=start_date, end=end_date)
+            except Exception as e:
+                print(f"Failed to fetch data for {original_ticker}: {e}")
+                return pd.DataFrame(), start_date, end_date
 
             if existing_data.empty:
                 print(f"No data found for {original_ticker}.")
@@ -246,7 +258,7 @@ def test_fetch_and_process_stock_data():
     """
     Test function to verify stock data fetching and processing.
     """
-    tickers = ['005380']  # Test with different tickers (Apple, Hyundai, Microsoft)
+    tickers = ['IONQ']  # Test with different tickers (Apple, Hyundai, Microsoft)
     start_date = '2019-01-01'
     end_date = datetime.today().strftime('%Y-%m-%d')
 
@@ -259,7 +271,7 @@ def test_fetch_and_process_stock_data():
                 print(f"Test failed: No data fetched for {ticker}")
             else:
                 print(f"Test passed: Data fetched for {ticker} from {first_available_date} to {last_available_date}")
-                print(stock_data.head())  # Display sample data for validation
+                print(stock_data)  # Display sample data for validation
 
         except Exception as e:
             print(f"Test failed: Error fetching data for {ticker}: {e}")
