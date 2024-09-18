@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import requests
 import io
+import asyncio
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import config
@@ -144,13 +145,22 @@ async def collect_relative_divergence(ticker, simplified_df):
         updated_results = pd.concat([results, new_entry], ignore_index=True)
         print(f"Added {ticker}, updated results size: {len(updated_results)}")
 
-        # 기대수익으로 정렬하여 CSV 저장
-        updated_results.sort_values(by='Expected_Return', ascending=False).to_csv(results_file_path, mode='w', index=False)
+        # 기대수익으로 정렬하고 랭킹 필드를 추가하여 CSV 저장
+        updated_results = updated_results.sort_values(by='Expected_Return', ascending=False).reset_index(drop=True)
+        updated_results['Rank'] = updated_results.index + 1  # 랭킹 필드 추가
+
+        # 컬럼 순서를 조정하여 랭킹 필드가 첫 번째로 오도록 설정 (선택 사항)
+        cols = ['Rank'] + [col for col in updated_results.columns if col != 'Rank']
+        updated_results = updated_results[cols]
+
+        # CSV 파일 저장
+        updated_results.to_csv(results_file_path, mode='w', index=False)
         
         print(f"Updated relative divergence data for {ticker} saved to {results_file_path}")
 
     except Exception as e:
         print(f"Error processing data for {ticker}: {e}")
+
 
 if __name__ == "__main__":
     print("Starting data processing...")
