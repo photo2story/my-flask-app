@@ -143,6 +143,7 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
             if add_past_data and past_start_date and first_saved_date > past_start_date:
                 print(f"Fetching past data from {past_start_date} to {first_saved_date} for {original_ticker}.")
                 try:
+                    # 과거 데이터 강제 가져오기
                     past_data = yf.download(safe_ticker, start=past_start_date, end=first_saved_date)
                 except Exception as e:
                     print(f"Failed to download past data for {original_ticker}: {e}")
@@ -156,7 +157,17 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
                 else:
                     print(f"No past data found for {original_ticker}.")
             else:
-                print(f"No past data fetching required for {original_ticker}.")
+                # 강제로 과거 데이터를 가져오도록 조건을 추가하거나 캐시를 무시
+                print(f"Force fetching past data for {original_ticker}.")
+                past_data = yf.download(safe_ticker, start='2015-01-02', end=first_saved_date)
+                if not past_data.empty:
+                    past_data = past_data[~past_data.index.duplicated(keep='first')]
+                    existing_data = pd.concat([past_data, existing_data])
+                    existing_data = existing_data[~existing_data.index.duplicated(keep='first')]
+                    print(f"Past data from 2015 successfully added for {original_ticker}.")
+                else:
+                    print(f"No past data found for {original_ticker}.")
+
         
         else:
             # 기존 파일이 없으면 전체 데이터를 새로 가져옴
@@ -259,8 +270,8 @@ def test_fetch_and_process_stock_data():
     """
     Test function to verify stock data fetching and processing.
     """
-    tickers = ['IONQ']  # Test with different tickers (Apple, Hyundai, Microsoft)
-    start_date = '2019-01-01'
+    tickers = ['AAPL']  # Test with different tickers (Apple, Hyundai, Microsoft)
+    start_date = '2015-01-02'
     end_date = datetime.today().strftime('%Y-%m-%d')
 
     for ticker in tickers:
