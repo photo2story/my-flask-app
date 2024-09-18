@@ -41,10 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
   String _resultImageUrl = '';
   String _reportText = '';
   List<String> _tickers = [];
-  List<Map<String, dynamic>> _tickersWithReturns = []; // CSV에서 가져온 티커 목록과 Expected_Return 값
+  List<Map<String, dynamic>> _tickersWithReturns = []; // CSV에서 가져온 티커 목록과 Rank 값
   bool _isLoading = false;
   late String _selectedTicker; // null safety를 위해 late 키워드 사용
-  final TextEditingController _controller = TextEditingController();
 
   bool _isRanked = true; // true면 랭킹 순서, false면 알파벳 순서
 
@@ -58,52 +57,66 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> fetchReviewedTickers() async {
     try {
+      // API URL 호출
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         final List<dynamic> files = json.decode(response.body);
+
+        // 비교 이미지를 포함한 파일에서 티커를 추출 (대문자로 변환)
         final tickersFromFiles = files
             .where((file) => file['name'].startsWith('comparison_') && file['name'].endsWith('_VOO.png'))
-            .map<String>((file) => file['name'].replaceAll('comparison_', '').replaceAll('_VOO.png', ''))
+            .map<String>((file) => file['name'].replaceAll('comparison_', '').replaceAll('_VOO.png', '').toUpperCase())
             .toList();
 
-        // CSV 파일 다운로드 및 파싱
+        // CSV 파일 다운로드 및 수동 파싱
         final csvResponse = await http.get(Uri.parse('https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/results_relative_divergence.csv'));
         if (csvResponse.statusCode == 200) {
           final csvString = csvResponse.body;
-          List<List<dynamic>> csvTable = const CsvToListConverter().convert(csvString);
 
-          // 첫 번째 행은 헤더이므로 제외하고, 첫 번째 열의 티커와 Expected_Return 값을 리스트에 추가합니다.
+          // CSV 파일을 줄 단위로 분리하여 수동 파싱
+          List<String> rows = csvString.split('\n');
+
           List<Map<String, dynamic>> tickersWithReturns = [];
-          for (int i = 1; i < csvTable.length; i++) {
-            int rank = int.parse(csvTable[i][0].toString());
-            String ticker = csvTable[i][1].toString();
-            tickersWithReturns.add({'rank': rank, 'ticker': ticker});
+          for (int i = 1; i < rows.length; i++) {
+            // 각 행을 ','로 구분하여 배열로 만듦
+            List<String> columns = rows[i].split(',');
+
+            if (columns.length > 1) {
+              String rank = columns[0].trim();  // Rank 값을 문자열로 처리
+              String ticker = columns[1].trim();  // Ticker 값을 문자열로 처리
+
+              // 데이터를 리스트에 추가
+              tickersWithReturns.add({'rank': rank, 'ticker': ticker.toUpperCase()});
+            } else {
+              print('Skipping empty or malformed row: ${rows[i]}');
+            }
           }
 
-          // 티커 목록 업데이트 및 첫 번째 티커 선택
+          print('Tickers from CSV: $tickersWithReturns');
+
+          // 상태 업데이트 (리스트 및 정렬)
           setState(() {
-            _tickers = tickersFromFiles;
-            _tickersWithReturns = tickersWithReturns;
-            _sortTickers(); // 정렬 함수 호출
+            _tickers = tickersFromFiles;  // 파일에서 추출한 티커 목록
+            _tickersWithReturns = tickersWithReturns;  // CSV에서 추출한 티커와 Rank 목록
+            _sortTickers();  // 정렬 함수 호출
             if (_tickers.isNotEmpty) {
-              _selectedTicker = _tickers.first;
+              _selectedTicker = _tickers.first.split(':').last.toUpperCase();
               fetchImagesAndReport(_selectedTicker);
             }
           });
-
         } else {
-          // CSV 파일을 가져오지 못한 경우 파일에서 추출한 티커 목록 사용
+          // CSV 파일을 가져오지 못한 경우 파일에서 추출한 티커 목록만 사용
           setState(() {
             _tickers = tickersFromFiles;
-            _sortTickers(); // 정렬 함수 호출
+            _sortTickers();  // 정렬 함수 호출
             if (_tickers.isNotEmpty) {
-              _selectedTicker = _tickers.first;
+              _selectedTicker = _tickers.first.split(':').last.toUpperCase();
               fetchImagesAndReport(_selectedTicker);
             }
           });
         }
-
       } else {
+        // API 호출 실패 시 에러 메시지 설정
         setState(() {
           _comparisonImageUrl = '';
           _resultImageUrl = '';
@@ -111,6 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       }
     } catch (e) {
+      // 예외 발생 시 에러 메시지 설정
       setState(() {
         _comparisonImageUrl = '';
         _resultImageUrl = '';
@@ -118,6 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     }
   }
+
+
 
   void _sortTickers() {
     setState(() {
@@ -127,8 +143,31 @@ class _MyHomePageState extends State<MyHomePage> {
             .where((item) => _tickers.contains(item['ticker']))
             .toList();
 
-        sortedTickersWithReturns.sort((a, b) => a['rank'].compareTo(b['rank']));
+        // 숫자와 문자를 올바르게 정렬할 수 있도록 처리
+        sortedTickersWithReturns.sort((a, b) {
+          final aTicker = a['ticker'];
+          final bTicker = b['ticker'];
 
+          // 숫자로만 이루어진 티커는 숫자로 비교
+          final isANumeric = RegExp(r'^\d+$').hasMatch(aTicker);
+          final isBNumeric = RegExp(r'^\d+$').hasMatch(bTicker);
+
+          if (isANumeric && isBNumeric) {
+            // 둘 다 숫자일 경우 숫자 비교
+            return int.parse(aTicker).compareTo(int.parse(bTicker));
+          } else if (isANumeric) {
+            // a가 숫자, b는 문자일 경우 a가 먼저 오도록
+            return -1;
+          } else if (isBNumeric) {
+            // b가 숫자, a는 문자일 경우 b가 뒤로 오도록
+            return 1;
+          } else {
+            // 둘 다 문자인 경우 알파벳 순 정렬
+            return aTicker.compareTo(bTicker);
+          }
+        });
+
+        // 'rank:ticker' 형식으로 리스트를 업데이트
         List<String> sortedTickers = sortedTickersWithReturns.map<String>((item) => '${item['rank']}:${item['ticker']}').toList();
 
         // CSV에 없는 티커는 알파벳 순으로 정렬하여 추가
@@ -141,9 +180,14 @@ class _MyHomePageState extends State<MyHomePage> {
         // 알파벳 순서로 정렬
         _tickers = List.from(_tickers)..sort();
       }
+
+      // Tickers 리스트가 제대로 출력되는지 확인하는 로그 추가
       print('Tickers sorted: $_tickers');
     });
   }
+
+
+
 
   Future<void> fetchImagesAndReport(String stockTicker) async {
     setState(() {
@@ -158,10 +202,10 @@ class _MyHomePageState extends State<MyHomePage> {
       if (response.statusCode == 200) {
         final List<dynamic> files = json.decode(response.body);
         final resultFile = files.firstWhere(
-            (file) => file['name'] == 'result_mpl_${stockTicker}.png',
+            (file) => file['name'].toUpperCase() == 'RESULT_MPL_${stockTicker}.PNG',
             orElse: () => null);
         final reportFile = files.firstWhere(
-            (file) => file['name'] == 'report_${stockTicker}.txt',
+            (file) => file['name'].toUpperCase() == 'REPORT_${stockTicker}.TXT',
             orElse: () => null);
 
         if (resultFile != null) {
@@ -286,18 +330,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   // 티커 리스트
                   Expanded(
                     child: ListView(
-                      children: _tickers.map((ticker) {
+                      children: _tickersWithReturns.map((item) {
+                        String tickerWithRank = '${item['rank']}:${item['ticker']}';
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 2.0),
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                _selectedTicker = ticker.split(':').last;
+                                _selectedTicker = item['ticker'];
                               });
                               fetchImagesAndReport(_selectedTicker);
                             },
                             child: Text(
-                              ticker,
+                              tickerWithRank,
                               style: TextStyle(
                                 fontSize: 11,
                                 color: Colors.cyanAccent,
@@ -309,6 +354,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       }).toList(),
                     ),
                   ),
+
                 ],
               ),
             ),
@@ -393,6 +439,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
 // flutter devices
 
 // flutter run -d R3CX404VPHE
