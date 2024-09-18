@@ -154,8 +154,8 @@ async def analyze_with_gemini(ticker):
 
         prompt_voo = f"""
        1) 제공된 자료의 수익율(rate)와 S&P 500(VOO)의 수익율(rate_vs)과 비교해서 이격된 정도를 알려줘 (간단하게 자료 맨마지막날의 누적수익율차이):
-           리뷰할 주식티커명 = {ticker}
-           회사이름 = {company_name}과 회사 개요 설명해줘(1줄로)
+           리뷰할 주식티커명 = {ticker}: 회사이름 = {company_name}
+           회사 개요 설명해줘(1줄로)
            리뷰주식의 누적수익률 = {final_rate}
            기준이 되는 비교주식(S&P 500, VOO)의 누적수익율 = {final_rate_vs}
            이격도 (max: {max_divergence}, min: {min_divergence}, 현재: {current_divergence}, 상대이격도: {relative_divergence})
