@@ -27,10 +27,8 @@ option_strategy = config.option_strategy  # 시뮬레이션 전략 설정
 
 # VOO 데이터를 가져오거나 캐시된 데이터를 사용하는 함수
 async def get_voo_data(option_strategy, first_date, last_date, ctx):
-    if config.is_cache_valid(config.VOO_CACHE_FILE, first_date, last_date):
-        await ctx.send("Using cached VOO data.")
-        cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
-    else:
+    # 캐시 무효화: 캐시 파일이 없거나 유효하지 않으면 새 데이터를 다운로드합니다.
+    if not config.is_cache_valid(config.VOO_CACHE_FILE, first_date, last_date):
         await ctx.send(f"Fetching new VOO data from {first_date} to {last_date}")
         voo_data, _, _ = get_stock_data('VOO', first_date, last_date)
         voo_data_df = My_strategy.my_strategy(voo_data, option_strategy)
@@ -40,8 +38,12 @@ async def get_voo_data(option_strategy, first_date, last_date, ctx):
         await ctx.send("Saving new VOO data to cache.")
         voo_data_df.to_csv(config.VOO_CACHE_FILE, index=False)
         cached_voo_data = voo_data_df
-    
+    else:
+        await ctx.send("Using cached VOO data.")
+        cached_voo_data = pd.read_csv(config.VOO_CACHE_FILE, parse_dates=['Date'])
+
     return cached_voo_data
+
 
 # 백테스트를 수행하고 결과를 전송하는 함수
 async def backtest_and_send(ctx, stock, option_strategy, bot=None):

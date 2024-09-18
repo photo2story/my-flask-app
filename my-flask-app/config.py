@@ -175,12 +175,10 @@ def is_cache_valid(cache_file, start_date, end_date):
     - 파일의 시작 날짜가 원하는 시작 날짜와 일치하는지 확인.
     - 파일의 마지막 날짜가 미국 주식시장의 마지막 거래일과 일치하는지 확인.
     """
-    is_cache_valid == True
-    
     if not os.path.exists(cache_file):
         print("Cache file does not exist.")
         return False
-    
+
     df = pd.read_csv(cache_file, parse_dates=['Date'])
     
     # 시작 날짜 확인
