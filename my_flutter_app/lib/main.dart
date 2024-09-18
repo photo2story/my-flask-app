@@ -135,56 +135,60 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-  void _sortTickers() {
+void _sortTickers() {
+  setState(() {
+    if (_isRanked) {
+      // 랭킹 순서로 정렬
+      List<Map<String, dynamic>> sortedTickersWithReturns = _tickersWithReturns
+          .where((item) => _tickers.contains(item['ticker']))
+          .toList();
+
+      sortedTickersWithReturns.sort((a, b) {
+        final aTicker = a['ticker'];
+        final bTicker = b['ticker'];
+
+        final isANumeric = RegExp(r'^\d+$').hasMatch(aTicker);
+        final isBNumeric = RegExp(r'^\d+$').hasMatch(bTicker);
+
+        if (isANumeric && isBNumeric) {
+          return int.parse(aTicker).compareTo(int.parse(bTicker));
+        } else if (isANumeric) {
+          return -1;
+        } else if (isBNumeric) {
+          return 1;
+        } else {
+          return aTicker.compareTo(bTicker);
+        }
+      });
+
+      List<String> sortedTickers = sortedTickersWithReturns.map<String>((item) => '${item['rank']}:${item['ticker']}').toList();
+      List<String> remainingTickers = _tickers.where((ticker) => !_tickersWithReturns.any((item) => item['ticker'] == ticker)).toList();
+      remainingTickers.sort();
+
+      _tickers = [...sortedTickers, ...remainingTickers];
+    } else {
+      // Alpha 순서로 정렬: 티커에서 랭킹 번호를 제거하고 알파벳 순으로 정렬
+      _tickers = _tickers.map((ticker) {
+        if (ticker.contains(':')) {
+          return ticker.split(':').last;  // 'rank:ticker' 형식에서 ticker만 추출
+        }
+        return ticker;
+      }).toList();
+
+      // 알파벳 순서로 정렬
+      _tickers.sort((a, b) => a.compareTo(b));
+    }
+
+    print('Tickers sorted: $_tickers');
+
+    // 상태 업데이트로 UI 갱신
     setState(() {
-      if (_isRanked) {
-        // 랭킹 순서로 정렬
-        List<Map<String, dynamic>> sortedTickersWithReturns = _tickersWithReturns
-            .where((item) => _tickers.contains(item['ticker']))
-            .toList();
-
-        // 숫자와 문자를 올바르게 정렬할 수 있도록 처리
-        sortedTickersWithReturns.sort((a, b) {
-          final aTicker = a['ticker'];
-          final bTicker = b['ticker'];
-
-          // 숫자로만 이루어진 티커는 숫자로 비교
-          final isANumeric = RegExp(r'^\d+$').hasMatch(aTicker);
-          final isBNumeric = RegExp(r'^\d+$').hasMatch(bTicker);
-
-          if (isANumeric && isBNumeric) {
-            // 둘 다 숫자일 경우 숫자 비교
-            return int.parse(aTicker).compareTo(int.parse(bTicker));
-          } else if (isANumeric) {
-            // a가 숫자, b는 문자일 경우 a가 먼저 오도록
-            return -1;
-          } else if (isBNumeric) {
-            // b가 숫자, a는 문자일 경우 b가 뒤로 오도록
-            return 1;
-          } else {
-            // 둘 다 문자인 경우 알파벳 순 정렬
-            return aTicker.compareTo(bTicker);
-          }
-        });
-
-        // 'rank:ticker' 형식으로 리스트를 업데이트
-        List<String> sortedTickers = sortedTickersWithReturns.map<String>((item) => '${item['rank']}:${item['ticker']}').toList();
-
-        // CSV에 없는 티커는 알파벳 순으로 정렬하여 추가
-        List<String> remainingTickers = _tickers.where((ticker) => !_tickersWithReturns.any((item) => item['ticker'] == ticker)).toList();
-        remainingTickers.sort();
-
-        _tickers = [...sortedTickers, ...remainingTickers];
-        print('Sorted tickers with returns: $sortedTickersWithReturns');
-      } else {
-        // 알파벳 순서로 정렬
-        _tickers = List.from(_tickers)..sort();
-      }
-
-      // Tickers 리스트가 제대로 출력되는지 확인하는 로그 추가
-      print('Tickers sorted: $_tickers');
+      // 티커 리스트가 갱신되어 UI에 반영됨
     });
-  }
+  });
+}
+
+
 
 
 
@@ -269,176 +273,161 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // UI를 구성하는 위젯을 빌드합니다.
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Stock Comparison Review'),
-      ),
-      body: InteractiveViewer( // 전체 화면에 적용
-        boundaryMargin: EdgeInsets.all(8),
-        minScale: 0.5,
-        maxScale: 3.0,
-        child: Row(
-          children: <Widget>[
-            // 왼쪽 패널: 티커 리스트 및 정렬 옵션
-            Container(
-              width: MediaQuery.of(context).size.width * 0.15,
-              padding: const EdgeInsets.all(8.0),
-              color: Colors.grey[900], // 다크모드용 배경색
-              child: Column(
-                children: [
-                  // 정렬 옵션 버튼
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      // Rank 버튼
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _isRanked = true;
-                            _sortTickers();
-                          });
-                        },
-                        child: Text(
-                          'Rank',
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: _isRanked ? Colors.white : Colors.grey,
-                          ),
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('Stock Comparison Review'),
+    ),
+    body: InteractiveViewer(
+      boundaryMargin: EdgeInsets.all(8),
+      minScale: 0.5,
+      maxScale: 3.0,
+      child: Row(
+        children: <Widget>[
+          // 왼쪽 패널: 티커 리스트 및 정렬 옵션
+          Container(
+            width: MediaQuery.of(context).size.width * 0.15,
+            padding: const EdgeInsets.all(8.0),
+            color: Colors.grey[900],
+            child: Column(
+              children: [
+                // 정렬 옵션 버튼
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isRanked = true;
+                          _sortTickers();
+                        });
+                      },
+                      child: Text(
+                        'Rank',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: _isRanked ? Colors.white : Colors.grey,
                         ),
                       ),
-                      // Alpha 버튼
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _isRanked = false;
-                            _sortTickers();
-                          });
-                        },
-                        child: Text(
-                          'Alpha',
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: !_isRanked ? Colors.white : Colors.grey,
-                          ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isRanked = false;
+                          _sortTickers();
+                        });
+                      },
+                      child: Text(
+                        'Alpha',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: !_isRanked ? Colors.white : Colors.grey,
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 8), // 간격 추가
-                  // 티커 리스트
-                  Expanded(
-                    child: ListView(
-                      children: _tickersWithReturns.map((item) {
-                        String tickerWithRank = '${item['rank']}:${item['ticker']}';
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 2.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _selectedTicker = item['ticker'];
-                              });
-                              fetchImagesAndReport(_selectedTicker);
-                            },
-                            child: Text(
-                              tickerWithRank,
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.cyanAccent,
-                                height: 1.2,
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
                     ),
-                  ),
-
-                ],
-              ),
-            ),
-
-            // 오른쪽 패널: 상단 - 고정 이미지, 하단 - 결과 이미지 및 리포트
-            Expanded(
-              child: Column(
-                children: [
-                  // 로딩 중 표시
-                  if (_isLoading)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator(),
-                    ),
-
-                  // 고정된 comparison 이미지 (클릭 시 확대 가능)
-                  _comparisonImageUrl.isNotEmpty
-                      ? GestureDetector(
+                  ],
+                ),
+                SizedBox(height: 8),
+                Expanded(
+                  child: ListView(
+                    children: _tickers.map((ticker) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2.0),
+                        child: GestureDetector(
                           onTap: () {
-                            _openImageInNewScreen(_comparisonImageUrl); // 클릭하면 확대 화면으로 이동
+                            setState(() {
+                              _selectedTicker = ticker;
+                            });
+                            fetchImagesAndReport(_selectedTicker);
                           },
-                          child: Container(
-                            padding: const EdgeInsets.all(8.0),
-                            height: 250, // 고정 크기 설정
-                            child: Image.network(
-                              _comparisonImageUrl,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Text('Failed to load comparison image');
-                              },
+                          child: Text(
+                            ticker,
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: Colors.cyanAccent,
+                              height: 1.2,
                             ),
                           ),
-                        )
-                      : Container(),
-
-                  // 아래 패널을 스크롤 가능하게 설정
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          // 결과 이미지 (클릭 시 확대 가능)
-                          _resultImageUrl.isNotEmpty
-                              ? GestureDetector(
-                                  onTap: () {
-                                    _openImageInNewScreen(_resultImageUrl); // 클릭하면 확대 화면으로 이동
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.all(8.0),
-                                    height: 250, // 제한된 높이
-                                    child: Image.network(
-                                      _resultImageUrl,
-                                      fit: BoxFit.contain,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return Text('Failed to load result image');
-                                      },
-                                    ),
-                                  ),
-                                )
-                              : Container(),
-
-                          // 리포트 텍스트
-                          _reportText.isNotEmpty
-                              ? Padding(
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                if (_isLoading)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(),
+                  ),
+                _comparisonImageUrl.isNotEmpty
+                    ? GestureDetector(
+                        onTap: () {
+                          _openImageInNewScreen(_comparisonImageUrl);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          height: 250,
+                          child: Image.network(
+                            _comparisonImageUrl,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Text('Failed to load comparison image');
+                            },
+                          ),
+                        ),
+                      )
+                    : Container(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _resultImageUrl.isNotEmpty
+                            ? GestureDetector(
+                                onTap: () {
+                                  _openImageInNewScreen(_resultImageUrl);
+                                },
+                                child: Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: MarkdownBody(
-                                    data: _reportText,
-                                    styleSheet: MarkdownStyleSheet(
-                                      p: TextStyle(color: Colors.white70), // 다크모드에 맞는 텍스트 색상
-                                    ),
+                                  height: 250,
+                                  child: Image.network(
+                                    _resultImageUrl,
+                                    fit: BoxFit.contain,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Text('Failed to load result image');
+                                    },
                                   ),
-                                )
-                              : Container(),
-                        ],
-                      ),
+                                ),
+                              )
+                            : Container(),
+                        _reportText.isNotEmpty
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: MarkdownBody(
+                                  data: _reportText,
+                                  styleSheet: MarkdownStyleSheet(
+                                    p: TextStyle(color: Colors.white70),
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
-  }
-}
+    ),
+  );
+}  // <-- 여기서 빌드 함수 끝나고
+}  // <-- 여기서 _MyHomePageState 클래스 끝나는 중괄호 추가
 
 // flutter devices
 
