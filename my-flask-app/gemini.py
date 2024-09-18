@@ -213,7 +213,7 @@ async def analyze_with_gemini(ticker):
         requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
 
 if __name__ == '__main__':
-    ticker = '005380'
+    ticker = '005930'
     asyncio.run(analyze_with_gemini(ticker))
 
 # source .venv/bin/activate
