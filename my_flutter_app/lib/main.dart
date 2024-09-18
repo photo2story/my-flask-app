@@ -75,10 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // 첫 번째 행은 헤더이므로 제외하고, 첫 번째 열의 티커와 Expected_Return 값을 리스트에 추가합니다.
           List<Map<String, dynamic>> tickersWithReturns = [];
           for (int i = 1; i < csvTable.length; i++) {
-            String ticker = csvTable[i][0].toString();
-            String expectedReturnStr = csvTable[i][5].toString().replaceAll(',', '.');
-            double? expectedReturn = double.tryParse(expectedReturnStr);
-            tickersWithReturns.add({'ticker': ticker, 'expectedReturn': expectedReturn});
+            int rank = int.parse(csvTable[i][0].toString());
+            String ticker = csvTable[i][1].toString();
+            tickersWithReturns.add({'rank': rank, 'ticker': ticker});
           }
 
           // 티커 목록 업데이트 및 첫 번째 티커 선택
@@ -128,13 +127,9 @@ class _MyHomePageState extends State<MyHomePage> {
             .where((item) => _tickers.contains(item['ticker']))
             .toList();
 
-        sortedTickersWithReturns.sort((a, b) {
-          if (a['expectedReturn'] == null) return 1;
-          if (b['expectedReturn'] == null) return -1;
-          return b['expectedReturn'].compareTo(a['expectedReturn']);
-        });
+        sortedTickersWithReturns.sort((a, b) => a['rank'].compareTo(b['rank']));
 
-        List<String> sortedTickers = sortedTickersWithReturns.map<String>((item) => item['ticker'] as String).toList();
+        List<String> sortedTickers = sortedTickersWithReturns.map<String>((item) => '${item['rank']}:${item['ticker']}').toList();
 
         // CSV에 없는 티커는 알파벳 순으로 정렬하여 추가
         List<String> remainingTickers = _tickers.where((ticker) => !_tickersWithReturns.any((item) => item['ticker'] == ticker)).toList();
@@ -297,9 +292,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                _selectedTicker = ticker;
+                                _selectedTicker = ticker.split(':').last;
                               });
-                              fetchImagesAndReport(ticker);
+                              fetchImagesAndReport(_selectedTicker);
                             },
                             child: Text(
                               ticker,

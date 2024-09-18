@@ -100,7 +100,8 @@ def get_stock_data(ticker, start_date, end_date, add_past_data=False, past_start
     print(f"Processing data for ticker: {safe_ticker}")
 
     # static/images 폴더 경로 설정
-    folder_path = config.STATIC_IMAGES_PATH
+    # folder_path = config.STATIC_IMAGES_PATH
+    folder_path = config.STATIC_DATA_PATH
 
     # 경로가 존재하는지 확인 (존재하지 않으면 강제 종료)
     if not os.path.exists(folder_path):

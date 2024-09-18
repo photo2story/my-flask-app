@@ -27,6 +27,9 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 # static/images 폴더 경로 설정 (프로젝트 루트 기준)
 STATIC_IMAGES_PATH = os.path.join(PROJECT_ROOT, 'static', 'images')
 
+# static/images 폴더 경로 설정 (프로젝트 루트 기준)
+STATIC_DATA_PATH = os.path.join(PROJECT_ROOT, 'static', 'data')
+
 # VOO 캐시 파일 경로 설정
 VOO_CACHE_FILE = os.path.join(STATIC_IMAGES_PATH, 'cached_voo_data.csv')
 
