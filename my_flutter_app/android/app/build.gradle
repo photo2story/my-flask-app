@@ -15,13 +15,13 @@ def flutterVersionName = localProperties.getProperty("flutter.versionName", "1.0
 
 android {
     namespace = "com.example.my_flutter_app"
-    compileSdk = 33  // Compile SDK 명시적 설정
+    compileSdk = 34  // Compile SDK 명시적 설정
     ndkVersion = flutter.ndkVersion
 
     defaultConfig {
         applicationId = "com.example.my_flutter_app"
         minSdkVersion 21  // Min SDK 명시적 설정
-        targetSdkVersion 33  // Target SDK 명시적 설정
+        targetSdkVersion 34  // Target SDK 명시적 설정
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

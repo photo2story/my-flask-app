@@ -92,13 +92,11 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           }
 
-          print('Tickers from CSV: $tickersWithReturns');
-
           // 상태 업데이트 (리스트 및 정렬)
           setState(() {
             _tickers = tickersFromFiles;  // 파일에서 추출한 티커 목록
             _tickersWithReturns = tickersWithReturns;  // CSV에서 추출한 티커와 Rank 목록
-            _sortTickers();  // 정렬 함수 호출
+            _sortTickers();  // 정렬 함수 호출 <- 정렬을 바로 호출하여 첫 화면에서도 정렬 적용
             if (_tickers.isNotEmpty) {
               _selectedTicker = _tickers.first.split(':').last.toUpperCase();
               fetchImagesAndReport(_selectedTicker);
@@ -108,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // CSV 파일을 가져오지 못한 경우 파일에서 추출한 티커 목록만 사용
           setState(() {
             _tickers = tickersFromFiles;
-            _sortTickers();  // 정렬 함수 호출
+            _sortTickers();  // 정렬 함수 호출 <- 정렬을 바로 호출하여 첫 화면에서도 정렬 적용
             if (_tickers.isNotEmpty) {
               _selectedTicker = _tickers.first.split(':').last.toUpperCase();
               fetchImagesAndReport(_selectedTicker);
@@ -135,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
+
 void _sortTickers() {
   setState(() {
     if (_isRanked) {
@@ -144,30 +143,24 @@ void _sortTickers() {
           .toList();
 
       sortedTickersWithReturns.sort((a, b) {
-        final aTicker = a['ticker'];
-        final bTicker = b['ticker'];
-
-        final isANumeric = RegExp(r'^\d+$').hasMatch(aTicker);
-        final isBNumeric = RegExp(r'^\d+$').hasMatch(bTicker);
-
-        if (isANumeric && isBNumeric) {
-          return int.parse(aTicker).compareTo(int.parse(bTicker));
-        } else if (isANumeric) {
-          return -1;
-        } else if (isBNumeric) {
-          return 1;
-        } else {
-          return aTicker.compareTo(bTicker);
-        }
+        int rankA = int.tryParse(a['rank']) ?? 0;
+        int rankB = int.tryParse(b['rank']) ?? 0;
+        return rankA.compareTo(rankB); // 랭크에 따라 정렬
       });
 
-      List<String> sortedTickers = sortedTickersWithReturns.map<String>((item) => '${item['rank']}:${item['ticker']}').toList();
-      List<String> remainingTickers = _tickers.where((ticker) => !_tickersWithReturns.any((item) => item['ticker'] == ticker)).toList();
+      // 정렬된 리스트를 'rank:ticker' 형식으로 저장
+      _tickers = sortedTickersWithReturns.map<String>((item) => '${item['rank']}:${item['ticker']}').toList();
+
+      // 남은 티커들은 알파벳 순서로 정렬
+      List<String> remainingTickers = _tickers
+          .where((ticker) => !_tickersWithReturns.any((item) => item['ticker'] == ticker.split(':').last))
+          .toList();
       remainingTickers.sort();
 
-      _tickers = [...sortedTickers, ...remainingTickers];
+      // 최종 정렬 리스트로 병합
+      _tickers = [..._tickers, ...remainingTickers];
     } else {
-      // Alpha 순서로 정렬: 티커에서 랭킹 번호를 제거하고 알파벳 순으로 정렬
+      // 알파벳 순으로 정렬
       _tickers = _tickers.map((ticker) {
         if (ticker.contains(':')) {
           return ticker.split(':').last;  // 'rank:ticker' 형식에서 ticker만 추출
@@ -182,12 +175,8 @@ void _sortTickers() {
     print('Tickers sorted: $_tickers');
 
     // 상태 업데이트로 UI 갱신
-    setState(() {
-      // 티커 리스트가 갱신되어 UI에 반영됨
-    });
   });
 }
-
 
 
 
@@ -287,7 +276,7 @@ Widget build(BuildContext context) {
         children: <Widget>[
           // 왼쪽 패널: 티커 리스트 및 정렬 옵션
           Container(
-            width: MediaQuery.of(context).size.width * 0.15,
+            width: MediaQuery.of(context).size.width * 0.20,  // 기존 0.15에서 0.25로 변경
             padding: const EdgeInsets.all(8.0),
             color: Colors.grey[900],
             child: Column(
@@ -328,16 +317,20 @@ Widget build(BuildContext context) {
                     ),
                   ],
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 8),  // 간격 추가
+                // 티커 리스트
                 Expanded(
                   child: ListView(
                     children: _tickers.map((ticker) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 2.0),
+                        padding: const EdgeInsets.symmetric(vertical: 1.0),
                         child: GestureDetector(
                           onTap: () {
+                            // ':' 이후의 ticker 값만 추출해서 사용
+                            String actualTicker = ticker.contains(':') ? ticker.split(':').last : ticker;
+
                             setState(() {
-                              _selectedTicker = ticker;
+                              _selectedTicker = actualTicker;
                             });
                             fetchImagesAndReport(_selectedTicker);
                           },
@@ -357,22 +350,27 @@ Widget build(BuildContext context) {
               ],
             ),
           ),
+          
+          // 오른쪽 패널: 상단 - 고정 이미지, 하단 - 결과 이미지 및 리포트
           Expanded(
             child: Column(
               children: [
+                // 로딩 중 표시
                 if (_isLoading)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CircularProgressIndicator(),
                   ),
+
+                // 고정된 comparison 이미지 (클릭 시 확대 가능)
                 _comparisonImageUrl.isNotEmpty
                     ? GestureDetector(
                         onTap: () {
-                          _openImageInNewScreen(_comparisonImageUrl);
+                          _openImageInNewScreen(_comparisonImageUrl);  // 클릭하면 확대 화면으로 이동
                         },
                         child: Container(
                           padding: const EdgeInsets.all(8.0),
-                          height: 250,
+                          height: 220,  // 고정 크기 설정
                           child: Image.network(
                             _comparisonImageUrl,
                             errorBuilder: (context, error, stackTrace) {
@@ -382,18 +380,21 @@ Widget build(BuildContext context) {
                         ),
                       )
                     : Container(),
+
+                // 아래 패널을 스크롤 가능하게 설정
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        // 결과 이미지 (클릭 시 확대 가능)
                         _resultImageUrl.isNotEmpty
                             ? GestureDetector(
                                 onTap: () {
-                                  _openImageInNewScreen(_resultImageUrl);
+                                  _openImageInNewScreen(_resultImageUrl);  // 클릭하면 확대 화면으로 이동
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  height: 250,
+                                  height: 220,  // 제한된 높이
                                   child: Image.network(
                                     _resultImageUrl,
                                     fit: BoxFit.contain,
@@ -404,13 +405,15 @@ Widget build(BuildContext context) {
                                 ),
                               )
                             : Container(),
+
+                        // 리포트 텍스트
                         _reportText.isNotEmpty
                             ? Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MarkdownBody(
                                   data: _reportText,
                                   styleSheet: MarkdownStyleSheet(
-                                    p: TextStyle(color: Colors.white70),
+                                    p: TextStyle(color: Colors.white70),  // 다크모드에 맞는 텍스트 색상
                                   ),
                                 ),
                               )
@@ -426,7 +429,7 @@ Widget build(BuildContext context) {
       ),
     ),
   );
-}  // <-- 여기서 빌드 함수 끝나고
+}
 }  // <-- 여기서 _MyHomePageState 클래스 끝나는 중괄호 추가
 
 // flutter devices

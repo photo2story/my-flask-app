@@ -99,11 +99,25 @@ async def analyze_with_gemini(ticker):
             requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
             return
 
+        company_name = ticker_to_name.get(ticker, "Unknown Company")
+        
         # 로컬에서 CSV 파일을 읽어옴
         voo_file = os.path.join(STATIC_IMAGES_PATH, f'result_VOO_{ticker}.csv')
         simplified_file = os.path.join(STATIC_IMAGES_PATH, f'result_{ticker}.csv')
-        df_voo = pd.read_csv(voo_file)
-        df_simplified = pd.read_csv(simplified_file)
+
+        # voo_file을 읽어옴
+        try:
+            df_voo = pd.read_csv(voo_file)
+        except FileNotFoundError:
+            print(f"{voo_file} 파일을 찾을 수 없습니다.")
+            return
+
+        # simplified_file을 읽어옴
+        try:
+            df_simplified = pd.read_csv(simplified_file)
+        except FileNotFoundError:
+            print(f"{simplified_file} 파일을 찾을 수 없습니다.")
+            return
 
         final_rate = df_voo['rate'].iloc[-1]
         final_rate_vs = df_voo['rate_vs'].iloc[-1]
@@ -141,7 +155,7 @@ async def analyze_with_gemini(ticker):
         prompt_voo = f"""
        1) 제공된 자료의 수익율(rate)와 S&P 500(VOO)의 수익율(rate_vs)과 비교해서 이격된 정도를 알려줘 (간단하게 자료 맨마지막날의 누적수익율차이):
            리뷰할 주식티커명 = {ticker}
-           회사이름과 회사 개요 설명해줘(1줄로)
+           회사이름 = {company_name}과 회사 개요 설명해줘(1줄로)
            리뷰주식의 누적수익률 = {final_rate}
            기준이 되는 비교주식(S&P 500, VOO)의 누적수익율 = {final_rate_vs}
            이격도 (max: {max_divergence}, min: {min_divergence}, 현재: {current_divergence}, 상대이격도: {relative_divergence})
@@ -199,7 +213,7 @@ async def analyze_with_gemini(ticker):
         requests.post(DISCORD_WEBHOOK_URL, data={'content': error_message})
 
 if __name__ == '__main__':
-    ticker = 'AAPL'
+    ticker = '006400'
     asyncio.run(analyze_with_gemini(ticker))
 
 # source .venv/bin/activate
