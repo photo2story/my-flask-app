@@ -44,6 +44,30 @@ discord_oauth = DiscordOAuth2Session(app)
 
 DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
 
+# GitHub API URL
+repo_url = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images'
+
+# .env 파일에서 GITHUB_TOKEN 가져오기
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+
+# 헤더 설정 (인증을 위해 토큰 사용)
+headers = {
+    'Authorization': f'token {GITHUB_TOKEN}',
+    'Accept': 'application/vnd.github.v3+json'
+}
+
+# 요청 보내기
+response = requests.get(repo_url, headers=headers)
+
+# 응답 확인
+if response.status_code == 200:
+    files = response.json()
+    for file in files:
+        print(file['name'])
+else:
+    print(f"Error: {response.status_code}, {response.text}")
+    
+
 @app.route('/')
 def index():
     return send_from_directory('', 'index.html')
@@ -66,12 +90,6 @@ def save_search_history():
     print(f'Saved {stock_name} to search history.')
     return jsonify({"success": True})
 
-# @app.route('/api/get_images', methods=['GET'])
-# def get_images():
-#     image_folder = os.path.join(app.static_folder, 'images')
-#     images = [filename for filename in os.listdir(image_folder) if filename.endswith('.png')]
-#     return jsonify(images)
-
 # 로컬의 이미지 파일 경로 설정 (예: static/images 폴더 경로)
 LOCAL_IMAGES_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'static', 'images'))
 
@@ -82,12 +100,27 @@ IMAGE_DIRECTORY = 'static/images'
 @app.route('/api/get_reviewed_tickers', methods=['GET'])
 def get_reviewed_tickers():
     try:
-        # "comparison_"으로 시작하고 "_VOO.png"로 끝나는 파일을 검색하여 티커 추출
-        tickers = [filename.split('_')[1] for filename in os.listdir(IMAGE_DIRECTORY)
-                   if filename.startswith('comparison_') and filename.endswith('_VOO.png')]
-        return jsonify(tickers)
+        # GitHub API URL (프라이빗 리포지토리)
+        repo_url = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images'
+        
+        headers = {
+            'Authorization': f'token {GITHUB_TOKEN}',
+            'Accept': 'application/vnd.github.v3+json'
+        }
+        
+        response = requests.get(repo_url, headers=headers)
+        
+        if response.status_code == 200:
+            # API 응답에서 파일 이름 추출
+            files = response.json()
+            tickers = [file['name'].split('_')[1] for file in files if file['name'].startswith('comparison_') and file['name'].endswith('_VOO.png')]
+            return jsonify(tickers)
+        else:
+            return jsonify({'error': f'GitHub API request failed with status code {response.status_code}'}), response.status_code
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
     
 # 리포트 및 이미지 제공 API
 @app.route('/api/get_images', methods=['GET'])
@@ -96,26 +129,40 @@ def get_images():
     if not ticker:
         return jsonify({'error': 'No ticker provided'}), 400
 
-    # 이미지 파일 경로
-    comparison_image = f'comparison_{ticker}_VOO.png'
-    result_image = f'result_mpl_{ticker}.png'
-    report_file = f'report_{ticker}.txt'
+    # GitHub API URL
+    comparison_image_url = f'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images/comparison_{ticker}_VOO.png'
+    result_image_url = f'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images/result_mpl_{ticker}.png'
+    report_file_url = f'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images/report_{ticker}.txt'
 
-    # 이미지 파일 경로 설정
-    comparison_url = f'/static/images/{comparison_image}' if os.path.exists(os.path.join(IMAGE_DIRECTORY, comparison_image)) else ''
-    result_url = f'/static/images/{result_image}' if os.path.exists(os.path.join(IMAGE_DIRECTORY, result_image)) else ''
+    headers = {
+        'Authorization': f'token {GITHUB_TOKEN}',
+        'Accept': 'application/vnd.github.v3.raw'  # 콘텐츠를 그대로 받아오기 위함
+    }
 
-    # 리포트 파일 로드
+    # 비교 이미지 요청
+    comparison_image = ''
+    comparison_response = requests.get(comparison_image_url, headers=headers)
+    if comparison_response.status_code == 200:
+        comparison_image = comparison_image_url.replace('api.github.com/repos', 'raw.githubusercontent.com').replace('contents/', '')
+
+    # 결과 이미지 요청
+    result_image = ''
+    result_response = requests.get(result_image_url, headers=headers)
+    if result_response.status_code == 200:
+        result_image = result_image_url.replace('api.github.com/repos', 'raw.githubusercontent.com').replace('contents/', '')
+
+    # 리포트 파일 요청
     report_text = ''
-    if os.path.exists(os.path.join(IMAGE_DIRECTORY, report_file)):
-        with open(os.path.join(IMAGE_DIRECTORY, report_file), 'r') as file:
-            report_text = file.read()
+    report_response = requests.get(report_file_url, headers=headers)
+    if report_response.status_code == 200:
+        report_text = report_response.text
 
     return jsonify({
-        'comparison_image': comparison_url,
-        'result_image': result_url,
+        'comparison_image': comparison_image,
+        'result_image': result_image,
         'report': report_text
     })
+
         
 # 파일을 서빙하는 엔드포인트
 @app.route('/static/images/<path:filename>')
