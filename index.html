@@ -68,11 +68,22 @@
 
         .ticker-item {
             cursor: pointer;
-            color: cyan;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: cyan;
             margin: 5px 0;
+        }
+
+        .heart {
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            transition: color 0.2s;
+        }
+
+        .heart.favorited {
+            color: red;
         }
 
         .loading {
@@ -84,16 +95,6 @@
         h1, h2, h3, h4, p {
             margin-top: 1px;
             margin-bottom: 1px;
-        }
-
-        .heart-icon {
-            cursor: pointer;
-            color: grey;
-            margin-left: 10px;
-        }
-
-        .heart-icon.favorited {
-            color: red;
         }
 
         /* 스크롤바 스타일링 */
@@ -113,7 +114,7 @@
             background: #555;
         }
 
-        /* 정렬 옵션 스타일 */
+        /* 정렬 옵션 및 즐겨찾기 필터 버튼 */
         .sort-options {
             display: flex;
             justify-content: space-evenly;
@@ -128,6 +129,15 @@
         .sort-options span.active {
             color: white;
         }
+
+        .sort-options .heart {
+            color: grey;
+        }
+
+        .sort-options .heart.active {
+            color: red;
+        }
+
     </style>
 </head>
 
@@ -135,10 +145,11 @@
     <div class="left-panel">
         <h1>Stock Comparison</h1>
         
-        <!-- 정렬 옵션 추가 -->
+        <!-- 정렬 옵션 및 즐겨찾기 필터 추가 -->
         <div class="sort-options">
             <span id="rankSort" class="active">Rank</span>
             <span id="alphaSort">Alpha</span>
+            <span id="favFilter" class="heart">❤</span> <!-- 하트 아이콘 추가 -->
         </div>
         
         <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
@@ -162,8 +173,9 @@
             const csvUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/results_relative_divergence.csv';
             let defaultTicker = 'AAPL'; // 기본 티커 설정
             let isRanked = true; // 기본적으로 Rank로 정렬
+            let showOnlyFavorites = false; // 즐겨찾기만 보기 상태
             let rankedTickers = []; // 티커를 저장할 배열
-            let favorites = JSON.parse(localStorage.getItem('favorites')) || []; // 로컬 스토리지에서 즐겨찾기 티커 로드
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || []; // 즐겨찾기 상태를 로컬 저장소에 저장
 
             // CSV 파일을 가져와 파싱하는 함수
             function fetchCSV() {
@@ -171,8 +183,10 @@
                     download: true,
                     header: true,
                     complete: function (results) {
+                        // CSV 파일에서 필요한 데이터를 추출하여 티커 목록에 저장
                         rankedTickers = results.data.map(row => `${row.Rank}:${row.Ticker}`);
                         sortTickers(); // 기본 정렬 방식에 따라 정렬
+                        fetchImagesAndReport(defaultTicker); // 초기 기본 티커로 AAPL 로드
                     },
                     error: function (error) {
                         console.error('Error while fetching CSV:', error);
@@ -183,8 +197,14 @@
             // 티커 목록을 Rank 또는 알파벳 순서로 정렬하는 함수
             function sortTickers() {
                 if (isRanked) {
-                    rankedTickers.sort((a, b) => parseInt(a.split(':')[0]) - parseInt(b.split(':')[0]));
+                    // Rank 순서로 정렬
+                    rankedTickers.sort((a, b) => {
+                        const rankA = parseInt(a.split(':')[0], 10);
+                        const rankB = parseInt(b.split(':')[0], 10);
+                        return rankA - rankB;
+                    });
                 } else {
+                    // 알파벳 순으로 정렬
                     rankedTickers.sort((a, b) => a.split(':')[1].localeCompare(b.split(':')[1]));
                 }
                 displayTickers(); // 정렬 후 티커 목록을 다시 출력
@@ -192,42 +212,57 @@
 
             // 티커 목록을 화면에 출력하는 함수
             function displayTickers() {
-                $('#tickerList').empty();
+                $('#tickerList').empty(); // 기존 티커 목록 삭제
                 rankedTickers.forEach(ticker => {
                     const [rank, tickerName] = ticker.split(':');
                     const isFavorited = favorites.includes(tickerName);
-                    const heartClass = isFavorited ? 'heart-icon favorited' : 'heart-icon';
-                    $('#tickerList').append(`
-                        <div class="ticker-item">
-                            <span>${isRanked ? `${rank}:${tickerName}` : `${tickerName}:${rank}`}</span>
-                            <span class="${heartClass}" data-ticker="${tickerName}">❤️</span>
-                        </div>
-                    `);
+                    const heartClass = isFavorited ? 'heart favorited' : 'heart';
+
+                    // 즐겨찾기 필터가 켜져 있을 경우 즐겨찾기한 티커만 표시
+                    if (!showOnlyFavorites || (showOnlyFavorites && isFavorited)) {
+                        if (isRanked) {
+                            $('#tickerList').append(`
+                                <span class="ticker-item">
+                                    ${rank}:${tickerName}
+                                    <span class="${heartClass}" data-ticker="${tickerName}">❤</span>
+                                </span>
+                            `);
+                        } else {
+                            $('#tickerList').append(`
+                                <span class="ticker-item">
+                                    ${tickerName}:${rank}
+                                    <span class="${heartClass}" data-ticker="${tickerName}">❤</span>
+                                </span>
+                            `);
+                        }
+                    }
                 });
 
-                // 티커를 클릭하면 데이터 불러오기
-                $('.ticker-item span:first-child').on('click', function () {
-                    const ticker = isRanked ? $(this).text().split(':')[1] : $(this).text().split(':')[0]; 
-                    fetchImagesAndReport(ticker);
+                // 티커 클릭 이벤트 및 즐겨찾기 하트 클릭 이벤트 처리
+                $('.ticker-item').on('click', function (e) {
+                    if (!$(e.target).hasClass('heart')) {
+                        const ticker = isRanked ? $(this).text().split(':')[1] : $(this).text().split(':')[0]; // 티커 이름만 추출
+                        fetchImagesAndReport(ticker);
+                    }
                 });
 
-                // 하트 클릭 시 즐겨찾기 추가/삭제
-                $('.heart-icon').on('click', function () {
+                // 즐겨찾기 하트 클릭 이벤트 처리
+                $('.heart').on('click', function (e) {
+                    e.stopPropagation(); // 티커 클릭 이벤트 막기
                     const ticker = $(this).data('ticker');
                     if (favorites.includes(ticker)) {
-                        favorites = favorites.filter(fav => fav !== ticker); // 즐겨찾기에서 삭제
-                        $(this).removeClass('favorited');
+                        favorites = favorites.filter(fav => fav !== ticker); // 즐겨찾기 해제
                     } else {
-                        favorites.push(ticker); // 즐겨찾기에 추가
-                        $(this).addClass('favorited');
+                        favorites.push(ticker); // 즐겨찾기 추가
                     }
-                    localStorage.setItem('favorites', JSON.stringify(favorites)); // 로컬 스토리지에 저장
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                    sortTickers(); // 정렬된 티커 목록 갱신
                 });
             }
 
             // 주식 데이터를 불러오는 함수
             function fetchImagesAndReport(stockTicker) {
-                $('#loading').show();
+                $('#loading').show(); // 로딩 표시
                 $('#comparisonSection').empty();
                 $('#resultSection').empty();
                 $('#report').empty();
@@ -236,17 +271,23 @@
                 const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
                 const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/report_${stockTicker}.txt`;
 
-                $('#comparisonSection').append(`<img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image"/>`);
-                $('#resultSection').append(`<img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image"/>`);
+                // 비교 이미지와 결과 이미지 추가
+                $('#comparisonSection').append(`
+                    <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image"/>
+                `);
+                $('#resultSection').append(`
+                    <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image"/>
+                `);
 
+                // 리포트 파일을 로드 및 마크다운 변환
                 $.get(reportUrl, function (data) {
-                    const htmlContent = marked.parse(data);  
-                    $('#report').html(htmlContent);
+                    const htmlContent = marked.parse(data);  // 마크다운을 HTML로 변환
+                    $('#report').html(htmlContent);  // 변환된 HTML을 보고서에 표시
                 }).fail(function () {
                     $('#report').html('Failed to load report.');
                 }).always(function () {
-                    $('#loading').hide();
-                    enableImageWindow();  
+                    $('#loading').hide(); // 로딩 숨기기
+                    enableImageWindow();  // 이미지 클릭 시 새 창 열기 기능 활성화
                 });
             }
 
@@ -270,6 +311,13 @@
                 isRanked = false;
                 $(this).addClass('active');
                 $('#rankSort').removeClass('active');
+                sortTickers();
+            });
+
+            // 즐겨찾기 필터 클릭 이벤트 처리
+            $('#favFilter').on('click', function () {
+                showOnlyFavorites = !showOnlyFavorites;
+                $(this).toggleClass('active');
                 sortTickers();
             });
 
