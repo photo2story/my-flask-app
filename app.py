@@ -60,12 +60,12 @@ headers = {
 response = requests.get(repo_url, headers=headers)
 
 # 응답 확인
-if response.status_code == 200:
-    files = response.json()
-    for file in files:
-        print(file['name'])
-else:
-    print(f"Error: {response.status_code}, {response.text}")
+# if response.status_code == 200:
+#     files = response.json()
+#     for file in files:
+#         # print(file['name'])
+# else:
+#     print(f"Error: {response.status_code}, {response.text}")
     
 
 @app.route('/')
