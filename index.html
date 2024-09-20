@@ -147,8 +147,8 @@
 
     <script>
         $(function () {
-            const apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
-            const csvUrl = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/results_relative_divergence.csv';
+            const apiUrl = 'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images';
+            const csvUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/results_relative_divergence.csv';
             let defaultTicker = 'AAPL'; // 기본 티커 설정
             let isRanked = true; // 기본적으로 Rank로 정렬
             let rankedTickers = []; // 티커를 저장할 배열
@@ -211,9 +211,9 @@
                 $('#resultSection').empty();
                 $('#report').empty();
         
-                const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/comparison_${stockTicker}_VOO.png`;
-                const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/result_mpl_${stockTicker}.png`;
-                const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/report_${stockTicker}.txt`;
+                const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_${stockTicker}_VOO.png`;
+                const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
+                const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/report_${stockTicker}.txt`;
         
                 // 비교 이미지와 결과 이미지 추가
                 $('#comparisonSection').append(`
