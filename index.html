@@ -261,36 +261,37 @@
             }
 
             // 주식 데이터를 불러오는 함수
-            // 주식 데이터를 불러오는 함수
             function fetchImagesAndReport(stockTicker) {
                 $('#loading').show();
                 $('#comparisonSection').empty();
                 $('#resultSection').empty();
                 $('#report').empty();
-            
+
                 const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_${stockTicker}_VOO.png`;
                 const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
-                const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/report_${stockTicker}.txt`;
-            
+                const reportApiUrl = `https://api.github.com/repos/photo2story/my-flask-app/contents/static/images/report_${stockTicker}.txt`;
+
                 // 비교 이미지와 결과 이미지 추가
                 $('#comparisonSection').html(`
                     <div>
-                        <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image" onerror="this.onerror=null;this.src='path/to/placeholder-image.png';">
+                        <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/150';">
                         <span>vs VOO <span class="heart" data-image="${comparisonImageUrl}">❤</span></span>
                     </div>
                 `);
                 $('#resultSection').html(`
                     <div>
-                        <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image" onerror="this.onerror=null;this.src='path/to/placeholder-image.png';">
+                        <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/150';">
                         <span>Result <span class="heart" data-image="${resultImageUrl}">❤</span></span>
                     </div>
                 `);
-            
-                // 리포트 파일을 로드 및 마크다운 변환
+
+                // 리포트 파일을 GitHub API로 로드 및 마크다운 변환
                 $.ajax({
-                    url: reportUrl,
+                    url: reportApiUrl,
                     type: 'GET',
-                    dataType: 'text',
+                    headers: {
+                        'Accept': 'application/vnd.github.v3.raw'
+                    },
                     success: function(data) {
                         const htmlContent = marked.parse(data);
                         $('#report').html(htmlContent);
@@ -307,11 +308,11 @@
                 });
             }
             
-            // CORS 에러 처리를 위한 함수
+            // CORS 에러 처리를 위한 함수 (이미 GitHub API 사용으로 필요 없음)
             function handleCORSError() {
                 $('img').on('error', function() {
                     console.error('Image failed to load:', this.src);
-                    $(this).attr('src', 'path/to/placeholder-image.png');  // Fallback placeholder image
+                    $(this).attr('src', 'https://via.placeholder.com/150');  // Fallback placeholder image
                     $(this).attr('alt', 'Image failed to load');
                 });
             }
@@ -320,7 +321,6 @@
             $(document).ready(function() {
                 handleCORSError();
             });
-
 
             // 이미지를 클릭했을 때 새 창으로 띄우는 함수
             function enableImageWindow() {
