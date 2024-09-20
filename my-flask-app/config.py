@@ -37,8 +37,8 @@ VOO_CACHE_FILE = os.path.join(STATIC_IMAGES_PATH, 'cached_voo_data.csv')
 CSV_PATH = os.path.join(STATIC_IMAGES_PATH, 'stock_market.csv')
 
 # Data URLs
-# CSV_URL = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
-# GITHUB_API_URL = os.getenv('GITHUB_API_URL', 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images')
+# CSV_URL = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/stock_market.csv')
+# GITHUB_API_URL = os.getenv('GITHUB_API_URL', 'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images')
 CSV_URL = CSV_PATH
 GITHUB_API_URL = STATIC_IMAGES_PATH
 

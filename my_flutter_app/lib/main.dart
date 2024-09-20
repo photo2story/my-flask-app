@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool _isRanked = true; // true면 랭킹 순서, false면 알파벳 순서
 
-  final String apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+  final String apiUrl = 'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images';
 
   @override
   void initState() {
@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
             .toList();
 
         // CSV 파일 다운로드 및 수동 파싱
-        final csvResponse = await http.get(Uri.parse('https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/results_relative_divergence.csv'));
+        final csvResponse = await http.get(Uri.parse('https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/results_relative_divergence.csv'));
         if (csvResponse.statusCode == 200) {
           final csvString = csvResponse.body;
 
@@ -185,7 +185,7 @@ void _sortTickers() {
   Future<void> fetchImagesAndReport(String stockTicker) async {
     setState(() {
       _isLoading = true;
-      _comparisonImageUrl = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/comparison_${stockTicker}_VOO.png';
+      _comparisonImageUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_${stockTicker}_VOO.png';
       _resultImageUrl = '';
       _reportText = '';
     });

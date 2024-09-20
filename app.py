@@ -101,7 +101,7 @@ IMAGE_DIRECTORY = 'static/images'
 def get_reviewed_tickers():
     try:
         # GitHub API URL (프라이빗 리포지토리)
-        repo_url = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images'
+        repo_url = 'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images'
         
         headers = {
             'Authorization': f'token {GITHUB_TOKEN}',
@@ -130,9 +130,9 @@ def get_images():
         return jsonify({'error': 'No ticker provided'}), 400
 
     # GitHub API URL
-    comparison_image_url = f'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images/comparison_{ticker}_VOO.png'
-    result_image_url = f'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images/result_mpl_{ticker}.png'
-    report_file_url = f'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images/report_{ticker}.txt'
+    comparison_image_url = f'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images/comparison_{ticker}_VOO.png'
+    result_image_url = f'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images/result_mpl_{ticker}.png'
+    report_file_url = f'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images/report_{ticker}.txt'
 
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',

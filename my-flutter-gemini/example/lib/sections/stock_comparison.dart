@@ -23,7 +23,7 @@ class _StockComparisonState extends State<StockComparison> {
   final List<Content> _chats = [];  // 번역된 텍스트를 저장할 리스트
   final gemini = Gemini.instance;   // Gemini 객체
 
-  final String apiUrl = 'https://api.github.com/repos/photo2story/my-flutter-app/contents/static/images';
+  final String apiUrl = 'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images';
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _StockComparisonState extends State<StockComparison> {
             .toList();
 
         // CSV 파일 다운로드 및 수동 파싱
-        final csvResponse = await http.get(Uri.parse('https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/results_relative_divergence.csv'));
+        final csvResponse = await http.get(Uri.parse('https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/results_relative_divergence.csv'));
         if (csvResponse.statusCode == 200) {
           final csvString = csvResponse.body;
           List<String> rows = csvString.split('\n');
@@ -116,7 +116,7 @@ class _StockComparisonState extends State<StockComparison> {
 
     setState(() {
       _isLoading = true;
-      _comparisonImageUrl = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/comparison_${stockTicker}_VOO.png';
+      _comparisonImageUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_${stockTicker}_VOO.png';
       _resultImageUrl = '';
       _reportText = '';
     });

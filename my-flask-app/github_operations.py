@@ -12,7 +12,7 @@ GITHUB_TOKEN = os.getenv('PERSONAL_ACCESS_TOKEN')
 GITHUB_REPO_OWNER = os.getenv('GITHUB_REPO_OWNER')
 GITHUB_REPO_NAME = os.getenv('GITHUB_REPO_NAME')
 
-ticker_path = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+ticker_path = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/stock_market.csv'
 ticker_path = config.CSV_PATH
 
 def save_csv_to_github(dataframe, file_name, commit_message):

@@ -12,7 +12,7 @@ import config
 load_dotenv()
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
-# GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
+# GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images"
 GITHUB_RAW_BASE_URL =config.STATIC_IMAGES_PATH
 # CSV_PATH = os.getenv('CSV_PATH', 'static/images/stock_market.csv')
 CSV_PATH = config.CSV_PATH
@@ -69,7 +69,7 @@ def fetch_dynamic_data(ticker):
 
 def generate_stock_report(ticker, dynamic_data):
     # CSV 데이터 가져오기
-    url = f"https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/result_VOO_{ticker}.csv"
+    url = f"https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_VOO_{ticker}.csv"
     response = requests.get(url)
     df = pd.read_csv(StringIO(response.text))
     

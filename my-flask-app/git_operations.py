@@ -74,7 +74,7 @@ async def move_files_to_images_folder():
         print(f'Error during git operations: {e}')
 
 # CSV 파일 URL
-# csv_url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+# csv_url = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/stock_market.csv'
 csv_url = config.CSV_PATH
 
 # 테스트 코드

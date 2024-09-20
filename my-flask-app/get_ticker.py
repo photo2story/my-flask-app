@@ -11,8 +11,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 CSV_PATH = config.CSV_PATH
 
 
-#ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv')
-CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+#ticker_path = os.getenv('CSV_URL', 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/stock_market.csv')
+CSV_URL = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/stock_market.csv'
 # CSV_URL = config.CSV_PATH  # config.py에서 정의된 CSV_PATH를 사용
 ticker_path = config.CSV_PATH  # 동일한 경로를 사용
 
@@ -156,7 +156,7 @@ async def search_tickers_and_respond(ctx, query):
 
 def is_valid_stock(stock):  # Check if the stock is in the stock market CSV
     try:
-        # url = 'https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/stock_market.csv'
+        # url = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/stock_market.csv'
         url = config.CSV_PATH
         stock_market_df = pd.read_csv(url, encoding='utf-8')  # Specify encoding
         return stock in stock_market_df['Symbol'].values

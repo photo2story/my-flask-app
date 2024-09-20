@@ -39,7 +39,7 @@ H_SECRET = os.getenv('H_SECRET')
 H_ACCOUNT = os.getenv('H_ACCOUNT')
 GEMINI_API_KEY = os.getenv('GOOGLE_API_KEY')  # Gemini API 키 로드
 
-# GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images"
+# GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images"
 # CSV_PATH = f"{GITHUB_RAW_BASE_URL}/stock_market.csv"
 GITHUB_RAW_BASE_URL = config.STATIC_IMAGES_PATH
 CSV_PATH = config.CSV_PATH
