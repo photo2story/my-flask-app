@@ -278,15 +278,14 @@
                 $('#comparisonSection').html(`
                     <div>
                         <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/150';">
-                        <span>vs VOO <span class="heart ${imageFavorites.includes(comparisonImageUrl) ? 'favorited' : ''}" data-image="${comparisonImageUrl}" title="Favorite">❤</span></span>
                     </div>
                 `);
                 $('#resultSection').html(`
                     <div>
                         <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/150';">
-                        <span>Result <span class="heart ${imageFavorites.includes(resultImageUrl) ? 'favorited' : ''}" data-image="${resultImageUrl}" title="Favorite">❤</span></span>
                     </div>
                 `);
+
 
                 // 리포트 파일을 GitHub API로 로드 및 마크다운 변환
                 $.ajax({
