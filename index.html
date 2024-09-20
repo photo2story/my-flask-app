@@ -137,7 +137,6 @@
         .sort-options .heart.active {
             color: red;
         }
-
     </style>
 </head>
 
@@ -176,6 +175,7 @@
             let showOnlyFavorites = false; // 즐겨찾기만 보기 상태
             let rankedTickers = []; // 티커를 저장할 배열
             let favorites = JSON.parse(localStorage.getItem('favorites')) || []; // 즐겨찾기 상태를 로컬 저장소에 저장
+            let imageFavorites = JSON.parse(localStorage.getItem('imageFavorites')) || []; // 이미지 즐겨찾기 상태
 
             // CSV 파일을 가져와 파싱하는 함수
             function fetchCSV() {
@@ -261,45 +261,91 @@
             }
 
             // 주식 데이터를 불러오는 함수
+            // 주식 데이터를 불러오는 함수
             function fetchImagesAndReport(stockTicker) {
-                $('#loading').show(); // 로딩 표시
+                $('#loading').show();
                 $('#comparisonSection').empty();
                 $('#resultSection').empty();
                 $('#report').empty();
-
-                const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/comparison_${stockTicker}_VOO.png`;
-                const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flutter-app/main/static/images/result_mpl_${stockTicker}.png`;
-
+            
+                const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_${stockTicker}_VOO.png`;
+                const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
                 const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/report_${stockTicker}.txt`;
-
+            
                 // 비교 이미지와 결과 이미지 추가
-                // 이미지와 하트는 따로 분리하여 표시
-                $('#comparisonSection').append(`
-                    <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image"/>
-                    vs VOO <span class="heart">❤</span>
+                $('#comparisonSection').html(`
+                    <div>
+                        <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image" onerror="this.onerror=null;this.src='path/to/placeholder-image.png';">
+                        <span>vs VOO <span class="heart" data-image="${comparisonImageUrl}">❤</span></span>
+                    </div>
                 `);
-                $('#resultSection').append(`
-                    <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image"/>
-                    Result <span class="heart">❤</span>
+                $('#resultSection').html(`
+                    <div>
+                        <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image" onerror="this.onerror=null;this.src='path/to/placeholder-image.png';">
+                        <span>Result <span class="heart" data-image="${resultImageUrl}">❤</span></span>
+                    </div>
                 `);
-
+            
                 // 리포트 파일을 로드 및 마크다운 변환
-                $.get(reportUrl, function (data) {
-                    const htmlContent = marked.parse(data);  // 마크다운을 HTML로 변환
-                    $('#report').html(htmlContent);  // 변환된 HTML을 보고서에 표시
-                }).fail(function () {
-                    $('#report').html('Failed to load report.');
-                }).always(function () {
-                    $('#loading').hide(); // 로딩 숨기기
-                    enableImageWindow();  // 이미지 클릭 시 새 창 열기 기능 활성화
+                $.ajax({
+                    url: reportUrl,
+                    type: 'GET',
+                    dataType: 'text',
+                    success: function(data) {
+                        const htmlContent = marked.parse(data);
+                        $('#report').html(htmlContent);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading report:', error);
+                        $('#report').html('Failed to load report. Please try again later. Error: ' + error);
+                    },
+                    complete: function() {
+                        $('#loading').hide();
+                        enableImageWindow();
+                        handleHeartClick();
+                    }
                 });
             }
+            
+            // CORS 에러 처리를 위한 함수
+            function handleCORSError() {
+                $('img').on('error', function() {
+                    console.error('Image failed to load:', this.src);
+                    $(this).attr('src', 'path/to/placeholder-image.png');  // Fallback placeholder image
+                    $(this).attr('alt', 'Image failed to load');
+                });
+            }
+            
+            // 페이지 로드 시 CORS 에러 처리 함수 호출
+            $(document).ready(function() {
+                handleCORSError();
+            });
+
 
             // 이미지를 클릭했을 때 새 창으로 띄우는 함수
             function enableImageWindow() {
                 $('.clickable-image').on('click', function () {
                     const imageUrl = $(this).attr('src');
                     window.open(imageUrl, '_blank');
+                });
+            }
+
+            // 하트 클릭 이벤트 처리 함수
+            function handleHeartClick() {
+                $('.heart').on('click', function (e) {
+                    e.stopPropagation();
+                    $(this).toggleClass('favorited');
+                    const imageUrl = $(this).data('image');
+                    if ($(this).hasClass('favorited')) {
+                        // Add to favorites
+                        if (!imageFavorites.includes(imageUrl)) {
+                            imageFavorites.push(imageUrl);
+                        }
+                    } else {
+                        // Remove from favorites
+                        imageFavorites = imageFavorites.filter(fav => fav !== imageUrl);
+                    }
+                    localStorage.setItem('imageFavorites', JSON.stringify(imageFavorites));
                 });
             }
 
