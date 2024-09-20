@@ -80,6 +80,7 @@
             font-size: 16px;
             color: white;
             transition: color 0.2s;
+            margin-left: 10px;
         }
 
         .heart.favorited {
@@ -148,7 +149,7 @@
         <div class="sort-options">
             <span id="rankSort" class="active">Rank</span>
             <span id="alphaSort">Alpha</span>
-            <span id="favFilter" class="heart">❤</span> <!-- 하트 아이콘 추가 -->
+            <span id="favFilter" class="heart" title="Show Favorites">❤</span> <!-- 하트 아이콘 추가 -->
         </div>
         
         <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
@@ -174,7 +175,7 @@
             let isRanked = true; // 기본적으로 Rank로 정렬
             let showOnlyFavorites = false; // 즐겨찾기만 보기 상태
             let rankedTickers = []; // 티커를 저장할 배열
-            let favorites = JSON.parse(localStorage.getItem('favorites')) || []; // 즐겨찾기 상태를 로컬 저장소에 저장
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || []; // 티커 즐겨찾기 상태
             let imageFavorites = JSON.parse(localStorage.getItem('imageFavorites')) || []; // 이미지 즐겨찾기 상태
 
             // CSV 파일을 가져와 파싱하는 함수
@@ -222,16 +223,16 @@
                     if (!showOnlyFavorites || (showOnlyFavorites && isFavorited)) {
                         if (isRanked) {
                             $('#tickerList').append(`
-                                <span class="ticker-item">
-                                    ${rank}:${tickerName}
-                                    <span class="${heartClass}" data-ticker="${tickerName}">❤</span>
+                                <span class="ticker-item" data-ticker="${tickerName}">
+                                    <span>${rank}:${tickerName}</span>
+                                    <span class="${heartClass}" data-ticker="${tickerName}" title="Favorite">❤</span>
                                 </span>
                             `);
                         } else {
                             $('#tickerList').append(`
-                                <span class="ticker-item">
-                                    ${tickerName}:${rank}
-                                    <span class="${heartClass}" data-ticker="${tickerName}">❤</span>
+                                <span class="ticker-item" data-ticker="${tickerName}">
+                                    <span>${tickerName}:${rank}</span>
+                                    <span class="${heartClass}" data-ticker="${tickerName}" title="Favorite">❤</span>
                                 </span>
                             `);
                         }
@@ -239,21 +240,23 @@
                 });
 
                 // 티커 클릭 이벤트 및 즐겨찾기 하트 클릭 이벤트 처리
-                $('.ticker-item').on('click', function (e) {
+                $('.ticker-item').off('click').on('click', function (e) {
                     if (!$(e.target).hasClass('heart')) {
-                        const ticker = isRanked ? $(this).text().split(':')[1] : $(this).text().split(':')[0]; // 티커 이름만 추출
+                        const ticker = $(this).data('ticker'); // data-ticker 속성에서 티커 이름 추출
                         fetchImagesAndReport(ticker);
                     }
                 });
 
-                // 즐겨찾기 하트 클릭 이벤트 처리
-                $('.heart').on('click', function (e) {
+                // 티커 하트 클릭 이벤트 처리
+                $('.ticker-item .heart').off('click').on('click', function (e) {
                     e.stopPropagation(); // 티커 클릭 이벤트 막기
                     const ticker = $(this).data('ticker');
                     if (favorites.includes(ticker)) {
                         favorites = favorites.filter(fav => fav !== ticker); // 즐겨찾기 해제
+                        $(this).removeClass('favorited');
                     } else {
                         favorites.push(ticker); // 즐겨찾기 추가
+                        $(this).addClass('favorited');
                     }
                     localStorage.setItem('favorites', JSON.stringify(favorites));
                     sortTickers(); // 정렬된 티커 목록 갱신
@@ -275,13 +278,13 @@
                 $('#comparisonSection').html(`
                     <div>
                         <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/150';">
-                        <span>vs VOO <span class="heart" data-image="${comparisonImageUrl}">❤</span></span>
+                        <span>vs VOO <span class="heart ${imageFavorites.includes(comparisonImageUrl) ? 'favorited' : ''}" data-image="${comparisonImageUrl}" title="Favorite">❤</span></span>
                     </div>
                 `);
                 $('#resultSection').html(`
                     <div>
                         <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/150';">
-                        <span>Result <span class="heart" data-image="${resultImageUrl}">❤</span></span>
+                        <span>Result <span class="heart ${imageFavorites.includes(resultImageUrl) ? 'favorited' : ''}" data-image="${resultImageUrl}" title="Favorite">❤</span></span>
                     </div>
                 `);
 
@@ -303,51 +306,42 @@
                     complete: function() {
                         $('#loading').hide();
                         enableImageWindow();
-                        handleHeartClick();
+                        handleImageHeartClick();
                     }
                 });
             }
-            
-            // CORS 에러 처리를 위한 함수 (이미 GitHub API 사용으로 필요 없음)
-            function handleCORSError() {
-                $('img').on('error', function() {
-                    console.error('Image failed to load:', this.src);
-                    $(this).attr('src', 'https://via.placeholder.com/150');  // Fallback placeholder image
-                    $(this).attr('alt', 'Image failed to load');
-                });
-            }
-            
-            // 페이지 로드 시 CORS 에러 처리 함수 호출
-            $(document).ready(function() {
-                handleCORSError();
-            });
 
             // 이미지를 클릭했을 때 새 창으로 띄우는 함수
             function enableImageWindow() {
-                $('.clickable-image').on('click', function () {
+                $('.clickable-image').off('click').on('click', function () {
                     const imageUrl = $(this).attr('src');
                     window.open(imageUrl, '_blank');
                 });
             }
 
-            // 하트 클릭 이벤트 처리 함수
-            function handleHeartClick() {
-                $('.heart').on('click', function (e) {
+            // 이미지 하트 클릭 이벤트 처리 함수
+            function handleImageHeartClick() {
+                $('#comparisonSection .heart, #resultSection .heart').off('click').on('click', function (e) {
                     e.stopPropagation();
                     $(this).toggleClass('favorited');
                     const imageUrl = $(this).data('image');
                     if ($(this).hasClass('favorited')) {
-                        // Add to favorites
                         if (!imageFavorites.includes(imageUrl)) {
                             imageFavorites.push(imageUrl);
                         }
                     } else {
-                        // Remove from favorites
                         imageFavorites = imageFavorites.filter(fav => fav !== imageUrl);
                     }
                     localStorage.setItem('imageFavorites', JSON.stringify(imageFavorites));
                 });
             }
+
+            // 즐겨찾기 필터 클릭 이벤트 처리
+            $('#favFilter').on('click', function () {
+                showOnlyFavorites = !showOnlyFavorites;
+                $(this).toggleClass('active');
+                sortTickers();
+            });
 
             // 정렬 옵션 클릭 이벤트 처리
             $('#rankSort').on('click', function () {
@@ -361,13 +355,6 @@
                 isRanked = false;
                 $(this).addClass('active');
                 $('#rankSort').removeClass('active');
-                sortTickers();
-            });
-
-            // 즐겨찾기 필터 클릭 이벤트 처리
-            $('#favFilter').on('click', function () {
-                showOnlyFavorites = !showOnlyFavorites;
-                $(this).toggleClass('active');
                 sortTickers();
             });
 
