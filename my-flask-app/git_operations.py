@@ -38,32 +38,53 @@ def fetch_csv_data(url):
 
 
 
+import base64
+
+# 파일을 GitHub 저장소에 업로드하는 함수 (토큰 없이)
+def upload_file_to_github(file_path, repo_name, destination_path):
+    with open(file_path, 'rb') as file:
+        content = file.read()
+
+    base64_content = base64.b64encode(content).decode('utf-8')
+
+    url = f'https://api.github.com/repos/{repo_name}/contents/{destination_path}'
+
+    data = {
+        "message": f"Add {os.path.basename(file_path)}",
+        "content": base64_content
+    }
+
+    # 토큰 없이 요청 보냄
+    response = requests.put(url, json=data)
+
+    if response.status_code == 201:
+        print(f'Successfully uploaded {file_path} to GitHub')
+    else:
+        print(f'Error uploading {file_path} to GitHub: {response.status_code}, {response.text}')
+
+# 비동기 함수 수정: 로컬 이동 후 원격으로 파일 업로드
 async def move_files_to_images_folder():
     if repo is None:
         print('No valid Git repository. Skipping git operations.')
         return
 
-    patterns = ["*.png", "*.csv", "*.report","*.txt"]
-    # destination_folder = os.path.join('static', 'images')  # 'app.static_folder' 대신 경로를 명시적으로 설정
+    patterns = ["*.png", "*.csv", "*.report", "*.txt"]
     destination_folder = config.STATIC_IMAGES_PATH
 
-    # 외부 URL에서 CSV 데이터 다운로드
-    # df = fetch_csv_data(csv_url)
-    # if df is not None:
-    #     csv_path = os.path.join(destination_folder, 'stock_market.csv')
-    #     os.makedirs(destination_folder, exist_ok=True)
-    #     df.to_csv(csv_path, index=False)
-    #     print(f"Downloaded CSV to {csv_path}")
-    # else:
-    #     print("Failed to download CSV data.")
+    # GitHub 저장소 관련 정보
+    repo_name = "photo2story/my-flask-app"  # 퍼블릭으로 만든 GitHub 저장소 경로
 
     for pattern in patterns:
         for file in glob.glob(pattern):
             if file != "stock_market.csv":
-                shutil.move(file, os.path.join(destination_folder, os.path.basename(file)))# 파일 이동
+                shutil.move(file, os.path.join(destination_folder, os.path.basename(file)))  # 로컬 파일 이동
                 print(f"Moved {file} to {destination_folder}")
 
-    # 파일 이동 후 깃허브 커밋 및 푸시
+                # 원격 GitHub 저장소에 파일 업로드 (토큰 없이)
+                destination_path = f"static/images/{os.path.basename(file)}"
+                upload_file_to_github(os.path.join(destination_folder, os.path.basename(file)), repo_name, destination_path)
+
+    # 파일 이동 후 로컬 Git 커밋 및 푸시
     try:
         repo.git.add(all=True)  # 모든 변경 사항 추가
         repo.index.commit('Auto-commit moved files')
@@ -72,6 +93,7 @@ async def move_files_to_images_folder():
         print('Changes pushed to GitHub')
     except Exception as e:
         print(f'Error during git operations: {e}')
+
 
 # CSV 파일 URL
 # csv_url = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/stock_market.csv'
