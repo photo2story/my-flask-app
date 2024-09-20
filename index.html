@@ -272,11 +272,14 @@
                 const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/report_${stockTicker}.txt`;
 
                 // 비교 이미지와 결과 이미지 추가
+                // 이미지와 하트를 분리해서 표시
                 $('#comparisonSection').append(`
                     <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image"/>
+                    <span class="heart">❤</span> vs VOO
                 `);
                 $('#resultSection').append(`
                     <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image"/>
+                    <span class="heart">❤</span> Result
                 `);
 
                 // 리포트 파일을 로드 및 마크다운 변환
