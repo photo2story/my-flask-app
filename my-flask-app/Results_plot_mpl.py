@@ -93,7 +93,10 @@ async def plot_results_mpl(ticker, start_date, end_date):
 
     image_filename = f'result_mpl_{ticker}.png'
     save_figure(fig, image_filename)
-
+    
+    # *** 이미지 파일 이동 및 업로드 ***
+    await move_files_to_images_folder()
+    
     # 메시지 작성
     message = (f"Stock: {ticker} ({name})\n"
                f"Close: {filtered_prices['close'].iloc[-1]:,.2f}\n"

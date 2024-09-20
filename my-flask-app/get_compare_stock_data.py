@@ -86,6 +86,7 @@ async def save_simplified_csv(ticker):
     folder_path = config.STATIC_IMAGES_PATH
     simplified_file_path = os.path.join(folder_path, f'result_{ticker}.csv')
     simplified_df.to_csv(simplified_file_path, index=False)
+    await move_files_to_images_folder()
     print(f"Simplified CSV saved: {simplified_file_path}")
     
     # 최종 데이터 출력
@@ -155,7 +156,9 @@ async def collect_relative_divergence(ticker, simplified_df):
 
         # CSV 파일 저장
         updated_results.to_csv(results_file_path, mode='w', index=False)
-        
+        # *** 이미지 파일 등 이동 및 업로드 ***
+        await move_files_to_images_folder()
+            
         print(f"Updated relative divergence data for {ticker} saved to {results_file_path}")
 
     except Exception as e:

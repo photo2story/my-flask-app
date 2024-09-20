@@ -203,6 +203,7 @@ async def analyze_with_gemini(ticker):
 
         # 필요한 파일들을 이동
         shutil.move(voo_file, os.path.join(destination_dir, voo_file))
+        # *** 이미지 파일 등을 이동 및 업로드 ***
         await move_files_to_images_folder()
 
         return f'Gemini Analysis for {ticker} (VOO) has been sent to Discord and saved as a text file.'
