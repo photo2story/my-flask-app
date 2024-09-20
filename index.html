@@ -14,8 +14,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000; /* 배경색을 검은색으로 설정 */
-            color: #fff; /* 텍스트를 흰색으로 설정 */
+            background-color: #000;
+            color: #fff;
             margin: 0;
             display: flex;
             height: 100vh;
@@ -23,44 +23,44 @@
         }
 
         .left-panel {
-            width: 10%; /* 티커 리스트 패널 */
+            width: 10%;
             padding: 10px;
-            background-color: #012; /* 티커 백그라운드 색상 */
-            color: #ccc; /* 패널 내 텍스트 색상 */
+            background-color: #012;
+            color: #ccc;
             height: 100vh;
-            overflow-y: scroll; /* 스크롤 가능 */
+            overflow-y: auto;
         }
 
         .middle-panel {
-            width: 55%; /* 레포트 패널 */
+            width: 55%;
             padding: 20px;
-            overflow-y: scroll; /* 스크롤 가능 */
-            line-height: 1.0; /* 줄간격 설정 */
+            overflow-y: auto;
+            line-height: 1.0;
         }
 
         .right-panel {
-            width: 35%; /* 그래프 패널 */
+            width: 35%;
             padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* 상단 정렬로 변경 */
+            justify-content: flex-start;
             align-items: center;
             height: 100vh;
-            overflow-y: scroll; /* 스크롤 가능 */
+            overflow-y: auto;
         }
 
         img {
-            width: 100%; /* 그래프 이미지를 패널 너비에 맞춤 */
+            width: 100%;
             height: auto;
             margin-top: 20px;
-            cursor: pointer; /* 클릭할 수 있도록 설정 */
+            cursor: pointer;
         }
 
         #report {
             white-space: pre-wrap;
             padding: 20px;
             border: none;
-            color: #fff; /* 텍스트 색상 */
+            color: #fff;
         }
 
         .ticker-item {
@@ -76,19 +76,27 @@
             color: #00ff00;
         }
 
-        /* 줄간격 및 여백 줄이기 */
         h1, h2, h3, h4, p {
             margin-top: 1px;
             margin-bottom: 1px;
         }
 
-        /* 스크롤바 숨기기 */
+        /* 스크롤바 스타일링 */
         ::-webkit-scrollbar {
-            width: 0px;
-            height: 0px;
+            width: 10px;
         }
-        -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
-        scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
 </head>
 
@@ -190,7 +198,6 @@
                     window.open(imageUrl, '_blank', `width=${windowWidth},height=${windowHeight},left=${left},top=${top},scrollbars=yes`);
                 });
             }
-
 
             // 페이지 로드 시 티커 목록 불러오기
             fetchTickers();
