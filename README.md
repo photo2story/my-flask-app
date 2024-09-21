@@ -43,6 +43,7 @@ The simulation and analysis are built around a few core processes:
 
 4. **Performance over the Last 6 Months**:
    The project includes detailed visualizations for the past 6 months of stock performance, emphasizing:
+   
    <img src="./static/images/result_mpl_AAPL.png" alt="AAPL vs VOO Cumulative Return Comparison" width="500"/>
 
    - Price trends (5, 20, and 60-day moving averages)
