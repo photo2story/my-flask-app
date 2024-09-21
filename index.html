@@ -4,130 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Comparison Review</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- PapaParse CSV Parsing Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     
     <!-- marked.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
-    <!-- jQuery 추가 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- PapaParse CSV 파싱 라이브러리 추가 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .left-panel {
-            width: 15%; /* 티커 리스트 패널의 폭을 조금 더 넓게 설정 */
-            padding: 10px;
-            background-color: #012;
-            color: #ccc;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .middle-panel {
-            width: 50%;
-            padding: 20px;
-            overflow-y: auto;
-            line-height: 1.0;
-        }
-
-        .right-panel {
-            width: 35%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        #report {
-            white-space: pre-wrap;
-            padding: 20px;
-            border: none;
-            color: #fff;
-        }
-
-        .ticker-item {
-            cursor: pointer;
-            color: cyan;
-            display: block;
-            margin: 5px 0;
-        }
-
-        .loading {
-            text-align: center;
-            font-size: 18px;
-            color: #00ff00;
-        }
-
-        h1, h2, h3, h4, p {
-            margin-top: 1px;
-            margin-bottom: 1px;
-        }
-
-        /* 스크롤바 스타일링 */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
-        /* 정렬 옵션 스타일 */
-        .sort-options {
-            display: flex;
-            justify-content: space-evenly;
-            margin-bottom: 10px;
-        }
-
-        .sort-options span {
-            cursor: pointer;
-            color: grey;
-        }
-
-        .sort-options span.active {
-            color: white;
-        }
-
-    </style>
 </head>
 
 <body>
     <div class="left-panel">
         <h1>Stock Comparison</h1>
         
-        <!-- 정렬 옵션 추가 -->
+        <!-- 메뉴 아이콘 및 설정 -->
+        <div class="menu-container">
+            <span class="menu-icon" id="menuIcon">⋮</span> <!-- 세로 점 메뉴 아이콘 -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <p><a href="https://github.com/photo2story/my-flask-app/blob/main/README.md" target="_blank">README on GitHub</a></p>
+            </div>
+        </div>
+
+        <!-- 정렬 옵션 및 즐겨찾기 필터 추가 -->
         <div class="sort-options">
             <span id="rankSort" class="active">Rank</span>
             <span id="alphaSort">Alpha</span>
+            <span id="favFilter" class="heart" title="Show Favorites">❤</span> <!-- 하트 아이콘 추가 -->
         </div>
         
         <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
@@ -145,122 +52,7 @@
         <div id="resultSection"></div> <!-- 추가 이미지 섹션 -->
     </div>
 
-    <script>
-        $(function () {
-            const apiUrl = 'https://api.github.com/repos/photo2story/my-flask-app/contents/static/images';
-            const csvUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/results_relative_divergence.csv';
-            let defaultTicker = 'AAPL'; // 기본 티커 설정
-            let isRanked = true; // 기본적으로 Rank로 정렬
-            let rankedTickers = []; // 티커를 저장할 배열
-        
-            // CSV 파일을 가져와 파싱하는 함수
-            function fetchCSV() {
-                Papa.parse(csvUrl, {
-                    download: true,
-                    header: true,
-                    complete: function (results) {
-                        // CSV 파일에서 필요한 데이터를 추출하여 티커 목록에 저장
-                        rankedTickers = results.data.map(row => `${row.Rank}:${row.Ticker}`);
-                        sortTickers(); // 기본 정렬 방식에 따라 정렬
-                    },
-                    error: function (error) {
-                        console.error('Error while fetching CSV:', error);
-                    }
-                });
-            }
-        
-            // 티커 목록을 Rank 또는 알파벳 순서로 정렬하는 함수
-            function sortTickers() {
-                if (isRanked) {
-                    // Rank 순서로 정렬
-                    rankedTickers.sort((a, b) => {
-                        const rankA = parseInt(a.split(':')[0], 10);
-                        const rankB = parseInt(b.split(':')[0], 10);
-                        return rankA - rankB;
-                    });
-                } else {
-                    // 알파벳 순으로 정렬
-                    rankedTickers.sort((a, b) => a.split(':')[1].localeCompare(b.split(':')[1]));
-                }
-                displayTickers(); // 정렬 후 티커 목록을 다시 출력
-            }
-        
-            // 티커 목록을 화면에 출력하는 함수
-            function displayTickers() {
-                $('#tickerList').empty(); // 기존 티커 목록 삭제
-                rankedTickers.forEach(ticker => {
-                    const [rank, tickerName] = ticker.split(':');
-                    if (isRanked) {
-                        $('#tickerList').append(`<span class="ticker-item">${rank}:${tickerName}</span>`);
-                    } else {
-                        $('#tickerList').append(`<span class="ticker-item">${tickerName}:${rank}</span>`);
-                    }
-                });
-        
-                // 티커를 클릭하면 데이터 불러오기
-                $('.ticker-item').on('click', function () {
-                    const ticker = isRanked ? $(this).text().split(':')[1] : $(this).text().split(':')[0]; // 티커 이름만 추출
-                    fetchImagesAndReport(ticker);
-                });
-            }
-        
-            // 주식 데이터를 불러오는 함수
-            function fetchImagesAndReport(stockTicker) {
-                $('#loading').show(); // 로딩 표시
-                $('#comparisonSection').empty();
-                $('#resultSection').empty();
-                $('#report').empty();
-        
-                const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_${stockTicker}_VOO.png`;
-                const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
-                const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/report_${stockTicker}.txt`;
-        
-                // 비교 이미지와 결과 이미지 추가
-                $('#comparisonSection').append(`
-                    <img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image"/>
-                `);
-                $('#resultSection').append(`
-                    <img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image"/>
-                `);
-        
-                // 리포트 파일을 로드 및 마크다운 변환
-                $.get(reportUrl, function (data) {
-                    const htmlContent = marked.parse(data);  // 마크다운을 HTML로 변환
-                    $('#report').html(htmlContent);  // 변환된 HTML을 보고서에 표시
-                }).fail(function () {
-                    $('#report').html('Failed to load report.');
-                }).always(function () {
-                    $('#loading').hide(); // 로딩 숨기기
-                    enableImageWindow();  // 이미지 클릭 시 새 창 열기 기능 활성화
-                });
-            }
-        
-            // 이미지를 클릭했을 때 새 창으로 띄우는 함수
-            function enableImageWindow() {
-                $('.clickable-image').on('click', function () {
-                    const imageUrl = $(this).attr('src');
-                    window.open(imageUrl, '_blank');
-                });
-            }
-        
-            // 정렬 옵션 클릭 이벤트 처리
-            $('#rankSort').on('click', function () {
-                isRanked = true;
-                $(this).addClass('active');
-                $('#alphaSort').removeClass('active');
-                sortTickers();
-            });
-        
-            $('#alphaSort').on('click', function () {
-                isRanked = false;
-                $(this).addClass('active');
-                $('#rankSort').removeClass('active');
-                sortTickers();
-            });
-        
-            // 페이지 로드 시 CSV 데이터를 불러오기
-            fetchCSV();
-        });
-    </script>
+    <!-- External JavaScript -->
+    <script src="scripts.js"></script>
 </body>
 </html>
