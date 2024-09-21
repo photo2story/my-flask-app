@@ -26,6 +26,7 @@ The simulation and analysis are built around a few core processes:
 
 2. **Performance Metrics & Graphs**:
    The backtest generates multiple graphs and key performance metrics:
+   ![AAPL vs VOO Cumulative Return Comparison](./static/images/comparison_AAPL_VOO.png)
    
    - **Total Return (%)**: The final return percentage for the selected stock compared to the S&P 500.
    - **Divergence Metrics**:  
@@ -40,16 +41,16 @@ The simulation and analysis are built around a few core processes:
 
    - **Expected Return**: Based on historical trends, the system provides an expected future return for the stock over the next 5 to 10 years, giving investors an idea of potential long-term performance.
 
-3. **Performance over the Last 6 Months**:
+4. **Performance over the Last 6 Months**:
    The project includes detailed visualizations for the past 6 months of stock performance, emphasizing:
    - Price trends (5, 20, and 60-day moving averages)
    - RSI and PPO indicators
    - Short-term divergence shifts
 
-4. **Quarterly Earnings Review**:  
+5. **Quarterly Earnings Review**:  
    The system also includes a review of the company's earnings over the past year. It examines whether the company met or missed expectations and considers how these financial results might affect future performance.
 
-5. **Sector Rankings**:
+6. **Sector Rankings**:
    One of the key outputs of this project is the ranking of stocks by sector based on their Expected Return. This allows investors to compare the best-performing stocks across different sectors and prioritize investments accordingly.
 
 ## Example: How to Read the Analysis
