@@ -7,7 +7,7 @@ $(function () {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || []; // 티커 즐겨찾기 상태
     let imageFavorites = JSON.parse(localStorage.getItem('imageFavorites')) || []; // 이미지 즐겨찾기 상태
 
-    // 세로 점 메뉴 클릭 이벤트
+    // 메뉴 아이콘 클릭 이벤트
     $('.menu-icon').on('click', function() {
         $('#dropdownMenu').toggle(); // 메뉴 토글
     });
@@ -177,8 +177,4 @@ $(function () {
 
     // 페이지 로드 시 CSV 데이터를 불러오기
     fetchCSV();
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> e0881f9b67b98fe97d121a3d3131858ff3833d30
