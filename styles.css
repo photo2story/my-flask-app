@@ -1,0 +1,151 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-header {
+    text-align: left;
+    background-color: #333;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    height: calc(100vh - 70px);
+    width: 100%;
+}
+
+.left-panel {
+    width: 20%;
+    padding: 10px;
+    background-color: #012;
+    color: #ccc;
+    overflow-y: auto;
+    font-size: 0.7rem;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.right-panel {
+    width: 80%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 80%;
+    max-height: 500px;
+    aspect-ratio: 4 / 3;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+.fixed-graph {
+    position: sticky;
+    top: 0;
+    background-color: #000;
+    z-index: 10;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-height: 500px;
+    min-height: 300px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.scrollable-section {
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.scrollable-graph {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    max-height: 500px;
+}
+
+.report-content {
+    width: 100%;
+    padding: 5px;
+    background-color: #111;
+    color: #fff;
+    margin-top: 5px;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+}
+
+.ticker-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.ticker-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+    cursor: pointer;
+}
+
+.heart {
+    cursor: pointer;
+    color: grey;
+    transition: color 0.2s;
+}
+
+.heart.favorited {
+    color: red;
+}
+
+.sort-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#rankAlphaToggle, #favFilter {
+    cursor: pointer;
+}
+
+.heart {
+    cursor: pointer;
+    color: grey;
+}
+
+.heart.active {
+    color: red;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
