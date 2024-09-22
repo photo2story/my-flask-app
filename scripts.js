@@ -130,3 +130,32 @@ $(function () {
 
     fetchCSV();
 });
+
+// (?) 아이콘 클릭 시 GitHub README 파일 로드
+$('#helpIcon').on('click', function () {
+    const readmeUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/README.md';
+    $.ajax({
+        url: readmeUrl,
+        type: 'GET',
+        success: function(data) {
+            const htmlContent = marked.parse(data); // markdown 내용을 HTML로 변환
+            const newTab = window.open();
+            newTab.document.write(`
+                <html>
+                    <head>
+                        <title>README</title>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+                    </head>
+                    <body class="markdown-body" style="padding: 20px;">
+                        ${htmlContent}
+                    </body>
+                </html>
+            `);
+            newTab.document.close();
+        },
+        error: function() {
+            alert('Failed to load README file.');
+        }
+    });
+});
+
