@@ -22,6 +22,15 @@ body {
     padding: 0 20px;
 }
 
+.large-text {
+    font-size: 24px; /* 큰 글씨 */
+    font-weight: bold;
+}
+
+.small-text {
+    font-size: 14px; /* 작은 글씨 */
+}
+
 .content-wrapper {
     display: flex;
     height: calc(100vh - 70px);
@@ -103,7 +112,7 @@ img {
     margin-top: 5px;
     box-sizing: border-box;
     white-space: pre-wrap;
-    line-height: 2.0; /* 줄 간격을 1.5로 설정 (필요에 따라 조절 가능) */
+    line-height: 2.0; 
 }
 
 .ticker-list {
@@ -118,33 +127,14 @@ img {
     cursor: pointer;
 }
 
-.heart {
-    cursor: pointer;
-    color: grey;
-    transition: color 0.2s;
-}
-
-.heart.favorited {
-    color: red;
-}
-
 .sort-options {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-bottom: 10px;
 }
 
-#rankAlphaToggle, #favFilter {
+#rankAlphaToggle {
     cursor: pointer;
-}
-
-.heart {
-    cursor: pointer;
-    color: grey;
-}
-
-.heart.active {
-    color: red;
 }
 
 ::-webkit-scrollbar {
