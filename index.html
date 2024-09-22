@@ -19,37 +19,28 @@
 </head>
 
 <body>
-    <div class="left-panel">
-        <h1>Stock Comparison</h1>
-        
-        <!-- 메뉴 아이콘 및 설정 -->
-        <div class="menu-container">
-            <span class="menu-icon" id="menuIcon">⋮</span> <!-- 세로 점 메뉴 아이콘 -->
-            <div class="dropdown-menu" id="dropdownMenu">
-                <p><a href="https://github.com/photo2story/my-flask-app/blob/main/README.md" target="_blank" rel="noopener">README on GitHub</a>
-                </p>
+    <header class="main-header">
+        <h1>Stock Comparison Review</h1>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="left-panel">
+            <div class="sort-options">
+                <span id="rankAlphaToggle" class="active">Rank</span>
+                <span id="favFilter" class="heart" title="Show Favorites">❤</span>
+            </div>
+            
+            <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
+        </div>
+
+        <div class="right-panel">
+            <div id="fixedGraph" class="fixed-graph"></div> <!-- 첫 번째 고정 그래프 -->
+            
+            <div id="scrollableContent" class="scrollable-section">
+                <div id="scrollableGraph" class="scrollable-graph"></div> <!-- 나머지 스크롤되는 그래프 -->
+                <div id="reportSection" class="report-content"></div> <!-- 리포트 내용 -->
             </div>
         </div>
-
-        <!-- 정렬 옵션 및 즐겨찾기 필터 추가 -->
-        <div class="sort-options">
-            <span id="rankSort" class="active">Rank</span>
-            <span id="alphaSort">Alpha</span>
-            <span id="favFilter" class="heart" title="Show Favorites">❤</span> <!-- 하트 아이콘 추가 -->
-        </div>
-        
-        <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
-    </div>
-
-    <div class="middle-panel">
-        <!-- 리포트 섹션 -->
-        <div id="report"></div> <!-- 리포트 내용이 여기에 표시됨 -->
-    </div>
-
-    <div class="right-panel">
-        <!-- 그래프 섹션 -->
-        <div id="comparisonSection"></div> <!-- 비교 이미지 섹션 -->
-        <div id="resultSection"></div> <!-- 추가 이미지 섹션 -->
     </div>
 
     <!-- External JavaScript -->
