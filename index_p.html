@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Comparison Review</title>
 
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- GitHub Markdown CSS 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css" integrity="sha512-tioBo8hVDZ2u3QsxISfcuX3SRy5h9SCyexCjfUQ9R3miyvSOId5xGlUMx1uT4Eb9hLzLtIAcs/0jeP58c5HGJw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- PapaParse CSV Parsing Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    
+    <!-- marked.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <!-- 플러터에서 했던 것처럼 두 개의 다른 크기 텍스트를 사용 -->
+        <h1><span class="large-text">Stock Analysis AI,</span><br><span class="small-text">Backtesting & Beat the S&P 500</span></h1>
+        <span id="helpIcon" title="View README" style="font-size: 12px; cursor: pointer;">❓</span> 
+    </header>
+
+    <div class="content-wrapper">
+        <div class="left-panel">
+            <div class="sort-options">
+                <span id="rankAlphaToggle" class="active">Rank</span>
+            </div>
+            
+            <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
+        </div>
+
+        <div class="right-panel">
+            <div id="fixedGraph" class="fixed-graph"></div> <!-- 첫 번째 고정 그래프 -->
+            
+            <div id="scrollableContent" class="scrollable-section">
+                <div id="scrollableGraph" class="scrollable-graph"></div> <!-- 나머지 스크롤되는 그래프 -->
+                <div id="reportSection" class="report-content"></div> <!-- 리포트 내용 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+</html>
