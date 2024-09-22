@@ -25,8 +25,10 @@ This project also includes recent stock news, analyst opinions, and a ranking sy
    The backtest generates multiple graphs and key performance metrics:
 
    <div align="center">
-       <img src="./static/images/comparison_AAPL_VOO.png" alt="AAPL vs VOO Cumulative Return Comparison" width="500"/>
+       <img src="https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_AAPL_VOO.png" 
+            alt="AAPL vs VOO Cumulative Return Comparison" width="500"/>
    </div>
+
 
    - **Total Return (%)**: The final return percentage for the selected stock compared to VOO.
    - **Divergence Metrics**:  
@@ -38,8 +40,10 @@ This project also includes recent stock news, analyst opinions, and a ranking sy
    The system tracks recent price movements and momentum indicators to identify short-term trends and potential market conditions:
 
    <div align="center">
-      <img src="./static/images/result_mpl_AAPL.png" alt="AAPL 6-Month Performance" width="500"/>
+       <img src="https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_AAPL.png" 
+            alt="AAPL 6-Month Performance" width="500"/>
    </div>
+
 
    - **RSI (Relative Strength Index)**: A momentum indicator that identifies whether a stock is overbought or oversold.
    - **PPO Histogram (Percentage Price Oscillator)**: Gauges the stock’s momentum and the strength of trends.
