@@ -88,14 +88,17 @@ $(function () {
         const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
         const reportApiUrl = `https://api.github.com/repos/photo2story/my-flask-app/contents/static/images/report_${stockTicker}.txt`;
 
+        // 고정 그래프 이미지 표시
         $('#fixedGraph').html(
-            `<img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image">`
+            `<img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image zoomable-image">`
         );
 
+        // 스크롤 그래프 이미지 표시
         $('#scrollableGraph').html(
-            `<img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image">`
+            `<img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image zoomable-image">`
         );
 
+        // 보고서 내용 로드
         $.ajax({
             url: reportApiUrl,
             type: 'GET',
@@ -128,6 +131,27 @@ $(function () {
         sortTickers();
     });
 
+    // 이미지 클릭 시 확대 표시
+    $(document).on('click', '.zoomable-image', function () {
+        const imageUrl = $(this).attr('src');
+        const altText = $(this).attr('alt');
+        const zoomWindow = window.open('', '_blank', 'width=800,height=600');
+        zoomWindow.document.write(`
+            <html>
+                <head>
+                    <title>Zoomable Image</title>
+                    <style>
+                        body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #000; }
+                        img { max-width: 90%; max-height: 90%; }
+                    </style>
+                </head>
+                <body>
+                    <img src="${imageUrl}" alt="${altText}">
+                </body>
+            </html>
+        `);
+    });
+
     fetchCSV();
 });
 
@@ -158,4 +182,3 @@ $('#helpIcon').on('click', function () {
         }
     });
 });
-
