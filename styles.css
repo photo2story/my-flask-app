@@ -11,14 +11,17 @@ body {
 }
 
 .main-header {
-    text-align: left; /* 제목을 왼쪽 정렬 */
+    text-align: left; /* 제목은 여전히 왼쪽 정렬 */
     background-color: #333;
-    padding: 10px 20px; /* 패딩을 추가하여 더 보기 좋게 */
-    color: #fff;
-    width: 100%;
+    padding: 0; /* 패딩을 제거하여 위치를 정확히 조정 */
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: space-between; /* 왼쪽에 제목, 오른쪽에 아이콘 위치 */
+    height: 70px; /* 높이를 적당하게 조절 */
     box-sizing: border-box;
-    height: 70px; /* 높이를 70%로 설정 */
+    padding: 0 20px; /* 양쪽에 패딩을 추가하여 여백 확보 */
 }
+
 
 .content-wrapper {
     display: flex;
