@@ -3,47 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>README - Stock Strategy Backtesting and Analysis</title>
+    <title>Stock Comparison Review</title>
+
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- PapaParse CSV Parsing Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    
+    <!-- marked.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
+
 <body>
-    <div class="readme-container">
-        <h1>Stock Strategy Backtesting and Analysis</h1>
+    <header class="main-header">
+        <h1>Stock Comparison Review</h1>
+        <span id="helpIcon" title="View README" style="font-size: 16px; cursor: pointer;">❓</span> 
+    </header>
 
-        <h2>Overview</h2>
-        <p>This project focuses on comparing the performance of individual stocks with benchmark indices such as the S&P 500 (tracked via the VOO ETF). It provides tools to visualize and analyze cumulative returns, divergence metrics, and other key financial indicators, enabling users to assess the relative strength of specific stocks over time.</p>
 
-        <h2>Description</h2>
-        <p>The backtesting engine simulates a monthly investment strategy, where a fixed amount is consistently invested. The engine generates cumulative return comparisons between target stocks and the S&P 500 index (VOO). Additionally, it offers analysis tools to help you understand historical performance, recent trends, and expected future performance.</p>
+    <div class="content-wrapper">
+        <div class="left-panel">
+            <div class="sort-options">
+                <span id="rankAlphaToggle" class="active">Rank</span>
+                <span id="favFilter" class="heart" title="Show Favorites">❤</span>
+            </div>
+            
+            <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
+        </div>
 
-        <ul>
-            <li><strong>Cumulative Total Return:</strong> Tracks the stock's total return compared to VOO.</li>
-            <li><strong>Divergence:</strong> Measures the performance gap between the stock and the S&P 500 over time.</li>
-            <li><strong>Relative Divergence:</strong> Highlights the stock's position within its historical divergence range.</li>
-            <li><strong>Expected Return:</strong> Projects the likely future performance over a 5 to 10-year period.</li>
-        </ul>
-
-        <h2>How It Works</h2>
-        <ol>
-            <li><strong>Monthly Investment Simulation:</strong>  
-                The project simulates a consistent monthly investment in both the target stock and the S&P 500 (VOO). Over time, it compares the cumulative returns of both.
-            </li>
-            <li><strong>Performance Metrics & Graphs:</strong>  
-                The backtest generates multiple graphs and key performance metrics:
-                <div align="center">
-                    <img src="./static/images/comparison_AAPL_VOO.png" alt="AAPL vs VOO Cumulative Return Comparison" width="500"/>
-                </div>
-            </li>
-            <li><strong>Recent Trends & Technical Analysis:</strong>
-                <div align="center">
-                    <img src="./static/images/result_mpl_AAPL.png" alt="AAPL 6-Month Performance" width="500"/>
-                </div>
-            </li>
-        </ol>
-
-        <h2>Additional Information</h2>
-        <p><strong>Recent News & Analyst Opinions:</strong> The system aggregates recent news and analyst reports, providing insights into market sentiment for the stock.</p>
-        <p><strong>Sector Trends:</strong> Using divergence analysis, the system highlights hot and underperforming sectors based on current trends and Expected Return.</p>
+        <div class="right-panel">
+            <div id="fixedGraph" class="fixed-graph"></div> <!-- 첫 번째 고정 그래프 -->
+            
+            <div id="scrollableContent" class="scrollable-section">
+                <div id="scrollableGraph" class="scrollable-graph"></div> <!-- 나머지 스크롤되는 그래프 -->
+                <div id="reportSection" class="report-content"></div> <!-- 리포트 내용 -->
+            </div>
+        </div>
     </div>
+
+    <!-- External JavaScript -->
+    <script src="scripts.js"></script>
 </body>
 </html>
