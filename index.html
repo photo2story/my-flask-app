@@ -20,7 +20,8 @@
 
 <body>
     <header class="main-header">
-        <h1>Stock Comparison Review</h1>
+        <!-- 플러터에서 했던 것처럼 두 개의 다른 크기 텍스트를 사용 -->
+        <h1><span class="large-text">Stock Analysis AI,</span><br><span class="small-text">Backtesting & Beat the S&P 500</span></h1>
         <span id="helpIcon" title="View README" style="font-size: 12px; cursor: pointer;">❓</span> 
     </header>
 
@@ -28,7 +29,6 @@
         <div class="left-panel">
             <div class="sort-options">
                 <span id="rankAlphaToggle" class="active">Rank</span>
-                <span id="favFilter" class="heart" title="Show Favorites">❤</span>
             </div>
             
             <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
