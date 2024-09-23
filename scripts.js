@@ -54,21 +54,21 @@ $(function () {
 
     function fetchImagesAndReport(stockTicker) {
         $('#loading').show();
-        $('#fixedGraph').empty();
-        $('#scrollableGraph').empty();
-        $('#reportSection').empty();
+        $('#fixedGraph').empty(); // 고정된 첫 번째 그래프 초기화
+        $('#scrollableGraph').empty(); // 스크롤 섹션 내의 두 번째 그래프 초기화
+        $('#reportSection').empty(); // 리포트 섹션 초기화
 
         const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_${stockTicker}_VOO.png`;
         const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
         const reportApiUrl = `https://api.github.com/repos/photo2story/my-flask-app/contents/static/images/report_${stockTicker}.txt`;
 
-        // 고정 그래프 이미지 표시
+        // 고정 그래프 이미지 표시 (첫 번째 그래프는 고정된 영역에 삽입)
         $('#fixedGraph').html(
             `<img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image zoomable-image">`
         );
 
-        // 스크롤 그래프 이미지 표시
-        $('#scrollableGraph').html(
+        // 스크롤 섹션에 두 번째 그래프 표시
+        $('#scrollableGraph').append(
             `<img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image zoomable-image">`
         );
 
@@ -111,32 +111,32 @@ $(function () {
     });
 
     // (?) 아이콘 클릭 시 GitHub README 파일 로드
-$('#helpIcon').on('click', function () {
-    const readmeUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/README.md';
-    $.ajax({
-        url: readmeUrl,
-        type: 'GET',
-        success: function(data) {
-            const htmlContent = marked.parse(data); // markdown 내용을 HTML로 변환
-            const newTab = window.open();
-            newTab.document.write(`
-                <html>
-                    <head>
-                        <title>README</title>
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
-                    </head>
-                    <body class="markdown-body" style="padding: 20px;">
-                        ${htmlContent}
-                    </body>
-                </html>
-            `);
-            newTab.document.close();
-        },
-        error: function() {
-            alert('Failed to load README file.');
-        }
+    $('#helpIcon').on('click', function () {
+        const readmeUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/README.md';
+        $.ajax({
+            url: readmeUrl,
+            type: 'GET',
+            success: function(data) {
+                const htmlContent = marked.parse(data); 
+                const newTab = window.open();
+                newTab.document.write(`
+                    <html>
+                        <head>
+                            <title>README</title>
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+                        </head>
+                        <body class="markdown-body" style="padding: 20px;">
+                            ${htmlContent}
+                        </body>
+                    </html>
+                `);
+                newTab.document.close();
+            },
+            error: function() {
+                alert('Failed to load README file.');
+            }
+        });
     });
-});
 
     fetchCSV();
 });
