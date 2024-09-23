@@ -56,7 +56,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     height: 100%;
-    overflow-y: auto;
+    overflow-y: hidden; /* 전체 패널이 스크롤되지 않도록 설정 */
     box-sizing: border-box;
 }
 
@@ -88,7 +88,7 @@ img {
 
 .scrollable-section {
     flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* 스크롤 가능하도록 변경 */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -113,7 +113,7 @@ img {
     box-sizing: border-box;
     white-space: pre-wrap;
     line-height: 1.5;
-    overflow-y: auto; /* 스크롤 가능하도록 변경 */
+    overflow-y: auto;
 }
 
 .ticker-list {
@@ -130,7 +130,7 @@ img {
 }
 
 .ticker-item:hover {
-    background-color: #444; /* 마우스 오버 시 배경색 변경 */
+    background-color: #444; 
 }
 
 .sort-options {
@@ -147,7 +147,6 @@ img {
     width: 0;
 }
 
-/* Help icon 스타일 추가 */
 #helpIcon {
     cursor: pointer;
     font-size: 18px;
