@@ -36,8 +36,6 @@ $(function () {
         $('#tickerList').empty();
         rankedTickers.forEach(ticker => {
             const [rank, tickerName] = ticker.split(':');
-
-            // 알파벳 순 정렬 시 랭킹 숫자 없이 티커명만 표시
             const displayText = isRanked ? `${rank}:${tickerName}` : `${tickerName}`;
 
             $('#tickerList').append(
@@ -74,6 +72,9 @@ $(function () {
             `<img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image zoomable-image">`
         );
 
+        // 이미지 클릭 시 새 창에서 보기 기능 추가
+        enableImageZoom();
+
         // 보고서 내용 로드
         $.ajax({
             url: reportApiUrl,
@@ -92,6 +93,14 @@ $(function () {
             complete: function() {
                 $('#loading').hide();
             }
+        });
+    }
+
+    // 이미지 확대 기능 추가
+    function enableImageZoom() {
+        $('.zoomable-image').off('click').on('click', function () {
+            const imageUrl = $(this).attr('src');
+            window.open(imageUrl, '_blank', 'width=800,height=600'); // 새 창에서 이미지 보기
         });
     }
 
