@@ -23,12 +23,12 @@ body {
 }
 
 .large-text {
-    font-size: 14px; 
+    font-size: 14px; /* 큰 글씨 */
     font-weight: bold;
 }
 
 .small-text {
-    font-size: 8px; 
+    font-size: 8px; /* 작은 글씨 */
 }
 
 .content-wrapper {
@@ -49,7 +49,7 @@ body {
 }
 
 .right-panel {
-    width: 80%;
+    width: 100%;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -63,7 +63,7 @@ body {
 img {
     width: auto;
     height: auto;
-    max-width: 90%; /* 이미지의 크기를 오른쪽 패널의 90%로 제한 */
+    max-width: 100%;
     max-height: 300px;
     aspect-ratio: 4 / 3;
     margin: 0 auto;
@@ -80,7 +80,7 @@ img {
     padding: 5px;
     box-sizing: border-box;
     max-height: 300px;
-    min-height: 200px;
+    min-height: 200px
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -109,11 +109,10 @@ img {
     padding: 10px;
     background-color: #000;
     color: #fff;
-    margin-top: 10px;
+    margin-top: 1px;
     box-sizing: border-box;
     white-space: pre-wrap;
-    line-height: 1.5;
-    overflow-y: auto; /* 스크롤 가능하도록 변경 */
+    line-height: 1.5; 
 }
 
 .ticker-list {
@@ -126,11 +125,6 @@ img {
     justify-content: space-between;
     padding: 2px 0;
     cursor: pointer;
-    color: cyan;
-}
-
-.ticker-item:hover {
-    background-color: #444; /* 마우스 오버 시 배경색 변경 */
 }
 
 .sort-options {
@@ -151,14 +145,14 @@ img {
 #helpIcon {
     cursor: pointer;
     font-size: 18px;
-    color: #00ff00; 
+    color: #00ff00; /* 아이콘 색상 설정 */
     position: absolute;
-    top: 10px; 
-    right: 10px; 
+    top: 10px; /* 상단에 고정 */
+    right: 10px; /* 오른쪽에 고정 */
     padding: 5px;
     transition: color 0.3s;
 }
 
 #helpIcon:hover {
-    color: #ff0000;
+    color: #ff0000; /* 마우스 오버 시 색상 변경 */
 }
