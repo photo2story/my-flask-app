@@ -1,0 +1,158 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-header {
+    text-align: left;
+    background-color: #333;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.large-text {
+    font-size: 24px; 
+    font-weight: bold;
+}
+
+.small-text {
+    font-size: 14px; 
+}
+
+#helpIcon {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.content-wrapper {
+    display: flex;
+    height: calc(100vh - 70px);
+    width: 100%;
+}
+
+.left-panel {
+    width: 15%;
+    padding: 10px;
+    background-color: #012;
+    color: #ccc;
+    overflow-y: auto;
+    font-size: 0.7rem;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.middle-panel {
+    width: 45%;
+    padding: 10px;
+    background-color: #111;
+    overflow-y: auto;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.right-panel {
+    width: 40%;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #000;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.scrollable-section {
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.scrollable-graph {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1200px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .middle-panel,
+    .right-panel {
+        width: 100%;
+        height: calc(50vh - 35px);
+        padding: 10px;
+        overflow-y: auto;
+    }
+}
+/* 기존 코드에서 추가 및 수정 부분 */
+
+/* Rank/Alpha 버튼 스타일 */
+#rankAlphaToggle {
+    cursor: pointer; /* 손가락 모양 커서 */
+    font-size: 1rem; /* 글씨 크기를 16px 정도로 설정 */
+    margin-bottom: 10px; /* 아래쪽에 간격 10px 추가 */
+}
+
+.ticker-item {
+    cursor: pointer; /* 티커 항목에 손가락 모양 커서 */
+}
+
+.ticker-list {
+    padding: 5px;
+}
+
+.sort-options {
+    padding-bottom: 10px; /* Rank/Alpha 버튼과 티커 목록 사이 간격 */
+}
+
+/* 스크롤바를 숨기기 위한 CSS */
+::-webkit-scrollbar {
+    width: 0; /* 스크롤바의 너비를 0으로 설정하여 보이지 않도록 함 */
+    height: 0;
+}
+
+.scrollable-section {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.left-panel, .right-panel, .middle-panel {
+    overflow-y: auto;
+}
