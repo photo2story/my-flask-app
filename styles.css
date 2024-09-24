@@ -15,34 +15,20 @@ body {
     background-color: #333;
     padding: 0;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     height: 70px;
     box-sizing: border-box;
     padding: 0 20px;
 }
 
-.header-left {
-    display: flex;
-    align-items: center;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-}
-
 .large-text {
-    font-size: 24px; 
+    font-size: 19px; /* 큰 글씨 */
     font-weight: bold;
 }
 
 .small-text {
-    font-size: 14px; 
-}
-
-#helpIcon {
-    font-size: 16px;
-    cursor: pointer;
+    font-size: 10px; /* 작은 글씨 */
 }
 
 .content-wrapper {
@@ -52,7 +38,7 @@ body {
 }
 
 .left-panel {
-    width: 15%;
+    width: 20%;
     padding: 10px;
     background-color: #012;
     color: #ccc;
@@ -62,24 +48,42 @@ body {
     box-sizing: border-box;
 }
 
-.middle-panel {
-    width: 45%;
-    padding: 10px;
-    background-color: #111;
-    overflow-y: auto;
-    color: #fff;
-    box-sizing: border-box;
-}
-
 .right-panel {
-    width: 40%;
-    padding: 10px;
-    overflow-y: auto;
-    background-color: #000;
-    box-sizing: border-box;
+    width: 80%;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 500px;
+    aspect-ratio: 4 / 3;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+.fixed-graph {
+    position: sticky;
+    top: 0;
+    background-color: #000;
+    z-index: 10;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    max-height: 500px;
+    min-height: 200px
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .scrollable-section {
@@ -96,114 +100,43 @@ body {
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
-    margin: 0 auto;
+    margin-bottom: 5px;
     max-height: 500px;
-    display: flex;
-    justify-content: center;
 }
 
-/* PC 화면 */
-@media (min-width: 1200px) {
-    .content-wrapper {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .left-panel {
-        width: 15%;
-        height: 100%;
-    }
-
-    .middle-panel {
-        width: 45%;
-        height: 100%;
-    }
-
-    .right-panel {
-        width: 40%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-/* 모바일 화면 (종방향) */
-@media (max-width: 1199px) {
-    .content-wrapper {
-        display: flex;
-        flex-direction: column; /* 수직 방향으로 정렬 */
-    }
-
-    .left-panel {
-        width: 100%; /* 가로 전체 차지 */
-        height: auto;
-    }
-
-    .middle-panel {
-        width: 100%;
-        height: auto;
-    }
-
-    .right-panel {
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* 고정된 그래프 */
-    .fixed-graph {
-        max-height: 300px;
-        width: 100%; 
-        overflow: hidden;
-    }
-
-    /* 스크롤되는 그래프 */
-    .scrollable-section {
-        width: 100%;
-        max-height: 500px; 
-        overflow-y: auto;
-    }
-
-    .scrollable-graph {
-        max-width: 100%; 
-        margin-bottom: 10px; 
-        display: flex;
-        justify-content: center;
-    }
-}
-
-/* Rank/Alpha 버튼 스타일 */
-#rankAlphaToggle {
-    cursor: pointer;
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-.ticker-item {
-    cursor: pointer;
+.report-content {
+    width: 100%;
+    padding: 5px;
+    background-color: #000;
+    color: #fff;
+    margin-top: 1px;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    line-height: 1.2; 
 }
 
 .ticker-list {
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ticker-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+    cursor: pointer;
 }
 
 .sort-options {
-    padding-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
-/* 스크롤바를 숨기기 위한 CSS */
+#rankAlphaToggle {
+    cursor: pointer;
+}
+
 ::-webkit-scrollbar {
-    width: 0; /* 스크롤바의 너비를 0으로 설정하여 보이지 않도록 함 */
-    height: 0;
-}
-
-.scrollable-section {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-.left-panel, .right-panel, .middle-panel {
-    overflow-y: auto;
+    width: 0;
 }
