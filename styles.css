@@ -23,12 +23,12 @@ body {
 }
 
 .large-text {
-    font-size: 14px; 
+    font-size: 19px; /* 큰 글씨 */
     font-weight: bold;
 }
 
 .small-text {
-    font-size: 8px; 
+    font-size: 10px; /* 작은 글씨 */
 }
 
 .content-wrapper {
@@ -49,22 +49,21 @@ body {
 }
 
 .right-panel {
-    width: 80%;
     padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     height: 100%;
-    overflow-y: hidden; /* 전체 패널이 스크롤되지 않도록 설정 */
+    overflow-y: auto;
     box-sizing: border-box;
 }
 
 img {
     width: auto;
     height: auto;
-    max-width: 90%; /* 이미지의 크기를 오른쪽 패널의 90%로 제한 */
-    max-height: 300px;
+    max-width: 100%;
+    max-height: 500px;
     aspect-ratio: 4 / 3;
     margin: 0 auto;
     display: block;
@@ -79,8 +78,8 @@ img {
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
-    max-height: 300px;
-    min-height: 200px;
+    max-height: 500px;
+    min-height: 200px
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -88,7 +87,7 @@ img {
 
 .scrollable-section {
     flex-grow: 1;
-    overflow-y: auto; /* 스크롤 가능하도록 변경 */
+    overflow-y: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -101,19 +100,18 @@ img {
     padding: 5px;
     box-sizing: border-box;
     margin-bottom: 5px;
-    max-height: 300px;
+    max-height: 500px;
 }
 
 .report-content {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     background-color: #000;
     color: #fff;
-    margin-top: 10px;
+    margin-top: 1px;
     box-sizing: border-box;
     white-space: pre-wrap;
-    line-height: 1.5;
-    overflow-y: auto;
+    line-height: 1.5; 
 }
 
 .ticker-list {
@@ -126,11 +124,6 @@ img {
     justify-content: space-between;
     padding: 2px 0;
     cursor: pointer;
-    color: cyan;
-}
-
-.ticker-item:hover {
-    background-color: #444; 
 }
 
 .sort-options {
@@ -145,19 +138,4 @@ img {
 
 ::-webkit-scrollbar {
     width: 0;
-}
-
-#helpIcon {
-    cursor: pointer;
-    font-size: 18px;
-    color: #00ff00; 
-    position: absolute;
-    top: 10px; 
-    right: 10px; 
-    padding: 5px;
-    transition: color 0.3s;
-}
-
-#helpIcon:hover {
-    color: #ff0000;
 }
