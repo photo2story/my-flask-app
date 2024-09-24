@@ -36,8 +36,6 @@ $(function () {
         $('#tickerList').empty();
         rankedTickers.forEach(ticker => {
             const [rank, tickerName] = ticker.split(':');
-
-            // 알파벳 순 정렬 시 랭킹 숫자 없이 티커명만 표시
             const displayText = isRanked ? `${rank}:${tickerName}` : `${tickerName}`;
 
             $('#tickerList').append(
@@ -47,7 +45,6 @@ $(function () {
             );
         });
 
-        // 티커 클릭 이벤트 처리
         $('.ticker-item').off('click').on('click', function (e) {
             const ticker = $(this).data('ticker');
             fetchImagesAndReport(ticker);
@@ -64,17 +61,14 @@ $(function () {
         const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
         const reportApiUrl = `https://api.github.com/repos/photo2story/my-flask-app/contents/static/images/report_${stockTicker}.txt`;
 
-        // 고정 그래프 이미지 표시
         $('#fixedGraph').html(
             `<img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image zoomable-image">`
         );
 
-        // 스크롤 그래프 이미지 표시
         $('#scrollableGraph').html(
             `<img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image zoomable-image">`
         );
 
-        // 보고서 내용 로드
         $.ajax({
             url: reportApiUrl,
             type: 'GET',
@@ -100,6 +94,22 @@ $(function () {
         $(this).text(isRanked ? 'Rank' : 'Alpha');
         sortTickers();
     });
+
+    $(window).on('resize', function() {
+        if ($(window).width() < 1200) {
+            $('.content-wrapper').css('flex-direction', 'column');
+            $('.left-panel').css({ 'width': '100%', 'height': 'auto' });
+            $('.middle-panel').css({ 'width': '100%', 'height': 'auto' });
+            $('.right-panel').css({ 'width': '100%', 'height': 'auto' });
+            $('.scrollable-graph').css('max-width', '100%');
+        } else {
+            $('.content-wrapper').css('flex-direction', 'row');
+            $('.left-panel').css({ 'width': '15%', 'height': '100%' });
+            $('.middle-panel').css({ 'width': '45%', 'height': '100%' });
+            $('.right-panel').css({ 'width': '40%', 'height': '100%' });
+            $('.scrollable-graph').css('max-width', '100%');
+        }
+    }).trigger('resize');
 
     fetchCSV();
 });
