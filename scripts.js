@@ -4,28 +4,17 @@ $(function () {
     let isRanked = true; 
     let rankedTickers = []; 
 
-    function showError(message) {
-        alert(message); // 사용자에게 오류 메시지 표시
-        $('#loading').hide();
-    }
-
     function fetchCSV() {
         Papa.parse(csvUrl, {
             download: true,
             header: true,
             complete: function (results) {
-                if (results.errors.length > 0) {
-                    console.error('CSV Parsing Errors:', results.errors);
-                    showError('Error parsing CSV data.');
-                    return;
-                }
                 rankedTickers = results.data.map(row => `${row.Rank}:${row.Ticker}`);
                 sortTickers();
                 fetchImagesAndReport(defaultTicker);
             },
             error: function (error) {
                 console.error('Error while fetching CSV:', error);
-                showError('Failed to fetch CSV data.');
             }
         });
     }
@@ -59,7 +48,7 @@ $(function () {
         });
 
         // 티커 클릭 이벤트 처리
-        $('.ticker-item').off('click').on('click', function () {
+        $('.ticker-item').off('click').on('click', function (e) {
             const ticker = $(this).data('ticker');
             fetchImagesAndReport(ticker);
         });
@@ -110,34 +99,6 @@ $(function () {
         isRanked = !isRanked;
         $(this).text(isRanked ? 'Rank' : 'Alpha');
         sortTickers();
-    });
-
-    // (?) 아이콘 클릭 시 GitHub README 파일 로드
-    $('#helpIcon').on('click', function () {
-        const readmeUrl = 'https://raw.githubusercontent.com/photo2story/my-flask-app/main/README.md';
-        $.ajax({
-            url: readmeUrl,
-            type: 'GET',
-            success: function(data) {
-                const htmlContent = marked.parse(data); // markdown 내용을 HTML로 변환
-                const newTab = window.open();
-                newTab.document.write(`
-                    <html>
-                        <head>
-                            <title>README</title>
-                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
-                        </head>
-                        <body class="markdown-body" style="padding: 20px;">
-                            ${htmlContent}
-                        </body>
-                    </html>
-                `);
-                newTab.document.close();
-            },
-            error: function() {
-                showError('Failed to load README file.');
-            }
-        });
     });
 
     fetchCSV();
