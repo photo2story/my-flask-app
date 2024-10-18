@@ -9,7 +9,11 @@ $(function () {
             download: true,
             header: true,
             complete: function (results) {
-                rankedTickers = results.data.map(row => `${row.Rank}:${row.Ticker}`);
+                rankedTickers = results.data.map(row => ({
+                    rank: row.Rank,
+                    ticker: row.Ticker,
+                    delta_previous_relative_divergence: parseFloat(row.Delta_Previous_Relative_Divergence) // Delta_Previous_Relative_Divergence 값 추가
+                }));
                 sortTickers();
                 fetchImagesAndReport(defaultTicker);
             },
@@ -21,27 +25,31 @@ $(function () {
 
     function sortTickers() {
         if (isRanked) {
-            rankedTickers.sort((a, b) => {
-                const rankA = parseInt(a.split(':')[0], 10);
-                const rankB = parseInt(b.split(':')[0], 10);
-                return rankA - rankB;
-            });
+            rankedTickers.sort((a, b) => a.rank - b.rank);
         } else {
-            rankedTickers.sort((a, b) => a.split(':')[1].localeCompare(b.split(':')[1]));
+            rankedTickers.sort((a, b) => a.ticker.localeCompare(b.ticker));
         }
         displayTickers(); 
     }
 
     function displayTickers() {
         $('#tickerList').empty();
-        rankedTickers.forEach(ticker => {
-            const [rank, tickerName] = ticker.split(':');
+        rankedTickers.forEach(tickerData => {
+            const { rank, ticker, delta_previous_relative_divergence } = tickerData;
+
+            // 글씨 색깔을 Delta_Previous_Relative_Divergence 값에 따라 설정
+            let textColor = 'white'; // 기본값: 흰색
+            if (delta_previous_relative_divergence > 0) {
+                textColor = 'green'; // 양수일 경우 녹색
+            } else if (delta_previous_relative_divergence < 0) {
+                textColor = 'red'; // 음수일 경우 빨간색
+            }
 
             // 알파벳 순 정렬 시 랭킹 숫자 없이 티커명만 표시
-            const displayText = isRanked ? `${rank}:${tickerName}` : `${tickerName}`;
+            const displayText = isRanked ? `${rank}:${ticker}` : `${ticker}`;
 
             $('#tickerList').append(
-                `<div class="ticker-item" data-ticker="${tickerName}">
+                `<div class="ticker-item" data-ticker="${ticker}" style="color:${textColor};">
                     <span>${displayText}</span>
                 </div>`
             );
@@ -103,6 +111,8 @@ $(function () {
 
     fetchCSV();
 });
+
+
 
 // (?) 아이콘 클릭 시 GitHub README 파일 로드
 $('#helpIcon').on('click', function () {
