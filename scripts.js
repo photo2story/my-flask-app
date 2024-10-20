@@ -42,7 +42,7 @@ $(function () {
             if (delta_previous_relative_divergence > 0) {
                 textColor = 'green'; // 양수일 경우 녹색
             } else if (delta_previous_relative_divergence < 0) {
-                textColor = 'red'; // 음수일 경우 빨간색
+                textColor = '#FF6F61'; // 음수일 경우 빨간색
             }
 
             // 알파벳 순 정렬 시 랭킹 숫자 없이 티커명만 표시
