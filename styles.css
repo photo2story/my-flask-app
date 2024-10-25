@@ -36,9 +36,10 @@ body {
     width: 100%;
 }
 
+/* 왼쪽 패널 폭 조정 */
 .left-panel {
-    width: 20%;
-    padding: 10px;
+    width: 10%;  /* 20%에서 10%로 감소 */
+    padding: 8px;  /* 패딩도 약간 줄임 */
     background-color: #012;
     color: #ccc;
     overflow-y: auto;
@@ -48,20 +49,21 @@ body {
 }
 
 .right-panel {
-    width: 80%;
-    padding: 5px;
+    width: 90%;
+    padding: 10px;
     display: flex;
     height: 100%;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* 이미지 스타일 */
+/* 이미지와 그래프 관련 스타일 수정 */
 img {
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;    /* 부모 컨테이너 높이에 맞춤 */
     max-width: 100%;
-    max-height: 500px;
-    aspect-ratio: 4 / 3;
+    object-fit: contain;  /* 비율 유지하면서 컨테이너에 맞춤 */
     margin: 0 auto;
     display: block;
     cursor: pointer;
@@ -72,21 +74,28 @@ img {
     background-color: #000;
     padding: 5px;
     box-sizing: border-box;
-    max-height: 500px;
-    min-height: 200px;
+    width: 100%;
+    /*height: calc(100vh - 200px);  /* 뷰포트 높이 기준으로 고정 높이 설정 */
+    min-height: 550px;            /* 최소 높이 보장 */
     overflow: hidden;
     display: flex;
     justify-content: center;
+    align-items: flex-start;  /* 상단 정렬 */
+    align-items: center;
+    
 }
 
 /* 스크롤 섹션 */
 .scrollable-section {
     flex-grow: 1;
+    width: 100%;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;  /* 상단 정렬 */
     align-items: center;
     box-sizing: border-box;
+    padding-top: 5px;  /* 상단 여백 추가로 고정 그래프와 일치 */
 }
 
 .scrollable-graph {
@@ -94,18 +103,41 @@ img {
     padding: 5px;
     box-sizing: border-box;
     margin-bottom: 5px;
-    max-height: 500px;
+    /*aspect-ratio: 16 / 9;  /* 스크롤 그래프도 동일한 비율 적용 */
 }
 
+/* 리포트 컨텐츠 텍스트 겹침 해결 */
 .report-content {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     background-color: #000;
     color: #fff;
     margin-top: 1px;
     box-sizing: border-box;
     white-space: pre-wrap;
+    line-height: 1.3;  /* 1.2에서 1.3로 증가 */
+}
+
+.report-content h1 {
+    font-size: 24px;
+    margin-bottom: 5px;  /* 10px에서 5px로 줄임 */
+    padding-bottom: 5px;
+}
+
+.report-content h2 {
+    font-size: 20px;
+    color: #4a9eff;
+    margin-top: 8px;    /* 15px에서 8px로 줄임 */
+    margin-bottom: 8px; /* 15px에서 8px로 줄임 */
+    padding-bottom: 3px;
     line-height: 1.2;
+    font-weight: 500;
+}
+
+.report-content p {
+    margin-bottom: 5px;  /* 10px에서 5px로 줄임 */
+    line-height: 1.3;   /* 1.5에서 1.3으로 줄임 */
+    color: #ccc;
 }
 
 /* 티커 리스트 스타일 */
@@ -136,228 +168,59 @@ img {
 }
 
 /* 반응형 레이아웃 */
-/* 세로 화면 (width가 768px 이하일 때) */
-@media screen and (max-width: 768px) {
+/* 더 큰 화면에서도 왼쪽 패널 폭 유지 */
+@media screen and (min-width: 1200px) {
     .left-panel {
-        width: 20%;
+        width: 5%;  /* 12%에서 8%로 추가 감소 */
     }
 
     .right-panel {
-        width: 80%;
-        flex-direction: column;
-    }
-
-    .fixed-graph {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        z-index: 10;
-    }
-
-    .scrollable-section {
-        width: 100%;
+        width: 95%;  /* 왼쪽 패널 감소에 맞춰 조정 */
     }
 }
 
-/* 가로 화면 (width가 768px 초과일 때) */
-@media screen and (min-width: 769px) {
-    .right-panel {
-        flex-direction: row;
+/* 가로 화면 최적화 */
+/* 모바일 화면에서의 조정 */
+@media screen and (max-width: 768px) {
+    .left-panel {
+        width: 17%;  /* 10%에서 8%로 감소 */
     }
 
+    .right-panel {
+        width: 83%;
+        flex-direction: column;
+    }
+}
+
+/* 모바일 화면에서의 조정 */
+@media screen and (max-width: 768px) {
+    .fixed-graph {
+        height: calc(100vh - 200px);  /* 모바일에서는 약간 더 작게 */
+        min-height: 350px;
+    }
+}
+
+/* 반응형 레이아웃 유지 */
+@media screen and (min-width: 769px) {
     .fixed-graph-container {
         width: 50%;
         padding: 5px;
         box-sizing: border-box;
+        height: 100%;  /* 부모 높이에 맞춤 */
     }
-
+    
     .fixed-graph {
-        position: sticky;
-        top: 0;
+        height: calc(100vh - 100px);  /* 데스크톱에서는 더 큰 높이 */
     }
-
-    .scrollable-section {
-        width: 50%;
-        border-left: 1px solid #333;
-    }
-}
-
-/* 리포트 섹션 기본 스타일 */
-.report-content {
-    width: 100%;
-    padding: 10px;
-    background-color: #000;
-    color: #fff;
-    box-sizing: border-box;
-    line-height: 1.6;
-    font-size: 16px;
-}
-
-/* 리포트 제목 스타일 */
-.report-content h1 {
-    font-size: 24px;
-    color: #fff;
-    border-bottom: 0px solid #333;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-    font-weight: 600;
-}
-
-/* 날짜 표시 스타일 */
-.report-content h2:first-of-type {
-    font-size: 25px;
-    color: #fff;
-    margin-bottom: 0px;
-    font-weight: 500;
-}
-
-/* 섹션 제목 스타일 */
-.report-content h2 {
-    font-size: 20px;
-    color: #4a9eff;
-    margin-top: 0px;
-    margin-bottom: 0px; /* 제목과 본문 사이의 간격을 줄입니다 */
-    padding-bottom: 0px; /* 추가 패딩이 없도록 설정 */
-    line-height: 0; /* 줄 간격을 줄여줍니다 */
-    font-weight: 500;
-}
-
-/* 섹션 구분선 */
-.report-content hr {
-    border: none;
-    border-top: 1px solid #333;
-    margin: 20px 0;
-}
-
-/* 본문 텍스트 */
-.report-content p {
-    margin-bottom: 0px;
-    line-height: 0;
-    color: #ccc;
-}
-
-/* 강조 텍스트 */
-.report-content strong {
-    color: #fff;
-    font-weight: 600;
-}
-
-/* 목록 스타일 */
-.report-content ul, 
-.report-content ol {
-    padding-left: 20px;
-    margin-bottom: 0px;
-}
-
-.report-content li {
-    margin-bottom: 0px;
-    color: #ccc;
-}
-
-/* 인용문 스타일 */
-.report-content blockquote {
-    border-left: 4px solid #4a9eff;
-    padding-left: 15px;
-    margin: 5px 0;
-    color: #888;
-}
-
-/* 코드 블록 */
-.report-content code {
-    background-color: #1a1a1a;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 14px;
-}
-
-/* 표 스타일 */
-.report-content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0;
-}
-
-.report-content th,
-.report-content td {
-    padding: 3px;
-    border: 1px solid #333;
-    text-align: center;
-}
-
-.report-content th {
-    background-color: #1a1a1a;
-    color: #fff;
-}
-
-/* 링크 스타일 */
-.report-content a {
-    color: #4a9eff;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.report-content a:hover {
-    color: #66b1ff;
-    text-decoration: underline;
-}
-
-/* 중요 수치 강조 */
-.report-content .highlight {
-    color: #4a9eff;
-    font-weight: 600;
-}
-
-/* 섹션 번호 스타일 */
-.report-content h2::before {
-    content: attr(data-number) ". ";
-    color: #4a9eff;
-    font-weight: 600;
-    margin: 4px; /* 오른쪽 여백을 줄입니다 */
-    padding: 0px; /* 추가 패딩이 없도록 설정 */
-}
-
-/* 모바일 반응형 */
-@media screen and (max-width: 768px) {
-    .report-content {
-        padding: 10px;
-        font-size: 13px;
-    }
-
-    .report-content h1 {
-        font-size: 20px;
-    }
-
-    .report-content h2 {
-        font-size: 16px;
-    }
-}
-
-/* 스크롤바 스타일 */
-.report-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.report-content::-webkit-scrollbar-track {
-    background: #1a1a1a;
-}
-
-.report-content::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
-}
-
-.report-content::-webkit-scrollbar-thumb:hover {
-    background: #444;
 }
 
 /* 더 큰 화면에서의 최적화 */
 @media screen and (min-width: 1200px) {
     .left-panel {
-        width: 15%;
+        width: 12%;  /* 15%에서 12%로 추가 감소 */
     }
 
     .right-panel {
-        width: 85%;
+        width: 88%;  /* 왼쪽 패널 감소에 맞춰 조정 */
     }
 }
