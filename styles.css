@@ -1,4 +1,4 @@
-/* 기본 스타일 */
+/* 기본 스타일 유지 */
 body {
     font-family: Arial, sans-serif;
     background-color: #000;
@@ -13,22 +13,21 @@ body {
 .main-header {
     text-align: left;
     background-color: #333;
-    padding: 0;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 70px;
     box-sizing: border-box;
-    padding: 0 20px;
 }
 
 .large-text {
-    font-size: 19px; /* 큰 글씨 */
+    font-size: 19px;
     font-weight: bold;
 }
 
 .small-text {
-    font-size: 10px; /* 작은 글씨 */
+    font-size: 10px;
 }
 
 .content-wrapper {
@@ -52,14 +51,11 @@ body {
     width: 80%;
     padding: 5px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     height: 100%;
-    overflow-y: auto;
     box-sizing: border-box;
 }
 
+/* 이미지 스타일 */
 img {
     width: auto;
     height: auto;
@@ -71,25 +67,22 @@ img {
     cursor: pointer;
 }
 
+/* 고정 그래프 컨테이너 */
 .fixed-graph {
-    position: sticky;
-    top: 0;
     background-color: #000;
-    z-index: 10;
-    width: 100%;
     padding: 5px;
     box-sizing: border-box;
     max-height: 500px;
-    min-height: 200px
+    min-height: 200px;
     overflow: hidden;
     display: flex;
     justify-content: center;
 }
 
+/* 스크롤 섹션 */
 .scrollable-section {
     flex-grow: 1;
     overflow-y: auto;
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,9 +105,10 @@ img {
     margin-top: 1px;
     box-sizing: border-box;
     white-space: pre-wrap;
-    line-height: 1.2; 
+    line-height: 1.2;
 }
 
+/* 티커 리스트 스타일 */
 .ticker-list {
     display: flex;
     flex-direction: column;
@@ -139,4 +133,62 @@ img {
 
 ::-webkit-scrollbar {
     width: 0;
+}
+
+/* 반응형 레이아웃 */
+/* 세로 화면 (width가 768px 이하일 때) */
+@media screen and (max-width: 768px) {
+    .left-panel {
+        width: 30%;
+    }
+
+    .right-panel {
+        width: 70%;
+        flex-direction: column;
+    }
+
+    .fixed-graph {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .scrollable-section {
+        width: 100%;
+    }
+}
+
+/* 가로 화면 (width가 768px 초과일 때) */
+@media screen and (min-width: 769px) {
+    .right-panel {
+        flex-direction: row;
+    }
+
+    .fixed-graph-container {
+        width: 50%;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .fixed-graph {
+        position: sticky;
+        top: 0;
+    }
+
+    .scrollable-section {
+        width: 50%;
+        border-left: 1px solid #333;
+    }
+}
+
+/* 더 큰 화면에서의 최적화 */
+@media screen and (min-width: 1200px) {
+    .left-panel {
+        width: 15%;
+    }
+
+    .right-panel {
+        width: 85%;
+    }
 }
