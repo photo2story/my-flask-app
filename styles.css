@@ -38,7 +38,7 @@ body {
 
 /* 왼쪽 패널 폭 조정 */
 .left-panel {
-    width: 10%;  /* 20%에서 10%로 감소 */
+    width: 5%;  /* 20%에서 10%로 감소 */
     padding: 8px;  /* 패딩도 약간 줄임 */
     background-color: #012;
     color: #ccc;
@@ -49,7 +49,7 @@ body {
 }
 
 .right-panel {
-    width: 90%;
+    width: 95%;
     padding: 10px;
     display: flex;
     height: 100%;
@@ -125,13 +125,13 @@ img {
 }
 
 .report-content h2 {
-    font-size: 20px;
+    font-size: 25px;
     color: #4a9eff;
     margin-top: 8px;    /* 15px에서 8px로 줄임 */
     margin-bottom: 8px; /* 15px에서 8px로 줄임 */
     padding-bottom: 3px;
     line-height: 1.2;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .report-content p {
@@ -171,11 +171,11 @@ img {
 /* 더 큰 화면에서도 왼쪽 패널 폭 유지 */
 @media screen and (min-width: 1200px) {
     .left-panel {
-        width: 5%;  /* 12%에서 8%로 추가 감소 */
+        width: 3%;  /* 12%에서 8%로 추가 감소 */
     }
 
     .right-panel {
-        width: 95%;  /* 왼쪽 패널 감소에 맞춰 조정 */
+        width: 97%;  /* 왼쪽 패널 감소에 맞춰 조정 */
     }
 }
 
@@ -217,10 +217,10 @@ img {
 /* 더 큰 화면에서의 최적화 */
 @media screen and (min-width: 1200px) {
     .left-panel {
-        width: 12%;  /* 15%에서 12%로 추가 감소 */
+        width: 5%;  /* 15%에서 12%로 추가 감소 */
     }
 
     .right-panel {
-        width: 88%;  /* 왼쪽 패널 감소에 맞춰 조정 */
+        width: 95%;  /* 왼쪽 패널 감소에 맞춰 조정 */
     }
 }
