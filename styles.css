@@ -12,22 +12,22 @@ body {
 
 .main-header {
     text-align: left;
-    background-color: #333;
+    background-color: #010;
     padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 60px;
     box-sizing: border-box;
 }
 
 .large-text {
-    font-size: 19px;
+    font-size: 25px;
     font-weight: bold;
 }
 
 .small-text {
-    font-size: 10px;
+    font-size: 13px;
 }
 
 .content-wrapper {
@@ -139,11 +139,11 @@ img {
 /* 세로 화면 (width가 768px 이하일 때) */
 @media screen and (max-width: 768px) {
     .left-panel {
-        width: 30%;
+        width: 20%;
     }
 
     .right-panel {
-        width: 70%;
+        width: 80%;
         flex-direction: column;
     }
 
@@ -197,7 +197,7 @@ img {
 .report-content h1 {
     font-size: 24px;
     color: #fff;
-    border-bottom: 2px solid #333;
+    border-bottom: 0px solid #333;
     padding-bottom: 0px;
     margin-bottom: 0px;
     font-weight: 600;
@@ -205,10 +205,10 @@ img {
 
 /* 날짜 표시 스타일 */
 .report-content h2:first-of-type {
-    font-size: 16px;
-    color: #888;
-    margin-bottom: 10px;
-    font-weight: 400;
+    font-size: 25px;
+    color: #fff;
+    margin-bottom: 0px;
+    font-weight: 500;
 }
 
 /* 섹션 제목 스타일 */
@@ -216,9 +216,9 @@ img {
     font-size: 20px;
     color: #4a9eff;
     margin-top: 0px;
-    margin-bottom: 5px; /* 제목과 본문 사이의 간격을 줄입니다 */
+    margin-bottom: 0px; /* 제목과 본문 사이의 간격을 줄입니다 */
     padding-bottom: 0px; /* 추가 패딩이 없도록 설정 */
-    line-height: 1.1; /* 줄 간격을 줄여줍니다 */
+    line-height: 0; /* 줄 간격을 줄여줍니다 */
     font-weight: 500;
 }
 
@@ -231,8 +231,8 @@ img {
 
 /* 본문 텍스트 */
 .report-content p {
-    margin-bottom: 15px;
-    line-height: 1.8;
+    margin-bottom: 0px;
+    line-height: 0;
     color: #ccc;
 }
 
@@ -246,11 +246,11 @@ img {
 .report-content ul, 
 .report-content ol {
     padding-left: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
 .report-content li {
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     color: #ccc;
 }
 
@@ -258,7 +258,7 @@ img {
 .report-content blockquote {
     border-left: 4px solid #4a9eff;
     padding-left: 15px;
-    margin: 15px 0;
+    margin: 5px 0;
     color: #888;
 }
 
@@ -280,7 +280,7 @@ img {
 
 .report-content th,
 .report-content td {
-    padding: 5px;
+    padding: 3px;
     border: 1px solid #333;
     text-align: center;
 }
@@ -313,8 +313,8 @@ img {
     content: attr(data-number) ". ";
     color: #4a9eff;
     font-weight: 600;
-    margin-right: 4px; /* 오른쪽 여백을 줄입니다 */
-    padding-right: 0px; /* 추가 패딩이 없도록 설정 */
+    margin: 4px; /* 오른쪽 여백을 줄입니다 */
+    padding: 0px; /* 추가 패딩이 없도록 설정 */
 }
 
 /* 모바일 반응형 */
