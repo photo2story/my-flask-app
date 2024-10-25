@@ -182,6 +182,175 @@ img {
     }
 }
 
+/* 리포트 섹션 기본 스타일 */
+.report-content {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    box-sizing: border-box;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* 리포트 제목 스타일 */
+.report-content h1 {
+    font-size: 24px;
+    color: #fff;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    font-weight: 600;
+}
+
+/* 날짜 표시 스타일 */
+.report-content h2:first-of-type {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+/* 섹션 제목 스타일 */
+.report-content h2 {
+    font-size: 20px;
+    color: #4a9eff;
+    margin-top: 0px;
+    margin-bottom: 5px; /* 제목과 본문 사이의 간격을 줄입니다 */
+    padding-bottom: 0px; /* 추가 패딩이 없도록 설정 */
+    line-height: 1.1; /* 줄 간격을 줄여줍니다 */
+    font-weight: 500;
+}
+
+/* 섹션 구분선 */
+.report-content hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 20px 0;
+}
+
+/* 본문 텍스트 */
+.report-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+/* 강조 텍스트 */
+.report-content strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* 목록 스타일 */
+.report-content ul, 
+.report-content ol {
+    padding-left: 20px;
+    margin-bottom: 5px;
+}
+
+.report-content li {
+    margin-bottom: 8px;
+    color: #ccc;
+}
+
+/* 인용문 스타일 */
+.report-content blockquote {
+    border-left: 4px solid #4a9eff;
+    padding-left: 15px;
+    margin: 15px 0;
+    color: #888;
+}
+
+/* 코드 블록 */
+.report-content code {
+    background-color: #1a1a1a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+/* 표 스타일 */
+.report-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.report-content th,
+.report-content td {
+    padding: 5px;
+    border: 1px solid #333;
+    text-align: center;
+}
+
+.report-content th {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+/* 링크 스타일 */
+.report-content a {
+    color: #4a9eff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.report-content a:hover {
+    color: #66b1ff;
+    text-decoration: underline;
+}
+
+/* 중요 수치 강조 */
+.report-content .highlight {
+    color: #4a9eff;
+    font-weight: 600;
+}
+
+/* 섹션 번호 스타일 */
+.report-content h2::before {
+    content: attr(data-number) ". ";
+    color: #4a9eff;
+    font-weight: 600;
+    margin-right: 4px; /* 오른쪽 여백을 줄입니다 */
+    padding-right: 0px; /* 추가 패딩이 없도록 설정 */
+}
+
+/* 모바일 반응형 */
+@media screen and (max-width: 768px) {
+    .report-content {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .report-content h1 {
+        font-size: 20px;
+    }
+
+    .report-content h2 {
+        font-size: 16px;
+    }
+}
+
+/* 스크롤바 스타일 */
+.report-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.report-content::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.report-content::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.report-content::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
 /* 더 큰 화면에서의 최적화 */
 @media screen and (min-width: 1200px) {
     .left-panel {
