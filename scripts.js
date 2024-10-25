@@ -40,7 +40,7 @@ $(function () {
             // 글씨 색깔을 Delta_Previous_Relative_Divergence 값에 따라 설정
             let textColor = 'white'; // 기본값: 흰색
             if (delta_previous_relative_divergence > 0) {
-                textColor = '#90EE90''; // 양수일 경우 녹색
+                textColor = '#90EE90'; // 양수일 경우 녹색
             } else if (delta_previous_relative_divergence < 0) {
                 textColor = '#FF7F7F'; // 음수일 경우 빨간색
             }
