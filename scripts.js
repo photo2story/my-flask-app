@@ -121,7 +121,7 @@ $(function () {
 
     $('#rankAlphaToggle').on('click', function () {
         isRanked = !isRanked;
-        $(this).text(isRanked ? 'Rank' : 'Alpha');
+        //$(this).text(isRanked ? 'Rank' : 'Alpha');
         sortTickers();
     });
 
