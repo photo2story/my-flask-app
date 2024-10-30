@@ -11,12 +11,12 @@ body {
 }
 
 .main-header {
+    position: relative;
     text-align: left;
     background-color: #010;
-    padding: 0 20px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 60px;
     box-sizing: border-box;
 }
@@ -38,30 +38,41 @@ body {
 
 /* 왼쪽 패널 폭 조정 */
 .left-panel {
-    width: 5%;  /* 20%에서 10%로 감소 */
-    padding: 8px;  /* 패딩도 약간 줄임 */
+    width: 5%;  /* 처음부터 펼쳐진 상태로 유지 */
+    padding: 8px;
     background-color: #012;
     color: #ccc;
     overflow-y: auto;
     font-size: 0.7rem;
     height: 100%;
     box-sizing: border-box;
+    transition: width 0.3s ease, padding 0.3s ease;
 }
 
+.left-panel.collapsed {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* 오른쪽 패널 */
 .right-panel {
     width: 95%;
-    padding: 5px;
+    padding: 3px;
     display: flex;
     height: 100%;
     box-sizing: border-box;
     overflow: hidden;
 }
 
+.right-panel.expanded {
+    width: 100%;
+}
+
 /* 이미지 스타일 */
-/* 이미지와 그래프 관련 스타일 수정 */
 img {
     width: 100%;
-    height: 100%;    /* 부모 컨테이너 높이에 맞춤 */
+    height: 100%;  /* 부모 컨테이너 높이에 맞춤 */
     max-width: 100%;
     object-fit: contain;  /* 비율 유지하면서 컨테이너에 맞춤 */
     margin: 0 auto;
@@ -72,15 +83,14 @@ img {
 /* 고정 그래프 컨테이너 */
 .fixed-graph {
     background-color: #000;
-    padding: 0px; /* 기존 5px에서 3px로 줄임 */
+    padding: 0px;
     box-sizing: border-box;
     width: 100%;
     min-height: 550px;
     overflow: hidden;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;  /* 상단 정렬로 변경 */
-    margin-bottom: 3px; /* 그래프 사이의 간격 줄이기 */
+    align-items: flex-start;
+    margin-bottom: 10px;
 }
 
 /* 스크롤 섹션 */
@@ -90,52 +100,49 @@ img {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* 상단 정렬을 확실히 설정 */
+    align-items: flex-start;
     box-sizing: border-box;
-    padding-top: 0px; /* 상단 여백 추가로 고정 그래프와 일치 */
+    padding-top: 0px;
 }
-
 
 .scrollable-graph {
     width: 100%;
-    padding: 3px; /* 기존 5px에서 3px로 줄임 */
+    padding: 0px;
     box-sizing: border-box;
-    margin-bottom: 5px; /* 그래프와 그래프 사이의 간격 줄이기 */
+    margin-bottom: 5px;
 }
 
-/* 리포트 컨텐츠 텍스트 겹침 해결 */
-/* 보고서 컨텐츠 텍스트 스타일 조정 */
-/* 보고서 컨텐츠 텍스트 스타일 조정 */
+/* 리포트 컨텐츠 텍스트 스타일 */
 .report-content {
     width: 100%;
-    padding: 5px; /* 여백을 조금 더 줄임 */
+    padding: 10px 20px; /* 기존 5px에서 좌우에 20px 여유 추가 */
     background-color: #000;
     color: #fff;
-    margin-top: 0.3rem; /* 위 여백을 조금 더 줄임 */
+    margin-top: 0.3rem;
     box-sizing: border-box;
     white-space: pre-wrap;
-    line-height: 1.2; /* 줄 간격을 더 줄임 */
+    line-height: 1.2;
 }
 
 .report-content h1 {
-    font-size: 22px; /* 크기를 유지 */
-    margin-bottom: 0px; /* 제목 아래 간격을 줄임 */
-    padding-bottom: 0px; /* 아래 여백 줄임 */
+    font-size: 22px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 .report-content h2 {
     font-size: 20px;
     color: #4a9eff;
-    margin-top: 0px;    /* 위 여백을 더 줄임 */
-    margin-bottom: 0px; /* 아래 여백을 더 줄임 */
-    padding-bottom: 0px; /* 아래 여백을 줄임 */
-    line-height: 1.3; /* 줄 간격 줄임 */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    line-height: 1.3;
     font-weight: 600;
 }
 
 .report-content p {
-    margin-bottom: 0px;  /* 본문 간 간격을 줄임 */
-    line-height: 1.3;    /* 줄 간격을 더 줄임 */
+    margin-bottom: 0px;
+    line-height: 1.3;
     color: #ccc;
 }
 
@@ -152,6 +159,11 @@ img {
     cursor: pointer;
 }
 
+.ticker-item.active {
+    background-color: #004d80;
+    color: white;
+}
+
 .sort-options {
     display: flex;
     justify-content: flex-start;
@@ -162,40 +174,79 @@ img {
     cursor: pointer;
 }
 
+#toggleFullscreen {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #004d80;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* 스크롤바 숨기기 */
 ::-webkit-scrollbar {
     width: 0;
 }
 
+/* 토글 버튼 추가 */
+/* 도움말 아이콘과 홈 버튼의 위치 조정 */
+#helpIcon {
+    position: absolute;
+    top: 50%;
+    right: 40px; /* 홈 버튼과 간격 조정 */
+    transform: translateY(-50%);
+    font-size: 18px;
+}
+
+#toggleLeftPanel {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* 오른쪽 끝에 맞춤 */
+    transform: translateY(-50%);
+    background-color: #004d80;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+
 /* 반응형 레이아웃 */
-/* 더 큰 화면에서도 왼쪽 패널 폭 유지 */
 @media screen and (min-width: 1200px) {
     .left-panel {
-        width: 3%;  /* 12%에서 8%로 추가 감소 */
+        width: 3%;
     }
-
     .right-panel {
-        width: 97%;  /* 왼쪽 패널 감소에 맞춰 조정 */
+        width: 97%;
     }
 }
 
-/* 가로 화면 최적화 */
 /* 모바일 화면에서의 조정 */
 @media screen and (max-width: 768px) {
     .left-panel {
-        width: 17%;  /* 10%에서 8%로 감소 */
+        width: 17%;
     }
-
     .right-panel {
         width: 83%;
         flex-direction: column;
     }
-}
-
-/* 모바일 화면에서의 조정 */
-@media screen and (max-width: 768px) {
-    .fixed-graph {
-        height: calc(100vh - 200px);  /* 모바일에서는 약간 더 작게 */
-        min-height: 350px;
+    .left-panel.collapsed {
+        left: -20%;
+    }
+    .right-panel {
+        width: 100%;
+    }
+    .fixed-graph,
+    .scrollable-graph {
+        height: auto;
+        min-height: 300px;
+    }
+    .report-content {
+        font-size: 14px;
     }
 }
 
@@ -205,21 +256,19 @@ img {
         width: 50%;
         padding: 5px;
         box-sizing: border-box;
-        height: 100%;  /* 부모 높이에 맞춤 */
+        height: 100%;
     }
-    
     .fixed-graph {
-        height: calc(100vh - 100px);  /* 데스크톱에서는 더 큰 높이 */
+        height: calc(100vh - 100px);
     }
 }
 
 /* 더 큰 화면에서의 최적화 */
 @media screen and (min-width: 1200px) {
     .left-panel {
-        width: 5%;  /* 15%에서 12%로 추가 감소 */
+        width: 5%;
     }
-
     .right-panel {
-        width: 95%;  /* 왼쪽 패널 감소에 맞춰 조정 */
+        width: 95%;
     }
 }
