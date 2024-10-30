@@ -9,22 +9,13 @@ $(function () {
             download: true,
             header: true,
             complete: function (results) {
-                // 유효한 데이터만 필터링
-                rankedTickers = results.data
-                    .filter(row => {
-                        // Ticker가 존재하고 유효한 문자열인지 확인
-                        return row.Ticker && 
-                               typeof row.Ticker === 'string' && 
-                               row.Ticker !== 'undefined' &&
-                               row.Rank && 
-                               !isNaN(parseFloat(row.Delta_Previous_Relative_Divergence));
-                    })
-                    .map(row => ({
-                        rank: parseInt(row.Rank),
-                        ticker: row.Ticker,
-                        delta_previous_relative_divergence: parseFloat(row.Delta_Previous_Relative_Divergence)
-                    }));
-                
+                rankedTickers = results.data.filter(row => {
+                    return row.Ticker && typeof row.Ticker === 'string' && row.Ticker !== 'undefined' && row.Rank && !isNaN(parseFloat(row.Delta_Previous_Relative_Divergence));
+                }).map(row => ({
+                    rank: parseInt(row.Rank),
+                    ticker: row.Ticker,
+                    delta_previous_relative_divergence: parseFloat(row.Delta_Previous_Relative_Divergence)
+                }));
                 sortTickers();
                 fetchImagesAndReport(defaultTicker);
             },
@@ -53,14 +44,12 @@ $(function () {
 
         rankedTickers.forEach(tickerData => {
             const { rank, ticker, delta_previous_relative_divergence } = tickerData;
-
             let textColor = 'white';
             if (delta_previous_relative_divergence > 0) {
                 textColor = '#90EE90';
             } else if (delta_previous_relative_divergence < 0) {
                 textColor = '#FF7F7F';
             }
-
             const displayText = isRanked ? `${rank}:${ticker}` : ticker;
 
             $('#tickerList').append(
@@ -73,6 +62,8 @@ $(function () {
         $('.ticker-item').off('click').on('click', function (e) {
             const ticker = $(this).data('ticker');
             fetchImagesAndReport(ticker);
+            $('.left-panel').addClass('collapsed'); // 왼쪽 패널 숨기기
+            $('.right-panel').addClass('expanded'); // 오른쪽 패널 확장
         });
     }
 
@@ -121,23 +112,26 @@ $(function () {
 
     $('#rankAlphaToggle').on('click', function () {
         isRanked = !isRanked;
-        //$(this).text(isRanked ? 'Rank' : 'Alpha');
         sortTickers();
     });
 
-    // 에러 이미지 처리를 위한 CSS 추가
-    $('<style>')
-        .text(`
-            .error-message {
-                color: #FF7F7F;
-                padding: 1rem;
-                text-align: center;
-            }
-        `)
-        .appendTo('head');
+    // 왼쪽 패널을 다시 표시하는 토글 버튼 기능
+    $('#toggleLeftPanel').on('click', function () {
+        $('.left-panel').toggleClass('collapsed');
+        $('.right-panel').toggleClass('expanded');
+    });
+
+    $('<style>').text(`
+        .error-message {
+            color: #FF7F7F;
+            padding: 1rem;
+            text-align: center;
+        }
+    `).appendTo('head');
 
     fetchCSV();
 });
+
 
 
 
