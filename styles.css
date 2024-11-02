@@ -83,14 +83,14 @@ img {
 /* 고정 그래프 컨테이너 */
 .fixed-graph {
     background-color: #000;
-    padding: 0px;
-    box-sizing: border-box;
+    padding: 0; /* 패딩 제거 */
+    margin: 0;  /* 마진 제거 */
     width: 100%;
     min-height: 350px;
     overflow: hidden;
     display: flex;
-    align-items: flex-start;
-    margin-bottom: 3px;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
 }
 
 /* 스크롤 섹션 */
