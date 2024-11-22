@@ -105,12 +105,12 @@ img {
     padding-top: 0px;
 }
 
-.scrollable-graph {
+/* .scrollable-graph {
     width: 100%;
     padding: 0px;
     box-sizing: border-box;
     margin-bottom: 5px;
-}
+} */
 
 /* 리포트 컨텐츠 텍스트 스타일 */
 .report-content {
@@ -122,6 +122,9 @@ img {
     box-sizing: border-box;
     white-space: pre-wrap;
     line-height: 1.2;
+    /* 수직 상단 정렬 */
+    margin-top: 0; /* 상단 마진 제거 */
+    order: -1; /* 리포트를 최상단으로 이동 */
 }
 
 .report-content h1 {
