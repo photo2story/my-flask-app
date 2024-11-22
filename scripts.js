@@ -67,47 +67,203 @@ $(function () {
         });
     }
 
-    function fetchImagesAndReport(stockTicker) {
+    async function fetchImagesAndReport(stockTicker) {
         if (!stockTicker) {
             console.error('유효하지 않은 티커:', stockTicker);
             return;
         }
-
+    
         $('#loading').show();
-        $('#fixedGraph').empty();
-        $('#scrollableGraph').empty();
+        $('#fixedGraph').empty().html('<canvas id="mainChart"></canvas>');
         $('#reportSection').empty();
+    
+        try {
+            // 데이터 Fetch
+            const csvUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_${stockTicker}.csv`;
+            const response = await fetch(csvUrl);
+            const csvText = await response.text();
+    
+            const parsedData = Papa.parse(csvText, {
+                header: true,
+                dynamicTyping: true,
+            }).data;
+    
+            const normalizedData = normalizeChartData(parsedData, stockTicker);
+    
+            // 차트 생성
+            createChart(stockTicker, normalizedData);
+    
+            // 리포트 Fetch
+            const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/report_${stockTicker}.txt`;
+            const reportResponse = await fetch(reportUrl);
+            if (!reportResponse.ok) {
+                throw new Error('리포트를 불러올 수 없습니다.');
+            }
+            const reportText = await reportResponse.text();
+    
+            // Markdown 형식의 리포트를 HTML로 변환 후 표시
+            $('#reportSection').html(marked.parse(reportText));
 
-        const comparisonImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/comparison_${stockTicker}_VOO.png`;
-        const resultImageUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/result_mpl_${stockTicker}.png`;
-        const reportApiUrl = `https://api.github.com/repos/photo2story/my-flask-app/contents/static/images/report_${stockTicker}.txt`;
+        } catch (error) {
+            console.error('데이터 로딩 실패:', error);
+            $('#reportSection').html('<div class="error-message">데이터를 불러올 수 없습니다.</div>');
+        } finally {
+            $('#loading').hide();
+        }
+    }
 
-        $('#fixedGraph').html(
-            `<img src="${comparisonImageUrl}" alt="${stockTicker} vs VOO" class="clickable-image zoomable-image" onerror="this.onerror=null; this.src='error-placeholder.png';">`
-        );
+    // 차트 데이터를 정규화하는 함수
+    function normalizeChartData(data, ticker) {
+        if (!data.length) return { dates: [], stockData: [], vooData: [] };
 
-        $('#scrollableGraph').html(
-            `<img src="${resultImageUrl}" alt="${stockTicker} Result" class="clickable-image zoomable-image" onerror="this.onerror=null; this.src='error-placeholder.png';">`
-        );
+        // Use reasonable base values to avoid over-amplification
+        const baseValue = data[0][`rate_${ticker}_5D`] || 1; // Avoid small base
+        const baseVooValue = data[0]['rate_VOO_20D'] || 1;
 
-        $.ajax({
-            url: reportApiUrl,
-            type: 'GET',
-            headers: {
-                'Accept': 'application/vnd.github.v3.raw'
+        return {
+            dates: data.map(row => row.Date),
+            stockData: data.map(row => (row[`rate_${ticker}_5D`] - baseValue)), // Absolute change
+            vooData: data.map(row => (row['rate_VOO_20D'] - baseVooValue)), // Absolute change
+        };
+    }
+        
+    function createChart(stockTicker, chartData) {
+        const mainCtx = document.getElementById('mainChart').getContext('2d');
+        
+        // Y축의 최대/최소값을 자동으로 계산
+        const allValues = [...chartData.stockData, ...chartData.vooData];
+        const minY = Math.min(...allValues);
+        const maxY = Math.max(...allValues);
+        const padding = (maxY - minY) * 0.1;
+    
+        new Chart(mainCtx, {
+            type: 'line',
+            data: {
+                labels: chartData.dates,
+                datasets: [
+                    {
+                        label: stockTicker,
+                        data: chartData.stockData,
+                        borderColor: 'rgb(0, 255, 255)',  // cyan color
+                        backgroundColor: 'rgba(0, 255, 255, 0.1)',
+                        borderWidth: 1.5,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 0,
+                        order: 1
+                    },
+                    {
+                        label: 'VOO',
+                        data: chartData.vooData,
+                        borderColor: 'rgb(255, 99, 132)',  // pink/red color
+                        backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                        borderWidth: 1.5,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 0,
+                        order: 2
+                    }
+                ]
             },
-            success: function(data) {
-                const htmlContent = marked.parse(data);
-                $('#reportSection').html(htmlContent);
-            },
-            error: function(xhr, status, error) {
-                console.error('리포트 로딩 실패:', error);
-                $('#reportSection').html('<div class="error-message">리포트를 불러올 수 없습니다.</div>');
-            },
-            complete: function() {
-                $('#loading').hide();
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                scales: {
+                    y: {
+                        min: minY - padding,
+                        max: maxY + padding,
+                        position: 'left',
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            borderColor: 'rgba(255, 255, 255, 0.1)',
+                            drawBorder: true
+                        },
+                        ticks: {
+                            color: '#fff',
+                            font: {
+                                size: 10
+                            },
+                            callback: function(value) {
+                                return value.toFixed(0);
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#fff',
+                            font: {
+                                size: 10
+                            },
+                            maxTicksLimit: 6,
+                            maxRotation: 0
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        padding: 10,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    const value = context.parsed.y;
+                                    label += value.toFixed(2) + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'start',
+                        labels: {
+                            color: '#fff',
+                            font: {
+                                size: 12
+                            },
+                            padding: 15,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    }
+                }
             }
         });
+    }
+    
+    
+    // 적절한 눈금 간격을 계산하는 헬퍼 함수
+    function getNiceNumber(range) {
+        const exponent = Math.floor(Math.log10(range));
+        const fraction = range / Math.pow(10, exponent);
+        let niceFraction;
+
+        if (fraction <= 1.0) niceFraction = 1;
+        else if (fraction <= 2) niceFraction = 2;
+        else if (fraction <= 5) niceFraction = 5;
+        else niceFraction = 10;
+
+        return niceFraction * Math.pow(10, exponent);
     }
 
     $('#rankAlphaToggle').on('click', function () {
@@ -115,7 +271,6 @@ $(function () {
         sortTickers();
     });
 
-    // 왼쪽 패널을 다시 표시하는 토글 버튼 기능
     $('#toggleLeftPanel').on('click', function () {
         $('.left-panel').toggleClass('collapsed');
         $('.right-panel').toggleClass('expanded');
