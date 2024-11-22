@@ -10,11 +10,20 @@ $(function () {
             header: true,
             complete: function (results) {
                 rankedTickers = results.data.filter(row => {
-                    return row.Ticker && typeof row.Ticker === 'string' && row.Ticker !== 'undefined' && row.Rank && !isNaN(parseFloat(row.Delta_Previous_Relative_Divergence));
+                    return row.Ticker && typeof row.Ticker === 'string' && 
+                           row.Ticker !== 'undefined' && row.Rank && 
+                           !isNaN(parseFloat(row.Delta_Previous_Relative_Divergence));
                 }).map(row => ({
                     rank: parseInt(row.Rank),
                     ticker: row.Ticker,
-                    delta_previous_relative_divergence: parseFloat(row.Delta_Previous_Relative_Divergence)
+                    delta_previous_relative_divergence: parseFloat(row.Delta_Previous_Relative_Divergence),
+                    totalReturn: parseFloat(row.Total_Return),
+                    divergence: parseFloat(row.Divergence),
+                    relativeDivergence: parseFloat(row.Relative_Divergence),
+                    maxDivergence: parseFloat(row.Max_Divergence),
+                    minDivergence: parseFloat(row.Min_Divergence),
+                    expectedReturn: parseFloat(row.Expected_Return),
+                    dynamicExpectedReturn: parseFloat(row.Dynamic_Expected_Return)
                 }));
                 sortTickers();
                 fetchImagesAndReport(defaultTicker);
@@ -88,10 +97,23 @@ $(function () {
                 dynamicTyping: true,
             }).data;
     
+            // 차트 데이터 정규화
             const normalizedData = normalizeChartData(parsedData, stockTicker);
+            
+            // 현재 티커의 데이터 찾기
+            const tickerData = rankedTickers.find(t => t.ticker === stockTicker);
+            if (!tickerData) {
+                throw new Error('티커 데이터를 찾을 수 없습니다.');
+            }
+            
+            // 차트 데이터 준비
+            const chartData = {
+                ...normalizedData,
+                tickerData: tickerData  // tickerData를 chartData에 포함
+            };
     
-            // 차트 생성
-            createChart(stockTicker, normalizedData);
+            // 차트 생성 시 tickerData 전달
+            createChart(stockTicker, chartData);
     
             // 리포트 Fetch
             const reportUrl = `https://raw.githubusercontent.com/photo2story/my-flask-app/main/static/images/report_${stockTicker}.txt`;
@@ -126,16 +148,21 @@ $(function () {
             vooData: data.map(row => (row['rate_VOO_20D'] - baseVooValue)), // Absolute change
         };
     }
-        
+
+    function updateHeader(ticker, data) {
+        $('#header').html(`
+            <h1>${ticker} vs VOO</h1>
+            <p>Total Rate: ${data.totalReturn}% (VOO: ${data.vooTotalReturn}%), Relative Divergence: ${data.relativeDivergence}%</p>
+            <p>Current Divergence: ${data.delta}% (max: ${data.maxDivergence}, min: ${data.minDivergence})</p>
+            <p>Expected Return: ${data.expectedReturn}%</p>
+        `);
+    }
+
+    
     function createChart(stockTicker, chartData) {
         const mainCtx = document.getElementById('mainChart').getContext('2d');
+        const tickerData = chartData.tickerData;  // chartData에서 tickerData 추출
         
-        // Y축의 최대/최소값을 자동으로 계산
-        const allValues = [...chartData.stockData, ...chartData.vooData];
-        const minY = Math.min(...allValues);
-        const maxY = Math.max(...allValues);
-        const padding = (maxY - minY) * 0.1;
-    
         new Chart(mainCtx, {
             type: 'line',
             data: {
@@ -170,81 +197,98 @@ $(function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                interaction: {
-                    intersect: false,
-                    mode: 'index'
-                },
-                scales: {
-                    y: {
-                        min: minY - padding,
-                        max: maxY + padding,
-                        position: 'left',
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)',
-                            borderColor: 'rgba(255, 255, 255, 0.1)',
-                            drawBorder: true
+                plugins: {
+                    title: {
+                        display: true,
+                        text: [
+                            `${stockTicker} vs VOO`
+                        ],
+                        font: {
+                            size: 20,
+                            weight: 'bold'
                         },
-                        ticks: {
-                            color: '#fff',
-                            font: {
-                                size: 10
-                            },
-                            callback: function(value) {
-                                return value.toFixed(0);
-                            }
+                        color: '#fff',
+                        padding: {
+                            top: 10,
+                            bottom: 30
                         }
                     },
-                    x: {
-                        grid: {
-                            display: false
+                    subtitle: {
+                        display: true,
+                        text: [
+                            `Total Rate: ${tickerData.totalReturn.toFixed(2)}%, Relative Divergence: ${tickerData.relativeDivergence.toFixed(2)}%`,
+                            `Current Divergence: ${tickerData.divergence.toFixed(2)}% (max: ${tickerData.maxDivergence.toFixed(2)}, min: ${tickerData.minDivergence.toFixed(2)})`,
+                            `Expected Return: ${tickerData.expectedReturn.toFixed(2)}% (dynamic: ${tickerData.dynamicExpectedReturn.toFixed(2)}%), Recent Signal (Delta_Divergence): ${tickerData.delta_previous_relative_divergence.toFixed(2)}%`
+                        ],
+                        font: {
+                            size: 12,
+                            weight: 'bold'
                         },
-                        ticks: {
-                            color: '#fff',
-                            font: {
-                                size: 10
-                            },
-                            maxTicksLimit: 6,
-                            maxRotation: 0
+                        color: '#fff',
+                        padding: {
+                            top: 10,
+                            bottom: 20
                         }
-                    }
-                },
-                plugins: {
+                    },
                     tooltip: {
+                        enabled: true,
                         mode: 'index',
                         intersect: false,
                         backgroundColor: 'rgba(0, 0, 0, 0.8)',
                         titleColor: '#fff',
                         bodyColor: '#fff',
-                        borderColor: '#fff',
-                        borderWidth: 1,
-                        padding: 10,
+                        borderWidth: 0,
+                        padding: 8,
+                        titleFont: {
+                            size: 12
+                        },
+                        bodyFont: {
+                            size: 12
+                        },
+                        displayColors: true,
+                        boxWidth: 8,
+                        boxHeight: 8,
+                        usePointStyle: true,
+                        position: 'nearest',
                         callbacks: {
+                            title: function(tooltipItems) {
+                                return tooltipItems[0].label;
+                            },
                             label: function(context) {
                                 let label = context.dataset.label || '';
                                 if (label) {
                                     label += ': ';
                                 }
                                 if (context.parsed.y !== null) {
-                                    const value = context.parsed.y;
-                                    label += value.toFixed(2) + '%';
+                                    label += context.parsed.y.toFixed(2) + '%';
                                 }
                                 return label;
                             }
                         }
-                    },
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        align: 'start',
-                        labels: {
+                    }
+                },
+                hover: {
+                    mode: 'index',
+                    intersect: false
+                },
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
                             color: '#fff',
-                            font: {
-                                size: 12
-                            },
-                            padding: 15,
-                            usePointStyle: true,
-                            pointStyle: 'circle'
+                            maxTicksLimit: 8,  // x축 라벨 수를 7개로 제한
+                            maxRotation: 0,    // 라벨 회전 방지
+                            minRotation: 0     // 라벨 회전 방지
                         }
+                    },
+                    y: {
+                        // ... 기존 y축 설정 ...
                     }
                 }
             }
