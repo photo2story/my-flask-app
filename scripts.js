@@ -83,7 +83,7 @@ $(function () {
         }
     
         $('#loading').show();
-        $('#fixedGraph').empty().html('<canvas id="mainChart"></canvas>');
+        $('#fixedGraph').empty().html('<canvas id="mainChart" style="background-color: white;"></canvas>');
         $('#reportSection').empty();
     
         try {
@@ -161,7 +161,7 @@ $(function () {
     
     function createChart(stockTicker, chartData) {
         const mainCtx = document.getElementById('mainChart').getContext('2d');
-        const tickerData = chartData.tickerData;  // chartData에서 tickerData 추출
+        const tickerData = chartData.tickerData;
         
         new Chart(mainCtx, {
             type: 'line',
@@ -171,8 +171,8 @@ $(function () {
                     {
                         label: stockTicker,
                         data: chartData.stockData,
-                        borderColor: 'rgb(0, 255, 255)',  // cyan color
-                        backgroundColor: 'rgba(0, 255, 255, 0.1)',
+                        borderColor: '#00BCD4',
+                        backgroundColor: 'rgba(0, 188, 212, 0.2)',
                         borderWidth: 1.5,
                         fill: true,
                         tension: 0.4,
@@ -183,8 +183,8 @@ $(function () {
                     {
                         label: 'VOO',
                         data: chartData.vooData,
-                        borderColor: 'rgb(255, 99, 132)',  // pink/red color
-                        backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                        borderColor: '#FF4081',
+                        backgroundColor: 'rgba(255, 64, 129, 0.2)',
                         borderWidth: 1.5,
                         fill: true,
                         tension: 0.4,
@@ -207,10 +207,10 @@ $(function () {
                             size: 20,
                             weight: 'bold'
                         },
-                        color: '#fff',
+                        color: '#000',
                         padding: {
                             top: 10,
-                            bottom: 30
+                            bottom: 5
                         }
                     },
                     subtitle: {
@@ -224,19 +224,19 @@ $(function () {
                             size: 12,
                             weight: 'bold'
                         },
-                        color: '#fff',
+                        color: '#000',
                         padding: {
-                            top: 10,
-                            bottom: 20
+                            top: 0,
+                            bottom: 5
                         }
                     },
                     tooltip: {
                         enabled: true,
                         mode: 'index',
                         intersect: false,
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
+                        backgroundColor: 'rgba(20, 64, 64, 0.9)',  // 진한 회색으로 변경
+                        titleColor: '#fff',  // 흰색으로 변경
+                        bodyColor: '#fff',   // 흰색으로 변경
                         borderWidth: 0,
                         padding: 8,
                         titleFont: {
@@ -265,6 +265,9 @@ $(function () {
                                 return label;
                             }
                         }
+                    },
+                    filler: {
+                        propagate: true
                     }
                 },
                 hover: {
@@ -281,14 +284,21 @@ $(function () {
                             color: 'rgba(255, 255, 255, 0.1)'
                         },
                         ticks: {
-                            color: '#fff',
+                            color: '#000',
                             maxTicksLimit: 8,  // x축 라벨 수를 7개로 제한
                             maxRotation: 0,    // 라벨 회전 방지
                             minRotation: 0     // 라벨 회전 방지
                         }
                     },
                     y: {
-                        // ... 기존 y축 설정 ...
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#000'
+                        },
+                        beginAtZero: false
                     }
                 }
             }
