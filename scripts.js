@@ -204,7 +204,7 @@ $(function () {
                             `${stockTicker} vs VOO`
                         ],
                         font: {
-                            size: 20,
+                            size: 15,
                             weight: 'bold'
                         },
                         color: '#000',
@@ -221,7 +221,7 @@ $(function () {
                             `Expected Return: ${tickerData.expectedReturn.toFixed(2)}% (dynamic: ${tickerData.dynamicExpectedReturn.toFixed(2)}%), Recent Signal (Delta_Divergence): ${tickerData.delta_previous_relative_divergence.toFixed(2)}%`
                         ],
                         font: {
-                            size: 12,
+                            size: 10,
                             weight: 'bold'
                         },
                         color: '#000',
@@ -240,10 +240,10 @@ $(function () {
                         borderWidth: 0,
                         padding: 8,
                         titleFont: {
-                            size: 12
+                            size: 10
                         },
                         bodyFont: {
-                            size: 12
+                            size: 10
                         },
                         displayColors: true,
                         boxWidth: 8,
@@ -285,9 +285,12 @@ $(function () {
                         },
                         ticks: {
                             color: '#000',
-                            maxTicksLimit: 8,  // x축 라벨 수를 7개로 제한
-                            maxRotation: 0,    // 라벨 회전 방지
-                            minRotation: 0     // 라벨 회전 방지
+                            maxTicksLimit: 8,
+                            maxRotation: 0,
+                            minRotation: 0,
+                            font: {
+                                size: 10
+                            }
                         }
                     },
                     y: {
@@ -296,9 +299,11 @@ $(function () {
                             drawBorder: false
                         },
                         ticks: {
-                            color: '#000'
-                        },
-                        beginAtZero: false
+                            color: '#000',
+                            font: {
+                                size: 8
+                            }
+                        }
                     }
                 }
             }
