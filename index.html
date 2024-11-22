@@ -19,6 +19,10 @@
     
     <!-- marked.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Chart.js CDN 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
 
 <body>
@@ -39,10 +43,14 @@
         </div>
 
         <div class="right-panel">
-            <div id="fixedGraph" class="fixed-graph"></div> <!-- 첫 번째 고정 그래프 -->
+            <div id="fixedGraph" class="fixed-graph">
+                <canvas id="mainChart"></canvas>
+            </div>
             
             <div id="scrollableContent" class="scrollable-section">
-                <div id="scrollableGraph" class="scrollable-graph"></div> <!-- 나머지 스크롤되는 그래프 -->
+                <div id="scrollableGraph" class="scrollable-graph">
+                    <canvas id="secondaryChart"></canvas>
+                </div>
                 <div id="reportSection" class="report-content"></div> <!-- 리포트 내용 -->
             </div>
         </div>
