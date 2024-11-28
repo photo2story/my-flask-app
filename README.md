@@ -94,6 +94,4 @@ We are committed to protecting your privacy. Below is a summary of how your data
 4. **Data Storage**:
    - All data is processed locally within the app and is not transmitted to external servers.
 
-For more information, please visit our [Privacy Policy URL](https://github.com/photo2story/my-flask-app/edit/main/README.md).
-
 
