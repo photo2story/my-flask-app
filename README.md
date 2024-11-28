@@ -94,4 +94,7 @@ We are committed to protecting your privacy. Below is a summary of how your data
 4. **Data Storage**:
    - All data is processed locally within the app and is not transmitted to external servers.
 
+5. **Children’s Privacy**:
+   - This application is **not intended for children under the age of 13**. We do not knowingly collect or store any personal information from children under 13. If we become aware that we have inadvertently collected personal information from a child under 13, we will take immediate steps to delete such information.
+
 
