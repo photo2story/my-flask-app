@@ -77,3 +77,23 @@ This project also includes recent stock news, analyst opinions, and a ranking sy
 
 ## Conclusion
 This project offers a robust framework for backtesting stock strategies, comparing individual stock performance to broader indices like the S&P 500, and providing insights into both short-term and long-term trends. These analyses help investors make more informed investment decisions.
+
+## Privacy Policy
+We are committed to protecting your privacy. Below is a summary of how your data is handled when using our application:
+
+1. **Data Collection**:
+   - The application may collect data such as stock preferences, investment simulations, and browsing history within the app.
+   - No personally identifiable information (e.g., name, email, address) is collected or stored.
+
+2. **Data Usage**:
+   - The data is used solely to enhance the user experience by providing accurate analysis, personalized insights, and relevant information about stock performance.
+
+3. **Data Sharing**:
+   - No user data is shared with third parties under any circumstances.
+
+4. **Data Storage**:
+   - All data is processed locally within the app and is not transmitted to external servers.
+
+For more information, please visit our [Privacy Policy URL](https://github.com/photo2story/my-flask-app/edit/main/README.md).
+
+
