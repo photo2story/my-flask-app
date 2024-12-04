@@ -1,49 +1,75 @@
-2024-12-03 - Analysis Report
-## Walt Disney Co (DIS) Stock Analysis Report
+2024-12-05 - Analysis Report
+## Walt Disney Co (DIS) Stock Report
 
 **1. Performance Comparison & Divergence:**
 
-Walt Disney Co (DIS) is an American multinational entertainment conglomerate.  The cumulative return of DIS is 10.01%, significantly underperforming the S&P 500 (VOO) with a cumulative return of 130.06%. The difference is -120.0%, placing it at the 9.9th percentile of its historical relative performance against the S&P 500, based on the provided data.  This indicates a substantial underperformance compared to the broader market. The provided alpha consistently shows near zero, suggesting its returns are largely driven by market movements (beta).
+Walt Disney Co (DIS) is an American multinational entertainment conglomerate.  As of the last data point, DIS has accumulated an 8.98% return, significantly underperforming the S&P 500 (VOO) which has a cumulative return of 129.75%.  The divergence is -120.8%, placing it at the 9.4th percentile of its historical range of divergence against the S&P 500 (relative to its maximum and minimum historical divergences).  This indicates that DIS has substantially underperformed the market benchmark over the measured period.
+
+
+The provided alpha values consistently show a near-zero alpha across different time periods, suggesting that Disney's returns have largely moved in line with the overall market,  without significant outperformance or underperformance attributable to firm-specific factors. The beta is not provided explicitly but implicitly near zero, given the alpha values.  The company's market capitalization (Cap(B)) has fluctuated significantly over the years.
+
+
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2015-2017  | 11.0% | 10.9% | -0.0 | ~0   | 188.0 |
+| 2016-2018  | 15.0% | 5.9% | -0.0 | ~0   | 195.0 |
+| 2017-2019  | 29.0% | 5.9% | -0.0 | ~0   | 260.0 |
+| 2018-2020  | 64.0% | 16.9% | -0.0 | ~0   | 326.0 |
+| 2019-2021  | 28.0% | 16.9% | -0.0 | ~0   | 279.0 |
+| 2020-2022  | -57.0% | 17.9% | -0.0 | ~0   | 156.0 |
+| 2021-2023  | -77.0% | 17.9% | -0.0 | ~0   | 163.0 |
+| 2022-2024  | -21.0% | 17.9% | -0.0 | ~0   | 211.0 |
 
 
 **2. Recent Price Movement:**
 
-* **Closing Price:** $117.47
-* **5-Day Moving Average:** $116.43
-* **20-Day Moving Average:** $107.55
-* **60-Day Moving Average:** $98.39
+* **Closing Price:** 116.45
+* **5-Day Moving Average:** 116.83
+* **20-Day Moving Average:** 109.65
+* **60-Day Moving Average:** 99.34
 
-The price is above all three moving averages, suggesting a potential upward trend, although the significant gap between the current price and the 60-day average indicates a recent, sharp increase. The last market price of 116.97 is close to the closing price and does not show a significant jump or crash.
+The price is above the 20-day and 60-day moving averages, suggesting a potential short-term uptrend.  However, the very recent price (116.64) is slightly above the closing price, indicating a minor upward movement within a very recent time window. The lack of significant volatility suggests a period of relative stability.
+
 
 **3. Technical Indicators & Expected Return:**
 
-* **RSI:** 86.71 – This indicates the stock is in overbought territory, suggesting a potential pullback.
-* **PPO:** 0.57 – A positive PPO suggests bullish momentum.
-* **20-Day Relative Divergence:**  `nan` indicates missing data, but the description implies a recent short-term decline.
-* **Expected Return:** 0.0% – The provided expected return is zero, meaning no significant outperformance compared to the S&P 500 is anticipated in a long-term (2+ years) buy-and-hold strategy given the current context.
+* **RSI:** 81.97 (Overbought territory, suggesting potential for a price correction)
+* **PPO:** 0.14 (Positive, indicating bullish momentum, although the magnitude is relatively low)
+* **20-Day Relative Divergence Change:** NaN (-) (This is missing information and can not be analyzed.  A "nan" value for the  Delta_Previous_Relative_Divergence means there is no divergence change calculation available for that period).
+* **Expected Return:** 0.0% (This indicates that the model does not anticipate any return. This is a crucial detail to validate).
+
+Given the overbought RSI, a price correction is likely. However, the positive PPO suggests continuing momentum.  The low PPO magnitude and missing information limit further interpretation. The 0.0% expected return against the S&P 500 over the long term needs further clarification and context.  It's unlikely to be accurate for a two-year or longer time frame.
+
 
 **4. Recent Earnings Analysis:**
 
-The provided earnings data shows significant volatility:
+The provided data reveals significant volatility in both EPS and revenue.  The most recent quarter (2024-08-07) shows a substantial EPS increase compared to the previous quarter (2024-05-07), but it's considerably lower than the EPS from 2024-02-07. Revenue is relatively stable but displays some fluctuation from quarter to quarter. There are no details on if these figures beat or missed any expectations.
 
-* **EPS:** fluctuates wildly between positive and negative figures, indicating inconsistent profitability.  The latest quarter shows an improvement, but the preceding quarters experienced considerable losses.
-* **Revenue:** generally remains around $22-23B, with slight fluctuations.  There is no clear upward trend evident.
-* **Notable Beats/Misses:**  It's impossible to assess beats or misses without the expected values for EPS and revenue.  The data only reflects actual reported numbers.
+| Date       | EPS   | Revenue        |
+|------------|-------|----------------|
+| 2024-08-07 | 1.44  | $23.16B        |
+| 2024-05-07 | -0.01 | $22.08B        |
+| 2024-02-07 | 1.04  | $23.55B        |
+| 2023-08-09 | -0.25 | $22.33B        |
+| 2024-08-07 | -0.25 | $22.33B        | *(duplicate entry - assumed to be an error)*
 
-**5. Financial Information Analysis:**
 
-* **Revenue & Profitability:** Revenue is relatively stable, but profit margins show some variability, although mostly hovering around the 35% range.  A slight dip is observed in Q4 2023, and a moderate increase is noted in Q2 2024.
-* **Capital & Profitability:** Equity remains relatively stable around $100B. ROE is inconsistent, ranging from -0.02% to 2.60%, indicating inconsistent profitability and return on investment.
+**5. Financial Information:**
 
+The financial data demonstrates some fluctuation in profitability metrics. Revenue remains relatively consistent, but profit margins exhibit variability. ROE is also inconsistent.  Further analysis requires additional information such as the cost of goods sold, operational expenses, and financial leverage ratios.
+
+* **Revenue and Profitability:**  Revenue shows minor fluctuation, while profit margins fluctuate within a fairly narrow range between 33.81% and 36.96%.
+* **Capital and Profitability:**  Equity is relatively stable, but ROE shows significant variability, ranging from -0.02% to 2.60%. This suggests inconsistency in the company's ability to generate returns on invested capital.
 
 **6. News and Recent Issues:**
 
-This section requires information not provided in the prompt.  To complete this section, recent news articles and analyst reports regarding DIS would need to be consulted.
-
+* **Recent Earnings News:**  The analysis provided above covers the available earnings data.  More information is needed for a full context.
+* **Recent Market Outlook:**  Not provided.
+* **Analyst Opinions:** Not provided.
 
 **7. Overall Analysis:**
 
-DIS is currently underperforming the S&P 500 significantly, indicated by the large negative divergence. While recent price action shows a short-term upward trend, technical indicators like the RSI suggest an overbought condition. Inconsistent earnings and ROE, coupled with a low expected return relative to the S&P 500, raise concerns about future performance.  Further analysis is needed to ascertain the drivers behind the recent price increase and the long-term viability of the stock.  The lack of news and recent market outlook information hinders a more comprehensive assessment.
+DIS is currently underperforming the S&P 500 significantly.  While recent earnings show improvement in EPS, overall trends display significant volatility. Technical indicators suggest a potential short-term correction despite some underlying momentum.  The lack of contextual data such as analyst expectations and market outlook significantly limits a comprehensive analysis. The provided financial data is incomplete for a detailed profitability and capital structure evaluation.  Further investigation into analyst ratings, future earnings guidance and economic forecasts is recommended before making any investment decisions.
 
 
-**8. Disclaimer:** This analysis is based solely on the limited data provided.  A thorough investment decision should consider broader market conditions, additional financial statements,  analyst forecasts, and qualitative factors not included in this report. This report is for informational purposes only and should not be construed as financial advice.
+**8. Disclaimer:** This report is based solely on the data provided and does not constitute financial advice.  Investing in the stock market involves risk, and past performance is not indicative of future results.  Independent research and consultation with a financial advisor are recommended before making any investment decisions.
