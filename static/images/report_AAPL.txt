@@ -1,48 +1,93 @@
 2024-12-04 - Analysis Report
 ## Apple Inc. (AAPL) Stock Analysis Report
 
-**1. Performance Comparison & Divergence:**
+**1. Performance Relative to S&P 500 (VOO):**
 
-Apple Inc. is a multinational technology company specializing in consumer electronics, software, and online services.  The cumulative return of AAPL (397.93%) significantly outperforms the S&P 500 (VOO) cumulative return (129.75%) over the analyzed period.  The difference in cumulative returns is 268.2%, placing it at the 96.9th percentile of its historical range compared to the S&P 500.  This indicates a substantial outperformance relative to the market benchmark.  The provided alpha values consistently remain positive, suggesting AAPL's returns are exceeding market expectations.  The beta values indicate a degree of market sensitivity.  However, the high CAGR (Compound Annual Growth Rate) across all periods demonstrates strong historical growth.
+Apple Inc. is a multinational technology company known for its consumer electronics, software, and online services.  The cumulative return of AAPL is significantly higher than that of the S&P 500 (VOO).  The difference in cumulative returns between AAPL and VOO, as of the last data point, is 268.2 percentage points. The relative divergence indicates AAPL's performance is in the 96.9th percentile relative to its historical performance against the S&P 500.  This suggests a strong outperformance.
+
+
+**Alpha and Beta Analysis:**  The provided data shows consistently positive alpha values across all periods, indicating that AAPL has outperformed the market (as represented by its beta). The beta values suggest moderate sensitivity to market movements.  Note the significant increase in CAGR and Alpha from 2017 onwards.
+
+
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2015-2017  | 40.0% | 10.5% | 9.0%  | 0.2 | 640.0 |
+| 2016-2018  | 42.0% | 17.3% | 21.0% | 0.2 | 596.0 |
+| 2017-2019  | 114.0% | 17.3% | 81.0% | 0.2 | 1110.0 |
+| 2018-2020  | 229.0% | 17.3% | 200.0%| 0.2 | 2006.0 |
+| 2019-2021  | 322.0% | 11.6% | 247.0%| 0.2 | 2684.0 |
+| 2020-2022  | 70.0% | 12.0% | 60.0% | 0.2 | 1964.0 |
+| 2021-2023  | 54.0% | 12.0% | 28.0% | 0.2 | 2910.0 |
+| 2022-2024  | 52.0% | 12.0% | 11.0% | 0.2 | 3622.0 |
+
 
 **2. Recent Price Movement:**
 
-* **Closing Price:** $242.65
-* **5-Day Moving Average:** $237.91
-* **20-Day Moving Average:** $229.64
-* **60-Day Moving Average:** $228.11
+* **Closing Price:** 242.6499938964844
+* **5-Day Moving Average:** 237.912
+* **20-Day Moving Average:** 229.6395
+* **60-Day Moving Average:** 228.1071
 
-The price is currently above all three moving averages, suggesting an upward trend.
+The price is above all three moving averages, suggesting an upward trend.
 
-**3. Technical Indicators & Expected Return:**
 
-* **RSI (Relative Strength Index):** 85.31 – This extremely high RSI suggests the stock is significantly overbought, indicating potential for a price correction.
-* **PPO (Percentage Price Oscillator):** 0.69 – A positive PPO indicates bullish momentum.
-* **Delta_Previous_Relative_Divergence:** NaN (-) – The lack of data prevents an assessment.
-* **Expected Return:** 229.7% – This represents a significant projected excess return over the S&P 500 over a long-term (2+ years) investment horizon.  Given the high RSI and potential for correction, this should be interpreted cautiously.  A price of $242.63 (close to the last market price), while above the moving averages, doesn't necessarily signal a sudden dramatic upward movement (e.g., a steep surge); however, the elevated RSI warns of potential vulnerability to downward pressure.
+**3. Technical Indicators and Expected Return:**
+
+* **RSI:** 85.31 –  This indicates the stock is in overbought territory, suggesting a potential pullback.
+* **PPO:** 0.6856 –  A positive PPO suggests bullish momentum.
+* **Delta_Previous_Relative_Divergence:** NaN (-) - This implies a recent short-term bearish trend.
+* **Expected Return:** 229.7% –  This represents a substantial expected long-term (2+ years) outperformance relative to the S&P 500. The closing price of 242.63 is factored into this prediction,  indicating that even with the high RSI and slight short-term bearish trend, the long-term outlook is still positive.  No significant price jumps (sudden surge or drop) are evident from the provided data.
+
 
 **4. Recent Earnings Analysis:**
 
-The provided earnings data shows some volatility in revenue and EPS.
+The provided data shows some volatility in both revenue and EPS.
 
-* **Revenue:** Fluctuates between quarters, with a peak of $119.58B in Q4 2023 and a low of $81.80B in Q4 2023 and Q1 2024. The trend is not consistently upward.
-* **EPS:** Similarly shows variability, peaking at $2.19 in Q4 2023, then decreasing to $1.27 in Q1 and Q2 of 2024, before modestly rising to $1.40 in Q3 2024.  There is no consistent trend in EPS.
-* **Comparison:**  There's a notable drop in both revenue and EPS from Q4 2023 to subsequent quarters, requiring further investigation into underlying factors.
+
+| Date       | EPS  | Revenue      |
+|------------|------|---------------|
+| 2024-08-02 | 1.4  | $85.78 B      |
+| 2024-05-03 | 1.53 | $90.75 B      |
+| 2024-02-02 | 2.19 | $119.58 B     |
+| 2023-08-04 | 1.27 | $81.80 B      |
+| 2024-08-02 | 1.27 | $81.80 B      |
+
+* **Latest Quarterly Results:**  There's a noticeable decline in EPS and revenue in the quarter ending 2024-08-02 compared to the previous quarter (2024-05-03).
+* **Revenue Growth Trends:** Revenue fluctuates significantly across the quarters. The highest revenue was observed in the quarter ending 2024-02-02.
+* **EPS Trends:** Similar to revenue, EPS shows considerable variability; the highest EPS was reported in the quarter ending 2024-02-02.  There is a duplicate entry for 2024-08-02 which impacts the analysis.
+
 
 **5. Financial Information:**
 
-The financial statements reveal strong profitability but fluctuating revenue and equity.
+**Revenue and Profitability:** Profit margins remain relatively stable, hovering around 46%. Revenue shows significant quarter-to-quarter fluctuations.
 
-* **Revenue and Profit Margin:** While profit margins remain consistently high (45-46%), revenue shows significant quarterly variations, hinting at potential seasonality or other market-driven influences.
-* **Equity and ROE (Return on Equity):** Equity shows some volatility, and ROE varies significantly, from 25.88% to 45.77%, suggesting factors impacting capital efficiency.
+| Quarter | Revenue    | Profit Margin |
+|---------|------------|---------------|
+| 2024-09-30 | $94.93B   | 46.22%       |
+| 2024-06-30 | $85.78B   | 46.26%       |
+| 2024-03-31 | $90.75B   | 46.58%       |
+| 2023-12-31 | $119.58B  | 45.87%       |
+| 2023-09-30 | $89.50B   | 45.17%       |
 
 
-**6. News and Recent Issues:**  This section requires information on recent earnings news, market outlook, and analyst opinions – data not provided in the prompt.
+**Capital and Profitability:**  ROE fluctuates, indicating varying returns on equity.  Equity shows variation.
+
+| Quarter | Equity    | ROE     |
+|---------|------------|---------|
+| 2024-09-30 | $56.95B   | 25.88%  |
+| 2024-06-30 | $66.71B   | 32.15%  |
+| 2024-03-31 | $74.19B   | 31.86%  |
+| 2023-12-31 | $74.10B   | 45.77%  |
+| 2023-09-30 | $62.15B   | 36.94%  |
+
+**6. News and Recent Issues:**
+
+This section requires up-to-date information on recent earnings news, market outlook, and analyst opinions, which is not provided in the initial prompt.  Please provide this data for a complete analysis.
 
 
 **7. Overall Analysis:**
 
-Apple demonstrates exceptional historical outperformance against the S&P 500.  However, the current extremely high RSI suggests a potential near-term correction is likely. The recent earnings data reveal inconsistency in revenue and EPS growth.  While long-term growth potential remains substantial (supported by historical data and high expected return), investors should proceed with caution, considering the overbought condition, the fluctuating financial metrics, and a need for further research into recent news and analyst sentiment before making investment decisions.  A more detailed analysis of the recent news and analyst opinions is crucial for informed decision-making.
+Apple (AAPL) shows strong historical outperformance compared to the S&P 500.  While recent earnings show some volatility and the RSI suggests an overbought condition, the long-term expected return remains significant.  The positive alpha and consistent outperformance warrant further investigation.  However, the analysis is incomplete without information on recent news, analyst sentiment, and the resolution of the duplicated data point in the earnings report.  The high RSI suggests caution; the predicted future returns should be considered alongside the possibility of a near-term correction.
 
 
-**8. Disclaimer:** This report is based solely on the provided data.  It is not financial advice, and further due diligence and professional consultation are recommended before making any investment decisions.  The accuracy and completeness of the provided data are assumed, but not verified.
+**8. Disclaimer:** This analysis is based solely on the provided data and does not constitute financial advice.  Always conduct thorough research and consult with a financial professional before making investment decisions.
