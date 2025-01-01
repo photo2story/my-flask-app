@@ -1,62 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Comparison Review</title>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
 
-    <!-- External CSS -->
-    <link rel="stylesheet" href="styles.css">
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
 
-    <!-- GitHub Markdown CSS 추가 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css" integrity="sha512-tioBo8hVDZ2u3QsxISfcuX3SRy5h9SCyexCjfUQ9R3miyvSOId5xGlUMx1uT4Eb9hLzLtIAcs/0jeP58c5HGJw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
 
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- PapaParse CSV Parsing Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    
-    <!-- marked.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
 
-    <!-- Chart.js CDN 추가 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="my_flutter_app">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>my_flutter_app</title>
+  <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
-    <header class="main-header">
-        <h1><span class="large-text">Stock Analysis AI,</span><br><span class="small-text">Backtesting & Beat the S&P 500</span></h1>
-        <!-- 도움말 아이콘과 홈 버튼 -->
-        <span id="helpIcon" title="View README" style="font-size: 12px; cursor: pointer;">❓</span>
-        <button id="toggleLeftPanel">🏠</button>
-    </header>
-
-    <div class="content-wrapper">
-        <div class="left-panel">
-            <div class="sort-options">
-                <span id="rankAlphaToggle" class="active">Rank<->Alpha</span>
-            </div>
-            
-            <div id="tickerList" class="ticker-list"></div> <!-- 티커 리스트가 여기에 표시됨 -->
-        </div>
-
-        <div class="right-panel">
-            <div id="fixedGraph" class="fixed-graph">
-                <canvas id="mainChart"></canvas>
-            </div>
-            
-            <div id="scrollableContent" class="scrollable-section">
-                <div id="scrollableGraph" class="scrollable-graph">
-                    <canvas id="secondaryChart"></canvas>
-                </div>
-                <div id="reportSection" class="report-content"></div> <!-- 리포트 내용 -->
-            </div>
-        </div>
-    </div>
-
-    <!-- External JavaScript -->
-    <script src="scripts.js"></script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
