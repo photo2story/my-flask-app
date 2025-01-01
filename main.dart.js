@@ -17148,8 +17148,7 @@ k=e}}l=f}m=h}}if(j){if(n)p=o
 else{j=s?q:b
 o=(j==null?p.a(j):j).b
 p=o}A.bj(p)
-a=new A.aP(Math.max(A.fk(m),A.fk(k)),Math.max(A.fk(l),p))
-p=a
+p=new A.aP(Math.max(A.fk(m),A.fk(k)),Math.max(A.fk(l),p))
 break $label0$0}p=d}return p},
 b5L(a,b,c,d,e,f,g,h){var s,r=null,q=A.ae(t.O5),p=J.aj4(4,t.mi)
 for(s=0;s<4;++s)p[s]=new A.mM(r,B.ai,B.i,B.N.j(0,B.N)?new A.hc(1):B.N,r,r,r,r,B.a9,r)
@@ -27654,18 +27653,20 @@ aCw:function aCw(a){this.a=a},
 aCs:function aCs(a){this.a=a},
 Fr:function Fr(a){this.a=a},
 JN:function JN(a,b,c,d,e,f,g,h,i){var _=this
-_.w=_.f=_.d=!1
-_.Q=_.x=""
-_.as=a
-_.at=null
-_.ay=_.ax=!0
-_.ch=b
-_.CW=c
-_.cx=d
-_.cy=e
-_.db=f
-_.dx=g
-_.fx=_.fr=_.dy=!1
+_.d=!0
+_.f=!1
+_.z=_.y=_.x=_.w=!0
+_.ax=_.Q=""
+_.ay=a
+_.ch=null
+_.CW=!0
+_.cx=b
+_.cy=c
+_.db=d
+_.dx=e
+_.dy=f
+_.fr=g
+_.fx=!1
 _.fy=h
 _.go=i
 _.c=_.a=_.id=null},
@@ -96428,14 +96429,12 @@ A.JN.prototype={
 vR(a,b){var s=null,r=a.aE(t.Pu)
 r.toString
 r.f.qQ(A.wO(s,s,s,s,B.oI,B.a_,s,A.bi(b,s,s,s,s,s,s,s),s,A.cz(0,0,0,0,0,2),s,s,s,s,s,s,s,s,s))},
-b5(){var s=this
-A.Z("\n=== INIT STATE DEBUG ===")
-s.bt()
+b5(){A.Z("\n=== INIT STATE DEBUG ===")
+this.bt()
 A.Z("[DEBUG] Starting initState")
-s.wX()
-s.fx=!0
+this.wX()
 A.Z("[DEBUG] Initial setup complete")
-A.qo(A.cz(0,0,0,500,0,0),new A.aGU(s),t.P)
+A.qo(A.cz(0,0,0,500,0,0),new A.aGU(this),t.P)
 A.aLT(B.aR,!0,A.H(204,158,158,158),B.mR,B.mg,1,!0)
 A.aLT(B.aR,!0,A.H(204,158,158,158),B.mR,B.mg,1,!0)
 A.avS(B.aR,null,!0,null,B.l6,1,B.auV,!0,B.d0,B.l5,B.SV)},
@@ -96449,20 +96448,20 @@ A.Z("[DEBUG] Calling ApiService.fetchReviewedTickers")
 s=6
 return A.T(A.a9G(),$async$wX)
 case 6:j=b
-n.as=j
+n.ay=j
 A.Z("[DEBUG] Received "+J.as(j)+" tickers")
-s=J.e1(n.as)?7:9
+s=J.e1(n.ay)?7:9
 break
-case 7:n.ax=!0
+case 7:n.CW=!0
 A.Z("[DEBUG] Sorting tickers")
 n.Xc()
 A.Z("[DEBUG] First few tickers received:")
-for(m=0;m<Math.min(5,J.as(n.as));++m)A.d5("  "+J.a4(n.as,m).b+": Rank "+J.a4(n.as,m).a)
+for(m=0;m<Math.min(5,J.as(n.ay));++m)A.d5("  "+J.a4(n.ay,m).b+": Rank "+J.a4(n.ay,m).a)
 n.aj(new A.aGR(n))
-j=n.at
+j=n.ch
 A.Z("[DEBUG] Fetching images and report for "+A.j(j==null?null:j.b))
 s=10
-return A.T(n.lb(n.at.b),$async$wX)
+return A.T(n.lb(n.ch.b),$async$wX)
 case 10:s=8
 break
 case 9:A.Z("[WARNING] No tickers received from API")
@@ -96606,7 +96605,7 @@ s=q}while(true)switch(s){case 0:n.aj(new A.aGo(n))
 q=3
 s=6
 return A.T(A.aJY(),$async$zV)
-case 6:n.x=b
+case 6:n.Q=b
 n.aj(new A.aGp(n))
 o.push(5)
 s=4
@@ -96628,42 +96627,42 @@ case 1:return A.N(p,r)}})
 return A.P($async$zV,r)},
 af_(){this.aj(new A.aGn(this))},
 adQ(){var s,r,q,p,o=this,n=null
-if(!o.ay)return new A.h3(0,0,n,n)
+if(!o.z)return new A.h3(0,0,n,n)
 s=o.c
 s.toString
 s=A.bK(s,n,t.l).w
-r=A.bs(n,n,n,A.bB(n,n,o.ax?B.ks:B.l,n,n,n,n,n,n,n,n,12,n,n,B.j6,n,n,!0,n,n,n,n,n,n,n,n),"Rank")
+r=A.bs(n,n,n,A.bB(n,n,o.CW?B.ks:B.l,n,n,n,n,n,n,n,n,12,n,n,B.j6,n,n,!0,n,n,n,n,n,n,n,n),"Rank")
 q=A.bs(n,n,n,A.bB(n,n,B.l,n,n,n,n,n,n,n,n,10,n,n,B.az,n,n,!0,n,n,n,n,n,n,n,n),"/")
 p=t.p
-return A.bY(n,A.dG(A.a([A.eD(n,A.dG(A.a([A.dM(A.a([A.Vk(n,n,n,B.bY,n,n,!0,n,A.bs(A.a([r,q,A.bs(n,n,n,A.bB(n,n,!o.ax?B.ks:B.l,n,n,n,n,n,n,n,n,10,n,n,B.j6,n,n,!0,n,n,n,n,n,n,n,n),"Alpha")],t.VO),n,n,n,n),B.ai,n,n,B.N,B.a9),new A.Fj(n),A.i4(B.Sz,B.ks,n,11)],p),B.I,B.K,B.V,n,n),A.dN(n,10,n)],p),B.bw,B.K,B.V),B.a2,!1,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,new A.aGk(o),n,n,n,n,n,n,!1,B.aU),A.fY(A.aSs(n,new A.aGl(o),J.as(o.as)),1)],p),B.bw,B.K,B.V),B.t,B.fS,n,n,n,n,n,n,B.mu,n,n,s.a.a*0.2)},
-adN(){var s,r,q,p,o,n,m,l=this,k=null,j=t.p,i=A.a([],j),h=l.ch
-if(h.length!==0&&l.CW.length!==0){s=l.at
+return A.bY(n,A.dG(A.a([A.eD(n,A.dG(A.a([A.dM(A.a([A.Vk(n,n,n,B.bY,n,n,!0,n,A.bs(A.a([r,q,A.bs(n,n,n,A.bB(n,n,!o.CW?B.ks:B.l,n,n,n,n,n,n,n,n,10,n,n,B.j6,n,n,!0,n,n,n,n,n,n,n,n),"Alpha")],t.VO),n,n,n,n),B.ai,n,n,B.N,B.a9),new A.Fj(n),A.i4(B.Sz,B.ks,n,11)],p),B.I,B.K,B.V,n,n),A.dN(n,10,n)],p),B.bw,B.K,B.V),B.a2,!1,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,new A.aGk(o),n,n,n,n,n,n,!1,B.aU),A.fY(A.aSs(n,new A.aGl(o),J.as(o.ay)),1)],p),B.bw,B.K,B.V),B.t,B.fS,n,n,n,n,n,n,B.mu,n,n,s.a.a*0.2)},
+adN(){var s,r,q,p,o,n,m,l=this,k=null,j=t.p,i=A.a([],j),h=l.cx
+if(h.length!==0&&l.cy.length!==0){s=l.ch
 s.toString
-r=l.CW
-i.push(A.eD(k,new A.c_(B.co,A.aU1(k,k,l.cx,130,k,s,!0,!0,k,h,r),k),B.a2,!1,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k,new A.aGc(l),k,k,k,k,k,k,!1,B.aU))}if(l.d&&l.at!=null){h=A.iI(8)
+r=l.cy
+i.push(A.eD(k,new A.c_(B.co,A.aU1(k,k,l.db,130,k,s,!0,!0,k,h,r),k),B.a2,!1,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k,new A.aGc(l),k,k,k,k,k,k,!1,B.aU))}if(l.d&&l.ch!=null){h=A.iI(8)
 s=A.lw(B.bK,1)
-r=l.at
+r=l.ch
 r=r==null?k:r.b
 r=A.bY(k,A.dM(A.a([A.bi("Daily Performance "+A.j(r),k,k,k,A.bB(k,k,B.l,k,k,k,k,k,k,k,k,14,k,k,B.az,k,k,!0,k,k,k,k,k,k,k,k),k,k,k),A.fs(k,k,k,A.i4(B.Sy,k,k,k),k,new A.aGd(l),k,k,k,k,k)],j),B.I,B.dl,B.V,k,k),B.t,k,k,k,k,28,k,k,B.h6,k,k,k)
-q=l.at.b
+q=l.ch.b
 p=l.id
 p.toString
-i.push(A.bY(k,A.dG(A.a([r,A.bY(k,A.aMX(p,!1,k,k,!1,!1,q),B.t,k,k,k,k,250,k,k,B.co,k,k,k)],j),B.I,B.K,B.bi),B.t,k,k,new A.cI(B.n,k,s,h,k,k,B.ao),k,k,k,new A.az(2,2,2,2),k,k,k,k))}if(l.fr)i.push(A.bY(k,new A.Xc(l.as,l.go,l.gami(),new A.aGe(l),k),B.t,k,k,k,k,k,k,new A.az(8,8,8,8),k,k,k,k))
-if(l.fx&&l.fy.length!==0){h=A.iI(8)
+i.push(A.bY(k,A.dG(A.a([r,A.bY(k,A.aMX(p,!1,k,k,!1,!1,q),B.t,k,k,k,k,250,k,k,B.co,k,k,k)],j),B.I,B.K,B.bi),B.t,k,k,new A.cI(B.n,k,s,h,k,k,B.ao),k,k,k,new A.az(2,2,2,2),k,k,k,k))}if(l.x)i.push(A.bY(k,new A.Xc(l.ay,l.go,l.gami(),new A.aGe(l),k),B.t,k,k,k,k,k,k,new A.az(8,8,8,8),k,k,k,k))
+if(l.y&&l.fy.length!==0){h=A.iI(8)
 s=A.lw(B.bK,1)
-r=l.at
+r=l.ch
 r=r==null?k:r.b
 r=A.bY(k,A.dM(A.a([A.bi("Yearly Performance "+A.j(r),k,k,k,A.bB(k,k,B.l,k,k,k,k,k,k,k,k,14,k,k,B.az,k,k,!0,k,k,k,k,k,k,k,k),k,k,k),A.fs(k,new A.ab(24,24,24,24),k,A.i4(B.mG,B.cg,k,20),k,new A.aGf(l),B.Y,k,k,k,k)],j),B.I,B.dl,B.V,k,k),B.t,k,k,k,k,28,k,k,B.h6,k,k,k)
 q=A.a([],t.UR)
 for(p=["YEAR","CAGR","S&P","Alpha","Beta","Sharp","MDD","Cap(B)"],o=0;o<8;++o){n=p[o]
 q.push(new A.Ay(new A.iK(B.al,k,k,A.bi(n,k,k,k,new A.r(!0,B.kr,k,k,k,k,12,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k,k),B.a8,k,k),k)))}p=l.fy
 m=A.X(p).i("U<1,iQ>")
-i.push(A.bY(k,A.dG(A.a([r,A.Fa(A.aR_(3,q,28,28,4,A.Y(new A.U(p,new A.aGg(l),m),!0,m.i("ai.E"))),k,k,k,B.ax)],j),B.I,B.K,B.bi),B.t,k,k,new A.cI(B.n,k,s,h,k,k,B.ao),k,k,k,new A.az(2,2,2,2),k,k,k,k))}if(l.Q.length!==0)i.push(A.bY(k,A.dG(A.a([A.dM(A.a([A.bi("Analysis Report",k,k,k,A.bB(k,k,B.cg,k,k,k,k,k,k,k,k,16,k,k,B.az,k,k,!0,k,k,k,k,k,k,k,k),k,k,k),A.fs(k,new A.ab(24,24,24,24),k,A.i4(B.mG,B.cg,k,20),k,new A.aGh(l),B.Y,k,k,k,k)],j),B.I,B.dl,B.V,k,k),A.dN(k,8,k),A.aSA(l.Q,A.RX(k,k,k,B.C,k,k,k,k,B.C,k,k,k,k,A.bB(k,k,B.cg,k,k,k,k,k,k,k,k,18,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),B.C,k,A.bB(k,k,B.kr,k,k,k,k,k,k,k,k,16,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),B.C,k,k,B.C,k,k,B.C,k,k,B.C,k,k,B.C,k,k,k,k,k,k,B.C,A.bB(k,k,B.Q,k,k,k,k,k,k,k,k,k,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),k,k,k,k,k,k,k,k,k,k,k,B.fk,B.C,k,k,B.C))],j),B.I,B.K,B.V),B.t,k,k,k,k,k,k,new A.az(20,8,20,8),k,k,k,k))
+i.push(A.bY(k,A.dG(A.a([r,A.Fa(A.aR_(3,q,28,28,4,A.Y(new A.U(p,new A.aGg(l),m),!0,m.i("ai.E"))),k,k,k,B.ax)],j),B.I,B.K,B.bi),B.t,k,k,new A.cI(B.n,k,s,h,k,k,B.ao),k,k,k,new A.az(2,2,2,2),k,k,k,k))}if(l.ax.length!==0)i.push(A.bY(k,A.dG(A.a([A.dM(A.a([A.bi("Analysis Report",k,k,k,A.bB(k,k,B.cg,k,k,k,k,k,k,k,k,16,k,k,B.az,k,k,!0,k,k,k,k,k,k,k,k),k,k,k),A.fs(k,new A.ab(24,24,24,24),k,A.i4(B.mG,B.cg,k,20),k,new A.aGh(l),B.Y,k,k,k,k)],j),B.I,B.dl,B.V,k,k),A.dN(k,8,k),A.aSA(l.ax,A.RX(k,k,k,B.C,k,k,k,k,B.C,k,k,k,k,A.bB(k,k,B.cg,k,k,k,k,k,k,k,k,18,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),B.C,k,A.bB(k,k,B.kr,k,k,k,k,k,k,k,k,16,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),B.C,k,k,B.C,k,k,B.C,k,k,B.C,k,k,B.C,k,k,k,k,k,k,B.C,A.bB(k,k,B.Q,k,k,k,k,k,k,k,k,k,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),k,k,k,k,k,k,k,k,k,k,k,B.fk,B.C,k,k,B.C))],j),B.I,B.K,B.V),B.t,k,k,k,k,k,k,new A.az(20,8,20,8),k,k,k,k))
 return A.dG(A.a([A.fY(A.Fa(A.dG(i,B.I,B.K,B.V),k,k,k,B.ay),1)],j),B.I,B.K,B.V)},
-Xc(){var s,r,q,p=this,o=A.eW(p.as,!0,t.oo)
-if(p.ax)B.b.dT(o,new A.aGu())
+Xc(){var s,r,q,p=this,o=A.eW(p.ay,!0,t.oo)
+if(p.CW)B.b.dT(o,new A.aGu())
 else B.b.dT(o,new A.aGv())
-A.Z("[DEBUG] Sorted Tickers (isRanked: "+p.ax+"):")
+A.Z("[DEBUG] Sorted Tickers (isRanked: "+p.CW+"):")
 for(s=o.length,r=0;r<o.length;o.length===s||(0,A.D)(o),++r){q=o[r]
 A.d5("Ticker: "+q.b+", Rank: "+q.a)}p.aj(new A.aGw(p,o))},
 apk(){this.aj(new A.aGt(this))},
@@ -96676,7 +96675,7 @@ A.Z("[DEBUG] Clicked ticker: "+p)
 o=a.a
 A.Z("[DEBUG] Ticker rank: "+o)
 try{A.Z("[DEBUG] Current state:")
-A.Z(l+m.fr)
+A.Z(l+m.x)
 A.Z(k+m.w)
 A.Z(j+m.go.length)
 s=A.j9(o,i)
@@ -96685,9 +96684,9 @@ m.aj(new A.aGr(m,a))
 A.Z("[DEBUG] Fetching data for "+p)
 m.lb(p)
 A.Z("[DEBUG] State after update:")
-p=m.at
+p=m.ch
 A.Z("- Selected ticker: "+A.j(p==null?i:p.b))
-A.Z(l+m.fr)
+A.Z(l+m.x)
 A.Z(k+m.w)
 A.Z(j+m.go.length)}catch(n){r=A.a8(n)
 q=A.aN(n)
@@ -96725,7 +96724,7 @@ zF(a,b){return this.QW(a,b,2)},
 X(a){var s,r,q,p,o,n=this,m=null,l=A.Vk(m,m,m,B.bY,m,m,!0,m,A.bs(A.a([A.bs(m,m,m,A.bB(m,m,B.l,m,m,m,m,m,m,m,m,20,m,m,B.az,m,m,!0,m,m,m,m,m,m,m,m),"Stock Analysis AI,\n"),A.bs(m,m,m,A.bB(m,m,B.l,m,m,m,m,m,m,m,m,12,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),"Backtesting & Beat the S&P 500")],t.VO),m,m,m,m),B.ai,m,m,B.N,B.a9),k=A.bY(m,A.fs(m,new A.ab(24,24,24,24),m,A.i4(B.Sv,m,m,m),18,new A.aGE(n),B.Y,m,m,m,B.l9),B.t,m,m,m,m,24,m,m,m,m,m,24),j=A.dN(m,m,2),i=A.eD(m,A.abK(B.cg,A.bi("G",m,m,m,A.bB(m,m,B.l,m,m,m,m,m,m,m,m,12,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),12),B.a2,!1,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,new A.aGF(n,a),m,m,m,m,m,m,!1,B.aU),h=A.dN(m,m,2),g=n.w,f=g?B.cg:B.aY
 f=A.eD(m,A.abK(f,A.bi("Top",m,m,m,A.bB(m,m,g?B.l:B.X,m,m,m,m,m,m,m,m,12,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),12),B.a2,!1,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,new A.aGG(n),m,m,m,m,m,m,!1,B.aU)
 s=A.dN(m,m,2)
-g=n.fx
+g=n.y
 r=g?B.cg:B.aY
 r=A.eD(m,A.abK(r,A.bi("10",m,m,m,A.bB(m,m,g?B.l:B.X,m,m,m,m,m,m,m,m,12,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),12),B.a2,!1,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,new A.aGH(n,a),m,m,m,m,m,m,!1,B.aU)
 q=A.dN(m,m,2)
@@ -96733,16 +96732,16 @@ g=n.d
 p=g?B.cg:B.aY
 o=t.p
 p=A.a9L(m,m,m,m,A.dM(A.a([l,new A.Fj(m),k,j,i,h,f,s,r,q,A.eD(m,A.abK(p,A.bi("+",m,m,m,A.bB(m,m,g?B.l:B.X,m,m,m,m,m,m,m,m,12,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),12),B.a2,!1,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,new A.aGI(n),m,m,m,m,m,m,!1,B.aU),A.dN(m,m,2),A.dM(A.a([A.bY(m,A.fs(m,new A.ab(24,24,24,24),m,A.i4(B.Sr,m,m,m),18,n.gapj(),B.Y,m,m,m,B.l9),B.t,m,m,m,m,24,m,m,m,m,m,24),A.dN(m,m,2),A.bY(m,A.fs(m,new A.ab(24,24,24,24),m,A.i4(B.Su,m,m,m),18,n.gahr(),B.Y,m,m,m,B.l9),B.t,m,m,m,m,24,m,m,m,m,m,24)],o),B.I,B.K,B.bi,m,m)],o),B.I,B.K,B.V,m,m),m)
-if(n.f)l=A.Rf(B.Y,A.bY(m,A.dG(A.a([A.dM(A.a([A.bi("App Information",m,m,m,A.bB(m,m,B.l,m,m,m,m,m,m,m,m,18,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),A.fs(m,m,m,A.i4(B.mF,B.l,m,m),m,n.gaeZ(),m,m,m,m,m)],o),B.I,B.dl,B.V,m,m),A.fY(A.Fa(A.aSA(n.x,A.RX(m,m,m,B.C,m,m,m,m,B.C,m,m,m,m,A.bB(m,m,B.cg,m,m,m,m,m,m,m,m,24,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),B.C,m,A.bB(m,m,B.kr,m,m,m,m,m,m,m,m,20,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),B.C,m,m,B.C,m,m,B.C,m,m,B.C,m,m,B.C,m,m,m,m,m,m,B.C,A.bB(m,m,B.Q,m,m,m,m,m,m,m,m,m,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m,m,m,m,m,m,m,m,m,m,B.fk,B.C,m,m,B.C)),m,m,m,B.ay),1)],o),B.bw,B.K,B.V),B.t,B.n,m,m,m,m,m,m,new A.az(8,8,8,8),m,m,m),4,1,!0,!0,n.cy)
-else if(n.dy)l=A.bY(m,new A.EL(n.gaeX(),$.a9b().a,m),B.t,B.n,m,m,m,m,m,m,new A.az(8,8,8,8),m,m,m)
+if(n.f)l=A.Rf(B.Y,A.bY(m,A.dG(A.a([A.dM(A.a([A.bi("App Information",m,m,m,A.bB(m,m,B.l,m,m,m,m,m,m,m,m,18,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),A.fs(m,m,m,A.i4(B.mF,B.l,m,m),m,n.gaeZ(),m,m,m,m,m)],o),B.I,B.dl,B.V,m,m),A.fY(A.Fa(A.aSA(n.Q,A.RX(m,m,m,B.C,m,m,m,m,B.C,m,m,m,m,A.bB(m,m,B.cg,m,m,m,m,m,m,m,m,24,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),B.C,m,A.bB(m,m,B.kr,m,m,m,m,m,m,m,m,20,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),B.C,m,m,B.C,m,m,B.C,m,m,B.C,m,m,B.C,m,m,m,m,m,m,B.C,A.bB(m,m,B.Q,m,m,m,m,m,m,m,m,m,m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m,m,m,m,m,m,m,m,m,m,B.fk,B.C,m,m,B.C)),m,m,m,B.ay),1)],o),B.bw,B.K,B.V),B.t,B.n,m,m,m,m,m,m,new A.az(8,8,8,8),m,m,m),4,1,!0,!0,n.dx)
+else if(n.fx)l=A.bY(m,new A.EL(n.gaeX(),$.a9b().a,m),B.t,B.n,m,m,m,m,m,m,new A.az(8,8,8,8),m,m,m)
 else{l=A.a([],o)
-if(n.ay)l.push(n.adQ())
+if(n.z)l.push(n.adQ())
 l.push(A.fY(A.dG(A.a([A.fY(n.adN(),1)],o),B.I,B.K,B.V),1))
 l=A.dM(l,B.I,B.K,B.V,m,m)}return A.arY(p,m,l)},
-m(){var s=this.cy,r=$.aK()
+m(){var s=this.dx,r=$.aK()
 s.W$=r
 s.a5$=0
-s=this.db
+s=this.dy
 s.W$=r
 s.a5$=0
 this.bm()}}
@@ -96751,13 +96750,13 @@ $0(){var s=0,r=A.Q(t.P),q=1,p,o=this,n,m,l,k,j,i,h
 var $async$$0=A.R(function(a,b){if(a===1){p=b
 s=q}while(true)switch(s){case 0:A.Z("[DEBUG] Delayed CAGR data load starting")
 k=o.a
-j=k.at
+j=k.ch
 s=j!=null?2:3
 break
 case 2:q=5
 A.Z("[DEBUG] Loading CAGR data for "+j.b)
 s=8
-return A.T(A.ue("result_alpha_"+k.at.b+".csv"),$async$$0)
+return A.T(A.ue("result_alpha_"+k.ch.b+".csv"),$async$$0)
 case 8:n=b
 if(J.e1(n)){m=A.aLI(n)
 k.aj(new A.aGT(k,m))}q=1
@@ -96784,7 +96783,7 @@ $0(){return!0},
 $S:0}
 A.aGR.prototype={
 $0(){var s=this.a
-s=s.at=J.dk(s.as)
+s=s.ch=J.dk(s.ay)
 A.Z("[DEBUG] Selected first ticker: "+A.j(s==null?null:s.b))},
 $S:0}
 A.aGS.prototype={
@@ -96813,11 +96812,11 @@ q.h(0,"comparisonImageUrl")
 q.h(0,"resultImageUrl")
 s=r.b
 q=q.h(0,"reportText")
-s.Q=q==null?"":q
-s.cx=r.d
+s.ax=q==null?"":q
+s.db=r.d
 q=r.a
-s.ch=q.a
-s.CW=q.b},
+s.cx=q.a
+s.cy=q.b},
 $S:0}
 A.aGP.prototype={
 $0(){return!1},
@@ -96840,11 +96839,11 @@ s.aj(new A.aGj(s))},
 $S:0}
 A.aGj.prototype={
 $0(){var s=this.a
-s.ax=!s.ax
+s.CW=!s.CW
 s.Xc()},
 $S:0}
 A.aGl.prototype={
-$2(a,b){var s,r,q,p=null,o=this.a,n=J.a4(o.as,b),m=n.as,l=m.aK("1m")
+$2(a,b){var s,r,q,p=null,o=this.a,n=J.a4(o.ay,b),m=n.as,l=m.aK("1m")
 if(l){m=m.h(0,"1m")
 m.toString
 s=A.dK(m)
@@ -96853,7 +96852,7 @@ if(s>0)r=B.iz
 else r=s<0?B.iE:B.l}else r=B.l
 q=A.j9(n.a,p)
 if(q==null)q="N/A"
-m=o.ax
+m=o.CW
 l=n.b
 m=m?A.j(q)+": "+l:l
 return A.aiL(!1,!0,A.bY(p,A.dM(A.a([A.fY(A.bi(m,p,p,p,A.bB(p,p,r,p,p,p,p,p,p,p,p,10,p,p,B.aq,p,p,!0,p,p,p,p,p,p,p,p),p,p,p),1)],t.p),B.I,B.K,B.V,p,p),B.t,p,p,p,p,30,p,p,new A.az(4,6,4,6),p,p,p),p,!0,p,p,p,p,p,p,p,p,p,p,new A.aGi(o,n),p,p,p,p,p,p,p)},
@@ -96868,9 +96867,9 @@ s=A.TH(new A.aGb(s),null,t.z)
 A.j6(r,!1).ma(s)},
 $S:0}
 A.aGb.prototype={
-$1(a){var s=this.a,r=s.at
+$1(a){var s=this.a,r=s.ch
 r.toString
-return new A.nE(r,s.ch,s.CW,s.cx,null)},
+return new A.nE(r,s.cx,s.cy,s.db,null)},
 $S:228}
 A.aGd.prototype={
 $0(){var s=this.a,r=s.c
@@ -96879,20 +96878,20 @@ s=A.TH(new A.aGa(s),null,t.z)
 A.j6(r,!1).ma(s)},
 $S:0}
 A.aGa.prototype={
-$1(a){return new A.r5(this.a.at.b,null)},
+$1(a){return new A.r5(this.a.ch.b,null)},
 $S:603}
 A.aGe.prototype={
 $0(){var s=this.a
 s.aj(new A.aG9(s))},
 $S:13}
 A.aG9.prototype={
-$0(){this.a.dy=!0},
+$0(){this.a.fx=!0},
 $S:0}
 A.aGf.prototype={
 $0(){var s=0,r=A.Q(t.H),q,p=2,o,n=this,m,l,k,j,i,h,g,f,e,d,c
 var $async$$0=A.R(function(a,b){if(a===1){o=b
 s=p}while(true)switch(s){case 0:e=n.a
-d=e.at
+d=e.ch
 if(d==null){d=e.c
 d.toString
 e.vR(d,"Please select a ticker first")
@@ -96901,7 +96900,7 @@ break}p=4
 s=7
 return A.T(A.ue("result_alpha_"+d.b+".csv"),$async$$0)
 case 7:m=b
-if(J.e1(m)){l="# "+e.at.b+" Yearly Performance Analysis\n\n| YEAR | CAGR | S&P | Alpha | Beta | Sharp | MDD | Cap(B) |\n|------|------|-----|-------|------|-------|-----|--------|\n"
+if(J.e1(m)){l="# "+e.ch.b+" Yearly Performance Analysis\n\n| YEAR | CAGR | S&P | Alpha | Beta | Sharp | MDD | Cap(B) |\n|------|------|-----|-------|------|-------|-----|--------|\n"
 for(d=J.z3(m,1),h=d.$ti,d=new A.bh(d,d.gB(0),h.i("bh<ai.E>")),h=h.i("ai.E");d.A();){g=d.d
 k=g==null?h.a(g):g
 if(J.as(k)>=8)l=J.aLl(l,"| "+A.j(J.a4(k,0))+" | "+A.j(J.a4(k,1))+" | "+A.j(J.a4(k,2))+" | "+A.j(J.a4(k,3))+" | "+A.j(J.a4(k,4))+" | "+A.j(J.a4(k,5))+" | "+A.j(J.a4(k,6))+" | "+A.j(J.a4(k,7))+" |\n")}j=J.aLl(l,"\n\nPlease provide a detailed analysis of key characteristics and performance factors for each period based on the above data.")
@@ -96914,7 +96913,7 @@ i=A.a8(c)
 A.Z("Error loading CAGR data: "+A.j(i))
 d=e.c
 d.toString
-e.vR(d,"Error loading data for "+e.at.b)
+e.vR(d,"Error loading data for "+e.ch.b)
 s=6
 break
 case 3:s=2
@@ -96924,7 +96923,7 @@ case 2:return A.N(o,r)}})
 return A.P($async$$0,r)},
 $S:29}
 A.aG8.prototype={
-$0(){this.a.dy=!0
+$0(){this.a.fx=!0
 $.a9b().a=this.b},
 $S:0}
 A.aGg.prototype={
@@ -96937,8 +96936,8 @@ s.aj(new A.aG7(s))},
 $S:0}
 A.aG7.prototype={
 $0(){var s=this.a
-s.dy=!0
-$.a9b().a=s.Q},
+s.fx=!0
+$.a9b().a=s.ax},
 $S:0}
 A.aGu.prototype={
 $2(a,b){var s,r=A.j9(a.a,null)
@@ -96950,26 +96949,26 @@ A.aGv.prototype={
 $2(a,b){return B.e.bp(a.b.toUpperCase(),b.b.toUpperCase())},
 $S:229}
 A.aGw.prototype={
-$0(){this.a.as=this.b},
+$0(){this.a.ay=this.b},
 $S:0}
 A.aGt.prototype={
-$0(){this.a.dy=!0},
+$0(){this.a.fx=!0},
 $S:0}
 A.aGm.prototype={
-$0(){this.a.dy=!1},
+$0(){this.a.fx=!1},
 $S:0}
 A.aGr.prototype={
-$0(){var s=this.a,r=s.at=this.b,q=A.j9(r.a,null),p=q!=null&&q<=10,o=r.b
+$0(){var s=this.a,r=s.ch=this.b,q=A.j9(r.a,null),p=q!=null&&q<=10,o=r.b
 if(p){A.Z("[DEBUG] Ticker is in default list (rank: "+A.j(q)+")")
 s.lb(o)}else{A.Z("[DEBUG] Adding ticker to custom list")
 s.go=A.a([r],t.CK)
-s.w=s.fr=!0
+s.w=s.x=!0
 s.lb(o)}},
 $S:0}
 A.aGs.prototype={
-$0(){var s=this.a,r=s.at=this.b
+$0(){var s=this.a,r=s.ch=this.b
 s.go=A.a([r],t.CK)
-s.w=s.fr=!0
+s.w=s.x=!0
 s.lb(r.b)},
 $S:0}
 A.aGE.prototype={
@@ -96978,19 +96977,19 @@ s.aj(new A.aGD(s))},
 $S:0}
 A.aGD.prototype={
 $0(){var s=this.a
-s.ay=!s.ay},
+s.z=!s.z},
 $S:0}
 A.aGF.prototype={
-$0(){var s=null,r=this.a,q=r.at!=null&&r.ch.length!==0&&r.CW.length!==0,p=this.b
+$0(){var s=null,r=this.a,q=r.ch!=null&&r.cx.length!==0&&r.cy.length!==0,p=this.b
 if(q){r=A.TH(new A.aGC(r),s,t.z)
 A.j6(p,!1).ma(r)}else{r=p.aE(t.Pu)
 r.toString
 r.f.qQ(A.wO(s,s,s,s,s,B.a_,s,A.bi("No data available for the selected ticker.",s,s,s,s,s,s,s),s,B.h4,s,s,s,s,s,s,s,s,s))}},
 $S:0}
 A.aGC.prototype={
-$1(a){var s=this.a,r=s.at
+$1(a){var s=this.a,r=s.ch
 r.toString
-return new A.nE(r,s.ch,s.CW,s.cx,null)},
+return new A.nE(r,s.cx,s.cy,s.db,null)},
 $S:228}
 A.aGG.prototype={
 $0(){var s=this.a
@@ -96998,23 +96997,23 @@ s.aj(new A.aGB(s))},
 $S:0}
 A.aGB.prototype={
 $0(){var s=this.a
-s.fr=!s.fr
+s.x=!s.x
 s.w=!s.w},
 $S:0}
 A.aGH.prototype={
 $0(){var s=0,r=A.Q(t.H),q,p=2,o,n=this,m,l,k,j,i,h
 var $async$$0=A.R(function(a,b){if(a===1){o=b
 s=p}while(true)switch(s){case 0:i=n.a
-s=i.at!=null?3:5
+s=i.ch!=null?3:5
 break
 case 3:i.aj(new A.aGy(i))
-s=i.fx?6:7
+s=i.y?6:7
 break
 case 6:p=9
 s=12
-return A.T(A.ue("result_alpha_"+i.at.b+".csv"),$async$$0)
+return A.T(A.ue("result_alpha_"+i.ch.b+".csv"),$async$$0)
 case 12:m=b
-if(J.fM(m)){i.vR(n.b,"No data available for "+i.at.b)
+if(J.fM(m)){i.vR(n.b,"No data available for "+i.ch.b)
 s=1
 break}l=A.aLI(m)
 i.aj(new A.aGz(i,l))
@@ -97039,13 +97038,13 @@ return A.P($async$$0,r)},
 $S:29}
 A.aGy.prototype={
 $0(){var s=this.a
-return s.fx=!s.fx},
+return s.y=!s.y},
 $S:0}
 A.aGz.prototype={
 $0(){this.a.fy=this.b},
 $S:0}
 A.aGA.prototype={
-$0(){return this.a.fx=!1},
+$0(){return this.a.y=!1},
 $S:0}
 A.aGI.prototype={
 $0(){var s=this.a
@@ -117481,3 +117480,4 @@ return}var s=document.scripts
 function onLoad(b){for(var q=0;q<s.length;++q){s[q].removeEventListener("load",onLoad,false)}a(b.target)}for(var r=0;r<s.length;++r){s[r].addEventListener("load",onLoad,false)}})(function(a){v.currentScript=a
 var s=A.aKx
 if(typeof dartMainRunner==="function"){dartMainRunner(s,[])}else{s([])}})})()
+//# sourceMappingURL=main.dart.js.map
