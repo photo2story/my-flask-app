@@ -1,47 +1,60 @@
 2025-01-17 - Analysis Report
 ## Salesforce Inc. (CRM) Stock Review
 
-**1. Performance Comparison & Divergence:**
+**1. Performance vs. S&P 500 (VOO):**
 
-Salesforce Inc. (CRM) is a cloud-based software company providing customer relationship management (CRM) services.
+Salesforce Inc. (CRM) is a cloud-based software company providing customer relationship management (CRM) services.  The cumulative return for CRM is 149.68%, significantly outperforming the S&P 500's (VOO) cumulative return of 116.43%.  The difference is 33.3%, placing it at the 44th percentile of historical performance relative to the S&P 500 based on the provided range.
 
-The cumulative return of CRM (149.68%) significantly outperforms the S&P 500 (VOO) cumulative return (116.43%).  The difference is 33.3%, placing it at the 44th percentile of historical divergence based on provided data (max 130.8%, min -43.3%).  This suggests CRM has generally outperformed the market over the considered period, though this is not a guarantee of future performance.
+**Alpha and Beta Analysis:**
 
-**Alpha/Beta Analysis:**  The provided CAGR of 150% over 2015-2025 significantly exceeds the market, supported by a positive alpha (0.33) and high beta (0.1). This indicates CRM's performance is highly sensitive to market movements and has consistently outperformed the benchmark.  A high beta suggests higher risk, but the high alpha suggests this risk may be compensated by above-market returns.  The market capitalization is substantial ($309 Billion).
+The provided data shows inconsistent performance relative to the market (Beta around 0.1 consistently). While CAGR is high in some periods, substantial maximum drawdowns (MDD) are observed, highlighting the volatility of CRM's stock price.  The negative CAGR from 2020-2022 shows significant underperformance during that time.  The most recent period, 2023-2025, however, shows a high CAGR, indicating a recovery.
+
+
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2015-2017  | 34.0% | 24.7% | 7.0% | 0.1 | 309.0 |
+| 2016-2018  | 50.0% | 24.7% | 35.0% | 0.1 | 309.0 |
+| 2017-2019  | 76.0% | 23.6% | 44.0% | 0.1 | 309.0 |
+| 2018-2020  | 83.0% | 35.1% | 49.0% | 0.1 | 309.0 |
+| 2019-2021  | 71.0% | 35.1% | -9.0% | 0.1 | 309.0 |
+| 2020-2022  | -64.0% | 54.8% | -71.0% | 0.1 | 309.0 |
+| 2021-2023  | 1.0% | 54.8% | -23.0% | 0.1 | 309.0 |
+| 2022-2024  | 32.0% | 45.6% | 10.0% | 0.1 | 309.0 |
+| 2023-2025  | 134.0% | 30.6% | 67.0% | 0.1 | 309.0 |
 
 
 **2. Recent Price Movement:**
 
 * **Closing Price:** $322.29
-* **Last Market Price:** $322.39
+* **Last Market Price:** $322.59
 * **5-Day Moving Average:** $320.78
 * **20-Day Moving Average:** $332.75
 * **60-Day Moving Average:** $327.39
 
-The price is currently below both the 20-day and 60-day moving averages, suggesting a potential short-term bearish trend.  However, the difference is not significant.
+The price is currently below its 20-day and 60-day moving averages, suggesting a potential downward trend.  The 5-day moving average is closer to the current price, hinting at some recent stabilization.
 
-**3. Technical Indicators & Expected Return:**
 
-* **RSI (24.95):**  Indicates the stock is currently in oversold territory, suggesting potential for a price rebound.
-* **PPO (-0.63):** Negative value suggests bearish momentum.
-* **20-Day Relative Divergence (-2.6):** Shows a recent decrease in relative strength.
-* **Expected Return (8.0%):**  A projected long-term (2+ years) outperformance of the S&P 500.  This is a prediction, not a guarantee.
+**3. Technical Indicators:**
 
-The provided last market price ($322.39) doesn't signal a dramatic price surge or drop based on the provided context. The indicators point towards a potentially oversold market with possibilities of recovery given the long-term positive outlook.
+* **RSI (Relative Strength Index):** 24.95 – This indicates the stock is currently in oversold territory, suggesting potential for a bounce.
+* **PPO (Percentage Price Oscillator):** -0.63 –  A negative value suggests bearish momentum.
+* **20-Day Relative Divergence:** -2.6 – This indicates a recent short-term downward trend.
+
+Given the RSI and the negative PPO and relative divergence, combined with the price being below its moving averages, the current market price shows bearish momentum. The expected return of 8% over the long term (2+ years) suggests potential for outperformance relative to the S&P 500, but this is contingent upon market conditions and the company's future performance.  The fact that Last-market ($322.59) is very close to the closing price ($322.29) suggests no significant immediate price jump.
+
 
 
 **4. Recent Earnings Analysis:**
 
-| Date       | EPS   | Revenue     |
-|------------|-------|-------------|
-| 2024-12-04 | 1.6   | $9.44B      |
-| 2024-08-29 | 1.48  | $9.32B      |
-| 2024-05-30 | 1.58  | $9.13B      |
-| 2023-11-30 | 1.26  | $8.72B      |
-| 2024-12-04 | 1.26  | $8.72B      |
+| Date       | EPS  | Revenue       |
+|------------|------|---------------|
+| 2024-12-04 | 1.6  | $9.44B        |
+| 2024-08-29 | 1.48 | $9.32B        |
+| 2024-05-30 | 1.58 | $9.13B        |
+| 2023-11-30 | 1.26 | $8.72B        |
+| 2024-12-04 | 1.26 | $8.72B        |
 
-There appears to be a duplicate entry for 2024-12-04.  Excluding the duplicate, revenue shows a generally increasing trend, though EPS fluctuates.  Further investigation is needed to understand the reasons behind EPS fluctuations.
-
+There appears to be a duplicate entry for 2024-12-04.  Excluding the duplicate, revenue shows consistent growth, with EPS fluctuating but generally trending upwards.  Further analysis is needed to determine the underlying factors driving these numbers.
 
 **5. Financial Information:**
 
@@ -49,27 +62,28 @@ There appears to be a duplicate entry for 2024-12-04.  Excluding the duplicate, 
 
 | Quarter | Revenue | Profit Margin |
 |---------|----------|---------------|
-| 2024-10-31 | $9.44B | 77.71%       |
-| 2024-07-31 | $9.32B | 76.85%       |
-| 2024-04-30 | $9.13B | 76.33%       |
-| 2024-01-31 | $9.29B | 76.87%       |
-| 2023-10-31 | $8.72B | 75.29%       |
+| 2024-10-31 | $9.44B | 77.71% |
+| 2024-07-31 | $9.32B | 76.85% |
+| 2024-04-30 | $9.13B | 76.33% |
+| 2024-01-31 | $9.29B | 76.87% |
+| 2023-10-31 | $8.72B | 75.29% |
 
-Revenue shows a generally upward trend, while profit margins remain consistently high, though slightly fluctuating.
+Revenue shows consistent growth, and profit margins remain high and relatively stable.
 
 **Capital and Profitability:**
 
-| Quarter | Equity  | ROE    |
-|---------|---------|--------|
-| 2024-10-31 | $58.52B | 2.61%  |
-| 2024-07-31 | $57.63B | 2.48%  |
-| 2024-04-30 | $59.68B | 2.57%  |
-| 2024-01-31 | $59.65B | 2.42%  |
-| 2023-10-31 | $58.09B | 2.11%  |
+| Quarter | Equity  | ROE     |
+|---------|---------|---------|
+| 2024-10-31 | $58.52B | 2.61%   |
+| 2024-07-31 | $57.63B | 2.48%   |
+| 2024-04-30 | $59.68B | 2.57%   |
+| 2024-01-31 | $59.65B | 2.42%   |
+| 2023-10-31 | $58.09B | 2.11%   |
 
-Equity and ROE show some fluctuation but generally remain stable, indicating a healthy financial position.
-
+Equity fluctuates but remains consistently high. ROE is also relatively stable, though showing some minor fluctuations.
 
 **7. Overall Analysis:**
 
-Salesforce (CRM) demonstrates strong long-term growth potential, supported by consistent revenue growth and high profit margins.  While recent short-term indicators suggest a potential bearish trend, the oversold RSI and historically strong performance relative to the S&P 500 warrant consideration.  The high beta indicates higher risk associated with its market sensitivity.  The projected 8% long-term outperformance against the S&P 500 is promising but relies on future market conditions.  Further investigation into the EPS fluctuations and a thorough risk assessment are recommended before making any investment decisions.  The current price is near a potential support level given it's position relative to moving averages.  This analysis is based on provided data and does not constitute financial advice.
+Salesforce (CRM) shows strong revenue growth and healthy profit margins.  However, its stock price volatility and periods of significant underperformance relative to the market are concerning. While the recent earnings data is positive, the current technical indicators (RSI, PPO, moving averages) suggest a bearish short-term outlook.  The long-term outlook, supported by the 8% expected return, remains positive,  but requires careful consideration of the inherent risk given the stock’s past volatility.  Further investigation into the drivers of past underperformance and current market sentiment would be beneficial before making any investment decisions.  The high relative strength over the longer term suggests the possibility of a bounce from its current oversold position.
+
+**8. Disclaimer:** This analysis is based solely on the provided data and should not be considered financial advice.  Investing in the stock market involves risk, and past performance is not indicative of future results.  Conduct thorough independent research and consider consulting a financial advisor before making any investment decisions.
