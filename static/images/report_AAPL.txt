@@ -1,52 +1,61 @@
-2025-01-22 - Analysis Report
+2025-01-24 - Analysis Report
 ## Apple Inc. (AAPL) Stock Review
 
-**1. Performance Comparison & Divergence:**
+**1. Performance vs. S&P 500 (VOO):**
 
 Apple Inc. is a multinational technology company specializing in consumer electronics, software, and online services.
 
-The cumulative return of AAPL is significantly higher than that of the S&P 500 (VOO).  The difference in cumulative returns between AAPL and VOO is 199.3%, placing it at the 75.5th percentile of its historical range of divergence (max: 270.7%, min: -21.2%). This indicates AAPL has substantially outperformed the S&P 500 over the analyzed period.  The alpha consistently shows as 0.0 in the provided data, indicating the model used may not fully capture the outperformance relative to the market.
+The cumulative return of AAPL is 321.56%, significantly outperforming the S&P 500's cumulative return of 122.83%.  The difference is 198.7%, placing it at the 75.3rd percentile of its historical performance range relative to the S&P 500 (based on a range of 270.7% to -21.2%).  The Alpha consistently shows near zero indicating a high correlation with the market, and the Beta is consistently around zero, making this a market-neutral stock.  The consistently high CAGR across all periods shows strong growth with relatively low MDD.  
+
 
 **2. Recent Price Movement:**
 
-* **Closing Price:** $222.64
-* **5-Day Moving Average:** $230.41
-* **20-Day Moving Average:** $243.77
-* **60-Day Moving Average:** $237.42
+* **Closing Price:** $223.66
+* **5-Day Moving Average:** $225.67
+* **20-Day Moving Average:** $240.93
+* **60-Day Moving Average:** $237.20
 
-The closing price is below all three moving averages, suggesting a downward trend in the short-to-medium term.  The recent price change of -$3.19 indicates a short-term decline.
+The stock price is currently below all three moving averages, suggesting a bearish trend in the short to medium term.  The recent price change of -$0.0759 (approximately 0.034% change) is negligible and doesn't significantly alter the bearish trend.
 
-**3. Technical Indicators & Expected Return:**
 
-* **RSI (16.94):**  Indicates the stock is currently in oversold territory, potentially suggesting a bounce is possible.
-* **PPO (-1.19):**  Shows negative momentum, aligning with the downward price trend.
-* **Delta_Previous_Relative_Divergence (-10.3%):** Shows a recent decline in relative strength compared to the S&P 500.
-* **Expected Return (82.3%):** This high expected return, relative to the S&P 500, over a long-term (2+ years) investment horizon suggests significant potential for outperformance.  However, this should be interpreted cautiously and depends heavily on the model used to generate this figure.
+**3. Technical Indicators and Expected Return:**
+
+* **RSI:** 20.93  (Significantly below 30, indicating oversold conditions)
+* **PPO:** -1.11 (Negative value suggests bearish momentum)
+* **20-Day Relative Divergence:** -11.3% (Indicates a recent weakening of relative strength compared to the S&P 500)
+* **Expected Return (2+ years):** 82.8%  (Significantly higher than the S&P 500's expected return, implying substantial potential outperformance over the long term. However, it is crucial to note this projection's inherent uncertainty)
 
 
 **4. Recent Earnings Analysis:**
 
-The provided earnings data shows some volatility:
+The provided earnings data shows some volatility in both EPS and revenue.  While revenue generally increased quarter-over-quarter (QoQ) with some minor fluctuations and the second quarter being a dip, EPS shows significant fluctuation between quarters.  The data is not presented in a straightforward way, with a duplicate entry for 2024-08-02, making a definitive trend difficult to establish without further clarification on the dataset quality.  A deeper analysis would require a more consistent and complete dataset.
 
-| Date       | EPS    | Revenue      | Notes                                      |
-|------------|--------|--------------|------------------------------------------|
-| 2024-08-02 | $1.40  | $85.78B      | Duplicate entry. Using the second one.     |
-| 2024-05-03 | $1.53  | $90.75B      |                                          |
-| 2024-02-02 | $2.19  | $119.58B     |                                          |
-| 2023-08-04 | $1.27  | $81.80B      |                                          |
+| Date       | EPS  | Revenue (B$) |
+|------------|------|-------------|
+| 2024-08-02 | 1.4  | 85.78        |
+| 2024-05-03 | 1.53 | 90.75        |
+| 2024-02-02 | 2.19 | 119.58       |
+| 2023-08-04 | 1.27 | 81.80        |
+| 2024-08-02 | 1.27 | 81.80        |
 
-
-Revenue has fluctuated, with a significant peak in Q1 2024. EPS also shows variability, indicating potential market sensitivity and perhaps seasonality in the business.  The duplicate entry for August 2024 needs clarification.
 
 **5. Financial Information:**
 
-**Revenue and Profitability:**  Profit margins are consistently high (45-46%), indicating strong profitability. Revenue shows some fluctuation but remains generally strong.
+The financial data shows generally strong profitability and return on equity (ROE). Revenue has some fluctuations but maintains a consistent high level. Profit margins are consistently high, hovering around 46%.  ROE is quite variable, indicating potential shifts in the company's capital structure and profitability drivers. Further analysis, including a comparison to previous years and industry benchmarks, is necessary to gain deeper insights.
 
-**Capital and Profitability:** Equity and ROE show some quarter-to-quarter variation.  The high ROE values generally point to efficient capital utilization, although there is notable decline from Q4 2023 to Q1 2024. Further investigation into the reasons for these fluctuations would be beneficial.
+
+| Quarter     | Revenue (B$) | Profit Margin | Equity (B$) | ROE (%) |
+|-------------|---------------|---------------|--------------|---------|
+| 2024-09-30  | 94.93          | 46.22%        | 56.95        | 25.88   |
+| 2024-06-30  | 85.78          | 46.26%        | 66.71        | 32.15   |
+| 2024-03-31  | 90.75          | 46.58%        | 74.19        | 31.86   |
+| 2023-12-31  | 119.58         | 45.87%        | 74.10        | 45.77   |
+| 2023-09-30  | 89.50          | 45.17%        | 62.15        | 36.94   |
+
 
 
 **7. Overall Analysis:**
 
-AAPL has significantly outperformed the S&P 500 over the long term. However, recent price action shows a short-term decline, with indicators suggesting oversold conditions. While the expected return is high, the high volatility in earnings and some financial metrics warrants caution.  A deeper dive into the reasons for the fluctuations in revenue, EPS, equity, and ROE would be necessary for a more comprehensive assessment.  The alpha of consistently 0.0 in the provided data also suggests possible limitations in the model used for the analysis.  Further analysis should include assessing the impact of macroeconomic factors and industry trends.  The discrepancy in data regarding the August 2nd earnings report needs clarification.
+AAPL's strong historical performance significantly outpaces the S&P 500.  While recent price action and technical indicators suggest short-term bearishness (oversold conditions notwithstanding), the long-term outlook remains positive, supported by the high expected return and generally strong financial performance. However, the volatility in earnings and the fluctuation in ROE warrant closer examination.  A complete picture requires a more in-depth fundamental analysis, considering macroeconomic factors and competitive landscape. The potential for significant outperformance exists, but careful consideration of risk is crucial, especially given the current market conditions.  Further investigation into the duplicate data points in earnings is necessary for a more accurate conclusion.
 
-**8. Disclaimer:** This analysis is based solely on the provided data and is not financial advice.  Investing in the stock market involves risk, and past performance is not indicative of future results.  Consult with a financial advisor before making any investment decisions.
+**8. Disclaimer:** This analysis is for informational purposes only and does not constitute financial advice.  Investing in the stock market involves risk, and you could lose money.  Conduct thorough research and consult with a financial advisor before making any investment decisions.
