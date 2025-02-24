@@ -1,13 +1,20 @@
-2025-02-22 - Analysis Report
-## Procter & Gamble Co (PG) Stock Analysis
+2025-02-25 - Analysis Report
+## Procter & Gamble Co (PG) Stock Analysis Report
 
-**0) Introduction:** This report analyzes Procter & Gamble Co (PG), a leading consumer goods company,  by comparing its performance to the S&P 500 (VOO) using provided financial data.  Key metrics including cumulative returns, moving averages, RSI, PPO, and financial statements are examined.
+**0. Summary Statistics:**
 
-**1) Cumulative Return & Comparison to S&P 500:**
+Procter & Gamble Co (PG) is a consumer goods company that manufactures and markets a wide variety of products.  The company's recent performance shows mixed results compared to the S&P 500 (VOO), with some positive indicators and some areas of concern.
 
-Procter & Gamble's cumulative return is 82.37%, while the S&P 500's is 118.31%.  This represents a difference of -35.9%. Considering the historical range of the divergence (max: 38.8%, min: -47.5%),  the current relative divergence is 13.4% (meaning it's relatively closer to the lower bound of historical divergence than the upper bound). This indicates PG underperformed the S&P 500 over the period considered.
+**1. Performance Comparison with S&P 500 (VOO):**
+
+* **PG Cumulative Return:** 82.70%
+* **VOO Cumulative Return:** 117.28%
+* **Return Difference:** -34.6% (PG underperformed VOO by 34.6% based on cumulative returns).
+* **Relative Divergence:** 14.9% (This indicates that PG's underperformance is in the lower 15th percentile of historical relative performance against VOO).
 
 **Alpha and Beta Analysis:**
+
+The provided Alpha and Beta data show varying performance compared to the market (Beta is a measure of volatility relative to the market, while Alpha represents excess return above the market).  While some periods show positive alpha (outperformance), others show significantly negative alpha, indicating periods of underperformance against the market.  The Beta is generally around 1, showing similar volatility to the market. Notably, the recent period (2022-2024) shows negative CAGR (-5%) and high MDD (-38%), highlighting a period of significant underperformance.
 
 | Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
 |------------|------|------|-------|------|-------|
@@ -19,49 +26,45 @@ Procter & Gamble's cumulative return is 82.37%, while the S&P 500's is 118.31%. 
 | 2020-2022  | 15.0% | 8.2% | 7.0% | 0.2 | 336.1 |
 | 2021-2023  | 8.0% | 8.4% | -16.0% | 0.5 | 333.2 |
 | 2022-2024  | -5.0% | 8.4% | -38.0% | 0.4 | 390.7 |
-| 2023-2025  | 23.0% | 8.4% | -37.0% | 0.2 | 399.2 |
-
-The Alpha values fluctuate significantly, showing periods of both outperformance and underperformance relative to the market. Beta is generally low, indicating lower volatility compared to the market.  Market capitalization shows consistent growth.
+| 2023-2025  | 23.0% | 8.4% | -35.0% | 0.2 | 399.9 |
 
 
-**2) Recent Price Movement:**
+**2. Recent Price Movement:**
 
-* **Closing Price:** $170.23
-* **5-day Moving Average:** $166.45
-* **20-day Moving Average:** $167.61
-* **60-day Moving Average:** $167.73
+* **Closing Price:** $170.54
+* **5-Day Moving Average:** $167.98
+* **20-Day Moving Average:** $167.93
+* **60-Day Moving Average:** $167.65
 
-The closing price is above the 5-day and 20-day moving averages, suggesting a short-term upward trend. However, it's slightly below the 60-day moving average, hinting at a potential consolidation or correction.  The price increased by $1.81 (1.08%) compared to the previous close, indicating a recent positive price movement.
-
-**3) Technical Indicators & Expected Return:**
-
-* **RSI:** 58.58 (Slightly above neutral; not overbought)
-* **PPO:** 0.02 (Positive, suggesting bullish momentum)
-* **Relative Strength (20-day):** +3.1% (Short-term upward trend)
-* **Expected Return (Long-term, >2 years):** -18.3% (vs. S&P 500)
-
-The recent price change of $1.81 reflects a positive short-term move.  The negative expected return compared to the S&P 500 suggests that, despite the recent price increase, PG is projected to underperform the broader market over a long-term horizon.
+The price is slightly above its recent moving averages, suggesting a modestly positive short-term trend.  The small daily change ($0.18) indicates minimal recent volatility.
 
 
-**4) Recent Earnings Analysis:**
+**3. Technical Indicators:**
 
-| Date       | EPS  | Revenue      |
-|------------|------|---------------|
-| 2025-01-22 | 1.94 | $21.88 B      |
-| 2024-10-18 | 1.65 | $21.74 B      |
-| 2024-04-19 | 1.56 | $20.20 B      |
-| 2024-01-23 | 1.44 | $21.44 B      |
-| 2025-01-22 | 1.44 | $21.44 B      |
+* **RSI:** 53.99 (Slightly above neutral; neither overbought nor oversold)
+* **PPO:** 0.11 (Positive, indicating upward momentum)
+* **Relative Divergence (20-day):** 14.7% (+), suggesting a short-term upward trend.
+* **Expected Return (Long-term, 2+ years):** -16.2%  This indicates a projected underperformance compared to the S&P 500 over the long term.  This is a considerable negative value and warrants further investigation into the underlying assumptions.
+
+**4. Recent Earnings Analysis:**
+
+| Date       | EPS   | Revenue     |
+|------------|-------|-------------|
+| 2025-01-22 | 1.94  | $21.88 B    |
+| 2024-10-18 | 1.65  | $21.74 B    |
+| 2024-04-19 | 1.56  | $20.20 B    |
+| 2024-01-23 | 1.44  | $21.44 B    |
+| 2025-01-22 | 1.44  | $21.44 B    | *(Duplicate entry - potential data error)*
 
 
-There appears to be a duplicate entry for 2025-01-22.  Excluding this duplication, EPS shows a mixed trend, while revenue remains relatively stable with slight fluctuations.  Further analysis would require more historical data to establish clearer trends.
+Revenue shows relatively stable performance, fluctuating around $21B.  EPS shows some volatility but generally appears to be trending upwards, with a notable increase in the most recent quarter (2025-01-22). The duplicate entry for 2025-01-22 requires clarification.
 
 
-**5) Financial Information:**
+**5. Financial Information:**
 
 **Revenue and Profitability:**
 
-| Quarter | Revenue  | Profit Margin |
+| Quarter | Revenue | Profit Margin |
 |---------|----------|---------------|
 | 2024-12-31 | $21.88B | 52.39%       |
 | 2024-09-30 | $21.74B | 52.06%       |
@@ -69,22 +72,22 @@ There appears to be a duplicate entry for 2025-01-22.  Excluding this duplicatio
 | 2024-03-31 | $20.20B | 51.20%       |
 | 2023-12-31 | $21.44B | 52.69%       |
 
-Revenue shows some fluctuation but generally remains stable. Profit margins are consistently high, indicating strong profitability.
+Revenue is relatively stable, while profit margins show minor fluctuations around 50%.
 
 
 **Capital and Profitability:**
 
-| Quarter | Equity   | ROE    |
-|---------|----------|--------|
-| 2024-12-31 | $51.17B | 9.05%  |
-| 2024-09-30 | $51.84B | 7.64%  |
-| 2024-06-30 | $50.29B | 6.24%  |
-| 2024-03-31 | $50.06B | 7.50%  |
-| 2023-12-31 | $48.53B | 7.15%  |
+| Quarter | Equity | ROE |
+|---------|---------|-----|
+| 2024-12-31 | $51.17B | 9.05% |
+| 2024-09-30 | $51.84B | 7.64% |
+| 2024-06-30 | $50.29B | 6.24% |
+| 2024-03-31 | $50.06B | 7.50% |
+| 2023-12-31 | $48.53B | 7.15% |
 
-Equity shows a slight increase over time. ROE fluctuates but generally remains healthy, suggesting efficient use of capital.
+Equity and ROE show some fluctuation.  ROE is generally healthy but has some variability.
 
 
-**6) Overall Analysis:**
+**6. Overall Analysis:**
 
-PG shows a relatively stable financial performance with consistently high profit margins and healthy ROE.  However, its cumulative return has lagged behind the S&P 500 significantly over the analyzed period.  While short-term indicators suggest a potential upward trend, the long-term expected return is negative compared to the market. Investors should carefully consider this underperformance and the mixed signals from the technical indicators before making any investment decisions. Further investigation into the reasons for the underperformance relative to the market would be necessary for a more comprehensive analysis.
+PG exhibits mixed performance. While the company displays strong revenue and profitability, its recent stock performance lags behind the S&P 500.  The negative long-term expected return (-16.2%) is a significant concern and requires further investigation into the methodology used for that calculation.  The recent earnings show a positive trend in EPS, but further analysis is needed to understand the complete picture due to the inconsistencies and the data errors (Duplicate entry).  Short-term technical indicators suggest a mildly positive trend, but the long-term outlook appears uncertain based on the provided data and the significant underperformance compared to the benchmark (VOO).  Further investigation into the reasons for the underperformance and the reliability of the long-term expected return calculation is crucial.
