@@ -11,29 +11,6 @@ _flutter.buildConfig = {"engineRevision":"cb4b5fff73850b2e42bd4de7cb9a4310a78ac4
 
 _flutter.loader.load({
   serviceWorkerSettings: {
-    serviceWorkerVersion: "2649060066"
-  },
-  layoutConfig: {
-    mode: window.innerWidth > window.innerHeight ? 'landscape' : 'portrait',
-    panels: {
-      ticker: {
-        width: '250px',
-        visible: true
-      },
-      charts: {
-        flex: 2,
-        visible: true
-      },
-      data: {
-        width: '300px',
-        visible: true
-      }
-    }
-  }
-});
-
-window.addEventListener('resize', function() {
-  if (window._flutter && window._flutter.loader) {
-    _flutter.loader.didChangeMetrics();
+    serviceWorkerVersion: "1105226956"
   }
 });

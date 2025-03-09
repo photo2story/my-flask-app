@@ -20,8 +20,8 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
 
-  <!-- 반응형 뷰포트 설정 수정 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- 뷰포트 메타 태그 추가 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -31,37 +31,6 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <!-- 반응형 스타일 추가 -->
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-    }
-    
-    /* Flutter 앱 컨테이너가 화면 전체를 채우도록 설정 */
-    #flutter_target {
-      width: 100%;
-      height: 100%;
-      display: flex;
-    }
-
-    /* 가로/세로 모드에 따른 최적화 */
-    @media screen and (orientation: landscape) {
-      #flutter_target {
-        flex-direction: row;
-      }
-    }
-
-    @media screen and (orientation: portrait) {
-      #flutter_target {
-        flex-direction: column;
-      }
-    }
-  </style>
 
   <title>my_flutter_app</title>
   <link rel="manifest" href="manifest.json">
