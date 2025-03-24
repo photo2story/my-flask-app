@@ -364,3 +364,8 @@ if __name__ == '__main__':
 # ollama create EEVE-Korean-10.8B -f Modelfile
 # git push heroku main
 # heroku logs --tail -a he-flutter-app
+""""
+git add .
+git commit -m "updates"
+git push origin main
+"""
