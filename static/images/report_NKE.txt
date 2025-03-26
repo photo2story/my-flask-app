@@ -1,83 +1,96 @@
 2025-03-26 - Analysis Report
 ## Nike Inc. (NKE) Stock Performance Review
 
-**0. Summary Statistics:**
+**0) Key Figures & Initial Analysis:**
 
-Nike Inc. (NKE) is a multinational corporation that designs, develops, manufactures, and sells footwear, apparel, equipment, accessories, and services.  The analysis below examines NKE's recent performance relative to the S&P 500 (VOO), considering price movements, financial indicators, and earnings data.
+Nike Inc. is a multinational corporation that designs, develops, manufactures, and sells footwear, apparel, equipment, accessories, and services.  The provided data shows significant underperformance compared to the S&P 500 (VOO) over a substantial period.
 
-**1. Performance Comparison with S&P 500 (VOO):**
 
-NKE's cumulative return is significantly lower than the S&P 500's.
+**1) Performance Comparison & Divergence:**
 
-* **NKE Cumulative Return:** -9.99%
-* **VOO Cumulative Return:** 41.93%
-* **Return Difference:** -51.9%
-* **Relative Divergence:** 0.4 (This indicates that NKE's underperformance relative to the S&P 500 falls within the lower 40% of the historical range of divergence between the two assets).
+* **NKE Cumulative Return:** -21.30%
+* **VOO (S&P 500) Cumulative Return:** 144.81%
+* **Return Difference:** -166.1%  (This indicates NKE significantly underperformed VOO.)
+* **Relative Divergence:** 8.7% (This means NKE's underperformance is in the lower 8.7th percentile of historical divergence from the S&P 500 based on the provided min and max divergence values).
 
-The provided Alpha and Beta analysis shows a mixed picture. While NKE exhibited positive Alpha in several periods (outperforming the market), the most recent periods (2021-2025) show negative Alpha and drastically declining CAGR, suggesting underperformance against the market.  The Beta values generally suggest a relatively high sensitivity to market movements.  Market capitalization fluctuates, with a general downward trend reflected in the recent years.
+The provided CAGR (Compound Annual Growth Rate) data shows periods of strong growth followed by significant declines.  This volatility is also reflected in the high maximum drawdown (MDD) figures, implying substantial risk. The alpha values suggest periods of outperformance and underperformance relative to the market (Beta=1 represents market performance).
 
-**2. Recent Price Movement:**
+
+**Alpha, Beta Analysis:**
+
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2015-2017  | 15.0% | 51.5% | -13.0% | 1.0 | 84.4 |
+| 2016-2018  | 12.0% | 60.6% | -6.0% | -0.0 | 101.1 |
+| 2017-2019  | 61.0% | 60.6% | 30.0% | 1.1 | 139.7 |
+| 2018-2020  | 62.0% | 95.9% | 34.0% | 1.6 | 196.9 |
+| 2019-2021  | 74.0% | 95.9% | 3.0% | 1.3 | 233.7 |
+| 2020-2022  | -27.0% | 95.9% | -35.0% | 1.2 | 165.8 |
+| 2021-2023  | -85.0% | 98.4% | -109.0% | 1.6 | 155.8 |
+| 2022-2024  | -101.0% | 98.4% | -130.0% | 0.2 | 110.5 |
+| 2023-2025  | -39.0% | 98.4% | 0.1 | 0.1 | 97.6 |
+
+
+**2) Recent Price Movement:**
 
 * **Closing Price:** $66.54
-* **Previous Close:** $67.39
+* **Last Market Price:** $66.05
 * **5-Day Moving Average:** $69.34
 * **20-Day Moving Average:** $74.57
 * **60-Day Moving Average:** $74.10
 
-The closing price is below all three moving averages, indicating a bearish trend. The recent price change (-$1.26) highlights a downward movement, though not a dramatic drop.
+The price is below all three moving averages, suggesting a downward trend.
 
-**3. Technical Indicators and Expected Return:**
+
+**3) Technical Indicators & Expected Return:**
 
 * **Market Risk Indicator (MRI):** 0.419 (Medium Risk)
-* **RSI:** 17.07 (Oversold territory, suggesting potential for a bounce back but not confirming a trend reversal).
-* **PPO:** -1.44 (Negative value indicates bearish momentum).
-* **20-Day Relative Divergence Change:** -4.7% (Short-term downtrend).
-* **Expected Return:** 77.0% (This figure appears high and needs further clarification on its calculation and assumptions for a long-term (2+ years) investment relative to the S&P 500. The extremely negative recent performance makes this projection dubious without further justification).
-
-The negative price change (-$1.26) indicates a modest decline, not a sharp drop.
-
-
-**4. Recent Earnings Analysis:**
-
-| Date       | EPS   | Revenue       |
-|------------|-------|---------------|
-| 2025-01-03 | $0.78 | $12.35B       |
-| 2024-10-07 | $0.70 | $11.59B       |
-| 2024-04-04 | $0.77 | $12.43B       |
-| 2024-01-05 | $1.04 | $13.39B       |
-| 2023-01-05 | $1.04 | $13.39B       |
-
-The EPS and revenue show some fluctuation.  There's a noticeable dip in both EPS and revenue in Q4 2024 compared to the previous quarters.  The last row seems to be a duplicate.
+* **RSI:** 17.07 (Significantly oversold, suggesting potential for a bounce but also indicating a weak market position)
+* **PPO:** -1.44 (Negative value confirms bearish trend)
+* **20-Day Relative Divergence Change:** -3.2% (Short-term decline)
+* **Price Change:** -$0.74 (Minor price drop, doesn't indicate a significant sudden event like a crash)
+* **Expected Return:** -974.3% (This extremely negative value needs clarification. It's likely an error or requires additional context. The data suggests a high likelihood of continued underperformance compared to the S&P 500 even with long-term investment, based on the current trend).
 
 
-**5. Financial Information:**
+**4) Recent Earnings Analysis:**
+
+| Date       | EPS  | Revenue      |
+|------------|------|---------------|
+| 2025-01-03 | $0.78 | $12.35 B      |
+| 2024-10-07 | $0.70 | $11.59 B      |
+| 2024-04-04 | $0.77 | $12.43 B      |
+| 2024-01-05 | $1.04 | $13.39 B      |
+| 2025-01-03 | $1.04 | $13.39 B      |
+
+There's a discrepancy in the data –  2025-01-03 appears twice.  Earnings show some volatility, with a recent decline in EPS and revenue compared to earlier quarters.  Further investigation is needed to understand this fluctuation.
+
+**5) Financial Information:**
 
 **Revenue and Profitability:**
 
-| Quarter    | Revenue     | Profit Margin |
-|------------|-------------|---------------|
-| 2024-11-30 | $12.35B     | 43.62%        |
-| 2024-08-31 | $11.59B     | 45.36%        |
-| 2024-05-31 | $12.61B     | 44.69%        |
-| 2024-02-29 | $12.43B     | 44.75%        |
-| 2023-11-30 | $13.39B     | 44.60%        |
+| Quarter | Revenue  | Profit Margin |
+|---------|----------|---------------|
+| 2024-11-30 | $12.35B | 43.62%       |
+| 2024-08-31 | $11.59B | 45.36%       |
+| 2024-05-31 | $12.61B | 44.69%       |
+| 2024-02-29 | $12.43B | 44.75%       |
+| 2023-11-30 | $13.39B | 44.60%       |
 
-Revenue shows a slight decline in the last two quarters.  Profit margins remain relatively consistent and strong.
-
+Revenue shows some fluctuation, but profit margins remain relatively stable and high.
 
 **Capital and Profitability:**
 
-| Quarter    | Equity      | ROE           |
-|------------|-------------|---------------|
-| 2024-11-30 | $14.04B     | 8.29%         |
-| 2024-08-31 | $13.94B     | 7.54%         |
-| 2024-05-31 | $14.43B     | 10.40%        |
-| 2024-02-29 | $14.23B     | 8.24%         |
-| 2023-11-30 | $14.15B     | 11.16%        |
+| Quarter | Equity   | ROE    |
+|---------|----------|--------|
+| 2024-11-30 | $14.04B | 8.29%  |
+| 2024-08-31 | $13.94B | 7.54%  |
+| 2024-05-31 | $14.43B | 10.40% |
+| 2024-02-29 | $14.23B | 8.24%  |
+| 2023-11-30 | $14.15B | 11.16% |
 
-Equity and ROE fluctuate. ROE has shown some decline recently, indicating reduced profitability on shareholder investments.
+Equity and ROE also show some variability.
 
 
-**6. Overall Analysis:**
+**6) Overall Conclusion:**
 
-Nike's recent performance is underwhelming compared to the S&P 500.  Technical indicators suggest an oversold condition, but the overall trend appears bearish.  While profit margins remain healthy, recent earnings show a decline in both EPS and revenue, possibly contributing to the stock's underperformance. The projected 77% long-term expected return requires further substantiation given current trends and should be viewed with caution.  Further investigation is needed into the underlying factors affecting Nike's recent performance to better understand future prospects.  The high projected return is at odds with the current market indicators and should be re-evaluated using more conservative approaches.
+NKE has significantly underperformed the S&P 500 over the period reviewed, showing considerable volatility and high risk.  While the RSI suggests an oversold condition, potentially hinting at a short-term bounce, the overall trend is bearish, supported by negative PPO and moving averages.  The negative expected return requires clarification and further analysis.  Recent earnings show some decline, but profit margins remain relatively strong.  A deeper dive into the reasons for the underperformance (e.g., market conditions, company-specific factors) is crucial before making any investment decisions.  The -974.3% expected return is highly suspect and needs to be verified from the source of the data.  Long-term investors should carefully consider the inherent risk before committing.
