@@ -1,78 +1,89 @@
 2025-04-11 - Analysis Report
-## Boeing Co (BA) Stock Analysis Report
+## Boeing Co (BA) Stock Analysis
 
-**0. Overview:**
+This report analyzes Boeing Co (BA), a leading global aerospace company designing, manufacturing, and selling airplanes and defense products.
 
-Boeing Co is a major American multinational corporation that designs, manufactures, and sells airplanes, rotorcraft, rockets, satellites, telecommunications equipment, and missiles worldwide.
+**1) Performance Comparison with S&P 500 (VOO):**
 
-**1. Performance Comparison with S&P 500 (VOO):**
+BA's cumulative return is significantly lower than the S&P 500's.
 
-Boeing's cumulative return is significantly below the S&P 500's.
-
-* **Boeing (BA) Cumulative Return:** -31.36%
-* **S&P 500 (VOO) Cumulative Return:** 61.92%
-* **Return Difference:** -93.3%
-* **Relative Divergence:** 11.3% (This means Boeing's underperformance relative to the S&P 500 falls in the lower 11.3% of historical performance differences.)
-
-The provided alpha and beta data show considerable volatility in Boeing's performance relative to the market (indicated by the fluctuating Beta) and periods of significant underperformance (negative alpha).  While high CAGR values are present in some periods, these are offset by periods of extreme negative returns, highlighting significant risk.  The market capitalization (Cap(B)) fluctuates, reflecting the company's varying fortunes.
+* **BA Cumulative Return:** -31.24%
+* **VOO (S&P 500) Cumulative Return:** 65.78%
+* **Return Difference:** -97.0%  This indicates BA significantly underperformed the S&P 500.  The relative divergence of -97.0% places it at the 9.6th percentile of the historical range (-118% to 101%), suggesting extremely poor performance relative to its historical context compared to the S&P 500.
 
 
-**2. Recent Price Movement:**
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2015-2017  | 90.0% | 57.3% | 61.0% | 0.1 | 218.7 |
+| 2016-2018  | 84.0% | 62.6% | 66.0% | -0.0 | 243.8 |
+| 2017-2019  | 37.0% | 62.6% | 8.0% | 0.4 | 252.0 |
+| 2018-2020  | -136.0% | 62.6% | -161.0% | -0.5 | 166.6 |
+| 2019-2021  | -113.0% | 45.1% | -167.0% | -0.8 | 156.6 |
+| 2020-2022  | -66.0% | 59.5% | -73.0% | -1.0 | 148.2 |
+| 2021-2023  | 33.0% | 62.1% | 17.0% | -1.7 | 202.8 |
+| 2022-2024  | -3.0% | 62.1% | -19.0% | -1.2 | 137.7 |
+| 2023-2025  | -20.0% | 81.7% | -34.0% | -1.4 | 121.0 |
 
-* **Closing Price:** $154.225
-* **Last Market Price:** $154.1 (a $4.18 drop from the previous close of $160.82). This represents a significant daily price drop indicating a possible period of negative market sentiment.
-* **5-Day Moving Average:** $143.995
-* **20-Day Moving Average:** $164.4913
-* **60-Day Moving Average:** $170.7089
+The table shows high volatility in CAGR, reflecting significant periods of both strong growth and substantial losses.  The negative alpha values in recent years consistently indicate underperformance relative to the market benchmark.  The beta, while fluctuating, generally suggests higher-than-average market sensitivity.
 
-The price is below all three moving averages, suggesting a downtrend.
+**2) Recent Price Movement:**
 
-**3. Technical Indicators and Expected Return:**
+* **Closing Price:** $155.52
+* **5-day Moving Average:** $146.24
+* **20-day Moving Average:** $164.63
+* **60-day Moving Average:** $170.63
 
-* **Market Risk Indicator (MRI):** 0.4271 (Medium Risk)
-* **RSI:** 37.65 (Below 40, suggesting the stock may be oversold)
-* **PPO:** -1.81 (Negative, indicating bearish momentum)
-* **Recent Relative Divergence Change (20-day):** +2.0 (Short-term upward movement, but within a broader downtrend given other indicators)
-* **Expected Return:** -550.2%  This extremely negative expected return suggests a highly pessimistic outlook for future performance relative to the S&P 500, especially concerning if held for two or more years.  Further investigation is needed to validate this projection.  The large negative return could be due to a multitude of factors including accounting for the exceptionally negative returns already seen.
+The price is below all three moving averages, suggesting a downtrend.  The recent price drop of $3.3 (from $160.82) reinforces the negative trend.
 
-**4. Recent Earnings Analysis:**
+
+**3) Technical Indicators:**
+
+* **Market Risk Indicator (MRI):** 0.4292 (Medium Risk)
+* **RSI:** 36.21 (Approaching oversold territory, but not definitively so)
+* **PPO:** -1.10 (Negative, indicating bearish momentum)
+* **Recent Relative Divergence:** +0.3 (Short-term upward movement)
+* **Expected Return:** -664.5% (This extremely negative figure requires further investigation and clarification.  It likely reflects a severe downside scenario and should not be taken as a definitive prediction.)
+
+The technical indicators present a mixed picture. While the RSI suggests potential oversold conditions, the negative PPO and the significant price drop point to bearish momentum.  The -664.5% expected return is alarming and needs further context and justification.
+
+**4) Recent Earnings Analysis:**
 
 | Date       | EPS  | Revenue       |
 |------------|------|---------------|
-| 2024-10-29 | $0.82 | $25.34B       |
-| 2024-07-30 | $0.83 | $25.38B       |
-| 2024-04-30 | $0.77 | $25.82B       |
-| 2023-10-31 | $0.91 | $25.17B       |
-| 2024-10-29 | $0.91 | $25.17B       | *(Duplicate entry)*
+| 2024-10-29 | 0.82 | $25.34 B      |
+| 2024-07-30 | 0.83 | $25.38 B      |
+| 2024-04-30 | 0.77 | $25.82 B      |
+| 2023-10-31 | 0.91 | $25.17 B      |
+| 2024-10-29 | 0.91 | $25.17 B      | *(Duplicate entry, likely an error)*
 
-Earnings appear relatively stable, though there's a slight downward trend in EPS recently. Revenue fluctuates slightly.  The duplicated entry needs clarification.
 
-**5. Financial Information:**
+Revenue remains relatively stable around $25B, but EPS shows some fluctuation. The duplicate entry needs clarification.  Further analysis would require looking at the growth rate and comparing to previous years.
+
+**5) Financial Information:**
 
 **Revenue and Profitability:**
 
-| Quarter    | Revenue    | Profit Margin |
-|------------|------------|---------------|
-| 2024-12-31 | $15.24B    | -10.43%       |
-| 2024-09-30 | $17.84B    | -19.66%       |
-| 2024-06-30 | $16.87B    | 7.29%         |
-| 2024-03-31 | $16.57B    | 11.32%        |
-| 2023-12-31 | $22.02B    | 12.25%        |
-
-Profit margins show significant volatility, swinging between substantial profits and losses.  The recent negative profit margins are a significant concern.
+| Quarter | Revenue  | Profit Margin |
+|---------|----------|---------------|
+| 2024-12-31 | $15.24B | -10.43%      |
+| 2024-09-30 | $17.84B | -19.66%      |
+| 2024-06-30 | $16.87B | 7.29%        |
+| 2024-03-31 | $16.57B | 11.32%       |
+| 2023-12-31 | $22.02B | 12.25%       |
 
 **Capital and Profitability:**
 
-| Quarter    | Equity     | ROE          |
-|------------|------------|---------------|
-| 2024-12-31 | $-3.91B    | 98.90%       |
-| 2024-09-30 | $-23.55B   | 26.20%       |
-| 2024-06-30 | $-17.98B   | 8.01%        |
-| 2024-03-31 | $-17.01B   | 2.02%        |
-| 2023-12-31 | $-17.23B   | 0.13%        |
+| Quarter | Equity   | ROE          |
+|---------|----------|--------------|
+| 2024-12-31 | $-3.91B  | 98.90%       |
+| 2024-09-30 | $-23.55B | 26.20%       |
+| 2024-06-30 | $-17.98B | 8.01%        |
+| 2024-03-31 | $-17.01B | 2.02%        |
+| 2023-12-31 | $-17.23B | 0.13%        |
 
-Negative equity is a significant red flag, indicating the company's liabilities exceed its assets.  ROE is volatile and doesn't necessarily reflect positive financial health given the negative equity.
+The financial data reveals significant volatility and negative profit margins in recent quarters.  The negative equity figures require careful interpretation and further investigation into the company's financial health.  High ROE figures in some quarters are likely distorted by the negative equity values and should be viewed cautiously.
 
-**6. Overall Analysis:**
 
-Boeing's performance is significantly lagging the S&P 500, displaying a high level of risk.  Negative profit margins, negative equity, and volatile financial performance metrics raise serious concerns. While some indicators suggest the stock might be oversold (RSI), the overall picture is bearish.  The extremely negative projected return requires deeper scrutiny and may reflect the market's pessimistic view of the company's prospects.  The significant daily price drop also needs to be considered in further analysis.  Before considering any investment, a thorough evaluation of Boeing's long-term strategic plans and potential for turnaround is crucial.  The extremely negative expected return (-550.2%) should be carefully examined for validity.  A long-term investment strategy might only be suitable if coupled with a significant risk tolerance and detailed due diligence.
+**6) Overall Conclusion:**
+
+Boeing is currently experiencing a period of significant underperformance relative to the broader market.  The negative price trend, mixed technical indicators, and volatile financial results paint a concerning picture. The extremely negative expected return figure requires further investigation and cannot be considered reliable without additional justification.  The negative equity reported in several quarters warrants serious attention and further scrutiny of the company's financial statements and future prospects. A long-term investment strategy would necessitate a thorough understanding of the underlying factors contributing to the recent poor performance and a careful assessment of the company's potential for future recovery.  Given the current data, a buy decision would require a much more in-depth fundamental analysis to justify the risk.
