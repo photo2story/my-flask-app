@@ -1,82 +1,95 @@
-2025-04-11 - Analysis Report
-## Newmont Corporation (NEM) Stock Report
+2025-04-13 - Analysis Report
+## Newmont Corporation (NEM) Stock Analysis Report
 
 **0. Key Figures & Initial Analysis:**
 
-Newmont Corporation (NEM) is a leading gold and copper producer with significant global operations.  The provided data shows a significant underperformance compared to the S&P 500 (VOO) over a specific period.  Further analysis is needed to determine the reasons for this underperformance and assess future prospects.
-
+Newmont Corporation (NEM) is a leading gold and copper mining company.  The provided data shows a significant underperformance compared to the S&P 500 (VOO) over the analyzed period.
 
 **1. Performance Comparison with S&P 500:**
 
-* **NEM Cumulative Return:** 29.71%
-* **VOO (S&P 500) Cumulative Return:** 65.78%
-* **Return Difference:** -36.1%
-* **Relative Divergence:** 25.0% (This indicates NEM's underperformance is in the 25th percentile of its historical divergence from the S&P 500, suggesting it's not an extremely unusual level of underperformance.)
+* **NEM Cumulative Return:** 32.11%
+* **VOO Cumulative Return:** 66.36%
+* **Return Difference:** -34.2%
+* **Relative Deviation:** 26.1% (This indicates NEM's performance is in the 26.1 percentile of its historical performance relative to the S&P 500, based on the provided min/max range.  It is not a measure of absolute outperformance.)
 
 
-The provided Alpha and Beta analysis reveals inconsistent performance relative to the market (S&P 500).  While some periods show positive alpha (outperformance), others indicate significant negative alpha and high beta (greater volatility than the market).  This volatility is further highlighted by the maximum drawdown (MDD) figures.  The market capitalization (Cap(B)) fluctuates, indicating potential sensitivity to market conditions and gold prices.
+The provided Alpha and Beta data show varying performance relative to the market (S&P 500) over different periods.  While some periods show positive alpha (outperformance), others show negative alpha and increasing beta (higher volatility relative to the market), especially in the most recent years.  The high negative CAGR in recent years (-42%, -70%, -11%) is concerning.
+
+
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2015-2017  | 33.0% | 26.5% | 4.0% | 0.0 | 33.9 |
+| 2016-2018  | 17.0% | 58.8% | -1.0% | -0.0 | 31.8 |
+| 2017-2019  | -2.0% | 58.8% | -31.0% | -0.1 | 41.5 |
+| 2018-2020  | 34.0% | 58.8% | 9.0% | 0.0 | 58.3 |
+| 2019-2021  | 71.0% | 59.9% | 17.0% | 0.1 | 62.6 |
+| 2020-2022  | -16.0% | 64.3% | -22.0% | 0.2 | 49.6 |
+| 2021-2023  | -42.0% | 71.4% | -59.0% | 0.6 | 45.2 |
+| 2022-2024  | -70.0% | 75.3% | -87.0% | 0.7 | 41.7 |
+| 2023-2025  | -11.0% | 77.0% | -25.0% | 1.4 | 62.0 |
 
 
 **2. Recent Price Movement:**
 
-* **Closing Price:** $50.94
-* **5-day Moving Average:** $46.74
-* **20-day Moving Average:** $47.51
-* **60-day Moving Average:** $44.91
+* **Closing Price:** $54.97
+* **5-Day Moving Average:** $48.90
+* **20-Day Moving Average:** $47.95
+* **60-Day Moving Average:** $45.14
 
-The closing price is above all three moving averages, suggesting a potential short-term uptrend.  However, the relatively small difference between the closing price and the moving averages indicates a weak uptrend. The recent price change of +4.49 represents a sharp increase compared to the previous day's closing price.
+The recent price of $54.97 represents a significant increase from the previous close ($50.94), indicating a sharp upward movement.  The price is above all three moving averages, suggesting potential short-term momentum.
 
-**3. Technical Indicators & Expected Return:**
 
-* **Market Risk Indicator (MRI):** 0.4292 (Medium Risk)
-* **RSI:** 62.18 (Slightly above the neutral level of 50, suggesting neither overbought nor oversold conditions.)
-* **PPO:** 0.0509 (Positive, indicating a bullish momentum, although relatively weak)
-* **20-Day Relative Divergence Change:** +1.0 (Short-term upward trend)
-* **Expected Return:** -48.6% (This indicates a significant projected underperformance compared to S&P 500 over the long-term. This figure should be treated with caution given the high degree of uncertainty in long-term market predictions).
+**3. Technical Indicators:**
 
-The significant price increase of $4.49 reflects a substantial daily jump, possibly due to market news or unforeseen events. This needs further investigation.
+* **Market Risk Indicator (MRI):** 0.47 (High Risk)  This suggests caution.
+* **RSI:** 72.40 (Overbought territory, indicating potential for a price correction)
+* **PPO:** 0.93 (Positive, suggesting upward momentum)
+* **Relative Strength Change (20-day):** +2.9 (Short-term upward trend)
+
+The large price change (`{'price': 54.97, 'previousClose': 50.94, 'change': 7.91}`) reflects a significant recent price jump, possibly indicating a short-covering rally or a shift in market sentiment. The negative expected return of -46.1% in a long-term (2+ years)  horizon relative to the S&P 500 indicates caution.  This is further supported by the high risk MRI.
 
 
 **4. Recent Earnings Analysis:**
 
-| Date       | EPS  | Revenue       |
+| Date       | EPS  | Revenue      |
 |------------|------|---------------|
-| 2024-10-24 | $0.8 | $4.61B        |
-| 2024-07-25 | $0.74 | $4.40B        |
-| 2024-04-29 | $0.15 | $4.02B        |
-| 2023-10-26 | $0.2  | $2.49B        |
-| 2024-10-24 | $0.2  | $2.49B        | *(Duplicate entry - likely an error in the data)*
+| 2024-10-24 | 0.8  | $4.61 B       |
+| 2024-07-25 | 0.74 | $4.40 B       |
+| 2024-04-29 | 0.15 | $4.02 B       |
+| 2023-10-26 | 0.2  | $2.49 B       |
+| 2024-10-24 | 0.2  | $2.49 B       |  *(Duplicate entry, likely an error)*
 
-Revenue shows a general upward trend, although EPS is inconsistent. The significant difference in EPS between Q2 2024 and Q1 2024 warrants further investigation.  The duplicate entry for October 2024 needs clarification.
 
+There is an apparent discrepancy in the data (duplicate entry for Oct 24, 2024).  Revenue shows a general upward trend, but EPS is volatile.  Further investigation is needed to clarify the data inconsistencies.
 
 **5. Financial Information:**
 
 **Revenue and Profitability:**
 
-| Quarter     | Revenue | Profit Margin |
-|-------------|----------|---------------|
-| 2024-12-31  | $5.65B  | 45.51%        |
-| 2024-09-30  | $4.61B  | 36.13%        |
-| 2024-06-30  | $4.40B  | 37.35%        |
-| 2024-03-31  | $4.02B  | 31.39%        |
-| 2023-12-31  | $3.96B  | 24.59%        |
+| Quarter | Revenue | Profit Margin |
+|---------|----------|---------------|
+| 2024-12-31 | $5.65B | 45.51% |
+| 2024-09-30 | $4.61B | 36.13% |
+| 2024-06-30 | $4.40B | 37.35% |
+| 2024-03-31 | $4.02B | 31.39% |
+| 2023-12-31 | $3.96B | 24.59% |
 
-Revenue is growing steadily. Profit margins are healthy but fluctuate.
+Revenue shows growth, and profit margin is relatively high but fluctuates.
+
 
 **Capital and Profitability:**
 
-| Quarter     | Equity    | ROE     |
-|-------------|-----------|---------|
-| 2024-12-31  | $29.93B  | 4.69%   |
-| 2024-09-30  | $29.71B  | 3.10%   |
-| 2024-06-30  | $29.38B  | 2.90%   |
-| 2024-03-31  | $28.89B  | 0.59%   |
-| 2023-12-31  | $29.03B  | -10.88% |
+| Quarter | Equity | ROE |
+|---------|---------|-----|
+| 2024-12-31 | $29.93B | 4.69% |
+| 2024-09-30 | $29.71B | 3.10% |
+| 2024-06-30 | $29.38B | 2.90% |
+| 2024-03-31 | $28.89B | 0.59% |
+| 2023-12-31 | $29.03B | -10.88% |
 
-Equity is relatively stable. ROE shows improvement, after a significant negative value in Q4 2023.
+Equity is generally increasing, but ROE is quite volatile, indicating potential variability in profitability.
 
 
-**6. Overall Analysis:**
+**6. Overall Conclusion:**
 
-NEM has shown inconsistent performance relative to the S&P 500. While recent price action shows a potential short-term uptrend, the long-term outlook is uncertain due to the highly volatile nature of gold prices and the company's past performance. The significant negative expected return (-48.6%) compared to the S&P 500 raises concerns for long-term investors.  Further investigation is needed to understand the reasons for the large daily price jump and the fluctuations in EPS and ROE.  A more in-depth analysis, including examination of the gold market and macroeconomic factors, would be necessary to provide a more comprehensive assessment of NEM's investment potential. The data inconsistencies need to be resolved before drawing definitive conclusions.  This report is a preliminary assessment based solely on the provided limited data.
+NEM has shown significant underperformance against the S&P 500 over the long term. Recent short-term price action suggests a possible rally. However,  high risk indicators (MRI, RSI), a negative long-term expected return relative to the S&P 500,  and volatile earnings and ROE warrant caution.  The data inconsistencies require further investigation.  A thorough review of the company's fundamentals and future prospects is crucial before making any investment decisions. The provided data alone does not suggest a strong buy recommendation.
