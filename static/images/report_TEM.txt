@@ -1,71 +1,76 @@
-2025-04-22 - Analysis Report
-## TEM: Unknown Company Stock Analysis
+2025-04-23 - Analysis Report
+## TEM: Unknown Company Stock Report
 
-This report analyzes TEM, an Unknown Company, comparing its performance against the S&P 500 (VOO).
+**Summary Statistics:**
+
+* **Ticker:** TEM
+* **Company:** Unknown Company (requires further research for a concise overview)
+* **Cumulative Return (TEM):** 5.35%
+* **Cumulative Return (VOO):** -7.22%
+* **Return Difference (TEM vs VOO):** 12.57% (TEM outperformed VOO by 12.57% at the end of the period)
+* **Relative Divergence:** 27.2% (TEM's performance is in the 27.2nd percentile relative to its historical performance vs. VOO, considering the range from -22.6% to 107%)
+* **Current Price:** $43.23
+
 
 **1. Performance Comparison & Alpha/Beta Analysis:**
 
-TEM shows a cumulative return of 4.43%, significantly outperforming VOO's -9.21% cumulative return.  The relative divergence of 27.9% indicates TEM's performance is considerably higher than VOO's relative to its historical range (107% to -22.6%). However, this is just a snapshot; the long-term performance needs to be considered.
-
-The provided Alpha/Beta analysis reveals a positive CAGR of 4.0% from 2023-2025. However, a high maximum drawdown (MDD) of 84.9% signifies substantial risk.  The negative alpha (-0.1) suggests TEM underperformed the market, while the high beta (7.0) implies significantly higher volatility than the market.  The market capitalization (Cap) is not specified in the provided data.
-
-| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
-|------------|------|------|-------|------|-------|
-| 2023-2025  | 4.0% | 84.9% | -0.1 | 7.0 |  |
+TEM significantly outperformed the S&P 500 (VOO) over the analyzed period.  The cumulative return difference of 12.57% highlights this outperformance. However, the provided alpha of -0.1 suggests that, adjusted for market risk (beta of 7.3), TEM underperformed its benchmark. The high beta (7.3) indicates significantly higher volatility than the market.  Further investigation is needed to understand the drivers of this outperformance despite a negative alpha. The high market risk and negative alpha need further analysis.  A CAGR of 5.0% over 2023-2025 is modest considering the high risk.
 
 
 **2. Recent Price Movements:**
 
-TEM's closing price is $40.98.  The stock recently saw a 1.31% increase.  However, it is trading below its 5-day ($41.67), 20-day ($45.96), and 60-day ($54.84) moving averages, suggesting a downtrend.
+* **Closing Price:** $43.23
+* **5-Day Moving Average:** $41.69
+* **20-Day Moving Average:** $45.17
+* **60-Day Moving Average:** $54.70
 
+The price is currently below all three moving averages, suggesting a potential short-term downtrend.  The recent price increase of 5.49% (from $40.98) indicates a potential short-term rebound, but the trend is bearish.
 
 **3. Technical Indicators & Expected Return:**
 
-* **Market Risk Indicator (MRI):** 0.4082, indicating a medium risk level.
-* **RSI (38.9):**  Below 50, suggesting the stock is currently oversold.
-* **PPO (-0.2952):** Negative, reinforcing the bearish trend.
-* **Relative Divergence:** A positive change of 2.1 over the last 20 days indicates a short-term upward trend.
-* **Expected Return:** Not provided.  Due to high volatility and negative alpha, long-term outperformance relative to the S&P 500 is uncertain.  The 4.0% CAGR needs to be critically examined given the MDD figure.
+* **Market Risk Indicator (MRI):** 0.435 (Medium Risk)
+* **RSI:** 44.12 (Slightly below neutral; not oversold)
+* **PPO:** 0.21 (Positive, suggesting potential upward momentum)
+* **20-Day Relative Divergence Change:** +1.2 (Short-term upward trend)
+* **Expected Return:** nan (unavailable)
 
+
+The technical indicators present a mixed signal.  While the PPO is positive, the RSI is close to the neutral zone and the price is below its moving averages. The recent price increase is significant (5.49%) and may suggest a short-term rebound.  The lack of an expected return value requires further analysis and prediction modelling.
 
 **4. Recent Earnings Analysis:**
 
-TEM has consistently reported negative EPS in recent quarters. While the actual EPS figures have been worse than expected in some instances, there's no clear indication of a significant positive or negative trend.
+| Date       | EPS     | Expected EPS | Difference |
+|------------|---------|--------------|------------|
+| 2025-02-24 | -0.18   | -0.15        | -0.03       |
+| 2024-11-04 | -0.25   | -0.26608     | +0.016     |
+| 2024-08-06 | -0.63   | -0.59        | -0.04       |
 
-
-| 날짜       | EPS     | 예상 EPS    |
-|------------|---------|-------------|
-| 2025-02-24 | -0.18   | -0.15       |
-| 2024-11-04 | -0.25   | -0.26608     |
-| 2024-08-06 | -0.63   | -0.59       |
-
+The company has reported negative EPS in recent quarters. While there were some positive surprises (November 2024), overall, the company is consistently underperforming its earnings expectations, suggesting challenges in profitability.
 
 **5. Financial Information:**
 
-Revenue is growing steadily, though profitability (profit margin) shows some fluctuation.  The capital and profitability metrics, particularly ROE, are deeply concerning, showing significant losses.  This needs further investigation to understand the underlying causes.  Further analysis is needed to determine the solvency of the company.
-
-
 **Revenue and Profitability:**
 
-| Quarter     | Revenue  | Profit Margin |
-|-------------|----------|---------------|
-| 2024-12-31 | $0.20B   | 60.83%        |
-| 2024-09-30 | $0.18B   | 58.50%        |
-| 2024-06-30 | $0.17B   | 45.50%        |
-| 2024-03-31 | $0.15B   | 53.28%        |
-| 2023-12-31 | $0.15B   | 55.20%        |
+| Quarter    | Revenue     | Profit Margin | Revenue Growth (YoY) |
+|------------|-------------|---------------|-----------------------|
+| 2024-12-31 | $0.20B      | 60.83%        | 33.33%                 |
+| 2024-09-30 | $0.18B      | 58.50%        | 20.00%                 |
+| 2024-06-30 | $0.17B      | 45.50%        | 13.33%                 |
+| 2024-03-31 | $0.15B      | 53.28%        | 0%                    |
+| 2023-12-31 | $0.15B      | 55.20%        | -                |
 
 **Capital and Profitability:**
 
-| Quarter     | Equity   | ROE         |
-|-------------|----------|-------------|
-| 2024-12-31 | $0.06B   | -23.10%     |
-| 2024-09-30 | $0.05B   | -141.16%    |
-| 2024-06-30 | $0.10B   | -562.04%    |
-| 2024-03-31 | $-1.47B  | 4.39%       |
-| 2023-12-31 | $-1.38B  | 3.65%       |
+| Quarter    | Equity      | ROE           |
+|------------|-------------|---------------|
+| 2024-12-31 | $0.06B      | -23.10%       |
+| 2024-09-30 | $0.05B      | -141.16%      |
+| 2024-06-30 | $0.10B      | -562.04%      |
+| 2024-03-31 | $-1.47B     | 4.39%         |
+| 2023-12-31 | $-1.38B     | 3.65%         |
 
+Revenue shows consistent growth, but profit margins fluctuate and have decreased in Q2 2024.  Extremely negative ROE values in several quarters are alarming and require urgent investigation into the company's financial health.  The large negative equity raises serious concerns.
 
 **6. Overall Analysis:**
 
-TEM's short-term performance has outpaced the S&P 500, but this is accompanied by high volatility and a significant maximum drawdown. Negative alpha and a high beta suggest substantial risk.  The negative EPS and concerning ROE figures raise serious concerns about the company's financial health and long-term sustainability.  Further investigation into the reasons for the negative ROE is crucial before considering any investment.  While the recent price increase is positive, the overall picture suggests caution is warranted.  More detailed financial statements and industry analysis are needed for a comprehensive assessment.  The current data strongly suggests a high-risk, high-reward situation with significant uncertainty.
+TEM shows significant outperformance compared to the S&P 500 in terms of cumulative returns. However, this is accompanied by high volatility (high beta), negative alpha, and concerning financial indicators.  The negative EPS, fluctuating profit margins, and drastically negative ROE figures raise significant red flags about the company's long-term sustainability and profitability.  While the recent price increase might be interpreted as a short-term rebound, the underlying financial health of the company needs thorough investigation before any investment decision can be made. The high risk associated with this stock, as evidenced by the high beta, negative alpha, and volatile financials, should be carefully considered.  Further research into the "Unknown Company" is crucial to gain a better understanding of its business model and future prospects.  The data presented suggests caution and warrants in-depth due diligence before considering an investment in TEM.
