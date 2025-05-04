@@ -1,21 +1,22 @@
-2025-04-25 - Analysis Report
+2025-05-05 - Analysis Report
 ## Johnson & Johnson (JNJ) Stock Review
 
-**0) Introduction:**  This report analyzes Johnson & Johnson (JNJ), a global healthcare company, based on provided financial data. Key metrics include cumulative return,  moving averages, RSI/PPO indicators, earnings, and financial statements.
+**0. Summary Statistics:**
 
-**1) Cumulative Return and Comparison to S&P 500 (VOO):**
+JNJ, Johnson & Johnson, is a multinational healthcare corporation.  The following analysis examines its performance against the S&P 500 (VOO) based on provided data.
 
-Johnson & Johnson's cumulative return is significantly lower than the S&P 500's.
+
+**1. Performance Comparison with S&P 500:**
 
 * **JNJ Cumulative Return:** 37.66%
 * **VOO (S&P 500) Cumulative Return:** 82.57%
 * **Return Difference:** -44.9%
-* **Relative Divergence:** 32.8% (This means JNJ's underperformance relative to the S&P 500 is in the 32.8th percentile of its historical range, indicating a considerable underperformance but not an extreme outlier.)
+* **Relative Lag:** 32.8% (This means JNJ's underperformance relative to VOO falls within the 32.8th percentile of its historical range of under/outperformance).
+
+The provided data shows that JNJ has significantly underperformed the S&P 500 over the analyzed period.  While the absolute underperformance is substantial, the relative lag puts this performance in context of its historical volatility against the S&P 500.
 
 
 **Alpha and Beta Analysis:**
-
-The provided data shows JNJ's alpha and beta fluctuating over the years, indicating periods of both outperformance and underperformance compared to the market.  Note that a negative alpha suggests underperformance relative to the market benchmark after adjusting for beta (market risk).  The beta values generally hover around 0.1 to 0.7, suggesting moderate sensitivity to market movements. Market capitalization remains consistently large.
 
 | Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
 |------------|------|------|-------|------|-------|
@@ -27,69 +28,73 @@ The provided data shows JNJ's alpha and beta fluctuating over the years, indicat
 | 2020-2022  | 8.0% | 61.3% | -1.0% | 0.3 | 396.7 |
 | 2021-2023  | -17.0% | 61.3% | -38.0% | 0.4 | 362.6 |
 | 2022-2024  | -31.0% | 61.3% | -51.0% | 0.3 | 345.2 |
-| 2023-2025  | -1.0% | 69.7% | -22.0% | 0.1 | 372.8 |
+| 2023-2025  | -1.0% | 69.7% | 0.1 | 0.1 | 372.8 |
+
+The alpha values fluctuate considerably across years, indicating inconsistent outperformance against the market.  The beta is generally low, suggesting lower volatility than the market, though this has not translated into consistent positive alpha.
 
 
-**2) Recent Price Movement:**
-
-JNJ's recent price action shows a slightly downward trend.
+**2. Recent Price Movement:**
 
 * **Closing Price:** $154.93
+* **Last Market Price:** $156.12
 * **5-Day Moving Average:** $156.49
 * **20-Day Moving Average:** $155.535
 * **60-Day Moving Average:** $158.4752
 
-The price is below all three moving averages, suggesting a bearish short-term trend.  The recent slight decline (-$0.29) does not indicate a significant drop.
+The price is slightly below the 5-day and 20-day moving averages, and notably below the 60-day moving average, suggesting a recent downward trend. The last market price shows a slight increase compared to the previous close, indicating a small positive daily movement.
 
 
-**3) Technical Indicators and Expected Return:**
+**3. Technical Indicators and Expected Return:**
 
 * **Market Risk Indicator (MRI):** 0.4053 (Medium Risk)
-* **RSI:** 41.12 (Below 50, suggesting bearish momentum)
-* **PPO:** 0.2659 (Positive, but relatively low, indicating weak bullish momentum)
-* **Relative Divergence Change (20-day):** -8.2% (Short-term downward trend)
-* **Expected Return (Long-term, 2+ years):** -53.6% (This indicates a significant underperformance compared to the S&P 500 over the long term. This projection should be treated with caution, as it is based on provided inputs and may not be wholly accurate.)
+* **RSI:** 41.12 (Slightly below neutral; suggests potential for further downside)
+* **PPO:** 0.2659 (Positive, but relatively low; suggests weak momentum)
+* **Relative Strength Change (20-day):** -8.2% (Short-term bearish trend)
+* **Expected Return (2+ years):** -53.6% (Significant underperformance compared to S&P 500 is anticipated for long-term investment.)
+
+The indicators suggest a relatively bearish outlook for JNJ in the short term. The negative expected return highlights the significant underperformance against the S&P 500 anticipated over the long term.
 
 
-**4) Recent Earnings Analysis:**
+**4. Recent Earnings Analysis:**
 
-Earnings data shows some fluctuation in EPS and revenue. While revenue remains relatively stable, EPS shows variability across quarters.  Note the duplicate entry for 2025-04-23. Data cleaning is necessary to ensure accuracy of further analysis.
-
-
-| 날짜       | EPS  | 매출          |
+| Date       | EPS  | Revenue      |
 |------------|------|---------------|
-| 2025-04-23 | 4.57 | 21.89 B$      |
-| 2024-10-23 | 1.12 | 22.47 B$      |
-| 2024-07-25 | 1.95 | 22.45 B$      |
-| 2024-05-01 | 1.35 | 21.38 B$      |
-| 2025-04-23 | 1.35 | 21.38 B$      |
+| 2025-04-23 | 4.57 | $21.89B       |
+| 2024-10-23 | 1.12 | $22.47B       |
+| 2024-07-25 | 1.95 | $22.45B       |
+| 2024-05-01 | 1.35 | $21.38B       |
+| 2025-04-23 | 1.35 | $21.38B       |
+
+Note: There's a duplicated entry for 2025-04-23.  Assuming this is an error, the earnings show significant variability.  Further analysis requires clarification on the duplication and a longer history of earnings data.
 
 
-**5) Financial Information:**
-
-Revenue remains relatively stable with slight fluctuations. Profit margins are consistently high but show a slight downward trend. Equity shows some fluctuations but remains substantial. ROE is volatile, suggesting inconsistent profitability.  Further analysis is needed to determine underlying causes.
+**5. Financial Information:**
 
 **Revenue and Profitability:**
 
-| Quarter     | Revenue    | Profit Margin |
-|-------------|------------|---------------|
-| 2025-03-31  | $21.89B    | 66.40%        |
-| 2024-12-31  | $22.52B    | 68.35%        |
-| 2024-09-30  | $22.47B    | 69.01%        |
-| 2024-06-30  | $22.45B    | 69.40%        |
-| 2024-03-31  | $21.38B    | 69.55%        |
+| Quarter | Revenue   | Profit Margin |
+|---------|-----------|---------------|
+| 2025-03-31 | $21.89B  | 66.40%       |
+| 2024-12-31 | $22.52B  | 68.35%       |
+| 2024-09-30 | $22.47B  | 69.01%       |
+| 2024-06-30 | $22.45B  | 69.40%       |
+| 2024-03-31 | $21.38B  | 69.55%       |
+
+Revenue is relatively stable, with profit margins consistently high but showing a slight downward trend.
 
 **Capital and Profitability:**
 
-| Quarter     | Equity     | ROE      |
-|-------------|------------|----------|
-| 2025-03-31  | $78.11B    | 14.08%   |
-| 2024-12-31  | $71.49B    | 4.80%    |
-| 2024-09-30  | $70.16B    | 3.84%    |
-| 2024-06-30  | $71.54B    | 6.55%    |
-| 2024-03-31  | $70.02B    | 4.65%    |
+| Quarter | Equity    | ROE      |
+|---------|-----------|----------|
+| 2025-03-31 | $78.11B  | 14.08%   |
+| 2024-12-31 | $71.49B  | 4.80%    |
+| 2024-09-30 | $70.16B  | 3.84%    |
+| 2024-06-30 | $71.54B  | 6.55%    |
+| 2024-03-31 | $70.02B  | 4.65%    |
+
+Equity and ROE fluctuate, indicating variability in profitability.  The high ROE in 2025-03-31 needs further investigation to determine its sustainability.
 
 
-**6) Overall Analysis:**
+**6. Overall Analysis:**
 
-JNJ's performance has lagged behind the S&P 500 significantly, particularly in recent years.  While the company maintains high profit margins and substantial revenue, the volatility in EPS and ROE raises concerns. Technical indicators suggest bearish momentum in the short term.  The projected long-term underperformance relative to the S&P 500 (-53.6%) is a major red flag.  Further investigation into the causes of fluctuating EPS and ROE is critical, along with a reassessment of the long-term projection, before making any investment decisions.  The duplicated data entry needs clarification and correction.  Additional data points would allow for a more robust analysis.
+JNJ has shown significant underperformance against the S&P 500 over the analyzed period, with a substantial negative alpha and a relatively low beta. Technical indicators suggest a bearish short-term outlook, and the long-term expected return is significantly negative compared to the market benchmark. While the company maintains high profit margins and relatively stable revenue, the variability in earnings and ROE warrants further investigation.  The significant negative expected return and the inconsistent performance against the market raise serious concerns about the investment prospects of JNJ at this time.  Further due diligence, including a deeper dive into the company's fundamentals and future prospects, is strongly recommended before making any investment decisions.
