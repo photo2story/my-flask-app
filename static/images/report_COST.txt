@@ -1,185 +1,125 @@
-2025-05-17 - Analysis Report
-Okay, here's a comprehensive analysis of Costco Wholesale Corp (COST) based on the data you provided. The report is structured to provide a clear, concise, and data-driven overview.
+2025-05-23 - Analysis Report
+Okay, here's an analysis of Costco Wholesale Corp (COST) based on the provided data.
 
-```python
-import pandas as pd
+## Costco Wholesale Corp (COST) Analysis
 
-def analyze_costco(data):
-    """Analyzes Costco stock data and provides a comprehensive report.
+**Company Overview:** Costco Wholesale Corp operates membership-only warehouse clubs offering a wide variety of merchandise.
 
-    Args:
-        data (dict): A dictionary containing various data points for Costco.
+### 1. Performance vs. S&P 500 (VOO)
 
-    Returns:
-        str: A string containing the analysis report.
-    """
+*   **COST Cumulative Return:** 306.91%
+*   **VOO Cumulative Return:** 80.67%
+*   **Absolute Outperformance:** 226.2%
+*   **Relative Outperformance (Percentile):** 96.4% (Indicates COST's outperformance is near the top of its historical range relative to VOO).
 
-    report = ""
+**Analysis:** COST has significantly outperformed the S&P 500. The relative outperformance percentile suggests that this level of outperformance is historically high.
 
-    # 0. Introduction
-    report += "## Costco Wholesale Corp (COST) Analysis\n"
-    report += "Costco Wholesale Corp is a membership-only warehouse club that offers a wide variety of merchandise.\n\n"
+**Alpha, Beta Analysis:**
 
-    # 1. Performance vs. S&P 500 (VOO)
-    report += "### 1. Performance vs. S&P 500 (VOO)\n"
-    cost_cumulative_return = data["cumulative_return"]
-    voo_cumulative_return = data["voo_cumulative_return"]
-    relative_divergence = data["relative_divergence"]
-    report += f"*   **COST Cumulative Return:** {cost_cumulative_return:.2f}%\n"
-    report += f"*   **VOO Cumulative Return:** {voo_cumulative_return:.2f}%\n"
-    report += f"*   **Divergence (Max: {data['max_divergence']:.1f}, Min: {data['min_divergence']:.1f}, Current: {relative_divergence['current']:.1f}, Relative: {relative_divergence['relative']:.1f}):** The current divergence indicates COST has significantly outperformed VOO. A relative divergence of {relative_divergence['relative']:.1f} suggests COST's outperformance is near the upper end of its historical range compared to VOO.\n\n"
+| Year       | CAGR    | MDD     | Alpha   | Beta  | Cap(B) |
+|------------|---------|---------|---------|-------|--------|
+| 2015-2017  | 27.0%   | 55.6%   | -2.0%   | 0.1   | 74.2   |
+| 2016-2018  | 16.0%   | 61.6%   | -2.0%   | 0.2   | 82.1   |
+| 2017-2019  | 54.0%   | 61.6%   | 25.0%   | 0.4   | 119.6  |
+| 2018-2020  | 67.0%   | 80.1%   | 41.0%   | 0.2   | 158.6  |
+| 2019-2021  | 138.0%  | 80.1%   | 84.0%   | 0.2   | 240.8  |
+| 2020-2022  | 81.0%   | 80.1%   | 75.0%   | 0.2   | 194.9  |
+| 2021-2023  | 134.0%  | 71.3%   | 117.0%  | 0.5   | 290.5  |
+| 2022-2024  | 128.0%  | 80.8%   | 111.0%  | 0.4   | 405.6  |
+| 2023-2025  | 137.0%  | 80.8%   | 108.0%  | 0.4   | 451.7  |
 
-    # Alpha, Beta Analysis Table
-    alpha_beta_data = data["alpha_beta"]
-    report += "#### Alpha, Beta Analysis\n"
-    df_alpha_beta = pd.DataFrame(alpha_beta_data)
-    df_alpha_beta = df_alpha_beta.set_index("Year")
-    report += df_alpha_beta.to_markdown() + "\n\n"
-    report += "The Alpha/Beta analysis reveals several key trends:\n"
-    report += "- **CAGR:** Consistently high, particularly in recent periods, indicating strong growth.\n"
-    report += "- **MDD:** Maximum Drawdown figures suggest potential volatility.\n"
-    report += "- **Alpha:**  Generally positive, indicating outperformance relative to its risk-adjusted benchmark.\n"
-    report += "- **Beta:** Consistently low, suggesting that COST is less sensitive to market movements than the S&P 500.\n"
-    report += "- **Cap:** Market capitalization has shown substantial growth.\n\n"
-    # 2. Recent Stock Price Movement
-    report += "### 2. Recent Stock Price Movement\n"
-    report += f"*   **Current Price:** {data['current_price']:.2f}\n"
-    report += f"*   **Last Market Data:** Price: {data['last_market']['price']:.2f}, Previous Close: {data['last_market']['previousClose']:.2f}, Change: {data['last_market']['change']:.2f}%\n"
-    report += f"*   **5-Day Moving Average:** {data['moving_averages']['5_day']:.3f}\n"
-    report += f"*   **20-Day Moving Average:** {data['moving_averages']['20_day']:.3f}\n"
-    report += f"*   **60-Day Moving Average:** {data['moving_averages']['60_day']:.3f}\n"
-    report += "The price is above all moving averages, suggesting an upward trend. The recent positive change indicates bullish momentum.\n\n"
+**Analysis:**
 
-    # 3. Technical Indicators
-    report += "### 3. Technical Indicators\n"
-    report += f"*   **Market Risk Indicator (MRI):** {data['mri']:.2f} (Low Risk)\n"
-    report += f"*   **RSI:** {data['rsi']:.2f}\n"
-    report += f"*   **PPO:** {data['ppo']:.4f}\n"
-    report += f"*   **Recent (20-day) Relative Divergence Change:** {data['divergence_change']:.1f} (Short-term Decrease)\n"
-    report += f"*   **Expected Return:** {data['expected_return']:.1f}%\n"
-    report += "The RSI suggests the stock is approaching overbought territory. The PPO indicates positive momentum. The negative change in relative divergence suggests a potential short-term pullback.\n"
-    if data['last_market']['change'] > 1.0:
-        report += "The significant positive change in the last market indicates a recent surge that could be due to specific news or events.\n\n"
-    else:
-        report += "The change in the last market has no specific influence\n\n"
-    # 4. Recent News & Events
-    report += "### 4. Recent News & Significant Events\n"
-    for news in data['news']:
-        report += f"*   **{news['date']}** - {news['headline']} (Source: {news['source']})\n"
-    report += "Recent news indicates business developments, analyst discussions, and stock volatility, suggesting investors should stay informed about company announcements and market trends.\n\n"
+*   **CAGR:** Consistently high Compound Annual Growth Rate across different periods.
+*   **MDD:** Maximum Drawdown values are relatively high, indicating significant price volatility during these periods.
+*   **Alpha:** Significant positive Alpha values from 2017 onward, suggesting COST is generating returns above what would be expected based on market movements.
+*   **Beta:** Beta values are generally low, indicating COST is less volatile than the overall market.
+*   **Cap(B):** Market Capitalization steadily increases over time.
 
-    # 5. Recent Earnings Analysis
-    report += "### 5. Recent Earnings Analysis\n"
-    earnings_data = data["earnings"]
-    df_earnings = pd.DataFrame(earnings_data)
-    df_earnings = df_earnings.set_index("날짜")
-    report += df_earnings.to_markdown() + "\n\n"
-    report += "Recent earnings reports show strong EPS and revenue figures. The consistent performance suggests solid financial health.\n\n"
+### 2. Recent Price Action
 
-    # 6. Financial Information
-    report += "### 6. Financial Information\n"
+*   **Current Price:** 1018.13
+*   **Previous Close:** 1025.3
+*   **Change:** -0.7 (-0.7%) - Slight decrease from the previous close.
+*   **5-day Moving Average:** 1028.08
+*   **20-day Moving Average:** 1007.44
+*   **60-day Moving Average:** 972.03
 
-    # Revenue and Profitability
-    revenue_data = data["revenue_profitability"]
-    df_revenue = pd.DataFrame(revenue_data)
-    df_revenue = df_revenue.set_index("Quarter")
-    report += "#### Revenue and Profitability\n"
-    report += df_revenue.to_markdown() + "\n\n"
-    report += "The Revenue and Profitability table highlights:\n"
-    report += "- **Revenue:** Generally consistent revenue figures, with a peak in 2024-08-31.\n"
-    report += "- **Profit Margin:** Relatively stable profit margins around 12.5-13%.\n\n"
+**Analysis:** The current price is below the 5-day moving average but above the 20-day and 60-day moving averages. This suggests a possible short-term pullback, but the overall trend remains positive. The slight decrease from the previous close (-0.7%) might be a short-term fluctuation.
 
-    # Capital and Profitability
-    capital_data = data["capital_profitability"]
-    df_capital = pd.DataFrame(capital_data)
-    df_capital = df_capital.set_index("Quarter")
-    report += "#### Capital and Profitability\n"
-    report += df_capital.to_markdown() + "\n\n"
-    report += "The Capital and Profitability table shows:\n"
-    report += "- **Equity:** Increasing equity over the observed quarters.\n"
-    report += "- **ROE:** Fluctuating ROE, with the highest value in 2024-08-31.\n\n"
+### 3. Market Risk Indicators & Expected Return
 
-    # 7. Overall Analysis
-    report += "### 7. Overall Analysis\n"
-    report += "Costco Wholesale Corp (COST) exhibits strong financial performance, outperforming the S&P 500.  Recent earnings are solid, and financial metrics indicate healthy growth.  However, the RSI suggests caution in the short term. Investors should monitor recent news and company announcements, considering the potential for short-term pullbacks.  Long-term, Costco appears to be a strong investment, especially for those considering a buy-and-hold strategy.\n"
+*   **MRI:** 0.3656 (Low Risk)
+*   **RSI:** 54.39 (Neutral - Neither overbought nor oversold)
+*   **PPO:** 0.0382 (Positive - Indicates upward momentum)
+*   **Recent (20-day) Relative Divergence Change:** 2.2 (+) (Short-term increase in relative outperformance)
+*   **Expected Return:** 30.0% (Long-term expected outperformance vs. S&P 500)
 
-    return report
+**Analysis:**  The MRI indicates a low-risk environment for COST. The RSI suggests a neutral market sentiment. The positive PPO and the recent increase in relative divergence further support the idea of positive momentum. The expected return of 30% is very attractive for long-term investors.
 
-# Example Usage (replace with your actual data)
-data = {
-    "cumulative_return": 309.98,
-    "voo_cumulative_return": 84.12,
-    "max_divergence": 235.3,
-    "min_divergence": -14.2,
-    "relative_divergence": {"current": 225.9, "relative": 96.2},
-    "alpha_beta": [
-        {"Year": "2015-2017", "CAGR": "27.0%", "MDD": "55.6%", "Alpha": "-2.0%", "Beta": "0.1", "Cap(B)": "74.2"},
-        {"Year": "2016-2018", "CAGR": "16.0%", "MDD": "61.6%", "Alpha": "-2.0%", "Beta": "0.2", "Cap(B)": "82.1"},
-        {"Year": "2017-2019", "CAGR": "54.0%", "MDD": "61.6%", "Alpha": "25.0%", "Beta": "0.4", "Cap(B)": "119.6"},
-        {"Year": "2018-2020", "CAGR": "67.0%", "MDD": "80.1%", "Alpha": "41.0%", "Beta": "0.2", "Cap(B)": "158.6"},
-        {"Year": "2019-2021", "CAGR": "138.0%", "MDD": "80.1%", "Alpha": "84.0%", "Beta": "0.2", "Cap(B)": "240.8"},
-        {"Year": "2020-2022", "CAGR": "81.0%", "MDD": "80.1%", "Alpha": "75.0%", "Beta": "0.2", "Cap(B)": "194.9"},
-        {"Year": "2021-2023", "CAGR": "134.0%", "MDD": "71.3%", "Alpha": "117.0%", "Beta": "0.5", "Cap(B)": "290.5"},
-        {"Year": "2022-2024", "CAGR": "128.0%", "MDD": "80.8%", "Alpha": "111.0%", "Beta": "0.4", "Cap(B)": "405.6"},
-        {"Year": "2023-2025", "CAGR": "140.0%", "MDD": "80.8%", "Alpha": "108.0%", "Beta": "0.4", "Cap(B)": "455.1"}
-    ],
-    "current_price": 1025.83,
-    "last_market": {"price": 1025.83, "previousClose": 1010.47, "change": 1.52},
-    "moving_averages": {"5_day": 1008.604, "20_day": 995.8716, "60_day": 972.6629},
-    "mri": 0.3475,
-    "rsi": 71.44,
-    "ppo": 0.0343,
-    "divergence_change": -0.9,
-    "expected_return": 30.1,
-    "news": [
-        {"date": "2025-05-13", "headline": "Costco Wholesale Corp (COST) has recently made headlines due to major business developments, regulatory changes, or market events.", "source": "Example News"},
-        {"date": "2025-05-15", "headline": "Analysts are discussing Costco Wholesale Corp's (COST) recent performance and its outlook in the context of industry trends and global economic factors.", "source": "Example Finance"},
-        {"date": "2025-05-14", "headline": "Costco Wholesale Corp (COST)'s stock has shown notable volatility, influenced by recent news, earnings reports, or executive actions.", "source": "Example Markets"},
-        {"date": "2025-05-16", "headline": "Market experts highlight both risks and opportunities for Costco Wholesale Corp (COST), advising investors to monitor recent news and company announcements.", "source": "Example Analyst"}
-    ],
-    "earnings": [
-        {"날짜": "2025-03-13", "EPS": 4.03, "매출": "63.72 B$"},
-        {"날짜": "2024-12-19", "EPS": 4.05, "매출": "62.15 B$"},
-        {"날짜": "2024-06-06", "EPS": 3.79, "매출": "58.52 B$"},
-        {"날짜": "2024-03-13", "EPS": 3.93, "매출": "58.44 B$"},
-        {"날짜": "2025-03-13", "EPS": 3.93, "매출": "58.44 B$"}
-    ],
-     "revenue_profitability": [
-        {"Quarter": "2025-02-28", "Revenue": "$63.72B", "Profit Margin": "12.52%"},
-        {"Quarter": "2024-11-30", "Revenue": "$62.15B", "Profit Margin": "12.94%"},
-        {"Quarter": "2024-08-31", "Revenue": "$79.70B", "Profit Margin": "12.68%"},
-        {"Quarter": "2024-05-31", "Revenue": "$58.52B", "Profit Margin": "12.55%"},
-        {"Quarter": "2024-02-29", "Revenue": "$58.44B", "Profit Margin": "12.49%"}
-    ],
-    "capital_profitability": [
-        {"Quarter": "2025-02-28", "Equity": "$25.58B", "ROE": "6.99%"},
-        {"Quarter": "2024-11-30", "Equity": "$24.45B", "ROE": "7.35%"},
-        {"Quarter": "2024-08-31", "Equity": "$23.62B", "ROE": "9.97%"},
-        {"Quarter": "2024-05-31", "Equity": "$21.77B", "ROE": "7.72%"},
-        {"Quarter": "2024-02-29", "Equity": "$20.76B", "ROE": "8.40%"}
-    ]
-}
+### 4. Recent News & Significant Events
 
-report = analyze_costco(data)
-print(report)
-```
+*   **Volatility:** The stock has shown notable volatility, influenced by recent news, earnings reports, or executive actions.
+*   **Analyst Focus:** Analysts are discussing Costco's performance in the context of industry trends and global economic factors.
+*   **Monitoring Advised:** Market experts advise investors to monitor recent news and company announcements.
 
-**Key Points:**
+**Analysis:** Recent news indicates that Costco is subject to market volatility and intense analyst scrutiny. Investors should stay informed about news and announcements.
 
-*   **Structure:** The report is broken down into logical sections, making it easy to read and understand.
-*   **Data-Driven:** The analysis relies heavily on the numerical data you provided.
-*   **Concise:**  Explanations are brief and to the point.
-*   **Actionable Insights:** The analysis includes recommendations for investors (e.g., monitoring news, considering short-term pullbacks).
-*   **Clear Formatting:**  Uses Markdown formatting for headings, lists, and emphasis.
-*   **Pandas DataFrame Output:**  Uses Pandas to create clear, readable tables directly in the report.  This significantly improves the presentation of tabular data.
-*   **Python Function:** Encapsulated in a Python function for easy reusability and testing.
+### 5. Recent Earnings Analysis
 
-**How to Use:**
+| 날짜       | EPS  | 매출       |
+|------------|------|------------|
+| 2025-03-13 | 4.03 | 63.72 B$   |
+| 2024-12-19 | 4.05 | 62.15 B$   |
+| 2024-06-06 | 3.79 | 58.52 B$   |
+| 2024-03-13 | 3.93 | 58.44 B$   |
+| 2025-03-13 | 3.93 | 58.44 B$   |
 
-1.  **Copy the Code:** Copy the Python code above.
-2.  **Install Pandas:** If you don't have it, install Pandas: `pip install pandas`
-3.  **Replace the Example Data:**  Replace the placeholder `data` dictionary with your actual Costco data.  Make sure the keys and data types match.
-4.  **Run the Code:** Execute the Python code.  It will print the formatted report to the console.  You can then copy and paste this into a document or other format.
-5.  **Interpret the Report:**  Use the analysis to make informed investment decisions.  Pay close attention to the overall analysis and any specific risks or opportunities identified.
+**Analysis:** The most recent EPS ($4.03) and revenue ($63.72B) are strong. There's a general upward trend in both EPS and revenue over the last few quarters, indicating healthy growth.
 
-This improved response provides a professional-quality analysis report, ready to be used for investment decision-making. Remember to always consult with a qualified financial advisor before making any investment decisions.
+### 6. Financial Information
+
+**Revenue and Profitability:**
+
+| Quarter      | Revenue     | Profit Margin |
+|--------------|-------------|---------------|
+| 2025-02-28   | $63.72B     | 12.52%        |
+| 2024-11-30   | $62.15B     | 12.94%        |
+| 2024-08-31   | $79.70B     | 12.68%        |
+| 2024-05-31   | $58.52B     | 12.55%        |
+| 2024-02-29   | $58.44B     | 12.49%        |
+
+**Capital and Profitability:**
+
+| Quarter      | Equity      | ROE    |
+|--------------|-------------|--------|
+| 2025-02-28   | $25.58B     | 6.99%  |
+| 2024-11-30   | $24.45B     | 7.35%  |
+| 2024-08-31   | $23.62B     | 9.97%  |
+| 2024-05-31   | $21.77B     | 7.72%  |
+| 2024-02-29   | $20.76B     | 8.40%  |
+
+**Analysis:**
+
+*   **Revenue:**  Generally increasing revenue, with a notable peak in 2024-08-31.
+*   **Profit Margin:**  Stable profit margins around 12.5% - 13%, indicating good cost control and pricing power.
+*   **Equity:**  Consistent growth in equity.
+*   **ROE:**  Reasonable Return on Equity, indicating efficient use of shareholder's equity to generate profits.
+
+### 7. 종합 Analysis (Overall Conclusion)
+
+Costco (COST) presents a compelling investment case:
+
+*   **Strong Outperformance:**  Substantially outperformed the S&P 500, although its relative outperformance is near historical highs.
+*   **Positive Momentum:**  Recent price action suggests a short-term pullback, but the overall trend remains positive, supported by the PPO and recent divergence change.
+*   **Solid Fundamentals:**  Consistent revenue and earnings growth, stable profit margins, and efficient use of equity.
+*   **Low Risk:**  The MRI indicates a low-risk environment.
+*   **Attractive Expected Return:** Long-term investors can expect a significant outperformance of the S&P 500.
+
+**However:**
+
+*   **Volatility:**  Recent news suggests the stock is subject to volatility, requiring investors to stay informed.
+*   **High MDD:**  Relatively high MDD values indicate significant price volatility during some periods.
+*   **Valuation:**  The high relative outperformance and strong growth might indicate that the stock is richly valued, requiring careful consideration of entry points.
+
+**Recommendation:**  Based on the data, Costco appears to be a strong company with good growth prospects.  Long-term investors might find it an attractive investment, but should be aware of potential volatility and monitor the stock closely. Consider the current valuation and potentially wait for pullbacks to establish a position.
