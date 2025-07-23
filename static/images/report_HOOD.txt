@@ -1,117 +1,123 @@
-2025-07-23 - Analysis Report
-Okay, here's an analysis of Robinhood Markets Inc. (HOOD) based on the provided data, broken down into sections and incorporating the requested elements.
+2025-07-24 - Analysis Report
+Okay, here's an analysis of Robinhood Markets Inc. (HOOD) based on the provided data, presented in a report format with numerical data first, followed by analysis:
 
-**Report on Robinhood Markets Inc. (HOOD)**
+## Robinhood (HOOD) Stock Analysis
 
-Robinhood Markets Inc. (HOOD) is a financial services company offering commission-free trading of stocks, ETFs, and cryptocurrencies.
+**Company Overview:** Robinhood Markets Inc. is a financial services company that offers a platform for commission-free trading and investing.
 
-**1. Performance vs. S&P 500 (VOO)**
+### 1. Performance vs. S&P 500 (VOO)
 
-*   **Ticker:** HOOD
-*   **Cumulative Return (HOOD):** 241.41%
-*   **Cumulative Return (VOO):** 33.17%
-*   **Absolute Divergence (HOOD - VOO):**
-    *   Max: 236.4
-    *   Min: -59.9
-    *   Current: 217.9
-*   **Relative Divergence:** 93.8
+*   **HOOD Cumulative Return:** 241.41%
+*   **VOO Cumulative Return:** 33.17%
+*   **Absolute Divergence (Current):** 208.2
+*   **Divergence Range (Max: 236.3, Min: -59.9)**
+*   **Relative Divergence:** 90.5
 
-**Analysis:**  HOOD has significantly outperformed the S&P 500 (VOO) over the observed period. A relative divergence of 93.8 indicates that HOOD's outperformance is near the upper end of its historical range relative to VOO.  However, this also means it's more likely to regress to the mean, and this outperformance might not be sustainable.
+**Analysis:**
 
-**Alpha/Beta Analysis:**
+HOOD has significantly outperformed the S&P 500 (VOO) over the observed period. The current absolute divergence is 208.2, and a relative divergence of 90.5 indicates HOOD's performance is near the top end of its historical divergence range compared to VOO. This suggests a period of substantial outperformance, but also potential for reversion to the mean.
 
-| Year       |   CAGR |   MDD |   Alpha |   Beta |   Cap(B) |
-|------------|-------:|------:|--------:|-------:|---------:|
-| 2021-2023  |   -9   |  72.8 |   -12   |   -0.1 |     11.2 |
-| 2022-2024  |  151   |  74.3 |   126   |   -0   |     32.9 |
-| 2023-2025  |  285   |  74.3 |   236   |   -0   |     89.9 |
+### Alpha, Beta Analysis
 
-**Analysis:**  The table shows a dramatic turnaround in performance from 2021-2023 to 2023-2025. CAGR and Alpha are strongly positive in the later periods, indicating strong outperformance relative to the market. The Beta values are near zero or negative, suggesting HOOD's returns are largely independent of the overall market.  High MDD's (Maximum Drawdown) across all periods imply significant volatility and risk.  The market cap has increased significantly.
+| Year       | CAGR     | MDD      | Alpha   | Beta   | Cap(B) |
+|------------|----------|----------|---------|--------|--------|
+| 2021-2023  | -9.0%   | 72.8%    | -12.0%  | -0.1   | 11.3   |
+| 2022-2024  | 151.0%  | 74.3%    | 126.0%  | -0.0   | 33.0   |
+| 2023-2025  | 285.0%  | 74.3%    | 236.0%  | -0.0   | 90.2   |
 
-**2. Recent Stock Price Movement**
+**Analysis:**
 
-*   **Current Price:** $101.85
-*   **Previous Close:** $104.34
-*   **Change:** -$2.39
-*   **5-Day Moving Average:** 104.926
-*   **20-Day Moving Average:** 95.6913
-*   **60-Day Moving Average:** 74.3151
+*   **CAGR:**  CAGR figures vary dramatically across the years. The periods starting in 2022 and 2023 show substantial growth (151.0% and 285.0% respectively), while the 2021-2023 period shows a negative return of -9.0%. This indicates high volatility in HOOD's performance.
+*   **MDD:**  Maximum Drawdown is consistently high, around 73-74%, which points to significant risk and large potential losses during downturns.
+*   **Alpha:** Alpha is strongly positive in the 2022-2024 and 2023-2025 periods (126.0% and 236.0%), suggesting that HOOD's returns have significantly outperformed expectations based on market movements.  However, the 2021-2023 period has negative alpha, implying underperformance.
+*   **Beta:** Beta is consistently near zero (-0.1 or -0.0), which suggests that HOOD's price movements have very little correlation with the overall market (S&P 500). This can be seen as both an advantage (in a market downturn) and a disadvantage (in a bull market).
+*   **Cap(B):** Market capitalization has increased from 11.3B to 90.2B from 2021 to 2025
 
-**Analysis:** The stock price has decreased recently.  The current price is below the 5-day moving average, indicating a short-term downward trend.  It's above the 20-day and 60-day moving averages, suggesting a longer-term upward trend, though weakening.  The recent price drop of $2.39 relative to the previous close is notable, signaling a potential shift in momentum.
+### 2. Recent Price Action
 
-**3. Market Risk Indicators and Expected Return**
+*   **Current Price:** 101.85
+*   **Last Market Data:** {'price': 102.32, 'previousClose': 101.85, 'change': 0.46}
+*   **5-Day Moving Average:** 104.93
+*   **20-Day Moving Average:** 95.69
+*   **60-Day Moving Average:** 74.32
+
+**Analysis:**
+
+The current price is below the 5-day moving average but above the 20-day and 60-day moving averages. This suggests short-term downward momentum but longer-term upward trend. The slight increase between the previous close and last market price suggests a slight positive change.
+
+### 3. Market Risk Indicators & Expected Return
 
 *   **Market Risk Indicator (MRI):** 0.3359 (Low Risk)
 *   **RSI:** 63.26
 *   **PPO:** -0.50
-*   **Hybrid Signal:**  Cash 70% / Sell 69.9% of holdings (1175 shares)
-*   **Recent (20-Day) Relative Divergence Change:** -6.2 (Negative - Short-term Decline)
-*   **Expected Return (vs. S&P 500):** -1.9%
+*   **Hybrid Signal:** cash_70%_Sell 69.9% of holdings (1175 shares - Caution - MRI:0.34) (Cash Ratio: 70% on 2025-07-22)
+*   **Recent (20-day) Relative Divergence Change:** -9.3 (Negative - Short-term Decline)
+*   **Expected Return (%):** -2.1% (Over S&P 500, long-term)
 
 **Analysis:**
 
-*   The low MRI suggests a relatively stable market environment, but the Hybrid Signal suggests caution and recommends selling a significant portion of holdings, possibly because of the high valuation relative to its own history. The recommendation to move to 70% cash is significant.
-*   The RSI of 63.26 is approaching overbought territory (typically above 70), suggesting the stock may be due for a pullback.
-*   The negative PPO indicates the short-term moving average is below the long-term moving average, confirming a short-term downtrend.
-*   The negative change in relative divergence reinforces the short-term bearish outlook.
-*   The negative expected return implies that, from the current level, long-term investment might underperform the S&P 500.
-*   The recent price change of -2.39 suggests a short-term downward movement.
+*   **MRI:** The low MRI suggests a relatively stable market environment for HOOD.
+*   **RSI:** The RSI of 63.26 is approaching overbought territory (typically above 70), indicating the stock may be due for a pullback.
+*   **PPO:** The negative PPO suggests the shorter-term moving average is below the longer-term moving average, indicating potential selling pressure.
+*   **Hybrid Signal:** The hybrid signal indicates a cautious outlook, recommending reducing holdings and increasing cash reserves.
+*   **Relative Divergence Change:** The negative change in relative divergence indicates a weakening of HOOD's outperformance relative to the S&P 500 in the short term.
+*   **Expected Return:** The negative expected return suggests that, based on the model, long-term investment in HOOD may not outperform the S&P 500 from the current position.
+*   **Last Market Data:** The {'price': 102.32, 'previousClose': 101.85, 'change': 0.46} value is significant, suggesting the stock experienced a positive change that could impact the overall analysis of recent market activity.
 
-**4. Recent News & Significant Events**
+### 4. Recent News & Significant Events
 
-*   **2025-07-21:** Major business developments, regulatory changes, or market events.
-*   **2025-07-22:** Analyst discussions on performance and outlook.
-*   **2025-07-20:** Notable stock volatility.
-*   **2025-07-23:** Market expert advice to monitor news and announcements.
-
-**Analysis:**  The news snippets point to an active period for Robinhood, with volatility, analyst scrutiny, and potentially significant events influencing the stock.  These factors warrant close attention to company announcements and market reactions.
-
-**5. Recent Earnings Analysis**
-
-| 날짜       |   EPS |   예상 EPS |
-|------------|------:|-----------:|
-| 2025-04-30 |  0.37 |     0.3253 |
-| 2025-02-12 |  0.54 |     0.4184 |
-| 2024-10-30 |  0.17 |     0.18   |
-| 2024-08-07 |  0.21 |     0.15   |
-| 2024-05-08 |  0.18 |     0.06   |
-
-**Analysis:** Robinhood has consistently exceeded EPS expectations in recent quarters, particularly in 2025. This indicates strong financial performance and suggests positive investor sentiment.
-
-**6. Financial Information**
-
-Revenue and Profitability:
-
-| Quarter      | Revenue   |   Profit Margin |
-|--------------|:----------|----------------:|
-| 2025-03-31   | $0.93B    |           85.54% |
-| 2024-12-31   | $1.01B    |           85.80% |
-| 2024-09-30   | $0.64B    |           81.00% |
-| 2024-06-30   | $0.68B    |           81.96% |
-| 2024-03-31   | $0.62B    |           81.23% |
-
-Capital and Profitability:
-
-| Quarter      | Equity    |     ROE |
-|--------------|:----------|--------:|
-| 2025-03-31   | $7.95B    |    4.22% |
-| 2024-12-31   | $7.97B    |   11.49% |
-| 2024-09-30   | $7.21B    |    2.08% |
-| 2024-06-30   | $7.12B    |    2.64% |
-| 2024-03-31   | $6.88B    |    2.28% |
+*   **2025-07-20:** Major business developments, regulatory changes, or market events.
+*   **2025-07-23:** Analyst discussions regarding recent performance and outlook.
+*   **2025-07-22:** Notable stock volatility.
+*   **2025-07-21:** Market experts highlighting risks and opportunities.
 
 **Analysis:**
 
-*   Revenue has generally increased over the last year, with a slight decrease in the most recent quarter.
-*   Profit margins are very high and relatively stable.
-*   Equity has been increasing.
-*   ROE was exceptionally high in Q4 2024, then decreased in Q1 2025.  This may warrant further investigation.
+Recent news points to significant activity surrounding HOOD, including potential business or regulatory changes, analyst scrutiny, and stock volatility. These factors warrant close monitoring.
 
-**7. Overall Summary and Conclusion**
+### 5. Recent Earnings Analysis
 
-Robinhood (HOOD) has experienced substantial outperformance compared to the S&P 500, but recent indicators suggest a potential shift in momentum. The stock exhibits high volatility.
+| 날짜       | EPS    | 예상 EPS |
+|------------|--------|----------|
+| 2025-04-30 | 0.37   | 0.3253   |
+| 2025-02-12 | 0.54   | 0.4184   |
+| 2024-10-30 | 0.17   | 0.18     |
+| 2024-08-07 | 0.21   | 0.15     |
+| 2024-05-08 | 0.18   | 0.06     |
 
-*   **Positive Factors:** Strong earnings performance exceeding expectations, high profit margins, increasing revenue (though recent slight dip), and significant outperformance of the S&P 500 over a longer timeframe.
-*   **Negative Factors:** Recent price decline, negative short-term trends indicated by moving averages and PPO, potentially overbought RSI, negative expected return (compared to S&P 500), and a "Sell" signal from the Hybrid Indicator. High MDD indicate the potential of high volatility.
-*   **Neutral Factors:** Recent news events warrant monitoring, but their overall impact is unclear.
-*   **Recommendation:** Given the conflicting signals, a cautious approach is warranted. The Hybrid Signal's recommendation to reduce holdings and increase cash is worth serious consideration. Investors should closely monitor upcoming earnings reports, news releases, and market sentiment to reassess the outlook for HOOD. Consider the potential for underperformance compared to the S&P 500 in the long term, as indicated by the negative expected return.
+**Analysis:**
+
+Robinhood has consistently beaten EPS estimates in recent quarters, suggesting strong performance and positive investor sentiment.
+
+### 6. Financial Information
+
+**Revenue and Profitability:**
+
+| Quarter    | Revenue  | Profit Margin |
+|------------|----------|---------------|
+| 2025-03-31 | $0.93B  | 85.54%        |
+| 2024-12-31 | $1.01B  | 85.80%        |
+| 2024-09-30 | $0.64B  | 81.00%        |
+| 2024-06-30 | $0.68B  | 81.96%        |
+| 2024-03-31 | $0.62B  | 81.23%        |
+
+**Capital and Profitability:**
+
+| Quarter    | Equity   | ROE     |
+|------------|----------|---------|
+| 2025-03-31 | $7.95B  | 4.22%   |
+| 2024-12-31 | $7.97B  | 11.49%  |
+| 2024-09-30 | $7.21B  | 2.08%   |
+| 2024-06-30 | $7.12B  | 2.64%   |
+| 2024-03-31 | $6.88B  | 2.28%   |
+
+**Analysis:**
+
+*   **Revenue:** Revenue has generally increased over the past few quarters, with a notable peak in Q4 2024 ($1.01B).
+*   **Profit Margin:** Profit margins are consistently high, above 80%, indicating efficient operations.
+*   **Equity:** Equity has steadily increased, reflecting a strengthening financial position.
+*   **ROE:** Return on Equity (ROE) fluctuates, with a high in Q4 2024 (11.49%) but generally remains low, suggesting the company could be more efficient in generating profits from its equity base.
+
+### 7. Overall Analysis & Summary
+
+Robinhood (HOOD) has demonstrated significant outperformance relative to the S&P 500, evidenced by its high cumulative return and relative divergence. However, high MDD and nearly zero Beta suggest it moves independently of the market, which carries its own risks. Recent earnings have consistently exceeded expectations, and the company boasts strong revenue growth and high profit margins. However, the negative expected return, combined with a recent decline in relative divergence and a "Sell" hybrid signal, suggests caution is warranted. Additionally, recent news indicates potential volatility and significant developments. While the long-term analysis may not show the strength, recent price change due to market events can make short term swing trade or day trade is good.
