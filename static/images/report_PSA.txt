@@ -1,132 +1,163 @@
-2025-12-06 - Analysis Report
-Okay, let's break down the analysis of Public Storage (PSA) based on the provided data.
+2025-12-07 - Analysis Report
+Here's a report analyzing Public Storage (PSA) based on the provided data, structured for clarity:
 
-**0) Report in English with simple numbers and analysis**
+**0) Overview & Instructions:**
 
-Here's the information, followed by some straightforward analysis.
+This report analyzes Public Storage (PSA) performance against the S&P 500 (VOO) and other key metrics. It breaks down the analysis into simple numbers, followed by interpretation.
 
-**1) Return Rate Comparison (PSA vs. VOO)**
+**1) Performance vs. S&P 500 (VOO)**
 
-*   **PSA Overview:** Public Storage is a real estate investment trust (REIT) that owns and operates self-storage facilities.
+*   **Company Overview:** Public Storage is a real estate investment trust (REIT) that owns and operates self-storage facilities.
 *   **PSA Cumulative Return:** -1.02%
 *   **VOO Cumulative Return:** 100.58%
-*   **Divergence:** -104.3
-*   **Relative Divergence:** 0.0
+*   **Divergence:**
+    *   Current: -104.3
+    *   Min: -104.3
+    *   Max: 22.6
+    *   Relative Divergence: 0.0
 
-**Analysis:** PSA has significantly underperformed the S&P 500 (VOO) over the period for which the cumulative returns are calculated. The negative divergence of -104.3 indicates a considerable difference in performance.  The relative divergence of 0.0 suggests that the current underperformance is at the lower end of its historical range compared to VOO.
+**Analysis:**
 
-**Alpha, Beta Analysis:**
+PSA has significantly underperformed the S&P 500 over the period analyzed. The -104.3 divergence shows a huge difference in returns. A relative divergence of 0.0 indicates the current divergence is at the lowest point of its historical range (min: -104.3, max: 22.6). This highlights a substantial underperformance compared to the market.
 
-| Year       | CAGR   | MDD    | Alpha   | Beta   | Cap(B) |
-|------------|--------|--------|---------|--------|--------|
-| 2015-2017  | -4.0%  | 75.5%  | -33.0%  | -0.1   | 35.9   |
-| 2016-2018  | -17.0% | 70.2%  | -32.0%  | -0.0   | 34.7   |
-| 2017-2019  | 11.0%  | 70.3%  | -11.0%  | -0.1   | 36.5   |
-| 2018-2020  | 14.0%  | 80.9%  | -9.0%   | -0.2   | 39.6   |
-| 2019-2021  | 44.0%  | 80.9%  | -2.0%   | -0.2   | 64.3   |
-| 2020-2022  | 9.0%   | 80.9%  | 9.0%    | -0.1   | 48.1   |
-| 2021-2023  | 10.0%  | 81.3%  | 8.0%    | 0.4    | 52.3   |
-| 2022-2024  | -32.0% | 81.3%  | -52.0%  | 0.4    | 51.4   |
-| 2023-2025  | -22.0% | 81.3%  | -87.0%  | 1.1    | 47.7   |
+**Alpha, Beta Analysis**
 
-*   **CAGR:** Fluctuates, with recent years showing negative growth.
-*   **MDD:** High Maximum Drawdown consistently, indicating significant volatility/risk.
-*   **Alpha:** Mostly negative, suggesting underperformance relative to a benchmark (likely the S&P 500). More recently (2020-2023) it was positive. The most recent years are sharply negative.
-*   **Beta:** Low and sometimes negative Beta, more recently above 0, indicating low correlation or inverse correlation with the market. The most recent period Beta is over 1, indicating a high correlation with the market.
-*   **Cap(B):** Market capitalization generally increased over time, though fluctuating in recent periods.
+| Year       | CAGR    | MDD     | Alpha   | Beta  | Cap(B) |
+|------------|---------|---------|---------|-------|--------|
+| 2015-2017  | -4.0%   | 75.5%   | -33.0%  | -0.1  | 35.9   |
+| 2016-2018  | -17.0%  | 70.2%   | -32.0%  | -0.0  | 34.7   |
+| 2017-2019  | 11.0%   | 70.3%   | -11.0%  | -0.1  | 36.5   |
+| 2018-2020  | 14.0%   | 80.9%   | -9.0%   | -0.2  | 39.6   |
+| 2019-2021  | 44.0%   | 80.9%   | -2.0%   | -0.2  | 64.3   |
+| 2020-2022  | 9.0%    | 80.9%   | 9.0%    | -0.1  | 48.1   |
+| 2021-2023  | 10.0%   | 81.3%   | 8.0%    | 0.4   | 52.3   |
+| 2022-2024  | -32.0%  | 81.3%   | -52.0%  | 0.4   | 51.4   |
+| 2023-2025  | -22.0%  | 81.3%   | -87.0%  | 1.1   | 47.7   |
+
+**Analysis:**
+
+*   **CAGR:** The Compound Annual Growth Rate (CAGR) shows mixed performance over the periods, with recent periods (2022-2025) showing significant negative growth.
+*   **MDD:** The Maximum Drawdown (MDD) is consistently high, indicating significant potential for losses.
+*   **Alpha:**  Alpha is generally negative, which means PSA has underperformed its benchmark. Most recent alpha (-87.0% for 2023-2025) reveals a large underperformance.
+*   **Beta:** Beta values fluctuate. The beta has shifted from negative to more positive values, with the most recent being 1.1. A beta above 1.0 suggests PSA is more volatile than the market.
+*   **Cap:** Market capitalization generally increased and decreased.
 
 **2) Recent Stock Price Fluctuations**
 
 *   **Close:** 278.25
-*   **Last-market:** price: 272.06, previousClose: 276.63, change: -1.65
+*   **Last Market:** price: 272.06, previousClose: 276.63, change: -1.65
 *   **5-day SMA:** 275.556
 *   **20-day SMA:** 273.3715
 *   **60-day SMA:** 285.7097
 
-**Analysis:** The stock price is currently below its 60-day SMA but above its 5-day and 20-day SMAs. This could indicate a short-term upward trend but potential resistance at the 60-day SMA. The recent "last-market" data indicates a decrease in price, suggesting a potential fluctuation issue (decline).
+**Analysis:**
 
-**3) RSI, PPO and other Indicators**
+*   The current price (272.06) is below the 5-day (275.56) and 20-day (273.37) SMAs, suggesting a short-term downward trend.
+*   The 60-day SMA (285.71) being higher than the current price indicates that the longer-term trend may still be positive but is being challenged.
+*   The negative change from the previous close (-1.65) confirms the recent downward pressure.
 
-*   **Market Risk Indicator (MRI):** 0.8 (Medium Investment Recommended)
-*   **RSI:** 55.46 (Neutral – neither overbought nor oversold)
-*   **PPO:** 0.5474 (Positive, suggesting a potential upward trend, but relatively small)
-*   **Hybrid Signal:** cash_0%_Buy 100% of cash (4 shares - Very Safe - MRI:0.90). Recommends buying, driven by a high MRI.
-*   **Recent (20 days) relative divergence change:** -4.7 (Short-term decline)
-*   **Expected Return (%):** -4624.2 (Extremely negative, indicating significant expected underperformance compared to S&P 500)
+**3) RSI, PPO, and Expected Return**
 
-**Analysis:**  While the RSI is neutral and the PPO is slightly positive, the MRI suggests a medium investment recommendation (though the Hybrid Signal is more bullish and indicates a Buy with 0% cash). The negative change in relative divergence and the extremely negative expected return are concerning, suggesting potential continued underperformance. The large change in price from the last market (price': 272.06, 'previousClose': 276.63, 'change': -1.65) does indicate some recent volatility.
+*   **Market Risk Indicator (MRI):** 0.8 (Medium Investment)
+*   **RSI:** 55.46
+*   **PPO:** 0.5474
+*   **Hybrid Signal:** Buy 100% of cash (4 shares - Very Safe - MRI:0.90). Monthly invest 0.8% of total investment ($1,000.00)
+*   **Recent (20 days) relative divergence change:** -4.7 (단기하락) = Short-term decline
+*   **Expected Return (%):** -4624.2
 
-**4) Recent News & Significant Events**
+**Analysis:**
 
-*   **Analyst Forecast:** $290 Price Target (Quiver Quantitative) - Mixed Signals, indicating a potential price increase from the current levels, providing a sense of optimism.
-*   **EPS Growth:** PSA's ability to deliver consistent EPS growth (Newser) - mixed signals regarding consistent EPS growth which could generate a mixed investor sentiment
-*   **Mizuho Rating:** Maintained, Price Target Lowered (GuruFocus) - Negative Signal which indicates the potential for downward revision for PSA in the future
-*   **Mackenzie Financial Corp:** Shares Sold (MarketBeat) - Negative Signal that leads to negative investor sentiment and increased selling pressure.
-*   **Dividend Appeal:** Why PSA.PRR stock appeals to dividend seekers (Newser) - Positive Signal, indicating that PSA is a good investment because it gives dividends
-*   **Morgan Stanley:** Reinstates Coverage with Equal-Weight Rating (GuruFocus) - indicates neutral investor sentiment and a wait-and-see approach
+*   **MRI:**  A "Medium Investment" rating suggests a moderate level of risk.
+*   **RSI:** An RSI of 55.46 suggests the stock is neither overbought nor oversold.
+*   **PPO:** A PPO of 0.5474 indicates that the short-term moving average is slightly above the long-term moving average, suggesting a slight upward trend, although it is fairly close to zero.
+*   **Hybrid Signal:** The hybrid signal suggests a buy with 100% of available cash, and further investment, reflecting confidence based on the MRI (0.90).
+*   **Divergence Change:** A recent decline in relative divergence reinforces the short-term downward trend.
+*   **Expected Return:** The very large negative expected return (-4624.2%) is anomalous and likely an error in the model calculation. It suggests extreme caution.
 
-**Analysis:** The news is mixed. Some analysts see potential upside (price target of $290), while others have lowered price targets.  The sale of shares by Mackenzie Financial is a negative signal. The focus on dividend appeal suggests PSA may be attracting income-focused investors.
+**4) Recent News & Significant Events:**
 
-**4-2) Analyst Opinions**
+*   **Positive:**
+    *   Stenger Family Office LLC Invests $1.50 Million in Public Storage.
+    *   New Analyst Forecast: $PSA Given $290 Price Target.
+    *   Arrowstreet Capital Limited Partnership Buys 141,651 Shares of Public Storage.
+    *   "Why PSA$S stock remains top rated" - implies continued positive outlook in some reports.
+    *   "Is PSA$N stock a buy before new product rollout" - Potential upcoming catalyst.
+*   **Negative:**
+    *   Guggenheim Capital LLC Reduces Position in Public Storage.
 
-*   **Consensus:** Buy (~Buy)
-*   **Mean:** 1.90 (1=StrongBuy~5=Sell)
+**Analysis:**
+
+The news is mixed.  New investments and analyst price targets provide some optimism. However, Guggenheim reducing their position creates concerns.  The potential "new product rollout" could be a key factor to watch.
+
+**4-2) Analyst Opinions:**
+
+*   **Consensus:** Buy
+*   **Mean Rating:** 1.95 (~Buy)
 *   **Opinions:** 20
-*   **Target Price (avg/high/low):** 322.55 / 350.00 / 290.00
+*   **Target Price:** 322.55 (Avg), 350.00 (High), 290.00 (Low)
+*   **Recent Rating Changes:** No changes listed.
 
-**Analysis:** The analyst consensus is generally positive, with a "Buy" rating and a significant average target price above the current price. However, it's important to remember that analyst opinions can vary and are not guarantees of future performance.
+**Analysis:**
 
-**5) Recent Earnings Analysis**
+Despite the recent underperformance, analysts maintain a positive outlook with a consensus "Buy" rating and an average target price of $322.55, implying potential upside from the current price. No recent changes suggests analysts haven't dramatically altered their views.
 
-| 날짜       | EPS  | 매출    |
-|------------|------|---------|
-| 2025-10-29 | 2.63 | 1.22 B$ |
-| 2025-07-30 | 1.76 | 1.20 B$ |
-| 2025-04-30 | 2.04 | 1.18 B$ |
-| 2024-10-30 | 2.17 | 1.19 B$ |
-| 2025-10-29 | 2.17 | 1.19 B$ |
+**5) Recent Earnings Analysis:**
 
-**Analysis:** Earnings per share (EPS) have fluctuated. Revenues have shown growth trend.
+| 날짜       | EPS  | 매출      |
+|------------|------|-----------|
+| 2025-10-29 | 2.63 | 1.22 B$   |
+| 2025-07-30 | 1.76 | 1.20 B$   |
+| 2025-04-30 | 2.04 | 1.18 B$   |
+| 2024-10-30 | 2.17 | 1.19 B$   |
+| 2025-10-29 | 2.17 | 1.19 B$   |
 
-**6) Financial Information**
+**Analysis:**
 
-**Revenue and Profitability:**
+*   Revenue has generally increased over the recent quarters, indicating some growth in the business. The most recent EPS is 2.63, which is better than earlier periods. The repeat entry of the same data for 2024-10-30 and 2025-10-29 may be a data error.
+
+**6) Financial Information:**
+
+*   **Revenue and Profitability:**
 
 | Quarter      | Revenue   | Profit Margin |
-|--------------|-----------|---------------|
-| 2025-09-30   | $1.22B    | 72.97%        |
-| 2025-06-30   | $1.20B    | 73.52%        |
-| 2025-03-31   | $1.18B    | 71.95%        |
-| 2024-12-31   | $1.18B    | 73.61%        |
-| 2024-09-30   | $1.19B    | 72.92%        |
+|--------------|-----------|----------------|
+| 2025-09-30 | $1.22B    | 72.97%         |
+| 2025-06-30 | $1.20B    | 73.52%         |
+| 2025-03-31 | $1.18B    | 71.95%         |
+| 2024-12-31 | $1.18B    | 73.61%         |
+| 2024-09-30 | $1.19B    | 72.92%         |
 
-**Capital and Profitability:**
+**Analysis:**
 
-| Quarter      | Equity    | ROE    |
-|--------------|-----------|--------|
-| 2025-09-30   | $9.31B    | 5.49%  |
-| 2025-06-30   | $9.37B    | 3.82%  |
-| 2025-03-31   | $9.57B    | 4.26%  |
-| 2024-12-31   | $9.71B    | 6.33%  |
-| 2024-09-30   | $9.61B    | 4.48%  |
+*   The revenue has been steadily increasing from $1.18 billion to $1.22 billion.
+*   Profit margins are consistently high, ranging from approximately 72% to 74%, showing the inherent profitability of the self-storage business.
 
-**Analysis:** Revenue is generally increasing, and profit margins are consistently high.  Equity has slightly decreased over the period. Return on Equity (ROE) has fluctuated, but is generally positive, indicating the company is generating profit from shareholders' investments.
+*   **Capital and Profitability:**
 
-**7) Comprehensive Analysis (Summary)**
+| Quarter      | Equity   | ROE      |
+|--------------|----------|----------|
+| 2025-09-30 | $9.31B   | 5.49%    |
+| 2025-06-30 | $9.37B   | 3.82%    |
+| 2025-03-31 | $9.57B   | 4.26%    |
+| 2024-12-31 | $9.71B   | 6.33%    |
+| 2024-09-30 | $9.61B   | 4.48%    |
 
-Public Storage (PSA) presents a mixed picture.
+**Analysis:**
 
-*   **Underperformance:** It has significantly underperformed the S&P 500 recently.
-*   **Volatility:** Exhibits high Maximum Drawdown.
-*   **Mixed Signals:** Technical indicators (RSI, PPO) provide mixed signals.
-*   **Analyst Optimism (with Caution):** Analysts have a generally positive outlook with a "Buy" consensus and higher price targets, but recent rating changes suggest some caution.
-*   **Strong Financials:** Revenue is growing, and profit margins are high, showing underlying strength in the business.
-*   **Negative Expected Return:** The very negative expected return suggests caution and the potential for continued underperformance.
-*   **Recent Price Decline:** The small price decrease in the 'last-market' data indicates recent downward pressure.
+*   The equity has slightly decreased over the analyzed period.
+*   ROE (Return on Equity) has fluctuated, with a high of 6.33% and a low of 3.82%, suggesting varied efficiency in utilizing equity to generate profits.
+
+**7) Comprehensive Analysis (Summary):**
+
+Public Storage (PSA) presents a mixed picture.  It has significantly underperformed the S&P 500, with negative alpha indicating it is not generating returns beyond the benchmark. The recent price action is showing a short-term downward trend, and the model's expected return is likely incorrect.
+
+However, the news includes positive analyst price targets and new investments, which can be signs of good health for the stock. More so, despite the recent underperformance, analysts maintain a positive outlook.
+
+The company's financials show strong and consistent profit margins, which is a positive sign.
 
 **Overall Recommendation:**
 
-While PSA has strong financials and analyst support, the recent underperformance, negative expected return, and mixed technical signals suggest caution. The high MDD indicates significant risk. An investor should carefully weigh these factors and consider their risk tolerance before investing. The news items are also contradictory.
+Given the significant underperformance against the S&P 500 and the recent negative price momentum, caution is advised. While analyst ratings and news events offer some hope, investors should carefully consider the high divergence and potential for volatility. Closely monitor upcoming earnings, the "new product rollout," and any further analyst updates.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
