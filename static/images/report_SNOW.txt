@@ -1,131 +1,107 @@
-2025-12-13 - Analysis Report
-Here's an analysis of Snowflake Inc. (SNOW) based on the provided data:
+2025-12-14 - Analysis Report
+Okay, here's a comprehensive analysis of Snowflake Inc. (SNOW) based on the data provided.
 
-## 1) Return Rate vs. S&P 500 (VOO)
+**1) Return Rate Comparison & Alpha/Beta Analysis**
 
-*   **Company Overview:** Snowflake Inc. is a cloud-based data warehousing company providing data storage and analytics services.
-*   **SNOW Cumulative Return:** 23.79%
-*   **VOO Cumulative Return:** 55.51%
-*   **Divergence:** -31.7 (Relative Divergence: 31.2)
+*   **Company Overview:** Snowflake Inc. is a cloud-based data warehousing company that provides data storage and analytics services.
+*   **Return Rate:** SNOW's cumulative return is 24.65% compared to VOO's (S&P 500) 53.80%.
+*   **Divergence:** SNOW is underperforming the S&P 500, with a current divergence of -29.2%. This divergence falls within a historical range (max: 36.8, min: -62.8) and is currently at the 33.7th percentile of that range.
 
-**Analysis:** SNOW has significantly underperformed the S&P 500 over the covered period. The current divergence of -31.7% suggests a substantial gap in returns. The relative divergence of 31.2 indicates that the current divergence is relatively low compared to its historical range, hinting that it might be closer to its worst divergence points than its best.
+*   **Alpha/Beta Analysis:**
 
-**Alpha, Beta Analysis:**
+    | Year       | CAGR    | MDD   | Alpha   | Beta  | Cap(B) |
+    |------------|---------|-------|---------|-------|--------|
+    | 2020-2022  | -25.0%  | 75.3% | -9.0%   | 0.0   | 49.1   |
+    | 2021-2023  | -25.0%  | 78.3% | -27.0%  | 0.1   | 68.1   |
+    | 2022-2024  | -26.0%  | 78.3% | -46.0%  | 0.1   | 52.8   |
+    | 2023-2025  | 46.0%   | 79.8% | -19.0%  | -0.0  | 74.6   |
 
-| Year       | CAGR  | MDD   | Alpha | Beta  | Cap(B) |
-|------------|-------|-------|-------|-------|--------|
-| 2020-2022  | -25.0% | 75.3% | -9.0% | 0.0   | 49.4   |
-| 2021-2023  | -25.0% | 78.3% | -27.0% | 0.1   | 68.5   |
-| 2022-2024  | -26.0% | 78.3% | -46.0% | 0.1   | 53.2   |
-| 2023-2025  | 45.0% | 79.8% | -22.0% | -0.0 | 74.6   |
+    *   **CAGR:**  The Compound Annual Growth Rate (CAGR) shows volatile performance. Recent years (2020-2024) experienced negative CAGR. The 2023-2025 period shows a strong positive CAGR, but it comes after a period of underperformance.
+    *   **MDD:**  The Maximum Drawdown (MDD) is very high across all periods, indicating significant risk and volatility.
+    *   **Alpha:**  Negative Alpha consistently suggests that SNOW is underperforming relative to its benchmark index and not generating excess returns based on its risk (Beta).
+    *   **Beta:** Beta values close to 0 indicate that SNOW's price is not highly correlated with the S&P 500.
+    *   **Cap(B):** Market capitalization shows the company is a large cap company.
 
-*   **CAGR:** The Compound Annual Growth Rate is highly variable, showing periods of negative growth followed by strong positive growth. This highlights the stock's volatile nature.
-*   **MDD:** Maximum Drawdown is consistently high, indicating significant risk and potential for large losses.
-*   **Alpha:** Consistently negative Alpha suggests SNOW has underperformed its benchmark (likely the market) even after accounting for risk.
-*   **Beta:** Beta is close to zero for most periods, which indicates SNOW's movements are relatively independent of overall market movements, with the exception of the period of 2021-2023 where it has a positive Beta of 0.1.
-*   **Cap(B):** Market capitalization fluctuates, reflecting investor sentiment and company performance.
+**2) Recent Stock Price Fluctuations**
 
-## 2) Recent Stock Price Fluctuations
+*   **Current Price:** 217.93
+*   **Recent Change:** Decreased by -1.17 from previous close (220.51).
+*   **Moving Averages:**
+    *   5-day SMA: 220.58
+    *   20-day SMA: 242.02
+    *   60-day SMA: 246.22
 
-*   **Close:** 216.5
-*   **Last-market:** {'price': 217.93, 'previousClose': 220.51, 'change': -1.17}
-*   **5-day SMA:** 225.59
-*   **20-day SMA:** 245.97
-*   **60-day SMA:** 246.14
+    The price is currently below all three moving averages, suggesting a short-term downtrend. The gap between the 5-day SMA and the longer-term averages (20-day and 60-day) indicates recent price weakness.
 
-**Analysis:** The current price (216.5) is below all moving averages (5, 20, and 60-day SMAs), indicating a recent downward trend. The fact that the 5-day SMA is below the 20-day SMA, which is below the 60-day SMA, confirms the downtrend. The Last-market data shows a recent decrease in price, further reinforcing this bearish signal.
+**3) Indicators Analysis**
 
-## 3) Index Indicators
+*   **Market Risk Indicator (MRI):** 0.9 (Medium Investment) - While still relatively high, indicates the stock is not extremely risky from this perspective, but not a 'safe' investment either.
+*   **RSI:** 41.20 - This is below 50, but not yet in oversold territory (typically below 30), so it suggests some selling pressure, but not extreme.
+*   **PPO:** -1.61 - A negative PPO indicates that the short-term moving average is below the long-term moving average, reinforcing the downtrend signal.
+*   **Hybrid Signal:** cash_0%_Buy 90% of cash (4 shares - Safe - MRI:0.80) - The model suggests buying a significant portion of available cash, despite concerns.
+*   **Recent Relative Divergence Change:** -5.2 (short-term decline) - Confirms recent underperformance relative to the comparison index.
+*   **Expected Return:** -44.1% - A significantly negative expected return suggests that the model forecasts SNOW to underperform significantly over the next two years.
 
-*   **Market Risk Indicator (MRI):** 0.8 (Medium Investment)
-*   **RSI:** 32.07 (Approaching oversold territory)
-*   **PPO:** -1.68 (Negative, suggesting a downtrend)
-*   **Hybrid Signal:** cash_0%_Buy 90% of cash (4 shares - Safe - MRI:0.80) (Cash Ratio: 0% on 2025-12-03)
-*   **Recent (20 days) relative divergence change:** -28.9 (Short-term decline)
-*   **Expected Return (%):** -49.2 (Expected underperformance relative to S&P 500)
+**4) Recent News & Significant Events**
 
-**Analysis:**
+*   **Earnings Sell-Off & Underwhelming Outlook:** Multiple articles (Barron's, Investor's Business Daily, Forbes) highlight a stock price decline following earnings, attributed to an underwhelming outlook.
+*   **Analyst Optimism vs. Reality:** While Wall Street was bullish before the fiscal Q3 2026 results (Yahoo Finance), the actual results and outlook seem to have disappointed.
+*   **Founder Stock Sale:** The sale of stock by a founder (Investing.com) might create negative sentiment, although the amount ($181k) might not be materially significant.
+*   **AI Mega-Deals:** While mentioned in one headline, the details of these deals and their impact on SNOW's stock price are not immediately clear from the provided information.
 
-*   The MRI suggests a medium level of investment risk.
-*   The RSI is approaching oversold territory, potentially indicating a possible bounce.
-*   The negative PPO confirms the downtrend.
-*   The Hybrid Signal suggests buying a portion with cash, indicating the system sees some potential, despite risks (the "Safe" aspect likely related to the MRI).
-*   The recent decline in relative divergence highlights the short-term downward pressure on the stock.
-*   The Expected Return of -49.2% is a significant concern, indicating a forecast of substantial underperformance compared to the S&P 500 over the long term.
+*Important observation here is that most of the news articles have the same date. This should be a critical item to review if the news sources are from different dates or if the collection of data is incorrect.*
 
-## 4) Recent News & Significant Events
+**4-2) Analyst Opinions**
 
-*   **Q3 Earnings, Anthropic AI Deal, Analyst Price Targets and 2026 Outlook:** (ts2.tech) - This suggests significant news flow around earnings, potential AI partnerships, and future expectations.
-*   **Snowflake (NYSE:SNOW) Stock Price Down 1.2%:** (MarketBeat) - Confirms recent price weakness.
-*   **Should You Buy, Sell, or Hold SNOW Stock Before Q3 Earnings Release?** (Yahoo Finance) - Indicates uncertainty and speculation around the stock prior to the earnings release.
-*   **Highflying AI Software Maker Snowflake Falls On Underwhelming Outlook:** (Investor's Business Daily) - Highlights that the stock decline is likely linked to a disappointing future outlook.
-*   **Snowflake: Recent Pain Sets Up The Next Big Recovery (NYSE:SNOW):** (Seeking Alpha) - Presents a contrarian view, suggesting that the recent downturn could be a buying opportunity.
-*   **Snowflake Stock Drop Looks Sharp, But How Deep Can It Go?:** (Trefis) - Focuses on the magnitude of the recent decline and its potential continuation.
+*   **Consensus:** "Buy" with a mean rating of 1.59.
+*   **Target Price:** Average target of $282.06, indicating potential upside. Wide range ($170 - $500) shows considerable disagreement among analysts.
+*   **Recent Rating Changes:** No changes have been indicated recently.
 
-**Analysis:** Recent news is a mixed bag. While some articles point to an underwhelming outlook and continued price declines, others suggest a potential rebound or buying opportunity. The focus on Q3 earnings and the outlook indicates these are key drivers of investor sentiment.
+**5) Recent Earnings Analysis**
 
-## 4-2) Analyst Opinions
+| 날짜       | EPS   | 매출      |
+|------------|-------|-----------|
+| 2025-12-05 | -0.87 | 1.21 B$   |
+| 2025-09-05 | -0.89 | 1.14 B$   |
+| 2025-05-30 | -1.29 | 1.04 B$   |
+| 2024-11-27 | -0.98 | 0.94 B$   |
+| 2025-12-05 | -0.98 | 0.94 B$   |
 
-*   **Consensus:** Buy (Mean: 1.59)
-*   **Opinions:** 46
-*   **Target Price (avg/high/low):** 282.06 / 500.00 / 170.00
-*   **Recent Rating Changes:** (No changes listed)
+*   **EPS:** Consistently negative Earnings Per Share (EPS) indicates the company is not yet profitable. While there's some fluctuation, the negative values persist.
+*   **Revenue:** Revenue is growing sequentially, which is positive. However, the lack of profitability is a concern.
 
-**Analysis:**  Despite the negative performance and outlook, the analyst consensus is still "Buy." However, there's a wide range in target prices, suggesting considerable disagreement on the stock's future value. The lack of recent rating changes might indicate analysts are still processing the recent information and haven't yet updated their ratings.
+**6) Financial Information**
 
-## 5) Recent Earnings Analysis
+*   **Revenue and Profitability:**
 
-| Date       | EPS   | Revenue     |
-|------------|-------|-------------|
-| 2025-12-05 | -0.87 | 1.21 B$     |
-| 2025-09-05 | -0.89 | 1.14 B$     |
-| 2025-05-30 | -1.29 | 1.04 B$     |
-| 2024-11-27 | -0.98 | 0.94 B$     |
-| 2025-12-05 | -0.98 | 0.94 B$     |
+    | Quarter      | Revenue | Profit Margin |
+    |--------------|---------|---------------|
+    | 2025-10-31   | $1.21B  | 67.77%        |
+    | 2025-07-31   | $1.14B  | 67.53%        |
+    | 2025-04-30   | $1.04B  | 66.53%        |
+    | 2025-01-31   | $0.99B  | 66.23%        |
+    | 2024-10-31   | $0.94B  | 65.94%        |
 
-**Analysis:** Snowflake is consistently reporting negative EPS (Earnings Per Share), indicating unprofitability. While revenue is growing quarter-over-quarter, the losses persist. The repetition of 2025-12-05 data with identical numbers is likely an error.
+    Revenue is increasing consistently over the quarters. The profit margin is exceptionally high. This means that Snowflake is generating a significant amount of gross profit from its revenue. This is very good.
 
-## 6) Financial Information
+*   **Capital and Profitability:**
 
-**Revenue and Profitability:**
+    | Quarter      | Equity  | ROE       |
+    |--------------|---------|-----------|
+    | 2025-10-31   | $2.13B  | -13.78%   |
+    | 2025-07-31   | $2.37B  | -12.56%   |
+    | 2025-04-30   | $2.41B  | -17.86%   |
+    | 2025-01-31   | $3.00B  | -10.92%   |
+    | 2024-10-31   | $2.93B  | -11.07%   |
 
-| Quarter      | Revenue | Profit Margin |
-|--------------|---------|---------------|
-| 2025-10-31   | $1.21B  | 67.77%        |
-| 2025-07-31   | $1.14B  | 67.53%        |
-| 2025-04-30   | $1.04B  | 66.53%        |
-| 2025-01-31   | $0.99B  | 66.23%        |
-| 2024-10-31   | $0.94B  | 65.94%        |
+    Equity is fluctuating, with a recent decrease. Negative Return on Equity (ROE) confirms the company's lack of profitability. This must be looked at.
 
-**Capital and Profitability:**
+**7) Comprehensive Analysis**
 
-| Quarter      | Equity  | ROE      |
-|--------------|---------|----------|
-| 2025-10-31   | $2.13B  | -13.78%  |
-| 2025-07-31   | $2.37B  | -12.56%  |
-| 2025-04-30   | $2.41B  | -17.86%  |
-| 2025-01-31   | $3.00B  | -10.92%  |
-| 2024-10-31   | $2.93B  | -11.07%  |
-
-**Analysis:**
-
-*   Revenue is consistently growing, and the profit margin is very high and remains relatively stable around 66-68%. This is a positive sign.
-*   Equity has been declining over the past several quarters, indicating a potential concern regarding financial stability.
-*   ROE (Return on Equity) is consistently negative, further reflecting the company's unprofitability.
-
-## 7) Comprehensive Analysis (Summary)
-
-Snowflake (SNOW) presents a mixed picture. On one hand, the company exhibits strong revenue growth and high profit margins. Analyst consensus remains positive. However, several factors raise concerns:
-
-*   **Significant underperformance compared to the S&P 500:** The stock has drastically underperformed the market benchmark.
-*   **Consistent Unprofitability:** Negative EPS and ROE highlight a fundamental problem with profitability.
-*   **High Volatility and Risk:** The high Maximum Drawdown indicates substantial risk.
-*   **Downtrend:** Recent price action and technical indicators suggest a prevailing downtrend.
-*   **News Sentiment:** While some sources suggest a potential rebound, others highlight concerns about the company's outlook.
-*   **Analyst Disagreement:**  The wide range of analyst target prices reveals uncertainty about the stock's future value.
-*   **Declining Equity:** The shrinking equity balance is a red flag and warrants further investigation.
-
-**Overall:** Based on this data, while Snowflake shows promise in terms of revenue growth and high profit margins, the significant unprofitability, underperformance, and inherent risks make it a potentially risky investment. A potential investor should carefully weigh these factors and conduct thorough due diligence before making any decisions. The strong analyst consensus may not fully reflect the current challenges facing the company.
+*   **Overall Picture:** SNOW is a high-growth company with strong revenue growth and high profit margins. However, it is currently unprofitable and underperforming the broader market. Recent earnings results and outlook appear to have disappointed investors, leading to a stock price decline.
+*   **Positives:** Strong revenue growth, high profit margins, positive analyst consensus (although target prices vary widely).
+*   **Negatives:** Lack of profitability (negative EPS and ROE), high valuation, recent stock price decline, negative expected return, high MDD, and founder stock sale.
+*   **Investment Recommendation:** Based on this data, a cautious approach is warranted. While the analyst consensus is still "Buy," the recent news, price action, and negative expected return suggest significant risks. Investors should carefully consider their risk tolerance and investment horizon before investing in SNOW. Waiting for signs of improving profitability and a more stable outlook might be prudent. If one decides to invest in this company, it would be suitable to invest a small amount.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
