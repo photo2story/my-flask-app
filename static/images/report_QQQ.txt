@@ -1,81 +1,93 @@
 2025-12-28 - Analysis Report
-Okay, here's a breakdown of the QQQ (Invesco QQQ Trust Series 1) data you provided, with analysis:
+Okay, let's break down the provided data for QQQ and perform the requested analysis.
 
-**0) Simple Numbers & Analysis:**
+## QQQ Analysis Report
 
-**1) Return Rate Comparison with S&P 500 (VOO):**
+**0) Data Overview:**
 
-*   **QQQ Overview:** Invesco QQQ Trust Series 1 is an exchange-traded fund (ETF) that tracks the Nasdaq-100 index, primarily composed of large-cap growth stocks, mainly in the technology sector.
+*   **Ticker:** QQQ (Invesco QQQ Trust Series 1)
+*   This report analyzes QQQ's performance relative to the S&P 500 (VOO), recent price action, technical indicators, and recent news.
+
+**1) Return Rate Comparison (QQQ vs. VOO):**
+
+*   **Company Overview:** Invesco QQQ Trust Series 1 is an exchange-traded fund (ETF) that tracks the performance of the Nasdaq-100 Index, which comprises the 100 largest non-financial companies listed on the Nasdaq stock exchange.
 *   **QQQ Cumulative Return:** 98.01%
 *   **VOO Cumulative Return:** 103.21%
-*   **Divergence:**
-    *   Current: -5.0
-    *   Relative Divergence: 6.1 (meaning the current divergence is relatively close to its minimum historical value)
+*   **Divergence:** -5.0
+*   **Relative Divergence:** 6.1
 
-    **Analysis:**  QQQ has underperformed the S&P 500 (VOO) in cumulative return over the tracked period.  The divergence of -5.0 indicates the degree of underperformance. The relative divergence of 6.1 suggests the current underperformance is relatively high.
+    *   This indicates QQQ has underperformed VOO by 5.0% in cumulative return.
+    *   The relative divergence of 6.1 suggests that the current divergence is near the low end of its historical range.
 
-**Alpha, Beta Analysis**
+    **Alpha, Beta Analysis Table:**
 
-*   **Alpha:**  Shows excess return compared to the benchmark (S&P 500).  QQQ had strong positive Alpha values in the 2017-2021 period, but negative Alpha in recent years (2020-2025).
-*   **Beta:**  Measures volatility compared to the market. Beta is has been increasing between 2015 to 2025, QQQ shows higher volatility (Beta > 1) than the S&P 500 in recent years.
-*   **CAGR:** Compound Annula Growth Rate
-*   **MDD:** Maximum Drawdown
-*   **Cap:** Market capitalization (in Billions)
+| Year       | CAGR   | MDD  | Alpha | Beta | Cap(B) |
+|------------|--------|------|-------|------|--------|
+| 2015-2017  | 34.0%  | 63.5% | 5.0%  | 0.2  | 100.6  |
+| 2016-2018  | 21.0%  | 71.9% | 6.0%  | 0.0  | 99.7   |
+| 2017-2019  | 38.0%  | 71.9% | 16.0% | 0.5  | 137.3  |
+| 2018-2020  | 42.0%  | 78.1% | 19.0% | 0.5  | 202.7  |
+| 2019-2021  | 79.0%  | 78.1% | 32.0% | 0.7  | 257.0  |
+| 2020-2022  | -21.0% | 81.3% | -20.0% | 0.8  | 172.0  |
+| 2021-2023  | -21.0% | 81.3% | -23.0% | 1.0  | 264.6  |
+| 2022-2024  | -9.0%  | 81.3% | -30.0% | 1.1  | 330.2  |
+| 2023-2025  | 57.0%  | 79.8% | -10.0% | 1.1  | 403.0  |
 
-    **Analysis:**
-
-    *   The table presents data on the QQQ across different time periods, highlighting its performance metrics relative to a benchmark (likely the S&P 500).
-    *   QQQ has exhibited high volatility (as indicated by the MDD). This implies that while the ETF has the potential for high returns, it also carries a significant risk of large declines.
-    *   The Alpha values suggest that QQQ was outperforming its benchmark in the periods between 2017 and 2021 but has since underperformed, as indicated by the negative Alpha values in the later periods. This could be due to changes in market conditions or shifts in investor preferences.
-    *   The Beta values, which have steadily increased over time, suggest that QQQ's price movements have become increasingly correlated with the broader market. A Beta value greater than 1 indicates that QQQ is more volatile than the S&P 500.
-    *   The Cap values show the market capitalization of the ETF, which has grown substantially over the years. This indicates increased investor interest and confidence in the ETF.
+*   **CAGR (Compound Annual Growth Rate):** Shows the average annual growth rate over the period.  Note the volatility in the CAGR, with high growth years followed by negative years.
+*   **MDD (Maximum Drawdown):** Represents the largest peak-to-trough decline during the period. MDD is consistently high, indicating significant risk.
+*   **Alpha:** Measures the excess return of QQQ compared to its benchmark (likely the Nasdaq-100) after accounting for risk.  Negative alpha in recent periods suggests underperformance relative to the benchmark.
+*   **Beta:** Measures the volatility of QQQ relative to the market (typically the S&P 500).  Beta values above 1 indicate QQQ is more volatile than the market. The Beta is trending upwards and indicating the QQQ volatility is increasing.
+*   **Cap(B) (Capitalization in Billions):**  Shows the fund's assets under management.  Note the consistent growth in capitalization.
 
 **2) Recent Stock Price Fluctuations:**
 
-*   **Current Close:** 623.89
-*   **Previous Close:** 623.93, **Change:** -0.01
+*   **Close:** 623.89
+*   **Last-market:** `{'price': 623.89, 'previousClose': 623.93, 'change': -0.01}`
 *   **5-day SMA:** 621.238
 *   **20-day SMA:** 619.4435
 *   **60-day SMA:** 613.8029
 
-    **Analysis:** The stock price closed slightly lower than the previous close. The moving averages indicate an upward trend in the short term, as the 5-day SMA is above the 20-day SMA, which is above the 60-day SMA.
+    *   QQQ's price is currently above all three moving averages (5-day, 20-day, and 60-day), which could be interpreted as a short-term bullish signal.
+    *   The fact that the 5-day SMA is above the 20-day SMA, and the 20-day SMA is above the 60-day SMA, confirms a short-term upward trend.
+    *   The negligible change from the previous close suggests a lack of strong momentum in either direction currently.
 
-**3) RSI, PPO, and Expected Return:**
+**3) Indicators Analysis:**
 
-*   **MRI:** 1.0 (High Investment Recommended)
-*   **RSI:** 48.62 (Neutral - neither overbought nor oversold)
+*   **Market Risk Indicator (MRI):** 1.0 (High Investment Recommended)
+    *   An MRI of 1.0 suggests that the model considers current market conditions highly favorable for investment.
+*   **RSI:** 48.62
+    *   An RSI of 48.62 is considered neutral.  It is not overbought (above 70) or oversold (below 30), suggesting no immediate momentum extremes.
 *   **PPO:** 0.091
-*   **Hybrid Signal:** Buy 100% (Very Safe - MRI:0.90), invest 0.8% monthly.
-*   **Recent Relative Divergence Change:** 1.6 (+) - Short-term increase
-*   **Expected Return:** 80.8% (long-term)
-
-    **Analysis:** The MRI suggests a high investment recommendation. The RSI is neutral, meaning the stock is not currently overbought or oversold. A positive PPO is consistent with a buy signal. The recent increase in relative divergence suggests some short-term upward momentum. The expected return of 80.8% is a very optimistic projection for long-term investment.
+    *   A slightly positive PPO suggests that the shorter-term moving average is slightly above the longer-term moving average, indicating a mild upward trend in momentum.
+*   **Hybrid Signal:** `cash_0%_Buy 100% of cash (2 shares - Very Safe - MRI:0.90) Monthly invest 0.8% of total investment ($1,000.00) (Cash Ratio: 0% on 2025-12-01)`
+    *   The hybrid signal recommends allocating 100% of available cash to purchasing QQQ, reflecting the high MRI score.
+    *   The signal designates a small monthly investment.
+*   **Recent (20 days) relative divergence change:** 1.6 (+): 단기상승 (Short-term rise)
+    *   Indicates that the divergence between QQQ and its comparison is decreasing, suggesting that QQQ is performing better compared to its comparison stock recently.
+*   **Expected Return (%):** 80.8
+    *   A high expected return of 80.8% suggests potential for significant growth if invested long-term.
 
 **4) Recent News & Significant Events:**
 
-*   **Key Themes:**
-    *   **QQQ Performance Reviews/Outlook:** Several articles discuss QQQ's recent performance and potential future performance.
-    *   **Growth vs Value:** At least one article considers value stocks, suggesting a potential shift in market sentiment.
-    *   **Market Impact:** One article discusses QQQ's signals for the broader stock market and possible negative implications.
-    *   **ETF Conversion Vote:** News of the Invesco stock rising due to a QQQ conversion vote deadline suggests internal restructuring or changes within the ETF.
-    *   **Market Stall:** News about SPY/QQQ stalling on China sanctions suggest that global events are affecting the stock.
+*   **Monthly Performance Review QQQ:** Suggests regular monitoring and analysis of the ETF's performance.
+*   **Value Stocks To Consider:**  While not directly about QQQ, it indicates broader market interest in value investing, which could indirectly influence QQQ.
+*   **Could Buying the Invesco QQQ Trust Today Set You Up for Life?:** A bullish headline suggesting long-term investment potential.
+*   **The QQQ ETF Points to What’s Next for Stocks… And You Probably Won’t Like the Answer:**  A potentially bearish article, indicating a possible negative outlook for the stock market based on QQQ's performance.
+*   **Invesco stock rises following QQQ conversion vote deadline:**  A positive development for Invesco, the company managing QQQ.
+*   **Stock Market News Review: SPY, QQQ Stall on New China Sanctions ahead of Trump-Zelenskyy Meeting:**  Suggests that geopolitical events and global economic concerns are impacting market performance, including QQQ.
 
 **4-2) Analyst Opinions:**
 
-*   (Information missing - no analyst consensus or targets were provided)
+*   Analyst Consensus: N/A (data was not provided)
 
 **5) Comprehensive Analysis:**
 
-*   **Summary:** QQQ has underperformed the S&P 500 recently, but its short-term price trend is upward based on moving averages. The MRI gives high investment recommendations, but the RSI is neutral. Positive PPO values indicate that the short term trend is positive. A relative divergence change suggests short-term increase.
-*   **Market Sentiment:** News headlines present a mixed picture. Some are positive, discussing QQQ's potential for long-term investment. Others are cautious, highlighting potential negative signals for the broader market and the impact of global events.
-*   **Recommendation (Disclaimer: This is NOT financial advice):**
-    *   The high expected return, combined with a "Buy" hybrid signal, might attract investors looking for growth.
-    *   However, the recent underperformance relative to the S&P 500 and the negative Alpha in recent years suggest caution.
-    *   Investors should carefully weigh their risk tolerance, consider the potential impact of macroeconomic factors (as highlighted by the news headlines), and conduct further due diligence before investing.
-*   **Key Considerations:**
-    *   **Growth vs. Value:** The mention of value stocks in the news suggests a possible shift in market preference. If value stocks gain favor, QQQ's growth-heavy composition might be negatively impacted.
-    *   **Interest Rate Environment:** Rising interest rates could hurt high-growth tech companies and therefore affect QQQ.
-    *   **Valuation:** The "stall" mentioned in the news may be caused by overvaluation.
+QQQ currently presents a mixed picture.
+
+*   **Positives:** The Market Risk Indicator is high, suggesting favorable market conditions. The price is above its short and medium-term moving averages, and hybrid signal recommends buying. The expected return is high. Some news headlines are also positive, emphasizing the potential for long-term gains.
+*   **Negatives:** QQQ has underperformed VOO over the period measured. The Alpha table shows negative alpha over the most recent periods. Recent news also highlights potential downside risks.
+
+*Based on the provided information and assuming a long-term investment horizon, the hybrid signal suggests buying. However, caution is warranted due to potential market volatility and the geopolitical risks. It's crucial to conduct further research and consider your own risk tolerance before making investment decisions.*
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
