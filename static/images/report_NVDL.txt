@@ -1,82 +1,74 @@
 2025-12-31 - Analysis Report
-Okay, here's a breakdown and analysis of the NVDL ETF based on the provided data:
+Here's a breakdown of the NVDL ETF analysis based on the provided data:
 
-**0) Basic Data Summary:**
+**0) Overview:**
 
-*   **NVDL:** GraniteShares 2x Long NVDA Daily ETF (Aims to provide 2x the *daily* return of NVIDIA stock).
-*   **Cumulative Return (NVDL):** 168.70%
-*   **Cumulative Return (VOO - S&P 500):** 70.46%
-*   **Divergence (NVDL vs. VOO):** 106.3 (Relative Divergence: 24.8)
-*   **Current Price:** \$89.04
-*   **5-day SMA:** \$90.38
-*   **20-day SMA:** \$84.65
-*   **60-day SMA:** \$90.37
-*   **MRI:** 0.9 (Medium to High Investment Recommendation)
-*   **RSI:** 51.72
-*   **PPO:** 1.63
-*   **Hybrid Signal:** Buy 90% of cash (1 shares - Safe - MRI:0.80)
-*   **Expected Return:** 315.2% (Long-term, relative to S&P 500)
-*   **Recent Relative Divergence Change:** +9.5 (Short-term increase)
+*   Ticker: NVDL
+*   Company: GraniteShares 2x Long NVDA Daily ETF (Aims to deliver twice the daily performance of Nvidia stock)
 
-**1) Return Comparison and Alpha/Beta Analysis:**
+**1) Return Rate Comparison:**
 
-*   **Company Overview:** GraniteShares 2x Long NVDA Daily ETF seeks to deliver twice the *daily* performance of NVIDIA (NVDA) stock.  It's a leveraged ETF, meaning it uses financial instruments to amplify returns (and losses).
+*   **NVDL Cumulative Return:** 168.70%
+*   **S&P 500 (VOO) Cumulative Return:** 70.46%
+*   **Divergence:** 106.3
+*   **Relative Divergence:** 24.8
 
-*   **Performance:** NVDL has significantly outperformed the S&P 500 (VOO) in terms of cumulative return (168.70% vs 70.46%). This is expected given its leveraged nature and NVIDIA's strong performance over the period.
+*   **Analysis:** NVDL significantly outperformed the S&P 500. The divergence of 106.3, with a relative divergence of 24.8, suggests it is performing better than average compared to its performance within the indicated period (max 428, min 0). This is due to the 2x leverage and Nvidia's strong performance.
 
-*   **Divergence:** The divergence of 106.3, with a relative divergence of 24.8, suggests that while NVDL has outperformed, its current divergence is relatively low compared to its historical range.
+**Alpha/Beta Analysis:**
 
-*   **Alpha/Beta Analysis:**
+|            | CAGR    | MDD   | Alpha   | Beta  | Cap(B) |
+|------------|---------|-------|---------|-------|--------|
+| 2022-2024  | 225.0%  | 76.2% | 181.0%  | 0.1   | 0.0    |
+| 2023-2025  | 139.0%  | 76.2% | 72.0%   | 0.1   | 0.0    |
 
-    *   **Alpha:** The high Alpha values (181.0% and 72.0%) indicate that NVDL's performance has significantly exceeded what would be expected based solely on its relationship to the market (as measured by Beta).  This suggests strong stock-specific factors are driving returns (primarily NVIDIA's performance).
-    *   **Beta:** A Beta of 0.1 is surprisingly low for a leveraged ETF tracking a single stock.  This is statistically unlikely, and there may be calculation problems.  Typically a 2x leveraged fund would have a Beta close to 2.  *A low Beta suggests lower volatility relative to the market, but this contradicts the fund's leveraged nature.* This requires further investigation into the accuracy of these figures.
-    *   **CAGR:** The high Compound Annual Growth Rates (CAGR) of 225.0% and 139.0% highlight the fund's strong growth over the specified periods.  However, this also points to the increased risk and volatility.
-    *   **MDD:**  The Maximum Drawdown (MDD) of 76.2% is *very high*, reflecting the significant potential for losses in this leveraged ETF.  Investors need to be aware of this risk.
+*   **CAGR (Compound Annual Growth Rate):** Very high growth rates, reflecting Nvidia's stock surges.
+*   **MDD (Maximum Drawdown):** High drawdown of 76.2% indicates substantial risk.
+*   **Alpha:** Positive Alpha indicates outperformance compared to the benchmark.
+*   **Beta:** Beta is low and near 0, this is wrong data. Beta measures volatility relative to the market (S&P 500). A leveraged ETF like NVDL should have a Beta significantly higher than 1.
+*   **Cap(B):** Cap is low and near 0, this is wrong data.
 
 **2) Recent Stock Price Fluctuations:**
 
-*   **Mixed Signals:** The current price (\$89.04) is below the 5-day and 60-day SMAs, but above the 20-day SMA.  This suggests potential short-term downward pressure, but the price remains above the short-term trend line (20-day).
-*   **Recent Dip:** The negative change in the last market price (-$0.9) indicates a slight recent pullback.
-*The price and moving averages give an overview on the recent movement and potential direction of NVDL:
-    *   The stock currently sits below both its 5-day (\$90.38) and 60-day SMA (\$90.37), signaling a potential downturn in the short to medium term.
-    *   However, its price is above the 20-day SMA (\$84.65), hinting at an intermediate-term upward trend.
+*   **Current Close:** 89.04
+*   **Previous Close:** 89.85
+*   **Change:** -0.9
+*   **5-day SMA:** 90.382
+*   **20-day SMA:** 84.6545
+*   **60-day SMA:** 90.3658
 
-**3) Indicator Analysis:**
+*   **Analysis:** The current price is slightly down from the previous close. The 5-day SMA is above the 20-day SMA, suggesting a short-term upward trend.  The 60-day SMA is close to the 5-day SMA, indicating a potential consolidation around that level.
 
-*   **MRI (0.9):** The Market Risk Indicator suggests a medium to high investment recommendation. *However, this should be interpreted with caution for a leveraged ETF like NVDL.*  The MRI might not fully capture the amplified risk.
-*   **RSI (51.72):**  The Relative Strength Index (RSI) is neutral, indicating neither overbought nor oversold conditions.
-*   **PPO (1.63):** The Percentage Price Oscillator (PPO) is positive, suggesting the price is above its moving average, which could indicate an upward trend.
-*   **Hybrid Signal:** The "Buy 90% of cash" signal is a positive indication, suggesting that the algorithm recommends increasing exposure.
-*   **Recent Divergence Change (+9.5):** The recent increase in relative divergence indicates a short-term upward trend compared to the S&P 500.
-*   **Expected Return (315.2%):** The very high expected return is optimistic and should be viewed with significant skepticism. It relies on NVIDIA continuing its exceptional performance, which is not guaranteed. *High expected returns are often associated with high risk.*
+**3) Index Analysis:**
+
+*   **MRI (Market Risk Indicator):** 0.9 (High Investment Recommended) - Indicates high recommendation to invest, based on algorithm.
+*   **RSI (Relative Strength Index):** 51.72 - Neutral, neither overbought nor oversold.
+*   **PPO (Percentage Price Oscillator):** 1.63 - Indicates the short-term moving average is above the long-term moving average, suggesting an upward trend.
+*   **Hybrid Signal:** cash_0%_Buy 90% of cash - Model is suggesting to invest 90% of cash, because it is considered safe given the MRI
+*   **Recent Divergence Change:** 9.5 (+) - Indicates a recent short-term increase in the divergence, suggesting a short-term upward movement.
+*   **Expected Return:** 315.2% - Highly optimistic long-term return projection (over 2 years) compared to the S&P 500.
+*   **Price Change Consideration:** The recent price change of -0.9 should be considered when interpreting the indicators, as sharp declines or rebounds can affect indicator readings.
 
 **4) Recent News & Significant Events:**
 
-The news headlines paint a mixed picture:
+*   **NVDL: How Much Nvidia Can You Handle?** - This article highlights the leveraged nature of the ETF and the associated risks and rewards.
+*   **Responsive Playbooks and the NVDL Inflection** - Discusses potential turning points and trading strategies related to NVDL.
+*   **NVDL: How to Play Nvidia’s Momentum With a Leveraged ETF** - Focuses on using NVDL to capitalize on Nvidia's upward momentum.
+*   **2 Reasons to Buy NVDL and 3 Reasons Not to** - Presents a balanced view of the pros and cons of investing in NVDL.
+*   **NVDL: Several Reasons To Be Bullish NVIDIA Into Year-End** - Suggests a positive outlook for Nvidia and, consequently, for NVDL.
+*   **Nvidia Breaks Out, but Leveraged ETF NVDL Lags Behind** - Points out instances where NVDL's performance may not perfectly mirror Nvidia's due to the leverage and daily reset.
 
-*   **Leverage Warning:** Several articles ("How Much Nvidia Can You Handle?", "How to Play Nvidia's Momentum With a Leveraged ETF") emphasize the leveraged nature of NVDL and the associated risks.
-*   **Bullish Sentiment:** Some articles ("Several Reasons To Be Bullish NVIDIA Into Year-End") express optimism about NVIDIA, which would positively impact NVDL.
-*   **Performance Lags:** At least one article ("Nvidia Breaks Out, but Leveraged ETF NVDL Lags Behind") points out that NVDL's performance might not always perfectly mirror NVIDIA's due to factors like leverage decay and tracking error.
-*   **Buy/Sell Arguments:** "2 Reasons to Buy NVDL and 3 Reasons Not To" highlights both the potential benefits and drawbacks of investing in this leveraged ETF.
-**4-2) Analyst Opinions (consensus / targets / recent changes):**
-Unfortunately, the Analyst Consensus section is empty in the context.
+**4-2) Analyst Opinions:**
+
+*   **Analyst Consensus:** N/A
 
 **5) Comprehensive Analysis:**
 
-NVDL offers the potential for high returns due to its 2x leverage on NVIDIA. However, it comes with *significant risk*.
+NVDL offers magnified exposure to Nvidia's stock performance, which has led to significant outperformance compared to the S&P 500. The high CAGR and positive Alpha reinforce this. However, the high MDD reflects the substantial risk associated with leveraged ETFs, and the analysis is missing analyst consensus.
 
-*   **Key Considerations:**
-    *   **Leverage:** The 2x leverage magnifies both gains *and losses*.
-    *   **Volatility:** NVDL will be significantly more volatile than NVIDIA or the S&P 500. The high MDD confirms this.
-    *   **Leverage Decay:** Leveraged ETFs are designed for short-term trading.  Over longer periods, the effects of daily compounding can lead to "leverage decay," where the ETF's performance deviates significantly from 2x NVIDIA's performance.
-    *   **NVIDIA's Performance:** NVDL's performance is entirely dependent on NVIDIA's. Any significant downturn in NVIDIA will severely impact NVDL.
-    *   **MRI Caveat:** The MRI might underestimate the risk due to the leveraged nature.
+The recent price fluctuations suggest a slight pullback, but the short-term moving averages indicate a potential rebound.  The MRI is very high investment, the model is suggesting a buy (90%).  Recent news articles highlight both the opportunities and risks associated with NVDL. The expected return is very high, meaning that algorithm expects Nvidia to continue its current path.
 
-*   **Investment Recommendation:** NVDL is *not* suitable for buy-and-hold investors or those with a low-risk tolerance. It's a short-term trading vehicle for experienced investors who understand the risks of leveraged ETFs and have a strong conviction in NVIDIA's continued success.
-
-*   **News Context:** The news headlines reinforce the need for caution and awareness of the risks involved. The focus on leverage and the potential for performance lags highlights the complexities of this ETF.
-
-*   **Overall:** If you believe NVIDIA will continue to perform exceptionally well in the short term, NVDL could offer amplified returns. However, be prepared for significant volatility and potential losses. *Only invest what you can afford to lose*, and actively manage your position.  Consider the impact of leverage decay if holding the fund for longer than a few days.
+**In summary:** NVDL is a high-risk, high-reward investment vehicle suitable for investors with a strong bullish outlook on Nvidia and a high tolerance for volatility.  Investors should carefully consider the leveraged nature of the ETF and its potential for both significant gains and losses.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
