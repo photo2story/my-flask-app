@@ -1,133 +1,139 @@
 2026-01-02 - Analysis Report
-Okay, let's break down this Recursion Pharmaceuticals Inc (RXRX) analysis step-by-step.
+Okay, here's a breakdown and analysis of Recursion Pharmaceuticals (RXRX) based on the provided data, following your requested format:
 
-**Company Overview:** Recursion Pharmaceuticals Inc. is a clinical-stage biotechnology company leveraging technology to discover, develop, and deliver medicines.
+**0) Report in English, starting with simple numbers:**
 
-## 1) Return Rate Comparison
+**1) Return Rate Comparison:**
 
+*   **Ticker:** RXRX
+*   **Company Overview:** Recursion Pharmaceuticals Inc. is a clinical-stage biotechnology company leveraging artificial intelligence to discover and develop drugs.
 *   **RXRX Cumulative Return:** -33.76%
-*   **VOO (S&P 500) Cumulative Return:** 43.29%
-*   **Divergence:** -77.0 (Relative Divergence: 0.7)
+*   **S&P 500 (VOO) Cumulative Return:** 43.29%
+*   **Divergence:**
+    *   Max: 84.1
+    *   Min: -78.2
+    *   Current: -77.0
+    *   Relative Divergence: 0.7
 
-**Analysis:** RXRX has significantly underperformed the S&P 500 (VOO). The cumulative return is deeply negative, while the S&P 500 has shown a strong positive return. The divergence of -77.0 indicates a substantial gap between the stock's performance and the market benchmark. The relative divergence of 0.7, close to the minimum of 0, suggests the stock is currently near the lower end of its historical divergence range compared to VOO.
+**Analysis:** RXRX has significantly underperformed the S&P 500.  The current divergence is near its minimum, suggesting the underperformance is particularly pronounced.  The relative divergence of 0.7 indicates that the current level of divergence is near the lowest it has been within the defined range.
 
-**Alpha, Beta Analysis:**
+**Alpha, Beta Analysis Table:**
 
-| Year       | CAGR     | MDD      | Alpha   | Beta | Cap(B) |
-|------------|----------|----------|---------|------|--------|
-| 2022-2024  | -43.0%   | 82.1%    | -73.0%  | 2.3  | 3.5    |
-| 2023-2025  | -51.0%   | 88.8%    | -119.0% | 2.6  | 2.1    |
+| Year       | CAGR  | MDD   | Alpha  | Beta | Cap(B) |
+|------------|-------|-------|--------|------|--------|
+| 2022-2024  | -43.0% | 82.1% | -73.0% | 2.3 | 3.5 |
+| 2023-2025  | -51.0% | 88.8% | -119.0%| 2.6 | 2.1 |
 
 **Analysis:**
 
-*   **CAGR (Compound Annual Growth Rate):**  The CAGR is deeply negative for both periods, highlighting the significant losses incurred by the stock.
-*   **MDD (Maximum Drawdown):** The MDD is very high (over 80%), indicating substantial risk and large potential losses from peak to trough.
-*   **Alpha:**  Alpha is strongly negative, meaning the stock has significantly underperformed its benchmark on a risk-adjusted basis.  This reinforces the underperformance relative to the S&P 500.
-*   **Beta:** Beta is greater than 1, suggesting that RXRX is more volatile than the overall market. A Beta around 2 implies that RXRX experiences approximately twice the volatility of the S&P 500.
-*   **Cap(B):** The market capitalization has decreased from 3.5B to 2.1B.
+*   **CAGR (Compound Annual Growth Rate):** Shows a substantial *loss* in value over both periods.
+*   **MDD (Maximum Drawdown):**  Very high, indicating significant price volatility and risk. A drawdown of 88.8% means the stock lost 88.8% of its peak value at some point during 2023-2025.
+*   **Alpha:** Highly negative, meaning RXRX has significantly underperformed relative to its benchmark (S&P 500).
+*   **Beta:** Above 1, indicating RXRX is more volatile than the market.
+*   **Cap(B):** Indicates market capitalization in billions. Decreasing from 3.5B to 2.1B from 2022-2024 to 2023-2025 respectively.
 
-## 2) Recent Stock Price Fluctuations
+**2) Recent Stock Price Fluctuations:**
 
-*   **Current Close:** 4.09
+*   **Current Price:** 4.09
 *   **Previous Close:** 4.11
 *   **Change:** -0.49%
 *   **5-day SMA:** 4.196
 *   **20-day SMA:** 4.454
 *   **60-day SMA:** 4.9225
 
-**Analysis:** The stock price has been declining recently. The current price is below all three moving averages, indicating a short-term and medium-term downtrend. The 5-day SMA is below the 20-day SMA, which is below the 60-day SMA, confirming the downward trend.
+**Analysis:** The stock price is currently below its 5-day, 20-day, and 60-day Simple Moving Averages (SMAs). This suggests a short-term downtrend.  The further the price is below the SMAs, the stronger the indication of a downtrend. The recent price change of -0.49 is minor so it doesn't look like a sharp rebound or decline.
 
-## 3) Index Indicators
+**3) RSI, PPO, Delta_Previous_Relative_Divergence, Expected_Return Analysis:**
 
 *   **Market Risk Indicator (MRI):** 0.9 (Medium Investment)
 *   **RSI:** 33.00
 *   **PPO:** -0.5268
 *   **Hybrid Signal:** cash_0%_Buy 100% of cash (228 shares - Very Safe - MRI:0.90) Monthly invest 1.7% of total investment ($1,000.00) (Cash Ratio: 0% on 2025-12-01)
 *   **Recent (20 days) relative divergence change:** 0.7 (+): 단기상승 (Short-term increase)
-*   **Expected Return (%):** 0.0%
+*   **Expected Return (%):** 0.0
 
 **Analysis:**
 
-*   **MRI (0.9):** Indicates a medium level of investment risk based on this indicator.
-*   **RSI (33.00):**  The RSI is below 30, suggesting the stock may be oversold and potentially poised for a rebound.
-*   **PPO (-0.5268):** The PPO is negative, indicating a downtrend.
-*   **Hybrid Signal:** Despite the negative indicators, the hybrid signal suggests a "Buy" recommendation, allocating all available cash to purchasing shares. This is based on the safety indicated by the MRI.
-*   **Recent Relative Divergence Change:** A positive change in relative divergence suggests the stock has recently started to outperform (or decline less than) its benchmark.
-*   **Expected Return:** The expected return is 0%, indicating no expected outperformance relative to the S&P 500 in the long term (2+ years).
+*   **MRI:** Suggests a medium level of investment risk, and according to the description, medium investment is recommended.
+*   **RSI:** 33.00. RSI < 30 generally indicates that the stock is oversold and *could* be due for a bounce.
+*   **PPO:** -0.5268. A negative PPO suggests the short-term moving average is below the long-term moving average, indicating a downtrend.
+*   **Hybrid Signal:** The signal recommends buying, suggesting a potentially favorable outlook despite the current downtrend, and indicates 'Very Safe' but consider that a 'medium investment' is recommended, so it is not too risky to buy.
+*   **Recent Relative Divergence Change:** Despite the overall underperformance, there has been a recent short-term increase in relative divergence. This suggests some positive momentum in the very recent past.
+*   **Expected Return:** 0.0%. Suggests that over the long term (2+ years), no excess return is expected compared to the S&P 500 if invested from this point.
 
-## 4) Recent News & Significant Events
+**4) Recent News & Significant Events:**
 
-*   **[2025-12-29] RXRX Stock Plummet:** Indicates negative price action.
-*   **[2026-01-01] Forget Recursion Pharmaceuticals Stock. This Is a Much Better Buy:** Suggests analysts believe there are better investment opportunities elsewhere.
-*   **[2025-12-13] $RXRX stock fell 9% this week:** Confirms recent price declines.
-*   **[2025-12-18] RXRX Stock Surges on JPMorgan Upgrade, Trial Data Gains:** Positive news that caused a temporary price increase.
-*   **[2026-01-01] Forget Recursion Pharmaceuticals Stock. This Is a Much Better Buy:** Repeated negative sentiment.
-*   **[2025-12-24] Analysts Refocus on REC-4881 Data, ARK Buying, and a 2026 CEO Transition:** This suggests that analysts are re-evaluating the company based on specific trial data, potential institutional buying, and upcoming leadership changes.
+*   **Bearish Sentiment:**
+    *   "RXRX Stock Plummet: Here’s What’s Happening"
+    *   "Forget Recursion Pharmaceuticals Stock. This Is a Much Better Buy." (Suggests alternatives)
+    *   "$RXRX stock fell 9% this week."
+*   **Positive Catalysts:**
+    *   "RXRX Stock Surges on JPMorgan Upgrade, Trial Data Gains"
+    *   "Analysts Refocus on REC-4881 Data, ARK Buying, and a 2026 CEO Transition"
 
-**Analysis:** Recent news is mixed. While there was a surge on a JPMorgan upgrade and positive trial data, the prevailing sentiment seems cautious, with some outlets suggesting better investment alternatives. The news highlights the volatility and uncertainty surrounding the stock.
+**Analysis:** The news sentiment is mixed. Negative headlines highlight the stock's recent struggles, while positive headlines point to potential catalysts like analyst upgrades, promising trial data, ARK Invest interest, and a future CEO transition. The "Forget Recursion..." articles are particularly concerning as they actively recommend alternative investments.
 
-## 4-2) Analyst Opinions
+**4-2) Analyst Opinions:**
 
-*   **Analyst Consensus:**
-    *   Key: None
-    *   Mean (1=StrongBuy~5=Sell): - (~-)
-    *   Opinions: 7
-    *   Target Price (avg/high/low): 7.00 / 11.00 / 3.00
-    *   Recent Rating Changes:  No significant rating changes reported
+*   **Consensus:** No key information provided, unknown (~) mean rating.
+*   **Opinions:** 7 analysts
+*   **Target Price (avg/high/low):** 7.00 / 11.00 / 3.00
 
-**Analysis:** Analyst ratings are neutral (no specific recommendation), but the target price range is wide (3.00 to 11.00), reflecting uncertainty about the company's future prospects. The average target price of 7.00 suggests a significant upside from the current price, but the low target price of 3.00 indicates that some analysts are bearish.
+**Analysis:** There are 7 analyst opinions but the analyst consensus is unknown.  The average target price of $7.00 represents significant upside potential from the current price of $4.09. However, the wide range ($3.00 - $11.00) indicates a lack of strong conviction and differing views on the stock's future.
 
-## 5) Recent Earnings Analysis
+**5) Recent Earnings Analysis:**
 
-| 날짜       | EPS   | 매출     |
-|------------|-------|----------|
-| 2025-11-05 | -0.36 | 0.01 B$  |
-| 2025-08-05 | -0.41 | 0.02 B$  |
-| 2025-05-05 | -0.50 | 0.01 B$  |
-| 2024-11-06 | -0.34 | 0.03 B$  |
-| 2025-11-05 | -0.34 | 0.03 B$  |
+| 날짜       | EPS  | 매출  |
+|------------|-------|-------|
+| 2025-11-05 | -0.36 | 0.01 B$ |
+| 2025-08-05 | -0.41 | 0.02 B$ |
+| 2025-05-05 | -0.50 | 0.01 B$ |
+| 2024-11-06 | -0.34 | 0.03 B$ |
+| 2025-11-05 | -0.34 | 0.03 B$ |
 
-**Analysis:** RXRX has consistently reported negative EPS (Earnings Per Share), indicating losses. Revenue has fluctuated between $0.01B and $0.03B. There is no clear trend of improvement in either EPS or revenue.
+**Analysis:**
 
-## 6) Financial Information
+*   **EPS (Earnings Per Share):** Consistently negative, indicating the company is not profitable. There's no clear improving trend.
+*   **Revenue:** Low and fluctuating. Revenue appears to be decreasing over time.
+
+**6) Financial Information (Revenue, Profitability, Capital):**
 
 **Revenue and Profitability:**
 
-| Quarter    | Revenue | Profit Margin |
-|------------|---------|---------------|
-| 2025-09-30 | $0.00B  | -194.74%      |
-| 2025-06-30 | $0.02B  | -5.54%        |
-| 2025-03-31 | $0.01B  | -47.31%       |
-| 2024-12-31 | $0.00B  | -183.62%      |
-| 2024-09-30 | $0.03B  | 53.69%        |
+| Quarter    | Revenue  | Profit Margin |
+|------------|----------|---------------|
+| 2025-09-30 | $0.00B   | -194.74%      |
+| 2025-06-30 | $0.02B   | -5.54%        |
+| 2025-03-31 | $0.01B   | -47.31%       |
+| 2024-12-31 | $0.00B   | -183.62%      |
+| 2024-09-30 | $0.03B   | 53.69%        |
 
 **Capital and Profitability:**
 
-| Quarter    | Equity    | ROE      |
-|------------|-----------|----------|
-| 2025-09-30 | $1.05B    | -15.50%  |
-| 2025-06-30 | $0.92B    | -18.70%  |
-| 2025-03-31 | $0.93B    | -21.68%  |
-| 2024-12-31 | $1.03B    | -17.29%  |
-| 2024-09-30 | $0.52B    | -18.27%  |
+| Quarter    | Equity  | ROE      |
+|------------|---------|----------|
+| 2025-09-30 | $1.05B  | -15.50%  |
+| 2025-06-30 | $0.92B  | -18.70%  |
+| 2025-03-31 | $0.93B  | -21.68%  |
+| 2024-12-31 | $1.03B  | -17.29%  |
+| 2024-09-30 | $0.52B  | -18.27%  |
 
-**Analysis:** Revenue is generally low and inconsistent. Profit margins are mostly negative, often significantly so, indicating the company is spending substantially more than it earns. Equity has fluctuated, and Return on Equity (ROE) is consistently negative, reflecting the company's inability to generate profits from shareholders' investments. The spike in revenue in Q3 2024 did result in a temporary positive Profit Margin, but this has not been sustained.
+**Analysis:**
 
-## 7) Comprehensive Analysis (Summary)
+*   **Revenue:** Volatile and generally low.  Revenue has decreased to $0.00B for the most recent quarter.
+*   **Profit Margin:** Consistently negative, reflecting the company's inability to generate profits. Extremely negative margins are concerning.
+*   **Equity:**  Reasonable, reflecting a substantial amount of capital, but decreasing over time.
+*   **ROE (Return on Equity):** Consistently negative, further reinforcing the company's lack of profitability.
 
-Recursion Pharmaceuticals (RXRX) is a high-risk investment. Here's a summary of the key takeaways:
+**7) Comprehensive Analysis (Summary):**
 
-*   **Underperformance:** RXRX has significantly underperformed the S&P 500.
-*   **Volatility:** The stock is more volatile than the market.
-*   **Financials:** The company is consistently unprofitable, with low and fluctuating revenues and negative profit margins and ROE.
-*   **Sentiment:** Recent news is mixed. While there are some positive developments (JPMorgan upgrade, trial data), overall sentiment seems cautious, and some analysts suggest better investment options.
-*   **Technical Indicators:** The stock is in a short-term downtrend, with the price below key moving averages.  The RSI suggests it might be oversold, but this alone is not a reason to buy.
-*   **Analyst Opinions:** Analysts have a wide target price range, reflecting uncertainty.
-*   **MRI Signal:** Despite the negative factors, the MRI gives a Medium Investment risk signal.
+Recursion Pharmaceuticals (RXRX) presents a high-risk, potentially high-reward investment opportunity.
 
-**Overall Recommendation:**
-
-Based on this analysis, RXRX appears to be a speculative investment. While the hybrid signal provides a buying opportunity, this recommendation does not correspond with the rest of the negative indicators. Investors should consider the significant risks and potential for further losses, as well as potential upsides from future successful trials and breakthroughs. Proceed with caution and consider a small position size as part of a diversified portfolio.
+*   **Negative Performance:** The stock has significantly underperformed the S&P 500, with a substantial negative cumulative return and high volatility (high MDD, Beta > 1). Its Alpha is also largely negative, indicating its inefficiency to generate revenue compared to benchmarks.
+*   **Financial Concerns:** The company is currently unprofitable, with consistently negative EPS, profit margins, and ROE. Revenue is low and variable.
+*   **Mixed Signals:**  While the recent news is mixed (some positive catalysts), the overall trend and financial data suggest caution. Analyst target prices indicate potential upside, but with a wide range of opinions.
+*   **Technical Indicators:** The stock is in a short-term downtrend (price below SMAs), but the RSI suggests it may be oversold. The Hybrid Signal indicates a "buy".
+*   **Investment Recommendation:** The Market Risk Indicator (MRI) suggests a medium investment. Given the high risk and negative financials, a **small**, speculative position might be considered if the investor is comfortable with significant volatility and potential losses.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
