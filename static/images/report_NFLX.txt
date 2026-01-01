@@ -1,121 +1,122 @@
-2026-01-01 - Analysis Report
-Okay, let's break down the Netflix (NFLX) analysis.
+2026-01-02 - Analysis Report
+Okay, let's break down this Netflix (NFLX) analysis.
 
-**Company Overview:** Netflix Inc. is a leading global streaming entertainment service providing a wide variety of TV shows and movies.
+**1) Return Rate Comparison & Alpha/Beta Analysis**
 
-**1) Return Rate Comparison (NFLX vs. S&P 500 (VOO))**
+*   **Company Overview:** Netflix Inc. is a leading streaming entertainment service provider.
+*   **Return Rate:**  Netflix's cumulative return (97.88%) is slightly *lower* than the S&P 500's (VOO) cumulative return (105.07%).
+*   **Divergence:** The current divergence of -7.2 indicates that Netflix is underperforming the S&P 500 at this moment. Its relative divergence is at 25.0, suggesting that in comparison to past divergence levels, it is on the lower end.
 
-*   **NFLX Cumulative Return:** -74.98%
-*   **VOO Cumulative Return:** 102.21%
-*   **Divergence:** -177.2 (Relative Divergence: 0.3)
+*   **Alpha/Beta Analysis:**
 
-**Analysis:** Netflix has significantly underperformed the S&P 500 (VOO) during the analyzed period.  The large negative divergence (-177.2) indicates a stark contrast in investment outcomes. The relative divergence of 0.3 suggests that the current divergence is close to the minimum divergence observed in the past.
+    | Year       | CAGR   | MDD   | Alpha  | Beta | Cap(B) |
+    |------------|--------|-------|--------|------|--------|
+    | 2016-2018  | 191.0% | 75.7% | 162.0% | 1.6  | 113.4  |
+    | 2017-2019  | 130.0% | 77.4% | 88.0%  | 1.7  | 137.1  |
+    | 2018-2020  | 100.0% | 78.6% | 67.0%  | 0.9  | 229.1  |
+    | 2019-2021  | 77.0%  | 78.6% | 1.0%   | 0.8  | 255.3  |
+    | 2020-2022  | -15.0% | 90.1% | -33.0% | 1.0  | 125.0  |
+    | 2021-2023  | -9.0%  | 90.1% | -37.0% | 1.5  | 206.3  |
+    | 2022-2024  | 109.0% | 85.2% | 78.0%  | 1.5  | 377.7  |
+    | 2023-2025  | 165.0% | 81.5% | 97.0%  | 1.1  | 397.3  |
 
-**Alpha, Beta Analysis:**
+    *   **CAGR:**  Shows generally strong growth over the analyzed periods, though recent periods (2020-2023, 2021-2023) show negative growth. The most recent periods (2022-2024, 2023-2025) show strong growth again.
+    *   **MDD (Maximum Drawdown):**  Indicates significant risk.  The high drawdowns (75.7%-90.1%) mean the stock can experience large declines.
+    *   **Alpha:**  The recent negative Alpha values (-33.0%, -37.0%) suggest underperformance relative to the S&P 500 in those periods, even when considering risk. The most recent values of 78.0% and 97.0% look more promising.
+    *   **Beta:** Beta values range from 0.8 to 1.7, meaning NFLX's price is more volatile than the S&P 500 index itself.
+    *   **Cap(B):** Market capitalization (in Billions) - Indicates the company's size and has generally increased over time, though decreased from 2019-2021 period to 2020-2022, reflecting a change in growth.
 
-| Year      | CAGR     | MDD   | Alpha    | Beta | Cap(B) |
-| ----------- | -------- | ------- | -------- | ---- | ------ |
-| 2024-2026 | -77.0% | 90.4% | -183.0% | -0.0 | 399.0  |
+**2) Recent Stock Price Fluctuations**
 
-**Analysis:**
+*   **Current Price:** 93.76
+*   **Last Market Change:** A slight decrease of -0.02 from the previous close.
+*   **Moving Averages:**
+    *   5-day SMA: 93.96
+    *   20-day SMA: 95.548
+    *   60-day SMA: 107.2475
 
-*   **CAGR (Compound Annual Growth Rate):** -77.0% shows a very significant decline in investment value over the period.
-*   **MDD (Maximum Drawdown):** 90.4% indicates substantial risk and potential for large losses.
-*   **Alpha:** -183.0% means that the stock is significantly underperforming its expected return based on its beta. This means the model thinks the company specific risk is high.
-*   **Beta:**  -0.0 implies the stock is not correlated with the S&P 500 (based on the CAPM Model, which is a simple model).
-*   **Cap(B):** 399.0 suggests that the amount is very high.
+    *Interpretation:* The short-term moving averages (5-day and 20-day) are below the 60-day SMA. The stock price is slightly below the 5-day average. This might suggest a short-term downward trend, however, further analysis of trend indicators like MACD may be beneficial.
 
-**2) Recent Stock Price Fluctuations:**
+**3) RSI, PPO Index, and Divergence Analysis**
 
-*   **Current Price:** 93.78
-*   **Last-market:** {'price': 94.175, 'previousClose': 93.78, 'change': 0.42}
-*   **5-day SMA:** 93.908
-*   **20-day SMA:** 95.8882
-*   **60-day SMA:** 625.2634
+*   **Market Risk Indicator (MRI):** 0.9 (Medium Investment Recommended) - Indicates a relatively favorable investment environment.
+*   **RSI:** 55.7 -  Neutral territory.  An RSI above 70 is generally considered overbought, while below 30 is oversold.
+*   **PPO:** 0.43 - Measures the difference between two moving averages as a percentage of the longer moving average. A PPO of 0.43 suggests the short-term moving average is slightly above the long-term moving average, which can indicate upward momentum.
+*   **Hybrid Signal:** cash_0%_Buy 100% of cash (1 shares - Very Safe (OverSold Boost) - MRI:0.90) (Cash Ratio: 0% on 2025-12-24) - A strong buy signal, suggesting the stock is undervalued and poised for a rebound. The MRI score of 0.9 further supports this recommendation.
+*   **Recent Relative Divergence Change:** 1.2 (+) - Indicates a short-term upward trend in divergence (Netflix is improving relative to the S&P 500).
+*   **Last Market Change:** The small change (-0.02) suggests no major immediate fluctuation.
+*   **Expected Return:** 0.0% - The expected return is zero, suggesting the investment is expected to only keep pace with the market, and not offer excess returns.
 
-**Analysis:** The 5-day SMA is slightly below the 20-day SMA, indicating a short-term downward trend or consolidation.  The current price is below both the 5-day and 20-day SMA, reinforcing this short-term bearish sentiment. The significantly larger 60-day SMA suggests a dramatic price decline occurred in the past 60 days.
+**4) Recent News & Significant Events**
 
-**3) Indicator Analysis:**
+*   **Netflix Stock (NFLX) Slips Despite Stranger Things Movie Theater Event:** This suggests that even positive events may not significantly boost the stock.
+*   **Is Netflix a Must-Own Stock for 2026?**:  This points to discussions about the company's long-term prospects.
+*   **Netflix stock dips after hours as Warner Bros seen rejecting Paramount bid:** This indicates that external factors, such as potential mergers and acquisitions, can influence the stock price.
+*   **Why Trump blocking Netflix-WBD deal would be 'the right thing to do':** Further suggests that external factors and policy may impact Netflix performance.
+*   **Netflix Stock Forecast: Why Analysts Predict 40% Upside in 2026**:  Positive analyst sentiment.
+*   **Can Netflix's Content Strength Drive Further Upside in the Stock in 2026?:** Indicates focus on content as a key driver for growth.
 
-*   **MRI (Market Risk Indicator):** 0.9 (Medium Investment Recommended)
-*   **RSI:** 38.89 (Approaching Oversold)
-*   **PPO:** 3.6331
-*   **Hybrid Signal:** cash_0%_Buy 100% of cash (12 shares - Safe (OverSold Boost) - MRI:0.80)
-*   **Recent Relative Divergence Change:** 0.0 (단기하락 - Short-term decline)
-*   **Expected Return:** 4875.5%
+    *Overall:*  Recent news is mixed. There's positive analyst sentiment and focus on content strength, but also concerns about external factors (M&A, potential regulatory hurdles) and immediate stock price movements.
 
-**Analysis:**
+**4-2) Analyst Opinions**
 
-*   The MRI suggests a medium level of investment risk, despite the poor past performance.
-*   The RSI is approaching the oversold territory (typically below 30), which *could* signal a potential buying opportunity, although further confirmation is needed.
-*   The PPO (Percentage Price Oscillator) being positive suggests that the short-term moving average is above the long-term moving average, indicating a potential upward trend.
-*   The hybrid signal indicates "Buy" with 100% of cash based on the MRI of 0.80, considering the stock being oversold.
-*   The "단기하락" (short-term decline) reinforces the recent price weakness.
-*   The extremely high expected return should be viewed with caution. It likely reflects a model attempting to correct for a massive undervaluation based on past performance and may not be realistic.
+*   **Consensus:** Buy (~1.95 on a 1-5 scale).
+*   **Target Price:**  Average of $126.19, suggesting potential upside from the current price of $93.76.
+*   **Recent Rating Changes:** No information provided on recent rating changes.
 
-**4) Recent News & Significant Events:**
+**5) Recent Earnings Analysis**
 
-*   **Warner Bros. potentially rejecting Paramount bid:** This could affect the competitive landscape in the streaming industry.
-*   **Netflix out of favor, but interesting:** This suggests a contrarian view – the stock may be undervalued due to negative sentiment.
-*   **"Stranger Things" movie theater event:** Initiatives to boost revenue and engagement.
-*   **Trump potentially blocking Netflix-WBD deal:** Regulatory risks and potential disruption of M&A activity.
-*   **Is Netflix a Must-Own Stock for 2026?:**  Reflects the uncertainty in the long-term investment outlook.
-*   **Analyst targets and streaming complaints:** Indicative of market concerns.
+| 날짜       | EPS  | 매출        |
+|------------|------|-------------|
+| 2025-10-22 | 6    | 11.51 B$    |
+| 2025-07-18 | 7.35 | 11.08 B$    |
+| 2025-04-18 | 6.76 | 10.54 B$    |
+| 2024-10-18 | 5.52 | 9.82 B$     |
+| 2025-10-22 | 5.52 | 9.82 B$     |
 
-**Analysis:** The news headlines paint a mixed picture.  On one hand, there are potential competitive challenges and regulatory uncertainties.  On the other hand, there are articles suggesting a potential contrarian investment opportunity and efforts to engage audiences.
+*Analysis:*
 
-**4-2) Analyst Opinions:**
+*   **Trend:**  Both EPS (Earnings Per Share) and revenue show an upward trend over the past few quarters, suggesting growth. Recent reports show good, though volatile, growth.
+*  **Note:** The table contains duplicate entry for 2025-10-22.
 
-*   **Consensus:** Buy (Mean: 1.95)
-*   **Opinions:** 38
-*   **Target Price (avg/high/low):** 126.19 / 152.50 / 77.00
+**6) Financial Information**
 
-**Analysis:** The analyst consensus is "Buy," suggesting they believe the stock is undervalued.  The average target price of $126.19 represents a significant upside potential from the current price. However, the low target of $77 indicates some analysts are bearish.
+*Revenue and Profitability:*
 
-**5) Recent Earnings Analysis:**
+| Quarter      | Revenue    | Profit Margin |
+|--------------|------------|---------------|
+| 2025-09-30 | $11.51B    | 46.45%        |
+| 2025-06-30 | $11.08B    | 51.93%        |
+| 2025-03-31 | $10.54B    | 50.08%        |
+| 2024-12-31 | $10.25B    | 43.71%        |
+| 2024-09-30 | $9.82B     | 47.89%        |
 
-| 날짜       | EPS    | 매출      |
-| ---------- | ------ | --------- |
-| 2025-10-22 | 6      | 11.51 B$ |
-| 2025-07-18 | 7.35   | 11.08 B$ |
-| 2025-04-18 | 6.76   | 10.54 B$ |
-| 2024-10-18 | 5.52   | 9.82 B$  |
-| 2025-10-22 | 5.52   | 9.82 B$  |
+*Analysis:* Revenue and profit margin show generally consistent growth.
 
-**Analysis:** Both EPS (Earnings Per Share) and Revenue have generally been increasing over the reported quarters.  The jump in EPS between 2024-10-18 and 2025-07-18 is notable.
+*Capital and Profitability:*
 
-**6) Financial Information:**
+| Quarter      | Equity     | ROE   |
+|--------------|------------|-------|
+| 2025-09-30 | $25.95B    | 9.81% |
+| 2025-06-30 | $24.95B    | 12.53% |
+| 2025-03-31 | $24.03B    | 12.03% |
+| 2024-12-31 | $24.74B    | 7.55% |
+| 2024-09-30 | $22.72B    | 10.40% |
 
-**Revenue and Profitability:**
+*Analysis:*
 
-| Quarter      | Revenue   | Profit Margin |
-| ------------ | --------- | ------------- |
-| 2025-09-30   | $11.51B   | 46.45%        |
-| 2025-06-30   | $11.08B   | 51.93%        |
-| 2025-03-31   | $10.54B   | 50.08%        |
-| 2024-12-31   | $10.25B   | 43.71%        |
-| 2024-09-30   | $9.82B    | 47.89%        |
+*   **Equity:** Increasing equity suggests the company is building its asset base.
+*   **ROE (Return on Equity):** Fluctuates. A higher ROE generally indicates more efficient use of equity to generate profits. ROE is high during 2025-03-31 and 2025-06-30.
 
-**Analysis:** Revenue has steadily increased. Profit margins have fluctuated, peaking in Q2 2025.
+**7) Comprehensive Analysis (Summary)**
 
-**Capital and Profitability:**
-
-| Quarter      | Equity    | ROE     |
-| ------------ | --------- | ------- |
-| 2025-09-30   | $25.95B   | 9.81%   |
-| 2025-06-30   | $24.95B   | 12.53%  |
-| 2025-03-31   | $24.03B   | 12.03%  |
-| 2024-12-31   | $24.74B   | 7.55%   |
-| 2024-09-30   | $22.72B   | 10.40%  |
-
-**Analysis:** Equity has generally increased, indicating financial strength.  ROE (Return on Equity) has fluctuated, suggesting variable profitability in relation to shareholder equity.
-
-**7) Comprehensive Analysis (Summary):**
-
-Netflix has experienced significant underperformance compared to the S&P 500. Recent price action suggests a short-term downward trend, although the RSI indicates it might be approaching oversold levels. Analyst consensus is a "Buy" with a substantial upside target, but the large divergence indicates huge stock specific risk.
-Revenue and EPS are growing, and profitability is decent, but financial results cannot offset the large return divergence of the stock.
-
-The news highlights competitive pressures and regulatory risks, but also potential opportunities. Ultimately, investing in Netflix at this point would be a speculative play, heavily reliant on a turnaround in sentiment and execution. The very high "expected return" should be viewed as a model correction, and not a realistic prediction.
+*   **Performance:** Netflix has underperformed the S&P 500 recently, and the divergence remains negative. The historical Alpha/Beta analysis shows variable relative performance over the past years.
+*   **Risk:** High MDD values indicate significant downside risk. The Beta values also indicate higher volatility than the overall market.
+*   **Momentum:** Recent stock price action suggests a short-term downward trend, but the RSI is neutral. Recent Relative Divergence Change suggests Netflix's performance is improving relative to the S&P 500.
+*   **Sentiment:** Analyst sentiment is generally positive, with a "Buy" consensus and a significant upside target price.
+*   **Financials:** Revenue, EPS, and equity are generally trending upward, indicating growth. Profit margins remain healthy.
+*   **News:** Recent news is a mixed bag, with positive analyst outlooks offset by external factors and potential regulatory concerns.
+*   **Investment Recommendation:** The MRI of 0.9 suggests a "Medium Investment Recommended". The Hybrid Signal indicates a "Buy" (OverSold Boost). Analysts also provide "Buy" recommendation and anticipate an upside in 2026. However, the divergence, zero expected return, recent slight stock price decrease, and the fact that the short-term moving averages are below the 60-day average suggest caution. While the long-term prospects for Netflix seem positive, it's recommended to monitor trends in coming quarters.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
