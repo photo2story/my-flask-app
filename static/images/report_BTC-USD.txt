@@ -1,70 +1,84 @@
 2026-01-01 - Analysis Report
-Okay, here's a breakdown of the Bitcoin (BTC-USD) data, along with analysis and considerations.
+Okay, here's a comprehensive analysis of Bitcoin (BTC-USD) based on the provided data.
 
-**1) Return Rate Comparison (vs. S&P 500 - VOO)**
+**1) Return Rate and Comparison to S&P 500 (VOO)**
 
-*   **Company Overview:** Bitcoin is a decentralized digital currency, without a central bank or single administrator, that can be sent from user to user on the peer-to-peer bitcoin network without the need for intermediaries.
-*   **Bitcoin Cumulative Return:** 3998.55%
-*   **S&P 500 (VOO) Cumulative Return:** 102.21%
-*   **Divergence Analysis:**
-    *   **Divergence:** 3896.3 (Bitcoin's return exceeds the S&P 500's return by this percentage.)
-    *   **Relative Divergence:** 64.0 (The divergence is currently in the 64th percentile of its historical range. This suggests it is in the middle part of its historic range.)
-*   **Analysis of Alpha, Beta, and Related Metrics:**
+*   **Ticker:** BTC-USD
+*   **Company Name:** Bitcoin
+*   **Overview:** Bitcoin is a decentralized digital currency, without a central bank or single administrator, that can be sent from user to user on the peer-to-peer bitcoin network without the need for intermediaries.
+*   **Bitcoin Cumulative Return:** 1797.9154714664433
+*   **S&P 500 Cumulative Return:** 0.0
+*   **Divergence:**
+    *   Current: 1797.9
+    *   Relative Divergence: 64.1%
 
-| Year       | CAGR     | MDD   | Alpha    | Beta  | Cap(B) |
-|------------|----------|-------|----------|-------|--------|
-| 2024-2026  | 4007.0%  | 79.2% | 3901.0%  | -0.0  | 1747.7 |
+**Analysis:** Bitcoin has massively outperformed the S&P 500 during the period in question. The cumulative return difference is substantial. However, the relative divergence of 64.1% suggests that while Bitcoin is performing well, it is not at the extreme high end of its historical divergence range, leaving room for potential further upside or a correction. The sheer magnitude of the outperformance suggests higher risk compared to the S&P 500.
 
-    *   **CAGR (Compound Annual Growth Rate):**  The CAGR is extremely high (4007.0%), indicating substantial growth during the period.
-    *   **MDD (Maximum Drawdown):** The MDD of 79.2% means that at some point during this period, an investor could have experienced a peak-to-trough loss of 79.2% of their investment.  This highlights the high volatility and risk associated with Bitcoin.
-    *   **Alpha:** The massive alpha (3901.0%) suggests that Bitcoin has significantly outperformed the benchmark (S&P 500) on a risk-adjusted basis.  This is a large number that likely contributes to higher Market Risk Indicator (MRI)
-    *   **Beta:**  A beta of -0.0 suggests virtually no correlation with the S&P 500.  Bitcoin's price movements are largely independent of the broader market.
-    *   **Cap(B):** 1747.7 Billion is the capitalization.
+**Alpha, Beta Analysis:**
+
+| Year       | CAGR    | MDD   | Alpha   | Beta  | Cap(B) |
+| :----------- | :------ | :------ | :------ | :---- | :----- |
+| 2016-2018  | 248.0%  | 76.9% | 248.0%  | 0.3   | 74.7  |
+| 2017-2019  | 258.0%  | 76.9% | 258.0%  | 0.3   | 143.7 |
+| 2018-2020  | 277.0%  | 76.9% | 277.0%  | 0.7   | 579.2 |
+| 2019-2021  | 1570.0% | 75.8% | 1570.0% | 0.9   | 924.7 |
+| 2020-2022  | 250.0%  | 75.8% | 250.0%  | 1.1   | 330.4 |
+| 2021-2023  | -205.0% | 75.8% | -205.0% | 1.3   | 844.0 |
+| 2022-2024  | 972.0%  | 74.5% | 972.0%  | 1.3   | 1865.8 |
+| 2023-2025  | 798.0%  | 71.7% | 798.0%  | 0.9   | 1747.3 |
+
+**Analysis:**
+
+*   **CAGR (Compound Annual Growth Rate):** The CAGR varies significantly, showing periods of explosive growth (e.g., 2019-2021) and one significant decline (2021-2023).  This highlights Bitcoin's volatile nature.
+*   **MDD (Maximum Drawdown):**  The MDD is consistently high, ranging from 71.7% to 76.9%. This indicates substantial risk of loss during these periods.  Investors need to be prepared for large price swings.
+*   **Alpha:**  The Alpha values are very high (both positive and negative) mirroring the CAGR, reflecting significant outperformance (or underperformance) relative to a benchmark. This likely means bitcoin price action is fairly idiosyncratic as it is difficult to find a benchmark that tracks it closely.
+*   **Beta:** The Beta values fluctuate, but generally range from 0.3 to 1.3. This indicates that Bitcoin's volatility is correlated with the market, and has periods of being less and more volatile than the market.
 
 **2) Recent Stock Price Fluctuations**
 
-*   **Current Close:** 87495.61
-*   **Last Market Data:** Price: 87515.49, Previous Close: 88407.73, Change: -1.01%
-*   **Moving Averages:**
-    *   5-day SMA: 87740.38
-    *   20-day SMA: 87835.41
-    *   60-day SMA: 92519.80
-*   **Analysis:** The current price is below all three moving averages. This suggests a short-term downward trend. The 5-day SMA being below the 20-day SMA also supports this. The 60-day SMA is significantly higher than the 5-day and 20-day, indicating a more pronounced change in price direction.
+*   **Close:** 87873.5625
+*   **Last-market:** {'price': 87889.7, 'previousClose': 87512.875, 'change': 0.43}
+*   **5-day SMA:** 87754.6562
+*   **20-day SMA:** 87715.566
+*   **60-day SMA:** 92149.96
 
-**3) Index Indicators**
+**Analysis:** The price is above both the 5-day and 20-day Simple Moving Averages (SMAs), suggesting short-term upward momentum. However, the price is below the 60-day SMA, which could indicate a potential resistance level or a longer-term bearish trend. The slight positive "change" in the last market price indicates a mild upward tick.
 
-*   **Market Risk Indicator (MRI):** 0.9 (High Investment Recommended). A high MRI, despite the volatility, indicates a favorable assessment of Bitcoin's investment potential based on the algorithm's criteria.
-*   **RSI (Relative Strength Index):** 51.96 (Slightly above neutral, suggesting neither overbought nor oversold conditions.)
-*   **PPO (Percentage Price Oscillator):** 0.2879 (A positive value suggests that the short-term moving average is above the long-term moving average, indicating potential upward momentum).
-*   **Hybrid Signal:** cash_0%_Buy 100% of cash (48 shares - Very Safe - MRI:0.90). This is a strong buy signal, allocating all available cash to Bitcoin based on the algorithm's risk assessment.
-*   **Recent (20 days) relative divergence change:** 0.2 (+): 단기상승 (Short-term increase). This suggests a recent positive trend in Bitcoin's outperformance compared to the S&P 500.
-*   **Change:** -1.01%. This reflects the recent market price fluctuation issue (recent small sharp decline).
-*   **Expected Return (%):** 2642.6%.  This is an extremely high expected return, suggesting that the model anticipates significant future growth for Bitcoin over the long term relative to the S&P 500.
+**3) RSI, PPO, and Expected Return**
 
-**4) Recent News & Significant Events (Yahoo Finance)**
+*   **Market Risk Indicator (MRI):** 0.9 (High Investment Recommended)
+*   **RSI:** 65.52238234741523
+*   **PPO:** 0.2985
+*   **Hybrid Signal:** cash_1%_Buy 100% of cash (20 shares - Very Safe - MRI:0.90) (Cash Ratio: 1% on 2025-10-26)
+*   **Recent (20 days) relative divergence change:** -0.4 (-): 단기하락 (Short-term decline)
+*   **Expected Return (%):** 3612.4%
 
-*   **Key Themes:** The news headlines indicate volatility, price fluctuations around the $90,000 level, and mentions of broader market influences (e.g., stock market gains). Articles discuss price drops, recovery attempts, and potential macro resets.
-*   **Notable Headlines:**
-    *   "BTC USD price today falls below $88,000: Why Bitcoin retreats from $90,000..." - Indicates a recent price decline.
-    *   "Bitcoin rises above $90,000 as cryptocurrency attempts recovery amid stock market gains" - Shows the price is attempting to recover.
-    *   "Bitcoin reverses brief $90K spike as U.S. stocks edge down" - highlights volatility and some correlation with US Stocks.
-    *    "Bitcoin Stock: Set For The 2026 Macro Reset" - could indicate a long term prediction.
+**Analysis:**
 
-**4-2) Analyst Opinions**
+*   **MRI:** An MRI of 0.9 suggests that, based on this model, the market is currently considered a good time for investment. However, relying solely on this indicator is not recommended.
+*   **RSI:** The RSI of 65.52 suggests that Bitcoin is approaching overbought conditions. While not yet in overbought territory (typically above 70), it's getting closer.
+*   **PPO:** The PPO (Percentage Price Oscillator) of 0.2985 suggests that short-term momentum is slightly positive relative to long-term momentum.
+*   **Hybrid Signal:** The signal suggests a strong buy signal, allocating a large portion of available cash to Bitcoin.
+*   **Relative Divergence Change:** The recent decrease in relative divergence suggests a short-term weakening in Bitcoin's outperformance compared to its historical trend.
+*   **Expected Return:** The extraordinarily high expected return of 3612.4% is a strong bullish signal, indicating potentially very high returns if held long-term (more than 2 years), but also likely reflects the high risk and volatility associated with Bitcoin.
 
-*   **Analyst Consensus:** Not Provided.
+**4) Recent News & Significant Events**
+
+*   **Volatility:** "Bitcoin reverses brief $90K spike" highlights the potential for sudden and significant price swings.
+*   **Market Trends:** "Bitcoin Is Set for First Yearly Split From Stocks in Decade" indicates a decoupling from traditional market correlations, making it a potentially unique asset class.
+*   **Price Predictions:** "Charles Hoskinson says Bitcoin could reach $250,0" reflects optimistic long-term forecasts from industry figures.
+*   **Technical Analysis:** "BTC/USD Hammer Candle Meets Nvidia Earnings" indicates potential bullish technical patterns alongside broader market events.
+*   **Macroeconomic Outlook:** "Bitcoin Stock: Set For The 2026 Macro Reset" suggests Bitcoin's potential role in a changing economic landscape.
+*   **Recovery Attempts:** "Bitcoin rises above $90,000 as cryptocurrency attempts recovery amid stock market gains" shows that Bitcoin's price still moves according to market expectations, and that Bitcoin price still moves cyclically.
 
 **5) Comprehensive Analysis**
 
-*   **Summary:**  Bitcoin shows exceptionally high historical growth (CAGR) and outperformance (Alpha) compared to the S&P 500, but also significant volatility (MDD).  The recent price action suggests a short-term downtrend, with the price below key moving averages. However, the MRI remains high, and the hybrid signal strongly recommends buying. The expected return is exceptionally high, indicating long-term optimism from the model.
-*   **Key Considerations:**
-    *   **High Volatility:** The large MDD underscores the inherent risk in Bitcoin.  Investors should be prepared for potentially significant price swings.
-    *   **Independent Price Action:** The low beta suggests that Bitcoin can act as a diversifier in a broader portfolio. It will likely not follow the same movements as the S&P 500.
-    *   **Conflicting Signals:**  While the moving averages point to a short-term downtrend, the MRI and hybrid signal are bullish. This highlights the importance of considering multiple indicators and timeframes.
-    *   **News Sentiment:** Recent news points to volatility and price fluctuations around the $90,000 mark. This aligns with the observed price action and suggests that Bitcoin is currently facing some headwinds.
-    *   **Analyst Opinion Lacking:** The analysis would be improved with analyst consensus information.
+*   **Overall Sentiment:** The data presents a mixed picture. Bitcoin shows short-term upward momentum, but longer-term trends are less clear. The MRI indicates a favorable time for investment according to its specific algorithm. However, the high MDD and news of price volatility highlight substantial risk.
+*   **Investment Recommendation:** The hybrid signal suggests a strong buy recommendation (100% cash allocation), but investors should consider the high risk, high volatility, and potential for significant drawdowns. The RSI nearing overbought territory suggests caution, and the recent decline in relative divergence indicates a potential short-term pullback.
+*   **Risk Management:** Due to the extreme volatility and risk associated with Bitcoin, proper risk management is essential. Investors should carefully consider their risk tolerance, investment horizon, and diversify their portfolios accordingly. Start with the hybrid signal recommendation of putting only 1% of cash into BTC.
+*   **News Impact:** Recent news indicates both significant volatility and potential for long-term growth. The decoupling from traditional markets, if sustained, could make Bitcoin a valuable diversifier, but also introduces uncertainty.
 
-*   **Overall:** Based on the data provided, Bitcoin presents a high-risk, potentially high-reward investment opportunity. The strong growth potential and positive MRI and hybrid signal are compelling, but the volatility and recent price weakness should not be ignored.
+**In summary:** Bitcoin presents a high-risk, high-reward investment opportunity. The technical indicators and news suggest potential for continued growth, but also highlight the possibility of significant losses. Before investing, individuals should conduct thorough research, carefully assess their risk tolerance, and consider seeking advice from a qualified financial advisor.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
