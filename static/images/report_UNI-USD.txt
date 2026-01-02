@@ -1,76 +1,91 @@
-2026-01-01 - Analysis Report
-Okay, let's break down this Uniswap (UNI-USD) analysis based on the information provided.
+2026-01-02 - Analysis Report
+Okay, let's break down this Uniswap (UNI-USD) analysis.
 
-**0. Report Start**
+**0) Overall Report Structure:**
 
-**1. Return Rate Comparison**
+The report will follow the requested structure: present the raw numbers first, then provide a simple analysis of each section. Finally, we'll synthesize this into a comprehensive summary.
 
-*   **Ticker:** UNI-USD (Uniswap)
-*   **Company Overview:** Uniswap is a decentralized cryptocurrency exchange protocol.
-*   **UNI Cumulative Return:** 7223.5%
-*   **VOO (S&P 500) Cumulative Return:** 35.1%
-*   **Divergence:**
-    *   Current: 7188.4
-    *   Relative Divergence: 2.4
+**1) Return Rate Comparison (Uniswap vs. S&P 500):**
 
-*   **Analysis:** Uniswap has vastly outperformed the S&P 500 by a significant margin during the analyzed period. The current divergence is 7188.4 points.  The very low relative divergence of 2.4 suggests the current divergence is near the lower end of its historical range, which should be interpreted with caution because the historical range in this case is enormous. This does *not* mean Uniswap is only slightly superior. It means *relative to its wildly fluctuating past*, the current divergence isn't that extreme compared to the potential range.
-
-**Alpha, Beta Analysis Table:**
-
-| Year       | CAGR    | MDD   | Alpha    | Beta  | Cap(B) |
-|------------|---------|-------|----------|-------|--------|
-| 2024-2026  | 7223.0% | 95.8% | 7190.0%  | -0.1  | 0.0    |
-
-*   **CAGR (Compound Annual Growth Rate):** Extremely high at 7223.0%.  This indicates exceptional growth over the analyzed period (2024-2026).
-*   **MDD (Maximum Drawdown):** Very high at 95.8%. This signifies a significant potential loss from peak to trough.  This reinforces the inherent high risk associated with this investment.
-*   **Alpha:** Exceptionally high at 7190.0%. This implies a large degree of outperformance compared to a benchmark (likely the S&P 500), even *after* accounting for risk. This also underscores how volatile it is and the high degree of excess return obtained.
-*   **Beta:**  -0.1. A negative beta *suggests* the price moves in the opposite direction of the market (S&P 500).  However, with such a small value (-0.1), the correlation is extremely weak. It's essentially uncorrelated. A high degree of excess return with a low correlation to the market means the price is driven by company specific events.
-*   **Cap(B):** 0.0. This likely represents the company's market capitalization in Billions, but the value of 0.0 suggests it's either very small (micro-cap or nano-cap) or the data is incomplete. Uniswap is decentralized so this makes sense that it is zero.
-
-**2. Recent Stock Price Fluctuations**
-
-*   **Close:** 0.0001626423036213
-*   **Last-market:** {'price': 0.0001626423, 'previousClose': 0.0001626423, 'change': 0.0}
-*   **5-day SMA:** 0.0002
-*   **20-day SMA:** 0.0002
-*   **60-day SMA:** 0.0002
-
-*   **Analysis:** The price has not moved in the most recent session. The 5, 20, and 60-day simple moving averages are all essentially the same (0.0002). This implies that the price has been relatively stable in the short to medium term *at this price level*. It means the price has been at this value for a brief moment.
-
-**3. RSI, PPO, Delta_Previous_Relative_Divergence, Expected_Return**
-
-*   **Market Risk Indicator (MRI):** 0.8 (Medium Investment Recommended)
-*   **RSI:** 45.09
-*   **PPO:** 0.25
-*   **Hybrid Signal:** cash_0%_Buy 90% of cash (88521190 shares - Safe - MRI:0.80) (Cash Ratio: 0% on 2025-04-17)
-*   **Recent (20 days) relative divergence change:** 0.0 (-): 단기하락 (Short-term decline)
-*   **Expected Return (%):** 427721.5%
-
+*   **Numbers:**
+    *   Uniswap Cumulative Return: 7223.50%
+    *   S&P 500 (VOO) Cumulative Return: 35.07%
+    *   Divergence: Current = 7204.5, Relative Divergence = 2.4
+*   **Company Overview:** Uniswap is a decentralized exchange protocol built on Ethereum, facilitating peer-to-peer token swaps.
 *   **Analysis:**
-    *   **MRI of 0.8:** Indicates medium risk, suggesting a cautious approach.
-    *   **RSI of 45.09:** Suggests the asset is neither overbought nor oversold. It's in a neutral zone.
-    *   **PPO of 0.25:** The Positive Price Oscillator being slightly positive may indicate that the shorter-term moving average is a little above the longer term which may indicate the beginning of a potential uptrend, although the value is fairly small.
-    *   **Hybrid Signal:** This signal suggests a strong buy recommendation based on the current analysis, allocating a large portion of capital to the asset.  This conflicts with the high MDD, caution is still warranted.
-    *   **Recent Relative Divergence Change:** No change in the last 20 days suggests recent market trends have not been that meaningful.
-    *   **Expected Return of 427721.5%:** This is an *extremely* high, almost unbelievable, projected return. This should be regarded with extreme skepticism. If possible, the methodology behind this projection should be investigated.
+    *   Uniswap's return significantly outperforms the S&P 500. This indicates a much higher risk and reward profile.
+    *   The current divergence is 7204.5.
+    *   The relative divergence of 2.4 is quite low, indicating that even with the high return, it is in the very low percentile range of the min/max spread of divergence.
+*   **Alpha, Beta Analysis:**
 
-**4. Recent News & Significant Events (Yahoo Finance)**
+    |            | CAGR    | MDD   | Alpha   | Beta | Cap(B) |
+    |------------|---------|-------|---------|------|--------|
+    | 2020-2022  | -97.0%  | 96.8% | -116.0% | 0.1  | 0.0    |
+    | 2021-2023  | -42.0%  | 96.8% | -71.0%  | 2.8  | 0.0    |
+    | 2022-2024  | 63.0%   | 95.8% | 33.0%   | 3.1  | 0.0    |
 
-*   **Key Headlines and Links:** (See original prompt for URLs) The news flow is a mix of price predictions, analysis of fee switch proposals, reports of institutional selling, and overall market commentary related to Bitcoin and crypto stocks. The news is primarily from 2025.
+    *   **CAGR (Compound Annual Growth Rate):** Shows volatile performance. Negative CAGR in 2020-2022 and 2021-2023, but strong positive growth in 2022-2024.
+    *   **MDD (Maximum Drawdown):** Very high MDD across all periods indicates significant risk.
+    *   **Alpha:** Negative Alpha in the first two periods suggests underperformance relative to the benchmark, considering risk. Positive Alpha in 2022-2024 suggests outperformance.
+    *   **Beta:**  Low Beta (0.1) in 2020-2022 suggests low correlation with the market. Higher Beta (2.8 and 3.1) in the following periods implies higher sensitivity to market movements. This suggests that UNI's price movements amplify those of the market.
+    *   **Cap(B):**  The market capitalization is 0.
 
-*   **Analysis of News:** The news is mixed. Positive catalysts like the "Fee Switch Proposal" driving a DeFi rally are offset by reports of institutional investors selling off holdings. This volatility is typical of the cryptocurrency market. The news cycle reflects the high risk and speculation surrounding Uniswap and cryptocurrencies in general.
+**2) Recent Stock Price Fluctuations:**
 
-**4-2) Analyst Opinions**
+*   **Numbers:**
+    *   Current Close: 0.00016264
+    *   Last Market Price: 0.00016264, Previous Close: 0.00016264, Change: 0.0
+    *   5-day SMA: 0.0002
+    *   20-day SMA: 0.0002
+    *   60-day SMA: 0.0002
+*   **Analysis:**
+    *   The current price is essentially unchanged from the previous close.
+    *   All three Simple Moving Averages (5-day, 20-day, and 60-day) are the same and slightly higher than the current price.  This suggests a period of relative stability recently, with the price hovering around these averages.
 
-*   **Analyst Consensus:** Not provided in the available data.
+**3) Indicator Analysis:**
 
-**5. Comprehensive Analysis**
+*   **Numbers:**
+    *   Market Risk Indicator (MRI): 0.8 (Medium Investment Recommended)
+    *   RSI: 45.09
+    *   PPO: 0.25
+    *   Hybrid Signal: cash_0%_Buy 90% of cash (88521190 shares - Safe - MRI:0.80)
+    *   Recent (20 days) relative divergence change: 0.0 (단기하락 - Short-term decline)
+    *   Expected Return (%): 138547.68
+*   **Analysis:**
+    *   The MRI of 0.8 suggests a medium investment recommendation.
+    *   The RSI of 45.09 is neutral, not indicating overbought or oversold conditions.
+    *   The PPO of 0.25 is used to show the convergence and divergence of the moving average.
+    *   The Hybrid Signal recommends buying 90% of available cash, considering the MRI.
+    *   The recent relative divergence change indicates a short-term decline.
+    *   The extremely high expected return suggests significant potential upside.
 
-*   **Summary:** Uniswap (UNI-USD) has exhibited extraordinary returns compared to the S&P 500.  Its CAGR and Alpha are extremely high, but so is its Maximum Drawdown, signaling a very high-risk investment. The technical indicators present a mixed picture: RSI is neutral, the MRI indicates medium risk, and the hybrid signal shows a strong buy. The *extremely* high expected return should be viewed with caution.
-*   **News Impact:** Recent news highlights the volatility in the cryptocurrency market, with price fluctuations driven by factors such as fee proposals and institutional investment decisions.
-*   **Overall:** Uniswap presents a potentially high-reward, but also very high-risk investment. Due to the volatility of the market and the extreme numbers, the analysis must be taken with extreme caution. The data requires careful consideration of risk tolerance and a thorough understanding of the cryptocurrency market.  Given the high MDD, investors must be prepared for potentially substantial losses.
+**4) Recent News & Significant Events:**
 
-**Report End**
+*   **Headlines and Links:** (See original prompt for full list)
+    *   **Positive Catalysts:**
+        *   Voting on protocol fees boosted UNI.
+        *   Fee switch proposal ignited a DeFi rally.
+        *   Rotation revives strength.
+    *   **Negative Pressures:**
+        *   Institutional investors sold $82M worth of UNI, causing a dip.
+        *   Bitcoin's fall impacted crypto stocks.
+        *   Some mention of Uniswap price prediction.
+*   **Analysis:**
+    *   News is a mixed bag.  Positive news focuses on protocol changes (fee switch) and rallies. Negative news centers on institutional selling and broader market downturns (Bitcoin). This suggests that UNI is influenced by both its own developments *and* the overall crypto market sentiment.
+
+**4-2) Analyst Opinions:**
+
+*   Analyst Consensus: (Missing in the given data).
+
+**5) Comprehensive Analysis:**
+
+Uniswap (UNI-USD) presents a high-risk, high-reward investment opportunity. Its cumulative return vastly outperforms the S&P 500, but its historical volatility, as indicated by the large Maximum Drawdown and fluctuating CAGR, is also very high. The Beta values suggest that UNI amplifies market movements.
+
+Recent news points to both positive catalysts (protocol changes potentially boosting revenue) and negative pressures (institutional selling, broader market downturns). The technical indicators are mixed. The MRI indicates a medium investment recommendation, but the RSI is neutral. The Hybrid Signal suggests buying. The extremely high expected return should be viewed with extreme caution.
+
+The lack of Analyst Consensus is a significant gap in the information. However, based on the available data, UNI appears to be a speculative investment suitable only for investors with a high risk tolerance. The potential upside is enormous but is offset by the risk of significant losses, which is supported by the large MDD.
+
+**In short: High Risk, Potentially High Reward, Requires Careful Monitoring.**
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
