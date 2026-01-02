@@ -1,39 +1,41 @@
 2026-01-02 - Analysis Report
-Okay, let's analyze PepsiCo (PEP) based on the provided data.
+Okay, let's break down the analysis of PepsiCo (PEP) based on the provided data.
 
-**1) Return Rate Comparison:**
+**1) Return Rate Comparison with S&P 500 (VOO)**
 
 *   **Company Overview:** PepsiCo Inc. is a global food and beverage company.
 *   **PEP Cumulative Return:** 12.72%
-*   **S&P 500 (VOO) Cumulative Return:** 105.07%
+*   **VOO Cumulative Return:** 91.40%
 *   **Divergence:**
     *   Current: -92.4
+    *   Max: 12.1
+    *   Min: -95.1
     *   Relative Divergence: 2.5
 
-**Analysis:** PepsiCo has significantly underperformed the S&P 500 over the period considered. The relative divergence of 2.5 indicates that the current underperformance is near the lowest point in its historical range compared to the S&P 500.
+**Analysis:** PepsiCo has significantly underperformed the S&P 500 over the period represented by the cumulative return data.  The current divergence is close to the minimum divergence seen in the data, and the relative divergence of 2.5 suggests PEP's performance compared to VOO is near the bottom of its historical range.  This means PEP is performing much worse than VOO.
 
 **Alpha, Beta Analysis:**
 
-| Year       | CAGR   | MDD    | Alpha   | Beta   | Cap(B)  |
-|------------|--------|--------|---------|--------|---------|
-| 2016-2018  | 11.0%  | 69.5%  | -18.0%  | 0.5    | 151.3   |
-| 2017-2019  | 32.0%  | 69.5%  | -10.0%  | 0.5    | 187.1   |
-| 2018-2020  | 23.0%  | 81.0%  | -9.0%   | 0.8    | 203.0   |
-| 2019-2021  | 54.0%  | 81.0%  | -22.0%  | 0.8    | 237.8   |
-| 2020-2022  | 27.0%  | 81.0%  | 8.0%    | 0.7    | 247.3   |
-| 2021-2023  | 24.0%  | 80.8%  | -4.0%   | 0.5    | 232.5   |
-| 2022-2024  | -12.0% | 74.7%  | -43.0%  | 0.4    | 208.2   |
-| 2023-2025  | -16.0% | 81.0%  | -84.0%  | 0.2    | 196.5   |
+| Year      | CAGR   | MDD    | Alpha  | Beta | Cap(B) |
+| --------- | ------ | ------ | ------ | ---- | ------ |
+| 2016-2018 | 5.0%   | 99.9% | 2.0%   | 0.5  | 151.3  |
+| 2017-2019 | 25.0%  | 96.1% | 8.0%   | 0.5  | 187.1  |
+| 2018-2020 | 18.0%  | 95.7% | -3.0%  | 0.8  | 203.0  |
+| 2019-2021 | 37.0%  | 59.1% | -6.0%  | 0.8  | 237.8  |
+| 2020-2022 | 4.0%   | 59.1% | 6.0%   | 0.7  | 247.3  |
+| 2021-2023 | 9.0%   | 54.2% | 8.0%   | 0.5  | 232.5  |
+| 2022-2024 | -27.0% | 71.5% | -47.0% | 0.4  | 208.2  |
+| 2023-2025 | -20.0% | 91.2% | -82.0% | 0.2  | 196.5  |
 
-**Analysis:**
+*   **CAGR (Compound Annual Growth Rate):** Fluctuates significantly, with recent periods showing negative growth.
+*   **MDD (Maximum Drawdown):** Has been high, indicating significant potential losses.
+*   **Alpha:**  Measures performance relative to a benchmark (S&P 500).  Recently, alpha is strongly negative, indicating underperformance.
+*   **Beta:** Measures volatility relative to the market. Beta has decreased to a low value in the most recent period.
+*   **Cap(B) (Capitalization in Billions):**  Shows the company's market capitalization. It has decreased over the most recent periods.
 
-*   **CAGR (Compound Annual Growth Rate):** Fluctuates significantly, indicating periods of strong and weak growth. The most recent periods (2022-2024 and 2023-2025) show negative growth.
-*   **MDD (Maximum Drawdown):** High MDD values across all periods suggest significant volatility and potential for large losses.
-*   **Alpha:** Primarily negative, meaning PEP has underperformed its benchmark (likely the S&P 500) on a risk-adjusted basis. The recent Alpha figures are especially concerning.
-*   **Beta:** Beta values are generally below 1, indicating PEP is less volatile than the overall market. However, this also contributes to its underperformance during market upswings.
-*   **Cap(B) (Market Cap in Billions):** Generally increased until recently, but has declined in the latest periods, likely due to poor performance.
+**Overall Analysis of Alpha and Beta:** The recent Alpha and Beta figures are concerning. The negative Alpha suggests significant underperformance compared to the S&P 500, while the decreasing Beta suggests lower volatility relative to the market, but not necessarily positive returns. The negative CAGR values in recent years are also a red flag.
 
-**2) Recent Stock Price Fluctuations:**
+**2) Recent Stock Price Fluctuations**
 
 *   **Current Price:** 143.52
 *   **Previous Close:** 144.16
@@ -42,86 +44,91 @@ Okay, let's analyze PepsiCo (PEP) based on the provided data.
 *   **20-day SMA:** 146.951
 *   **60-day SMA:** 147.2718
 
-**Analysis:** The price is currently below all three moving averages, suggesting a short-term downtrend. The 5-day SMA being the closest suggests some recent stabilization, but the overall trend is downward.  The slight price decrease from the previous close indicates continued negative pressure.
+**Analysis:** The stock price is currently below all three Simple Moving Averages (SMA), indicating a potential downtrend. The recent price decrease suggests short-term bearish momentum.
 
-**3) Indicator Analysis:**
+**3) RSI, PPO, and Expected Return**
 
-*   **MRI (Market Risk Indicator):** 0.9 (Medium to High Investment Recommended) - Contradictory indicator given the recent performance data.
-*   **RSI (Relative Strength Index):** 23.49 (Oversold) - Suggests the stock may be undervalued and due for a rebound.
-*   **PPO (Percentage Price Oscillator):** -0.42 (Negative) - Confirms the downtrend.
-*   **Hybrid Signal:** cash_0%_Buy 100% of cash (1 shares - Very Safe - MRI:0.90) - The hybrid signal is recommending a buy despite the negative indicators due to the MRI score, which is heavily influenced by fundamental analysis.
-*   **Recent Relative Divergence Change:** 1.5 (+) (Short-Term Increase) - A short-term upward movement in the relative divergence suggests some recent positive change compared to the S&P 500, but it needs to be seen in the context of the overall underperformance.
-*   **Expected Return:** 0.0% - No expected excess return compared to the S&P 500.
+*   **MRI (Market Risk Indicator):** 0.9 (High Investment Recommended) - **Note:** This seems contradictory to other indicators. High MRI values generally suggest favorable market conditions but don't guarantee a good investment for *every* stock.
+*   **RSI (Relative Strength Index):** 23.50 - **Oversold** (below 30 is typically considered oversold).
+*   **PPO (Percentage Price Oscillator):** -0.43 - Negative, indicating bearish momentum.
+*   **Hybrid Signal:** cash_0%_Buy 100% of cash (1 shares - Very Safe - MRI:0.90) (Cash Ratio: 0% on 2025-12-11) - The hybrid signal recommends buying with 100% of available cash.
+*   **Recent (20 days) relative divergence change:** 1.5 (+): 단기상승 - Short-term increase.
+*   **Expected Return:** 0.0% - No expected excess return compared to the S&P 500 in the long term.
 
-**Analysis:** The indicators present a mixed picture. While RSI suggests a potential rebound due to being oversold, PPO confirms the current downtrend. The Market Risk Indicator seems out of sync with the recent performance and negative alpha. The recent uptick in relative divergence offers a glimmer of hope, but its sustainability is questionable. The expected return of 0% is concerning for long-term investors.
+**Analysis:** The RSI indicates the stock is oversold, which *could* suggest a potential buying opportunity. However, the negative PPO and the low expected return are concerning. The MRI indicates favorable market conditions, but given the other indicators, this may not apply to PEP specifically. The recent increase in relative divergence may suggest a short-term increase, but the other signals should be carefully considered.
 
-**4) Recent News & Significant Events:**
+**4) Recent News & Significant Events**
 
-*   **Positive:**
-    *   PepsiCo (PEP) Gets Price Target Lift at Barclays
-    *   Cantor Fitzgerald Investment Advisors L.P. Buys Shares
-    *   Is This 53-Year-Dividend-Streak Stock Due for a 20% Breakout?
-    *   Should Passive-Income Investors Buy PepsiCo Stock Before 2026?
-*   **Neutral/Negative:**
-    *   PepsiCo stock today: PEP slips into year-end close as Feb. 3 earnings set next test
-    *   No Coke, Pepsi! My Surprising Top Stock Pick for 2026
+The news headlines present a mixed picture:
 
-**4-2) Analyst Opinions:**
+*   **Positive:** "PepsiCo (PEP) Gets Price Target Lift at Barclays..." - This suggests some analysts see potential upside.
+*   **Mixed:** "PepsiCo stock today: PEP slips into year-end close as Feb. 3 earnings set next test" - Acknowledges current price weakness but focuses on the upcoming earnings report as a catalyst.
+*   **Positive:** "Is This 53-Year-Dividend-Streak Stock Due for a 20% Breakout?" - Highlights the dividend history, a potential draw for income investors, and suggests potential price appreciation.
+*   **Negative:** "No Coke, Pepsi! My Surprising Top Stock Pick for 2026" - Implies there are better investment opportunities.
+*   **Neutral:** "Cantor Fitzgerald Investment Advisors L.P. Buys 9,450 Shares of PepsiCo, Inc." - Indicates institutional investment but doesn't reveal the rationale or overall sentiment.
+*   **Positive:** "Should Passive-Income Investors Buy PepsiCo Stock Before 2026?" - Highlights the potential for dividend income.
+
+**Analysis:** The news sentiment is mixed. Some articles suggest potential upside due to analyst targets and dividend history, while others point to current price weakness and alternative investment options.
+
+**4-2) Analyst Opinions**
 
 *   **Consensus:** Hold
 *   **Mean:** 2.71 (~Hold)
+*   **Opinions:** 22
 *   **Target Price (avg/high/low):** 155.91 / 172.00 / 115.00
-*   **Recent Rating Changes:** Not provided
 
-**Analysis:** Analyst sentiment is neutral ("Hold"). The average target price suggests some potential upside, but the wide range between the high and low targets indicates considerable uncertainty. The news is a mix of positive articles (price target lift, buy recommendations) and neutral/negative articles (stock slipping, alternative stock picks).
+**Analysis:** The analyst consensus is "Hold," suggesting a neutral outlook. The average target price of $155.91 is above the current price of $143.52, implying potential upside if analysts' expectations are met.
 
-**5) Recent Earnings Analysis:**
+**5) Recent Earnings Analysis**
 
-| 날짜       | EPS  | 매출        |
-|------------|------|-------------|
-| 2025-10-09 | 1.9  | 23.94 B$    |
-| 2025-07-17 | 0.92 | 22.73 B$    |
-| 2025-04-24 | 1.34 | 17.92 B$    |
-| 2024-10-08 | 2.13 | 23.32 B$    |
-| 2025-10-09 | 2.13 | 23.32 B$    |
+| 날짜       | EPS  | 매출       |
+| ---------- | ---- | ---------- |
+| 2025-10-09 | 1.9  | 23.94 B$   |
+| 2025-07-17 | 0.92 | 22.73 B$   |
+| 2025-04-24 | 1.34 | 17.92 B$   |
+| 2024-10-08 | 2.13 | 23.32 B$   |
+| 2025-10-09 | 2.13 | 23.32 B$   |
 
-**Analysis:** Revenue fluctuates from quarter to quarter, but generally remains in a relatively stable range.
+**Analysis:** The data contains duplicate entries for 2025-10-09. Assuming the later entry is correct, the EPS and revenue have fluctuated. There is no clear upward trend.
 
-**6) Financial Information (Revenue/Profitability & Capital/Profitability):**
+**6) Financial Information**
 
 **Revenue and Profitability:**
 
-| Quarter      | Revenue    | Profit Margin |
-|--------------|------------|---------------|
-| 2025-09-30   | $23.94B    | 53.57%        |
-| 2025-06-30   | $22.73B    | 54.66%        |
-| 2025-03-31   | $17.92B    | 55.77%        |
-| 2024-12-31   | $27.78B    | 52.56%        |
-| 2024-09-30   | $23.32B    | 55.42%        |
+| Quarter      | Revenue   | Profit Margin |
+| ------------ | --------- | --------------- |
+| 2025-09-30   | $23.94B  | 53.57%          |
+| 2025-06-30   | $22.73B  | 54.66%          |
+| 2025-03-31   | $17.92B  | 55.77%          |
+| 2024-12-31   | $27.78B  | 52.56%          |
+| 2024-09-30   | $23.32B  | 55.42%          |
 
 **Capital and Profitability:**
 
-| Quarter      | Equity     | ROE    |
-|--------------|------------|--------|
-| 2025-09-30   | $19.39B    | 13.43% |
-| 2025-06-30   | $18.42B    | 6.86%  |
-| 2025-03-31   | $18.39B    | 9.97%  |
-| 2024-12-31   | $18.04B    | 8.44%  |
-| 2024-09-30   | $19.45B    | 15.06% |
+| Quarter      | Equity    | ROE     |
+| ------------ | ---------- | ------- |
+| 2025-09-30   | $19.39B  | 13.43%  |
+| 2025-06-30   | $18.42B  | 6.86%   |
+| 2025-03-31   | $18.39B  | 9.97%   |
+| 2024-12-31   | $18.04B  | 8.44%   |
+| 2024-09-30   | $19.45B  | 15.06%  |
 
-**Analysis:** Revenue shows some volatility, peaking in Q4 2024. Profit margins are relatively consistent. Equity is fairly stable. ROE (Return on Equity) fluctuates significantly, indicating varying levels of profitability relative to shareholder equity.
+**Analysis:** Revenue fluctuates, typically peaking in the Q4 (December) period. Profit margins have been relatively stable in the 50-55% range. Equity has been somewhat stable. ROE (Return on Equity) fluctuates, reflecting changes in profitability and equity levels.
 
-**7) Comprehensive Analysis:**
+**7) Comprehensive Analysis (Summary)**
 
-PepsiCo is currently facing challenges. While the company has a strong brand and history, its stock has significantly underperformed the S&P 500. Negative alpha, recent negative CAGR, and high MDD highlight the stock's risk and underperformance.
+PepsiCo (PEP) shows a mixed picture.
 
-Technicals paint a mixed picture. RSI suggests a potential short-term rebound, but the price is below key moving averages, and PPO confirms the downtrend. The Market Risk Indicator is surprisingly high given the recent performance, but the Hybrid Signal is still providing a buy signal.
+*   **Underperformance:** PEP has significantly underperformed the S&P 500, with a substantial negative divergence.  Alpha is also strongly negative.
+*   **Technical Indicators:** The stock is technically in a downtrend (price below SMAs). RSI is oversold, which *could* suggest a bounce, but the PPO indicates bearish momentum.
+*   **News Sentiment:** Mixed, with some articles highlighting dividend appeal and potential analyst upgrades, while others suggest better investment alternatives.
+*   **Analyst Opinion:** Neutral ("Hold"), but target prices suggest potential upside.
+*   **Financials:** Revenue and ROE fluctuate. Profit margins are stable.
+*   **MRI:** Contradictory as the value suggests high investment recommendation but other factors point downward.
 
-Analyst sentiment is neutral ("Hold"), and the target price range indicates uncertainty. News is a mix of positive and neutral/negative headlines.
+**Conclusion:**
 
-While revenue and profit margins have been relatively stable, ROE fluctuations are concerning.
-
-**Overall, the data suggests caution. While there may be short-term trading opportunities, the long-term outlook is uncertain, and the stock currently offers no expected excess return compared to the S&P 500. The significant underperformance and high volatility warrant careful consideration before investing in PEP.**
+Based on the provided data, investing in PepsiCo at this moment is questionable. While the oversold RSI *might* suggest a short-term buying opportunity, the significant underperformance relative to the S&P 500, negative Alpha, downtrending price, neutral analyst ratings, and lack of expected return warrant caution.  A potential investor would need to carefully consider their risk tolerance, investment goals, and conduct further research before making a decision. The MRI could be inaccurate, it could just be a general market recommendation, it does not change the fact that all the other factors point towards selling/avoiding the stock.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
