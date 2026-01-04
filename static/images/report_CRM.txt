@@ -1,20 +1,24 @@
 2026-01-04 - Analysis Report
-Okay, here's a comprehensive analysis of Salesforce (CRM) based on the data you provided, broken down into sections as requested:
+Okay, here's a comprehensive report on Salesforce (CRM) based on the provided data, broken down into sections for clarity.
 
-**1) Return Rate Comparison with S&P 500 (VOO)**
+**1) Return Rate Comparison**
 
-*   **Company Overview:** Salesforce Inc. is a global leader in cloud-based software, providing customer relationship management (CRM) services.
+*   **Company Overview:** Salesforce Inc. is a leading cloud-based software company providing customer relationship management (CRM) services.
 *   **CRM Cumulative Return:** -10.62%
-*   **VOO Cumulative Return:** 91.00%
-*   **Divergence:** -98.1 (max: 46.2, min: -111.1, relative divergence: 8.3)
+*   **S&P 500 (VOO) Cumulative Return:** 91.00%
+*   **Divergence:**
+    *   Current: -98.1
+    *   Range: -111.1 (min) to 46.2 (max)
+    *   Relative Divergence: 8.3
 
 **Analysis:**
 
-The data shows a significant underperformance of CRM compared to the S&P 500 (VOO) over the period analyzed.  The divergence is substantial (-98.1%), indicating CRM has lagged considerably. The relative divergence of 8.3 suggests that the current divergence is near the lowest end of its historical range.
-*   **Alpha, Beta Analysis:**
+Salesforce has significantly underperformed the S&P 500. The current divergence is -98.1%, meaning CRM's cumulative return is 98.1 percentage points lower than VOO's. The relative divergence of 8.3 indicates that the current divergence is near its historical minimum, suggesting that the underperformance is significant within the observed timeframe.
 
-| Year       | CAGR   | MDD   | Alpha   | Beta   | Cap(B) |
-| :----------- | :----- | :----- | :------ | :----- | :------ |
+**Alpha, Beta Analysis:**
+
+| Year       | CAGR   | MDD   | Alpha   | Beta | Cap(B) |
+|------------|--------|-------|---------|------|--------|
 | 2016-2018  | 21.0%  | 29.8% | 17.0%   | 1.4  | 130.4  |
 | 2017-2019  | 15.0%  | 29.8% | -2.0%   | 1.4  | 154.8  |
 | 2018-2020  | 9.0%   | 29.8% | -11.0%  | 1.1  | 211.8  |
@@ -24,111 +28,119 @@ The data shows a significant underperformance of CRM compared to the S&P 500 (VO
 | 2022-2024  | -37.0% | 52.3% | -56.0%  | 1.4  | 318.3  |
 | 2023-2025  | 10.0%  | 32.1% | -52.0%  | 1.2  | 252.2  |
 
-*   **CAGR:** The Compound Annual Growth Rate (CAGR) shows periods of strong growth (e.g., 2016-2018, 2019-2021) interspersed with significant declines (2020-2022, 2021-2023, 2022-2024). The recent 2023-2025 period shows a modest positive CAGR.
-*   **MDD:** The Maximum Drawdown (MDD) indicates substantial risk, with drawdowns consistently high, especially in recent years.
-*   **Alpha:** Alpha, measuring performance relative to the market, is consistently negative in recent periods, indicating underperformance compared to its benchmark.
-*   **Beta:** Beta values range from 1.1 to 1.4. Beta > 1 suggests that CRM's price is more volatile than the market.
-*   **Cap(B):** The market capitalization in billions (Cap(B)) shows a general upward trend, though it fluctuates, which may indicate investor confidence despite recent performance struggles.
+**Analysis:**
+
+*   **CAGR (Compound Annual Growth Rate):** CAGR has fluctuated significantly, with strong positive growth in earlier periods (2016-2021) followed by substantial negative growth in later periods (2020-2024). The most recent period (2023-2025) shows a modest positive CAGR.
+*   **MDD (Maximum Drawdown):** MDD has remained relatively high, indicating significant potential for losses during downturns. It is at the highest level during 2020-2023.
+*   **Alpha:** Alpha is consistently negative in recent periods (2017-2025), suggesting underperformance relative to the market.
+*   **Beta:** Beta is relatively consistent, ranging from 1.1 to 1.4, indicating that CRM's price tends to move more than the market as a whole.
+*   **Cap(B) (Market Capitalization):** Market Cap has increased significantly, with the exception of the period 2020-2022.
 
 **2) Recent Stock Price Fluctuations**
 
-*   **Current Price:** $253.62
-*   **Previous Close:** $264.91
-*   **Change:** -4.26%
+*   **Current Close:** 253.62
+*   **Previous Close:** 264.91
+*   **Change:** -4.26
 *   **5-day SMA:** 263.35
 *   **20-day SMA:** 260.64
 *   **60-day SMA:** 249.29
 
 **Analysis:**
 
-The current price is below the 5-day and 20-day Simple Moving Averages (SMAs), suggesting short-term downward momentum. However, the price is above the 60-day SMA, indicating a potential longer-term upward trend. The negative change from the previous close further reinforces the recent downward pressure.
+The stock price has recently decreased, as evidenced by the negative change from the previous close.  The 5-day and 20-day SMAs are both above the current price, suggesting a recent downward trend. The 60-day SMA is below the 5-day and 20-day SMAs, indicating a longer-term uptrend that may be weakening.
 
-**3) RSI, PPO Index and Delta_Previous_Relative_Divergence, Expected_Return**
+**3) RSI, PPO Index and Divergence Analysis**
 
-*   **Market Risk Indicator (MRI):** 0.8 (Medium Investment Recommended)
+*   **Market Risk Indicator (MRI):** 0.8 (Medium Investment)
 *   **RSI:** 37.53
 *   **PPO:** -0.25
-*   **Hybrid Signal:** cash_0%_Buy 90% of cash (1 shares - Safe - MRI:0.80)
-*   **Recent (20 days) relative divergence change:** 1.4 (+): 단기상승 (Short-term rise)
-*   **Expected Return (%):** -522.9%
+*   **Hybrid Signal:** cash_0%_Buy 90% of cash (1 shares - Safe - MRI:0.80) (Cash Ratio: 0% on 2025-12-04)
+*   **Recent (20 days) relative divergence change:** 1.4 (+): 단기상승 (Short-term increase)
+*   **Expected Return (%):** -522.9 (Negative Excess Return Compared to S&P 500)
 
 **Analysis:**
 
-*   The MRI of 0.8 suggests a "Medium Investment" recommendation, indicating moderate risk.
-*   The RSI of 37.53 is below 50 and nearing the oversold territory (typically below 30), which *could* indicate a potential buying opportunity.
-*   The negative PPO indicates that the short-term moving average is below the long-term moving average, suggesting a downtrend.
-*   The "Hybrid Signal" suggests a bullish stance, recommending using available cash to buy the stock, deemed safe by the MRI.
-*   The recent positive change in relative divergence suggests a potential short-term upward trend.
-*   The significantly negative expected return (-522.9%) is very concerning and suggests considerable downside risk if holding for more than two years.
+*   The MRI of 0.8 suggests a medium level of investment risk, according to the provided scale.
+*   The RSI of 37.53 is below 50, indicating that the stock is not overbought.
+*   The PPO of -0.25 suggests the stock is in a slight downtrend.
+*   The Hybrid Signal recommends to buy with 90% of cash.
+*   The positive change in relative divergence over the past 20 days indicates a potential short-term upward trend.
+*   The very large negative expected return is a significant concern, suggesting a very pessimistic outlook for CRM relative to the S&P 500 over the long term.
+*   The large price change from the previous close reflects the recent volatility in the stock.
 
 **4) Recent News & Significant Events**
 
-*   **Mixed News:** The news headlines present a mixed picture. Some articles suggest a potential rebound ("3 Big Rebound Stocks for 2026," "Top Pick For 2026"), while others report on stock dips ("Salesforce.com (CRM) Stock Dips") and insider selling ("Salesforce Insiders Sell"). The MrBeast Super Bowl pitch could be seen as a positive marketing initiative, but it's uncertain how much impact it would have.
-*   **Potential Concerns:** The insider selling could be a negative signal, suggesting that those with the most knowledge of the company's prospects are reducing their holdings.
-
-**4-2) Analyst Opinions**
-
-*   **Consensus:** No rating consensus provided
-*   **Target Price:** The average target price of $330.06 is significantly higher than the current price, indicating potential upside according to analysts. However, the range is wide ($223.00 - $475.00), reflecting uncertainty.
-*   **Recent Rating Changes:** No data provided.
-
-**5) Recent Earnings Analysis**
-
-| 날짜       | EPS  | 매출        |
-| :--------- | :--- | :---------- |
-| 2025-12-04 | 2.2  | 10.26 B$    |
-| 2025-09-04 | 1.97 | 10.24 B$    |
-| 2025-05-29 | 1.61 | 9.83 B$    |
-| 2024-12-04 | 1.6  | 9.44 B$    |
-| 2025-12-04 | 1.6  | 9.44 B$    |
+*   **Negative News:** Several articles highlight a recent stock dip ("Salesforce.com (CRM) Stock Dips While Market Gains"), discuss insider selling ("Salesforce Insiders Sell US$8.1m Of Stock, Possibly Signalling Caution"), and note the stock trading down.
+*   **Positive News:** Some articles are more positive, identifying Salesforce as a potential rebound stock ("3 Big Rebound Stocks for 2026") and suggesting that the "death of SaaS has been overstated," implying a positive outlook for Salesforce ("Salesforce: Top Pick For 2026, The Death Of SaaS Has Been Overstated").
+*   **Neutral/Miscellaneous News:** Some news covers Benioff's Super Bowl pitch and keeps CRM in focus.
 
 **Analysis:**
 
-The table reveals a generally positive trend in both EPS (Earnings Per Share) and Revenue. EPS has been increasing from 1.6 to 2.2, and revenue has grown steadily. This suggests improving financial performance.
+The news is mixed, with recent negative price action and insider selling being countered by some analysts seeing potential for a rebound. The insider selling is particularly concerning as it may indicate a lack of confidence in the company's future prospects among those with the most knowledge.
+
+**4-2) Analyst Opinions**
+
+*   **Consensus:**
+    *   Mean Rating: (No rating provided)
+    *   Number of Opinions: 53
+    *   Target Price (avg/high/low): 330.06 / 475.00 / 223.00
+*   **Recent Rating Changes:** None indicated.
+
+**Analysis:**
+
+The analyst consensus target price is $330.06, considerably higher than the current price of $253.62. This suggests that analysts, on average, believe the stock is undervalued. However, the wide range of target prices (from $223.00 to $475.00) indicates considerable uncertainty among analysts. The lack of recent rating changes suggests no major shifts in analyst sentiment.
+
+**5) Recent Earnings Analysis**
+
+| Date       | EPS  | Revenue      |
+|------------|------|--------------|
+| 2025-12-04 | 2.2  | 10.26 B$     |
+| 2025-09-04 | 1.97 | 10.24 B$     |
+| 2025-05-29 | 1.61 | 9.83 B$      |
+| 2024-12-04 | 1.6  | 9.44 B$      |
+| 2025-12-04 | 1.6  | 9.44 B$      |
+
+**Analysis:**
+
+Earnings Per Share (EPS) has generally increased over the past year, with a notable jump in the most recent quarter (2025-12-04). Revenue has also been steadily increasing, suggesting healthy growth in the company's core business.  Note the duplicate entry for 2024-12-04 and 2025-12-04 showing same values, this may indicate an error in the data.
 
 **6) Financial Information**
 
 **Revenue and Profitability:**
 
 | Quarter      | Revenue   | Profit Margin |
-| :----------- | :-------- | :-------------- |
-| 2025-10-31 | $10.26B | 78.02%        |
-| 2025-07-31 | $10.24B | 78.10%        |
-| 2025-04-30 | $9.83B  | 76.96%        |
-| 2025-01-31 | $9.99B  | 77.81%        |
-| 2024-10-31 | $9.44B  | 77.71%        |
-
-**Capital and Profitability:**
-
-| Quarter      | Equity    | ROE    |
-| :----------- | :-------- | :----- |
-| 2025-10-31 | $60.02B | 3.48%  |
-| 2025-07-31 | $61.33B | 3.08%  |
-| 2025-04-30 | $60.67B | 2.54%  |
-| 2025-01-31 | $61.17B | 2.79%  |
-| 2024-10-31 | $58.52B | 2.61%  |
+|--------------|-----------|---------------|
+| 2025-10-31   | $10.26B   | 78.02%        |
+| 2025-07-31   | $10.24B   | 78.10%        |
+| 2025-04-30   | $9.83B    | 76.96%        |
+| 2025-01-31   | $9.99B    | 77.81%        |
+| 2024-10-31   | $9.44B    | 77.71%        |
 
 **Analysis:**
 
-*   **Revenue and Profitability:** Revenue has shown consistent growth over the past five quarters. The profit margin is high, indicating that the company is efficient in converting revenue into profit.
-*   **Capital and Profitability:** Equity has generally increased, demonstrating growth in the company's net assets. The Return on Equity (ROE) has fluctuated.
+Revenue has shown consistent growth over the quarters. The profit margin is consistently high, indicating efficient operations.
+
+**Capital and Profitability:**
+
+| Quarter      | Equity    | ROE     |
+|--------------|-----------|---------|
+| 2025-10-31   | $60.02B   | 3.48%   |
+| 2025-07-31   | $61.33B   | 3.08%   |
+| 2025-04-30   | $60.67B   | 2.54%   |
+| 2025-01-31   | $61.17B   | 2.79%   |
+| 2024-10-31   | $58.52B   | 2.61%   |
+
+**Analysis:**
+
+Equity is relatively stable. Return on Equity (ROE) has fluctuated but shows an increasing trend.
 
 **7) Comprehensive Analysis (Summary)**
 
-*   **Underperformance:** CRM has significantly underperformed the S&P 500.
-*   **Volatility:** The stock exhibits high volatility.
-*   **Mixed Signals:** Technical indicators provide mixed signals, with short-term downward pressure but potential oversold conditions.
-*   **Positive Earnings:** Recent earnings reports show positive trends in EPS and revenue.
-*   **Analyst Optimism:** Analysts have a generally positive outlook with a high target price.
-*   **Conflicting News:** Recent news articles offer conflicting views, highlighting both potential rebound opportunities and concerns about stock dips and insider selling.
-*   **High negative expected return:** High negative expected return indicate concerns about the company's future performance.
+Salesforce (CRM) has significantly underperformed the S&P 500, reflected in its negative cumulative return and high negative divergence. While revenue and EPS have been growing, the stock price has been volatile and recently trending downwards. Analyst target prices suggest potential upside, but there's considerable uncertainty and recent insider selling raises concerns. The extremely negative expected return is a major red flag.
 
 **Overall Recommendation:**
 
-Based on the data, CRM presents a mixed investment opportunity.
-
-*   **Potential Positives:** Solid revenue and profit growth. High profit margins. Analysts' optimistic target price.
-*   **Significant Risks:** Underperformance compared to the market. High volatility. Negative expected return. Insider selling and conflicting news.
+Given the mixed signals – strong revenue growth, high profit margins, but significant underperformance, negative expected return, and recent stock price decline – a cautious approach is warranted. While some analysts see potential for a rebound, the risks appear substantial. A wait-and-see approach, monitoring future earnings reports, analyst revisions, and insider activity, might be prudent before making any investment decision.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
