@@ -1,129 +1,152 @@
-2026-01-02 - Analysis Report
-Okay, here's a comprehensive analysis of Sempra (SRE) based on the provided data.
+2026-01-04 - Analysis Report
+Okay, here's a report analyzing Sempra (SRE) based on the provided data, broken down into sections as requested.
 
-**1) Return Rate Comparison:**
+**1) Return Rate Comparison**
 
-*   **Company Overview:** Sempra is an energy infrastructure company focused on electricity and natural gas.
-*   **SRE Cumulative Return:** 12.42%
-*   **VOO Cumulative Return (S&P 500):** 91.40%
-*   **Divergence:** -92.7 (Relative Divergence: 5.4)
-*   **Analysis:** SRE has significantly underperformed the S&P 500 (VOO) over the measured period. The large negative divergence indicates SRE's performance has lagged considerably.  The relative divergence of 5.4 suggests that this underperformance is near its historical worst compared to VOO within the given data's range.
+*   **Ticker:** SRE
+*   **Company Name:** Sempra
+*   **Overview:** Sempra is a leading North American energy infrastructure company focused on delivering energy.
+*   **SRE Cumulative Return:** 14.11%
+*   **VOO (S&P 500) Cumulative Return:** 91.00%
+*   **Divergence:** -79.0 (Max: 14.0, Min: -85.1, Relative Divergence: 6.2)
 
-**Alpha, Beta Analysis**
+**Analysis:**
 
-| Year       | CAGR     | MDD      | Alpha   | Beta | Cap(B) |
-|------------|----------|----------|---------|------|--------|
-| 2016-2018  | 1.0%     | 99.9%    | -3.0%   | 0.4  | 35.3   |
-| 2017-2019  | 32.0%    | 98.2%    | 14.0%   | 0.3  | 49.4   |
-| 2018-2020  | -4.0%    | 99.8%    | -25.0%  | 0.8  | 41.6   |
-| 2019-2021  | -2.0%    | 100.0%   | -46.0%  | 0.9  | 43.2   |
-| 2020-2022  | -14.0%   | 100.0%   | -12.0%  | 0.8  | 50.4   |
-| 2021-2023  | 22.0%    | 99.9%    | 21.0%   | 0.6  | 48.8   |
-| 2022-2024  | 11.0%    | 74.9%    | -9.0%   | 0.5  | 57.2   |
-| 2023-2025  | -14.0%   | 99.9%    | -76.0%  | 0.6  | 57.6   |
+Sempra has significantly underperformed the S&P 500 (VOO) over the period represented by the cumulative returns.  The divergence is large and negative, indicating substantial underperformance. The relative divergence of 6.2 suggests that this level of underperformance is near the lower end of its historical range relative to the S&P 500.
 
-*   **CAGR (Compound Annual Growth Rate):** Fluctuates significantly year to year, indicating volatile performance.
-*   **MDD (Maximum Drawdown):** Consistently high, nearing 100% in many periods, suggesting substantial risk and potential for large losses.
-*   **Alpha:** Primarily negative, indicating underperformance compared to a benchmark, and also substantial value destruction.
-*   **Beta:** Generally below 1, implying lower volatility than the market, but still indicating considerable potential for loss.
-*   **Cap(B) (Market Capitalization in Billions):** Shows growth in company size over time.
+**Alpha, Beta Analysis:**
 
-**2) Recent Stock Price Fluctuations:**
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2016-2018  | 1.0% | 10.9% | -3.0% | 0.4 | 35.3 |
+| 2017-2019  | 32.0% | 10.9% | 14.0% | 0.3 | 49.4 |
+| 2018-2020  | -4.0% | 43.5% | -25.0% | 0.8 | 41.6 |
+| 2019-2021  | -2.0% | 43.5% | -46.0% | 0.9 | 43.2 |
+| 2020-2022  | -14.0% | 43.5% | -12.0% | 0.8 | 50.4 |
+| 2021-2023  | 22.0% | 12.9% | 21.0% | 0.6 | 48.8 |
+| 2022-2024  | 11.0% | 12.9% | -9.0% | 0.5 | 57.2 |
+| 2023-2025  | -14.0% | 28.7% | -76.0% | 0.6 | 57.6 |
 
-*   **Current Close:** 88.29
-*   **Previous Close:** 89.09
-*   **Change:** -0.9%
-*   **5-day SMA:** 88.75
-*   **20-day SMA:** 88.62
-*   **60-day SMA:** 91.09
-*   **Analysis:** The stock is currently trading below both its 5-day and 20-day simple moving averages, and significantly below its 60-day SMA, signaling a short-term downtrend.  The price has recently decreased (change of -0.9%).
+**Analysis:**
 
-**3) Indicator Analysis:**
+*   **Alpha:** Alpha is frequently negative, suggesting SRE often underperforms its benchmark after accounting for market risk.  There are periods of positive alpha (2017-2019, 2021-2023) but the most recent period shows a very negative alpha.
+*   **Beta:** Beta values are generally below 1, indicating that SRE is less volatile than the overall market. However, it has seen increase from 0.3 (2017-2019) to 0.8 (2018-2020). In recent years, the beta value has been in the range of 0.5~0.6, which is quite stable.
+*   **CAGR:** The Compound Annual Growth Rate (CAGR) shows volatile performance over the periods. The recent year show poor returns.
+*   **MDD:** The Maximum Drawdown (MDD) shows the maximum loss from peak to trough during the period. The year 2018-2020, 2019-2021, 2020-2022 show relatively high drawdown compared to other periods.
 
-*   **MRI (Market Risk Indicator):** 0.9 (High Investment Recommended) - This contradicts much of the other data, as it's indicating a high investment opportunity despite the poor performance and high volatility.
-*   **RSI (Relative Strength Index):** 44.16 -  Neutral; not overbought or oversold.
-*   **PPO (Percentage Price Oscillator):** 0.1756 - Slightly positive, suggesting a minor short-term bullish trend.
-*   **Hybrid Signal:** cash_0%_Buy 100% of cash (22 shares - Very Safe - MRI:0.90) -  Recommends a full investment despite other concerns.
-*   **Recent (20 days) relative divergence change:** 1.1 (+): 단기상승 (Short-term increase). This contradicts the stock price data provided.
-*   **Expected Return (%):** 0.0 - No expected excess return compared to S&P 500.
+**2) Recent Stock Price Fluctuations**
 
-**4) Recent News & Significant Events:**
+*   **Close:** 89.71
+*   **Last-market:** Price: 89.71, Previous Close: 88.29, Change: 1.61
+*   **5-day SMA:** 88.92
+*   **20-day SMA:** 88.57
+*   **60-day SMA:** 91.02
 
-*   **Hennessy Advisors Inc. Reduces Stock Holdings:** Suggests institutional investors are reducing their positions, which could be a negative signal.
-*   **Sempra Is Just Getting Started:**  A more positive outlook from Seeking Alpha, potentially indicating growth opportunities or undervaluation.
-*   **Sempra (SRE) Down 2.9% Since Last Earnings Report:** Indicates negative market reaction to a recent earnings release.
-*   **SRE Stock Forecasts and Market Perspective:** Could provide insights into future price targets and overall sentiment, but requires further investigation.
-*   **Fed Caution Ahead: 5 Low-Volatility Stocks to Buy for 2026:** Highlights Sempra's lower volatility relative to the broader market, making it attractive in uncertain economic conditions.
-*   **How To Earn $500 A Month From Sempra Stock:** Likely focuses on dividend income, which may be an attractive aspect of the stock.
+**Analysis:**
 
-**4-2) Analyst Opinions:**
+The stock price closed at 89.71, and the recent market action indicates a positive change. The 5-day and 20-day SMAs are below the 60-day SMA, suggesting a possible short-term uptrend following a recent dip. The fact that the price is approaching the 60-day SMA could indicate potential resistance.
 
-*   **Consensus:** Buy (Mean: 1.82) - Analysts, on average, rate the stock as a buy.
-*   **Target Price:** $100.07 (Average) - Suggests a potential upside from the current price of $88.29.
-*   **Recent Rating Changes:** No recent changes are listed.
+**3) RSI, PPO, and Expected Return**
 
-**5) Recent Earnings Analysis:**
+*   **MRI:** 0.8 (Medium Investment Recommended)
+*   **RSI:** 54.62
+*   **PPO:** 0.26
+*   **Hybrid Signal:** cash_0%_Buy 90% of cash (10 shares - Safe - MRI:0.80) Monthly invest 0.8% of total investment ($1,000.00) (Cash Ratio: 0% on 2026-01-02)
+*   **Recent (20 days) Relative Divergence Change:** 1.3 (+): Short-term rise
+*   **Expected Return (%):** -488.0
 
-| 날짜       | EPS   | 매출     |
-|------------|-------|----------|
-| 2025-11-05 | 0.12  | 2.76 B$  |
-| 2025-08-07 | 0.71  | 2.70 B$  |
-| 2025-05-08 | 1.39  | 3.68 B$  |
-| 2024-11-06 | 1.01  | 2.57 B$  |
-| 2025-11-05 | 1.01  | 2.57 B$  |
+**Analysis:**
 
-*   **EPS (Earnings Per Share):** Fluctuates significantly quarter to quarter. The most recent EPS (0.12) is notably low.
-*   **매출 (Revenue):** Also fluctuates, suggesting inconsistent performance.
+*   **MRI:** The Medium Investment recommendation suggests a moderate level of risk based on market conditions.
+*   **RSI:** The RSI of 54.62 is neutral, indicating neither overbought nor oversold conditions.
+*   **PPO:** The PPO (Percentage Price Oscillator) of 0.26 is slightly positive.
+*   **Hybrid Signal:** The hybrid signal suggests a buying strategy (90% of available cash) with a small monthly investment.
+*   **Recent Divergence Change:** The positive change in relative divergence suggests a recent short-term upward trend compared to the comparison asset.
+*   **Expected Return:** The extremely negative expected return (-488.0%) is a major concern. This could indicate severe headwinds for Sempra in the long term or an error in the calculation. It strongly suggests avoiding a long-term investment in Sempra at this time, based solely on this metric.
 
-**6) Financial Information:**
+**4) Recent News & Significant Events**
+
+*   **Sempra Is Just Getting Started (NYSE:SRE) - Seeking Alpha:** This headline is optimistic, suggesting potential for future growth.
+*   **Hennessy Advisors Inc. Reduces Stock Holdings in Sempra Energy $SRE - MarketBeat:** This is a negative signal, indicating that at least one institutional investor is reducing their position in SRE.
+*   **Sempra (SRE) Down 2.9% Since Last Earnings Report: Can It Rebound? - Yahoo Finance:** This highlights recent underperformance following an earnings report. The question of a rebound implies uncertainty.
+*   **4 Low-Beta Defensive Stocks to Buy as Consumer Confidence Plummets - Zacks Investment Research:** This suggests Sempra *could* be a good defensive stock in the face of economic uncertainty, given its low beta.
+*   **SRE Stock Forecasts and Market Perspective - GuruFocus:** This suggests SRE Stock is fairly valued.
+*   **8 Most Profitable Utility Stocks to Buy Right Now - Insider Monkey:** This lists Sempra (SRE) as one of the 8 most profitable Utility Stocks to Buy Right Now
+
+**Analysis:**
+
+The news is mixed. While some articles highlight future potential and defensive characteristics, others point to recent underperformance, reduced institutional holdings and fair value. The reduction in stock holdings by Hennessy Advisors Inc. is a red flag. The conflicting headlines highlight the difficulty in predicting the company's future trajectory.
+
+**4-2) Analyst Opinions**
+
+*   **Consensus:** Buy (~1.82 on a 1-5 scale)
+*   **Opinions:** 15 analysts
+*   **Target Price (avg/high/low):** 100.07 / 115.00 / 87.00
+*   **Recent Rating Changes:**  No recent changes listed.
+
+**Analysis:**
+
+Despite the mixed news and concerning financial indicators, analysts generally have a "Buy" rating on the stock. The average target price suggests some upside potential from the current price. However, it is important to note that analysts' ratings are not always accurate. The lack of recent rating changes suggests no immediate shifts in analyst sentiment.
+
+**5) Recent Earnings Analysis**
+
+| 날짜       | EPS  | 매출       |
+|------------|------|------------|
+| 2025-11-05 | 0.12 | 2.76 B$    |
+| 2025-08-07 | 0.71 | 2.70 B$    |
+| 2025-05-08 | 1.39 | 3.68 B$    |
+| 2024-11-06 | 1.01 | 2.57 B$    |
+| 2025-11-05 | 1.01 | 2.57 B$    |
+
+**Analysis:**
+
+The earnings data shows volatility in both EPS (Earnings Per Share) and revenue. The most recent EPS is significantly lower than previous quarters. The revenue has fluctuated. The EPS and Revenue data do not show a clear positive trend.
+
+**6) Financial Information**
 
 **Revenue and Profitability:**
 
 | Quarter      | Revenue  | Profit Margin |
-|--------------|----------|---------------|
-| 2025-09-30   | $3.15B   | 42.94%        |
-| 2025-06-30   | $3.00B   | 46.73%        |
-| 2025-03-31   | $3.80B   | 47.21%        |
-| 2024-12-31   | $3.76B   | 49.23%        |
-| 2024-09-30   | $2.78B   | 44.49%        |
+|--------------|----------|----------------|
+| 2025-09-30   | $3.15B   | 42.94%         |
+| 2025-06-30   | $3.00B   | 46.73%         |
+| 2025-03-31   | $3.80B   | 47.21%         |
+| 2024-12-31   | $3.76B   | 49.23%         |
+| 2024-09-30   | $2.78B   | 44.49%         |
 
 **Capital and Profitability:**
 
-| Quarter      | Equity   | ROE     |
-|--------------|----------|---------|
-| 2025-09-30   | $31.17B  | 0.30%   |
-| 2025-06-30   | $31.72B  | 1.49%   |
-| 2025-03-31   | $31.66B  | 2.90%   |
-| 2024-12-31   | $31.24B  | 2.16%   |
-| 2024-09-30   | $29.72B  | 2.18%   |
+| Quarter      | Equity    | ROE   |
+|--------------|-----------|-------|
+| 2025-09-30   | $31.17B  | 0.30% |
+| 2025-06-30   | $31.72B  | 1.49% |
+| 2025-03-31   | $31.66B  | 2.90% |
+| 2024-12-31   | $31.24B  | 2.16% |
+| 2024-09-30   | $29.72B  | 2.18% |
 
-*   **Revenue:**  Shows some variability, with a general trend of moderate growth.
-*   **Profit Margin:** Relatively high and stable, indicating good operational efficiency.
-*   **Equity:** Gradually increasing, showing growth in the company's net worth.
-*   **ROE (Return on Equity):**  Fluctuates and is relatively low, especially in the most recent quarter. This suggests the company isn't effectively generating profits from its equity.
+**Analysis:**
 
-**7) Comprehensive Analysis (Summary):**
+*   **Revenue:** Revenue has been fluctuating.
+*   **Profit Margin:** Profit margins show some volatility.
+*   **Equity:** The equity of the company has been increasing slightly.
+*   **ROE:** ROE (Return on Equity) has decreased. The most recent ROE is significantly lower than the previous quarters.
+
+**7) Comprehensive Analysis**
 
 Sempra (SRE) presents a mixed picture.
 
-*   **Negative Signals:**
-    *   Significant underperformance compared to the S&P 500, as evidenced by the large negative divergence.
-    *   High Maximum Drawdown values in the Alpha, Beta analysis suggest substantial risk and potential for large losses.
-    *   Low recent EPS and ROE.
-    *   Recent decrease in stock price and trading below key moving averages.
-    *   Recent news of an institutional investor reducing their position.
-*   **Positive Signals:**
-    *   Analysts' Buy consensus and a target price above the current price.
-    *   Relatively stable and high profit margins.
-    *   Gradual increase in equity.
-    *   MRI indicates "High Investment Recommended" (though this seems contradictory given other data).
-    *   News articles suggesting potential for future growth.
-*   **Overall:** Sempra appears to be a company with some operational strengths (profit margins) but faces challenges in generating consistent growth and returns for investors.  The significant underperformance compared to the broader market is a major concern. The inconsistent earnings and low ROE also warrant attention.
+*   **Underperformance:** It has significantly underperformed the S&P 500 over a longer time frame. Alpha values are frequently negative indicating underperformance.
+*   **Recent Price Action:** Recent price action suggests a short-term uptrend, but the price remains below its 60-day SMA, which may act as resistance.
+*   **Mixed Indicators:** The MRI suggests medium investment risk. The RSI is neutral.
+*   **Concerning Expected Return:** The extremely negative expected return (-488%) is a significant red flag.
+*   **Mixed News:** News articles present a mixed view, with some highlighting potential and others pointing to recent struggles and institutional selling.
+*   **Analyst Optimism:** Despite some concerning data, analysts maintain a "Buy" rating with potential upside.
+*   **Volatile Earnings:** The earnings data shows volatility in EPS and revenue.
+*   **Declining Profitability:** ROE has declined.
 
-**Investment Recommendation:**
+**Conclusion:**
 
-Based on this analysis, a cautious approach is warranted. The MRI score, while seemingly positive, clashes with the other evidence suggesting a more tempered investment stance. If the long-term growth potential is high and you are seeking a utility with lower volatility compared to the broader market, SRE could be a consideration, but it requires careful monitoring of its financial performance and the factors contributing to its recent underperformance. The conflicting MRI should be discarded. Further due diligence and research are strongly recommended.
-
+Based on this data, a cautious approach to Sempra is warranted. While analysts are optimistic, the significant underperformance compared to the S&P 500, the extremely negative expected return, the recent negative news (institutional selling), and the volatile earnings data should raise concerns. The positive analyst ratings are a counterpoint, and further investigation is needed to understand the reasons for their optimism and to determine the validity of the -488% expected return.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
