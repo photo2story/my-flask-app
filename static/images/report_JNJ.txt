@@ -1,155 +1,138 @@
 2026-01-04 - Analysis Report
-Okay, here's a comprehensive report on Johnson & Johnson (JNJ) based on the provided data, organized as requested:
+Okay, here's a comprehensive report on Johnson & Johnson (JNJ) based on the provided data.
 
-**1) Return Rate vs. S&P 500 (VOO) Comparison**
+**1. Return Rate Comparison & Analysis**
 
 *   **Ticker:** JNJ
-*   **Company Overview:** Johnson & Johnson is a global healthcare company engaged in the research, development, manufacture, and sale of a broad range of products in the healthcare field.
-*   **JNJ Cumulative Return:** 52.36%
-*   **VOO Cumulative Return:** 91.00%
+*   **Company Overview:** Johnson & Johnson is a diversified healthcare company focused on pharmaceuticals, medical devices, and consumer health products.
+*   **Cumulative Return (JNJ):** 52.36%
+*   **Cumulative Return (VOO - S&P 500):** 91.00%
 *   **Divergence:**
-    *   Current: -38.9
-    *   Maximum: 13.6
-    *   Minimum: -62.5
-    *   Relative Divergence: 31.0
+    *   Current: -38.6
+    *   Relative Divergence: 31.4
+    *   (Max: 13.6, Min: -62.5)
 
-**Analysis:** JNJ has significantly underperformed the S&P 500 (VOO) over the period examined. The current divergence of -38.9 indicates a substantial difference in cumulative returns. The relative divergence of 31.0 suggests that the current divergence is closer to the minimum historical divergence than the maximum within the provided data range. This could imply that the underperformance is nearer to its worst point within that particular timeframe.
+**Analysis:** JNJ has significantly underperformed the S&P 500 over the period examined. The current divergence of -38.6 indicates a substantial difference in cumulative returns. The relative divergence of 31.4 suggests that the current divergence is relatively low compared to its historical range, suggesting that underperformance compared to the S\&P 500 has been worse at times, though it is still significantly negative.
 
 **Alpha, Beta Analysis:**
 
-| Year        | CAGR   | MDD    | Alpha  | Beta | Cap(B) |
-|-------------|--------|--------|--------|------|--------|
-| 2016-2018   | 6.0%   | 16.8%  | 3.0%   | 0.7  | 310.9  |
-| 2017-2019   | 18.0%  | 16.8%  | 1.0%   | 0.7  | 351.4  |
-| 2018-2020   | 19.0%  | 16.8%  | -2.0%  | 0.7  | 379.2  |
-| 2019-2021   | 32.0%  | 10.7%  | -12.0% | 0.6  | 412.2  |
-| 2020-2022   | 8.0%   | 13.8%  | 10.0%  | 0.5  | 425.6  |
-| 2021-2023   | -18.0% | 13.8%  | -19.0% | 0.3  | 377.6  |
-| 2022-2024   | -30.0% | 13.8%  | -50.0% | 0.2  | 348.4  |
-| 2023-2025   | 30.0%  | 13.8%  | -32.0% | 0.1  | 498.6  |
+| Year       | CAGR   | MDD   | Alpha  | Beta  | Cap(B) |
+|------------|--------|-------|--------|-------|--------|
+| 2016-2018  | 6.0%   | 16.8% | 3.0%   | 0.7   | 310.9  |
+| 2017-2019  | 18.0%  | 16.8% | 1.0%   | 0.7   | 351.4  |
+| 2018-2020  | 19.0%  | 16.8% | -2.0%  | 0.7   | 379.2  |
+| 2019-2021  | 32.0%  | 10.7% | -12.0% | 0.6   | 412.2  |
+| 2020-2022  | 8.0%   | 13.8% | 10.0%  | 0.5   | 425.6  |
+| 2021-2023  | -18.0% | 13.8% | -19.0% | 0.3   | 377.6  |
+| 2022-2024  | -30.0% | 13.8% | -50.0% | 0.2   | 348.4  |
+| 2023-2025  | 30.0%  | 13.8% | -32.0% | 0.1   | 498.6  |
 
-**Analysis:**
+*   **CAGR (Compound Annual Growth Rate):** Shows the average annual growth rate over the specified periods.  Fluctuating, but generally positive until recently.
+*   **MDD (Maximum Drawdown):** Represents the largest peak-to-trough decline during the period. Relatively stable MDD indicates consistent downside risk.
+*   **Alpha:**  Measures the excess return compared to the benchmark (market).  Negative alpha in recent periods suggests underperformance relative to the market. Alpha has trended negative in more recent years (especially 2021-2025).
+*   **Beta:** Measures the stock's volatility relative to the market. Beta consistently below 1 indicates lower volatility than the market. Beta has trended downward over time.
+*   **Cap(B):** Market Capitalization in Billions. Fluctuating, and at its highest recently.
 
-*   **CAGR (Compound Annual Growth Rate):**  CAGR fluctuates significantly, showing periods of strong growth (e.g., 2019-2021, 2023-2025) and periods of decline (e.g., 2021-2023, 2022-2024).
-*   **MDD (Maximum Drawdown):** MDD has been relatively consistent, suggesting moderate risk exposure, although MDD is not related to Beta.
-*   **Alpha:** Alpha, representing excess return relative to a benchmark, is negative in many periods, particularly in recent years. This reinforces the underperformance compared to the S&P 500.
-*   **Beta:** Beta steadily decreases over time, indicating that JNJ's price movements are becoming less correlated with the overall market and less sensitive to market fluctuations. The low Beta values (0.1 recently) suggest JNJ is behaving more like a defensive stock.
-*   **Cap(B) (Market Capitalization):** Market Cap has generally increased, with the most recent value being significantly higher, despite some periods of decline.
-*   The negative alpha in recent years suggests that JNJ has underperformed relative to what would be expected based on its beta.
+**2. Recent Stock Price Fluctuations**
 
-**2) Recent Stock Price Fluctuations**
-
-*   **Current Close:** 207.35
-*   **Last Market Data:**
-    *   Price: 207.35
-    *   Previous Close: 206.95
-    *   Change: 0.19
+*   **Close:** 207.35
+*   **Last-market:**  `{'price': 207.35, 'previousClose': 206.95, 'change': 0.19}`
 *   **5-day SMA:** 207.28
 *   **20-day SMA:** 206.994
 *   **60-day SMA:** 198.7602
 
-**Analysis:**
+**Analysis:** The current price is above all the SMAs and there is a bullish trend based on this information. The 5-day and 20-day SMAs are very close, suggesting short-term price stability. The price being significantly above the 60-day SMA indicates a recent upward trend. The `change` of 0.19 suggests a modest positive movement in the last trading session.
 
-*   The current price is slightly above both the 5-day and 20-day SMAs, suggesting a minor short-term uptrend.
-*   The price is significantly above the 60-day SMA, indicating a stronger medium-term uptrend.
-*   The relatively small change from the previous close (0.19) doesn't indicate significant volatility.
-
-**3) RSI, PPO Index, and Delta_Previous_Relative_Divergence Analysis**
+**3. RSI, PPO & Market Risk Indicator Analysis**
 
 *   **Market Risk Indicator (MRI):** 0.8 (Medium Investment Recommended)
 *   **RSI:** 43.29
-*   **PPO:** -0.3324
-*   **Hybrid Signal:** cash_0%_Buy 80% of cash (2 shares - Caution - MRI:0.70) (Cash Ratio: 0% on 2025-12-15)
-*   **Recent (20 days) relative divergence change:** 3.4 (+): 단기상승 (Short-term Increase)
-*   **Expected Return (%):** -53.0 (Over 2 years compared to S&P 500)
+*   **PPO:** -0.33
+*   **Hybrid Signal:** `cash_0%_Buy 80% of cash (2 shares - Caution - MRI:0.70)`
+*   **Recent (20 days) relative divergence change:** 2.6 (+): 단기상승 (Short-term increase)
+*   **Expected Return (%):** -52.2%
 
 **Analysis:**
 
-*   **MRI:** The MRI suggests a medium level of investment risk, indicating that it's reasonably suitable for investment.
-*   **RSI:** An RSI of 43.29 is neutral, not indicating overbought or oversold conditions.
-*   **PPO:** The negative PPO (-0.3324) suggests the price is below its moving average, which is not a strong signal.
-*   **Hybrid Signal:** The hybrid signal suggests a cautious approach, recommending only a partial allocation.
-*   **Divergence Change:** The positive change in divergence suggests that the underperformance gap relative to the S&P 500 has narrowed slightly in the short term.
-*   **Expected Return:** The very negative expected return of -53% compared to the S&P 500 is a *major* red flag. This suggests that based on current trends and analysis, JNJ is expected to significantly underperform the market over the next two years.
+*   **MRI:** The MRI of 0.8 suggests a medium level of investment risk, supporting a moderate investment approach.
+*   **RSI:** The RSI of 43.29 is below 50, indicating that the stock is not overbought, but it's also not in deeply oversold territory.
+*   **PPO:** The negative PPO (-0.33) suggests that the short-term moving average is below the long-term moving average, potentially indicating a downtrend, but it is not largely negative, suggesting that the trend is relatively neutral.
+*   **Hybrid Signal:** The hybrid signal suggests using caution and buying a limited number of shares (2) with 80% of available cash.
+*   **Divergence Change:** The recent increase in relative divergence suggests a short-term upward trend.
+*   **Expected Return:** The extremely negative expected return (-52.2%) is a significant concern.  It suggests a very pessimistic outlook for long-term investment in JNJ compared to the S&P 500 from this point.
 
-**4) Recent News & Significant Events (Yahoo Finance)**
+**4. Recent News & Significant Events**
 
-*   **[2025-12-30] More Upside For JNJ Stock In 2026?** (Forbes):  Positive outlook suggesting potential for future growth.
-*   **[2026-01-02] Johnson & Johnson declares $1.30 per share dividend for Q1 2026** (Investing.com):  Consistent dividend payments are generally seen as a positive sign, attracting income-focused investors.
-*   **[2025-12-12] Is J&J’s 45.8% 2025 Surge Justified by Its Cash Flow and Earnings Outlook?** (Yahoo Finance): This question suggests that there are concerns about whether the increase in stock price has a good basis in fundamentals.
-*   **[2025-12-12] These Institutional Investors Are Raising Their Stakes in Johnson & Johnson Stock. Should You Do the Same?** (The Motley Fool):  Institutional investment can be a positive signal, but further investigation is needed to understand their rationale.
-*   **[2026-01-03] Johnson & Johnson $JNJ Stock Position Increased by VIRGINIA RETIREMENT SYSTEMS ET Al** (MarketBeat):  Similar to the above, indicates institutional confidence.
-*   **[2025-12-30] Johnson & Johnson stock today: JNJ slips after $3.05B Halda cancer deal closes, Barclays lifts target** (ts2.tech):  A mixed signal. The stock slip after the deal is negative. The lifting of the target by Barclays is positive.
+*   **[2025-12-30] More Upside For JNJ Stock In 2026? - Forbes:** Suggests potential optimism for the future.
+*   **[2026-01-03] Johnson & Johnson stock today: JNJ’s $1.30 dividend sets key dates:** Focuses on dividend aspects, signaling stability for investors.
+*   **[2025-12-19] Jim Cramer Couldn’t Stop Gushing About Johnson & Johnson (JNJ)’s Cancer Drugs - Yahoo Finance:** Highlights positive developments in pharmaceuticals (cancer drugs).
+*   **[2026-01-02] Johnson & Johnson declares $1.30 per share dividend for Q1 2026 - Investing.com:** Reinforces dividend reliability.
+*   **[2026-01-04] Delta Investment Management LLC Acquires 5,284 Shares of Johnson & Johnson $JNJ - MarketBeat:** Indicates institutional investor confidence.
+*   **[2025-12-12] These Institutional Investors Are Raising Their Stakes in Johnson & Johnson Stock. Should You Do the Same? - The Motley Fool:** Signals possible buy opportunities based on institutional activity.
 
-**Analysis:** The news headlines present a mixed picture. There are positive signs such as dividend announcements, increased positions by institutional investors, and analyst target raises. However, there are also questions about whether the stock's 2025 performance is justified and price slips after deals, suggesting uncertainty or concerns among investors.
+**Analysis:** The news headlines present a mixed picture.  There are positive signals related to dividends, potential upside, cancer drug developments, and institutional investment.  This positive sentiment contrasts sharply with the negative expected return.
 
-**4-2) Analyst Opinions**
+**4-2. Analyst Opinions**
 
-*   **Consensus:** Buy (~2.16 on scale of 1-5)
+*   **Consensus:** Buy (Mean: 2.16)
 *   **Opinions:** 24
-*   **Target Price:** 210.13 (Avg), 240.00 (High), 155.00 (Low)
-*   **Recent Rating Changes:**  No changes provided.
+*   **Target Price:** Avg: 210.13 / High: 240.00 / Low: 155.00
+*   **Recent Rating Changes:** Not Available
 
-**Analysis:** The analyst consensus is generally positive, with a Buy rating and an average target price slightly above the current price. However, the wide range between the high and low target prices indicates a significant degree of uncertainty among analysts. The lack of recent rating changes limits the insight we can gain here.
+**Analysis:** The analyst consensus is "Buy," with an average target price slightly above the current price, suggesting a moderate upside potential. However, the wide range between high and low target prices indicates some uncertainty among analysts.
 
-**5) Recent Earnings Analysis**
+**5. Recent Earnings Analysis**
 
-| 날짜       | EPS  | 매출       |
-|------------|------|------------|
+| Date       | EPS  | Revenue     |
+|------------|------|-------------|
 | 2025-10-22 | 2.14 | 23.99 B$   |
 | 2025-07-24 | 2.3  | 23.74 B$   |
 | 2025-04-23 | 4.57 | 21.89 B$   |
 | 2024-10-23 | 1.12 | 22.47 B$   |
-| 2025-10-22 | 1.12 | 22.47 B$   |
+| 2025-10-22 | 1.12 | 22.47 B$ |
 
-**Analysis:**
+**Analysis:** Revenue appears to be relatively stable. EPS is fluctuating, but in the previous three quarters, the EPS has been higher than the past two years.
 
-*   Revenue has been generally increasing over the last few quarters, although the last quarter (2025-10-22) is similar to 2025-07-24
-*   EPS is volatile, with a notably high EPS in 2025-04-23, followed by significantly lower EPS in 2024-10-23 & 2025-10-22.
-*   Overall, the earnings data show some growth in revenue but varying profitability as measured by EPS. The EPS is volatile.
-
-**6) Financial Information**
+**6. Financial Information**
 
 **Revenue and Profitability:**
 
-| Quarter    | Revenue   | Profit Margin |
-|------------|-----------|----------------|
-| 2025-09-30 | $23.99B   | 69.56%         |
-| 2025-06-30 | $23.74B   | 67.87%         |
-| 2025-03-31 | $21.89B   | 66.40%         |
-| 2024-12-31 | $22.52B   | 68.35%         |
-| 2024-09-30 | $22.47B   | 69.01%         |
+| Quarter      | Revenue   | Profit Margin |
+|--------------|-----------|---------------|
+| 2025-09-30   | $23.99B   | 69.56%         |
+| 2025-06-30   | $23.74B   | 67.87%         |
+| 2025-03-31   | $21.89B   | 66.40%         |
+| 2024-12-31   | $22.52B   | 68.35%         |
+| 2024-09-30   | $22.47B   | 69.01%         |
 
 **Capital and Profitability:**
 
-| Quarter    | Equity    | ROE     |
-|------------|-----------|---------|
-| 2025-09-30 | $79.28B   | 6.50%   |
-| 2025-06-30 | $78.47B   | 7.06%   |
-| 2025-03-31 | $78.11B   | 14.08%  |
-| 2024-12-31 | $71.49B   | 4.80%   |
-| 2024-09-30 | $70.16B   | 3.84%   |
+| Quarter      | Equity    | ROE     |
+|--------------|-----------|---------|
+| 2025-09-30   | $79.28B   | 6.50%   |
+| 2025-06-30   | $78.47B   | 7.06%   |
+| 2025-03-31   | $78.11B   | 14.08%  |
+| 2024-12-31   | $71.49B   | 4.80%   |
+| 2024-09-30   | $70.16B   | 3.84%   |
 
 **Analysis:**
 
-*   **Revenue:**  Revenue shows a generally upward trend.
+*   **Revenue:** Revenue is relatively stable across the past five quarters.
 *   **Profit Margin:** Profit margins are consistently high, indicating strong profitability.
-*   **Equity:**  Equity is also trending upwards.
-*   **ROE (Return on Equity):** ROE fluctuates, with a high point in 2025-03-31. The ROE is not trending upward with the increase in equity.
+*   **Equity:** Equity has been steadily increasing.
+*   **ROE (Return on Equity):** ROE fluctuates, with a significant spike in 2025-03-31 and then trending downward in the past two quarters. The recent quarters appear to be positive signals.
 
-**7) Comprehensive Analysis (Summary)**
+**7. Comprehensive Analysis**
 
-Overall, the analysis of Johnson & Johnson (JNJ) presents a mixed picture with concerning trends.
+Johnson & Johnson presents a mixed investment picture.
 
-*   **Underperformance:** JNJ has significantly underperformed the S&P 500. Recent returns, MDD, and negative Alpha values indicate underperformance.
-*   **Technical Indicators:** The technical indicators are generally neutral, with RSI at neutral and PPO suggesting the price is below moving average.
-*   **Risk:** The MRI suggests a medium investment risk.
-*   **Dividends:** The dividend payouts are a positive sign for income investors.
-*   **Analyst Ratings:** Analysts have a Buy consensus, but wide target price range indicates uncertainty.
-*   **Earnings & Financials:** Revenue is growing, and profit margins are high, but EPS shows volatility. ROE is not trending upward with the increase in Equity.
-*   **News Sentiment:** The news sentiment is mixed, with both positive and negative headlines. The 45.8% 2025 Surge may not be justified by its cash flow and earnings outlook.
-*   **Negative Outlook:** A key concern is the significantly negative expected return (-53% compared to S&P 500), which raises serious questions about the stock's potential for future growth relative to the market.
-*   **Reduced Beta:** The trend of decreasing Beta suggests JNJ becoming more defensive, but also might be a signal of underperforming the market on the upside.
+*   **Negative Signals:** The stock has significantly underperformed the S&P 500.  The most alarming is the extremely negative expected return (-52.2%), signaling a pessimistic outlook compared to the market. Recent Alpha values have also been trending negative.
+*   **Positive Signals:** The analyst consensus is a "Buy." Recent news headlines indicate positive developments in cancer drugs, dividend reliability, and institutional investment. Profit margins are high, and recent SMA, EPS and ROE values are showing a positive trend.
+*   **Mixed Signals:** The MRI suggests a medium level of risk. The hybrid signal advises cautious buying.
+
+**Recommendation:**
+
+Given the very negative expected return and underperformance against the S&P 500, a cautious approach is warranted. While some positive signals exist, the negative outlook should not be ignored. Further investigation into the factors driving the negative expected return is necessary before making a significant investment decision. The hybrid signal's recommendation to buy a small number of shares with caution seems appropriate.
 
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
