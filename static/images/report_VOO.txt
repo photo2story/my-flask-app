@@ -1,96 +1,98 @@
-2026-01-10 - Analysis Report
-Here's a breakdown of the provided data, followed by a comprehensive analysis:
+2026-01-12 - Analysis Report
+**English Report**
+===============
 
-**1. Return Rate Comparison & Analysis:**
+**Company Overview**
+-------------------
 
-*   **Ticker:** VOO
-*   **Company Name:** Vanguard S&P 500 - A passively managed ETF that tracks the S&P 500 index.
-*   **Cumulative Return (Review Stock):** 92.74%
-*   **Cumulative Return (VOO):** 92.74%
-*   **Divergence:**
-    *   Max: 0.0
-    *   Min: 0.0
-    *   Current: 0.0
-    *   Relative Divergence: 0.0
+Company Name = Vanguard S&P 500
+Description: Index fund tracking the S&P 500
 
-**Analysis:** The review stock perfectly mirrors the performance of VOO, indicating it's likely VOO itself, or a fund closely tracking it. There is no divergence, which is expected if they are the same.
+**Return Rate Comparison**
+-------------------------
 
-**Alpha, Beta & Performance Analysis (Based on Table):**
+The return rate of the provided data is equal to the return rate of VOO (S&P 500).
+Difference in cumulative return on the last day: 0.00
 
-| Year       | CAGR  | MDD   | Alpha | Beta | Cap(B) |
-| :----------- | :---- | :---- | :---- | :--- | :----- |
-| 2016-2018  | 4.0%  | 16.6% | 0.0%  | 1.0  | 538.2  |
-| 2017-2019  | 17.0% | 16.6% | 0.0%  | 1.0  | 692.7  |
-| 2018-2020  | 21.0% | 16.6% | 0.0%  | 1.0  | 804.9  |
-| 2019-2021  | 43.0% | 10.5% | 0.0%  | 1.0  | 1022.4 |
-| 2020-2022  | -2.0% | 18.8% | 0.0%  | 1.0  | 822.8  |
-| 2021-2023  | 1.0%  | 18.8% | 0.0%  | 1.0  | 1022.9 |
-| 2022-2024  | 19.0% | 15.6% | 0.0%  | 1.0  | 1261.8 |
-| 2023-2025  | 62.0% | 15.9% | 0.0%  | 1.0  | 1468.6 |
+**Historical Performance Analysis**
+-----------------------------------
 
-*   **CAGR (Compound Annual Growth Rate):** Varies significantly across periods, reflecting market fluctuations.  The 2023-2025 period shows a particularly strong CAGR of 62.0%.
-*   **MDD (Maximum Drawdown):**  Ranges from 10.5% to 18.8%, indicating the largest peak-to-trough decline during each period.  This is a measure of risk.
-*   **Alpha:** Consistently 0.0%, which is expected for an index-tracking ETF.  Alpha measures outperformance relative to a benchmark (in this case, itself).
-*   **Beta:**  Consistently 1.0, confirming that the fund moves in line with the S&P 500 index.
-*   **Cap(B) (Capitalization in Billions):** Shows the increasing size of the fund over time, reflecting its popularity and the overall growth of the market.
+### Annual Performance
+```markdown
+### Yearly Performance | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|---------------------|------|------|-------|------|-------|
+| **2016-2018**        | 4.0% | 16.6% | 0.0% | 1.0 | 534.6B |
+| **2017-2019**        | 17.0% | 16.6% | 0.0% | 1.0 | 688.1B |
+| **2018-2020**        | 21.0% | 16.6% | 0.0% | 1.0 | 799.5B |
+| **2019-2021**        | 43.0% | 10.5% | 0.0% | 1.0 | 1015.6B |
+| **2020-2022**        | -2.0% | 18.8% | 0.0% | 1.0 | 817.3B |
+| **2021-2023**        | 1.0% | 18.8% | 0.0% | 1.0 | 1016.1B |
+| **2022-2024**        | 19.0% | 15.6% | 0.0% | 1.0 | 1253.4B |
+| **2023-2025**        | 62.0% | 15.9% | 0.0% | 1.0 | 1458.8B |
+```
 
-**2. Recent Stock Price Fluctuations:**
+**Stock Price Fluctuations**
+---------------------------
 
-*   **Close:** 634.06
-*   **Last-market:** Price 638.31, Previous Close 634.06, Change 0.67
-*   **5-day SMA:** 632.75
-*   **20-day SMA:** 629.85
-*   **60-day SMA:** 623.56
+### Moving Averages
+```markdown
+* Close: $638.31
+* Last-market: $638.31 ($634.06 -> $638.31 -> +$4.25)
+* 5-day SMA: $634.75
+* 20-day SMA: $630.16
+* 60-day SMA: $624.05
+```
 
-**Analysis:** The stock price is currently trading above all three Simple Moving Averages (SMAs). This *could* suggest an upward trend.  However, SMAs are lagging indicators and should be used in conjunction with other analysis.  The "Last-market" data showing a slight positive change indicates a small, recent upward movement.
+**Indicator Metrics**
+----------------------
 
-**3. RSI, PPO & Market Risk Indicators:**
+### Technical Indicators
+```markdown
+* Market Risk Indicator (MRI): 0.70
+* RSI: 71.04
+* PPO: 0.05
+* Hybrid Signal: Buy, Risk Level: Medium
+* Recent relative divergence change (20 days): 0.00
+* 7-day Rank change: -3
+* 7-day Dynamic Expected Return change: 0.00
+```
 
-*   **MRI (Market Risk Indicator):** 0.7 (Medium Investment)
-*   **RSI (Relative Strength Index):** 71.34
-*   **PPO (Percentage Price Oscillator):** 0.0141
-*   **Hybrid Signal:** cash_0%_Buy 90% of cash (1 shares - Safe - MRI:0.80) (Cash Ratio: 0% on 2026-01-06)
-*   **Recent (20 days) relative divergence change:** 0.0 (-): 단기하락 (Short-term decline)
-*   **Expected Return (%):** 0.0 (Compared to S&P 500)
+**Expected Return**
+--------------------
 
-**Analysis:**
+Expected Return: 0.00%
 
-*   **MRI of 0.7:** Suggests a medium level of risk in the current market environment, warranting careful consideration before investing.
-*   **RSI of 71.34:**  Indicates that the stock is nearing "overbought" territory (typically above 70).  This *could* suggest a potential pullback is possible, but it doesn't guarantee one.
-*   **PPO of 0.0141:** A slightly positive PPO suggests a slight upward trend in momentum. However, the value is very small, indicating the momentum isn't particularly strong.
-*   **Hybrid Signal:** Recommends buying (with 0% cash reserve, which is fully invested).
-*   **Recent divergence change of 0.0:** Indicates the stock has been recently underperforming the comparison S&P 500.
-*   **Expected Return of 0.0%:** Suggests the model doesn't project any significant outperformance *relative to the S&P 500* over a long-term horizon.
+**News and Significant Events**
+-------------------------------
 
-**4. Recent News & Significant Events:**
+### Recent News
+* [2026-01-11] Stock Market Live June 10: S&P 500 (VOO) Rises as Investors Anticipate Voyager Space IPO - AOL.com
+* [2025-12-27] Better Vanguard ETF: VOO vs. VOOG - The Motley Fool
+* [2026-01-06] How the Largest ETFs Performed in 2025 - Morningstar
+* [2025-12-27] Better Vanguard ETF: VOO vs. VOOG - Yahoo Finance
+* [2026-01-02] VOO stock falls despite S&P 500 gains: here’s why - Rolling Out Magazine
+* [2026-01-08] Stock Market Live January 8: Trump Criticizes Big Business, S&P 500 (VOO) Falls - 24/7 Wall St.
 
-*   **Job Gains Disappoint, S&P 500 (VOO) Rises Anyway:**  Implies the market is currently reacting to factors beyond traditional economic indicators.
-*   **S&P 500 (VOO) Rises as Investors Anticipate Voyager Space IPO:** Suggests specific events (like IPOs) can drive market movement.
-*   **VOO vs. QQQ: Is S&P 500 Stability or Tech-Focused Growth the Better Choice for Investors?:**  Highlights the common investment decision between broad market exposure (VOO) and a more sector-specific approach (QQQ - Nasdaq 100).
-*   **How the Largest ETFs Performed in 2025:**  Provides context for the ETF's recent performance.
-*   **Top S&P 500 ETFs for January 2026:** Highlights VOO as a popular choice for S&P 500 exposure.
-*   **VOO stock falls despite S&P 500 gains: here’s why:** Implies some recent negative performance of VOO
+### Analyst Opinions
+```text
+Analyst Consensus:
+```
 
-**5. Comprehensive Analysis:**
+**Comprehensive Analysis**
+---------------------------
 
-The provided data suggests the following:
+The provided data indicates that the return rate of the provided data is equal to the return rate of VOO (S&P 500).
 
-*   **Market Alignment:** The investment vehicle under review mirrors the S&P 500 (VOO) perfectly.  This is confirmed by the 1.0 Beta, 0.0 Alpha, and identical cumulative returns.
-*   **Medium Risk:** The MRI suggests a medium risk investment, and the Hybrid Signal suggest 'Buy'.
-*   **Near Overbought:** The RSI indicates the stock is approaching overbought conditions, which *could* suggest a potential for a price correction.
-*   **Slight Momentum:** The PPO indicates slight upward momentum, but it is not strong.
-*   **Recent Underperformance:** Short-term divergence suggests recent underperformance compared to S&P 500.
-*   **Zero Expected Outperformance:** The model predicts no outperformance versus the S&P 500 in the long term.
-*   **News Impact:** Recent news events suggest that the S&P 500 is influenced by various factors, including economic data, IPOs, and investor preferences for different market segments.
+The historical performance analysis shows strong growth in the last few years, with CAGRs of 21.0% (2018-2020), 43.0% (2019-2021), and 62.0% (2023-2025).
 
-**Overall Summary & Recommendation:**
+The stock price fluctuations indicate a recent increase, with a 5-day SMA of $634.75 and a 20-day SMA of $630.16.
 
-The investment being analyzed appears to be a direct proxy or extremely close tracker of the S&P 500 (VOO).  Given the alignment with the S&P 500, the investment's suitability depends on an investor's overall market outlook.
+The indicator metrics show a medium risk level with a Market Risk Indicator (MRI) of 0.70 and a RSI of 71.04.
 
-*   **Bullish on the S&P 500:**  This could be a suitable investment, providing diversified exposure.  However, be mindful of the RSI approaching overbought levels and recent underperformance.
-*   **Bearish or Seeking Outperformance:**  This investment is likely *not* suitable.  Consider alternative investments with a different risk/reward profile or the potential for alpha generation.
+The expected return is 0.00%.
 
-**Disclaimer:** This analysis is based solely on the provided data and does not constitute financial advice. Investors should conduct their own research and consult with a qualified financial advisor before making any investment decisions.
+The recent news and significant events suggest that the S&P 500 is rising, with a strong performance in 2025.
 
+No analyst opinions were provided.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
