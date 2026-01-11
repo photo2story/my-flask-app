@@ -1,133 +1,110 @@
-2026-01-10 - Analysis Report
-Okay, here's a comprehensive analysis of Simon Property Group (SPG) based on the provided data, broken down into sections for clarity.
+2026-01-12 - Analysis Report
+**Simon Property Group Inc (SPG) Report**
+====================================
 
-**1) Return Rate Comparison & Alpha/Beta Analysis**
+### Overview
 
-*   **Company Overview:** Simon Property Group Inc. is a real estate investment trust (REIT) that owns, develops, and manages premier shopping, dining, entertainment, and mixed-use destinations, primarily in the United States.
-*   **Return Rate Divergence:**
-    *   SPG Cumulative Return: 21.37%
-    *   VOO (S&P 500) Cumulative Return: 92.74%
-    *   Divergence: -70.3 (Current). This indicates a significant underperformance of SPG compared to the S&P 500 over the period.
-    *   Relative Divergence: 32.4.  This means the current divergence is closer to the minimum divergence observed over the tracked period than the maximum.
+Simon Property Group Inc (NYSE:SPG) is a real estate investment trust (REIT) that owns, develops, and manages a portfolio of retail properties.
 
-*   **Alpha/Beta Analysis:**
+### Return Rate Analysis
+-------------------------
 
-    | Year       | CAGR   | MDD    | Alpha  | Beta  | Cap(B) |
-    |------------|--------|--------|--------|-------|--------|
-    | 2016-2018  | -2.0%  | 15.5%  | -5.0%  | 0.6   | 63.3   |
-    | 2017-2019  | -4.0%  | 15.5%  | -22.0% | 0.5   | 56.1   |
-    | 2018-2020  | -46.0% | 66.4%  | -67.0% | 1.3   | 32.1   |
-    | 2019-2021  | -30.0% | 66.4%  | -73.0% | 1.5   | 60.2   |
-    | 2020-2022  | -14.0% | 66.0%  | -12.0% | 1.4   | 44.2   |
-    | 2021-2023  | 46.0%  | 30.1%  | 45.0%  | 1.1   | 53.7   |
-    | 2022-2024  | 38.0%  | 26.4%  | 19.0%  | 1.0   | 64.9   |
-    | 2023-2025  | 51.0%  | 23.6%  | -11.0% | 0.9   | 69.7   |
+| **Ticker** | **Cumulative Return (%)** |
+| --- | --- |
+| SPG | 21.18% |
+| S&P 500 (VOO) | 94.03% |
 
-    *   **CAGR (Compound Annual Growth Rate):**  Shows the average annual growth rate over the period. Fluctuating significantly, including periods of substantial negative growth (e.g., -46% in 2018-2020), as well as periods of strong growth (e.g., 46% in 2021-2023 and 51% in 2023-2025).
-    *   **MDD (Maximum Drawdown):** Represents the largest peak-to-trough decline during the period, indicating risk. High MDDs (e.g., 66.4%) suggest significant volatility.
-    *   **Alpha:** Measures the stock's performance relative to its expected return, given its beta. Consistently negative Alpha values during certain periods (e.g., -73% in 2019-2021) suggest underperformance relative to its risk profile. More recently the alpha improved significantly, going into positive territory for 2021-2023.
-    *   **Beta:** Measures the stock's volatility relative to the market (S&P 500). A Beta around 1 indicates similar volatility to the market. Higher Beta values (e.g., 1.3-1.5) suggest greater volatility. SPG's Beta has generally been close to or slightly above 1.0, suggesting that it tends to be more volatile than the S&P 500. The Beta values have decreased somewhat recently.
-    *   **Cap(B) (Market Capitalization in Billions):** The market capitalization has fluctuated over the years, reflecting changing investor sentiment and market conditions.
+**Degree of Divergence:** -72.80 (Relative Divergence: 30.20%)
 
-**2) Recent Stock Price Fluctuations**
+The divergence of SPG from S&P 500 suggests that SPG has underperformed the market over the last period.
 
-*   Close Price: 184.98
-*   Last Market Data: {'price': 184.69, 'previousClose': 184.98, 'change': -0.16}
-*   5-day SMA: 184.462
-*   20-day SMA: 184.9285
-*   60-day SMA: 182.1072
+### Alpha, Beta Analysis
+------------------------
 
-*   **Analysis:** The current price is slightly below the 5-day and 20-day moving averages but above the 60-day moving average. This suggests a potential short-term downward trend but a longer-term upward trend. The `change` value indicates a minor price decrease in the last market day.
+| **Year** | **CAGR (%)** | **MDD (%)** | **Alpha (%)** | **Beta** | **Cap (B)** |
+| --- | --- | --- | --- | --- | --- |
+| 2016-2018 | -2.0% | 15.5% | -5.0% | 0.6 | 63.4 |
+| 2017-2019 | -4.0% | 15.5% | -22.0% | 0.5 | 56.2 |
+| 2018-2020 | -46.0% | 66.4% | -67.0% | 1.3 | 32.2 |
+| 2019-2021 | -30.0% | 66.4% | -73.0% | 1.5 | 60.3 |
+| 2020-2022 | -14.0% | 66.0% | -12.0% | 1.4 | 44.3 |
+| 2021-2023 | 46.0% | 30.1% | 45.0% | 1.1 | 53.8 |
+| 2022-2024 | 38.0% | 26.4% | 19.0% | 1.0 | 65.0 |
+| 2023-2025 | 51.0% | 23.6% | -11.0% | 0.9 | 69.8 |
 
-**3) RSI, PPO, and Expected Return Analysis**
+### Stock Price Analysis
+------------------------
 
-*   Market Risk Indicator (MRI): 0.7 (Medium Investment)
-*   RSI: 52.36 (Neutral)
-*   PPO: -0.1594 (Slightly Bearish)
-*   Hybrid Signal: cash_0%_Buy 100% of cash (1 shares - Very Safe - MRI:0.90) (Cash Ratio: 0% on 2025-12-24)
-*   Recent (20 days) relative divergence change: -0.3 (Short-term decline)
-*   Expected Return (%): -111.8
+* Close: $184.69
+* 5-day SMA: $184.61
+* 20-day SMA: $185.08
+* 60-day SMA: $182.25
 
-*   **Analysis:**
-    *   **MRI:** The MRI of 0.7 suggests a medium level of investment risk.
-    *   **RSI:** The RSI of 52.36 is in a neutral territory, indicating neither overbought nor oversold conditions.
-    *   **PPO:** The negative PPO suggests that the shorter-term moving average is slightly below the longer-term moving average, indicating a slightly bearish trend.
-    *   **Hybrid Signal:** This signal suggests a strong buy recommendation according to the system, although is is stated to be only a single share, and that cash should be 0%.
-    *   **Relative Divergence Change:** The negative change in relative divergence indicates a short-term decline in performance relative to the comparison stock.
-    *   **Expected Return:** The very low expected return of -111.8% is deeply concerning and suggests the model anticipates significant underperformance relative to the S&P 500 over a 2-year period, if an investment is made now.
+The 20-day SMA is above the close and 60-day SMA, indicating a potential short-term uptrend.
 
-**4) Recent News & Significant Events**
+### RSI, PPO Index Indicators and Delta
+--------------------------------------
 
-*   **Key Headlines:**
-    *   Refinancing reshaping SPG's balance sheet.
-    *   Institutional investment (Nisa Investment Advisors LLC buys shares).
-    *   Upcoming call on February 2.
-    *   New analyst price target of $189.
-    *   Article suggesting retaining SPG stock.
-    *   Downgrade of preferred stock by Evercore ISI Group.
+* MRI: 0.70 (Medium Investment)
+* RSI: 48.78
+* PPO: -0.16
+* Risk Level: Medium (MRI 0.70)
+* Recent relative divergence change: -2.20 ( worsening )
+* 7-day Rank change: 2 (+) (rank up)
+* 7-day Dynamic Expected Return change: -12.10 (-) (worsening)
 
-*   **Analysis:** The news is mixed. Refinancing and institutional investment are generally positive. The analyst price target provides a benchmark, but downgrades (particularly of preferred stock) should be noted. The existence of an article on retaining the stock also has some positive sentiment.
+### Analyst Opinions
+-------------------
 
-**4-2) Analyst Opinions**
+* Analyst Consensus:
+  - Key: Buy
+  - Mean (1=StrongBuy~5=Sell): 2.29 (~Buy)
+  - Opinions: 20
+  - Target Price (avg/high/low): 194.45 / 225.00 / 175.00
 
-*   **Consensus:** Buy (Mean: 2.29)
-*   **Target Price:** Average $194.50 (High: $225.00, Low: $175.00)
-*   **Recent Rating Changes:** No specific changes provided.
+### Recent Earnings Analysis
+---------------------------
 
-*   **Analysis:** The analyst consensus is generally positive ("Buy"), with an average price target slightly above the current price. However, the lack of recent rating change information is a limitation.
+| **Date** | **EPS** | **Revenue (B$)** |
+| --- | --- | --- |
+| 2025-10-30 | 3.86 | 3.89 |
+| 2025-08-01 | 3.5 | 3.75 |
+| 2025-04-29 | 3.55 | 3.78 |
+| 2024-10-25 | 3.12 | 3.58 |
+| 2025-10-30 | 3.12 | 3.58 |
 
-**5) Recent Earnings Analysis**
+EPS has been relatively stable over the last year, with revenue growth.
 
-| 날짜       | EPS  | 매출      |
-|------------|------|-----------|
-| 2025-10-30 | 3.86 | 3.89 B$   |
-| 2025-08-01 | 3.5  | 3.75 B$   |
-| 2025-04-29 | 3.55 | 3.78 B$   |
-| 2024-10-25 | 3.12 | 3.58 B$   |
-| 2025-10-30 | 3.12 | 3.58 B$   |
+### Financial Information
+----------------------
 
-*   **Analysis:**
-    *   **EPS (Earnings Per Share):** EPS has generally been increasing.
-    *   **Revenue:** Revenue has also been increasing.
-    *   The numbers suggest that SPG's performance is good in the short-term
+#### Revenue and Profitability
+--------------------------------
 
-**6) Financial Information**
+| **Quarter** | **Revenue (B$)** | **Profit Margin (%)** |
+| --- | --- | --- |
+| 2025-09-30 | 1.60 | 81.84% |
+| 2025-06-30 | 1.50 | 83.64% |
+| 2025-03-31 | 1.47 | 81.37% |
+| 2024-12-31 | 1.58 | 82.82% |
+| 2024-09-30 | 1.48 | 82.57% |
 
-Revenue and Profitability:
+#### Capital and Profitability
+-------------------------------
 
-| Quarter      | Revenue    | Profit Margin |
-|--------------|------------|---------------|
-| 2025-09-30   | $1.60B     | 81.84%       |
-| 2025-06-30   | $1.50B     | 83.64%       |
-| 2025-03-31   | $1.47B     | 81.37%       |
-| 2024-12-31   | $1.58B     | 82.82%       |
-| 2024-09-30   | $1.48B     | 82.57%       |
+| **Quarter** | **Equity (B$)** | **ROE (%)** |
+| --- | --- | --- |
+| 2025-09-30 | 2.35 | 25.83% |
+| 2025-06-30 | 2.45 | 22.72% |
+| 2025-03-31 | 2.61 | 15.91% |
+| 2024-12-31 | 2.94 | 22.71% |
+| 2024-09-30 | 2.71 | 17.54% |
 
-Capital and Profitability:
+Equity has increased over the last year, with ROE fluctuating.
 
-| Quarter      | Equity     | ROE       |
-|--------------|------------|-----------|
-| 2025-09-30   | $2.35B     | 25.83%    |
-| 2025-06-30   | $2.45B     | 22.72%    |
-| 2025-03-31   | $2.61B     | 15.91%    |
-| 2024-12-31   | $2.94B     | 22.71%    |
-| 2024-09-30   | $2.71B     | 17.54%    |
+### Comprehensive Analysis
+-------------------------
 
-*   **Analysis:**
-    *   **Revenue:** Revenue shows a generally upward trend.
-    *   **Profit Margin:** The profit margins are consistently high, indicating strong operational efficiency.
-    *   **Equity:** Equity has been decreasing.
-    *   **ROE (Return on Equity):** ROE has fluctuated but remained generally healthy.
-
-**7) Comprehensive Analysis (Summary)**
-
-*   **Underperformance:** SPG has significantly underperformed the S&P 500 over the period. The large negative expected return of -111.8% is a major red flag.
-*   **Volatility:** Beta suggests that SPG has a tendency to be more volatile than the overall market.
-*   **Mixed Signals:** Recent stock price movements are mixed. The price is above the 60-day SMA, and below the 5-day and 20-day SMA. Analyst consensus is buy, but with significant divergence in predicted prices. There is also a negative change in short term relative divergence.
-*   **Positive Fundamentals:**  Revenue and profit margins are strong and have generally been increasing.
-*   **Concerns:** Declining equity and highly negative expected returns compared to the S&P 500 are key warning signs.
-*   **News Impact:** Recent news events are mixed, indicating refinancing (potentially positive), institutional investment (positive), analyst price target (neutral), downgrade of preferred stock (negative), and an article about retaining the stock (positive).
-*   **Recommendation:** While the recent earnings and revenue are promising, the significant underperformance compared to the S&P 500 and the concerning expected return suggest caution. A high degree of skepticism is recommended and it may be recommended to avoid investment at this time, pending further investigation into the expected underperformance and decline in Equity. It would be important to understand *why* the model forecasts such poor returns, despite the superficially strong recent revenue, profitability, and analyst ratings.
-
+Overall, SPG has underperformed the market, with a moderate to high level of risk. The recent earnings analysis suggests stable EPS and revenue growth. The financial information indicates increased equity and fluctuating ROE. The analyst opinions suggest a buy recommendation with a target price of $194.45.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
