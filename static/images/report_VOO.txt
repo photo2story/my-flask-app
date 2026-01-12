@@ -1,98 +1,74 @@
 2026-01-12 - Analysis Report
-**English Report**
-===============
+**Report: Vanguard S&P 500 (VOO)**
 
-**Company Overview**
--------------------
-
-Company Name = Vanguard S&P 500
-Description: Index fund tracking the S&P 500
+**Overview**
+Vanguard S&P 500 is a widely traded ETF tracking the S&P 500 Index.
 
 **Return Rate Comparison**
--------------------------
 
-The return rate of the provided data is equal to the return rate of VOO (S&P 500).
-Difference in cumulative return on the last day: 0.00
+- **Return Rate (Rate):** 94.03%
+- **Return Rate (Rate_vs):** 94.03% (S&P 500, VOO)
+- **Divergence:** 0.00 (max: 0.00, min: 0.00, current: 0.00, relative divergence: 0.00%)
 
-**Historical Performance Analysis**
------------------------------------
+The cumulative returns of VOO and the S&P 500 (VOO) are identical, indicating no divergence.
 
-### Annual Performance
-```markdown
-### Yearly Performance | CAGR | MDD  | Alpha | Beta | Cap(B) |
-|---------------------|------|------|-------|------|-------|
-| **2016-2018**        | 4.0% | 16.6% | 0.0% | 1.0 | 534.6B |
-| **2017-2019**        | 17.0% | 16.6% | 0.0% | 1.0 | 688.1B |
-| **2018-2020**        | 21.0% | 16.6% | 0.0% | 1.0 | 799.5B |
-| **2019-2021**        | 43.0% | 10.5% | 0.0% | 1.0 | 1015.6B |
-| **2020-2022**        | -2.0% | 18.8% | 0.0% | 1.0 | 817.3B |
-| **2021-2023**        | 1.0% | 18.8% | 0.0% | 1.0 | 1016.1B |
-| **2022-2024**        | 19.0% | 15.6% | 0.0% | 1.0 | 1253.4B |
-| **2023-2025**        | 62.0% | 15.9% | 0.0% | 1.0 | 1458.8B |
-```
+**Alpha, Beta Analysis**
 
-**Stock Price Fluctuations**
----------------------------
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2016-2018  | 4.0% | 16.6% | 0.0%  | 1.0  | 534.6B |
+| 2017-2019  | 17.0% | 16.6% | 0.0%  | 1.0  | 688.1B |
+| 2018-2020  | 21.0% | 16.6% | 0.0%  | 1.0  | 799.5B |
+| 2019-2021  | 43.0% | 10.5% | 0.0%  | 1.0  | 1015.6B |
+| 2020-2022  | -2.0% | 18.8% | 0.0%  | 1.0  | 817.3B |
+| 2021-2023  | 1.0%  | 18.8% | 0.0%  | 1.0  | 1016.1B |
+| 2022-2024  | 19.0% | 15.6% | 0.0%  | 1.0  | 1253.4B |
+| 2023-2025  | 62.0% | 15.9% | 0.0%  | 1.0  | 1458.8B |
 
-### Moving Averages
-```markdown
-* Close: $638.31
-* Last-market: $638.31 ($634.06 -> $638.31 -> +$4.25)
-* 5-day SMA: $634.75
-* 20-day SMA: $630.16
-* 60-day SMA: $624.05
-```
+The Alpha (Alpha) remains consistent at 0.0% for all periods, with Beta (Beta) also remaining constant at 1.0. Market capitalization (Cap(B)) shows a steady increase.
 
-**Indicator Metrics**
-----------------------
+**Recent Stock Price Fluctuations**
 
-### Technical Indicators
-```markdown
-* Market Risk Indicator (MRI): 0.70
-* RSI: 71.04
-* PPO: 0.05
-* Hybrid Signal: Buy, Risk Level: Medium
-* Recent relative divergence change (20 days): 0.00
-* 7-day Rank change: -3
-* 7-day Dynamic Expected Return change: 0.00
-```
+- **Close:** $638.31
+- **5-day SMA:** $634.75
+- **20-day SMA:** $630.16
+- **60-day SMA:** $624.05
 
-**Expected Return**
---------------------
+The current price is greater than the 5-day SMA but lower than the 20-day SMA and 60-day SMA.
 
-Expected Return: 0.00%
+**RSI, PPO, and Delta_Previous_Relative_Divergence Analysis**
 
-**News and Significant Events**
--------------------------------
+- **Market Risk Indicator (MRI):** 0.70 (High Investment Recommended: 0.9~1.0, Medium Investment: 0.7~0.9, Low Investment: 0.4~0.7, Very Risky: <0.4)
+- **RSI:** 71.04
+- **PPO:** 0.05
+- **Delta_Previous_Relative_Divergence:** 0.00 (flat)
+- **7-day Rank change:** -3 (-): rank down
+- **7-day Dynamic Expected Return change:** 0.00 (flat)
+- **Sharp rebound / sharp decline issue:** reflected by the fluctuation in {'price': 638.31, 'previousClose': 632.46, 'change': 0.92}
 
-### Recent News
-* [2026-01-11] Stock Market Live June 10: S&P 500 (VOO) Rises as Investors Anticipate Voyager Space IPO - AOL.com
-* [2025-12-27] Better Vanguard ETF: VOO vs. VOOG - The Motley Fool
-* [2026-01-06] How the Largest ETFs Performed in 2025 - Morningstar
-* [2025-12-27] Better Vanguard ETF: VOO vs. VOOG - Yahoo Finance
-* [2026-01-02] VOO stock falls despite S&P 500 gains: here’s why - Rolling Out Magazine
-* [2026-01-08] Stock Market Live January 8: Trump Criticizes Big Business, S&P 500 (VOO) Falls - 24/7 Wall St.
+The market risk indicator suggests a medium risk level, and both the RSI and PPO are within neutral zones. However, the recent relative divergence change is flat, with a 7-day rank change of -3 and a 7-day dynamic expected return change also flat.
 
-### Analyst Opinions
+**Recent News & Significant Events**
+
+- [2026-01-11] Stock Market Live June 25: S&P 500 (VOO) Tracks Oil Prices Higher as Israel-Iran Ceasefire Holds - AOL.com
+- [2025-12-27] Better Vanguard ETF: VOO vs. VOOG - The Motley Fool
+- [2026-01-06] How the Largest ETFs Performed in 2025 - Morningstar
+- [2025-12-27] Better Vanguard ETF: VOO vs. VOOG - Yahoo Finance
+- [2026-01-02] VOO stock falls despite S&P 500 gains: here’s why - Rolling Out Magazine
+- [2026-01-09] Stock Market Live January 9: Job Gains Disappoint, S&P 500 (VOO) Rises Anyway - 24/7 Wall St.
+
+These recent news and significant events indicate that the market remains volatile, with various factors influencing stock prices.
+
+**Analyst Opinions**
+
 ```text
 Analyst Consensus:
 ```
 
-**Comprehensive Analysis**
----------------------------
+There is no available analyst consensus provided in the data.
 
-The provided data indicates that the return rate of the provided data is equal to the return rate of VOO (S&P 500).
+**Comprehensive Analysis (Summary of Previous Items, Including News)**
 
-The historical performance analysis shows strong growth in the last few years, with CAGRs of 21.0% (2018-2020), 43.0% (2019-2021), and 62.0% (2023-2025).
-
-The stock price fluctuations indicate a recent increase, with a 5-day SMA of $634.75 and a 20-day SMA of $630.16.
-
-The indicator metrics show a medium risk level with a Market Risk Indicator (MRI) of 0.70 and a RSI of 71.04.
-
-The expected return is 0.00%.
-
-The recent news and significant events suggest that the S&P 500 is rising, with a strong performance in 2025.
-
-No analyst opinions were provided.
+Considering the recent stock price fluctuations, the market risk indicator, and the news & significant events, the current performance of VOO can be characterized as neutral. The market risk indicator suggests a medium risk level, and the RSI and PPO indicators are within neutral zones. However, the recent relative divergence change is flat, and the 7-day rank change is down. In terms of news, various market factors are influencing the stock price, including oil prices and job gains. Overall, considering these factors and recent market movements, there is no clear indication of a buy or sell signal.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
