@@ -1,69 +1,115 @@
 2026-01-13 - Analysis Report
-## 1. Company Overview
-Alphabet Inc Class C (GOOG) is a multinational conglomerate specializing in internet-related services and products.
+**Company Overview**
+Alphabet Inc Class C (GOOG) is a multinational conglomerate.
 
-## 2. Return Rate Comparison
-* Cumulative return of review stock (GOOG): 178.05%
-* Cumulative return of comparison stock (VOO): 94.34%
-* Return rate of GOOG compared to VOO: 83.71% (178.05% - 94.34%)
-* Degree of divergence: 83.00 (max: 83.50, min: -21.00, current)
+**Return Comparison**
 
-## 3. Alpha and Beta Analysis
+* Cumulative return of review stock (GOOG): **178.05%**
+* Cumulative return of comparison stock (S&P 500, VOO): **94.34%**
+* Divergence (max: 83.50, min: -21.00, current: 81.00, relative divergence: 97.60%)
+
+```markdown
+### Return Rate Comparison
+| Rate | Rate_vs | Divergence |
+|------|---------|------------|
+| 178.05% | 94.34% | 83.71% |
+```
+
+**Alpha, Beta Analysis**
+
 | Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
 |------------|------|------|-------|------|-------|
-| 2016-2018  | 7.0% | 18.3% | 3.0% | 1.2 | 625.1B |
-| 2017-2019  | 21.0% | 18.3% | 3.0% | 1.3 | 807.0B |
-| 2018-2020  | 21.0% | 18.3% | 0.0% | 1.1 | 1057.4B |
-| 2019-2021  | 89.0% | 13.0% | 46.0% | 1.0 | 1746.5B |
-| 2020-2022  | -10.0% | 36.2% | -8.0% | 1.1 | 1071.1B |
-| 2021-2023  | -15.0% | 36.2% | -16.0% | 1.4 | 1701.3B |
-| 2022-2024  | 3.0% | 29.6% | -16.0% | 1.3 | 2299.0B |
-| 2023-2025  | 128.0% | 29.7% | 66.0% | 1.2 | 3788.1B |
+| **2016-2018** | **7.0%** | **18.3%** | **3.0%** | **1.2** | **625.1B** |
+| **2017-2019** | **21.0%** | **18.3%** | **3.0%** | **1.3** | **807.0B** |
+| **2018-2020** | **21.0%** | **18.3%** | **0.0%** | **1.1** | **1057.4B** |
+| **2019-2021** | **89.0%** | **13.0%** | **46.0%** | **1.0** | **1746.5B** |
+| **2020-2022** | **-10.0%** | **36.2%** | **-8.0%** | **1.1** | **1071.1B** |
+| **2021-2023** | **-15.0%** | **36.2%** | **-16.0%** | **1.4** | **1701.3B** |
+| **2022-2024** | **3.0%** | **29.6%** | **-16.0%** | **1.3** | **2299.0B** |
+| **2023-2025** | **128.0%** | **29.7%** | **66.0%** | **1.2** | **3788.1B** |
+```
 
-## 4. Recent Stock Price Fluctuations
-* 5-day SMA: $324.97
-* 20-day SMA: $314.79
-* 60-day SMA: $298.11
-* Last market change: +1.09
-* Recent fluctuation issue status: sharp rebound
+**Stock Price Fluctuations**
 
-## 5. Technical Indicators
-* RSI: 85.74
-* PPO: 0.33
-* Market Risk Indicator (MRI): 0.80
-* Hybrid Signal: Buy
-* Recent (20 days) relative divergence change: +8.00
-* 7-day Rank change: +5
-* 7-day Dynamic Expected Return change: -0.60%
+* Close: **$332.73**
+* Last-market: 
+ {'price': 332.73, 'previousClose': 329.145, 'change': 1.09}
+* 5-day SMA: **$324.97**
+* 20-day SMA: **$314.79**
+* 60-day SMA: **$298.11**
+```markdown
+### Stock Price Fluctuations
+| Figure | Value |
+|------|------|
+| Close | $332.73 |
+| Last-market | $332.73 |
+| 5-day SMA | $324.97 |
+| 20-day SMA | $314.79 |
+| 60-day SMA | $298.11 |
+```
 
-## 6. Expected Return
-* Expected Return: 2.90%
-* Expected excess return compared to S&P 500: N/A
+**RSI, PPO, Delta_Previous_Relative_Divergence, Expected_Return Analysis**
 
-## 7. News and Significant Events
-* Recent news headlines:
- * Alphabet (GOOG) stock week ahead: Washington pressure hits Google Play as earnings loom - TechStock² (link)
- * 2 Monster Stocks to Hold for the Next 5 Years - The Motley Fool (link)
- * Google Stock Vs. Microsoft And Amazon - Forbes (link)
- * U.S. Chess Champion is Bullish on these 3 Stocks – GOOG, ABVX, MP - TipRanks (link)
- * Is Google Stock a Buy at New All-Time Highs in January 2026? - Yahoo Finance (link)
- * 2 Dominant Tech Stocks to Buy in January and Hold for 5 Years - The Motley Fool (link)
+* Market Risk Indicator (MRI): **0.80**
+* Risk Level: Medium
+* RSI: **85.74**
+* PPO: **0.33**
+* Recent (20 days) relative divergence change: **8.00** (+): improving
+* 7-day Rank change: **5** (+): rank up
+* 7-day Dynamic Expected Return change: **-0.60** (-): worsening
+* Expected Return (%): **2.90%**
+```markdown
+### RSI, PPO, Expected Return Analysis
+| Indicator | Value |
+|------|------|
+| MRI | 0.80 |
+| RSI | 85.74% |
+| PPO | 0.33 |
+| Recent Div change | 8.00 (improving) |
+| 7-day Rank | 5 (+) |
+| Dynamic Expected Return | -0.60 (worsening) |
+| Expected Return | 2.90% |
+```
 
-## 8. Analyst Opinions
-* Analyst Consensus:
-  - Key: Strong_Buy
-  - Mean (1=StrongBuy~5=Sell): 1.46 (~Strong Buy)
-  - Opinions: 18
-  - Target Price (avg/high/low): 328.21 / 386.00 / 185.00
+**News & Significant Events (Recent 7 days)**
 
-## 9. Comprehensive Analysis
-Considering the provided content, the comprehensive analysis can be summarized as follows:
+* **2026-01-11**: Alphabet (GOOG) stock week ahead: Washington pressure hits Google Play as earnings loom - TechStock² (link)
+* **2026-01-09**: 2 Monster Stocks to Hold for the Next 5 Years - The Motley Fool (link)
+* **2026-01-09**: Google Stock Vs. Microsoft And Amazon - Forbes (link)
+* **2026-01-12**: U.S. Chess Champion is Bullish on these 3 Stocks – GOOG, ABVX, MP - TipRanks (link)
+* **2026-01-09**: Is Google Stock a Buy at New All-Time Highs in January 2026? - Yahoo Finance (link)
+* **2026-01-11**: 2 Dominant Tech Stocks to Buy in January and Hold for 5 Years - The Motley Fool (link)
 
-* Alphabet Inc Class C (GOOG) has a high cumulative return of 178.05%, exceeding that of the S&P 500 (VOO) by 83.71%. The divergence is significant, indicating a potential for higher returns in the long term.
-* The Alpha and Beta analysis indicates varying returns across different years, but no clear trend can be established.
-* Recent stock price fluctuations show a sharp rebound, suggesting a potential for further growth.
-* Technical indicators such as RSI and PPO are high, indicating potential overbought conditions. However, the Hybrid Signal is Buy, indicating a medium level of risk.
-* Analyst opinions are strongly bullish, with a target price of 328.21.
-* Recent news headlines suggest that Alphabet Inc Class C (GOOG) may be affected by regulatory pressure and economic conditions. However, this may also create opportunities for investment.
+**Analyst Opinions**
+
+```
+Analyst Consensus:
+- Key: Strong_Buy
+- Mean (1=StrongBuy~5=Sell): 1.46 (~Strong Buy)
+- Opinions: 18
+- Target Price (avg/high/low): 328.21 / 386.00 / 185.00
+```
+
+**Comprehensive Analysis**
+
+* Return on investment in GOOG exceeds S&P 500 by **83.71%**.
+* The cumulative return of GOOG for the last period is **178.05%**.
+* The divergence is at **97.60%** relative to the fluctuation range.
+* Market risk indicator is **0.80**, indicating a medium-risk investment.
+* Short-term technical indicators (RSI and PPO) suggest potential overbought conditions.
+* Expected return is **2.90%**.
+* Recent news highlights Washington pressure on Google Play and analyst opinions are bullish.
+
+```markdown
+### Comprehensive Analysis
+* GOOG's return exceeds S&P 500 by 83.71%.
+* Cumulative return for last period: 178.05%.
+* Divergence: 97.60% relative to fluctuation range.
+* Market risk indicator: 0.80 (medium-risk investment).
+* Potential overbought conditions (RSI 85.74%, PPO 0.33).
+* Expected return: 2.90%.
+* Recent news highlights: 
+  - Washington pressure on Google Play.
+  - Analyst opinions are bullish.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
