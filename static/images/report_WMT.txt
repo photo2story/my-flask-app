@@ -1,71 +1,81 @@
 2026-01-13 - Analysis Report
-# Walmart Inc Stock Analysis Report
+**Company Overview:**
+Walmart Inc, a multinational retail corporation.
 
-## Overview
-Walmart Inc is a multinational retail corporation.
+**Comparative Return Rate Analysis:**
+- **Review Stock Rate:**
+  * Cumulative Return = 165.24%
+- **Comparison Stock (VOO) Rate:**
+  * Cumulative Return = 94.34%
+- **Divergence:**
+  * Current Divergence = 63.50
+  * Relative Divergence = 89.90%
 
-## Return Rate Comparison
-* Cumulative return of review stock: 165.24%
-* Cumulative return of comparison stock (S&P 500, VOO): 94.34%
-* Difference in cumulative return on the last day of the data: 74.24% (or 70.94% when accounting for rounding)
- 
-**Note:** The provided divergence value (63.50) should not directly be considered when evaluating the difference of cumulative returns.
+The cumulative return of the review stock (WMT) is higher than that of the comparison stock (VOO) by 63.50, indicating a higher growth rate.
 
-## Alpha, Beta Analysis
-| Year    | CAGR | MDD  | Alpha | Beta  | Cap(B) |
-|---------|------|------|-------|-------|--------|
-| 2016-2018 | 28.0% | 16.3% | 25.0% | 0.6   | 247.6B |
-| 2017-2019 | 51.0% | 16.3% | 34.0% | 0.6   | 315.8B |
-| 2018-2020 | -16.0% | 16.3% | -37.0% | 0.5   | 383.1B |
-| 2019-2021 | -12.0% | 13.1% | -55.0% | 0.5   | 384.5B |
-| 2020-2022 | -3.0%  | 13.1% | -1.0%  | 0.5   | 376.8B |
-| 2021-2023 | 12.0%  | 12.6% | 11.0%  | 0.5   | 419.0B |
-| 2022-2024 | 87.0%  | 10.8% | 68.0%  | 0.4   | 720.4B |
-| 2023-2025 | 116.0% | 15.8% | 54.0%  | 0.5   | 888.3B |
+**Alpha, Beta Analysis:**
+```markdown
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|--------|
+| 2016-2018  | 28.0% | 16.3% | 25.0% | 0.6  | 247.6B |
+| 2017-2019  | 51.0% | 16.3% | 34.0% | 0.6  | 315.8B |
+| 2018-2020  | -16.0% | 16.3% | -37.0% | 0.5  | 383.1B |
+| 2019-2021  | -12.0% | 13.1% | -55.0% | 0.5  | 384.5B |
+| 2020-2022  | -3.0% | 13.1% | -1.0% | 0.5  | 376.8B |
+| 2021-2023  | 12.0% | 12.6% | 11.0% | 0.5  | 419.0B |
+| 2022-2024  | 87.0% | 10.8% | 68.0% | 0.4  | 720.4B |
+| 2023-2025  | 116.0% | 15.8% | 54.0% | 0.5  | 888.3B |
+```
 
-## Recent Stock Price Fluctuations
-* Close: $117.97
-* Last-market: {'price': 117.97, 'previousClose': 114.53, 'change': 3.0}
-* 5-day SMA: $114.53
-* 20-day SMA: $113.73
-* 60-day SMA: $108.89
+**Recent Stock Price Fluctuations:**
+- **Recent Close Price:** $117.97
+- **Previous Close Price:** $114.53
+- **Price Change (5 days):** $114.53
+- **5-day SMA:** $113.73
+- **20-day SMA:** $108.89
+- **60-day SMA:** $108.89
 
-## RSI, PPO Index Indicators and Delta_Previous Relative Divergence
-* Market Risk Indicator (MRI): 0.80 
-* RSI: 61.20
-* PPO: 0.08
-* Recent (20 days) relative divergence change: +0.80 (improving)
-* 7-day Rank change: +4 (rank up)
-* 7-day Dynamic Expected Return change: 0.00 (flat)
-* Expected Return: 4.00%
+The stock price has increased by $3.0 (2.61%) over the recent close price. The moving averages indicate a short-term trend of the stock price decreasing.
 
-## Recent News & Significant Events
-* Walmart Stock (WMT) Rallies on Nasdaq 100 Inclusion News - TipRanks (news.google.com)
-* Stocks making the biggest moves premarket: Capital One, Affirm, Walmart, Akamai, Sun Country & more - CNBC (news.google.com)
-* Bernstein Raises Walmart (WMT) Price Target on 2026 Consumer Spending Expectations - Yahoo Finance (news.google.com)
-* Walmart Partners With Alphabet Unit, Expands Drone Deliveries - Investor's Business Daily (news.google.com)
-* Is Walmart a Tech Stock? Its Planned Move to the Nasdaq 100 Is a Vote for 'Yes' - Investopedia (news.google.com)
-* Walmart Stock Nabs Record-High After Getting Nasdaq-100 Nod - Schaeffer's Investment Research (news.google.com)
+**RSI, PPO Index Indicators and Delta_Previous_Relative_Divergence:**
+- **Market Risk Indicator (MRI):** 0.80 (Medium Investment)
+- **Risk Level:** Medium
+- **RSI:** 61.20
+- **PPO:** 0.08
+- **7-day Rank change:** Rank up by 4
+- **Delta_Previous_Relative_Divergence:** 0.80 (+)
+- **Expected Return (%):** 4.00%
 
-## Analyst Opinions
-Analyst Consensus:
-- Key: Strong_Buy
-- Mean (1=StrongBuy~5=Sell): 1.36 (~Strong Buy)
-- Opinions: 39
-- Target Price (avg/high/low): 122.23 / 136.00 / 62.00
+The stock is at a medium risk level and has a moderate expected return.
 
-## Recent Earnings Analysis
-| Date     | EPS | Revenue |
-|----------|-----|---------|
-| 2025-12-03 | 0.77 | 177.77  B |
-| 2025-08-29 | 0.88 | 175.75  B |
-| 2025-06-06 | 0.56 | 163.98  B |
-| 2024-12-06 | 0.57 | 168.00  B |
-| 2025-12-03 | 0.57 | 168.00  B |
+**Recent News and Significant Events:**
+1. Walmart Stock (WMT) Rallies on Nasdaq 100 Inclusion News
+2. Stocks making the biggest moves premarket: Capital One, Affirm, Walmart, Akamai, Sun Country & more
+3. Bernstein Raises Walmart (WMT) Price Target on 2026 Consumer Spending Expectations
+4. Walmart Partners With Alphabet Unit, Expands Drone Deliveries
+5. Is Walmart a Tech Stock? Its Planned Move to the Nasdaq 100 Is a Vote for 'Yes'
+6. Walmart Stock Nabs Record-High After Getting Nasdaq-100 Nod
 
-## Financial Information
-Revenue and Profitability:
+**Analyst Opinions:**
+- **Analyst Consensus:** Strong_Buy
+- **Average Rating:** 1.36 (~Strong Buy)
+- **Opinions:** 39
+- **Target Price (avg/high/low):** 122.23 / 136.00 / 62.00
 
+**Recent Earnings Analysis:**
+```markdown
+| Date | EPS | Revenue |
+|-----|-----|---------|
+| 2025-12-03 | 0.77 | 177.77 B$ |
+| 2025-08-29 | 0.88 | 175.75 B$ |
+| 2025-06-06 | 0.56 | 163.98 B$ |
+| 2024-12-06 | 0.57 | 168.00 B$ |
+```
+
+The recent earnings for the company have shown a slight variation in the profit.
+
+**Revenue and Profitability Analysis:**
+```markdown
 | Quarter | Revenue | Profit Margin |
 |---------|----------|---------------|
 | 2025-10-31 | $179.50B | 24.95% |
@@ -73,9 +83,12 @@ Revenue and Profitability:
 | 2025-04-30 | $165.61B | 24.94% |
 | 2025-01-31 | $180.55B | 24.58% |
 | 2024-10-31 | $169.59B | 24.91% |
+```
 
-Capital and Profitability:
+The revenue and profit margin of the company have shown fluctuations in the last year.
 
+**Capital and Profitability Analysis:**
+```markdown
 | Quarter | Equity | ROE |
 |---------|---------|-----|
 | 2025-10-31 | $96.09B | 6.39% |
@@ -83,8 +96,16 @@ Capital and Profitability:
 | 2025-04-30 | $83.79B | 5.35% |
 | 2025-01-31 | $91.01B | 5.77% |
 | 2024-10-31 | $88.11B | 5.19% |
+```
 
-## Comprehensive Analysis
-Based on the provided data, Walmart Inc has been performing well in recent years. The stock has a high cumulative return and a strong analyst consensus. The stock price fluctuations have been relatively stable in the short-term. The RSI and PPO indicators suggest that the stock is currently in a neutral position. The news and significant events have also been positive for the stock. However, the dividend data and the return on equity were not provided in the given data.
+The equity and return on equity (ROE) of the company have shown fluctuations in the last year.
+
+**Comprehensive Analysis:**
+- Cumulative return of WMT is 165.24%, much higher than the cumulative return of VOO at 94.34%.
+- The stock has shown a moderate risk level with an expected return of 4.00%.
+- Analysts are positive with a consensus of Strong Buy and a target price of 122.23.
+- Recent earnings have shown slight variations in profit.
+- Revenue and profit margin have shown fluctuations in the last year.
+- Capital and ROE have also shown fluctuations in the last year.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
