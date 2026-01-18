@@ -1,53 +1,75 @@
-# 2026-01-18
-⚠️ Both Gemini and Groq failed. Showing raw facts only.
+# Daily Stock Market Trends — 2026-01-18
 
-```text
-Rank Movers (2026-01-13 vs 2026-01-18):
-  Risers:
-    - AMD: 22 -> 17 (+5)
-    - SMCI: 9 -> 5 (+4)
-    - ADA-USD: 33 -> 30 (+3)
-    - LINK-USD: 27 -> 24 (+3)
-    - BTC-USD: 3 -> 1 (+2)
-  Fallers:
-    - V: 132 -> 189 (-57)
-    - MA: 123 -> 179 (-56)
-    - NOW: 118 -> 173 (-55)
-    - CRM: 158 -> 211 (-53)
-    - SYK: 148 -> 199 (-51)
+## 0) How to read this
+- **Rank**: Lower is better (1 is best)
+- **DER (Dynamic Expected Return)**: Model's forward-looking expected change magnitude (up=improvement, down=deterioration)
+- **RD (Relative Divergence)**: Model consensus/confidence score (0~100, 100=full agreement)
 
-Dynamic Expected Return Trends (2026-01-13 to 2026-01-18):
-  Increasing:
-    - AMT: -4031.60 -> -2341.40 (Change: 1690.20)
-    - PEP: -1338.50 -> -287.50 (Change: 1051.00)
-    - DUK: -980.40 -> -403.20 (Change: 577.20)
-    - CSCO: -740.90 -> -476.40 (Change: 264.50)
-    - AEP: -282.80 -> -125.70 (Change: 157.10)
-  Decreasing:
-    - SOL-USD: 16684.90 -> 3806.40 (Change: -12878.50)
-    - CRM: -882.40 -> -4987.20 (Change: -4104.80)
-    - ONDO-USD: 5562.60 -> 3623.60 (Change: -1939.00)
-    - SYK: -1787.60 -> -3284.00 (Change: -1496.40)
-    - V: -268.80 -> -1721.40 (Change: -1452.60)
+---
 
-Relative Divergence Trends (2026-01-13 to 2026-01-18):
-  Increasing:
-    - BLK: 4.90 -> 19.70 (Change: 14.80)
-    - GEV: 49.80 -> 64.30 (Change: 14.50)
-    - PM: 49.60 -> 62.90 (Change: 13.30)
-    - CBRE: 73.80 -> 86.00 (Change: 12.20)
-    - LMT: 24.30 -> 35.80 (Change: 11.50)
-  Decreasing:
-    - SOL-USD: 52.50 -> 27.30 (Change: -25.20)
-    - CEG: 27.90 -> 17.10 (Change: -10.80)
-    - ISRG: 29.20 -> 20.10 (Change: -9.10)
-    - WFC: 45.70 -> 36.90 (Change: -8.80)
-    - ORCL: 23.70 -> 16.50 (Change: -7.20)
+## 1) Raw facts (no interpretation)
 
-Top 10 Changes (2026-01-17 vs 2026-01-18):
-  New Entries:
-    - AVGO (New Rank: 10, Old Rank: 13)
-  Exits:
-    - SOL-USD (Old Rank: 10, New Rank: 18)
+### Rank Movers ([2026-01-18] vs [2026-01-13])
+**Risers**
+- AMD: old_rank 22 -> new_rank 17 (+5)
+- SMCI: old_rank 9 -> new_rank 5 (+4)
+- ADA-USD: old_rank 33 -> new_rank 30 (+3)
+- LINK-USD: old_rank 27 -> new_rank 24 (+3)
+- BTC-USD: old_rank 3 -> new_rank 1 (+2)
+- AVGO: old_rank 13 -> new_rank 10 (-3)
 
-```
+**Fallers**
+- V: old_rank 132 -> new_rank 189 (-57)
+- MA: old_rank 123 -> new_rank 179 (-56)
+- NOW: old_rank 118 -> new_rank 173 (-55)
+- CRM: old_rank 158 -> new_rank 211 (-53)
+- SYK: old_rank 148 -> new_rank 199 (-51)
+- SOL-USD: old_rank 10 -> new_rank 18 (+8)
+
+### Dynamic Expected Return (DER) Trends
+**Increasing**
+- AMT: start_val -4031.60 -> end_val -2341.40 (+1690.20)
+- PEP: start_val -1338.50 -> end_val -287.50 (+1051.00)
+- DUK: start_val -980.40 -> end_val -403.20 (+577.20)
+- CSCO: start_val -740.90 -> end_val -476.40 (+264.50)
+- AEP: start_val -282.80 -> end_val -125.70 (+157.10)
+
+**Decreasing**
+- SOL-USD: start_val 16684.90 -> end_val 3806.40 (-12878.50)
+- CRM: start_val -882.40 -> end_val -4987.20 (-4104.80)
+- ONDO-USD: start_val 5562.60 -> end_val 3623.60 (-1939.00)
+- SYK: start_val -1787.60 -> end_val -3284.00 (-1496.40)
+- V: start_val -268.80 -> end_val -1721.40 (-1452.60)
+
+### Relative Divergence (RD) Trends
+**Increasing**
+- BLK: start_val 4.90 -> end_val 19.70 (+14.80)
+- GEV: start_val 49.80 -> end_val 64.30 (+14.50)
+- PM: start_val 49.60 -> end_val 62.90 (+13.30)
+- CBRE: start_val 73.80 -> end_val 86.00 (+12.20)
+- LMT: start_val 24.30 -> end_val 35.80 (+11.50)
+
+**Decreasing**
+- SOL-USD: start_val 52.50 -> end_val 27.30 (-25.20)
+- CEG: start_val 27.90 -> end_val 17.10 (-10.80)
+- ISRG: start_val 29.20 -> end_val 20.10 (-9.10)
+- WFC: start_val 45.70 -> end_val 36.90 (-8.80)
+- ORCL: start_val 23.70 -> end_val 16.50 (-7.20)
+
+### Top 10 Changes ([2026-01-17] vs [2026-01-18])
+- **No changes**
+
+---
+
+## 2) What matters today
+- **Biggest event**: The cryptocurrency 'BTC-USD' saw a significant rise in its ranking, changing from 3 to 1 (+2) in just 5 days.
+- **Biggest risk event**: 'V' saw an enormous decline in its ranking, going from 132 to 189 (-57) over the same period.
+
+---
+
+## 3) Quick takeaways
+- **One-line summary**: Stocks continue to diverge, but sector bias remains relatively stable.
+- **Today's watch list**
+  - AMD: AMD's improved performance indicates strong future potential.
+  - AVGO: AVGO has seen a significant fall in its ranking, which suggests potential for a rebound.
+  - SOL-USD: The sharp decline of SOL-USD highlights potential for increased investor caution.
