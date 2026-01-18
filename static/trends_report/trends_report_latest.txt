@@ -7,65 +7,74 @@
 
 ---
 
-## 1) Raw facts (no interpretation)
+## Macro Context (MRI)
+### Macro Indicator Trends (MRI Components)
+- **VIX**: 5D ▲ +0.39 / 20D ▼ -1.03
+- **FEDFUNDS**: 5D ▼ -0.37 / 20D ▼ -0.61
+- **DGS10**: 5D ▼ -0.02 / 20D ▲ +0.05
+- **DGS3MO**: 5D ▲ +0.06 / 20D ▲ +0.06
+- **Spread**: 5D ▼ -0.08 / 20D ▼ -0.01
 
-### Rank Movers ([2026-01-18] vs [2026-01-13])
+---
+
+## 1) Raw facts (no interpretation)
+### Rank Movers ([date1] vs [date2])
 **Risers**
-- AMD: 22 -> 16 (+6)
-- LINK-USD: 27 -> 22 (+5)
-- SMCI: 9 -> 5 (+4)
-- ADA-USD: 33 -> 30 (+3)
-- BTC-USD: 3 -> 1 (+2)
+- AMD: old_rank → new_rank (+6)
+- LINK-USD: old_rank → new_rank (+5)
+- SMCI: old_rank → new_rank (+4)
+- ADA-USD: old_rank → new_rank (+3)
+- BTC-USD: old_rank → new_rank (+2)
 **Fallers**
-- V: 132 -> 192 (-60)
-- MA: 123 -> 183 (-60)
-- NOW: 118 -> 177 (-59)
-- CRM: 158 -> 215 (-57)
-- SYK: 148 -> 203 (-55)
+- V: old_rank → new_rank (-60)
+- MA: old_rank → new_rank (-60)
+- NOW: old_rank → new_rank (-59)
+- CRM: old_rank → new_rank (-57)
+- SYK: old_rank → new_rank (-55)
 
 ### Dynamic Expected Return (DER) Trends
 **Increasing**
-- AMT: -4031.60 -> -2341.40 (Change: 1690.20)
-- PEP: -1338.50 -> -287.50 (Change: 1051.00)
-- DUK: -980.40 -> -403.20 (Change: 577.20)
-- CSCO: -740.90 -> -476.40 (Change: 264.50)
-- AEP: -282.80 -> -125.70 (Change: 157.10)
+- AMT: old_val → new_val (Change: +1690.20)
+- PEP: old_val → new_val (Change: +1051.00)
+- DUK: old_val → new_val (Change: +577.20)
+- CSCO: old_val → new_val (Change: +264.50)
+- AEP: old_val → new_val (Change: +157.10)
 **Decreasing**
-- SOL-USD: 16684.90 -> 3846.40 (Change: -12838.50)
-- CRM: -882.40 -> -4987.20 (Change: -4104.80)
-- SYK: -1787.60 -> -3284.00 (Change: -1496.40)
-- V: -268.80 -> -1721.40 (Change: -1452.60)
-- MA: -179.40 -> -938.40 (Change: -759.00)
+- SOL-USD: old_val → new_val (Change: -12838.50)
+- CRM: old_val → new_val (Change: -4104.80)
+- SYK: old_val → new_val (Change: -1496.40)
+- V: old_val → new_val (Change: -1452.60)
+- MA: old_val → new_val (Change: -759.00)
 
 ### Relative Divergence (RD) Trends
 **Increasing**
-- BLK: 4.90 -> 19.70 (Change: 14.80)
-- GEV: 49.80 -> 64.30 (Change: 14.50)
-- PM: 49.60 -> 62.90 (Change: 13.30)
-- CBRE: 73.80 -> 86.00 (Change: 12.20)
-- LMT: 24.30 -> 35.80 (Change: 11.50)
+- BLK: old_val → new_val (Change: +14.80)
+- GEV: old_val → new_val (Change: +14.50)
+- PM: old_val → new_val (Change: +13.30)
+- CBRE: old_val → new_val (Change: +12.20)
+- LMT: old_val → new_val (Change: +11.50)
 **Decreasing**
-- SOL-USD: 52.50 -> 27.10 (Change: -25.40)
-- CEG: 27.90 -> 17.10 (Change: -10.80)
-- ISRG: 29.20 -> 20.10 (Change: -9.10)
-- WFC: 45.70 -> 36.90 (Change: -8.80)
-- ORCL: 23.70 -> 16.50 (Change: -7.20)
+- SOL-USD: old_val → new_val (Change: -25.40)
+- CEG: old_val → new_val (Change: -10.80)
+- ISRG: old_val → new_val (Change: -9.10)
+- WFC: old_val → new_val (Change: -8.80)
+- ORCL: old_val → new_val (Change: -7.20)
 
-### Top 10 Changes ([2026-01-17] vs [2026-01-18])
-- **New Entry**: AVGO (New Rank: 10, Old Rank: 13)
-- **Exit**: SOL-USD (Old Rank: 10, New Rank: 18)
+### Top 10 Changes ([date1] vs [date2])
+- **New Entry**: AVGO (Old Rank: 13 → New Rank: 10)
+- **Exit**: SOL-USD (Old Rank: 10 → New Rank: 18)
 
 ---
 
 ## 2) What matters today
-- **Biggest event**: AMD rises to rank 16 after a significant improvement in expectations.
-- **Biggest risk event**: SOL-USD has the biggest negative change, with a decrease in expected return and increasing relative divergence.
+- **Biggest event**: AMD experienced significant drop in rank, from old_rank to new_rank, amidst overall market volatility.
+- **Biggest risk event**: SOL-USD witnessed substantial decline in rank and DER due to significant price drop from old_val to new_val.
 
 ---
 
 ## 3) Quick takeaways
-- **One-line summary**: Technology sector outperforms today, while utilities and materials sectors face increased risks.
+- **One-line summary**: Sector bias is heavily influenced by overall market volatility, resulting in mixed trends.
 - **Today's watch list**
-  - TICKER: AMD, with significant improvement in expected return and relative divergence
-  - TICKER: LINK-USD, as it gains a spot in the top risers
-  - TICKER: SOL-USD, which experiences significant decline in expected return and increasing relative divergence
+  - TICKER: Keep an eye on AMD's performance due to recent ranking changes.
+  - TICKER: Monitor CRM's trends for future potential.
+  - TICKER: WFC might be an interesting watch considering its decline in RD.
