@@ -1,91 +1,87 @@
-2026-01-20 - Analysis Report
-# Comprehensive Analysis Report
+2026-01-22 - Analysis Report
+**Company Overview:**
+Tesla, Inc. is an American multinational automotive and clean energy company.
 
-## Company Overview
-Tesla, Inc. is an American electric vehicle and clean energy company that designs, manufactures, and sells electric vehicles, solar panels, and energy storage products.
+**Return Rate Comparison:**
+The cumulative return of TSLA is 1014.94% compared to the S&P 500's 91.55%. The degree of divergence is 937.30 (max: 1461.80, min: -49.20, relative divergence: 65.30%).
 
-## Return Rate Comparison
-
-* Return rate (rate) of TSLA: 1030.59%
-* Return rate (rate_vs) of S&P 500 (VOO): 93.30%
-* Divergence (simply the difference in cumulative return on the last day of the data): 937.30%
-
-The return rate of TSLA has been significantly higher than the S&P 500, indicating a high level of volatility.
-
-## Alpha, Beta Analysis
-
+**Alpha, Beta Analysis:**
+```markdown
 | Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
-|------------|------|------|-------|------|-------|
-| 2016-2018  | 9.0% | 30.5% | 4.0% | 1.3 | 73.8B |
-| 2017-2019  | 13.0% | 40.0% | -4.0% | 1.3 | 92.8B |
-| 2018-2020  | 588.0% | 40.0% | 568.0% | 1.3 | 782.4B |
-| 2019-2021  | 759.0% | 29.9% | 715.0% | 1.3 | 1171.6B |
-| 2020-2022  | 258.0% | 46.9% | 259.0% | 1.5 | 409.7B |
-| 2021-2023  | 201.0% | 46.9% | 200.0% | 1.9 | 826.4B |
-| 2022-2024  | 573.0% | 46.4% | 554.0% | 2.0 | 1343.2B |
-| 2023-2025  | 512.0% | 57.1% | 450.0% | 2.3 | 1495.8B |
+|------------|------|------|-------|------|--------|
+| 2016-2018  | 9.0% | 30.5% | 4.0%  | 1.3  | 73.8B  |
+| 2017-2019  | 13.0% | 40.0% | -4.0% | 1.3  | 92.8B  |
+| 2018-2020  | 588.0% | 40.0% | 568.0% | 1.3  | 782.3B |
+| 2019-2021  | 759.0% | 29.9% | 715.0% | 1.3  | 1171.5B|
+| 2020-2022  | 258.0% | 46.9% | 259.0% | 1.5  | 409.7B |
+| 2021-2023  | 201.0% | 46.9% | 200.0% | 1.9  | 826.4B |
+| 2022-2024  | 573.0% | 46.4% | 554.0% | 2.0  | 1343.1B|
+| 2023-2025  | 512.0% | 57.1% | 450.0% | 2.3  | 1495.7B|
+```
+The company's CAGR ranges from 9.0% to 573.0% across different 3-year periods. Beta values range from 1.3 to 2.3.
 
-The company has exhibited significant growth in CAGR (compound annual growth rate) and Alpha, indicating a high level of investment potential.
+**Recent Stock Price Fluctuations:**
+```markdown
+| Moving Average Figure   | Value  |
+|-------------------------|--------|
+| Close                    | $431.44|
+| Last-market               | $431.44|
+| 5-day SMA                | $433.19|
+| 20-day SMA               | $449.79|
+| 60-day SMA               | $443.69|
+```
+The stock's close price is $431.44. 5-day, 20-day, and 60-day moving average figures are $433.19, $449.79, and $443.69, respectively.
 
-## Recent Stock Price Fluctuations
-
-* Close: $437.50 
-* Last-market: {'price': 437.52, 'previousClose': 438.55, 'change': -0.23}
-* 5-day SMA: $442.29
-* 20-day SMA: $455.48
-* 60-day SMA: $444.31
-
-The stock price has shown a recent decline, with the 20-day SMA being the highest among the three.
-
-## RSI, PPO Index Indicators and Expected Return
-
-* Market Risk Indicator (MRI): 0.80 (Medium Investment)
-* RSI: 31.15
-* PPO: -0.56
-* Hybrid Signal: Buy (Cash 0%)
+**RSI, PPO Index Indicators and Delta_Previous_Relative_Divergence:**
+```markdown
+Market Risk Indicator (MRI): 0.80
+RSI: 39.52
+PPO: -0.68
+Hybrid Signal: Buy (Cash 0%)
 Risk Level: Medium (MRI 0.80)
-* Recent (20 days) relative divergence change: -1.20 (worsening)
-* 7-day Rank change: -2 (rank down)
-* 7-day Dynamic Expected Return change: 23.60 (improving)
-* Expected Return (%): 414.10%, Expected excess return compared to S&P 500 if invested long-term (more than 2 years)
+Recent (20 days) relative divergence change: -1.20 (worsening)
+7-day Rank change: -1 (rank down)
+7-day Dynamic Expected Return change: 2.70 (improving)
+Expected Return (%): 414.10%
+```
+The Market Risk Indicator (MRI) is 0.80. RSI and PPO values are 39.52 and -0.68, respectively. Recent relative divergence change and 7-day Rank change are -1.20 and -1, respectively. Expected return is 414.10%.
 
-The RSI and PPO indicators suggest a bearish trend, but the Hybrid Signal remains at Buy. The Expected Return is significantly high, indicating a high potential for long-term investment.
+**News & Significant Events:**
+```markdown
+* Tesla's Earnings Could Be Much Better Than Expected (NASDAQ:TSLA) - Seeking Alpha (news.google.com)
+* “We Need to Bring this Stuff In-House”: Tesla Stock (NASDAQ:TSLA) Sinks After Discovering Why FSD Is Not Prized - TipRanks (news.google.com)
+* Is Elon Musk Lowering Q4 Conference Call Expectations With This Cybercab Comment? - Investor's Business Daily (news.google.com)
+* TSLA Stock Falls 3% as Musk Spats with Ryanair CEO Michael O’Leary. How Should You Play Tesla Here? - Yahoo Finance (news.google.com)
+* Tesla stock in focus as Canada cuts China-made EV tariffs — what’s next for EV stocks - TechStock² (news.google.com)
+* Tesla Stock Dips as Market Worries Mount -- Musk Highlights AI Chip Plans - TradingView — Track All Markets (news.google.com)
+```
+The company has received various news and significant events recently.
 
-## Recent News & Significant Events
-
-* [2026-01-19] Tesla Restarts Dojo 3 — What It Means for TSLA Stock - TipRanks
-* [2026-01-19] Barclays Says Tesla’s (TSLA) Fundamentals Are Taking a Back Seat - Yahoo Finance
-* [2026-01-19] Tesla stock in focus as Canada cuts China-made EV tariffs — what’s next for EV stocks - TechStock²
-* [2026-01-19] TSLA, PLTR and SMCI Forecast – Stocks Likely to Gap Lower on Tuesday - FXEmpire
-* [2026-01-15] Cathie Wood drops $50 million on AI stock, dumps favorite - Yahoo Finance
-* [2026-01-17] Prediction: in 2026 red-hot Tesla stock could turn £10,000 into… - Yahoo Finance UK
-
-These recent news and significant events suggest a mix of positive and negative trends, including the restart of Dojo 3 and the cutting of China-made EV tariffs in Canada.
-
-## Analyst Opinions
-
+**Analyst Opinions:**
+```markdown
 Analyst Consensus:
 - Key: Hold
 - Mean (1=StrongBuy~5=Sell): 2.54 (~Hold)
 - Opinions: 40
 - Target Price (avg/high/low): 411.15 / 600.00 / 130.00
+```
+Analysts have a hold opinion on the company with a mean rating of 2.54 and 40 opinions. Target price ranges from $130.00 to $600.00.
 
-The analyst consensus is Hold, with a target price of 411.15.
+**Recent Earnings Analysis:**
+```markdown
+| Date      | EPS    | Revenue (B$) |
+|-----------|--------|---------------|
+| 2025-10-23 | 0.43   | 28.09         |
+| 2025-07-24 | 0.36   | 22.50         |
+| 2025-04-23 | 0.13   | 19.34         |
+| 2024-10-24 | 0.68   | 25.18         |
+| 2025-01-30 | 0.68   | 25.18         |
+```
+The company's EPS ranges from 0.13 to 0.68 across the given periods. Revenue ranges from $19.34B to $28.09B.
 
-## Recent Earnings Analysis
-
-| Date | EPS | Revenue |
-|---|---:|---:|
-| 2025-10-23 | 0.43 | 28.09 B$ |
-| 2025-07-24 | 0.36 | 22.50 B$ |
-| 2025-04-23 | 0.13 | 19.34 B$ |
-| 2024-10-24 | 0.68 | 25.18 B$ |
-| 2025-01-30 | 0.68 | 25.18 B$ |
-
-The earnings per share (EPS) and revenue have been mixed, with a high EPS in 2025-10-23 but a low revenue in 2025-04-23.
-
-## Financial Information - Revenue and Profitability
-
+**Financial Information:**
+**Revenue and Profitability:**
+```markdown
 | Quarter | Revenue | Profit Margin |
 |---------|----------|---------------|
 | 2025-09-30 | $28.09B | 17.99% |
@@ -93,11 +89,11 @@ The earnings per share (EPS) and revenue have been mixed, with a high EPS in 202
 | 2025-03-31 | $19.34B | 16.31% |
 | 2024-12-31 | $25.71B | 16.26% |
 | 2024-09-30 | $25.18B | 19.84% |
+```
+Profit margin ranges from 16.26% to 19.84% across different quarters.
 
-The revenue has been mixed, with a high revenue in 2025-09-30 but a low profit margin in 2025-03-31.
-
-## Financial Information - Capital and Profitability
-
+**Capital and Profitability:**
+```markdown
 | Quarter | Equity | ROE |
 |---------|---------|-----|
 | 2025-09-30 | $79.97B | 1.72% |
@@ -105,7 +101,10 @@ The revenue has been mixed, with a high revenue in 2025-09-30 but a low profit m
 | 2025-03-31 | $74.65B | 0.55% |
 | 2024-12-31 | $72.91B | 3.17% |
 | 2024-09-30 | $69.93B | 3.11% |
+```
+Equity ranges from $69.93B to $79.97B across different quarters. ROE ranges from 0.55% to 3.17%.
 
-The equity and return on equity (ROE) have been mixed, with a high equity in 2025-09-30 but a low ROE in 2025-03-31.
+**Comprehensive Analysis:**
+Tesla's cumulative return is 1014.94%, significantly higher than the S&P 500's 91.55%. However, the company's Market Risk Indicator (MRI) is 0.80, indicating a medium-risk investment. The RSI and PPO values are 39.52 and -0.68, respectively, indicating a sell signal. The company's earnings and revenue have been volatile, but profit margins have been ranging between 16.26% and 19.84%. Overall, the company's performance is mixed.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
