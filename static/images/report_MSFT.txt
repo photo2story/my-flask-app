@@ -1,14 +1,15 @@
-2026-01-20 - Analysis Report
-**Company Overview**
+2026-01-22 - Analysis Report
+**Microsoft Overview**
 Microsoft is a multinational technology company that develops, manufactures, licenses, and supports a wide range of software products, services, and devices.
 
 **Return Rate Comparison**
-- Cumulative return of review stock (MSFT) = 48.51%
-- Cumulative return of comparison stock (S&P 500, VOO) = 93.30%
-- Divergence = -45.79% (difference in cumulative return on the last day of the data)
+- **Cumulative Return of Review Stock (MSFT)** = 43.44%
+- **Cumulative Return of Comparison Stock (S&P 500, VOO)** = 91.55%
+- **Divergence (Last Day)** = - _ (calculated as `cumulative_return_review_stock - cumulative_return_comparison_stock`)
+
+The review and comparison stocks have shown different performance over the provided data. The review stock (MSFT) is behind the comparison stock (VOO) by a significant margin.
 
 **Alpha, Beta Analysis**
-
 | Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
 |------------|------|------|-------|------|-------|
 | 2016-2018  | 26.0% | 20.1% | 21.0% | 1.3 | 755.0B |
@@ -20,55 +21,59 @@ Microsoft is a multinational technology company that develops, manufactures, lic
 | 2022-2024  | -60.0% | 35.6% | -80.0% | 1.2 | 3133.1B |
 | 2023-2025  | 30.0% | 20.6% | -32.0% | 1.1 | 3594.8B |
 
+The data shows varying returns over the years for Microsoft, with the highest growth seen from 2019-2021. The performance metrics (CAGR and MDD) do not fluctuate much.
+
 **Recent Stock Price Fluctuations**
 
-* Close: $459.86
-* 5-day SMA: $464.75
-* 20-day SMA: $478.23
-* 60-day SMA: $491.61
-* Recent fluctuation is considered minor as the price is within the range of the 20-day and 60-day SMAs.
+- **Close**: $444.11
+- **Last-Market**: $444.11 (down by **_** from the previous day's close of $454.52)
+- **5-day SMA**: $454.91
+- **20-day SMA**: $474.66
+- **60-day SMA**: $489.23
 
-**RSI, PPO Index Indicators, and Delta_Previous_Relative_Divergence**
+**RSI, PPO Index and Delta/Expected Return**
+- **RSI**: 20.44
+- **PPO**: -0.63
+- **Hybrid Signal**: Buy (Cash 0%)
+- **Risk Level**: Medium (MRI: 0.80)
+- **Relative Divergence Change (recent 20 days)**: 0.70 (+): improving
+- **7-day Rank change**: 23 (+): rank up
+- **7-day Dynamic Expected Return change**: 1.40 (+): improving
+- **Expected Return**: 79.00%
 
-* Market Risk Indicator (MRI): 0.80 (indicating medium investment risk)
-* RSI: 26.23 (indicating oversold)
-* PPO: -0.44
-* Hybrid Signal: Buy (Cash 0%)
-* Recent (20 days) relative divergence change: 0.70 (+): improving
-* 7-day Rank change: 2 (+): rank up
-* 7-day Dynamic Expected Return change: -7.90 (-): worsening
-* Expected Return: 79.00%
+Microsoft's stock has shown significant price fluctuations in the recent past. The RSI and PPO indicators show a strong downward trend, indicating a potential **downward fluctuation** in the **price movement**.
+
 
 **Recent News & Significant Events**
+- "Natural-Language Commands into Control Signals…" Microsoft Stock (NASDAQ:MSFT) - TipRanks
+- Microsoft: The $134 Billion Misunderstanding (NASDAQ:MSFT) - Seeking Alpha
+- LinkedIn Growth Boosts Momentum: Can MSFT Stock Rally Higher? - TradingView
+- Assessing Whether Microsoft (MSFT) Is Undervalued After Recent Share Price Weakness - simplywall.st
+- Microsoft Stock (MSFT) Slips as CEO Warns AI Could Lose ‘Social Permission’ Without Progress - TipRanks
+- Microsoft (MSFT) Expected to Announce Earnings on Wednesday - MarketBeat
 
-* [2026-01-19] Microsoft: Something Doesn't Add Up (NASDAQ:MSFT) - Seeking Alpha
-* [2026-01-17] Goldman Sachs revamps Microsoft stock price target before earnings - thestreet.com
-* [2026-01-18] Strong Analyst Sentiment on Microsoft (MSFT) Despite Price Target Cuts and Heavy AI Spend - Yahoo Finance
-* [2026-01-19] Top AI Stocks to Boost Returns and Reignite Portfolio Growth - Yahoo Finance
-* [2026-01-17] Microsoft stock price: MSFT faces Musk’s $134 billion claim ahead of Jan. 28 earnings - TechStock²
-* [2026-01-19] Commonwealth Financial Services LLC Increases Stock Holdings in Microsoft Corporation $MSFT - MarketBeat
+Microsoft has recently received attention due to various events, including CEO warnings on AI, earnings announcements, and company growth.
 
 **Analyst Opinions**
-Analysis Consensus:
-- Key: Strong_Buy
-- Mean (1=StrongBuy~5=Sell): 1.28 (~Strong Buy)
-- Opinions: 54
-- Target Price (avg/high/low): 622.75 / 730.00 / 483.00
+- **Analyst Consensus**: 
+  - **Key**: Strong_Buy
+  - **Mean (1=Strong Buy~5=Sell)**: 1.28 (~Strong Buy)
+  - **Opinions**: 54
+  - **Target Price (avg/high/low)**: 622.19 / 730.00 / 483.00
 
 **Recent Earnings Analysis**
-
 | Date | EPS | Revenue |
-|-----|-----|---------|
+|-------|-----|----------|
 | 2025-10-29 | 3.73 | 77.67 B$ |
 | 2025-04-30 | 3.47 | 70.07 B$ |
 | 2025-01-29 | 3.24 | 69.63 B$ |
 | 2024-10-30 | 3.32 | 65.58 B$ |
-| 2025-10-29 | 3.32 | 65.58 B$ |
+| 2023-10-28 | 3.23 | 59.43 B$ |
 
-Earnings per share (EPS) is increasing over the quarters, with a relatively stable revenue growth.
+Microsoft's earnings have shown an upward trend in the recent past, with EPS increasing and revenue exceeding expectations.
 
-**Financial Information - Revenue and Profitability**
-
+**Financial Information**
+### Revenue and Profitability
 | Quarter | Revenue | Profit Margin |
 |---------|----------|---------------|
 | 2025-09-30 | $77.67B | 69.05% |
@@ -77,10 +82,7 @@ Earnings per share (EPS) is increasing over the quarters, with a relatively stab
 | 2024-12-31 | $69.63B | 68.69% |
 | 2024-09-30 | $65.58B | 69.35% |
 
-Revenue is stable over the quarters, with profit margins ranging from 68.58% to 69.35%.
-
-**Financial Information - Capital and Profitability**
-
+### Capital and Profitability
 | Quarter | Equity | ROE |
 |---------|---------|-----|
 | 2025-09-30 | $363.08B | 7.64% |
@@ -89,6 +91,6 @@ Revenue is stable over the quarters, with profit margins ranging from 68.58% to 
 | 2024-12-31 | $302.69B | 7.96% |
 | 2024-09-30 | $287.72B | 8.57% |
 
-Equity is increasing over the quarters, with returns on equity (ROE) ranging from 7.64% to 8.57%.
+Microsoft's financial performance has shown stability in the recent past, with revenue and profit margin fluctuating slightly but overall in an upward trend.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
