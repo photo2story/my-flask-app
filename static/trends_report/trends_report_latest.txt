@@ -1,70 +1,56 @@
-# Daily Stock Market Trends — 2026-01-24
-## 0) How to read this
-- **Rank**: Lower is better (1 is best)
-- **DER (Dynamic Expected Return)**: Model's forward-looking expected change magnitude (up=improvement, down=deterioration)
-- **RD (Relative Divergence)**: Model consensus/confidence score (0~100, 100=full agreement)
+# 2026-01-24
+⚠️ Groq/Gemini/OpenRouter all failed. Showing raw data only.
+Last error: OpenRouter error (402): {"error":{"message":"This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 16289. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account","code":402,"metadata":{"provider_name":null}},"user_id":"user_38QC5LQFtcJt9eCA2ed1A8iHUEo"}
 
----
+```text
+Rank Movers (2026-01-19 vs 2026-01-24):
+  Risers:
+    - BTC-USD: 2 -> 1 (+1)
+    - TSLA: 1 -> 14 (-13)
+  Fallers:
+    - TSLA: 1 -> 14 (-13)
+    - BTC-USD: 2 -> 1 (+1)
 
-## 1) Raw facts (no interpretation)
-### Rank Movers ([date1] vs [date2])
-**Risers**
-- BTC-USD: 2 -> 1 (+1)
-### Fallers
-No changes
-### Dynamic Expected Return (DER) Trends
-**Increasing**
-- SOL-USD: 17885.70 -> 19248.40 (Change: 1362.70)
-- DOGE-USD: 14674.00 -> 15382.10 (Change: 708.10)
-- LINK-USD: 9918.30 -> 10589.30 (Change: 671.00)
-- BTC-USD: 794.10 -> 1366.90 (Change: 572.80)
-- DIS: -1333.90 -> -854.10 (Change: 479.80)
-### Decreasing
-- ARM: 3989.30 -> 452.60 (Change: -3536.70)
-- ONDO-USD: 6661.80 -> 6584.00 (Change: -77.80)
-- AEP: -124.10 -> -181.10 (Change: -57.00)
-- AAPL: 133.40 -> 81.60 (Change: -51.80)
-- UBER: -109.00 -> -158.10 (Change: -49.10)
-### Relative Divergence (RD) Trends
-**Increasing**
-- AAPL: 55.40 -> 71.60 (Change: 16.20)
-- INTC: 29.10 -> 42.40 (Change: 13.30)
-- AMGN: 32.90 -> 45.90 (Change: 13.00)
-- NEM: 71.30 -> 81.20 (Change: 9.90)
-- AMD: 60.70 -> 70.20 (Change: 9.50)
-### Decreasing
-- TSLA: 90.00 -> 67.40 (Change: -22.60)
-- KTOS: 100.00 -> 81.40 (Change: -18.60)
-- GE: 94.70 -> 78.40 (Change: -16.30)
-- DLTR: 63.60 -> 51.70 (Change: -11.90)
-- PL: 100.00 -> 89.30 (Change: -10.70)
+Dynamic Expected Return Trends (2026-01-19 to 2026-01-24):
+  Increasing:
+    - DOGE-USD: 14674.00 -> 31900.60 (Change: 17226.60)
+    - CRM: -4980.00 -> 198.50 (Change: 5178.50)
+    - SMCI: 2609.80 -> 4910.40 (Change: 2300.60)
+    - TMUS: -1684.40 -> 527.90 (Change: 2212.30)
+    - ONDO-USD: 6661.80 -> 8773.50 (Change: 2111.70)
+  Decreasing:
+    - ARM: 3989.30 -> 519.90 (Change: -3469.40)
+    - SPCE: -10288.30 -> -13519.50 (Change: -3231.20)
+    - EH: 46.20 -> -2030.60 (Change: -2076.80)
+    - DIS: -1333.90 -> -2099.40 (Change: -765.50)
+    - XRP-USD: 1115.80 -> 433.40 (Change: -682.40)
 
-### Top 10 Changes ([date1] vs [date2])
-- **New Entry**: ETH-USD (New Rank: 3, Old Rank: 43)
-- **New Entry**: AAPL (New Rank: 2, Old Rank: 19)
-- **Exit**: SMCI (Old Rank: 7, New Rank: N/A)
-- **Exit**: QUBT (Old Rank: 10, New Rank: N/A)
-- **Exit**: XRP-USD (Old Rank: 8, New Rank: N/A)
-- **Exit**: TPL (Old Rank: 4, New Rank: N/A)
-- **Exit**: TSLA (Old Rank: 3, New Rank: N/A)
-- **Exit**: LLY (Old Rank: 1, New Rank: N/A)
-- **Exit**: AVGO (Old Rank: 5, New Rank: N/A)
-- **Exit**: NVDA (Old Rank: 9, New Rank: N/A)
+Relative Divergence Trends (2026-01-19 to 2026-01-24):
+  Increasing:
+    - MSFT: 0.90 -> 64.10 (Change: 63.20)
+    - RTX: 32.50 -> 93.00 (Change: 60.50)
+    - CHRW: 32.60 -> 87.00 (Change: 54.40)
+    - ASML: 47.40 -> 99.30 (Change: 51.90)
+    - FOX: 49.00 -> 90.80 (Change: 41.80)
+  Decreasing:
+    - VTR: 80.70 -> 32.40 (Change: -48.30)
+    - DLTR: 63.60 -> 26.90 (Change: -36.70)
+    - QUBT: 46.20 -> 13.80 (Change: -32.40)
+    - ROST: 77.80 -> 50.10 (Change: -27.70)
+    - TSLA: 90.00 -> 63.50 (Change: -26.50)
 
----
+Top 10 Changes (2026-01-23 vs 2026-01-24):
+  New Entries:
+    - LRCX (New Rank: 6, Old Rank: 24)
+    - BNB-USD (New Rank: 7, Old Rank: 11)
+    - TSM (New Rank: 10, Old Rank: 14)
+    - AMD (New Rank: 8, Old Rank: 15)
+    - KLAC (New Rank: 5, Old Rank: 20)
+  Exits:
+    - QUBT (Old Rank: 10, New Rank: 21)
+    - XRP-USD (Old Rank: 8, New Rank: 25)
+    - TPL (Old Rank: 4, New Rank: 11)
+    - TSLA (Old Rank: 3, New Rank: 14)
+    - COST (Old Rank: 6, New Rank: 13)
 
-
-## 2) What matters today
-- **Biggest event**: 
-  Biggest positive change: BTC-USD rose to rank 1 with a DER increasing by 572.80.
-- **Biggest risk event**: 
-  Biggest negative change: ARM's DER decreased by 3536.70 moving to 452.60.
-
----
-
-## 3) Quick takeaways
-- **One-line summary**: Market sees significant shifts with DER and RD changes across various sectors.
-- **Today's watch list**
-  - SOL-USD: Potential for further price appreciation due to steady DER increase.
-  - TSLA: Derivatives data shows increased volatility and possible risks in its stock performance.
-  - ONDO-USD: Negative DER change raises concerns about its potential decline in the market.
+```
