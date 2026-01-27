@@ -1,76 +1,109 @@
-2026-01-26 - Analysis Report
-**Company Overview:**
-Planet Labs, Inc., a company focused on Earth observation and remote sensing services, operates a constellation of satellites for monitoring climate change, agriculture, and disaster response.
+2026-01-28 - Analysis Report
+**Company Overview**
+Planet Labs is a leading aerospace company that provides daily satellite imagery and insights to customers worldwide.
 
-**1. Return Rate Comparison**
-- **Review Stock (PL):** Cumulative Return = 557.65%
-- **Comparison Stock (VOO):** Cumulative Return = 59.58%
-- **Divergence:** 498.07% (Difference in cumulative return on the last day)
-- The review stock has a significantly higher cumulative return rate compared to the S&P 500, indicating a high divergence.
+**Return Rate Comparison**
+| **Ticker** | **Cumulative Return** | **Rate vs (VOO)** |
+| ---------- | --- | --- |
+| PL        | 585.23%   | 470.80 |
+| VOO       | 61.69%    | -    |
 
-**2. Recent Stock Price Fluctuations**
-- **Close Price:** $26.94
-- **5-day SMA:** $27.23
-- **20-day SMA:** $23.62
-- **60-day SMA:** $16.99
-- The stock price is above both the 5-day and 20-day moving averages, but below the 60-day moving average, indicating short-term growth but long-term decline.
+The cumulative return of PL is significantly higher than that of VOO, indicating a higher degree of divergence. The current divergence is 470.80, which is higher than the maximum of 542.20 but lower than the historical minimum of -83.80.
 
-**3. RSI, PPO Index Indicators, and Delta_Previous_Relative_Divergence**
-- **Market Risk Indicator (MRI):** 0.70 (Medium Investment)
-- **RSI:** 76.02 (High)
-- **PPO:** -0.74 (Buy signal)
-- **Recent Relative Divergence Change:** -7.00 (-) (Worsening)
-- **Expected Return (%):** -9.80% (Expected excess return compared to S&P 500)
-- The stock has a high RSI value, indicating overbought conditions.
+**Alpha, Beta Analysis**
 
-**4. Recent News & Significant Events**
+| **Year** | **CAGR** | **MDD** | **Alpha** | **Beta** | **Capital (B)** |
+| ------ | --- | --- |------|-------|-------|
+| 2022-2024| 40.0% | 45.3% | 11.0% | 1.8  | 1.3B  |
+| 2023-2025| 409.0%| 52.2% | 333.0%| 2.2  | 6.5B  |
 
-- [2026-01-12] Planet Labs (PL) Stock Trades Up, Here Is Why - Yahoo Finance
-- [2026-01-23] Planet Labs PBC (NYSE:PL) Stock Price Up 6.3% - Time to Buy? - MarketBeat
-- [2026-01-06] Why Planet Labs Stock Powered Nearly 66% Higher Last Month - The Motley Fool
-- [2026-01-23] Insider Sale: Director at $PL Sells 47,835 Shares - Quiver Quantitative
-- [2026-01-13] Planet Labs Inks 9-Figure Deal With Sweden, Drives PL Stock 12% Higher - TIKR.com
-- [2026-01-23] Vijaya Gadde Sells 20,000 Shares of Planet Labs PBC (NYSE:PL) Stock - MarketBeat
-- Recent news highlights significant stock price movements and a notable deal with Sweden.
+The Alpha (excess return) of PL is higher in the second period (333.0%) compared to the first period (11.0%), while the Beta (systematic risk) is higher in the second period (2.2) compared to the first period (1.8).
 
-**4-2. Analyst Opinions**
-- **Analyst Consensus:**
-- **Key:** Buy
-- **Mean (Buy/Sell):** 1.70 (Buy)
-- **Opinions:** 9
-- **Target Price (avg/high/low):** $24.16 / $30.00 / $16.40
-- Analysts have a consensus of Buy with a moderate target price.
+**Recent Stock Price Fluctuations**
 
-**5. Recent Earnings Analysis**
+| **Metric** | **Value** |
+| --- | --- |
+| Close | $28.07 |
+| Last-market | {'price': 28.07, 'previousClose': 25.87, 'change': 8.5} |
+| 5-day SMA | $26.66 |
+| 20-day SMA | $24.33 |
+| 60-day SMA | $17.46 |
+
+The close price of PL is currently $28.07. The 5-day Simple Moving Average (SMA) is $26.66, while the 20-day SMA is $24.33 and the 60-day SMA is $17.46.
+
+**RSI, PPO Index Indicators and Delta_Previous_Relative_Divergence**
+
+| **Indicator** | **Value** |
+| --- | --- |
+| Market Risk Indicator (MRI) | 0.70 (0.9~1.0: High Investment Recommended, 0.7~0.9: Medium Investment, 0.4~0.7: Low Investment, <0.4: Very Risky) |
+| RSI | 71.65 |
+| PPO | -1.19 |
+| Hybrid Signal: Buy (Cash 0%) | -    |
+| Recent Relative Change | -11.40 (-): Worsening |
+| 7-day Rank Change | -8 (-): Rank down |
+| 7-day Dynamic Expected Return Change | -3.40 (-): Worsening |
+
+The Market Risk Indicator (MRI) is at 0.70, which suggests a medium investment recommendation. The RSI is at 71.65, which is above 70, indicating an oversold condition. The PPO is at -1.19, which is negative.
+
+**Recent News & Significant Events**
+(No direct interpretation - see headlines below for concrete information)
+
+```text
+[2026-01-27] Why Is Planet Labs (PL) Stock Rocketing Higher Today - The Globe and Mail (news.google.com)
+[2026-01-12] Planet Labs (PL) Stock Trades Up, Here Is Why - Yahoo Finance (news.google.com)
+[2026-01-27] Planet Labs Skyrockets 402% in a Year: How to Play the Stock - Finviz (news.google.com)
+[2026-01-27] Planet Labs PBC (PL) Stock Price Up 8.66% on Jan 27 - GuruFocus (news.google.com)
+[2026-01-27] Why Is Planet Labs (PL) Stock Soaring Today - Bitget (news.google.com)
+[2026-01-27] Planet Labs PBC $PL Shares Sold by Lbp Am Sa - MarketBeat (news.google.com)
+```
+
+**Analyst Opinions**
+
+```text
+Analyst Consensus:
+- Key: Buy
+- Mean (1=StrongBuy~5=Sell): 1.70 (~Buy)
+- Opinions: 9
+- Target Price (avg/high/low): 24.16 / 30.00 / 16.40
+```
+
+**Recent Earnings Analysis**
+
 | **Date** | **EPS** | **Revenue** |
-| --- | ---: | ---: |
-| 2025-10-28 | 0.82 | $2.21 B |
-| 2025-07-30 | 0.61 | $2.18 B |
-| 2025-04-29 | 0.64 | $2.14 B |
-| 2025-02-14 | 1.38 | $2.20 B |
-| 2024-10-25 | 1.08 | $2.04 B |
-- The company has reported significant revenue growth but decreasing EPS.
+| ---:|---:|---:|
+| 2025-10-28| 0.82 | $2.21B |
+| 2025-07-30 | 0.61 | $2.18B |
+| 2025-04-29 | 0.64 | $2.14B |
+| 2025-02-14 | 1.38 | $2.20B |
+| 2024-10-25 | 1.08 | $2.04B |
 
-**6. Financial Information**
+The EPS has ranged from 0.61 to 1.38, while the Revenue has ranged from $2.04B to $2.21B. The recent quarters have seen an increase in Revenue.
+
+**Financial Information**
+
+### Revenue and Profitability
+
 | **Quarter** | **Revenue** | **Profit Margin** |
-| --------- | ---------- | --------------- |
+|---------|----------|---------------|
 | 2025-10-31 | $0.08B | 57.33% |
 | 2025-07-31 | $0.07B | 57.60% |
 | 2025-04-30 | $0.07B | 55.24% |
 | 2025-01-31 | $0.06B | 62.08% |
 | 2024-10-31 | $0.06B | 61.24% |
 
+### Capital and Profitability
+
 | **Quarter** | **Equity** | **ROE** |
-| --------- | --------- | ----- |
+|---------|---------|-----|
 | 2025-10-31 | $0.35B | -16.93% |
 | 2025-07-31 | $0.44B | -5.19% |
 | 2025-04-30 | $0.44B | -2.84% |
 | 2025-01-31 | $0.44B | -7.97% |
 | 2024-10-31 | $0.46B | -4.32% |
 
-- The company has reported a high profit margin and equity but negative ROE in most quarters.
+The Revenue and Profit Margin have fluctuated in the recent quarters. The ROE has been negative in all quarters.
 
-**7. Comprehensive Analysis**
-The review stock has a high cumulative return rate and a positive recent performance, as indicated by the short-term growth. However, the long-term decline and negative ROE raise concerns.
+**Comprehensive Analysis**
+In conclusion, the stock price of PL has been fluctuating in recent days. The market risk indicator suggests a medium investment recommendation. The RSI and PPO indices suggest an oversold condition, but their negative trends indicate a worsening situation. The Analyst Consensus is Buy, but the target price has a wide range. The EPS has ranged from 0.61 to 1.38, while the Revenue has ranged from $2.04B to $2.21B. The recent quarters have seen an increase in Revenue, but the ROE has been negative in all quarters. The financial information reveals fluctuations in Revenue and Profit Margin, and a negative ROE in all quarters.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
