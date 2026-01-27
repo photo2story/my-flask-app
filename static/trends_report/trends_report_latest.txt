@@ -1,71 +1,54 @@
-# Daily Stock Market Trends — 2026-01-28
+# 2026-01-28
+⚠️ Groq/Gemini/OpenRouter all failed. Showing raw data only.
+Last error: OpenRouter error (402): {"error":{"message":"This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 16289. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account","code":402,"metadata":{"provider_name":null}},"user_id":"user_38QC5LQFtcJt9eCA2ed1A8iHUEo"}
 
-## 0) How to read this
-- **Rank**: Lower is better (1 is best)
-- **DER (Dynamic Expected Return)**: Model's forward-looking expected change magnitude (up=improvement, down=deterioration)
-- **RD (Relative Divergence)**: Model consensus/confidence score (0~100, 100=full agreement)
+```text
+Rank Movers (2026-01-23 vs 2026-01-28):
+  Risers:
+    - NOW: 125 -> 34 (+91)
+    - MA: 131 -> 64 (+67)
+    - V: 134 -> 70 (+64)
+    - AMZN: 112 -> 52 (+60)
+    - ACN: 127 -> 68 (+59)
+  Fallers:
+    - VTR: 35 -> 138 (-103)
+    - HAL: 56 -> 123 (-67)
+    - ACHR: 46 -> 105 (-59)
+    - BAC: 70 -> 125 (-55)
+    - ROK: 44 -> 97 (-53)
 
----
+Dynamic Expected Return Trends (2026-01-23 to 2026-01-28):
+  Increasing:
+    - DOGE-USD: 15382.10 -> 32371.60 (Change: 16989.50)
+    - CRM: -4940.30 -> 320.00 (Change: 5260.30)
+    - UNH: -206.60 -> 3385.10 (Change: 3591.70)
+    - SMCI: 2639.40 -> 4857.90 (Change: 2218.50)
+    - TMUS: -1690.90 -> 460.10 (Change: 2151.00)
+  Decreasing:
+    - SPCE: -10282.60 -> -13542.50 (Change: -3259.90)
+    - DIS: -854.10 -> -3045.30 (Change: -2191.20)
+    - TRX-USD: 5899.50 -> 3942.70 (Change: -1956.80)
+    - EH: 59.20 -> -1767.20 (Change: -1826.40)
+    - XRP-USD: 1199.30 -> 288.10 (Change: -911.20)
 
-## 1) Raw facts (no interpretation)
+Relative Divergence Trends (2026-01-23 to 2026-01-28):
+  Increasing:
+    - MSFT: 0.90 -> 69.10 (Change: 68.20)
+    - RTX: 28.40 -> 89.70 (Change: 61.30)
+    - CHRW: 35.20 -> 89.50 (Change: 54.30)
+    - ASML: 51.20 -> 100.00 (Change: 48.80)
+    - EXPE: 34.60 -> 75.60 (Change: 41.00)
+  Decreasing:
+    - VTR: 75.90 -> 28.70 (Change: -47.20)
+    - QUBT: 43.60 -> 13.60 (Change: -30.00)
+    - DLTR: 51.70 -> 23.40 (Change: -28.30)
+    - ROST: 72.60 -> 48.30 (Change: -24.30)
+    - JOBY: 63.90 -> 44.10 (Change: -19.80)
 
-### Rank Movers ([2026-01-23] vs [2026-01-28])
-**Risers**
-- NOW: 125 -> 34 (+91)
-- MA: 131 -> 64 (+67)
-- V: 134 -> 70 (+64)
-- AMZN: 112 -> 52 (+60)
-- ACN: 127 -> 68 (+59)
-**Fallers**
-- VTR: 35 -> 138 (-103)
-- HAL: 56 -> 123 (-67)
-- ACHR: 46 -> 105 (-59)
-- BAC: 70 -> 125 (-55)
-- ROK: 44 -> 97 (-53)
+Top 10 Changes (2026-01-27 vs 2026-01-28):
+  New Entries:
+    - COST (New Rank: 10, Old Rank: 11)
+  Exits:
+    - TRX-USD (Old Rank: 10, New Rank: 11)
 
-### Dynamic Expected Return (DER) Trends
-**Increasing**
-- DOGE-USD: start_val 15382.10 -> end_val 32371.60 (+16989.50)
-- CRM: start_val -4940.30 -> end_val 320.00 (+5260.30)
-- UNH: start_val -206.60 -> end_val 3385.10 (+3591.70)
-- SMCI: start_val 2639.40 -> end_val 4857.90 (+2218.50)
-- TMUS: start_val -1690.90 -> end_val 460.10 (+2151.00)
-**Decreasing**
-- SPCE: start_val -10282.60 -> end_val -13542.50 (-3259.90)
-- DIS: start_val -854.10 -> end_val -3045.30 (-2191.20)
-- TRX-USD: start_val 5899.50 -> end_val 3942.70 (-1956.80)
-- EH: start_val 59.20 -> end_val -1767.20 (-1826.40)
-- XRP-USD: start_val 1199.30 -> end_val 288.10 (-911.20)
-
-### Relative Divergence (RD) Trends
-**Increasing**
-- MSFT: start_val 0.90 -> end_val 69.10 (+68.20)
-- RTX: start_val 28.40 -> end_val 89.70 (+61.30)
-- CHRW: start_val 35.20 -> end_val 89.50 (+54.30)
-- ASML: start_val 51.20 -> end_val 100.00 (+48.80)
-- EXPE: start_val 34.60 -> end_val 75.60 (+41.00)
-**Decreasing**
-- VTR: start_val 75.90 -> end_val 28.70 (-47.20)
-- QUBT: start_val 43.60 -> end_val 13.60 (-30.00)
-- DLTR: start_val 51.70 -> end_val 23.40 (-28.30)
-- ROST: start_val 72.60 -> end_val 48.30 (-24.30)
-- JOBY: start_val 63.90 -> end_val 44.10 (-19.80)
-
-### Top 10 Changes ([2026-01-27] vs [2026-01-28])
-- **No changes**
- 
-
----
-
-## 2) What matters today
-- **Biggest event**: AMZN jumped significantly from 112 to 52, indicating a substantial improvement in its forward-looking expected change magnitude (up=improvement).
-- **Biggest risk event**: TRX-USD suffered a significant drop from 59.20 to -1767.20, raising concerns about its expected change magnitude.
-
----
-
-## 3) Quick takeaways
-- **One-line summary**: Sector bias leans towards Technology and Healthcare, while the overall market seems to be stabilizing with no major changes.
-- **Today's watch list**
-  - DOGE-USD: The substantial increase in its Dynamic Expected Return warrants close attention.
-  - MSFT: The significant improvement in its Relative Divergence score suggests strong consensus.
-  - VTR: The substantial drop in both its Rank and Relative Divergence scores raises concerns about its stability.
+```
