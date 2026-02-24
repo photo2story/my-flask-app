@@ -1,56 +1,101 @@
-2026-02-24 - Analysis Report
+2026-02-25 - Analysis Report
 **Company Overview**: Interactive Brokers Group, Inc. is a financial technology company that provides global electronic trading services.
-
 **Ticker**: IBKR
 
-1. **Return Comparison**
- - Cumulative return of review stock = **388.50%**
- - Cumulative return of comparison stock (S&P 500, VOO) = **125.32%**
- - Divergence = **263.20** (max: 288.10, min: -44.50, current: 263.20, relative divergence: 92.50%)
-   Relative divergence indicates the current position when the minimum-maximum fluctuation range is set to 100. For example, a relative divergence of 90 means it is located at the top 90% percentile of past data, not that it is 90% superior to the comparison stock.
+### 1. Return Rate Comparison and Divergence Analysis
 
-2. **Recent Stock Price Fluctuations**
- - Close = `$74.39`
- - 5-day SMA = `$74.27`
- - 20-day SMA = `$74.92`
- - 60-day SMA = `$69.77`
-   The company's stock price has shown a slight decline in recent close prices, with the 5-day SMA closely matching the close price. This may indicate a temporary fluctuation.
+* Cumulative return of review stock (IBKR): 256.28%
+* Cumulative return of comparison stock (S&P 500, VOO): 104.16%
+* Divergence (max: 288.10, min: -44.50, current: 263.20, relative divergence: 92.50%)
 
-3. **RSI, PPO, and Delta Analysis**
- - Market Risk Indicator (MRI) = **0.70** (High Investment Recommended (0.9~1.0), Medium Investment (0.7~0.9), Low Investment (0.4~0.7), Very Risky (<0.4))
- - RSI = **49.09**
- - PPO = **-0.54**
- - Hybrid Signal: Buy (Cash 0%) with Risk Level: **Medium** (MRI 0.70)
- - Recent (20 days) relative divergence change = **-1.50** (worsening)
- - 7-day Rank change = **0** (flat)
- - 7-day Dynamic Expected Return change = **0.00** (flat)
- - Expected Return (%) = **25.00%**
-   These indicators show a mix of caution and possible short-term fluctuations. We need to wait for further data to confirm these results.
+The review stock (IBKR) has a significantly higher cumulative return compared to the comparison stock (S&P 500, VOO). The relative divergence suggests that the review stock is located at the upper 92.50% of past data, indicating a high degree of divergence.
 
-4. **Recent News and Significant Events**
- - [2026-02-23] Marks Group Wealth Management Inc Buys Shares of 44,323 Interactive Brokers Group, Inc. $IBKR - MarketBeat
- - [2026-02-19] Why Interactive Brokers Group, Inc. (IBKR) is a Top Growth Stock for the Long-Term - Nasdaq
- - [2026-02-20] Interactive Brokers: The Quiet Compounder Riding The Global Trading Boom (NASDAQ:IBKR) - Seeking Alpha
-   These recent news headlines and articles indicate a positive outlook on the company, which might support its growth prospects.
+### Alpha/Beta Table
 
-5. **Analyst Opinions**
- - Key: **Buy**
- - Mean (1=StrongBuy~5=Sell): **1.56** (~Buy)
- - Target (avg): **80.67**
-   Analyst opinions suggest a buy signal with a moderate target price above the current stock price.
+| Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
+|------------|------|------|-------|------|-------|
+| 2021-2023  | 22.0% | 31.8% | 4.0% | 0.9 | 35.2B |
+| 2022-2024  | 144.0% | 17.6% | 110.0% | 0.9 | 75.1B |
+| 2023-2025  | 173.0% | 38.4% | 109.0% | 1.3 | 109.3B |
 
-6. **Recent Earnings Analysis**
+### 2. Recent Stock Price Fluctuations
+
+* Close: $71.92
+* Last-market: {'price': 71.92, 'previousClose': 71.54, 'change': 0.53}
+* 5-day SMA: $73.35
+* 20-day SMA: $74.28
+* 60-day SMA: $72.45
+
+### 3. RSI, PPO Index Indicators, and Delta_Previous_Relative_Divergence Analysis
+
+* Market Risk Indicator (MRI): 0.70
+* RSI: 42.78
+* PPO: -0.61
+* Hybrid Signal: Buy (Cash 0%)
+Risk Level: Medium (MRI 0.70)
+* Recent (20 days) relative divergence change: -1.50 (-): worsening
+* 7-day Rank change: 0 (0): flat
+* 7-day Dynamic Expected Return change: 0.00 (0): flat
+* Expected Return (%): 25.00%
+
+The hybrid signal is bearish, indicating a potential sell or hold position. The medium risk level suggests that the review stock may be volatile. The expected return is 25.00%, which may indicate a potential upside in the long term.
+
+### 4. Recent News & Significant Events
+
+* A Look At Interactive Brokers Group (IBKR) Valuation After Strong Profitability And Share Price Volatility (news.google.com)
+* Dana Investment Advisors Inc. Reduces Position in Interactive Brokers Group, Inc. $IBKR (news.google.com)
+* Why Interactive Brokers Group, Inc. (IBKR) is a Top Growth Stock for the Long-Term (nasdaq.com)
+
+### 5. Analyst Opinions
+
+Key: Buy
+Mean (1=StrongBuy~5=Sell): 1.56 (~Buy)
+Target(avg): 80.67
+
+### 6. Recent Earnings Analysis
+
 | Date | EPS | Revenue |
 |---|---:|---:|
-| 2025-11-05 | **0.59** | **0.60 B$** |
-| 2025-08-06 | **0.51** | **0.58 B$** |
-| 2025-05-08 | **1.95** | **0.59 B$** |
-| 2024-11-07 | **1.68** | **0.51 B$** |
-| 2025-02-05 | **0.42** | **0.51 B$** |
-   The company's earnings per share (EPS) has shown fluctuations, with the highest quarter at **1.95** and the lowest quarter at **0.42**.
+| 2025-11-05 | 0.59 | 0.60 B$ |
+| 2025-08-06 | 0.51 | 0.58 B$ |
+| 2025-05-08 | 1.95 | 0.59 B$ |
+| 2024-11-07 | 1.68 | 0.51 B$ |
+| 2025-11-05 | 0.42 | 0.51 B$ |
 
-7. **Comprehensive Analysis Summary**
-The company's cumulative return rate is higher than the S&P 500's, indicating stronger performance. However, due to recent fluctuations in stock prices, the company's short-term indicators show caution. Analyst opinions support a buy signal, while recent earnings analysis shows mixed results. The overall outlook for the company seems positive, with continued growth prospects.
+### 7. Comprehensive Analysis
+
+Based on the previous items, the review stock (IBKR) has a high degree of divergence compared to the comparison stock (S&P 500, VOO). The alpha and beta values suggest that the review stock may be volatile. The hybrid signal and risk level indicate a potential sell or hold position. The expected return is 25.00%, which may indicate a potential upside in the long term.
+
+The recent earnings analysis suggests that the review stock has a high earnings per share (EPS) and revenue growth rate. The stock price fluctuations suggest a potential rebound in the long term. The analyst opinions and recent news & significant events suggest that the review stock may be a top growth stock for the long term.
+
+In conclusion, the review stock (IBKR) has a high degree of divergence compared to the comparison stock (S&P 500, VOO). The hybrid signal and risk level indicate a potential sell or hold position. The expected return is 25.00%, which may indicate a potential upside in the long term. The recent earnings analysis and analyst opinions suggest that the review stock may be a top growth stock for the long term.
+
+**Recommendation**: Consider a long term investment in the review stock (IBKR) with caution, considering the high degree of divergence and potential volatility.
+
+### 8. Revenue and Profitability Analysis
+
+| Quarter | Revenue | Profit Margin |
+|---------|----------|---------------|
+| 2025-09-30 | $2.70B | 90.83% |
+| 2025-06-30 | $2.47B | 88.70% |
+| 2025-03-31 | $2.31B | 88.10% |
+| 2024-12-31 | $2.42B | 89.55% |
+
+* The revenue growth rate is increasing, indicating a potential upside in the long term.
+* The profit margin is high, indicating a potential increase in earnings per share.
+
+### 9. Capital and Profitability Analysis
+
+| Quarter | Equity | ROE |
+|---------|---------|-----|
+| 2025-09-30 | $5.11B | 5.15% |
+| 2025-06-30 | $4.83B | 4.64% |
+| 2025-03-31 | $4.50B | 4.73% |
+| 2024-12-31 | $4.28B | 5.07% |
+
+* The equity is increasing, indicating a potential increase in capital.
+* The return on equity (ROE) is increasing, indicating a potential increase in earnings per share.
+* The profit margin is high, indicating a potential increase in earnings per share.
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
 
