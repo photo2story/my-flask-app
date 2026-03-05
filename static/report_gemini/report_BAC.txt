@@ -1,36 +1,48 @@
-2026-02-27 – BAC Analysis Report
+2026-03-06 – BAC Analysis Report
 
-**Company Overview**: Bank of America is a leading American multinational investment bank and financial services corporation.
-
+**Company Overview**: Bank of America is a multinational banking and financial services corporation.
 **Ticker**: BAC
 
-**Executive Summary**: 
-The current position of BAC shows a relatively moderate divergence from the S&P 500. We are in a Mid Range relative position state, indicating that risks are not overly high. However, a weak alpha trend suggests a need for caution. Overall, the long-term structure appears intact.
+**Data:**
+
+* Return_vs_VOO (Divergence): -14.52%
+* Relative_Position_State: Mid Range
+* Alpha_Trend: Cyclical Alpha
+* Market_Volatility: Normal
+* Asset_Risk (MRI): Moderate
+* 20D_Delta: -7.2%
+* Max_Drawdown: 25.9%
+
+**Executive Summary**
+Bank of America underperforms S&P 500 with a divergence of -14.52%. The position is at Mid Range. Cyclical Alpha trend is observed with a normal market volatility.
 
 **Risk State**
-MRI Interpretation: Moderate risk, with potential for stable returns.
-Market Risk Level: Normal
+Moderate asset risk according to MRI. Market environment is considered normal.
 
-**Strategic Zone**: Neutral.
-DCA (Dollar-Cost Averaging) appears suitable in the current environment, considering the normal market volatility and relatively minor Max Drawdown.
+**Strategic Zone**
+Risk-Off. A "Dollar-Cost Averaging" strategy is advised to minimize risks.
+
+```json
+
+```
 
 -----------------------------
 Interval Performance vs VOO
 -----------------------------
-1M  :    0.1%
-3M  :   -1.3%
-6M  :    2.3%
-1Y  :    5.6%
-2Y  :   21.2%
-3Y  :   -7.2%
-5Y  :   -9.2%
-7Y  :  -38.2%
-MAX :  -12.2%
+1M  :   -1.6%
+3M  :   -4.3%
+6M  :   -4.1%
+1Y  :   -1.2%
+2Y  :    4.3%
+3Y  :   12.1%
+5Y  :   -1.0%
+7Y  :   -6.6%
+MAX :  -14.2%
 
 Interval Badge:
-Outperformed: 4 / 9
-Long-Term: Mixed
-Short-Term: Strong
+Outperformed: 2 / 9
+Long-Term: Weak
+Short-Term: Weak
 
 -----------------------------
 Alpha/Beta Table
@@ -38,28 +50,20 @@ Alpha/Beta Table
 ```text
 | Year       | CAGR | MDD  | Alpha | Beta | Cap(B) |
 |------------|------|------|-------|------|-------|
-| 2021-2023  | 4.0% | 37.1% | -14.0% | 1.0 | 246.8B |
-| 2022-2024  | 35.0% | 33.3% | -6.0% | 1.0 | 325.0B |
-| 2023-2025  | 101.0% | 26.1% | 27.0% | 1.0 | 406.7B |
+| 2022-2024  | -10.0% | 37.0% | -45.0% | 1.0 | 321.8B |
+| 2023-2025  | 90.0% | 25.9% | 9.0% | 1.0 | 402.7B |
+| 2024-2026  | 71.0% | 25.9% | 18.0% | 1.0 | 365.9B |
 
 ```
 
 Alpha Badge:
-Weak Alpha
-Beta Avg: 1.0
+Cyclical Alpha
+Beta Avg: 0.99
 
------------------------------
-Risk Panel
------------------------------
-
-Market Environment (Global)
-- VIX: 21.2 (Normal)
-- Market MRI: 0.7
-
-Asset Risk (Ticker)
-- MRI: 0.70 (Moderate)
+- VIX: 21.04 (Normal)
+- MRI (Market/Asset): 0.7 / 0.70 (Moderate)
 - Position: Mid Range
-- Max Drawdown: 26.1%
+- Max Drawdown: 25.9%
 
 **Disclaimer:** This report is for informational purposes only and does not constitute financial advice. Investment involves risk.
 
