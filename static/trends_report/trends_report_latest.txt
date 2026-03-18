@@ -2,7 +2,7 @@
 
 ## 0) How to read this
 - **Rank**: Lower is better (1 is best)
-- **DER (Dynamic Expected Return)**: Model's forward-looking expected change magnitude
+- **DER (Dynamic Expected Return)**: Forward-looking expected change magnitude (used as secondary)
 - **State**:
   - S1_LEADER = strong leader
   - S2_EARLY_BREAKOUT = early breakout candidate
@@ -11,47 +11,68 @@
   - S5_TRASH = structurally weak
   - S0_NEUTRAL = mixed / unclear
 
----
-
 ## 1) Raw facts
-### Rank Movers
-* No significant changes in rank for main movers.
+### Rank Movers (2026-03-18 vs 2026-03-19):
+**Risers**
+- FIX: Rank 11 -> 10 (+1), State S3_LATE_EXHAUSTION -> S3_LATE_EXHAUSTION
+- VST: Rank 34 -> 33 (+1), State S5_TRASH -> S5_TRASH
+- APO: Rank 45 -> 44 (+1), State S4_BOTTOMING -> S4_BOTTOMING
+- ASTS: Rank 68 -> 67 (+1), State S2_EARLY_BREAKOUT -> S2_EARLY_BREAKOUT
+**Fallers**
+- KLAC: Rank 10 -> 11 (-1), State S0_NEUTRAL -> S0_NEUTRAL
+- WSM: Rank 33 -> 34 (-1), State S5_TRASH -> S5_TRASH
+- PGR: Rank 44 -> 45 (-1), State S5_TRASH -> S5_TRASH
+- MRVL: Rank 67 -> 68 (-1), State S0_NEUTRAL -> S0_NEUTRAL
 
-### DER Shock
-* **Increasing**: TTD, MTD, ERIE, WAT, PRU
-* **Decreasing**: ADA-USD, PSKY, TROW, DOGE-USD, MKC
+### DER Shock (2026-03-13 to 2026-03-19):
+**Increasing**
+- TTD: 16969.70 -> 38864.60 (Change: 21894.90)
+- MTD: -2441.70 -> -1213.80 (Change: 1227.90)
+- ERIE: 2766.90 -> 3979.30 (Change: 1212.40)
+- WAT: -2507.70 -> -1301.80 (Change: 1205.90)
+- PRU: -1710.30 -> -737.00 (Change: 973.30)
+**Decreasing**
+- ADA-USD: 21529.20 -> 16389.20 (Change: -5140.00)
+- PSKY: -4428.70 -> -8314.80 (Change: -3886.10)
+- TROW: -3019.30 -> -6796.70 (Change: -3777.40)
+- DOGE-USD: 51441.80 -> 47682.70 (Change: -3759.10)
+- MKC: -1490.60 -> -4256.60 (Change: -2766.00)
 
-### State Transitions
-* **New S1 Leaders**: None
-* **S2 to S1**: None
-* **S1 to S3**: None
-* **S5 to S4**: None
-* **S4 to S2**: None
+### State Transitions (2026-03-18 vs 2026-03-19):
+**New S1 Leaders**
+- None
+**S2 to S1**
+- None
+**S1 to S3**
+- None
+**S5 to S4**
+- None
+**S4 to S2**
+- None
 
-### State Distribution
-* S1_LEADER: 23 -> 23
-* S2_EARLY_BREAKOUT: 10 -> 10
-* S3_LATE_EXHAUSTION: 7 -> 7
-* S4_BOTTOMING: 56 -> 56
-* S5_TRASH: 378 -> 378
-* S0_NEUTRAL: 78 -> 78
+### State Distribution (2026-03-18 vs 2026-03-19):
+- S1_LEADER: 23 -> 23 (+0)
+- S2_EARLY_BREAKOUT: 10 -> 10 (+0)
+- S3_LATE_EXHAUSTION: 7 -> 7 (+0)
+- S4_BOTTOMING: 56 -> 56 (+0)
+- S5_TRASH: 378 -> 378 (+0)
+- S0_NEUTRAL: 78 -> 78 (+0)
 
-### Top 10 Changes
-* New Entries: FIX (Rank 10)
-* Exits: KLAC (Rank 11)
+### Top 10 Changes (2026-03-18 vs 2026-03-19):
+New Entries:
+  - FIX (New Rank: 10, Old Rank: 11)
+Exits:
+  - KLAC (Old Rank: 10, New Rank: 11)
 
----
 
 ## 2) What changed structurally
-* No new leaders emerged.
-* No significant exhaustion signals or bottoming attempts.
-* Market structure remained relatively stable.
+- Top 10 membership changed (new=1, exits=1).
+- DER shock highlighted TTD (+21894.90).
 
----
 
 ## 3) Watch list
-* TTD: Large DER shock increase, potential breakout candidate.
-* MTD: Large DER shock increase, potential breakout candidate.
-* ERIE: Large DER shock increase, potential early breakout candidate.
-* ADA-USD: Large DER shock decrease, potential exhaustion signal.
-* FIX: New rank 10, potential leader candidate.
+- FIX: Entered Top 10 (Rank 11 → 10)
+- KLAC: Left Top 10 (Rank 10 → 11)
+- TTD: DER shock +21894.90 (16969.7 → 38864.6)
+- ADA-USD: DER shock -5140.00 (21529.2 → 16389.2)
+- PSKY: DER shock -3886.10 (-4428.7 → -8314.8)
