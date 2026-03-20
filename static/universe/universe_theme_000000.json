@@ -1,14 +1,16 @@
 {
   "name": "THEME_TAXONOMY_V1",
   "type": "theme_classification",
-  "created_at": "2026-03-21 04:46:32",
+  "created_at": "2026-03-21 06:14:57",
   "source_rd": "results_relative_divergence.csv",
   "source_taxonomy": "dynamic (RD-based)",
   "rules": {
     "theme_min_count": 3,
     "notes": [
       "티커 리스트: results_relative_divergence.csv 기준 (동적)",
-      "override > hard-override > GICS rule > keyword 순"
+      "override > hard-override > sector fallback > keyword 순",
+      "sector_big/sector_mid는 병렬 합산이 아닌 fallback",
+      "Semiconductors/Cybersecurity/Defense/Space/Nuclear_Uranium는 증거 기반"
     ]
   },
   "ticker_themes": {
@@ -41,11 +43,13 @@
       "AI"
     ],
     "ABT": [
-      "Energy_Transition",
-      "Healthcare_Innovation"
+      "Healthcare_Innovation",
+      "Energy_Transition"
     ],
     "ACGL": [],
     "ACHR": [
+      "Defense",
+      "Space",
       "AI",
       "Energy_Transition"
     ],
@@ -53,11 +57,12 @@
       "Data_Center_Infrastructure"
     ],
     "ADA-USD": [
-      "AI",
       "Cybersecurity",
+      "AI",
       "FinTech_Payments"
     ],
     "ADBE": [
+      "AI",
       "Data_Center_Infrastructure"
     ],
     "ADI": [
@@ -71,7 +76,6 @@
     ],
     "ADSK": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "AEE": [
@@ -91,21 +95,23 @@
     "AJG": [],
     "AKAM": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "ALB": [
       "Energy_Transition"
     ],
-    "ALGN": [],
+    "ALGN": [
+      "Healthcare_Innovation",
+      "Energy_Transition"
+    ],
     "ALL": [],
     "ALLE": [
       "Robotics_Automation"
     ],
     "ALNY": [
+      "Healthcare_Innovation",
       "AI",
-      "Energy_Transition",
-      "Healthcare_Innovation"
+      "Energy_Transition"
     ],
     "AMAT": [
       "Semiconductors"
@@ -119,12 +125,13 @@
     ],
     "AME": [],
     "AMGN": [
-      "Energy_Transition",
-      "Healthcare_Innovation"
+      "Healthcare_Innovation",
+      "Energy_Transition"
     ],
     "AMP": [],
     "AMT": [],
     "AMZN": [
+      "AI",
       "Data_Center_Infrastructure",
       "Power_Grid"
     ],
@@ -145,22 +152,23 @@
     "APH": [],
     "APO": [],
     "APP": [
+      "AI",
       "Energy_Transition"
     ],
     "APTV": [],
     "ARE": [],
     "ARES": [],
     "ARM": [
-      "AI",
       "Semiconductors",
+      "AI",
       "Power_Grid"
     ],
     "ASML": [
       "Semiconductors"
     ],
     "ASTS": [
-      "AI",
-      "Space"
+      "Space",
+      "AI"
     ],
     "ATO": [
       "Data_Center_Infrastructure"
@@ -170,7 +178,9 @@
       "Semiconductors",
       "Data_Center_Infrastructure"
     ],
-    "AVY": [],
+    "AVY": [
+      "AI"
+    ],
     "AWK": [
       "Power_Grid",
       "Energy_Transition"
@@ -200,7 +210,9 @@
     "BAX": [
       "Healthcare_Innovation"
     ],
-    "BBY": [],
+    "BBY": [
+      "AI"
+    ],
     "BDX": [
       "Healthcare_Innovation"
     ],
@@ -231,9 +243,9 @@
     "BRK-B": [],
     "BRO": [],
     "BSX": [
+      "Healthcare_Innovation",
       "Energy_Transition",
-      "FinTech_Payments",
-      "Healthcare_Innovation"
+      "FinTech_Payments"
     ],
     "BTC-USD": [],
     "BX": [],
@@ -241,6 +253,7 @@
     "C": [],
     "CAG": [],
     "CAH": [
+      "Power_Grid",
       "FinTech_Payments",
       "Healthcare_Innovation"
     ],
@@ -262,7 +275,6 @@
     ],
     "CDW": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "CEG": [
@@ -288,8 +300,8 @@
     "CMCSA": [],
     "CME": [],
     "CMG": [
-      "AI",
-      "Semiconductors"
+      "Semiconductors",
+      "AI"
     ],
     "CMI": [
       "Power_Grid"
@@ -314,13 +326,15 @@
     ],
     "COP": [],
     "COR": [
-      "Energy_Transition",
-      "Healthcare_Innovation"
+      "Healthcare_Innovation",
+      "Energy_Transition"
     ],
     "COST": [
       "AI"
     ],
-    "CPAY": [],
+    "CPAY": [
+      "AI"
+    ],
     "CPB": [
       "Energy_Transition"
     ],
@@ -331,14 +345,15 @@
       "Healthcare_Innovation"
     ],
     "CRM": [
+      "AI",
       "Data_Center_Infrastructure"
     ],
     "CRWD": [
       "Cybersecurity"
     ],
     "CSCO": [
-      "Data_Center_Infrastructure",
-      "Cybersecurity"
+      "Cybersecurity",
+      "Data_Center_Infrastructure"
     ],
     "CSGP": [],
     "CSX": [
@@ -350,7 +365,6 @@
     "CTRA": [],
     "CTSH": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "CTVA": [
@@ -371,11 +385,12 @@
       "Robotics_Automation",
       "AI"
     ],
-    "DASH": [],
+    "DASH": [
+      "AI"
+    ],
     "DD": [],
     "DDOG": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "DE": [
@@ -413,7 +428,9 @@
       "AI",
       "Energy_Transition"
     ],
-    "DTE": [],
+    "DTE": [
+      "Power_Grid"
+    ],
     "DUK": [
       "Power_Grid"
     ],
@@ -427,7 +444,9 @@
       "Healthcare_Innovation"
     ],
     "EA": [],
-    "EBAY": [],
+    "EBAY": [
+      "AI"
+    ],
     "ECL": [
       "Energy_Transition"
     ],
@@ -441,6 +460,8 @@
       "Energy_Transition"
     ],
     "EH": [
+      "Defense",
+      "Space",
       "Energy_Transition"
     ],
     "EIX": [
@@ -458,7 +479,6 @@
     "EOG": [],
     "EPAM": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "EQIX": [
@@ -493,17 +513,21 @@
       "Energy_Transition"
     ],
     "EXE": [],
-    "EXPD": [],
+    "EXPD": [
+      "AI"
+    ],
     "EXPE": [],
     "EXR": [
-      "Data_Center_Infrastructure",
-      "Space"
+      "Space",
+      "Data_Center_Infrastructure"
     ],
     "F": [
       "Energy_Transition"
     ],
     "FANG": [],
-    "FAST": [],
+    "FAST": [
+      "Power_Grid"
+    ],
     "FCX": [
       "Energy_Transition"
     ],
@@ -518,7 +542,6 @@
     "FER": [],
     "FFIV": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "FICO": [
@@ -546,26 +569,24 @@
       "Robotics_Automation"
     ],
     "GD": [
-      "Cybersecurity",
       "Defense",
-      "Space"
+      "Space",
+      "Cybersecurity"
     ],
     "GDDY": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "GE": [
-      "AI",
       "Defense",
-      "Space"
+      "Space",
+      "AI"
     ],
     "GEHC": [
       "Healthcare_Innovation"
     ],
     "GEN": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "GEV": [
@@ -579,8 +600,8 @@
     "GL": [],
     "GLD": [],
     "GLW": [
-      "Defense",
-      "Space"
+      "Space",
+      "Defense"
     ],
     "GM": [
       "Energy_Transition"
@@ -588,7 +609,10 @@
     "GNRC": [
       "Power_Grid"
     ],
-    "GOOG": [],
+    "GOOG": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
     "GOOGL": [],
     "GPC": [],
     "GPN": [
@@ -600,7 +624,8 @@
     ],
     "GS": [],
     "GWW": [
-      "AI"
+      "AI",
+      "Power_Grid"
     ],
     "HAL": [],
     "HAS": [],
@@ -611,8 +636,9 @@
     ],
     "HIG": [],
     "HII": [
-      "AI",
-      "Defense"
+      "Defense",
+      "Space",
+      "AI"
     ],
     "HLT": [],
     "HOLX": [
@@ -624,12 +650,10 @@
     "HOOD": [],
     "HPE": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "HPQ": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "HRL": [
@@ -667,8 +691,8 @@
       "Healthcare_Innovation"
     ],
     "INSM": [
-      "Energy_Transition",
-      "Healthcare_Innovation"
+      "Healthcare_Innovation",
+      "Energy_Transition"
     ],
     "INTC": [
       "Semiconductors"
@@ -679,6 +703,7 @@
       "Energy_Transition"
     ],
     "IP": [
+      "AI",
       "Energy_Transition"
     ],
     "IQV": [
@@ -700,7 +725,6 @@
     ],
     "IT": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "ITW": [
@@ -729,7 +753,9 @@
       "Energy_Transition"
     ],
     "JPM": [],
-    "KDP": [],
+    "KDP": [
+      "Energy_Transition"
+    ],
     "KEI": [],
     "KEY": [
       "FinTech_Payments"
@@ -756,21 +782,25 @@
       "AI"
     ],
     "KTOS": [
-      "Defense"
+      "Defense",
+      "Space"
     ],
     "KVUE": [],
     "L": [
       "FinTech_Payments"
     ],
     "LDOS": [
-      "Cybersecurity",
-      "Defense"
+      "Defense",
+      "Cybersecurity"
     ],
     "LEN": [],
     "LH": [
       "Healthcare_Innovation"
     ],
-    "LHX": [],
+    "LHX": [
+      "Defense",
+      "Space"
+    ],
     "LII": [
       "AI"
     ],
@@ -795,7 +825,9 @@
     "LRCX": [
       "Semiconductors"
     ],
-    "LULU": [],
+    "LULU": [
+      "AI"
+    ],
     "LUV": [
       "AI"
     ],
@@ -820,17 +852,24 @@
     "MCHP": [
       "Semiconductors"
     ],
-    "MCK": [],
+    "MCK": [
+      "Power_Grid"
+    ],
     "MCO": [],
     "MDLZ": [],
     "MDT": [
       "Healthcare_Innovation"
     ],
-    "MELI": [],
+    "MELI": [
+      "AI"
+    ],
     "MET": [
       "FinTech_Payments"
     ],
-    "META": [],
+    "META": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
     "MGM": [
       "AI"
     ],
@@ -851,6 +890,7 @@
     ],
     "MPC": [],
     "MPWR": [
+      "Semiconductors",
       "Power_Grid"
     ],
     "MRK": [
@@ -869,6 +909,7 @@
     "MS": [],
     "MSCI": [],
     "MSFT": [
+      "AI",
       "Data_Center_Infrastructure",
       "Power_Grid"
     ],
@@ -877,13 +918,16 @@
     "MTB": [
       "FinTech_Payments"
     ],
-    "MTCH": [],
+    "MTCH": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
     "MTD": [
       "Healthcare_Innovation"
     ],
     "MU": [
-      "AI",
       "Semiconductors",
+      "AI",
       "Data_Center_Infrastructure"
     ],
     "NCLH": [],
@@ -910,6 +954,7 @@
       "Space"
     ],
     "NOW": [
+      "AI",
       "Robotics_Automation"
     ],
     "NRG": [
@@ -922,7 +967,6 @@
     ],
     "NTAP": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "NTRS": [],
@@ -932,14 +976,20 @@
       "Semiconductors",
       "Data_Center_Infrastructure"
     ],
-    "NVO": [],
+    "NVO": [
+      "Healthcare_Innovation"
+    ],
     "NVR": [],
-    "NWS": [],
-    "NWSA": [],
+    "NWS": [
+      "AI"
+    ],
+    "NWSA": [
+      "AI"
+    ],
     "NXPI": [
       "AI",
-      "Semiconductors",
-      "Data_Center_Infrastructure"
+      "Data_Center_Infrastructure",
+      "Semiconductors"
     ],
     "O": [],
     "ODFL": [],
@@ -952,6 +1002,7 @@
     ],
     "ONDO-USD": [],
     "ORCL": [
+      "AI",
       "Data_Center_Infrastructure"
     ],
     "ORLY": [
@@ -979,7 +1030,6 @@
     ],
     "PDD": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "PEG": [
@@ -1002,6 +1052,7 @@
       "FinTech_Payments"
     ],
     "PL": [
+      "Defense",
       "Space"
     ],
     "PLD": [],
@@ -1021,11 +1072,12 @@
       "Energy_Transition"
     ],
     "PODD": [
-      "Energy_Transition",
-      "Healthcare_Innovation"
+      "Healthcare_Innovation",
+      "Energy_Transition"
     ],
     "POOL": [
-      "AI"
+      "AI",
+      "Power_Grid"
     ],
     "PPG": [],
     "PPL": [
@@ -1044,7 +1096,6 @@
     "PSX": [],
     "PTC": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "PWR": [],
@@ -1053,7 +1104,6 @@
     ],
     "Q": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "QBTS": [],
@@ -1075,6 +1125,7 @@
     ],
     "RJF": [],
     "RKLB": [
+      "Defense",
       "Space"
     ],
     "RL": [],
@@ -1087,7 +1138,6 @@
     "ROL": [],
     "ROP": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "ROST": [
@@ -1095,9 +1145,9 @@
     ],
     "RSG": [],
     "RTX": [
-      "AI",
       "Defense",
-      "Space"
+      "Space",
+      "AI"
     ],
     "RVTY": [
       "Healthcare_Innovation",
@@ -1123,7 +1173,8 @@
     ],
     "SNDK": [
       "Data_Center_Infrastructure",
-      "Energy_Transition"
+      "Energy_Transition",
+      "Healthcare_Innovation"
     ],
     "SNPS": [
       "Semiconductors",
@@ -1139,6 +1190,7 @@
       "Healthcare_Innovation"
     ],
     "SPCE": [
+      "Defense",
       "Space"
     ],
     "SPG": [
@@ -1159,7 +1211,9 @@
       "Energy_Transition",
       "Healthcare_Innovation"
     ],
-    "STZ": [],
+    "STZ": [
+      "Energy_Transition"
+    ],
     "SUI-USD": [
       "AI"
     ],
@@ -1171,15 +1225,14 @@
     ],
     "SWKS": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "SYF": [
       "FinTech_Payments"
     ],
     "SYK": [
-      "Energy_Transition",
-      "Healthcare_Innovation"
+      "Healthcare_Innovation",
+      "Energy_Transition"
     ],
     "SYM": [
       "AI",
@@ -1195,14 +1248,16 @@
       "Energy_Transition"
     ],
     "TDG": [
-      "Cybersecurity",
+      "Defense",
+      "Space",
+      "Cybersecurity"
+    ],
+    "TDY": [
       "Defense",
       "Space"
     ],
-    "TDY": [],
     "TEAM": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "TECH": [
@@ -1239,12 +1294,10 @@
     "TRGP": [],
     "TRI": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "TRMB": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "TROW": [
@@ -1275,7 +1328,6 @@
     ],
     "TYL": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "UAL": [
@@ -1289,7 +1341,9 @@
     "UHS": [
       "Healthcare_Innovation"
     ],
-    "ULTA": [],
+    "ULTA": [
+      "AI"
+    ],
     "UNH": [],
     "UNP": [
       "AI"
@@ -1318,15 +1372,15 @@
     ],
     "VRSN": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "VRTX": [
-      "Energy_Transition",
-      "Healthcare_Innovation"
+      "Healthcare_Innovation",
+      "Energy_Transition"
     ],
     "VST": [
-      "Data_Center_Infrastructure"
+      "Data_Center_Infrastructure",
+      "Power_Grid"
     ],
     "VTR": [
       "Healthcare_Innovation"
@@ -1341,14 +1395,17 @@
     "WAT": [
       "Healthcare_Innovation"
     ],
-    "WBD": [],
+    "WBD": [
+      "AI"
+    ],
     "WDAY": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "WDC": [
-      "Data_Center_Infrastructure"
+      "Data_Center_Infrastructure",
+      "Energy_Transition",
+      "Healthcare_Innovation"
     ],
     "WEC": [
       "Power_Grid",
@@ -1395,7 +1452,6 @@
     ],
     "ZBRA": [
       "AI",
-      "Semiconductors",
       "Data_Center_Infrastructure"
     ],
     "ZS": [
@@ -1409,52 +1465,28 @@
     "Semiconductors": [
       "381180.KS",
       "ADI",
-      "ADSK",
-      "AKAM",
       "AMAT",
       "AMD",
       "ARM",
       "ASML",
       "AVGO",
       "CDNS",
-      "CDW",
       "CMG",
-      "CTSH",
-      "DDOG",
-      "EPAM",
-      "FFIV",
-      "GDDY",
-      "GEN",
-      "HPE",
-      "HPQ",
       "INTC",
-      "IT",
       "KLAC",
       "LRCX",
       "MCHP",
+      "MPWR",
       "MRVL",
       "MU",
-      "NTAP",
       "NVDA",
       "NXPI",
       "ON",
-      "PDD",
-      "PTC",
-      "Q",
       "QCOM",
-      "ROP",
       "SNPS",
-      "SWKS",
-      "TEAM",
       "TER",
-      "TRI",
-      "TRMB",
       "TSM",
-      "TXN",
-      "TYL",
-      "VRSN",
-      "WDAY",
-      "ZBRA"
+      "TXN"
     ],
     "AI": [
       "456680.KS",
@@ -1463,31 +1495,41 @@
       "ABNB",
       "ACHR",
       "ADA-USD",
+      "ADBE",
       "ADSK",
       "AKAM",
       "ALNY",
       "AMCR",
       "AMD",
+      "AMZN",
       "ANET",
       "APD",
+      "APP",
       "ARM",
       "ASTS",
+      "AVY",
       "AZO",
       "BALL",
+      "BBY",
       "BG",
       "CDW",
       "CMG",
       "COST",
+      "CPAY",
+      "CRM",
       "CTAS",
       "CTSH",
       "DAL",
+      "DASH",
       "DDOG",
       "DELL",
       "DG",
       "DIS",
       "DLTR",
       "DRI",
+      "EBAY",
       "EPAM",
+      "EXPD",
       "FFIV",
       "FICO",
       "FIX",
@@ -1496,12 +1538,14 @@
       "GDDY",
       "GE",
       "GEN",
+      "GOOG",
       "GWW",
       "HD",
       "HII",
       "HPE",
       "HPQ",
       "IBM",
+      "IP",
       "IRM",
       "IT",
       "JBHT",
@@ -1511,15 +1555,24 @@
       "LII",
       "LINK-USD",
       "LOW",
+      "LULU",
       "LUV",
       "LYV",
+      "MELI",
+      "META",
       "MGM",
       "MOS",
+      "MSFT",
+      "MTCH",
       "MU",
+      "NOW",
       "NRG",
       "NTAP",
       "NVDA",
+      "NWS",
+      "NWSA",
       "NXPI",
+      "ORCL",
       "ORLY",
       "PDD",
       "PKG",
@@ -1555,10 +1608,12 @@
       "TYL",
       "UAL",
       "UBER",
+      "ULTA",
       "UNP",
       "VLO",
       "VRSN",
       "WAB",
+      "WBD",
       "WDAY",
       "WMT",
       "WSM",
@@ -1586,14 +1641,17 @@
       "FFIV",
       "GDDY",
       "GEN",
+      "GOOG",
       "HPE",
       "HPQ",
       "IBM",
       "IRM",
       "IT",
       "KMI",
+      "META",
       "MRVL",
       "MSFT",
+      "MTCH",
       "MU",
       "NTAP",
       "NVDA",
@@ -1629,12 +1687,14 @@
       "ARM",
       "AWK",
       "BNB-USD",
+      "CAH",
       "CEG",
       "CMI",
       "CMS",
       "CNP",
       "D",
       "DE",
+      "DTE",
       "DUK",
       "ED",
       "EIX",
@@ -1643,13 +1703,16 @@
       "ETN",
       "EVRG",
       "EXC",
+      "FAST",
       "FE",
       "GEV",
       "GNRC",
+      "GWW",
       "HUBB",
       "JCI",
       "LNT",
       "MCD",
+      "MCK",
       "MPWR",
       "MSFT",
       "NEE",
@@ -1658,11 +1721,13 @@
       "PCG",
       "PEG",
       "PNW",
+      "POOL",
       "PPL",
       "QCOM",
       "SO",
       "SRE",
       "SYY",
+      "VST",
       "WEC",
       "XEL"
     ],
@@ -1671,6 +1736,7 @@
       "ABBV",
       "ABT",
       "ADI",
+      "ALGN",
       "ALNY",
       "AMGN",
       "AXON",
@@ -1711,12 +1777,14 @@
       "MRK",
       "MRNA",
       "MTD",
+      "NVO",
       "PFE",
       "PODD",
       "QCOM",
       "REGN",
       "RMD",
       "RVTY",
+      "SNDK",
       "SOLV",
       "STE",
       "STX",
@@ -1728,6 +1796,7 @@
       "VTR",
       "VTRS",
       "WAT",
+      "WDC",
       "WST",
       "ZBH",
       "ZTS"
@@ -1739,6 +1808,7 @@
       "AEE",
       "AES",
       "ALB",
+      "ALGN",
       "ALNY",
       "AMGN",
       "APA",
@@ -1780,6 +1850,7 @@
       "IP",
       "JNJ",
       "JOBY",
+      "KDP",
       "KEYS",
       "KHC",
       "KO",
@@ -1804,14 +1875,62 @@
       "SNDK",
       "SRE",
       "STX",
+      "STZ",
       "SYK",
       "TAP",
       "TKO",
       "TPL",
       "VRTX",
+      "WDC",
       "WEC",
       "WYNN",
       "XEL"
+    ],
+    "Defense": [
+      "ACHR",
+      "BA",
+      "BAESY",
+      "EH",
+      "GD",
+      "GE",
+      "GLW",
+      "HII",
+      "HWM",
+      "KTOS",
+      "LDOS",
+      "LHX",
+      "LMT",
+      "NOC",
+      "PL",
+      "RKLB",
+      "RTX",
+      "SPCE",
+      "TDG",
+      "TDY"
+    ],
+    "Space": [
+      "ACHR",
+      "ASTS",
+      "BA",
+      "BAESY",
+      "EH",
+      "EXR",
+      "GD",
+      "GE",
+      "GLW",
+      "HII",
+      "HWM",
+      "IRDM",
+      "KTOS",
+      "LHX",
+      "LMT",
+      "NOC",
+      "PL",
+      "RKLB",
+      "RTX",
+      "SPCE",
+      "TDG",
+      "TDY"
     ],
     "Cybersecurity": [
       "ADA-USD",
@@ -1890,39 +2009,6 @@
       "VLTO",
       "VRSK",
       "XYL"
-    ],
-    "Space": [
-      "ASTS",
-      "BA",
-      "BAESY",
-      "EXR",
-      "GD",
-      "GE",
-      "GLW",
-      "HWM",
-      "IRDM",
-      "LMT",
-      "NOC",
-      "PL",
-      "RKLB",
-      "RTX",
-      "SPCE",
-      "TDG"
-    ],
-    "Defense": [
-      "BA",
-      "BAESY",
-      "GD",
-      "GE",
-      "GLW",
-      "HII",
-      "HWM",
-      "KTOS",
-      "LDOS",
-      "LMT",
-      "NOC",
-      "RTX",
-      "TDG"
     ],
     "Nuclear_Uranium": [
       "CEG"
@@ -1932,52 +2018,28 @@
     "Semiconductors": [
       "381180.KS",
       "ADI",
-      "ADSK",
-      "AKAM",
       "AMAT",
       "AMD",
       "ARM",
       "ASML",
       "AVGO",
       "CDNS",
-      "CDW",
       "CMG",
-      "CTSH",
-      "DDOG",
-      "EPAM",
-      "FFIV",
-      "GDDY",
-      "GEN",
-      "HPE",
-      "HPQ",
       "INTC",
-      "IT",
       "KLAC",
       "LRCX",
       "MCHP",
+      "MPWR",
       "MRVL",
       "MU",
-      "NTAP",
       "NVDA",
       "NXPI",
       "ON",
-      "PDD",
-      "PTC",
-      "Q",
       "QCOM",
-      "ROP",
       "SNPS",
-      "SWKS",
-      "TEAM",
       "TER",
-      "TRI",
-      "TRMB",
       "TSM",
-      "TXN",
-      "TYL",
-      "VRSN",
-      "WDAY",
-      "ZBRA"
+      "TXN"
     ],
     "AI": [
       "456680.KS",
@@ -1986,31 +2048,41 @@
       "ABNB",
       "ACHR",
       "ADA-USD",
+      "ADBE",
       "ADSK",
       "AKAM",
       "ALNY",
       "AMCR",
       "AMD",
+      "AMZN",
       "ANET",
       "APD",
+      "APP",
       "ARM",
       "ASTS",
+      "AVY",
       "AZO",
       "BALL",
+      "BBY",
       "BG",
       "CDW",
       "CMG",
       "COST",
+      "CPAY",
+      "CRM",
       "CTAS",
       "CTSH",
       "DAL",
+      "DASH",
       "DDOG",
       "DELL",
       "DG",
       "DIS",
       "DLTR",
       "DRI",
+      "EBAY",
       "EPAM",
+      "EXPD",
       "FFIV",
       "FICO",
       "FIX",
@@ -2019,12 +2091,14 @@
       "GDDY",
       "GE",
       "GEN",
+      "GOOG",
       "GWW",
       "HD",
       "HII",
       "HPE",
       "HPQ",
       "IBM",
+      "IP",
       "IRM",
       "IT",
       "JBHT",
@@ -2034,15 +2108,24 @@
       "LII",
       "LINK-USD",
       "LOW",
+      "LULU",
       "LUV",
       "LYV",
+      "MELI",
+      "META",
       "MGM",
       "MOS",
+      "MSFT",
+      "MTCH",
       "MU",
+      "NOW",
       "NRG",
       "NTAP",
       "NVDA",
+      "NWS",
+      "NWSA",
       "NXPI",
+      "ORCL",
       "ORLY",
       "PDD",
       "PKG",
@@ -2078,10 +2161,12 @@
       "TYL",
       "UAL",
       "UBER",
+      "ULTA",
       "UNP",
       "VLO",
       "VRSN",
       "WAB",
+      "WBD",
       "WDAY",
       "WMT",
       "WSM",
@@ -2109,14 +2194,17 @@
       "FFIV",
       "GDDY",
       "GEN",
+      "GOOG",
       "HPE",
       "HPQ",
       "IBM",
       "IRM",
       "IT",
       "KMI",
+      "META",
       "MRVL",
       "MSFT",
+      "MTCH",
       "MU",
       "NTAP",
       "NVDA",
@@ -2152,12 +2240,14 @@
       "ARM",
       "AWK",
       "BNB-USD",
+      "CAH",
       "CEG",
       "CMI",
       "CMS",
       "CNP",
       "D",
       "DE",
+      "DTE",
       "DUK",
       "ED",
       "EIX",
@@ -2166,13 +2256,16 @@
       "ETN",
       "EVRG",
       "EXC",
+      "FAST",
       "FE",
       "GEV",
       "GNRC",
+      "GWW",
       "HUBB",
       "JCI",
       "LNT",
       "MCD",
+      "MCK",
       "MPWR",
       "MSFT",
       "NEE",
@@ -2181,11 +2274,13 @@
       "PCG",
       "PEG",
       "PNW",
+      "POOL",
       "PPL",
       "QCOM",
       "SO",
       "SRE",
       "SYY",
+      "VST",
       "WEC",
       "XEL"
     ],
@@ -2194,6 +2289,7 @@
       "ABBV",
       "ABT",
       "ADI",
+      "ALGN",
       "ALNY",
       "AMGN",
       "AXON",
@@ -2234,12 +2330,14 @@
       "MRK",
       "MRNA",
       "MTD",
+      "NVO",
       "PFE",
       "PODD",
       "QCOM",
       "REGN",
       "RMD",
       "RVTY",
+      "SNDK",
       "SOLV",
       "STE",
       "STX",
@@ -2251,6 +2349,7 @@
       "VTR",
       "VTRS",
       "WAT",
+      "WDC",
       "WST",
       "ZBH",
       "ZTS"
@@ -2262,6 +2361,7 @@
       "AEE",
       "AES",
       "ALB",
+      "ALGN",
       "ALNY",
       "AMGN",
       "APA",
@@ -2303,6 +2403,7 @@
       "IP",
       "JNJ",
       "JOBY",
+      "KDP",
       "KEYS",
       "KHC",
       "KO",
@@ -2327,14 +2428,62 @@
       "SNDK",
       "SRE",
       "STX",
+      "STZ",
       "SYK",
       "TAP",
       "TKO",
       "TPL",
       "VRTX",
+      "WDC",
       "WEC",
       "WYNN",
       "XEL"
+    ],
+    "Defense": [
+      "ACHR",
+      "BA",
+      "BAESY",
+      "EH",
+      "GD",
+      "GE",
+      "GLW",
+      "HII",
+      "HWM",
+      "KTOS",
+      "LDOS",
+      "LHX",
+      "LMT",
+      "NOC",
+      "PL",
+      "RKLB",
+      "RTX",
+      "SPCE",
+      "TDG",
+      "TDY"
+    ],
+    "Space": [
+      "ACHR",
+      "ASTS",
+      "BA",
+      "BAESY",
+      "EH",
+      "EXR",
+      "GD",
+      "GE",
+      "GLW",
+      "HII",
+      "HWM",
+      "IRDM",
+      "KTOS",
+      "LHX",
+      "LMT",
+      "NOC",
+      "PL",
+      "RKLB",
+      "RTX",
+      "SPCE",
+      "TDG",
+      "TDY"
     ],
     "Cybersecurity": [
       "ADA-USD",
@@ -2413,39 +2562,6 @@
       "VLTO",
       "VRSK",
       "XYL"
-    ],
-    "Space": [
-      "ASTS",
-      "BA",
-      "BAESY",
-      "EXR",
-      "GD",
-      "GE",
-      "GLW",
-      "HWM",
-      "IRDM",
-      "LMT",
-      "NOC",
-      "PL",
-      "RKLB",
-      "RTX",
-      "SPCE",
-      "TDG"
-    ],
-    "Defense": [
-      "BA",
-      "BAESY",
-      "GD",
-      "GE",
-      "GLW",
-      "HII",
-      "HWM",
-      "KTOS",
-      "LDOS",
-      "LMT",
-      "NOC",
-      "RTX",
-      "TDG"
     ],
     "Nuclear_Uranium": [
       "CEG"
@@ -2455,52 +2571,28 @@
     "Semiconductors": [
       "381180.KS",
       "ADI",
-      "ADSK",
-      "AKAM",
       "AMAT",
       "AMD",
       "ARM",
       "ASML",
       "AVGO",
       "CDNS",
-      "CDW",
       "CMG",
-      "CTSH",
-      "DDOG",
-      "EPAM",
-      "FFIV",
-      "GDDY",
-      "GEN",
-      "HPE",
-      "HPQ",
       "INTC",
-      "IT",
       "KLAC",
       "LRCX",
       "MCHP",
+      "MPWR",
       "MRVL",
       "MU",
-      "NTAP",
       "NVDA",
       "NXPI",
       "ON",
-      "PDD",
-      "PTC",
-      "Q",
       "QCOM",
-      "ROP",
       "SNPS",
-      "SWKS",
-      "TEAM",
       "TER",
-      "TRI",
-      "TRMB",
       "TSM",
-      "TXN",
-      "TYL",
-      "VRSN",
-      "WDAY",
-      "ZBRA"
+      "TXN"
     ],
     "AI": [
       "456680.KS",
@@ -2509,31 +2601,41 @@
       "ABNB",
       "ACHR",
       "ADA-USD",
+      "ADBE",
       "ADSK",
       "AKAM",
       "ALNY",
       "AMCR",
       "AMD",
+      "AMZN",
       "ANET",
       "APD",
+      "APP",
       "ARM",
       "ASTS",
+      "AVY",
       "AZO",
       "BALL",
+      "BBY",
       "BG",
       "CDW",
       "CMG",
       "COST",
+      "CPAY",
+      "CRM",
       "CTAS",
       "CTSH",
       "DAL",
+      "DASH",
       "DDOG",
       "DELL",
       "DG",
       "DIS",
       "DLTR",
       "DRI",
+      "EBAY",
       "EPAM",
+      "EXPD",
       "FFIV",
       "FICO",
       "FIX",
@@ -2542,12 +2644,14 @@
       "GDDY",
       "GE",
       "GEN",
+      "GOOG",
       "GWW",
       "HD",
       "HII",
       "HPE",
       "HPQ",
       "IBM",
+      "IP",
       "IRM",
       "IT",
       "JBHT",
@@ -2557,15 +2661,24 @@
       "LII",
       "LINK-USD",
       "LOW",
+      "LULU",
       "LUV",
       "LYV",
+      "MELI",
+      "META",
       "MGM",
       "MOS",
+      "MSFT",
+      "MTCH",
       "MU",
+      "NOW",
       "NRG",
       "NTAP",
       "NVDA",
+      "NWS",
+      "NWSA",
       "NXPI",
+      "ORCL",
       "ORLY",
       "PDD",
       "PKG",
@@ -2601,10 +2714,12 @@
       "TYL",
       "UAL",
       "UBER",
+      "ULTA",
       "UNP",
       "VLO",
       "VRSN",
       "WAB",
+      "WBD",
       "WDAY",
       "WMT",
       "WSM",
@@ -2632,14 +2747,17 @@
       "FFIV",
       "GDDY",
       "GEN",
+      "GOOG",
       "HPE",
       "HPQ",
       "IBM",
       "IRM",
       "IT",
       "KMI",
+      "META",
       "MRVL",
       "MSFT",
+      "MTCH",
       "MU",
       "NTAP",
       "NVDA",
@@ -2675,12 +2793,14 @@
       "ARM",
       "AWK",
       "BNB-USD",
+      "CAH",
       "CEG",
       "CMI",
       "CMS",
       "CNP",
       "D",
       "DE",
+      "DTE",
       "DUK",
       "ED",
       "EIX",
@@ -2689,13 +2809,16 @@
       "ETN",
       "EVRG",
       "EXC",
+      "FAST",
       "FE",
       "GEV",
       "GNRC",
+      "GWW",
       "HUBB",
       "JCI",
       "LNT",
       "MCD",
+      "MCK",
       "MPWR",
       "MSFT",
       "NEE",
@@ -2704,11 +2827,13 @@
       "PCG",
       "PEG",
       "PNW",
+      "POOL",
       "PPL",
       "QCOM",
       "SO",
       "SRE",
       "SYY",
+      "VST",
       "WEC",
       "XEL"
     ],
@@ -2717,6 +2842,7 @@
       "ABBV",
       "ABT",
       "ADI",
+      "ALGN",
       "ALNY",
       "AMGN",
       "AXON",
@@ -2757,12 +2883,14 @@
       "MRK",
       "MRNA",
       "MTD",
+      "NVO",
       "PFE",
       "PODD",
       "QCOM",
       "REGN",
       "RMD",
       "RVTY",
+      "SNDK",
       "SOLV",
       "STE",
       "STX",
@@ -2774,6 +2902,7 @@
       "VTR",
       "VTRS",
       "WAT",
+      "WDC",
       "WST",
       "ZBH",
       "ZTS"
@@ -2785,6 +2914,7 @@
       "AEE",
       "AES",
       "ALB",
+      "ALGN",
       "ALNY",
       "AMGN",
       "APA",
@@ -2826,6 +2956,7 @@
       "IP",
       "JNJ",
       "JOBY",
+      "KDP",
       "KEYS",
       "KHC",
       "KO",
@@ -2850,14 +2981,62 @@
       "SNDK",
       "SRE",
       "STX",
+      "STZ",
       "SYK",
       "TAP",
       "TKO",
       "TPL",
       "VRTX",
+      "WDC",
       "WEC",
       "WYNN",
       "XEL"
+    ],
+    "Defense": [
+      "ACHR",
+      "BA",
+      "BAESY",
+      "EH",
+      "GD",
+      "GE",
+      "GLW",
+      "HII",
+      "HWM",
+      "KTOS",
+      "LDOS",
+      "LHX",
+      "LMT",
+      "NOC",
+      "PL",
+      "RKLB",
+      "RTX",
+      "SPCE",
+      "TDG",
+      "TDY"
+    ],
+    "Space": [
+      "ACHR",
+      "ASTS",
+      "BA",
+      "BAESY",
+      "EH",
+      "EXR",
+      "GD",
+      "GE",
+      "GLW",
+      "HII",
+      "HWM",
+      "IRDM",
+      "KTOS",
+      "LHX",
+      "LMT",
+      "NOC",
+      "PL",
+      "RKLB",
+      "RTX",
+      "SPCE",
+      "TDG",
+      "TDY"
     ],
     "Cybersecurity": [
       "ADA-USD",
@@ -2936,39 +3115,6 @@
       "VLTO",
       "VRSK",
       "XYL"
-    ],
-    "Space": [
-      "ASTS",
-      "BA",
-      "BAESY",
-      "EXR",
-      "GD",
-      "GE",
-      "GLW",
-      "HWM",
-      "IRDM",
-      "LMT",
-      "NOC",
-      "PL",
-      "RKLB",
-      "RTX",
-      "SPCE",
-      "TDG"
-    ],
-    "Defense": [
-      "BA",
-      "BAESY",
-      "GD",
-      "GE",
-      "GLW",
-      "HII",
-      "HWM",
-      "KTOS",
-      "LDOS",
-      "LMT",
-      "NOC",
-      "RTX",
-      "TDG"
     ]
   },
   "theme_groups_extended": {},
