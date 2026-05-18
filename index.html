@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -18,24 +19,64 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Beat SnP – Backtesting and interval performance vs S&P 500." />
 
-  <!-- 뷰포트 메타 태그 추가 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-title" content="Beat SnP">
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="my_flutter_app">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <title>Beat SnP</title>
+
+  <meta property="og:title" content="Beat SnP – Outperformance Analytics" />
+  <meta property="og:description"
+    content="Backtesting and interval performance tracking vs S&P 500 (VOO). Daily top risers & risk panels." />
+  <meta property="og:url" content="https://www.beatsnp.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.beatsnp.com/og.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Beat SnP – Outperformance Analytics" />
+  <meta name="twitter:description" content="Backtesting and interval performance tracking vs S&P 500 (VOO)." />
+  <meta name="twitter:image" content="https://www.beatsnp.com/og.png" />
+
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-  <title>my_flutter_app</title>
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
+  <!-- OAuth 브랜딩: noscript에만 개인정보처리방침 링크 (봇 파싱용). 고정 푸터 제거 → Flutter 대시보드 스크롤 끝에만 표시 -->
+  <noscript>
+    <p style="padding:12px;text-align:center;font-size:12px;">
+      <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a>
+    </p>
+  </noscript>
+  <!-- 로그인 등 모든 팝업을 화면 중앙에 열기 -->
+  <script>
+    (function () {
+      var nativeOpen = window.open.bind(window);
+      function centeredOpen(url, name, specs) {
+        var w = 500, h = 600;
+        var left = Math.round((screen.width - w) / 2);
+        var top = Math.round((screen.height - h) / 2);
+        var s = (specs == null || specs === undefined) ? '' : String(specs);
+        if (s.indexOf('left') === -1) s += (s ? ',' : '') + 'left=' + left;
+        if (s.indexOf('top') === -1) s += (s ? ',' : '') + 'top=' + top;
+        if (s.indexOf('width') === -1) s += (s ? ',' : '') + 'width=' + w;
+        if (s.indexOf('height') === -1) s += (s ? ',' : '') + 'height=' + h;
+        return nativeOpen(url, name, s);
+      }
+      function install() {
+        window.open = centeredOpen;
+        if (window.top && window.top !== window) window.top.open = centeredOpen;
+      }
+      install();
+      if (document.readyState !== 'complete') {
+        window.addEventListener('load', install);
+      }
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
+
 </html>
