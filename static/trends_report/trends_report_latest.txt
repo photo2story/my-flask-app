@@ -26,18 +26,18 @@ Fallers:
 - FSLR: Rank 50 -> 52 (-2), State S1_LEADER -> S1_LEADER
 - AAPL: Rank 7 -> 8 (-1), State S1_LEADER -> S1_LEADER
 
-### DER Shock (2026-05-18 to 2026-05-24):
+### DER Shock (2026-05-19 to 2026-05-24):
 **Increasing**
-- ACHR: 0.00 -> 5000.00 (Change: 5000.00)
 - CME: -5000.00 -> -0.00 (Change: 5000.00)
-- ARM: 0.00 -> 5000.00 (Change: 5000.00)
-- CSX: -5000.00 -> -0.05 (Change: 4999.95)
-- BRK-B: -5000.00 -> -0.21 (Change: 4999.79)
+- HAS: -5000.00 -> -0.00 (Change: 5000.00)
+- FOXA: -5000.00 -> -0.00 (Change: 5000.00)
+- FOX: -5000.00 -> -0.00 (Change: 5000.00)
+- ACHR: 0.00 -> 5000.00 (Change: 5000.00)
 **Decreasing**
-- AON: 5000.00 -> -593.15 (Change: -5593.15)
-- 160580.KS: -0.00 -> -5000.00 (Change: -5000.00)
-- AMGN: -0.00 -> -5000.00 (Change: -5000.00)
+- AON: 5000.00 -> -609.30 (Change: -5609.30)
 - EMR: -0.00 -> -5000.00 (Change: -5000.00)
+- F: -0.00 -> -5000.00 (Change: -5000.00)
+- 160580.KS: -0.00 -> -5000.00 (Change: -5000.00)
 - GM: -0.00 -> -5000.00 (Change: -5000.00)
 
 ### State Transitions (2026-05-23 vs 2026-05-24):
@@ -68,9 +68,10 @@ Exits:
 
 
 ## 2) What changed structurally
-- **Increase in neutral stocks**: The number of neutral stocks ('S0_NEUTRAL') increased by 6.
-- **Decline of leaders, shift to bottoming**: The number of 'S1_LEADER' stocks decreased by 1, while 'S4_BOTTOMING' stocks increased by 2, potentially indicating a decline of leaders and a shifting focus to stocks reaching their bottom.
-- **Increased representation of late exhaustion and trash**: 'S3_LATE_EXHAUSTION' and 'S5_TRASH' stocks both increased by 2, reflecting a greater prevalence of these states in the market structure.
+- The transition from `S5_TO_S4` increased the presence of companies in `S4_BOTTOMING` state, as seen in the state transition data (`s5_to_s4=1`).
+- The state distribution deltas show that `S4_BOTTOMING` experienced a minor increase (`delta: 2`), further indicating the effect of `S5_TO_S4` transition.
+- The distribution delta for `S5_TRASH` also increased, suggesting that companies moving out of `S5_TRASH` to `S4_BOTTOMING` contributed to this shift.
+- No significant changes in state distribution were observed in `S1_LEADER`, despite a slight decline (`delta: -1`), due to other counterbalancing state transitions.
 
 ## 3) Watch list
 - OTIS: State transition S5_TRASH → S4_BOTTOMING (Rank 550 → 538)
