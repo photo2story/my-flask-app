@@ -14,17 +14,17 @@
 ## 1) Raw facts
 ### Rank Movers (2026-05-23 vs 2026-05-24):
 Risers:
-- T1 OTIS: Rank 550 -> 538 (+12), State S5_TRASH -> S4_BOTTOMING
-- AMD: Rank 8 -> 7 (+1), State S3_LATE_EXHAUSTION -> S3_LATE_EXHAUSTION
+- T1 OTIS: Rank 550 -> 542 (+8), State S5_TRASH -> S4_BOTTOMING
+- AMD: Rank 8 -> 6 (+2), State S3_LATE_EXHAUSTION -> S3_LATE_EXHAUSTION
 - MU: Rank 17 -> 16 (+1), State S3_LATE_EXHAUSTION -> S3_LATE_EXHAUSTION
+- MPWR: Rank 19 -> 18 (+1), State S5_TRASH -> S5_TRASH
 - SNDK: Rank 47 -> 45 (+2), State S3_LATE_EXHAUSTION -> S3_LATE_EXHAUSTION
-- BNB-USD: Rank 92 -> 88 (+4), State S5_TRASH -> S5_TRASH
 Fallers:
 - ASTS: Rank 20 -> 21 (-1), State S0_NEUTRAL -> S0_NEUTRAL
-- SLB: Rank 302 -> 306 (-4), State S1_LEADER -> S0_NEUTRAL
-- GOOGL: Rank 49 -> 51 (-2), State S5_TRASH -> S5_TRASH
-- FSLR: Rank 50 -> 52 (-2), State S1_LEADER -> S1_LEADER
-- AAPL: Rank 7 -> 8 (-1), State S1_LEADER -> S1_LEADER
+- SLB: Rank 302 -> 309 (-7), State S1_LEADER -> S0_NEUTRAL
+- BTC-USD: Rank 74 -> 102 (-28), State S5_TRASH -> S5_TRASH
+- GOOGL: Rank 49 -> 52 (-3), State S5_TRASH -> S5_TRASH
+- FSLR: Rank 50 -> 53 (-3), State S1_LEADER -> S1_LEADER
 
 ### DER Shock (2026-05-19 to 2026-05-24):
 **Increasing**
@@ -34,7 +34,7 @@ Fallers:
 - FOX: -5000.00 -> -0.00 (Change: 5000.00)
 - ACHR: 0.00 -> 5000.00 (Change: 5000.00)
 **Decreasing**
-- AON: 5000.00 -> -609.30 (Change: -5609.30)
+- AON: 5000.00 -> -617.55 (Change: -5617.55)
 - EMR: -0.00 -> -5000.00 (Change: -5000.00)
 - F: -0.00 -> -5000.00 (Change: -5000.00)
 - 160580.KS: -0.00 -> -5000.00 (Change: -5000.00)
@@ -48,17 +48,17 @@ Fallers:
 **S1 to S3**
 - None
 **S5 to S4**
-- OTIS: S5_TRASH -> S4_BOTTOMING (Rank 550 -> 538)
+- OTIS: S5_TRASH -> S4_BOTTOMING (Rank 550 -> 542)
 **S4 to S2**
 - None
 
 ### State Distribution (2026-05-23 vs 2026-05-24):
 - S1_LEADER: 41 -> 40 (-1)
 - S2_EARLY_BREAKOUT: 23 -> 23 (+0)
-- S3_LATE_EXHAUSTION: 17 -> 19 (+2)
+- S3_LATE_EXHAUSTION: 17 -> 20 (+3)
 - S4_BOTTOMING: 156 -> 158 (+2)
-- S5_TRASH: 160 -> 162 (+2)
-- S0_NEUTRAL: 163 -> 169 (+6)
+- S5_TRASH: 160 -> 164 (+4)
+- S0_NEUTRAL: 163 -> 170 (+7)
 
 ### Top 10 Changes (2026-05-23 vs 2026-05-24):
 New Entries:
@@ -68,10 +68,10 @@ Exits:
 
 
 ## 2) What changed structurally
-- The transition from `S5_TO_S4` increased the presence of companies in `S4_BOTTOMING` state, as seen in the state transition data (`s5_to_s4=1`).
-- The state distribution deltas show that `S4_BOTTOMING` experienced a minor increase (`delta: 2`), further indicating the effect of `S5_TO_S4` transition.
-- The distribution delta for `S5_TRASH` also increased, suggesting that companies moving out of `S5_TRASH` to `S4_BOTTOMING` contributed to this shift.
-- No significant changes in state distribution were observed in `S1_LEADER`, despite a slight decline (`delta: -1`), due to other counterbalancing state transitions.
+Since companies moved from **S5_TRASH** to **S4_BOTTOMING** and there was a net decrease in the distribution of **S5_TRASH** (delta of -4), it's likely that there has been a shift of:
+* Strong outperformance out of **S5_TRASH**
+* Weaker companies moving to the bottom of the distribution
+* Less extreme underperformance in general, as **S5_TRASH** has lost a substantial amount of its relative presence
 
 ## 3) Watch list
-- OTIS: State transition S5_TRASH → S4_BOTTOMING (Rank 550 → 538)
+- OTIS: State transition S5_TRASH → S4_BOTTOMING (Rank 550 → 542)
