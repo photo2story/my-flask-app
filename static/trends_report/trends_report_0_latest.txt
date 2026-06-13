@@ -1,4 +1,4 @@
-## Rank Trends Report — 2026-06-13
+## Rank Trends Report — 2026-06-14
 
 ### How to read this
 - **Rank**: Lower is better (1 is best)
@@ -13,10 +13,7 @@
   - S0_NEUTRAL = mixed / unclear
 
 ### Raw facts
-- No meaningful rank/state movers.
-- Top 10 membership unchanged.
-- DER shock highlighted KLAC (+4115.38).
-- Position100 changes: entered=0, exited=0.
+### Rank Movers (2026-06-13 vs 2026-06-14):
 
 Risers:
 - None
@@ -25,10 +22,74 @@ Fallers:
 - None
 
 
+### DER Shock (2026-06-05 to 2026-06-14):
+**Increasing**
+- KLAC: 116.62 -> 4600.00 (Change: 4483.38)
+- DG: -4069.66 -> -1670.98 (Change: 2398.68)
+- EL: -4403.71 -> -2892.61 (Change: 1511.09)
+- BALL: -2889.44 -> -1387.80 (Change: 1501.64)
+- TRI: 1218.99 -> 2606.78 (Change: 1387.78)
+**Decreasing**
+- TRMB: -2015.33 -> -4854.96 (Change: -2839.62)
+- CMG: 3871.18 -> 1626.37 (Change: -2244.81)
+- ADBE: -815.56 -> -2952.99 (Change: -2137.43)
+- JKHY: -2273.20 -> -4338.99 (Change: -2065.79)
+- CRM: -189.81 -> -1376.18 (Change: -1186.37)
+
+### Position 100 Changes (RD ≥ 99.9) (2026-06-13 vs 2026-06-14):
+**Entered**
+- JBL: 98.7 → 100.0
+- BK: 97.1 → 100.0
+**Exited**
+- ASML: 100.0 → 97.0
+
+### State Transitions (2026-06-13 vs 2026-06-14):
+**New S1 Leaders**
+- HWM: S0_NEUTRAL -> S1_LEADER (Rank 6 -> 3)
+- JBL: S5_TRASH -> S1_LEADER (Rank 18 -> 2)
+- STLD: S3_LATE_EXHAUSTION -> S1_LEADER (Rank 41 -> 26)
+- TPR: S0_NEUTRAL -> S1_LEADER (Rank 62 -> 57)
+- GE: S3_LATE_EXHAUSTION -> S1_LEADER (Rank 63 -> 46)
+**S2 to S1**
+- KEY: S2_EARLY_BREAKOUT -> S1_LEADER (Rank 246 -> 237)
+**S1 to S3**
+- LLY: S1_LEADER -> S3_LATE_EXHAUSTION (Rank 2 -> 12)
+**S5 to S4**
+- INSM: S5_TRASH -> S4_BOTTOMING (Rank 198 -> 169)
+- DVN: S5_TRASH -> S4_BOTTOMING (Rank 286 -> 251)
+- COF: S5_TRASH -> S4_BOTTOMING (Rank 287 -> 266)
+- BLK: S5_TRASH -> S4_BOTTOMING (Rank 295 -> 269)
+- MA: S5_TRASH -> S4_BOTTOMING (Rank 315 -> 288)
+**S4 to S2**
+- TDY: S4_BOTTOMING -> S2_EARLY_BREAKOUT (Rank 230 -> 241)
+- KR: S4_BOTTOMING -> S2_EARLY_BREAKOUT (Rank 284 -> 283)
+- TFC: S4_BOTTOMING -> S2_EARLY_BREAKOUT (Rank 310 -> 297)
+
+### State Distribution (2026-06-13 vs 2026-06-14):
+- S1_LEADER: 61 -> 78 (+17)
+- S2_EARLY_BREAKOUT: 22 -> 32 (+10)
+- S3_LATE_EXHAUSTION: 17 -> 15 (-2)
+- S4_BOTTOMING: 87 -> 95 (+8)
+- S5_TRASH: 223 -> 204 (-19)
+- S0_NEUTRAL: 172 -> 158 (-14)
+
+### Top 10 Changes (2026-06-13 vs 2026-06-14):
+New Entries:
+  - JBL (New Rank: 2, Old Rank: 18)
+  - SMH (New Rank: 10, Old Rank: 11)
+Exits:
+  - LLY (Old Rank: 2, New Rank: 12)
+  - VRT (Old Rank: 10, New Rank: 11)
+
 
 ### What changed structurally
-- DER shock highlighted KLAC (+4115.38).
-
+* The new `S1_LEADER` state gained 17 positions, including companies like HWM, JBL, and STLD.
+* Companies like INSM, DVN, and COF transitioned from `S5_TRASH` to `S4_BOTTOMING`, contributing to the growth of the `S4_BOTTOMING` state.
+* The `S2_EARLY_BREAKOUT` state experienced an increase of 10 positions, with transitions from `S4_BOTTOMING` led by companies like TDY, KR, and TFC.
 
 ### Watch list
-- N/A: No meaningful candidates
+- HWM: State transition S0_NEUTRAL → S1_LEADER (Rank 6 → 3)
+- JBL: State transition S5_TRASH → S1_LEADER (Rank 18 → 2)
+- STLD: State transition S3_LATE_EXHAUSTION → S1_LEADER (Rank 41 → 26)
+- TPR: State transition S0_NEUTRAL → S1_LEADER (Rank 62 → 57)
+- GE: State transition S3_LATE_EXHAUSTION → S1_LEADER (Rank 63 → 46)
