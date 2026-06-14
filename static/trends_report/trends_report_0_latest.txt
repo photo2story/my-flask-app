@@ -17,32 +17,33 @@
 
 Risers:
 - T2 SNDK: Rank 65 -> 45 (+20), State S3_LATE_EXHAUSTION -> S1_LEADER
-- T2 GE: Rank 63 -> 47 (+16), State S3_LATE_EXHAUSTION -> S1_LEADER
+- T2 GE: Rank 63 -> 46 (+17), State S3_LATE_EXHAUSTION -> S1_LEADER
 - ABBV: Rank 107 -> 93 (+14), State S0_NEUTRAL -> S1_LEADER
 
 Fallers:
-- T3 LLY: Rank 2 -> 13 (-11), State S1_LEADER -> S3_LATE_EXHAUSTION
+- T3 LLY: Rank 2 -> 12 (-10), State S1_LEADER -> S3_LATE_EXHAUSTION
 - APH: Rank 19 -> 22 (-3), State S1_LEADER -> S1_LEADER
 
 
-### DER Shock (2026-06-05 to 2026-06-14):
+### DER Shock (2026-06-06 to 2026-06-14):
 **Increasing**
-- KLAC: 116.62 -> 4232.00 (Change: 4115.38)
-- DG: -4069.66 -> -1726.86 (Change: 2342.80)
-- EL: -4403.71 -> -2934.52 (Change: 1469.18)
-- BALL: -2889.44 -> -1427.49 (Change: 1461.94)
-- LDOS: 872.06 -> 2198.31 (Change: 1326.26)
+- XLP: -5000.00 -> -385.43 (Change: 4614.57)
+- CMS: -5000.00 -> -433.27 (Change: 4566.73)
+- O: -4970.19 -> -463.29 (Change: 4506.90)
+- SJM: -5000.00 -> -556.97 (Change: 4443.03)
+- SYY: -4940.68 -> -521.51 (Change: 4419.17)
 **Decreasing**
-- TRMB: -2015.33 -> -4741.81 (Change: -2726.48)
-- CMG: 3871.18 -> 1689.92 (Change: -2181.26)
-- ADBE: -815.56 -> -2858.23 (Change: -2042.67)
-- JKHY: -2273.20 -> -4279.31 (Change: -2006.11)
-- CRM: -189.81 -> -1308.20 (Change: -1118.39)
+- MOH: 5000.00 -> 472.15 (Change: -4527.85)
+- TMUS: 4815.80 -> 532.75 (Change: -4283.05)
+- CMG: 4881.35 -> 1755.96 (Change: -3125.39)
+- BRO: 3003.10 -> 692.10 (Change: -2311.00)
+- PODD: 3456.69 -> 1216.94 (Change: -2239.75)
 
 ### Position 100 Changes (RD ≥ 99.9) (2026-06-13 vs 2026-06-14):
 **Entered**
-- BK: 97.1 → 100.0
 - JBL: 98.7 → 100.0
+- BK: 97.1 → 100.0
+- SPCX: 0.0 → 100.0
 **Exited**
 - ASML: 100.0 → 97.0
 
@@ -52,13 +53,13 @@ Fallers:
 - JBL: S5_TRASH -> S1_LEADER (Rank 18 -> 2)
 - STLD: S3_LATE_EXHAUSTION -> S1_LEADER (Rank 41 -> 26)
 - TPR: S0_NEUTRAL -> S1_LEADER (Rank 62 -> 57)
-- GE: S3_LATE_EXHAUSTION -> S1_LEADER (Rank 63 -> 47)
+- GE: S3_LATE_EXHAUSTION -> S1_LEADER (Rank 63 -> 46)
 **S2 to S1**
 - KEY: S2_EARLY_BREAKOUT -> S1_LEADER (Rank 246 -> 237)
 **S1 to S3**
-- LLY: S1_LEADER -> S3_LATE_EXHAUSTION (Rank 2 -> 13)
+- LLY: S1_LEADER -> S3_LATE_EXHAUSTION (Rank 2 -> 12)
 **S5 to S4**
-- INSM: S5_TRASH -> S4_BOTTOMING (Rank 198 -> 169)
+- INSM: S5_TRASH -> S4_BOTTOMING (Rank 198 -> 168)
 - DVN: S5_TRASH -> S4_BOTTOMING (Rank 286 -> 250)
 - COF: S5_TRASH -> S4_BOTTOMING (Rank 287 -> 267)
 - BLK: S5_TRASH -> S4_BOTTOMING (Rank 295 -> 269)
@@ -74,23 +75,26 @@ Fallers:
 - S3_LATE_EXHAUSTION: 17 -> 15 (-2)
 - S4_BOTTOMING: 87 -> 95 (+8)
 - S5_TRASH: 223 -> 205 (-18)
-- S0_NEUTRAL: 172 -> 158 (-14)
+- S0_NEUTRAL: 172 -> 159 (-13)
 
 ### Top 10 Changes (2026-06-13 vs 2026-06-14):
 New Entries:
   - JBL (New Rank: 2, Old Rank: 18)
+  - SMH (New Rank: 10, Old Rank: 11)
 Exits:
-  - LLY (Old Rank: 2, New Rank: 13)
+  - LLY (Old Rank: 2, New Rank: 12)
+  - VRT (Old Rank: 10, New Rank: 11)
 
 
 ### What changed structurally
-- **Increased leadership from trash and bottoming states**. Companies such as JBL and INSM have transitioned from S5_TRASH to S1_LEADER and S4_BOTTOMING, respectively.
-- **Leaders shifted more significantly among the neutral states**. HWM moved from S0_NEUTRAL to S1_LEADER, while S0_NEUTRAL experienced a decline in representation overall.
-- **Breakout potential increased in bottoming states**, as TFC moved from S4_BOTTOMING to S2_EARLY_BREAKOUT, and similar movements from KR and TDY also occurred, highlighting a transition from bottoming to breakout.
+
+- **Leaders emerged**: The number of stocks in the `S1_LEADER` state increased due to 17 new stocks entering the state and no significant losses.
+- **Trash bin cleaned out**: Stocks in the `S5_TRASH` state decreased in prominence, with 26 stocks dropping to lower states.
+- **State distribution shifts**: The states most affected by the distribution deltas are `S1_LEADER` (gaining 17 stocks), `S2_EARLY_BREAKOUT` (gaining 10 stocks), `S4_BOTTOMING` (gaining 8 stocks), and `S5_TRASH` (dropping 18 stocks).
 
 ### Watch list
 - HWM: State transition S0_NEUTRAL → S1_LEADER (Rank 6 → 3)
 - JBL: State transition S5_TRASH → S1_LEADER (Rank 18 → 2)
 - STLD: State transition S3_LATE_EXHAUSTION → S1_LEADER (Rank 41 → 26)
 - TPR: State transition S0_NEUTRAL → S1_LEADER (Rank 62 → 57)
-- GE: State transition S3_LATE_EXHAUSTION → S1_LEADER (Rank 63 → 47)
+- GE: State transition S3_LATE_EXHAUSTION → S1_LEADER (Rank 63 → 46)
