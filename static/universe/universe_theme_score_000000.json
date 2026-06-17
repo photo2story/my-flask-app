@@ -1,7 +1,7 @@
 {
   "name": "THEME_SCORE_V1",
   "type": "theme_scoring",
-  "created_at": "2026-06-16 09:46:45",
+  "created_at": "2026-06-17 11:02:34",
   "source_theme_file": "universe_theme_000000.json",
   "rules": {
     "lookback_momentum_bars": 63,
@@ -23,61 +23,61 @@
   "ranked_themes_v1": [
     {
       "theme": "Semiconductors",
-      "score": 0.8230797963
+      "score": 0.8100560272
     },
     {
       "theme": "Cybersecurity",
-      "score": 0.6820097623
-    },
-    {
-      "theme": "Crypto_Blockchain",
-      "score": 0.5943500637
+      "score": 0.6870049873
     },
     {
       "theme": "FinTech_Payments",
-      "score": 0.5859823586
+      "score": 0.6020877502
+    },
+    {
+      "theme": "Crypto_Blockchain",
+      "score": 0.5768574915
     },
     {
       "theme": "AI",
-      "score": 0.5580298326
-    },
-    {
-      "theme": "Data_Center_Infrastructure",
-      "score": 0.5523185677
-    },
-    {
-      "theme": "Space",
-      "score": 0.5446432513
+      "score": 0.5533715741
     },
     {
       "theme": "Power_Grid",
-      "score": 0.5397020374
+      "score": 0.5527885921
+    },
+    {
+      "theme": "Data_Center_Infrastructure",
+      "score": 0.5483186449
+    },
+    {
+      "theme": "Space",
+      "score": 0.5471320034
     },
     {
       "theme": "Defense",
-      "score": 0.5287931118
+      "score": 0.5362476352
     },
     {
       "theme": "Robotics_Automation",
-      "score": 0.5218906369
+      "score": 0.5265497438
     },
     {
       "theme": "Energy_Transition",
-      "score": 0.4846914251
-    },
-    {
-      "theme": "Healthcare_Innovation",
-      "score": 0.4615576037
+      "score": 0.4784721558
     },
     {
       "theme": "Nuclear_Uranium",
-      "score": 0.4582427844
+      "score": 0.4621086587
+    },
+    {
+      "theme": "Healthcare_Innovation",
+      "score": 0.4553349503
     }
   ],
   "theme_scores_v1": {
     "Energy_Transition": {
-      "score_v1": 0.4846914251,
-      "base_score": 0.4487883566,
+      "score_v1": 0.4784721558,
+      "base_score": 0.4430297739,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -92,36 +92,36 @@
       "fallback_member_count": 3,
       "effective_member_weight_sum": 84.2,
       "representative_scores": {
-        "IONQ": 0.8281833616,
-        "SNDK": 0.8272920204,
-        "RGTI": 0.8250424448
+        "SNDK": 0.8167232598,
+        "IONQ": 0.8162139219,
+        "WDC": 0.8021646859
       },
       "avg_percentiles_raw": {
-        "momentum": 0.438679835,
-        "DER": 0.4260048635,
-        "RD": 0.4704217059,
-        "rank_change": 0.536514645
+        "momentum": 0.4307776375,
+        "DER": 0.4256903081,
+        "RD": 0.4663647472,
+        "rank_change": 0.5177239897
       },
       "avg_percentiles": {
-        "momentum": 0.438679835,
-        "DER": 0.4260048635,
-        "RD": 0.4704217059,
-        "rank_change": 0.536514645
+        "momentum": 0.4307776375,
+        "DER": 0.4256903081,
+        "RD": 0.4663647472,
+        "rank_change": 0.5177239897
       },
       "representatives": [
-        "IONQ",
         "SNDK",
-        "RGTI"
+        "IONQ",
+        "WDC"
       ],
       "representatives_selected_only": [
-        "IONQ",
         "SNDK",
-        "RGTI"
+        "IONQ",
+        "WDC"
       ]
     },
     "Semiconductors": {
-      "score_v1": 0.8230797963,
-      "base_score": 0.7621109225,
+      "score_v1": 0.8100560272,
+      "base_score": 0.750051877,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -132,21 +132,21 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 27.0,
       "representative_scores": {
-        "AMD": 0.8780560272,
-        "LRCX": 0.8535229202,
-        "AMAT": 0.8420628183
+        "AMD": 0.8812393888,
+        "LRCX": 0.8500848896,
+        "AMAT": 0.8401528014
       },
       "avg_percentiles_raw": {
-        "momentum": 0.8584229391,
-        "DER": 0.7043325159,
-        "RD": 0.8584543797,
-        "rank_change": 0.4345720933
+        "momentum": 0.8368232409,
+        "DER": 0.7122555493,
+        "RD": 0.8321385902,
+        "rank_change": 0.4121234987
       },
       "avg_percentiles": {
-        "momentum": 0.8584229391,
-        "DER": 0.7043325159,
-        "RD": 0.8584543797,
-        "rank_change": 0.4345720933
+        "momentum": 0.8368232409,
+        "DER": 0.7122555493,
+        "RD": 0.8321385902,
+        "rank_change": 0.4121234987
       },
       "representatives": [
         "AMD",
@@ -160,8 +160,8 @@
       ]
     },
     "AI": {
-      "score_v1": 0.5580298326,
-      "base_score": 0.5166942895,
+      "score_v1": 0.5533715741,
+      "base_score": 0.5123810871,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -172,36 +172,36 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 126.0,
       "representative_scores": {
-        "AMD": 0.8780560272,
-        "FIX": 0.8590831919,
-        "MU": 0.8294142615
+        "AMD": 0.8812393888,
+        "FIX": 0.8556027165,
+        "WSM": 0.8404074703
       },
       "avg_percentiles_raw": {
-        "momentum": 0.5011655483,
-        "DER": 0.5547470828,
-        "RD": 0.5244428275,
-        "rank_change": 0.4340016708
+        "momentum": 0.4948594605,
+        "DER": 0.5540733554,
+        "RD": 0.5203330908,
+        "rank_change": 0.4246166491
       },
       "avg_percentiles": {
-        "momentum": 0.5011655483,
-        "DER": 0.5547470828,
-        "RD": 0.5244428275,
-        "rank_change": 0.4340016708
+        "momentum": 0.4948594605,
+        "DER": 0.5540733554,
+        "RD": 0.5203330908,
+        "rank_change": 0.4246166491
       },
       "representatives": [
         "AMD",
         "FIX",
-        "MU"
+        "WSM"
       ],
       "representatives_selected_only": [
         "AMD",
         "FIX",
-        "MU"
+        "WSM"
       ]
     },
     "Data_Center_Infrastructure": {
-      "score_v1": 0.5523185677,
-      "base_score": 0.5114060812,
+      "score_v1": 0.5483186449,
+      "base_score": 0.5077024489,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -212,21 +212,21 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 66.0,
       "representative_scores": {
-        "STX": 0.8430814941,
-        "DELL": 0.8430390492,
-        "MU": 0.8294142615
+        "STX": 0.8426570458,
+        "DELL": 0.8359083192,
+        "MU": 0.832385399
       },
       "avg_percentiles_raw": {
-        "momentum": 0.5573390955,
-        "DER": 0.5197432731,
-        "RD": 0.5167592736,
-        "rank_change": 0.2904640634
+        "momentum": 0.5424319597,
+        "DER": 0.5187271698,
+        "RD": 0.5134408602,
+        "rank_change": 0.321590266
       },
       "avg_percentiles": {
-        "momentum": 0.5573390955,
-        "DER": 0.5197432731,
-        "RD": 0.5167592736,
-        "rank_change": 0.2904640634
+        "momentum": 0.5424319597,
+        "DER": 0.5187271698,
+        "RD": 0.5134408602,
+        "rank_change": 0.321590266
       },
       "representatives": [
         "STX",
@@ -240,8 +240,8 @@
       ]
     },
     "Power_Grid": {
-      "score_v1": 0.5397020374,
-      "base_score": 0.4997241087,
+      "score_v1": 0.5527885921,
+      "base_score": 0.511841289,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -252,21 +252,21 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 52.0,
       "representative_scores": {
-        "MPWR": 0.8201188455,
-        "ARM": 0.7742359932,
-        "GWW": 0.7674023769
+        "MPWR": 0.7937606112,
+        "ARM": 0.7775042445,
+        "GWW": 0.7651952462
       },
       "avg_percentiles_raw": {
-        "momentum": 0.475953376,
-        "DER": 0.473325062,
-        "RD": 0.5652997257,
-        "rank_change": 0.5888402769
+        "momentum": 0.4878869009,
+        "DER": 0.47619825,
+        "RD": 0.5742621131,
+        "rank_change": 0.6387782421
       },
       "avg_percentiles": {
-        "momentum": 0.475953376,
-        "DER": 0.473325062,
-        "RD": 0.5652997257,
-        "rank_change": 0.5888402769
+        "momentum": 0.4878869009,
+        "DER": 0.47619825,
+        "RD": 0.5742621131,
+        "rank_change": 0.6387782421
       },
       "representatives": [
         "MPWR",
@@ -280,8 +280,8 @@
       ]
     },
     "Robotics_Automation": {
-      "score_v1": 0.5218906369,
-      "base_score": 0.4832320712,
+      "score_v1": 0.5265497438,
+      "base_score": 0.4875460591,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -294,52 +294,52 @@
         "CAT",
         "ODFL",
         "EME",
-        "LIN",
         "PH",
-        "CHRW",
+        "LIN",
         "DOV",
+        "CHRW",
         "RSG",
-        "PLD",
         "FER",
         "AME",
+        "PLD",
         "WM",
         "MSI",
-        "ROL",
-        "CPRT"
+        "CPRT",
+        "ROL"
       ],
       "fallback_member_count": 17,
       "effective_member_weight_sum": 45.8,
       "representative_scores": {
-        "PWR": 0.8384974533,
-        "URI": 0.8206281834,
-        "TER": 0.8036926995
+        "PWR": 0.8381154499,
+        "URI": 0.8188455008,
+        "CAT": 0.8036078098
       },
       "avg_percentiles_raw": {
-        "momentum": 0.481250139,
-        "DER": 0.4951624024,
-        "RD": 0.4613659448,
-        "rank_change": 0.4822028306
+        "momentum": 0.486551108,
+        "DER": 0.4991585175,
+        "RD": 0.4661813006,
+        "rank_change": 0.482929397
       },
       "avg_percentiles": {
-        "momentum": 0.481250139,
-        "DER": 0.4951624024,
-        "RD": 0.4613659448,
-        "rank_change": 0.4822028306
+        "momentum": 0.486551108,
+        "DER": 0.4991585175,
+        "RD": 0.4661813006,
+        "rank_change": 0.482929397
       },
       "representatives": [
         "PWR",
         "URI",
-        "TER"
+        "CAT"
       ],
       "representatives_selected_only": [
         "PWR",
         "URI",
-        "TER"
+        "CAT"
       ]
     },
     "Healthcare_Innovation": {
-      "score_v1": 0.4615576037,
-      "base_score": 0.4273681516,
+      "score_v1": 0.4553349503,
+      "base_score": 0.4216064354,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -350,36 +350,36 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 63.0,
       "representative_scores": {
-        "SNDK": 0.8272920204,
-        "LLY": 0.8032258065,
-        "WDC": 0.801655348
+        "SNDK": 0.8167232598,
+        "WDC": 0.8021646859,
+        "LLY": 0.7988964346
       },
       "avg_percentiles_raw": {
-        "momentum": 0.4703559975,
-        "DER": 0.400503948,
-        "RD": 0.3883768561,
-        "rank_change": 0.4079284232
+        "momentum": 0.4674993936,
+        "DER": 0.3972296332,
+        "RD": 0.3812218719,
+        "rank_change": 0.3839302557
       },
       "avg_percentiles": {
-        "momentum": 0.4703559975,
-        "DER": 0.400503948,
-        "RD": 0.3883768561,
-        "rank_change": 0.4079284232
+        "momentum": 0.4674993936,
+        "DER": 0.3972296332,
+        "RD": 0.3812218719,
+        "rank_change": 0.3839302557
       },
       "representatives": [
         "SNDK",
-        "LLY",
-        "WDC"
+        "WDC",
+        "LLY"
       ],
       "representatives_selected_only": [
         "SNDK",
-        "LLY",
-        "WDC"
+        "WDC",
+        "LLY"
       ]
     },
     "FinTech_Payments": {
-      "score_v1": 0.5859823586,
-      "base_score": 0.542576258,
+      "score_v1": 0.6020877502,
+      "base_score": 0.5574886576,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -391,75 +391,75 @@
         "APO",
         "ARES",
         "IBKR",
-        "MS",
         "BX",
+        "MS",
         "GS",
         "C",
         "AIZ",
-        "BK",
         "STT",
-        "KKR",
-        "GL",
-        "ALL",
         "JPM",
-        "PFG",
-        "PGR",
-        "NTRS",
+        "BK",
+        "KKR",
         "RJF",
-        "AFL",
-        "MSCI",
-        "IVZ",
-        "WRB",
-        "NDAQ",
-        "BAC",
-        "CFG",
+        "GL",
+        "PGR",
+        "ALL",
+        "PFG",
         "AMP",
-        "BEN",
-        "AJG",
-        "FITB",
-        "TRV",
-        "BLK",
-        "CINF",
+        "NTRS",
+        "AFL",
+        "BAC",
+        "WRB",
+        "CFG",
+        "IVZ",
+        "MSCI",
         "WFC",
-        "ACGL",
-        "RF",
-        "BRK-B",
-        "HIG",
-        "HBAN",
+        "BEN",
         "MCO",
-        "ERIE",
+        "FITB",
+        "CINF",
+        "BLK",
+        "AJG",
+        "TRV",
+        "ACGL",
+        "NDAQ",
+        "RF",
+        "HIG",
         "SPGI",
+        "HBAN",
+        "BRK-B",
+        "ERIE",
         "CB",
-        "CBOE",
-        "COIN",
         "AON",
+        "COIN",
         "BRO",
         "SCHW",
-        "CME",
+        "CBOE",
         "FDS",
         "AIG",
+        "CME",
         "ICE",
-        "JKHY",
-        "FISV"
+        "FISV",
+        "JKHY"
       ],
       "fallback_member_count": 54,
       "effective_member_weight_sum": 47.6,
       "representative_scores": {
-        "HOOD": 0.8629881154,
-        "APO": 0.8487266553,
-        "ARES": 0.8398556876
+        "HOOD": 0.8649830221,
+        "APO": 0.8602716469,
+        "ARES": 0.8332767402
       },
       "avg_percentiles_raw": {
-        "momentum": 0.5265725985,
-        "DER": 0.5573611448,
-        "RD": 0.4827973634,
-        "rank_change": 0.6445121342
+        "momentum": 0.5531416302,
+        "DER": 0.5544328088,
+        "RD": 0.4995291835,
+        "rank_change": 0.6725114494
       },
       "avg_percentiles": {
-        "momentum": 0.5265725985,
-        "DER": 0.5573611448,
-        "RD": 0.4827973634,
-        "rank_change": 0.6445121342
+        "momentum": 0.5531416302,
+        "DER": 0.5544328088,
+        "RD": 0.4995291835,
+        "rank_change": 0.6725114494
       },
       "representatives": [
         "HOOD",
@@ -473,8 +473,8 @@
       ]
     },
     "Defense": {
-      "score_v1": 0.5287931118,
-      "base_score": 0.4896232517,
+      "score_v1": 0.5362476352,
+      "base_score": 0.4965255882,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -485,21 +485,21 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 21.0,
       "representative_scores": {
-        "RKLB": 0.853820034,
-        "HWM": 0.7934634975,
-        "GE": 0.7587436333
+        "RKLB": 0.8486417657,
+        "HWM": 0.8247453311,
+        "GE": 0.7839983022
       },
       "avg_percentiles_raw": {
-        "momentum": 0.4035491956,
-        "DER": 0.5560675883,
-        "RD": 0.5607567305,
-        "rank_change": 0.4946640796
+        "momentum": 0.4113105344,
+        "DER": 0.5594631741,
+        "RD": 0.5627374889,
+        "rank_change": 0.5177864015
       },
       "avg_percentiles": {
-        "momentum": 0.4035491956,
-        "DER": 0.5560675883,
-        "RD": 0.5607567305,
-        "rank_change": 0.4946640796
+        "momentum": 0.4113105344,
+        "DER": 0.5594631741,
+        "RD": 0.5627374889,
+        "rank_change": 0.5177864015
       },
       "representatives": [
         "RKLB",
@@ -513,8 +513,8 @@
       ]
     },
     "Space": {
-      "score_v1": 0.5446432513,
-      "base_score": 0.5042993067,
+      "score_v1": 0.5471320034,
+      "base_score": 0.5066037068,
       "breadth_bonus": 1.08,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -525,21 +525,21 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 24.0,
       "representative_scores": {
-        "RKLB": 0.853820034,
-        "HWM": 0.7934634975,
-        "GE": 0.7587436333
+        "RKLB": 0.8486417657,
+        "HWM": 0.8247453311,
+        "GE": 0.7839983022
       },
       "avg_percentiles_raw": {
-        "momentum": 0.4546194114,
-        "DER": 0.5313384267,
-        "RD": 0.5954654782,
-        "rank_change": 0.4716327108
+        "momentum": 0.4525679117,
+        "DER": 0.5337436333,
+        "RD": 0.5963497453,
+        "rank_change": 0.4931380872
       },
       "avg_percentiles": {
-        "momentum": 0.4546194114,
-        "DER": 0.5313384267,
-        "RD": 0.5954654782,
-        "rank_change": 0.4716327108
+        "momentum": 0.4525679117,
+        "DER": 0.5337436333,
+        "RD": 0.5963497453,
+        "rank_change": 0.4931380872
       },
       "representatives": [
         "RKLB",
@@ -553,8 +553,8 @@
       ]
     },
     "Crypto_Blockchain": {
-      "score_v1": 0.5943500637,
-      "base_score": 0.5660476797,
+      "score_v1": 0.5768574915,
+      "base_score": 0.5493880872,
       "breadth_bonus": 1.05,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -565,36 +565,36 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 11.0,
       "representative_scores": {
-        "ONDO-USD": 0.7505093379,
-        "SUI-USD": 0.7184210526,
-        "BNB-USD": 0.6279286927
+        "ONDO-USD": 0.7711375212,
+        "SUI-USD": 0.7227079796,
+        "TRX-USD": 0.5772071307
       },
       "avg_percentiles_raw": {
-        "momentum": 0.3076863714,
-        "DER": 0.9578638679,
-        "RD": 0.3441117456,
-        "rank_change": 0.6210835005
+        "momentum": 0.288084581,
+        "DER": 0.9580182127,
+        "RD": 0.313551474,
+        "rank_change": 0.5630498534
       },
       "avg_percentiles": {
-        "momentum": 0.3237125071,
-        "DER": 0.9197085456,
-        "RD": 0.3571024335,
-        "rank_change": 0.6109932088
+        "momentum": 0.3057441992,
+        "DER": 0.9198500283,
+        "RD": 0.3290888512,
+        "rank_change": 0.5577956989
       },
       "representatives": [
         "ONDO-USD",
         "SUI-USD",
-        "BNB-USD"
+        "TRX-USD"
       ],
       "representatives_selected_only": [
         "ONDO-USD",
         "SUI-USD",
-        "BNB-USD"
+        "TRX-USD"
       ]
     },
     "Cybersecurity": {
-      "score_v1": 0.6820097623,
-      "base_score": 0.649533107,
+      "score_v1": 0.6870049873,
+      "base_score": 0.6542904641,
       "breadth_bonus": 1.05,
       "size_penalty": 1.0,
       "is_orphan": false,
@@ -605,21 +605,21 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 11.0,
       "representative_scores": {
-        "FTNT": 0.8672750424,
-        "PANW": 0.8396434635,
-        "CRWD": 0.809762309
+        "FTNT": 0.8687606112,
+        "PANW": 0.8522920204,
+        "CRWD": 0.80237691
       },
       "avg_percentiles_raw": {
-        "momentum": 0.6078098472,
-        "DER": 0.7803673406,
-        "RD": 0.6394505325,
-        "rank_change": 0.509569378
+        "momentum": 0.6189226733,
+        "DER": 0.7817564439,
+        "RD": 0.6352060503,
+        "rank_change": 0.5185213768
       },
       "avg_percentiles": {
-        "momentum": 0.5988256933,
-        "DER": 0.7570033956,
-        "RD": 0.6278296548,
-        "rank_change": 0.5087719298
+        "momentum": 0.6090124505,
+        "DER": 0.7582767402,
+        "RD": 0.6239388795,
+        "rank_change": 0.5169779287
       },
       "representatives": [
         "FTNT",
@@ -633,8 +633,8 @@
       ]
     },
     "Nuclear_Uranium": {
-      "score_v1": 0.4582427844,
-      "base_score": 0.498089983,
+      "score_v1": 0.4621086587,
+      "base_score": 0.5022920204,
       "breadth_bonus": 1.0,
       "size_penalty": 0.92,
       "is_orphan": true,
@@ -645,19 +645,19 @@
       "fallback_member_count": 0,
       "effective_member_weight_sum": 1.0,
       "representative_scores": {
-        "CEG": 0.4770797963
+        "CEG": 0.5275042445
       },
       "avg_percentiles_raw": {
-        "momentum": 0.0882852292,
+        "momentum": 0.1349745331,
         "DER": 0.9015280136,
-        "RD": 0.5314091681,
-        "rank_change": 0.4651952462
+        "RD": 0.5517826825,
+        "rank_change": 0.7521222411
       },
       "avg_percentiles": {
-        "momentum": 0.4656904358,
+        "momentum": 0.4695812111,
         "DER": 0.5334606678,
-        "RD": 0.5026174307,
-        "rank_change": 0.4970996038
+        "RD": 0.5043152235,
+        "rank_change": 0.5210101868
       },
       "representatives": [
         "CEG"
