@@ -9,6 +9,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 _YAHOO_SEARCH_URL = "https://query2.finance.yahoo.com/v1/finance/search"
+_YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart"
 _YAHOO_UA = "Mozilla/5.0 (compatible; beatSnP/1.0)"
 
 _default_origins = (
@@ -135,6 +136,37 @@ def finance_search():
         return jsonify({"error": str(e), "quotes": []}), 502
     except ValueError as e:
         return jsonify({"error": f"Invalid Yahoo response: {e}", "quotes": []}), 502
+
+
+@app.route("/api/finance/chart")
+def finance_chart():
+    """Yahoo Finance Chart 프록시 — Lite 1m·3m·6m 보강, Flutter Web CORS 우회."""
+    ticker = (request.args.get("ticker") or "").strip().upper()
+    if not ticker:
+        return jsonify({"error": "ticker is required"}), 400
+
+    range_ = (request.args.get("range") or "2y").strip()
+    interval = (request.args.get("interval") or "1d").strip()
+
+    try:
+        resp = requests.get(
+            f"{_YAHOO_CHART_URL}/{ticker}",
+            params={"range": range_, "interval": interval},
+            headers={"User-Agent": _YAHOO_UA},
+            timeout=15,
+        )
+        if resp.status_code != 200:
+            return jsonify(
+                {
+                    "error": "Yahoo chart failed",
+                    "status": resp.status_code,
+                }
+            ), 502
+        return jsonify(resp.json())
+    except requests.RequestException as e:
+        return jsonify({"error": str(e)}), 502
+    except ValueError as e:
+        return jsonify({"error": f"Invalid Yahoo response: {e}"}), 502
 
 
 if __name__ == "__main__":
