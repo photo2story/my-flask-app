@@ -99,6 +99,41 @@ def get_prices():
     return jsonify(result)
 
 
+def _proxy_yahoo_chart(ticker, range_="2y", interval="1d"):
+    resp = requests.get(
+        f"{_YAHOO_CHART_URL}/{ticker}",
+        params={"range": range_, "interval": interval},
+        headers={"User-Agent": _YAHOO_UA},
+        timeout=15,
+    )
+    if resp.status_code != 200:
+        return jsonify(
+            {
+                "error": "Yahoo chart failed",
+                "status": resp.status_code,
+            }
+        ), 502
+    return jsonify(resp.json())
+
+
+@app.route("/api/stock/<ticker>/history")
+def get_history(ticker):
+    """Yahoo Finance Chart 프록시 — 웹은 항상 Render를 통해 히스토리 조회."""
+    symbol = (ticker or "").strip().upper()
+    if not symbol:
+        return jsonify({"error": "ticker is required"}), 400
+
+    range_ = (request.args.get("range") or "2y").strip()
+    interval = (request.args.get("interval") or "1d").strip()
+
+    try:
+        return _proxy_yahoo_chart(symbol, range_=range_, interval=interval)
+    except requests.RequestException as e:
+        return jsonify({"error": str(e)}), 502
+    except ValueError as e:
+        return jsonify({"error": f"Invalid Yahoo response: {e}"}), 502
+
+
 @app.route("/api/finance/search")
 def finance_search():
     """Yahoo Finance Search 프록시 — Flutter Web CORS 우회."""
@@ -140,7 +175,7 @@ def finance_search():
 
 @app.route("/api/finance/chart")
 def finance_chart():
-    """Yahoo Finance Chart 프록시 — Lite 1m·3m·6m 보강, Flutter Web CORS 우회."""
+    """Yahoo Finance Chart 프록시 — 기존 클라이언트 호환 경로."""
     ticker = (request.args.get("ticker") or "").strip().upper()
     if not ticker:
         return jsonify({"error": "ticker is required"}), 400
@@ -149,20 +184,7 @@ def finance_chart():
     interval = (request.args.get("interval") or "1d").strip()
 
     try:
-        resp = requests.get(
-            f"{_YAHOO_CHART_URL}/{ticker}",
-            params={"range": range_, "interval": interval},
-            headers={"User-Agent": _YAHOO_UA},
-            timeout=15,
-        )
-        if resp.status_code != 200:
-            return jsonify(
-                {
-                    "error": "Yahoo chart failed",
-                    "status": resp.status_code,
-                }
-            ), 502
-        return jsonify(resp.json())
+        return _proxy_yahoo_chart(ticker, range_=range_, interval=interval)
     except requests.RequestException as e:
         return jsonify({"error": str(e)}), 502
     except ValueError as e:
