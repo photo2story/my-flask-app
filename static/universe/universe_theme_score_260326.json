@@ -1,0 +1,674 @@
+{
+  "name": "THEME_SCORE_V1",
+  "type": "theme_scoring",
+  "created_at": "2026-03-26 11:58:30",
+  "source_theme_file": "universe_theme_000000.json",
+  "rules": {
+    "lookback_momentum_bars": 63,
+    "history_days_for_rank_change": 7,
+    "weights": {
+      "momentum": 0.4,
+      "DER": 0.35,
+      "RD": 0.15,
+      "rank_change": 0.1
+    },
+    "penalties": {
+      "orphan_penalty": 0.92,
+      "small_theme_penalty": 0.97,
+      "shrink_target": 0.5
+    },
+    "fallback_member_weight": 0.4,
+    "note": "percentile 기반(스케일 robust). 000000은 현재본, YYMMDD 스냅샷 보관."
+  },
+  "ranked_themes_v1": [
+    {
+      "theme": "Semiconductors",
+      "score": 0.7449608108
+    },
+    {
+      "theme": "Space",
+      "score": 0.6353292383
+    },
+    {
+      "theme": "Defense",
+      "score": 0.6273413514
+    },
+    {
+      "theme": "Power_Grid",
+      "score": 0.6123492973
+    },
+    {
+      "theme": "Crypto_Blockchain",
+      "score": 0.5667398649
+    },
+    {
+      "theme": "Cybersecurity",
+      "score": 0.5542579767
+    },
+    {
+      "theme": "Energy_Transition",
+      "score": 0.538525031
+    },
+    {
+      "theme": "AI",
+      "score": 0.5363003676
+    },
+    {
+      "theme": "FinTech_Payments",
+      "score": 0.5134051329
+    },
+    {
+      "theme": "Robotics_Automation",
+      "score": 0.5105744283
+    },
+    {
+      "theme": "Data_Center_Infrastructure",
+      "score": 0.507815444
+    },
+    {
+      "theme": "Healthcare_Innovation",
+      "score": 0.4678871915
+    },
+    {
+      "theme": "Nuclear_Uranium",
+      "score": 0.4654978979
+    }
+  ],
+  "theme_scores_v1": {
+    "Energy_Transition": {
+      "score_v1": 0.538525031,
+      "base_score": 0.498634288,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 89,
+      "members_extended": 0,
+      "members_total": 89,
+      "fallback_members": [
+        "PCAR",
+        "ADM",
+        "TSN"
+      ],
+      "fallback_member_count": 3,
+      "effective_member_weight_sum": 87.2,
+      "representative_scores": {
+        "SNDK": 0.8975675676,
+        "TPL": 0.8576576577,
+        "GEV": 0.8333333333
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.5537854368,
+        "DER": 0.4433052318,
+        "RD": 0.5195202083,
+        "rank_change": 0.4403525085
+      },
+      "avg_percentiles": {
+        "momentum": 0.5537854368,
+        "DER": 0.4433052318,
+        "RD": 0.5195202083,
+        "rank_change": 0.4403525085
+      },
+      "representatives": [
+        "SNDK",
+        "TPL",
+        "GEV"
+      ],
+      "representatives_selected_only": [
+        "SNDK",
+        "TPL",
+        "GEV"
+      ]
+    },
+    "Semiconductors": {
+      "score_v1": 0.7449608108,
+      "base_score": 0.6897785285,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 24,
+      "members_extended": 0,
+      "members_total": 24,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 24.0,
+      "representative_scores": {
+        "KLAC": 0.8371171171,
+        "LRCX": 0.8297297297,
+        "MU": 0.8265765766
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.6919294294,
+        "DER": 0.7296921922,
+        "RD": 0.6947822823,
+        "rank_change": 0.5339714715
+      },
+      "avg_percentiles": {
+        "momentum": 0.6919294294,
+        "DER": 0.7296921922,
+        "RD": 0.6947822823,
+        "rank_change": 0.5339714715
+      },
+      "representatives": [
+        "KLAC",
+        "LRCX",
+        "MU"
+      ],
+      "representatives_selected_only": [
+        "KLAC",
+        "LRCX",
+        "MU"
+      ]
+    },
+    "AI": {
+      "score_v1": 0.5363003676,
+      "base_score": 0.4965744144,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 125,
+      "members_extended": 0,
+      "members_total": 125,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 125.0,
+      "representative_scores": {
+        "FIX": 0.8808108108,
+        "MU": 0.8265765766,
+        "JBL": 0.8203603604
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.4462054054,
+        "DER": 0.5525117117,
+        "RD": 0.4993081081,
+        "rank_change": 0.4981693694
+      },
+      "avg_percentiles": {
+        "momentum": 0.4462054054,
+        "DER": 0.5525117117,
+        "RD": 0.4993081081,
+        "rank_change": 0.4981693694
+      },
+      "representatives": [
+        "FIX",
+        "MU",
+        "JBL"
+      ],
+      "representatives_selected_only": [
+        "FIX",
+        "MU",
+        "JBL"
+      ]
+    },
+    "Data_Center_Infrastructure": {
+      "score_v1": 0.507815444,
+      "base_score": 0.4701994852,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 63,
+      "members_extended": 0,
+      "members_total": 63,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 63.0,
+      "representative_scores": {
+        "SNDK": 0.8975675676,
+        "OKE": 0.8377027027,
+        "MU": 0.8265765766
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.4416559417,
+        "DER": 0.5141284141,
+        "RD": 0.442013442,
+        "rank_change": 0.4729014729
+      },
+      "avg_percentiles": {
+        "momentum": 0.4416559417,
+        "DER": 0.5141284141,
+        "RD": 0.442013442,
+        "rank_change": 0.4729014729
+      },
+      "representatives": [
+        "SNDK",
+        "OKE",
+        "MU"
+      ],
+      "representatives_selected_only": [
+        "SNDK",
+        "OKE",
+        "MU"
+      ]
+    },
+    "Power_Grid": {
+      "score_v1": 0.6123492973,
+      "base_score": 0.5669900901,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 50,
+      "members_extended": 0,
+      "members_total": 50,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 50.0,
+      "representative_scores": {
+        "GEV": 0.8333333333,
+        "MPWR": 0.8258558559,
+        "ARM": 0.7932432432
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.6723603604,
+        "DER": 0.4957117117,
+        "RD": 0.6064684685,
+        "rank_change": 0.3357657658
+      },
+      "avg_percentiles": {
+        "momentum": 0.6723603604,
+        "DER": 0.4957117117,
+        "RD": 0.6064684685,
+        "rank_change": 0.3357657658
+      },
+      "representatives": [
+        "GEV",
+        "MPWR",
+        "ARM"
+      ],
+      "representatives_selected_only": [
+        "GEV",
+        "MPWR",
+        "ARM"
+      ]
+    },
+    "Robotics_Automation": {
+      "score_v1": 0.5105744283,
+      "base_score": 0.4727541003,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 57,
+      "members_extended": 0,
+      "members_total": 57,
+      "fallback_members": [
+        "PWR",
+        "EME",
+        "CAT",
+        "MSI",
+        "ODFL",
+        "DOV",
+        "LIN",
+        "PH",
+        "RSG",
+        "AME",
+        "WM",
+        "URI",
+        "CHRW",
+        "FER",
+        "PLD",
+        "CPRT",
+        "ROL"
+      ],
+      "fallback_member_count": 17,
+      "effective_member_weight_sum": 46.8,
+      "representative_scores": {
+        "PWR": 0.8518918919,
+        "EME": 0.8422522523,
+        "TER": 0.807972973
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.4557981058,
+        "DER": 0.4786016786,
+        "RD": 0.4364325864,
+        "rank_change": 0.5745938246
+      },
+      "avg_percentiles": {
+        "momentum": 0.4557981058,
+        "DER": 0.4786016786,
+        "RD": 0.4364325864,
+        "rank_change": 0.5745938246
+      },
+      "representatives": [
+        "PWR",
+        "EME",
+        "TER"
+      ],
+      "representatives_selected_only": [
+        "PWR",
+        "EME",
+        "TER"
+      ]
+    },
+    "Healthcare_Innovation": {
+      "score_v1": 0.4678871915,
+      "base_score": 0.4332288811,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 69,
+      "members_extended": 0,
+      "members_total": 69,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 69.0,
+      "representative_scores": {
+        "SNDK": 0.8975675676,
+        "DELL": 0.8049099099,
+        "STX": 0.7938738739
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.434913174,
+        "DER": 0.4145972059,
+        "RD": 0.4028724377,
+        "rank_change": 0.5372372372
+      },
+      "avg_percentiles": {
+        "momentum": 0.434913174,
+        "DER": 0.4145972059,
+        "RD": 0.4028724377,
+        "rank_change": 0.5372372372
+      },
+      "representatives": [
+        "SNDK",
+        "DELL",
+        "STX"
+      ],
+      "representatives_selected_only": [
+        "SNDK",
+        "DELL",
+        "STX"
+      ]
+    },
+    "FinTech_Payments": {
+      "score_v1": 0.5134051329,
+      "base_score": 0.475375123,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 80,
+      "members_extended": 0,
+      "members_total": 80,
+      "fallback_members": [
+        "PGR",
+        "IBKR",
+        "C",
+        "CBOE",
+        "BK",
+        "STT",
+        "MS",
+        "ACGL",
+        "HIG",
+        "ALL",
+        "JPM",
+        "AFL",
+        "CB",
+        "GS",
+        "NTRS",
+        "CME",
+        "AMP",
+        "TRV",
+        "WRB",
+        "SCHW",
+        "WFC",
+        "MSCI",
+        "FITB",
+        "RJF",
+        "NDAQ",
+        "CFG",
+        "AIZ",
+        "GL",
+        "IVZ",
+        "PFG",
+        "APO",
+        "AJG",
+        "RF",
+        "ICE",
+        "MCO",
+        "BAC",
+        "BX",
+        "ARES",
+        "AIG",
+        "HOOD",
+        "KKR",
+        "BRK-B",
+        "BLK",
+        "AON",
+        "SPGI",
+        "COIN",
+        "ERIE",
+        "BRO",
+        "CINF",
+        "HBAN",
+        "BEN",
+        "FISV",
+        "JKHY",
+        "FDS"
+      ],
+      "fallback_member_count": 54,
+      "effective_member_weight_sum": 47.6,
+      "representative_scores": {
+        "PGR": 0.746036036,
+        "IBKR": 0.6933333333,
+        "PKG": 0.6882432432
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.3957226134,
+        "DER": 0.5379778939,
+        "RD": 0.477496404,
+        "rank_change": 0.5716935423
+      },
+      "avg_percentiles": {
+        "momentum": 0.3957226134,
+        "DER": 0.5379778939,
+        "RD": 0.477496404,
+        "rank_change": 0.5716935423
+      },
+      "representatives": [
+        "PGR",
+        "IBKR",
+        "PKG"
+      ],
+      "representatives_selected_only": [
+        "PGR",
+        "IBKR",
+        "PKG"
+      ]
+    },
+    "Defense": {
+      "score_v1": 0.6273413514,
+      "base_score": 0.5808716216,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 20,
+      "members_extended": 0,
+      "members_total": 20,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 20.0,
+      "representative_scores": {
+        "RKLB": 0.8425675676,
+        "HWM": 0.8300900901,
+        "PL": 0.8206306306
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.6118018018,
+        "DER": 0.5315765766,
+        "RD": 0.6804504505,
+        "rank_change": 0.4803153153
+      },
+      "avg_percentiles": {
+        "momentum": 0.6118018018,
+        "DER": 0.5315765766,
+        "RD": 0.6804504505,
+        "rank_change": 0.4803153153
+      },
+      "representatives": [
+        "RKLB",
+        "HWM",
+        "PL"
+      ],
+      "representatives_selected_only": [
+        "RKLB",
+        "HWM",
+        "PL"
+      ]
+    },
+    "Space": {
+      "score_v1": 0.6353292383,
+      "base_score": 0.5882678133,
+      "breadth_bonus": 1.08,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 22,
+      "members_extended": 0,
+      "members_total": 22,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 22.0,
+      "representative_scores": {
+        "RKLB": 0.8425675676,
+        "HWM": 0.8300900901,
+        "PL": 0.8206306306
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.6569205569,
+        "DER": 0.5065929566,
+        "RD": 0.6617117117,
+        "rank_change": 0.4893529894
+      },
+      "avg_percentiles": {
+        "momentum": 0.6569205569,
+        "DER": 0.5065929566,
+        "RD": 0.6617117117,
+        "rank_change": 0.4893529894
+      },
+      "representatives": [
+        "RKLB",
+        "HWM",
+        "PL"
+      ],
+      "representatives_selected_only": [
+        "RKLB",
+        "HWM",
+        "PL"
+      ]
+    },
+    "Crypto_Blockchain": {
+      "score_v1": 0.5667398649,
+      "base_score": 0.5397522523,
+      "breadth_bonus": 1.05,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 11,
+      "members_extended": 0,
+      "members_total": 11,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 11.0,
+      "representative_scores": {
+        "TRX-USD": 0.7566216216,
+        "SUI-USD": 0.7174324324,
+        "BTC-USD": 0.5971171171
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.2832923833,
+        "DER": 0.969041769,
+        "RD": 0.2655200655,
+        "rank_change": 0.5105651106
+      },
+      "avg_percentiles": {
+        "momentum": 0.3013513514,
+        "DER": 0.929954955,
+        "RD": 0.2850600601,
+        "rank_change": 0.5096846847
+      },
+      "representatives": [
+        "TRX-USD",
+        "SUI-USD",
+        "BTC-USD"
+      ],
+      "representatives_selected_only": [
+        "TRX-USD",
+        "SUI-USD",
+        "BTC-USD"
+      ]
+    },
+    "Cybersecurity": {
+      "score_v1": 0.5542579767,
+      "base_score": 0.5407394895,
+      "breadth_bonus": 1.025,
+      "size_penalty": 1.0,
+      "is_orphan": false,
+      "members_selected": 9,
+      "members_extended": 0,
+      "members_total": 9,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 9.0,
+      "representative_scores": {
+        "CSCO": 0.710045045,
+        "FTNT": 0.6978378378,
+        "GD": 0.6344144144
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.3787787788,
+        "DER": 0.7792792793,
+        "RD": 0.574974975,
+        "rank_change": 0.4381381381
+      },
+      "avg_percentiles": {
+        "momentum": 0.4090840841,
+        "DER": 0.7094594595,
+        "RD": 0.5562312312,
+        "rank_change": 0.4536036036
+      },
+      "representatives": [
+        "CSCO",
+        "FTNT",
+        "GD"
+      ],
+      "representatives_selected_only": [
+        "CSCO",
+        "FTNT",
+        "GD"
+      ]
+    },
+    "Nuclear_Uranium": {
+      "score_v1": 0.4654978979,
+      "base_score": 0.505975976,
+      "breadth_bonus": 1.0,
+      "size_penalty": 0.92,
+      "is_orphan": true,
+      "members_selected": 1,
+      "members_extended": 0,
+      "members_total": 1,
+      "fallback_members": [],
+      "fallback_member_count": 0,
+      "effective_member_weight_sum": 1.0,
+      "representative_scores": {
+        "CEG": 0.5717117117
+      },
+      "avg_percentiles_raw": {
+        "momentum": 0.3738738739,
+        "DER": 0.8216216216,
+        "RD": 0.6792792793,
+        "rank_change": 0.327027027
+      },
+      "avg_percentiles": {
+        "momentum": 0.4894894895,
+        "DER": 0.5268018018,
+        "RD": 0.5149399399,
+        "rank_change": 0.4855855856
+      },
+      "representatives": [
+        "CEG"
+      ],
+      "representatives_selected_only": [
+        "CEG"
+      ]
+    }
+  },
+  "stats": {
+    "themes_scored": 13,
+    "tickers_seen": 556
+  }
+}

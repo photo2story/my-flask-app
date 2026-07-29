@@ -1,0 +1,891 @@
+{
+  "name": "THEME_TAXONOMY_V1_LEGACY",
+  "type": "theme_classification",
+  "created_at": "2026-01-18 12:32:15",
+  "source_universe": "universe_000000.json",
+  "source_taxonomy": "legacy v1 (code-based rules + override)",
+  "rules": {
+    "theme_min_count": 3,
+    "extend_max_per_theme": 3,
+    "momentum_lookback_bars": 63,
+    "notes": [
+      "universe_000000(선정 결과)은 변경하지 않음",
+      "테마는 별도 레이어(universe_theme_000000)로만 관리",
+      "override > hard-override > GICS rule > keyword(name/meta) 순으로 테마 부여",
+      "orphan(theme_count < 3)는 base에서 모멘텀 상위로 최대 3개 보강(extended)",
+      "LEGACY: 코드에 기본 테마/룰이 박혀있는 버전 (폴백용)"
+    ]
+  },
+  "ticker_themes": {
+    "NVDA": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure"
+    ],
+    "AAPL": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "MSFT": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "AMZN": [],
+    "GOOGL": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
+    "GOOG": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
+    "AVGO": [
+      "Semiconductors",
+      "Data_Center_Infrastructure"
+    ],
+    "TSLA": [],
+    "META": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
+    "WMT": [],
+    "LLY": [
+      "Healthcare_Innovation"
+    ],
+    "JPM": [
+      "FinTech_Payments"
+    ],
+    "BRK-B": [
+      "FinTech_Payments"
+    ],
+    "V": [
+      "FinTech_Payments"
+    ],
+    "ORCL": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "XOM": [
+      "Energy_Transition"
+    ],
+    "JNJ": [
+      "Healthcare_Innovation"
+    ],
+    "MA": [
+      "FinTech_Payments"
+    ],
+    "COST": [],
+    "MU": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "CVX": [
+      "Energy_Transition"
+    ],
+    "GE": [
+      "Robotics_Automation",
+      "Defense",
+      "Space"
+    ],
+    "CAT": [
+      "Robotics_Automation"
+    ],
+    "LIN": [],
+    "NEM": [],
+    "WELL": [],
+    "PLD": [],
+    "NEE": [
+      "Power_Grid",
+      "Energy_Transition"
+    ],
+    "CEG": [
+      "Nuclear_Uranium",
+      "Power_Grid"
+    ],
+    "NFLX": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
+    "WBD": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
+    "FOX": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
+    "GM": [],
+    "EXPE": [],
+    "ROST": [],
+    "DLTR": [],
+    "DG": [],
+    "EL": [],
+    "TPL": [
+      "Energy_Transition"
+    ],
+    "HAL": [
+      "Energy_Transition"
+    ],
+    "SLB": [
+      "Energy_Transition"
+    ],
+    "IVZ": [
+      "FinTech_Payments"
+    ],
+    "GS": [
+      "FinTech_Payments"
+    ],
+    "JKHY": [
+      "FinTech_Payments"
+    ],
+    "ALGN": [
+      "Healthcare_Innovation"
+    ],
+    "MRK": [
+      "Healthcare_Innovation"
+    ],
+    "REGN": [
+      "Healthcare_Innovation"
+    ],
+    "HII": [
+      "Robotics_Automation"
+    ],
+    "CHRW": [
+      "Robotics_Automation"
+    ],
+    "EXPD": [
+      "Robotics_Automation"
+    ],
+    "NOW": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "WDC": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "TER": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "DD": [],
+    "ALB": [
+      "Energy_Transition"
+    ],
+    "FCX": [],
+    "HST": [],
+    "VTR": [],
+    "CBRE": [],
+    "EIX": [
+      "Power_Grid",
+      "Energy_Transition"
+    ],
+    "ED": [
+      "Power_Grid",
+      "Energy_Transition"
+    ],
+    "AEP": [
+      "Power_Grid",
+      "Energy_Transition"
+    ],
+    "PLTR": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "BAC": [
+      "FinTech_Payments"
+    ],
+    "ABBV": [
+      "Healthcare_Innovation"
+    ],
+    "HD": [],
+    "AMD": [
+      "AI",
+      "Semiconductors"
+    ],
+    "PG": [],
+    "KO": [],
+    "UNH": [
+      "Healthcare_Innovation"
+    ],
+    "MS": [
+      "FinTech_Payments"
+    ],
+    "CSCO": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "IBM": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "LRCX": [
+      "Semiconductors"
+    ],
+    "WFC": [
+      "FinTech_Payments"
+    ],
+    "RTX": [
+      "Robotics_Automation"
+    ],
+    "PM": [],
+    "AMAT": [
+      "Semiconductors"
+    ],
+    "AXP": [
+      "FinTech_Payments"
+    ],
+    "TMO": [
+      "Healthcare_Innovation"
+    ],
+    "INTC": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "MCD": [],
+    "CRM": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "ABT": [
+      "Healthcare_Innovation"
+    ],
+    "TMUS": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
+    "C": [
+      "FinTech_Payments"
+    ],
+    "KLAC": [
+      "Semiconductors"
+    ],
+    "PEP": [],
+    "DIS": [
+      "AI",
+      "Data_Center_Infrastructure"
+    ],
+    "BA": [
+      "Robotics_Automation"
+    ],
+    "ISRG": [
+      "Healthcare_Innovation"
+    ],
+    "APH": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "GEV": [
+      "Power_Grid",
+      "Energy_Transition"
+    ],
+    "SCHW": [
+      "FinTech_Payments"
+    ],
+    "BLK": [
+      "FinTech_Payments"
+    ],
+    "AMGN": [
+      "Healthcare_Innovation"
+    ],
+    "UBER": [
+      "Robotics_Automation"
+    ],
+    "ACN": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ],
+    "TJX": [],
+    "TXN": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Cybersecurity"
+    ]
+  },
+  "theme_groups_selected": {
+    "AI": [
+      "NVDA",
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "GOOG",
+      "META",
+      "ORCL",
+      "MU",
+      "NFLX",
+      "WBD",
+      "FOX",
+      "NOW",
+      "WDC",
+      "TER",
+      "PLTR",
+      "AMD",
+      "CSCO",
+      "IBM",
+      "INTC",
+      "CRM",
+      "TMUS",
+      "DIS",
+      "APH",
+      "ACN",
+      "TXN"
+    ],
+    "Semiconductors": [
+      "NVDA",
+      "AAPL",
+      "MSFT",
+      "AVGO",
+      "ORCL",
+      "MU",
+      "NOW",
+      "WDC",
+      "TER",
+      "PLTR",
+      "AMD",
+      "CSCO",
+      "IBM",
+      "LRCX",
+      "AMAT",
+      "INTC",
+      "CRM",
+      "KLAC",
+      "APH",
+      "ACN",
+      "TXN"
+    ],
+    "Data_Center_Infrastructure": [
+      "NVDA",
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "GOOG",
+      "AVGO",
+      "META",
+      "ORCL",
+      "MU",
+      "NFLX",
+      "WBD",
+      "FOX",
+      "NOW",
+      "WDC",
+      "TER",
+      "PLTR",
+      "CSCO",
+      "IBM",
+      "INTC",
+      "CRM",
+      "TMUS",
+      "DIS",
+      "APH",
+      "ACN",
+      "TXN"
+    ],
+    "Cybersecurity": [
+      "AAPL",
+      "MSFT",
+      "ORCL",
+      "MU",
+      "NOW",
+      "WDC",
+      "TER",
+      "PLTR",
+      "CSCO",
+      "IBM",
+      "INTC",
+      "CRM",
+      "APH",
+      "ACN",
+      "TXN"
+    ],
+    "Healthcare_Innovation": [
+      "LLY",
+      "JNJ",
+      "ALGN",
+      "MRK",
+      "REGN",
+      "ABBV",
+      "UNH",
+      "TMO",
+      "ABT",
+      "ISRG",
+      "AMGN"
+    ],
+    "FinTech_Payments": [
+      "JPM",
+      "BRK-B",
+      "V",
+      "MA",
+      "IVZ",
+      "GS",
+      "JKHY",
+      "BAC",
+      "MS",
+      "WFC",
+      "AXP",
+      "C",
+      "SCHW",
+      "BLK"
+    ],
+    "Energy_Transition": [
+      "XOM",
+      "CVX",
+      "NEE",
+      "TPL",
+      "HAL",
+      "SLB",
+      "ALB",
+      "EIX",
+      "ED",
+      "AEP",
+      "GEV"
+    ],
+    "Robotics_Automation": [
+      "GE",
+      "CAT",
+      "HII",
+      "CHRW",
+      "EXPD",
+      "RTX",
+      "BA",
+      "UBER"
+    ],
+    "Defense": [
+      "GE"
+    ],
+    "Space": [
+      "GE"
+    ],
+    "Power_Grid": [
+      "NEE",
+      "CEG",
+      "EIX",
+      "ED",
+      "AEP",
+      "GEV"
+    ],
+    "Nuclear_Uranium": [
+      "CEG"
+    ]
+  },
+  "theme_groups_valid": {
+    "AI": [
+      "NVDA",
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "GOOG",
+      "META",
+      "ORCL",
+      "MU",
+      "NFLX",
+      "WBD",
+      "FOX",
+      "NOW",
+      "WDC",
+      "TER",
+      "PLTR",
+      "AMD",
+      "CSCO",
+      "IBM",
+      "INTC",
+      "CRM",
+      "TMUS",
+      "DIS",
+      "APH",
+      "ACN",
+      "TXN"
+    ],
+    "Semiconductors": [
+      "NVDA",
+      "AAPL",
+      "MSFT",
+      "AVGO",
+      "ORCL",
+      "MU",
+      "NOW",
+      "WDC",
+      "TER",
+      "PLTR",
+      "AMD",
+      "CSCO",
+      "IBM",
+      "LRCX",
+      "AMAT",
+      "INTC",
+      "CRM",
+      "KLAC",
+      "APH",
+      "ACN",
+      "TXN"
+    ],
+    "Data_Center_Infrastructure": [
+      "NVDA",
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "GOOG",
+      "AVGO",
+      "META",
+      "ORCL",
+      "MU",
+      "NFLX",
+      "WBD",
+      "FOX",
+      "NOW",
+      "WDC",
+      "TER",
+      "PLTR",
+      "CSCO",
+      "IBM",
+      "INTC",
+      "CRM",
+      "TMUS",
+      "DIS",
+      "APH",
+      "ACN",
+      "TXN"
+    ],
+    "Cybersecurity": [
+      "AAPL",
+      "MSFT",
+      "ORCL",
+      "MU",
+      "NOW",
+      "WDC",
+      "TER",
+      "PLTR",
+      "CSCO",
+      "IBM",
+      "INTC",
+      "CRM",
+      "APH",
+      "ACN",
+      "TXN"
+    ],
+    "Healthcare_Innovation": [
+      "LLY",
+      "JNJ",
+      "ALGN",
+      "MRK",
+      "REGN",
+      "ABBV",
+      "UNH",
+      "TMO",
+      "ABT",
+      "ISRG",
+      "AMGN"
+    ],
+    "FinTech_Payments": [
+      "JPM",
+      "BRK-B",
+      "V",
+      "MA",
+      "IVZ",
+      "GS",
+      "JKHY",
+      "BAC",
+      "MS",
+      "WFC",
+      "AXP",
+      "C",
+      "SCHW",
+      "BLK"
+    ],
+    "Energy_Transition": [
+      "XOM",
+      "CVX",
+      "NEE",
+      "TPL",
+      "HAL",
+      "SLB",
+      "ALB",
+      "EIX",
+      "ED",
+      "AEP",
+      "GEV"
+    ],
+    "Robotics_Automation": [
+      "GE",
+      "CAT",
+      "HII",
+      "CHRW",
+      "EXPD",
+      "RTX",
+      "BA",
+      "UBER"
+    ],
+    "Power_Grid": [
+      "NEE",
+      "CEG",
+      "EIX",
+      "ED",
+      "AEP",
+      "GEV"
+    ]
+  },
+  "theme_groups_extended": {},
+  "orphan_themes": {
+    "Defense": [
+      "GE"
+    ],
+    "Space": [
+      "GE"
+    ],
+    "Nuclear_Uranium": [
+      "CEG"
+    ]
+  },
+  "theme_scores_v0": {
+    "AI": {
+      "momentum_median": 0.1076204372781775,
+      "coverage_bonus": 1.15,
+      "score_v0": 0.1237635028699041,
+      "members": 25.0
+    },
+    "Semiconductors": {
+      "momentum_median": 0.1076204372781775,
+      "coverage_bonus": 1.15,
+      "score_v0": 0.1237635028699041,
+      "members": 21.0
+    },
+    "Data_Center_Infrastructure": {
+      "momentum_median": 0.1076204372781775,
+      "coverage_bonus": 1.15,
+      "score_v0": 0.1237635028699041,
+      "members": 25.0
+    },
+    "Cybersecurity": {
+      "momentum_median": 0.1076204372781775,
+      "coverage_bonus": 1.15,
+      "score_v0": 0.1237635028699041,
+      "members": 15.0
+    },
+    "Healthcare_Innovation": {
+      "momentum_median": 0.15265087546863954,
+      "coverage_bonus": 1.15,
+      "score_v0": 0.17554850678893547,
+      "members": 11.0
+    },
+    "FinTech_Payments": {
+      "momentum_median": 0.11144412401878045,
+      "coverage_bonus": 1.15,
+      "score_v0": 0.12816074262159752,
+      "members": 14.0
+    },
+    "Energy_Transition": {
+      "momentum_median": 0.13214283686539652,
+      "coverage_bonus": 1.15,
+      "score_v0": 0.151964262395206,
+      "members": 11.0
+    },
+    "Robotics_Automation": {
+      "momentum_median": 0.28570515278754893,
+      "coverage_bonus": 1.1,
+      "score_v0": 0.31427566806630386,
+      "members": 8.0
+    },
+    "Power_Grid": {
+      "momentum_median": 0.02710990276088676,
+      "coverage_bonus": 1.06,
+      "score_v0": 0.02873649692653997,
+      "members": 6.0
+    }
+  },
+  "ranked_themes_v0": [
+    {
+      "theme": "Robotics_Automation",
+      "score": 0.31427566806630386
+    },
+    {
+      "theme": "Healthcare_Innovation",
+      "score": 0.17554850678893547
+    },
+    {
+      "theme": "Energy_Transition",
+      "score": 0.151964262395206
+    },
+    {
+      "theme": "FinTech_Payments",
+      "score": 0.12816074262159752
+    },
+    {
+      "theme": "AI",
+      "score": 0.1237635028699041
+    },
+    {
+      "theme": "Semiconductors",
+      "score": 0.1237635028699041
+    },
+    {
+      "theme": "Data_Center_Infrastructure",
+      "score": 0.1237635028699041
+    },
+    {
+      "theme": "Cybersecurity",
+      "score": 0.1237635028699041
+    },
+    {
+      "theme": "Power_Grid",
+      "score": 0.02873649692653997
+    }
+  ],
+  "meta": {
+    "themes_list": [
+      "AI",
+      "Semiconductors",
+      "Data_Center_Infrastructure",
+      "Power_Grid",
+      "Nuclear_Uranium",
+      "Energy_Transition",
+      "Cybersecurity",
+      "Defense",
+      "Space",
+      "Robotics_Automation",
+      "FinTech_Payments",
+      "Healthcare_Innovation"
+    ],
+    "theme_keywords": {
+      "AI": [
+        "ai",
+        "artificial intelligence",
+        "gpu",
+        "accelerator",
+        "inference",
+        "training",
+        "machine learning",
+        "llm",
+        "genai",
+        "generative ai"
+      ],
+      "Semiconductors": [
+        "semiconductor",
+        "chip",
+        "foundry",
+        "fab",
+        "euv",
+        "lithography",
+        "wafer"
+      ],
+      "Data_Center_Infrastructure": [
+        "data center",
+        "datacenter",
+        "server",
+        "rack",
+        "cloud",
+        "networking",
+        "storage"
+      ],
+      "Power_Grid": [
+        "grid",
+        "utility",
+        "transmission",
+        "distribution",
+        "substation",
+        "power"
+      ],
+      "Nuclear_Uranium": [
+        "nuclear",
+        "uranium",
+        "reactor",
+        "smr"
+      ],
+      "Energy_Transition": [
+        "renewable",
+        "solar",
+        "wind",
+        "battery",
+        "storage",
+        "ev",
+        "electrification",
+        "hydrogen",
+        "carbon",
+        "decarbon"
+      ],
+      "Cybersecurity": [
+        "cyber",
+        "security",
+        "zero trust",
+        "endpoint",
+        "firewall",
+        "threat",
+        "ransomware"
+      ],
+      "Defense": [
+        "defense",
+        "aerospace",
+        "missile",
+        "weapons",
+        "military"
+      ],
+      "Space": [
+        "space",
+        "satellite",
+        "launch",
+        "rocket",
+        "orbit"
+      ],
+      "Robotics_Automation": [
+        "robot",
+        "robotics",
+        "automation",
+        "industrial automation",
+        "factory"
+      ],
+      "FinTech_Payments": [
+        "payment",
+        "payments",
+        "fintech",
+        "merchant",
+        "card",
+        "issuer",
+        "acquirer"
+      ],
+      "Healthcare_Innovation": [
+        "biotech",
+        "pharma",
+        "medical",
+        "device",
+        "diagnostic",
+        "genomic",
+        "oncology"
+      ]
+    },
+    "taxonomy_override_path": "",
+    "ticker_meta_path": "D:\\github\\my-flutter-app\\static\\meta\\ticker_meta.json"
+  },
+  "stats": {
+    "selected_tickers": 100,
+    "themes_found": 12,
+    "valid_themes": 9,
+    "orphan_themes": 3
+  }
+}

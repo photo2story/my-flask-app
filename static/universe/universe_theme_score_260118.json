@@ -1,0 +1,268 @@
+{
+  "name": "THEME_SCORE_V1",
+  "type": "theme_scoring",
+  "created_at": "2026-01-18 13:10:43",
+  "source_theme_file": "universe_theme_000000.json",
+  "rules": {
+    "lookback_momentum_bars": 63,
+    "history_days_for_rank_change": 7,
+    "weights": {
+      "momentum": 0.4,
+      "DER": 0.35,
+      "RD": 0.15,
+      "rank_change": 0.1
+    },
+    "note": "percentile 기반(스케일 robust). 000000은 현재본, YYMMDD 스냅샷 보관."
+  },
+  "ranked_themes_v1": [
+    {
+      "theme": "Semiconductors",
+      "score": 0.6540836940836942
+    },
+    {
+      "theme": "Energy_Transition",
+      "score": 0.590119375573921
+    },
+    {
+      "theme": "AI",
+      "score": 0.5770181818181819
+    },
+    {
+      "theme": "Data_Center_Infrastructure",
+      "score": 0.5770181818181818
+    },
+    {
+      "theme": "Robotics_Automation",
+      "score": 0.5755555555555555
+    },
+    {
+      "theme": "Cybersecurity",
+      "score": 0.5638787878787879
+    },
+    {
+      "theme": "FinTech_Payments",
+      "score": 0.5452380952380953
+    },
+    {
+      "theme": "Healthcare_Innovation",
+      "score": 0.5263673094582184
+    },
+    {
+      "theme": "Power_Grid",
+      "score": 0.38822053872053874
+    }
+  ],
+  "theme_scores_v1": {
+    "AI": {
+      "score_v1": 0.5770181818181819,
+      "bonus": 1.2,
+      "members_selected": 25,
+      "members_extended": 0,
+      "members_total": 25,
+      "avg_percentiles": {
+        "momentum": 0.4379797979797981,
+        "DER": 0.5200000000000001,
+        "RD": 0.5135353535353535,
+        "rank_change": 0.4662626262626262
+      },
+      "representatives": [
+        "MU",
+        "TER",
+        "WDC"
+      ],
+      "representatives_selected_only": [
+        "MU",
+        "TER",
+        "WDC"
+      ]
+    },
+    "Semiconductors": {
+      "score_v1": 0.6540836940836942,
+      "bonus": 1.2,
+      "members_selected": 21,
+      "members_extended": 0,
+      "members_total": 21,
+      "avg_percentiles": {
+        "momentum": 0.4891774891774892,
+        "DER": 0.5873015873015874,
+        "RD": 0.595959595959596,
+        "rank_change": 0.5444925444925445
+      },
+      "representatives": [
+        "LRCX",
+        "MU",
+        "KLAC"
+      ],
+      "representatives_selected_only": [
+        "LRCX",
+        "MU",
+        "KLAC"
+      ]
+    },
+    "Data_Center_Infrastructure": {
+      "score_v1": 0.5770181818181818,
+      "bonus": 1.2,
+      "members_selected": 25,
+      "members_extended": 0,
+      "members_total": 25,
+      "avg_percentiles": {
+        "momentum": 0.4387878787878789,
+        "DER": 0.5163636363636364,
+        "RD": 0.517979797979798,
+        "rank_change": 0.469090909090909
+      },
+      "representatives": [
+        "MU",
+        "TER",
+        "WDC"
+      ],
+      "representatives_selected_only": [
+        "MU",
+        "TER",
+        "WDC"
+      ]
+    },
+    "Cybersecurity": {
+      "score_v1": 0.5638787878787879,
+      "bonus": 1.2,
+      "members_selected": 15,
+      "members_extended": 0,
+      "members_total": 15,
+      "avg_percentiles": {
+        "momentum": 0.4538720538720538,
+        "DER": 0.49427609427609426,
+        "RD": 0.49023569023569025,
+        "rank_change": 0.41818181818181815
+      },
+      "representatives": [
+        "MU",
+        "TER",
+        "WDC"
+      ],
+      "representatives_selected_only": [
+        "MU",
+        "TER",
+        "WDC"
+      ]
+    },
+    "Healthcare_Innovation": {
+      "score_v1": 0.5263673094582184,
+      "bonus": 1.16,
+      "members_selected": 11,
+      "members_extended": 0,
+      "members_total": 11,
+      "avg_percentiles": {
+        "momentum": 0.5160697887970614,
+        "DER": 0.43709825528007346,
+        "RD": 0.3939393939393939,
+        "rank_change": 0.3526170798898072
+      },
+      "representatives": [
+        "LLY",
+        "ISRG",
+        "AMGN"
+      ],
+      "representatives_selected_only": [
+        "LLY",
+        "ISRG",
+        "AMGN"
+      ]
+    },
+    "FinTech_Payments": {
+      "score_v1": 0.5452380952380953,
+      "bonus": 1.2,
+      "members_selected": 14,
+      "members_extended": 0,
+      "members_total": 14,
+      "avg_percentiles": {
+        "momentum": 0.44733044733044736,
+        "DER": 0.39321789321789324,
+        "RD": 0.4992784992784993,
+        "rank_change": 0.629148629148629
+      },
+      "representatives": [
+        "GS",
+        "MS",
+        "AXP"
+      ],
+      "representatives_selected_only": [
+        "GS",
+        "MS",
+        "AXP"
+      ]
+    },
+    "Energy_Transition": {
+      "score_v1": 0.590119375573921,
+      "bonus": 1.16,
+      "members_selected": 11,
+      "members_extended": 0,
+      "members_total": 11,
+      "avg_percentiles": {
+        "momentum": 0.5344352617079889,
+        "DER": 0.5720844811753903,
+        "RD": 0.3847566574839302,
+        "rank_change": 0.37006427915518825
+      },
+      "representatives": [
+        "HAL",
+        "ALB",
+        "TPL"
+      ],
+      "representatives_selected_only": [
+        "HAL",
+        "ALB",
+        "TPL"
+      ]
+    },
+    "Robotics_Automation": {
+      "score_v1": 0.5755555555555555,
+      "bonus": 1.1,
+      "members_selected": 8,
+      "members_extended": 0,
+      "members_total": 8,
+      "avg_percentiles": {
+        "momentum": 0.6313131313131314,
+        "DER": 0.40025252525252525,
+        "RD": 0.5795454545454546,
+        "rank_change": 0.4368686868686869
+      },
+      "representatives": [
+        "CAT",
+        "HII",
+        "CHRW"
+      ],
+      "representatives_selected_only": [
+        "CAT",
+        "HII",
+        "CHRW"
+      ]
+    },
+    "Power_Grid": {
+      "score_v1": 0.38822053872053874,
+      "bonus": 1.06,
+      "members_selected": 6,
+      "members_extended": 0,
+      "members_total": 6,
+      "avg_percentiles": {
+        "momentum": 0.29124579124579125,
+        "DER": 0.494949494949495,
+        "RD": 0.335016835016835,
+        "rank_change": 0.26262626262626265
+      },
+      "representatives": [
+        "GEV",
+        "CEG",
+        "NEE"
+      ],
+      "representatives_selected_only": [
+        "GEV",
+        "CEG",
+        "NEE"
+      ]
+    }
+  },
+  "stats": {
+    "themes_scored": 9,
+    "tickers_seen": 100
+  }
+}

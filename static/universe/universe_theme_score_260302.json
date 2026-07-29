@@ -1,0 +1,345 @@
+{
+  "name": "THEME_SCORE_V1",
+  "type": "theme_scoring",
+  "created_at": "2026-03-02 23:45:19",
+  "source_theme_file": "universe_theme_000000.json",
+  "rules": {
+    "lookback_momentum_bars": 63,
+    "history_days_for_rank_change": 7,
+    "weights": {
+      "momentum": 0.4,
+      "DER": 0.35,
+      "RD": 0.15,
+      "rank_change": 0.1
+    },
+    "note": "percentile 기반(스케일 robust). 000000은 현재본, YYMMDD 스냅샷 보관."
+  },
+  "ranked_themes_v1": [
+    {
+      "theme": "Defense",
+      "score": 0.7172554348
+    },
+    {
+      "theme": "Space",
+      "score": 0.7067352484
+    },
+    {
+      "theme": "Nuclear_Uranium",
+      "score": 0.6088768116
+    },
+    {
+      "theme": "Robotics_Automation",
+      "score": 0.5835059244
+    },
+    {
+      "theme": "Energy_Transition",
+      "score": 0.575153515
+    },
+    {
+      "theme": "Power_Grid",
+      "score": 0.5681229097
+    },
+    {
+      "theme": "Cybersecurity",
+      "score": 0.5550498188
+    },
+    {
+      "theme": "Semiconductors",
+      "score": 0.4997330282
+    },
+    {
+      "theme": "AI",
+      "score": 0.4961952899
+    },
+    {
+      "theme": "Data_Center_Infrastructure",
+      "score": 0.4780545989
+    },
+    {
+      "theme": "FinTech_Payments",
+      "score": 0.4571861814
+    },
+    {
+      "theme": "Healthcare_Innovation",
+      "score": 0.4518877635
+    }
+  ],
+  "theme_scores_v1": {
+    "AI": {
+      "score_v1": 0.4961952899,
+      "bonus": 1.2,
+      "members_selected": 125,
+      "members_extended": 0,
+      "members_total": 125,
+      "avg_percentiles": {
+        "momentum": 0.4217318841,
+        "DER": 0.5806666667,
+        "RD": 0.5057753623,
+        "rank_change": 0.4840289855
+      },
+      "representatives": [
+        "KEYS",
+        "MPWR",
+        "JBL"
+      ],
+      "representatives_selected_only": [
+        "KEYS",
+        "MPWR",
+        "JBL"
+      ]
+    },
+    "Healthcare_Innovation": {
+      "score_v1": 0.4518877635,
+      "bonus": 1.2,
+      "members_selected": 66,
+      "members_extended": 0,
+      "members_total": 66,
+      "avg_percentiles": {
+        "momentum": 0.4889657444,
+        "DER": 0.4060166886,
+        "RD": 0.4101476724,
+        "rank_change": 0.5267347387
+      },
+      "representatives": [
+        "MCK",
+        "GRMN",
+        "STX"
+      ],
+      "representatives_selected_only": [
+        "MCK",
+        "GRMN",
+        "STX"
+      ]
+    },
+    "Semiconductors": {
+      "score_v1": 0.4997330282,
+      "bonus": 1.2,
+      "members_selected": 76,
+      "members_extended": 0,
+      "members_total": 76,
+      "avg_percentiles": {
+        "momentum": 0.390875286,
+        "DER": 0.6297435164,
+        "RD": 0.4888205568,
+        "rank_change": 0.4964959954
+      },
+      "representatives": [
+        "AMAT",
+        "LRCX",
+        "ASML"
+      ],
+      "representatives_selected_only": [
+        "AMAT",
+        "LRCX",
+        "ASML"
+      ]
+    },
+    "Data_Center_Infrastructure": {
+      "score_v1": 0.4780545989,
+      "bonus": 1.2,
+      "members_selected": 101,
+      "members_extended": 0,
+      "members_total": 101,
+      "avg_percentiles": {
+        "momentum": 0.3940307074,
+        "DER": 0.5722305926,
+        "RD": 0.4743148228,
+        "rank_change": 0.4901438513
+      },
+      "representatives": [
+        "KEYS",
+        "MPWR",
+        "JBL"
+      ],
+      "representatives_selected_only": [
+        "KEYS",
+        "MPWR",
+        "JBL"
+      ]
+    },
+    "FinTech_Payments": {
+      "score_v1": 0.4571861814,
+      "bonus": 1.2,
+      "members_selected": 79,
+      "members_extended": 0,
+      "members_total": 79,
+      "avg_percentiles": {
+        "momentum": 0.3544991745,
+        "DER": 0.5503004036,
+        "RD": 0.5052742616,
+        "rank_change": 0.4699023115
+      },
+      "representatives": [
+        "PGR",
+        "CAH",
+        "PKG"
+      ],
+      "representatives_selected_only": [
+        "PGR",
+        "CAH",
+        "PKG"
+      ]
+    },
+    "Energy_Transition": {
+      "score_v1": 0.575153515,
+      "bonus": 1.2,
+      "members_selected": 77,
+      "members_extended": 0,
+      "members_total": 77,
+      "avg_percentiles": {
+        "momentum": 0.6634199134,
+        "DER": 0.4754140787,
+        "RD": 0.614095144,
+        "rank_change": 0.5127635046
+      },
+      "representatives": [
+        "TPL",
+        "KEYS",
+        "GEV"
+      ],
+      "representatives_selected_only": [
+        "TPL",
+        "KEYS",
+        "GEV"
+      ]
+    },
+    "Robotics_Automation": {
+      "score_v1": 0.5835059244,
+      "bonus": 1.2,
+      "members_selected": 74,
+      "members_extended": 0,
+      "members_total": 74,
+      "avg_percentiles": {
+        "momentum": 0.6130777517,
+        "DER": 0.5476522718,
+        "RD": 0.6152443204,
+        "rank_change": 0.5430988053
+      },
+      "representatives": [
+        "FIX",
+        "HWM",
+        "PWR"
+      ],
+      "representatives_selected_only": [
+        "FIX",
+        "HWM",
+        "PWR"
+      ]
+    },
+    "Power_Grid": {
+      "score_v1": 0.5681229097,
+      "bonus": 1.2,
+      "members_selected": 39,
+      "members_extended": 0,
+      "members_total": 39,
+      "avg_percentiles": {
+        "momentum": 0.6602564103,
+        "DER": 0.4471850613,
+        "RD": 0.6223987365,
+        "rank_change": 0.5414576366
+      },
+      "representatives": [
+        "GEV",
+        "MPWR",
+        "JCI"
+      ],
+      "representatives_selected_only": [
+        "GEV",
+        "MPWR",
+        "JCI"
+      ]
+    },
+    "Space": {
+      "score_v1": 0.7067352484,
+      "bonus": 1.1,
+      "members_selected": 7,
+      "members_extended": 0,
+      "members_total": 7,
+      "avg_percentiles": {
+        "momentum": 0.6986283644,
+        "DER": 0.672489648,
+        "RD": 0.7867494824,
+        "rank_change": 0.7390010352
+      },
+      "representatives": [
+        "HWM",
+        "RKLB",
+        "GLW"
+      ],
+      "representatives_selected_only": [
+        "HWM",
+        "RKLB",
+        "GLW"
+      ]
+    },
+    "Cybersecurity": {
+      "score_v1": 0.5550498188,
+      "bonus": 1.1,
+      "members_selected": 6,
+      "members_extended": 0,
+      "members_total": 6,
+      "avg_percentiles": {
+        "momentum": 0.23852657,
+        "DER": 0.8765096618,
+        "RD": 0.5264190821,
+        "rank_change": 0.7389794686
+      },
+      "representatives": [
+        "IR",
+        "FTNT",
+        "TDG"
+      ],
+      "representatives_selected_only": [
+        "IR",
+        "FTNT",
+        "TDG"
+      ]
+    },
+    "Defense": {
+      "score_v1": 0.7172554348,
+      "bonus": 1.06,
+      "members_selected": 5,
+      "members_extended": 0,
+      "members_total": 5,
+      "avg_percentiles": {
+        "momentum": 0.6588768116,
+        "DER": 0.7027173913,
+        "RD": 0.8753623188,
+        "rank_change": 0.7644927536
+      },
+      "representatives": [
+        "HWM",
+        "GLW",
+        "GE"
+      ],
+      "representatives_selected_only": [
+        "HWM",
+        "GLW",
+        "GE"
+      ]
+    },
+    "Nuclear_Uranium": {
+      "score_v1": 0.6088768116,
+      "bonus": 1.06,
+      "members_selected": 1,
+      "members_extended": 0,
+      "members_total": 1,
+      "avg_percentiles": {
+        "momentum": 0.2989130435,
+        "DER": 0.8115942029,
+        "RD": 0.7264492754,
+        "rank_change": 0.9628623188
+      },
+      "representatives": [
+        "CEG"
+      ],
+      "representatives_selected_only": [
+        "CEG"
+      ]
+    }
+  },
+  "stats": {
+    "themes_scored": 12,
+    "tickers_seen": 553
+  }
+}
