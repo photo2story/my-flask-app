@@ -1,20 +1,20 @@
 {
-  "date": "2026-07-31",
+  "date": "2026-08-07",
   "source": "rule_v1",
   "marketRegime": "Risk-On",
-  "coachProfile": "Risk-On Cautious",
+  "coachProfile": "Risk-On",
   "targetWeight": {
-    "stable": 39,
-    "growth": 48,
-    "aggressive": 13
+    "stable": 35,
+    "growth": 45,
+    "aggressive": 20
   },
   "signals": {
-    "stress": 0.36,
-    "heat": 0.372,
-    "macroWeak": true,
-    "s1LeaderCount": 10,
-    "s2BreakoutCount": 9,
-    "derShock": true
+    "stress": 0.332,
+    "heat": 0.438,
+    "macroWeak": false,
+    "s1LeaderCount": 0,
+    "s2BreakoutCount": 0,
+    "derShock": false
   },
-  "message": "Risk-On Cautious regime. Target stable 39 · growth 48 · aggressive 13. Keep growth exposure, but trim aggressive weight due to overheating or macro caution. Macro pulse is weak; keep National Pension anchors and build private pension / investable assets. Strong S1/S2 breadth supports growth tilt. DER shock detected — review aggressive holdings."
+  "message": "Risk-On regime. Target stable 35 · growth 45 · aggressive 20. Keep growth exposure, but avoid excessive aggressive weight."
 }
