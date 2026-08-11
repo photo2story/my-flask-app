@@ -1,20 +1,20 @@
 {
-  "date": "2026-08-07",
+  "date": "2026-08-11",
   "source": "rule_v1",
   "marketRegime": "Risk-On",
-  "coachProfile": "Risk-On",
+  "coachProfile": "Risk-On Cautious",
   "targetWeight": {
     "stable": 35,
-    "growth": 45,
-    "aggressive": 20
+    "growth": 51,
+    "aggressive": 14
   },
   "signals": {
-    "stress": 0.332,
-    "heat": 0.438,
+    "stress": 0.34,
+    "heat": 0.447,
     "macroWeak": false,
-    "s1LeaderCount": 0,
-    "s2BreakoutCount": 0,
-    "derShock": false
+    "s1LeaderCount": 12,
+    "s2BreakoutCount": 4,
+    "derShock": true
   },
-  "message": "Risk-On regime. Target stable 35 · growth 45 · aggressive 20. Keep growth exposure, but avoid excessive aggressive weight."
+  "message": "Risk-On Cautious regime. Target stable 35 · growth 51 · aggressive 14. Keep growth exposure, but trim aggressive weight due to overheating or macro caution. Strong S1/S2 breadth supports growth tilt. DER shock detected — review aggressive holdings."
 }
