@@ -1,0 +1,49 @@
+{
+  "ticker": "456680.KS",
+  "as_of": "2026-04-30",
+  "generated_at": "2026-09-20T15:09:32Z",
+  "short_grid": {
+    "5d_alpha": 1.7697,
+    "1m_alpha": 13.638,
+    "3m_alpha": 27.3465,
+    "pattern": "111"
+  },
+  "mri": {
+    "heat": 0.4352,
+    "stress": 0.4113,
+    "geo": 0.7496,
+    "signal": "GeoWatch",
+    "heat_delta_20d": 0.0453,
+    "stress_delta_20d": -0.0526,
+    "geo_delta_20d": 0.0191
+  },
+  "horizons": {
+    "6m": {
+      "p": 0.15,
+      "wins": 1,
+      "n": 9,
+      "sufficient": true,
+      "alpha_mean": -20.1472,
+      "alpha_median": -26.4181
+    },
+    "1y": {
+      "p": 0.6111,
+      "wins": 5,
+      "n": 8,
+      "sufficient": true,
+      "alpha_mean": 5.1807,
+      "alpha_median": 15.232
+    },
+    "3y": {
+      "p": 0.8929,
+      "wins": 12,
+      "n": 13,
+      "sufficient": true,
+      "alpha_mean": 80.2379,
+      "alpha_median": 72.6364,
+      "cohort_fallback": "same_ticker_all"
+    }
+  },
+  "cohort": "same_ticker_nearby",
+  "schema_version": 1
+}
