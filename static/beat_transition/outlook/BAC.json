@@ -1,0 +1,48 @@
+{
+  "ticker": "BAC",
+  "as_of": "2026-04-30",
+  "generated_at": "2026-09-20T17:15:24Z",
+  "short_grid": {
+    "5d_alpha": 2.0744,
+    "1m_alpha": -4.2624,
+    "3m_alpha": -1.9111,
+    "pattern": "100"
+  },
+  "mri": {
+    "heat": 0.4352,
+    "stress": 0.4113,
+    "geo": 0.7496,
+    "signal": "GeoWatch",
+    "heat_delta_20d": 0.0453,
+    "stress_delta_20d": -0.0526,
+    "geo_delta_20d": 0.0191
+  },
+  "horizons": {
+    "6m": {
+      "p": 0.6562,
+      "wins": 10,
+      "n": 15,
+      "sufficient": true,
+      "alpha_mean": 5.6048,
+      "alpha_median": 1.9387
+    },
+    "1y": {
+      "p": 0.7667,
+      "wins": 11,
+      "n": 14,
+      "sufficient": true,
+      "alpha_mean": 10.7975,
+      "alpha_median": 5.9901
+    },
+    "3y": {
+      "p": 0.6538,
+      "wins": 8,
+      "n": 12,
+      "sufficient": true,
+      "alpha_mean": 10.2976,
+      "alpha_median": 16.2187
+    }
+  },
+  "cohort": "same_ticker_nearby",
+  "schema_version": 1
+}

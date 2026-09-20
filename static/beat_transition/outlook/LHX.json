@@ -1,0 +1,48 @@
+{
+  "ticker": "LHX",
+  "as_of": "2026-04-30",
+  "generated_at": "2026-09-20T17:15:42Z",
+  "short_grid": {
+    "5d_alpha": 0.3229,
+    "1m_alpha": -16.1251,
+    "3m_alpha": -13.8711,
+    "pattern": "100"
+  },
+  "mri": {
+    "heat": 0.4352,
+    "stress": 0.4113,
+    "geo": 0.7496,
+    "signal": "GeoWatch",
+    "heat_delta_20d": 0.0453,
+    "stress_delta_20d": -0.0526,
+    "geo_delta_20d": 0.0191
+  },
+  "horizons": {
+    "6m": {
+      "p": 0.4091,
+      "wins": 4,
+      "n": 10,
+      "sufficient": true,
+      "alpha_mean": 1.7151,
+      "alpha_median": -0.577
+    },
+    "1y": {
+      "p": 0.6818,
+      "wins": 7,
+      "n": 10,
+      "sufficient": true,
+      "alpha_mean": 3.5649,
+      "alpha_median": 7.4901
+    },
+    "3y": {
+      "p": 0.2778,
+      "wins": 2,
+      "n": 8,
+      "sufficient": true,
+      "alpha_mean": -14.3458,
+      "alpha_median": -10.6912
+    }
+  },
+  "cohort": "same_ticker_nearby",
+  "schema_version": 1
+}

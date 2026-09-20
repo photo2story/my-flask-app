@@ -1,0 +1,48 @@
+{
+  "ticker": "NEE",
+  "as_of": "2026-04-30",
+  "generated_at": "2026-09-20T17:15:27Z",
+  "short_grid": {
+    "5d_alpha": 2.094,
+    "1m_alpha": -2.0881,
+    "3m_alpha": 4.2532,
+    "pattern": "101"
+  },
+  "mri": {
+    "heat": 0.4352,
+    "stress": 0.4113,
+    "geo": 0.7496,
+    "signal": "GeoWatch",
+    "heat_delta_20d": 0.0453,
+    "stress_delta_20d": -0.0526,
+    "geo_delta_20d": 0.0191
+  },
+  "horizons": {
+    "6m": {
+      "p": 0.4231,
+      "wins": 5,
+      "n": 12,
+      "sufficient": true,
+      "alpha_mean": -0.2871,
+      "alpha_median": -0.8423
+    },
+    "1y": {
+      "p": 0.4231,
+      "wins": 5,
+      "n": 12,
+      "sufficient": true,
+      "alpha_mean": 0.6419,
+      "alpha_median": -1.3342
+    },
+    "3y": {
+      "p": 0.5,
+      "wins": 4,
+      "n": 8,
+      "sufficient": true,
+      "alpha_mean": -3.4599,
+      "alpha_median": 8.3671
+    }
+  },
+  "cohort": "same_ticker_nearby",
+  "schema_version": 1
+}
