@@ -1,6 +1,12 @@
 {
   "ticker": "FTNT",
-  "as_of": "2026-04-30",
+  "as_of": "2026-09-21",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2026-04-30",
+    "1y": "2025-12-31",
+    "3y": "2024-07-31"
+  },
   "by_pattern_signal": {
     "111|Neutral": {
       "6m": {
@@ -653,5 +659,5 @@
       }
     }
   },
-  "schema_version": 1
+  "schema_version": 2
 }

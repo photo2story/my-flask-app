@@ -1,12 +1,19 @@
 {
   "ticker": "SUI-USD",
-  "as_of": "2023-12-31",
-  "generated_at": "2026-09-20T20:31:48Z",
+  "as_of": "2024-06-04",
+  "generated_at": "2026-09-21T22:52:49Z",
+  "query_frequency": "latest_trading_day",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2023-12-31",
+    "1y": "2023-08-31",
+    "3y": null
+  },
   "short_grid": {
-    "5d_alpha": 5.504,
-    "1m_alpha": 2.6967,
-    "3m_alpha": -18.1247,
-    "pattern": "110"
+    "5d_alpha": 7.8918,
+    "1m_alpha": -38.9576,
+    "3m_alpha": -17.1205,
+    "pattern": "100"
   },
   "mri": {
     "heat": 0.7,
@@ -19,11 +26,11 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.475,
+      "p": 0.4524,
       "wins": 9,
-      "n": 19,
+      "n": 20,
       "sufficient": true,
-      "alpha_mean": 4.0852,
+      "alpha_mean": 0.5808,
       "alpha_median": -16.9383
     },
     "1y": {
@@ -42,5 +49,5 @@
     }
   },
   "cohort": "same_ticker_all",
-  "schema_version": 1
+  "schema_version": 2
 }

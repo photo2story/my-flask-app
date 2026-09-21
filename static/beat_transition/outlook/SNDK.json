@@ -1,30 +1,37 @@
 {
   "ticker": "SNDK",
-  "as_of": "2026-04-30",
-  "generated_at": "2026-09-20T17:15:10Z",
+  "as_of": "2026-09-21",
+  "generated_at": "2026-09-21T22:52:40Z",
+  "query_frequency": "latest_trading_day",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2026-04-30",
+    "1y": "2025-12-31",
+    "3y": null
+  },
   "short_grid": {
-    "5d_alpha": 9.5265,
-    "1m_alpha": 17.2245,
-    "3m_alpha": 41.2062,
+    "5d_alpha": 10.9134,
+    "1m_alpha": 6.2051,
+    "3m_alpha": 8.432,
     "pattern": "111"
   },
   "mri": {
-    "heat": 0.4352,
-    "stress": 0.4113,
-    "geo": 0.7496,
-    "signal": "GeoWatch",
-    "heat_delta_20d": 0.0453,
-    "stress_delta_20d": -0.0526,
-    "geo_delta_20d": 0.0191
+    "heat": 0.4075,
+    "stress": 0.3403,
+    "geo": 0.6239,
+    "signal": "Neutral",
+    "heat_delta_20d": 0.0241,
+    "stress_delta_20d": -0.0076,
+    "geo_delta_20d": 0.1155
   },
   "horizons": {
     "6m": {
-      "p": 0.9615,
+      "p": 0.8929,
       "wins": 12,
-      "n": 12,
+      "n": 13,
       "sufficient": true,
-      "alpha_mean": 173.5051,
-      "alpha_median": 175.4798
+      "alpha_mean": 160.0209,
+      "alpha_median": 134.9261
     },
     "1y": {
       "p": 0.95,
@@ -42,5 +49,5 @@
     }
   },
   "cohort": "same_ticker_all",
-  "schema_version": 1
+  "schema_version": 2
 }

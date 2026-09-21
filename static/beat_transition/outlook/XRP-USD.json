@@ -1,48 +1,55 @@
 {
   "ticker": "XRP-USD",
-  "as_of": "2026-04-30",
-  "generated_at": "2026-09-20T20:31:48Z",
+  "as_of": "2026-09-21",
+  "generated_at": "2026-09-21T22:52:49Z",
+  "query_frequency": "latest_trading_day",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2026-04-30",
+    "1y": "2025-12-31",
+    "3y": "2024-07-31"
+  },
   "short_grid": {
-    "5d_alpha": -4.3696,
-    "1m_alpha": -2.1163,
-    "3m_alpha": -9.1497,
-    "pattern": "000"
+    "5d_alpha": 16.6717,
+    "1m_alpha": 11.4824,
+    "3m_alpha": 37.1075,
+    "pattern": "111"
   },
   "mri": {
-    "heat": 0.4352,
-    "stress": 0.4113,
-    "geo": 0.7496,
-    "signal": "GeoWatch",
-    "heat_delta_20d": 0.0453,
-    "stress_delta_20d": -0.0526,
-    "geo_delta_20d": 0.0191
+    "heat": 0.4075,
+    "stress": 0.3403,
+    "geo": 0.6239,
+    "signal": "Neutral",
+    "heat_delta_20d": 0.0241,
+    "stress_delta_20d": -0.0076,
+    "geo_delta_20d": 0.1155
   },
   "horizons": {
     "6m": {
-      "p": 0.54,
-      "wins": 13,
-      "n": 24,
+      "p": 0.4643,
+      "wins": 6,
+      "n": 13,
       "sufficient": true,
-      "alpha_mean": 23.2748,
-      "alpha_median": 0.3403
+      "alpha_mean": 19.471,
+      "alpha_median": -3.0789
     },
     "1y": {
-      "p": 0.4792,
-      "wins": 11,
-      "n": 23,
+      "p": 0.4643,
+      "wins": 6,
+      "n": 13,
       "sufficient": true,
-      "alpha_mean": 41.52,
-      "alpha_median": -3.9163
+      "alpha_mean": 28.9097,
+      "alpha_median": -7.1663
     },
     "3y": {
-      "p": 0.6905,
-      "wins": 14,
-      "n": 20,
+      "p": 0.375,
+      "wins": 4,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": 111.5616,
-      "alpha_median": 58.2306
+      "alpha_mean": 36.7236,
+      "alpha_median": -25.1477
     }
   },
-  "cohort": "same_ticker_nearby",
-  "schema_version": 1
+  "cohort": "same_ticker_exact",
+  "schema_version": 2
 }

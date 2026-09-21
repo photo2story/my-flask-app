@@ -1,6 +1,12 @@
 {
   "ticker": "SUI-USD",
-  "as_of": "2023-12-31",
+  "as_of": "2024-06-04",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2023-12-31",
+    "1y": "2023-08-31",
+    "3y": null
+  },
   "by_pattern_signal": {
     "000|Neutral": {
       "6m": {
@@ -193,5 +199,5 @@
       }
     }
   },
-  "schema_version": 1
+  "schema_version": 2
 }

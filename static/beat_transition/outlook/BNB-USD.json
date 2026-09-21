@@ -1,21 +1,28 @@
 {
   "ticker": "BNB-USD",
-  "as_of": "2026-04-30",
-  "generated_at": "2026-09-20T20:31:48Z",
+  "as_of": "2026-09-21",
+  "generated_at": "2026-09-21T22:52:50Z",
+  "query_frequency": "latest_trading_day",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2026-04-30",
+    "1y": "2025-12-31",
+    "3y": "2024-07-31"
+  },
   "short_grid": {
-    "5d_alpha": -2.4957,
-    "1m_alpha": -4.7361,
-    "3m_alpha": -6.4116,
-    "pattern": "000"
+    "5d_alpha": 7.8104,
+    "1m_alpha": 14.6568,
+    "3m_alpha": 34.4973,
+    "pattern": "111"
   },
   "mri": {
-    "heat": 0.4352,
-    "stress": 0.4113,
-    "geo": 0.7496,
-    "signal": "GeoWatch",
-    "heat_delta_20d": 0.0453,
-    "stress_delta_20d": -0.0526,
-    "geo_delta_20d": 0.0191
+    "heat": 0.4075,
+    "stress": 0.3403,
+    "geo": 0.6239,
+    "signal": "Neutral",
+    "heat_delta_20d": 0.0241,
+    "stress_delta_20d": -0.0076,
+    "geo_delta_20d": 0.1155
   },
   "horizons": {
     "6m": {
@@ -23,26 +30,26 @@
       "wins": 9,
       "n": 19,
       "sufficient": true,
-      "alpha_mean": 20.9076,
-      "alpha_median": -2.3128
+      "alpha_mean": 86.7653,
+      "alpha_median": -0.5964
     },
     "1y": {
-      "p": 0.5,
-      "wins": 9,
-      "n": 18,
+      "p": 0.625,
+      "wins": 12,
+      "n": 19,
       "sufficient": true,
-      "alpha_mean": 121.8068,
-      "alpha_median": 8.5891
+      "alpha_mean": 218.0979,
+      "alpha_median": 8.0679
     },
     "3y": {
-      "p": 0.6765,
-      "wins": 11,
-      "n": 16,
+      "p": 0.5312,
+      "wins": 8,
+      "n": 15,
       "sufficient": true,
-      "alpha_mean": 427.6174,
-      "alpha_median": 127.7425
+      "alpha_mean": 347.9403,
+      "alpha_median": 73.2803
     }
   },
-  "cohort": "same_ticker_nearby",
-  "schema_version": 1
+  "cohort": "same_ticker_exact",
+  "schema_version": 2
 }
