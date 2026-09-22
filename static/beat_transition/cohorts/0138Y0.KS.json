@@ -1,6 +1,12 @@
 {
   "ticker": "0138Y0.KS",
-  "as_of": "2026-04-30",
+  "as_of": "2026-09-21",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2026-04-30",
+    "1y": null,
+    "3y": null
+  },
   "by_pattern_signal": {
     "011|Neutral": {
       "6m": {
@@ -69,5 +75,5 @@
       }
     }
   },
-  "schema_version": 1
+  "schema_version": 2
 }

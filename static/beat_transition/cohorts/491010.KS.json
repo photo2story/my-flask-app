@@ -1,6 +1,12 @@
 {
   "ticker": "491010.KS",
-  "as_of": "2026-04-30",
+  "as_of": "2026-09-21",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2026-04-30",
+    "1y": "2025-12-31",
+    "3y": null
+  },
   "by_pattern_signal": {
     "010|Neutral": {
       "6m": {
@@ -193,5 +199,5 @@
       }
     }
   },
-  "schema_version": 1
+  "schema_version": 2
 }
