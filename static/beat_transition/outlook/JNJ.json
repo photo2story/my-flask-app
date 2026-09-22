@@ -1,7 +1,7 @@
 {
   "ticker": "JNJ",
-  "as_of": "2026-09-21",
-  "generated_at": "2026-09-21T22:52:46Z",
+  "as_of": "2026-09-22",
+  "generated_at": "2026-09-22T21:16:46Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-07-31"
   },
   "short_grid": {
-    "5d_alpha": -1.9959,
-    "1m_alpha": 0.2492,
-    "3m_alpha": 4.3636,
-    "pattern": "011"
+    "5d_alpha": -2.0549,
+    "1m_alpha": -2.5198,
+    "3m_alpha": 4.3325,
+    "pattern": "001"
   },
   "mri": {
-    "heat": 0.4075,
-    "stress": 0.3403,
-    "geo": 0.6239,
+    "heat": 0.4324,
+    "stress": 0.3399,
+    "geo": 0.6174,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0241,
-    "stress_delta_20d": -0.0076,
-    "geo_delta_20d": 0.1155
+    "heat_delta_20d": 0.0288,
+    "stress_delta_20d": 0.0075,
+    "geo_delta_20d": 0.096
   },
   "horizons": {
     "6m": {
-      "p": 0.5,
-      "wins": 4,
-      "n": 8,
+      "p": 0.5417,
+      "wins": 6,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": 1.5279,
-      "alpha_median": 7.2809
+      "alpha_mean": 0.369,
+      "alpha_median": 0.3502
     },
     "1y": {
-      "p": 0.5,
-      "wins": 4,
-      "n": 8,
+      "p": 0.5417,
+      "wins": 6,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": 0.1474,
-      "alpha_median": 3.5124
+      "alpha_mean": 1.0908,
+      "alpha_median": 0.3041
     },
     "3y": {
-      "p": 0.3571,
+      "p": 0.2273,
       "wins": 2,
-      "n": 6,
+      "n": 10,
       "sufficient": true,
-      "alpha_mean": -16.5958,
-      "alpha_median": -2.7634
+      "alpha_mean": -10.6767,
+      "alpha_median": -8.3588
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_nearby",
   "schema_version": 2
 }

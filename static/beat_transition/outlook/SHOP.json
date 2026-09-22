@@ -1,7 +1,7 @@
 {
   "ticker": "SHOP",
-  "as_of": "2026-09-21",
-  "generated_at": "2026-09-21T22:52:41Z",
+  "as_of": "2026-09-22",
+  "generated_at": "2026-09-22T21:16:41Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-07-31"
   },
   "short_grid": {
-    "5d_alpha": 3.3091,
-    "1m_alpha": -7.701,
-    "3m_alpha": 5.7847,
-    "pattern": "101"
+    "5d_alpha": 13.207,
+    "1m_alpha": 3.8809,
+    "3m_alpha": 15.7954,
+    "pattern": "111"
   },
   "mri": {
-    "heat": 0.4075,
-    "stress": 0.3403,
-    "geo": 0.6239,
+    "heat": 0.4324,
+    "stress": 0.3399,
+    "geo": 0.6174,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0241,
-    "stress_delta_20d": -0.0076,
-    "geo_delta_20d": 0.1155
+    "heat_delta_20d": 0.0288,
+    "stress_delta_20d": 0.0075,
+    "geo_delta_20d": 0.096
   },
   "horizons": {
     "6m": {
-      "p": 0.5569,
-      "wins": 68,
-      "n": 122,
+      "p": 0.6304,
+      "wins": 14,
+      "n": 22,
       "sufficient": true,
-      "alpha_mean": 7.8666,
-      "alpha_median": 4.3447
+      "alpha_mean": 11.6966,
+      "alpha_median": 10.2492
     },
     "1y": {
-      "p": 0.6597,
-      "wins": 78,
-      "n": 118,
+      "p": 0.7174,
+      "wins": 16,
+      "n": 22,
       "sufficient": true,
-      "alpha_mean": 18.0991,
-      "alpha_median": 17.673
+      "alpha_mean": 22.5828,
+      "alpha_median": 17.2694
     },
     "3y": {
-      "p": 0.701,
-      "wins": 71,
-      "n": 101,
+      "p": 0.8158,
+      "wins": 15,
+      "n": 18,
       "sufficient": true,
-      "alpha_mean": 74.8682,
-      "alpha_median": 66.0887
+      "alpha_mean": 89.6915,
+      "alpha_median": 86.4501
     }
   },
-  "cohort": "same_ticker_all",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }
