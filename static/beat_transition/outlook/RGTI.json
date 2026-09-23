@@ -1,7 +1,7 @@
 {
   "ticker": "RGTI",
-  "as_of": "2026-09-22",
-  "generated_at": "2026-09-22T21:16:54Z",
+  "as_of": "2026-09-23",
+  "generated_at": "2026-09-23T21:18:58Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-07-31"
   },
   "short_grid": {
-    "5d_alpha": 1.0357,
-    "1m_alpha": 7.7778,
-    "3m_alpha": 1.6883,
-    "pattern": "111"
+    "5d_alpha": 0.4274,
+    "1m_alpha": 6.8228,
+    "3m_alpha": -0.4131,
+    "pattern": "110"
   },
   "mri": {
-    "heat": 0.4324,
-    "stress": 0.3399,
-    "geo": 0.6174,
+    "heat": 0.4293,
+    "stress": 0.3367,
+    "geo": 0.5876,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0288,
-    "stress_delta_20d": 0.0075,
-    "geo_delta_20d": 0.096
+    "heat_delta_20d": 0.0117,
+    "stress_delta_20d": 0.0186,
+    "geo_delta_20d": 0.048
   },
   "horizons": {
     "6m": {
-      "p": 0.375,
-      "wins": 4,
-      "n": 11,
+      "p": 0.475,
+      "wins": 28,
+      "n": 59,
       "sufficient": true,
-      "alpha_mean": 81.0241,
-      "alpha_median": -17.8785
+      "alpha_mean": 94.2459,
+      "alpha_median": -1.1625
     },
     "1y": {
-      "p": 0.375,
-      "wins": 4,
-      "n": 11,
+      "p": 0.4554,
+      "wins": 25,
+      "n": 55,
       "sufficient": true,
-      "alpha_mean": 103.7534,
-      "alpha_median": -17.7712
+      "alpha_mean": 164.6292,
+      "alpha_median": -13.943
     },
     "3y": {
-      "p": 0.6429,
-      "wins": 4,
-      "n": 6,
+      "p": 0.6282,
+      "wins": 24,
+      "n": 38,
       "sufficient": true,
-      "alpha_mean": 677.8588,
-      "alpha_median": 542.5794
+      "alpha_mean": 1058.3206,
+      "alpha_median": 798.4572
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_all",
   "schema_version": 2
 }

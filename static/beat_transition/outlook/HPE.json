@@ -1,7 +1,7 @@
 {
   "ticker": "HPE",
-  "as_of": "2026-09-22",
-  "generated_at": "2026-09-22T21:16:55Z",
+  "as_of": "2026-09-23",
+  "generated_at": "2026-09-23T21:18:58Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-07-31"
   },
   "short_grid": {
-    "5d_alpha": -1.6902,
-    "1m_alpha": 18.4647,
-    "3m_alpha": 26.7105,
-    "pattern": "011"
+    "5d_alpha": 1.749,
+    "1m_alpha": 19.9334,
+    "3m_alpha": 26.2104,
+    "pattern": "111"
   },
   "mri": {
-    "heat": 0.4324,
-    "stress": 0.3399,
-    "geo": 0.6174,
+    "heat": 0.4293,
+    "stress": 0.3367,
+    "geo": 0.5876,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0288,
-    "stress_delta_20d": 0.0075,
-    "geo_delta_20d": 0.096
+    "heat_delta_20d": 0.0117,
+    "stress_delta_20d": 0.0186,
+    "geo_delta_20d": 0.048
   },
   "horizons": {
     "6m": {
-      "p": 0.35,
-      "wins": 3,
-      "n": 9,
+      "p": 0.375,
+      "wins": 7,
+      "n": 19,
       "sufficient": true,
-      "alpha_mean": -0.6187,
-      "alpha_median": -3.6324
+      "alpha_mean": -4.5142,
+      "alpha_median": -6.2874
     },
     "1y": {
-      "p": 0.65,
-      "wins": 6,
-      "n": 9,
+      "p": 0.375,
+      "wins": 7,
+      "n": 19,
       "sufficient": true,
-      "alpha_mean": -0.8468,
-      "alpha_median": 3.5019
+      "alpha_mean": 1.0585,
+      "alpha_median": -3.7426
     },
     "3y": {
-      "p": 0.5,
-      "wins": 4,
-      "n": 8,
+      "p": 0.3824,
+      "wins": 6,
+      "n": 16,
       "sufficient": true,
-      "alpha_mean": 17.2231,
-      "alpha_median": 6.8401
+      "alpha_mean": -8.9736,
+      "alpha_median": -11.296
     }
   },
   "cohort": "same_ticker_exact",
