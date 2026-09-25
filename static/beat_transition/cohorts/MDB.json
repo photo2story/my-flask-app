@@ -1,6 +1,6 @@
 {
   "ticker": "MDB",
-  "as_of": "2026-09-23",
+  "as_of": "2026-09-25",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -8,30 +8,30 @@
     "3y": "2024-07-31"
   },
   "by_pattern_signal": {
-    "111|GeoWatch": {
+    "111|CashBuild": {
       "6m": {
-        "p": 0.5833,
-        "wins": 3,
-        "n": 5,
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 3.7775,
-        "alpha_median": 14.8728
+        "alpha_mean": 20.3974,
+        "alpha_median": 20.3974
       },
       "1y": {
-        "p": 0.5833,
-        "wins": 3,
-        "n": 5,
-        "sufficient": true,
-        "alpha_mean": 27.0825,
-        "alpha_median": 3.406
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
+        "sufficient": false,
+        "alpha_mean": 114.3032,
+        "alpha_median": 114.3032
       },
       "3y": {
-        "p": 0.4167,
-        "wins": 2,
-        "n": 5,
-        "sufficient": true,
-        "alpha_mean": 33.3157,
-        "alpha_median": -15.6053
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
+        "sufficient": false,
+        "alpha_mean": 139.8122,
+        "alpha_median": 139.8122
       }
     },
     "000|GeoWatch": {
@@ -58,6 +58,32 @@
         "sufficient": true,
         "alpha_mean": 55.1944,
         "alpha_median": 48.0157
+      }
+    },
+    "111|GeoWatch": {
+      "6m": {
+        "p": 0.5,
+        "wins": 2,
+        "n": 4,
+        "sufficient": false,
+        "alpha_mean": -0.3774,
+        "alpha_median": 14.8728
+      },
+      "1y": {
+        "p": 0.5,
+        "wins": 2,
+        "n": 4,
+        "sufficient": false,
+        "alpha_mean": 5.2773,
+        "alpha_median": 3.406
+      },
+      "3y": {
+        "p": 0.3,
+        "wins": 1,
+        "n": 4,
+        "sufficient": true,
+        "alpha_mean": 6.6915,
+        "alpha_median": -15.6053
       }
     },
     "011|RiskWatch": {

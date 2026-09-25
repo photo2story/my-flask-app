@@ -1,7 +1,7 @@
 {
   "ticker": "WFC",
-  "as_of": "2026-09-23",
-  "generated_at": "2026-09-23T21:18:52Z",
+  "as_of": "2026-09-25",
+  "generated_at": "2026-09-25T20:52:37Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-07-31"
   },
   "short_grid": {
-    "5d_alpha": -5.7259,
-    "1m_alpha": -8.8467,
-    "3m_alpha": -8.0729,
+    "5d_alpha": -4.938,
+    "1m_alpha": -8.1687,
+    "3m_alpha": -8.373,
     "pattern": "000"
   },
   "mri": {
-    "heat": 0.4293,
-    "stress": 0.3367,
-    "geo": 0.5876,
+    "heat": 0.394,
+    "stress": 0.3555,
+    "geo": 0.5181,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0117,
-    "stress_delta_20d": 0.0186,
-    "geo_delta_20d": 0.048
+    "heat_delta_20d": -0.0117,
+    "stress_delta_20d": 0.0294,
+    "geo_delta_20d": -0.0364
   },
   "horizons": {
     "6m": {
-      "p": 0.6304,
-      "wins": 14,
-      "n": 22,
-      "sufficient": true,
-      "alpha_mean": 8.9897,
-      "alpha_median": 8.2435
-    },
-    "1y": {
-      "p": 0.7955,
-      "wins": 17,
-      "n": 21,
-      "sufficient": true,
-      "alpha_mean": 21.5028,
-      "alpha_median": 9.1434
-    },
-    "3y": {
       "p": 0.6429,
       "wins": 13,
       "n": 20,
       "sufficient": true,
-      "alpha_mean": 22.0298,
-      "alpha_median": 11.8506
+      "alpha_mean": 9.605,
+      "alpha_median": 8.2435
+    },
+    "1y": {
+      "p": 0.775,
+      "wins": 15,
+      "n": 19,
+      "sufficient": true,
+      "alpha_mean": 23.5198,
+      "alpha_median": 12.2812
+    },
+    "3y": {
+      "p": 0.7105,
+      "wins": 13,
+      "n": 18,
+      "sufficient": true,
+      "alpha_mean": 26.2624,
+      "alpha_median": 20.5926
     }
   },
   "cohort": "same_ticker_exact",

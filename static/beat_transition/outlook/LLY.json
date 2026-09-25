@@ -1,7 +1,7 @@
 {
   "ticker": "LLY",
-  "as_of": "2026-09-23",
-  "generated_at": "2026-09-23T21:18:47Z",
+  "as_of": "2026-09-25",
+  "generated_at": "2026-09-25T20:52:31Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-07-31"
   },
   "short_grid": {
-    "5d_alpha": -0.9964,
-    "1m_alpha": -1.3779,
-    "3m_alpha": -3.9858,
-    "pattern": "000"
+    "5d_alpha": 1.3639,
+    "1m_alpha": 2.5725,
+    "3m_alpha": -5.6508,
+    "pattern": "110"
   },
   "mri": {
-    "heat": 0.4293,
-    "stress": 0.3367,
-    "geo": 0.5876,
+    "heat": 0.394,
+    "stress": 0.3555,
+    "geo": 0.5181,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0117,
-    "stress_delta_20d": 0.0186,
-    "geo_delta_20d": 0.048
+    "heat_delta_20d": -0.0117,
+    "stress_delta_20d": 0.0294,
+    "geo_delta_20d": -0.0364
   },
   "horizons": {
     "6m": {
-      "p": 0.8056,
-      "wins": 14,
-      "n": 17,
+      "p": 0.6818,
+      "wins": 7,
+      "n": 10,
       "sufficient": true,
-      "alpha_mean": 12.9909,
-      "alpha_median": 8.2858
+      "alpha_mean": 5.1568,
+      "alpha_median": 8.5685
     },
     "1y": {
-      "p": 0.7353,
-      "wins": 12,
-      "n": 16,
+      "p": 0.7727,
+      "wins": 8,
+      "n": 10,
       "sufficient": true,
-      "alpha_mean": 17.7228,
-      "alpha_median": 17.4698
+      "alpha_mean": 25.1527,
+      "alpha_median": 37.4099
     },
     "3y": {
-      "p": 0.8846,
-      "wins": 11,
-      "n": 12,
+      "p": 0.8636,
+      "wins": 9,
+      "n": 10,
       "sufficient": true,
-      "alpha_mean": 64.5271,
-      "alpha_median": 81.2198
+      "alpha_mean": 76.0996,
+      "alpha_median": 86.471
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_nearby",
   "schema_version": 2
 }

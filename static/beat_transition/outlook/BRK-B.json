@@ -1,7 +1,7 @@
 {
   "ticker": "BRK-B",
-  "as_of": "2026-09-23",
-  "generated_at": "2026-09-23T21:18:53Z",
+  "as_of": "2026-09-25",
+  "generated_at": "2026-09-25T20:52:37Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-07-31"
   },
   "short_grid": {
-    "5d_alpha": -1.3374,
-    "1m_alpha": -0.2135,
-    "3m_alpha": 0.759,
-    "pattern": "001"
+    "5d_alpha": -2.1224,
+    "1m_alpha": -0.5006,
+    "3m_alpha": -2.3762,
+    "pattern": "000"
   },
   "mri": {
-    "heat": 0.4293,
-    "stress": 0.3367,
-    "geo": 0.5876,
+    "heat": 0.394,
+    "stress": 0.3555,
+    "geo": 0.5181,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0117,
-    "stress_delta_20d": 0.0186,
-    "geo_delta_20d": 0.048
+    "heat_delta_20d": -0.0117,
+    "stress_delta_20d": 0.0294,
+    "geo_delta_20d": -0.0364
   },
   "horizons": {
     "6m": {
-      "p": 0.35,
-      "wins": 3,
-      "n": 9,
+      "p": 0.6739,
+      "wins": 15,
+      "n": 22,
       "sufficient": true,
-      "alpha_mean": -1.2429,
-      "alpha_median": -1.3844
+      "alpha_mean": 2.3113,
+      "alpha_median": 2.2239
     },
     "1y": {
-      "p": 0.35,
-      "wins": 3,
-      "n": 9,
+      "p": 0.6591,
+      "wins": 14,
+      "n": 21,
       "sufficient": true,
-      "alpha_mean": -2.7054,
-      "alpha_median": -4.0689
+      "alpha_mean": 3.0057,
+      "alpha_median": 1.6063
     },
     "3y": {
-      "p": 0.35,
-      "wins": 3,
-      "n": 9,
+      "p": 0.4167,
+      "wins": 7,
+      "n": 17,
       "sufficient": true,
-      "alpha_mean": -3.6003,
-      "alpha_median": -7.7872
+      "alpha_mean": -1.2752,
+      "alpha_median": -8.247
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }
