@@ -1,19 +1,19 @@
 {
   "ticker": "BTC-USD",
-  "as_of": "2026-09-25",
-  "generated_at": "2026-09-25T20:52:38Z",
+  "as_of": "2026-09-26",
+  "generated_at": "2026-09-26T20:33:22Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
     "1y": "2025-12-31",
-    "3y": "2024-07-31"
+    "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": 2.0765,
-    "1m_alpha": 4.998,
-    "3m_alpha": 24.7217,
-    "pattern": "111"
+    "5d_alpha": -2.547,
+    "1m_alpha": 4.9042,
+    "3m_alpha": 24.3053,
+    "pattern": "011"
   },
   "mri": {
     "heat": 0.394,
@@ -26,30 +26,30 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.625,
-      "wins": 12,
-      "n": 19,
+      "p": 0.1667,
+      "wins": 1,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 40.5578,
-      "alpha_median": 22.8282
+      "alpha_mean": -10.4831,
+      "alpha_median": -8.4162
     },
     "1y": {
-      "p": 0.725,
-      "wins": 14,
-      "n": 19,
+      "p": 0.5625,
+      "wins": 4,
+      "n": 7,
       "sufficient": true,
-      "alpha_mean": 83.0037,
-      "alpha_median": 45.0997
+      "alpha_mean": 0.0359,
+      "alpha_median": 4.2833
     },
     "3y": {
-      "p": 0.6765,
-      "wins": 11,
-      "n": 16,
+      "p": 0.6429,
+      "wins": 4,
+      "n": 6,
       "sufficient": true,
-      "alpha_mean": 106.01,
-      "alpha_median": 65.7704
+      "alpha_mean": 105.7614,
+      "alpha_median": 130.9565
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_nearby",
   "schema_version": 2
 }

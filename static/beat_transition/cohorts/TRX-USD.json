@@ -1,11 +1,11 @@
 {
   "ticker": "TRX-USD",
-  "as_of": "2026-09-25",
+  "as_of": "2026-09-26",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
     "1y": "2025-12-31",
-    "3y": "2024-07-31"
+    "3y": "2024-08-31"
   },
   "by_pattern_signal": {
     "001|GeoWatch": {
@@ -520,12 +520,12 @@
         "alpha_median": 73.4957
       },
       "3y": {
-        "p": 0.8333,
-        "wins": 2,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": 48.6578,
-        "alpha_median": 75.6725
+        "p": 0.875,
+        "wins": 3,
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": 45.9288,
+        "alpha_median": 40.4707
       }
     },
     "100|GeoWatch": {

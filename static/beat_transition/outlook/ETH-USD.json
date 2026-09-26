@@ -1,19 +1,19 @@
 {
   "ticker": "ETH-USD",
-  "as_of": "2026-09-25",
-  "generated_at": "2026-09-25T20:52:38Z",
+  "as_of": "2026-09-26",
+  "generated_at": "2026-09-26T20:33:23Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
     "1y": "2025-12-31",
-    "3y": "2024-07-31"
+    "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": 0.7251,
-    "1m_alpha": 9.1552,
-    "3m_alpha": 35.632,
-    "pattern": "111"
+    "5d_alpha": -2.996,
+    "1m_alpha": 7.7285,
+    "3m_alpha": 38.0546,
+    "pattern": "011"
   },
   "mri": {
     "heat": 0.394,
@@ -26,28 +26,28 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.7,
-      "wins": 10,
-      "n": 14,
+      "p": 0.3889,
+      "wins": 3,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 74.4873,
-      "alpha_median": 39.0455
+      "alpha_mean": -0.0171,
+      "alpha_median": -9.9556
     },
     "1y": {
-      "p": 0.7,
-      "wins": 10,
-      "n": 14,
+      "p": 0.2778,
+      "wins": 2,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 200.6769,
-      "alpha_median": 100.4092
+      "alpha_mean": -15.8775,
+      "alpha_median": -6.7462
     },
     "3y": {
-      "p": 0.5357,
-      "wins": 7,
-      "n": 13,
+      "p": 0.3571,
+      "wins": 2,
+      "n": 6,
       "sufficient": true,
-      "alpha_mean": 115.8606,
-      "alpha_median": 34.0627
+      "alpha_mean": 157.79,
+      "alpha_median": -24.69
     }
   },
   "cohort": "same_ticker_exact",
