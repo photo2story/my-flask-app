@@ -1,53 +1,53 @@
 {
   "ticker": "AMD",
-  "as_of": "2026-09-25",
-  "generated_at": "2026-09-25T20:52:31Z",
+  "as_of": "2026-09-28",
+  "generated_at": "2026-09-28T21:19:25Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
     "1y": "2025-12-31",
-    "3y": "2024-07-31"
+    "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": 11.3646,
-    "1m_alpha": 31.652,
-    "3m_alpha": 15.3414,
-    "pattern": "111"
+    "5d_alpha": -0.5333,
+    "1m_alpha": 27.8998,
+    "3m_alpha": 18.3758,
+    "pattern": "011"
   },
   "mri": {
     "heat": 0.394,
     "stress": 0.3555,
     "geo": 0.5181,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0117,
-    "stress_delta_20d": 0.0294,
-    "geo_delta_20d": -0.0364
+    "heat_delta_20d": 0.0029,
+    "stress_delta_20d": 0.0082,
+    "geo_delta_20d": -0.0489
   },
   "horizons": {
     "6m": {
-      "p": 0.5476,
-      "wins": 11,
-      "n": 20,
+      "p": 0.5588,
+      "wins": 9,
+      "n": 16,
       "sufficient": true,
-      "alpha_mean": 4.8945,
-      "alpha_median": 8.2493
+      "alpha_mean": 8.2026,
+      "alpha_median": 5.3689
     },
     "1y": {
-      "p": 0.4048,
-      "wins": 8,
-      "n": 20,
+      "p": 0.5938,
+      "wins": 9,
+      "n": 15,
       "sufficient": true,
-      "alpha_mean": 3.308,
-      "alpha_median": -3.4436
+      "alpha_mean": 11.1309,
+      "alpha_median": 16.8503
     },
     "3y": {
-      "p": 0.3947,
+      "p": 0.5769,
       "wins": 7,
-      "n": 18,
+      "n": 12,
       "sufficient": true,
-      "alpha_mean": 20.0323,
-      "alpha_median": -8.9489
+      "alpha_mean": 38.5529,
+      "alpha_median": 33.2523
     }
   },
   "cohort": "same_ticker_exact",

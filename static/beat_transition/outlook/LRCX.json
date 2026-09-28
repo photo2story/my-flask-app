@@ -1,55 +1,55 @@
 {
   "ticker": "LRCX",
-  "as_of": "2026-09-25",
-  "generated_at": "2026-09-25T20:52:31Z",
+  "as_of": "2026-09-28",
+  "generated_at": "2026-09-28T21:19:26Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
     "1y": "2025-12-31",
-    "3y": "2024-07-31"
+    "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": 8.1214,
-    "1m_alpha": 2.0646,
-    "3m_alpha": -1.8847,
-    "pattern": "110"
+    "5d_alpha": 2.9024,
+    "1m_alpha": 2.8369,
+    "3m_alpha": 3.6843,
+    "pattern": "111"
   },
   "mri": {
     "heat": 0.394,
     "stress": 0.3555,
     "geo": 0.5181,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0117,
-    "stress_delta_20d": 0.0294,
-    "geo_delta_20d": -0.0364
+    "heat_delta_20d": 0.0029,
+    "stress_delta_20d": 0.0082,
+    "geo_delta_20d": -0.0489
   },
   "horizons": {
     "6m": {
-      "p": 0.3182,
-      "wins": 3,
-      "n": 10,
+      "p": 0.7115,
+      "wins": 18,
+      "n": 25,
       "sufficient": true,
-      "alpha_mean": -3.0359,
-      "alpha_median": -4.4077
+      "alpha_mean": 9.3042,
+      "alpha_median": 5.8439
     },
     "1y": {
-      "p": 0.35,
-      "wins": 3,
-      "n": 9,
+      "p": 0.74,
+      "wins": 18,
+      "n": 24,
       "sufficient": true,
-      "alpha_mean": -1.6305,
-      "alpha_median": -3.0249
+      "alpha_mean": 20.1932,
+      "alpha_median": 21.7989
     },
     "3y": {
-      "p": 0.7222,
-      "wins": 6,
-      "n": 8,
+      "p": 0.4773,
+      "wins": 10,
+      "n": 21,
       "sufficient": true,
-      "alpha_mean": 19.1318,
-      "alpha_median": 22.6491
+      "alpha_mean": 18.4021,
+      "alpha_median": -2.2903
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }

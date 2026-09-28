@@ -1,11 +1,11 @@
 {
   "ticker": "XLY",
-  "as_of": "2026-09-25",
+  "as_of": "2026-09-28",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
     "1y": "2025-12-31",
-    "3y": "2024-07-31"
+    "3y": "2024-08-31"
   },
   "by_pattern_signal": {
     "110|Neutral": {
@@ -728,12 +728,12 @@
         "alpha_median": 3.7931
       },
       "3y": {
-        "p": 0.5,
+        "p": 0.375,
         "wins": 1,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": -11.8535,
-        "alpha_median": 0.4678
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -13.5509,
+        "alpha_median": -16.9458
       }
     }
   },

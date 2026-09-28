@@ -1,18 +1,18 @@
 {
   "ticker": "OKLO",
-  "as_of": "2026-09-25",
-  "generated_at": "2026-09-25T20:52:44Z",
+  "as_of": "2026-09-28",
+  "generated_at": "2026-09-28T21:19:41Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
     "1y": "2025-12-31",
-    "3y": "2024-07-31"
+    "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": -1.6873,
-    "1m_alpha": -8.3702,
-    "3m_alpha": -12.6515,
+    "5d_alpha": -3.6187,
+    "1m_alpha": -9.2119,
+    "3m_alpha": -16.7681,
     "pattern": "000"
   },
   "mri": {
@@ -20,9 +20,9 @@
     "stress": 0.3555,
     "geo": 0.5181,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0117,
-    "stress_delta_20d": 0.0294,
-    "geo_delta_20d": -0.0364
+    "heat_delta_20d": 0.0029,
+    "stress_delta_20d": 0.0082,
+    "geo_delta_20d": -0.0489
   },
   "horizons": {
     "6m": {
@@ -42,12 +42,12 @@
       "alpha_median": -8.1067
     },
     "3y": {
-      "p": 0.9583,
-      "wins": 11,
-      "n": 11,
+      "p": 0.9615,
+      "wins": 12,
+      "n": 12,
       "sufficient": true,
-      "alpha_mean": 265.0306,
-      "alpha_median": 252.8355
+      "alpha_mean": 270.2433,
+      "alpha_median": 274.6688
     }
   },
   "cohort": "same_ticker_exact",

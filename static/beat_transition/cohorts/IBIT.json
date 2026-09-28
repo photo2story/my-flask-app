@@ -1,11 +1,11 @@
 {
   "ticker": "IBIT",
-  "as_of": "2026-09-25",
+  "as_of": "2026-09-28",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
     "1y": "2025-12-31",
-    "3y": "2024-07-31"
+    "3y": "2024-08-31"
   },
   "by_pattern_signal": {
     "101|GeoWatch": {
@@ -52,11 +52,11 @@
         "alpha_median": -8.8681
       },
       "3y": {
-        "p": 0.1667,
+        "p": 0.125,
         "wins": 0,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": -64.9416,
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -52.8058,
         "alpha_median": -57.764
       }
     },
