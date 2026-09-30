@@ -1,7 +1,7 @@
 {
   "ticker": "DELL",
-  "as_of": "2026-09-29",
-  "generated_at": "2026-09-29T21:19:31Z",
+  "as_of": "2026-09-30",
+  "generated_at": "2026-09-30T21:14:27Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": 1.3241,
-    "1m_alpha": 1.3043,
-    "3m_alpha": 33.2615,
-    "pattern": "111"
+    "5d_alpha": -2.995,
+    "1m_alpha": 0.5058,
+    "3m_alpha": 39.6804,
+    "pattern": "011"
   },
   "mri": {
-    "heat": 0.3609,
-    "stress": 0.3948,
-    "geo": 0.4984,
+    "heat": 0.3589,
+    "stress": 0.4111,
+    "geo": 0.4757,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0155,
-    "stress_delta_20d": 0.0292,
-    "geo_delta_20d": -0.0819
+    "heat_delta_20d": 0.0044,
+    "stress_delta_20d": 0.0286,
+    "geo_delta_20d": -0.1296
   },
   "horizons": {
     "6m": {
-      "p": 0.4524,
-      "wins": 9,
-      "n": 20,
+      "p": 0.4643,
+      "wins": 6,
+      "n": 13,
       "sufficient": true,
-      "alpha_mean": 6.0493,
-      "alpha_median": -0.113
+      "alpha_mean": -1.5793,
+      "alpha_median": -10.0824
     },
     "1y": {
-      "p": 0.575,
-      "wins": 11,
-      "n": 19,
+      "p": 0.5357,
+      "wins": 7,
+      "n": 13,
       "sufficient": true,
-      "alpha_mean": 23.4907,
-      "alpha_median": 7.1628
+      "alpha_mean": -7.8769,
+      "alpha_median": 0.328
     },
     "3y": {
-      "p": 0.7188,
-      "wins": 11,
-      "n": 15,
+      "p": 0.5417,
+      "wins": 6,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": 21.7549,
-      "alpha_median": 21.2438
+      "alpha_mean": 30.4509,
+      "alpha_median": 0.8597
     }
   },
   "cohort": "same_ticker_exact",
