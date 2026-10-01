@@ -1,6 +1,6 @@
 {
   "ticker": "449170.KS",
-  "as_of": "2026-09-29",
+  "as_of": "2026-09-30",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -112,30 +112,30 @@
         "alpha_median": -32.8136
       }
     },
-    "111|RiskWatch": {
+    "111|Neutral": {
       "6m": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
+        "p": 0.2143,
+        "wins": 1,
+        "n": 6,
         "sufficient": false,
-        "alpha_mean": -20.0227,
-        "alpha_median": -20.0227
+        "alpha_mean": -7.961,
+        "alpha_median": -6.3452
       },
       "1y": {
-        "p": 0.25,
+        "p": 0.0714,
         "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -31.3831,
-        "alpha_median": -31.3831
+        "n": 6,
+        "sufficient": true,
+        "alpha_mean": -17.3994,
+        "alpha_median": -11.8009
       },
       "3y": {
-        "p": 0.25,
+        "p": 0.1667,
         "wins": 0,
-        "n": 1,
+        "n": 2,
         "sufficient": false,
-        "alpha_mean": -68.5415,
-        "alpha_median": -68.5415
+        "alpha_mean": -59.3888,
+        "alpha_median": -50.2361
       }
     },
     "011|RiskWatch": {
@@ -162,32 +162,6 @@
         "sufficient": false,
         "alpha_mean": -73.5691,
         "alpha_median": -73.5691
-      }
-    },
-    "111|Neutral": {
-      "6m": {
-        "p": 0.25,
-        "wins": 1,
-        "n": 5,
-        "sufficient": false,
-        "alpha_mean": -5.5487,
-        "alpha_median": -6.3452
-      },
-      "1y": {
-        "p": 0.0833,
-        "wins": 0,
-        "n": 5,
-        "sufficient": true,
-        "alpha_mean": -14.6026,
-        "alpha_median": -11.8009
-      },
-      "3y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -50.2361,
-        "alpha_median": -50.2361
       }
     },
     "101|Neutral": {

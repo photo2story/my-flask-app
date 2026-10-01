@@ -1,6 +1,6 @@
 {
   "ticker": "448540.KS",
-  "as_of": "2026-09-29",
+  "as_of": "2026-09-30",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -36,28 +36,28 @@
     },
     "111|Neutral": {
       "6m": {
-        "p": 0.0833,
+        "p": 0.0714,
         "wins": 0,
-        "n": 5,
+        "n": 6,
         "sufficient": false,
-        "alpha_mean": -9.2061,
+        "alpha_mean": -9.5315,
         "alpha_median": -9.1806
       },
       "1y": {
+        "p": 0.0714,
+        "wins": 0,
+        "n": 6,
+        "sufficient": true,
+        "alpha_mean": -12.1185,
+        "alpha_median": -10.0506
+      },
+      "3y": {
         "p": 0.0833,
         "wins": 0,
         "n": 5,
         "sufficient": true,
-        "alpha_mean": -13.5086,
-        "alpha_median": -11.4884
-      },
-      "3y": {
-        "p": 0.1,
-        "wins": 0,
-        "n": 4,
-        "sufficient": true,
-        "alpha_mean": -36.1755,
-        "alpha_median": -35.5757
+        "alpha_mean": -37.0344,
+        "alpha_median": -37.3098
       }
     },
     "001|Neutral": {
@@ -136,32 +136,6 @@
         "sufficient": false,
         "alpha_mean": -32.9101,
         "alpha_median": -32.9101
-      }
-    },
-    "111|RiskWatch": {
-      "6m": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -11.1584,
-        "alpha_median": -11.1584
-      },
-      "1y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -5.1679,
-        "alpha_median": -5.1679
-      },
-      "3y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -40.4702,
-        "alpha_median": -40.4702
       }
     },
     "011|RiskWatch": {
