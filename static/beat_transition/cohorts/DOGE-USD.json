@@ -1,6 +1,6 @@
 {
   "ticker": "DOGE-USD",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-03",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -426,28 +426,28 @@
     },
     "110|Neutral": {
       "6m": {
-        "p": 0.5833,
-        "wins": 3,
-        "n": 5,
+        "p": 0.6429,
+        "wins": 4,
+        "n": 6,
         "sufficient": false,
-        "alpha_mean": 360.162,
+        "alpha_mean": 300.6551,
         "alpha_median": 14.3272
       },
       "1y": {
-        "p": 0.5833,
-        "wins": 3,
-        "n": 5,
+        "p": 0.6429,
+        "wins": 4,
+        "n": 6,
         "sufficient": true,
-        "alpha_mean": 1387.1415,
-        "alpha_median": 7.6266
+        "alpha_mean": 1170.1354,
+        "alpha_median": 53.2206
       },
       "3y": {
-        "p": 0.7,
-        "wins": 3,
-        "n": 4,
+        "p": 0.75,
+        "wins": 4,
+        "n": 5,
         "sufficient": true,
-        "alpha_mean": 1494.3115,
-        "alpha_median": 2089.7391
+        "alpha_mean": 1211.9091,
+        "alpha_median": 82.2993
       }
     },
     "001|DeployReady": {
@@ -552,32 +552,6 @@
         "sufficient": true,
         "alpha_mean": -40.2354,
         "alpha_median": -25.3047
-      }
-    },
-    "110|RiskWatch": {
-      "6m": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 3.1205,
-        "alpha_median": 3.1205
-      },
-      "1y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 85.1049,
-        "alpha_median": 85.1049
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 82.2993,
-        "alpha_median": 82.2993
       }
     },
     "011|RiskWatch": {

@@ -1,6 +1,6 @@
 {
   "ticker": "DOT-USD",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-03",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -296,27 +296,27 @@
     },
     "110|Neutral": {
       "6m": {
-        "p": 0.1,
-        "wins": 0,
-        "n": 4,
+        "p": 0.25,
+        "wins": 1,
+        "n": 5,
         "sufficient": false,
-        "alpha_mean": -32.6908,
+        "alpha_mean": -14.8085,
         "alpha_median": -24.2757
       },
       "1y": {
-        "p": 0.375,
-        "wins": 1,
-        "n": 3,
+        "p": 0.5,
+        "wins": 2,
+        "n": 4,
         "sufficient": false,
-        "alpha_mean": -20.8355,
-        "alpha_median": -10.4421
+        "alpha_mean": -7.0,
+        "alpha_median": 14.2389
       },
       "3y": {
-        "p": 0.125,
+        "p": 0.1,
         "wins": 0,
-        "n": 3,
+        "n": 4,
         "sufficient": true,
-        "alpha_mean": -70.2958,
+        "alpha_mean": -70.3347,
         "alpha_median": -60.4147
       }
     },
@@ -344,32 +344,6 @@
         "sufficient": false,
         "alpha_mean": -58.1165,
         "alpha_median": -58.1165
-      }
-    },
-    "110|RiskWatch": {
-      "6m": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 56.7203,
-        "alpha_median": 56.7203
-      },
-      "1y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 34.5064,
-        "alpha_median": 34.5064
-      },
-      "3y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -70.4514,
-        "alpha_median": -70.4514
       }
     },
     "111|RiskWatch": {

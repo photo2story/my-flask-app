@@ -1,6 +1,6 @@
 {
   "ticker": "ADA-USD",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-03",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -192,28 +192,28 @@
     },
     "110|Neutral": {
       "6m": {
-        "p": 0.4375,
-        "wins": 3,
-        "n": 7,
-        "sufficient": false,
-        "alpha_mean": 54.3537,
-        "alpha_median": -22.5786
+        "p": 0.5,
+        "wins": 4,
+        "n": 8,
+        "sufficient": true,
+        "alpha_mean": 57.172,
+        "alpha_median": 76.9001
       },
       "1y": {
+        "p": 0.6875,
+        "wins": 5,
+        "n": 7,
+        "sufficient": true,
+        "alpha_mean": 189.9731,
+        "alpha_median": 32.7357
+      },
+      "3y": {
         "p": 0.6429,
         "wins": 4,
         "n": 6,
         "sufficient": true,
-        "alpha_mean": 216.1793,
-        "alpha_median": 55.5383
-      },
-      "3y": {
-        "p": 0.5833,
-        "wins": 3,
-        "n": 5,
-        "sufficient": true,
-        "alpha_mean": 27.5939,
-        "alpha_median": 11.9192
+        "alpha_mean": 31.476,
+        "alpha_median": 50.8868
       }
     },
     "010|DeployReady": {
@@ -526,32 +526,6 @@
         "sufficient": true,
         "alpha_mean": -54.9055,
         "alpha_median": -73.8192
-      }
-    },
-    "110|RiskWatch": {
-      "6m": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 76.9001,
-        "alpha_median": 76.9001
-      },
-      "1y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 32.7357,
-        "alpha_median": 32.7357
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 50.8868,
-        "alpha_median": 50.8868
       }
     }
   },

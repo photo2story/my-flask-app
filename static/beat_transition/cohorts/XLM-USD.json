@@ -1,6 +1,6 @@
 {
   "ticker": "XLM-USD",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-03",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -426,28 +426,28 @@
     },
     "100|Neutral": {
       "6m": {
-        "p": 0.4375,
+        "p": 0.3889,
         "wins": 3,
-        "n": 7,
-        "sufficient": false,
-        "alpha_mean": 24.6555,
-        "alpha_median": -21.2152
+        "n": 8,
+        "sufficient": true,
+        "alpha_mean": 19.4384,
+        "alpha_median": -17.0814
       },
       "1y": {
-        "p": 0.2143,
+        "p": 0.1875,
         "wins": 1,
-        "n": 6,
+        "n": 7,
         "sufficient": true,
-        "alpha_mean": -2.7026,
-        "alpha_median": -33.2093
+        "alpha_mean": -7.6957,
+        "alpha_median": -34.7919
       },
       "3y": {
-        "p": 0.375,
-        "wins": 1,
-        "n": 3,
+        "p": 0.5,
+        "wins": 2,
+        "n": 4,
         "sufficient": true,
-        "alpha_mean": -29.6514,
-        "alpha_median": -47.1863
+        "alpha_mean": 6.5887,
+        "alpha_median": 5.6872
       }
     },
     "011|GeoWatch": {
@@ -500,32 +500,6 @@
         "sufficient": false,
         "alpha_mean": -55.2747,
         "alpha_median": -55.2747
-      }
-    },
-    "100|RiskWatch": {
-      "6m": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -17.0814,
-        "alpha_median": -17.0814
-      },
-      "1y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -37.6544,
-        "alpha_median": -37.6544
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 115.3087,
-        "alpha_median": 115.3087
       }
     },
     "101|GeoWatch": {

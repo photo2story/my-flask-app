@@ -1,6 +1,6 @@
 {
   "ticker": "AVAX-USD",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-03",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -218,27 +218,27 @@
     },
     "100|Neutral": {
       "6m": {
-        "p": 0.5,
-        "wins": 3,
-        "n": 6,
+        "p": 0.5625,
+        "wins": 4,
+        "n": 7,
         "sufficient": false,
-        "alpha_mean": 58.6588,
+        "alpha_mean": 87.0192,
         "alpha_median": 1.4111
       },
       "1y": {
-        "p": 0.2143,
-        "wins": 1,
-        "n": 6,
+        "p": 0.3125,
+        "wins": 2,
+        "n": 7,
         "sufficient": true,
-        "alpha_mean": 19.9118,
+        "alpha_mean": 44.246,
         "alpha_median": -38.9266
       },
       "3y": {
-        "p": 0.3,
-        "wins": 1,
-        "n": 4,
+        "p": 0.4167,
+        "wins": 2,
+        "n": 5,
         "sufficient": true,
-        "alpha_mean": -24.7653,
+        "alpha_mean": -17.4143,
         "alpha_median": -40.1522
       }
     },
@@ -344,32 +344,6 @@
         "sufficient": true,
         "alpha_mean": -62.9402,
         "alpha_median": -39.1492
-      }
-    },
-    "100|RiskWatch": {
-      "6m": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 257.1814,
-        "alpha_median": 257.1814
-      },
-      "1y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 190.2513,
-        "alpha_median": 190.2513
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 11.9897,
-        "alpha_median": 11.9897
       }
     },
     "111|RiskWatch": {

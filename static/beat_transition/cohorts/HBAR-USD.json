@@ -1,6 +1,6 @@
 {
   "ticker": "HBAR-USD",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-03",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-04-30",
@@ -166,28 +166,28 @@
     },
     "011|Neutral": {
       "6m": {
-        "p": 0.4375,
-        "wins": 3,
-        "n": 7,
-        "sufficient": false,
-        "alpha_mean": -4.3154,
-        "alpha_median": -30.2516
+        "p": 0.5,
+        "wins": 4,
+        "n": 8,
+        "sufficient": true,
+        "alpha_mean": -1.2062,
+        "alpha_median": 16.0633
       },
       "1y": {
-        "p": 0.4375,
-        "wins": 3,
-        "n": 7,
+        "p": 0.5,
+        "wins": 4,
+        "n": 8,
         "sufficient": true,
-        "alpha_mean": 18.2361,
-        "alpha_median": -34.7026
+        "alpha_mean": 21.7489,
+        "alpha_median": 46.3386
       },
       "3y": {
-        "p": 0.25,
-        "wins": 1,
-        "n": 5,
+        "p": 0.3571,
+        "wins": 2,
+        "n": 6,
         "sufficient": true,
-        "alpha_mean": -13.3911,
-        "alpha_median": -43.7125
+        "alpha_mean": 11.5037,
+        "alpha_median": -41.7969
       }
     },
     "000|Neutral": {
@@ -426,28 +426,28 @@
     },
     "011|RiskWatch": {
       "6m": {
-        "p": 0.8333,
-        "wins": 2,
-        "n": 2,
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 52.3094,
+        "alpha_mean": 84.0605,
         "alpha_median": 84.0605
       },
       "1y": {
-        "p": 0.5,
-        "wins": 1,
-        "n": 2,
+        "p": 0.25,
+        "wins": 0,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 15.483,
-        "alpha_median": 46.3386
+        "alpha_mean": -15.3725,
+        "alpha_median": -15.3725
       },
       "3y": {
-        "p": 0.8333,
-        "wins": 2,
-        "n": 2,
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 102.9221,
-        "alpha_median": 135.9779
+        "alpha_mean": 69.8662,
+        "alpha_median": 69.8662
       }
     }
   },

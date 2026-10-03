@@ -1,7 +1,7 @@
 {
   "ticker": "HBAR-USD",
-  "as_of": "2026-09-30",
-  "generated_at": "2026-09-30T21:14:35Z",
+  "as_of": "2026-10-03",
+  "generated_at": "2026-10-03T20:37:09Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": 15.7004,
-    "1m_alpha": 42.2835,
-    "3m_alpha": 55.4866,
-    "pattern": "111"
+    "5d_alpha": -16.3158,
+    "1m_alpha": 36.4964,
+    "3m_alpha": 45.3267,
+    "pattern": "011"
   },
   "mri": {
-    "heat": 0.3589,
-    "stress": 0.4111,
-    "geo": 0.4757,
+    "heat": 0.3308,
+    "stress": 0.4423,
+    "geo": 0.4579,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0044,
-    "stress_delta_20d": 0.0286,
-    "geo_delta_20d": -0.1296
+    "heat_delta_20d": -0.0609,
+    "stress_delta_20d": 0.0933,
+    "geo_delta_20d": -0.1609
   },
   "horizons": {
     "6m": {
-      "p": 0.25,
-      "wins": 2,
-      "n": 9,
-      "sufficient": true,
-      "alpha_mean": -32.6693,
-      "alpha_median": -41.7536
-    },
-    "1y": {
-      "p": 0.15,
-      "wins": 1,
-      "n": 9,
-      "sufficient": true,
-      "alpha_mean": -45.2274,
-      "alpha_median": -61.0386
-    },
-    "3y": {
-      "p": 0.2778,
-      "wins": 2,
+      "p": 0.5,
+      "wins": 4,
       "n": 8,
       "sufficient": true,
-      "alpha_mean": -21.9639,
-      "alpha_median": -61.1831
+      "alpha_mean": -1.2062,
+      "alpha_median": 16.0633
+    },
+    "1y": {
+      "p": 0.5,
+      "wins": 4,
+      "n": 8,
+      "sufficient": true,
+      "alpha_mean": 21.7489,
+      "alpha_median": 46.3386
+    },
+    "3y": {
+      "p": 0.3571,
+      "wins": 2,
+      "n": 6,
+      "sufficient": true,
+      "alpha_mean": 11.5037,
+      "alpha_median": -41.7969
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }
