@@ -1,9 +1,9 @@
 {
   "ticker": "PATH",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
@@ -62,11 +62,11 @@
     },
     "110|Neutral": {
       "6m": {
-        "p": 0.7,
-        "wins": 3,
-        "n": 4,
+        "p": 0.75,
+        "wins": 4,
+        "n": 5,
         "sufficient": false,
-        "alpha_mean": 5.1749,
+        "alpha_mean": 7.1177,
         "alpha_median": 2.1459
       },
       "1y": {
@@ -270,27 +270,27 @@
     },
     "101|Neutral": {
       "6m": {
-        "p": 0.5625,
-        "wins": 4,
-        "n": 7,
-        "sufficient": false,
-        "alpha_mean": -1.3383,
-        "alpha_median": 3.4779
+        "p": 0.6111,
+        "wins": 5,
+        "n": 8,
+        "sufficient": true,
+        "alpha_mean": 0.6252,
+        "alpha_median": 8.232
       },
       "1y": {
-        "p": 0.5625,
+        "p": 0.5,
         "wins": 4,
-        "n": 7,
+        "n": 8,
         "sufficient": true,
-        "alpha_mean": -5.7933,
+        "alpha_mean": -13.3052,
         "alpha_median": 2.6574
       },
       "3y": {
-        "p": 0.1,
+        "p": 0.0833,
         "wins": 0,
-        "n": 4,
+        "n": 5,
         "sufficient": true,
-        "alpha_mean": -78.5192,
+        "alpha_mean": -75.6683,
         "alpha_median": -71.0181
       }
     },
@@ -318,32 +318,6 @@
         "sufficient": false,
         "alpha_mean": -66.2994,
         "alpha_median": -66.2994
-      }
-    },
-    "101|RiskWatch": {
-      "6m": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 14.3697,
-        "alpha_median": 14.3697
-      },
-      "1y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -65.8882,
-        "alpha_median": -65.8882
-      },
-      "3y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -64.2647,
-        "alpha_median": -64.2647
       }
     },
     "001|RiskWatch": {

@@ -1,9 +1,9 @@
 {
   "ticker": "CARR",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
@@ -166,28 +166,28 @@
     },
     "100|Neutral": {
       "6m": {
-        "p": 0.5,
+        "p": 0.4583,
         "wins": 5,
-        "n": 10,
+        "n": 11,
         "sufficient": true,
-        "alpha_mean": -1.1677,
-        "alpha_median": 2.9723
+        "alpha_mean": -2.3402,
+        "alpha_median": -0.2817
       },
       "1y": {
-        "p": 0.4091,
+        "p": 0.375,
         "wins": 4,
-        "n": 10,
+        "n": 11,
         "sufficient": true,
-        "alpha_mean": -3.9698,
-        "alpha_median": -4.2199
+        "alpha_mean": -4.9499,
+        "alpha_median": -5.8957
       },
       "3y": {
-        "p": 0.2143,
+        "p": 0.1875,
         "wins": 1,
-        "n": 6,
+        "n": 7,
         "sufficient": true,
-        "alpha_mean": -12.0318,
-        "alpha_median": -12.1731
+        "alpha_mean": -18.4193,
+        "alpha_median": -16.3538
       }
     },
     "011|Neutral": {
@@ -296,11 +296,11 @@
     },
     "000|Neutral": {
       "6m": {
-        "p": 0.65,
+        "p": 0.5909,
         "wins": 6,
-        "n": 9,
+        "n": 10,
         "sufficient": true,
-        "alpha_mean": 1.6684,
+        "alpha_mean": 0.0127,
         "alpha_median": 7.3267
       },
       "1y": {
@@ -322,27 +322,27 @@
     },
     "100|RiskWatch": {
       "6m": {
-        "p": 0.1667,
+        "p": 0.25,
         "wins": 0,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -9.2832,
+        "alpha_mean": -4.5003,
         "alpha_median": -4.5003
       },
       "1y": {
-        "p": 0.1667,
+        "p": 0.25,
         "wins": 0,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -10.8665,
+        "alpha_mean": -6.9821,
         "alpha_median": -6.9821
       },
       "3y": {
-        "p": 0.1667,
+        "p": 0.25,
         "wins": 0,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -54.2522,
+        "alpha_mean": -51.7599,
         "alpha_median": -51.7599
       }
     },

@@ -1,9 +1,9 @@
 {
   "ticker": "QBTS",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
@@ -114,12 +114,12 @@
     },
     "111|Neutral": {
       "6m": {
-        "p": 0.2778,
+        "p": 0.25,
         "wins": 2,
-        "n": 8,
+        "n": 9,
         "sufficient": true,
-        "alpha_mean": 27.3147,
-        "alpha_median": -26.65
+        "alpha_mean": 18.7095,
+        "alpha_median": -48.137
       },
       "1y": {
         "p": 0.3889,
@@ -166,27 +166,27 @@
     },
     "110|Neutral": {
       "6m": {
-        "p": 0.75,
-        "wins": 4,
-        "n": 5,
+        "p": 0.7857,
+        "wins": 5,
+        "n": 6,
         "sufficient": false,
-        "alpha_mean": 319.1765,
+        "alpha_mean": 267.229,
         "alpha_median": 298.2632
       },
       "1y": {
-        "p": 0.9167,
-        "wins": 5,
-        "n": 5,
+        "p": 0.9286,
+        "wins": 6,
+        "n": 6,
         "sufficient": true,
-        "alpha_mean": 625.1475,
+        "alpha_mean": 525.3655,
         "alpha_median": 353.58
       },
       "3y": {
-        "p": 0.7,
-        "wins": 3,
-        "n": 4,
+        "p": 0.75,
+        "wins": 4,
+        "n": 5,
         "sufficient": true,
-        "alpha_mean": 983.8462,
+        "alpha_mean": 1604.4143,
         "alpha_median": 1322.8633
       }
     },
@@ -266,32 +266,6 @@
         "sufficient": false,
         "alpha_mean": 1612.2591,
         "alpha_median": 2106.1436
-      }
-    },
-    "110|RiskWatch": {
-      "6m": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 7.492,
-        "alpha_median": 7.492
-      },
-      "1y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 26.4559,
-        "alpha_median": 26.4559
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 4086.6867,
-        "alpha_median": 4086.6867
       }
     },
     "100|RiskWatch": {

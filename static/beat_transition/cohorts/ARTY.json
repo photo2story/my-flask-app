@@ -1,37 +1,37 @@
 {
   "ticker": "ARTY",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
   "by_pattern_signal": {
     "110|Neutral": {
       "6m": {
+        "p": 0.3125,
+        "wins": 2,
+        "n": 7,
+        "sufficient": false,
+        "alpha_mean": 1.1595,
+        "alpha_median": -0.1293
+      },
+      "1y": {
+        "p": 0.6875,
+        "wins": 5,
+        "n": 7,
+        "sufficient": true,
+        "alpha_mean": 5.1826,
+        "alpha_median": 1.3344
+      },
+      "3y": {
         "p": 0.3571,
         "wins": 2,
         "n": 6,
-        "sufficient": false,
-        "alpha_mean": 2.7377,
-        "alpha_median": -0.1168
-      },
-      "1y": {
-        "p": 0.7857,
-        "wins": 5,
-        "n": 6,
         "sufficient": true,
-        "alpha_mean": 8.8385,
-        "alpha_median": 8.8078
-      },
-      "3y": {
-        "p": 0.4167,
-        "wins": 2,
-        "n": 5,
-        "sufficient": true,
-        "alpha_mean": -3.1112,
-        "alpha_median": -7.432
+        "alpha_mean": -2.7971,
+        "alpha_median": -1.2264
       }
     },
     "010|Neutral": {
@@ -62,27 +62,27 @@
     },
     "110|RiskWatch": {
       "6m": {
-        "p": 0.5,
+        "p": 0.75,
         "wins": 1,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 4.3798,
+        "alpha_mean": 17.0697,
         "alpha_median": 17.0697
       },
       "1y": {
-        "p": 0.5,
+        "p": 0.75,
         "wins": 1,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -3.1924,
+        "alpha_mean": 10.3685,
         "alpha_median": 10.3685
       },
       "3y": {
-        "p": 0.5,
+        "p": 0.75,
         "wins": 1,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 16.8316,
+        "alpha_mean": 34.8895,
         "alpha_median": 34.8895
       }
     },
@@ -166,11 +166,11 @@
     },
     "111|Neutral": {
       "6m": {
-        "p": 0.5,
-        "wins": 6,
-        "n": 12,
+        "p": 0.5357,
+        "wins": 7,
+        "n": 13,
         "sufficient": true,
-        "alpha_mean": 2.4119,
+        "alpha_mean": 2.615,
         "alpha_median": 2.2257
       },
       "1y": {

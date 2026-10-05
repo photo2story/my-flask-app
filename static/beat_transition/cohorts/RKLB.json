@@ -1,9 +1,9 @@
 {
   "ticker": "RKLB",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
@@ -62,28 +62,28 @@
     },
     "100|Neutral": {
       "6m": {
-        "p": 0.375,
+        "p": 0.3,
         "wins": 1,
-        "n": 3,
+        "n": 4,
         "sufficient": false,
-        "alpha_mean": -14.0621,
+        "alpha_mean": -16.4176,
         "alpha_median": -22.256
       },
       "1y": {
-        "p": 0.375,
+        "p": 0.3,
         "wins": 1,
-        "n": 3,
+        "n": 4,
         "sufficient": false,
-        "alpha_mean": 12.3243,
+        "alpha_mean": 4.5099,
         "alpha_median": -15.4249
       },
       "3y": {
-        "p": 0.375,
-        "wins": 1,
-        "n": 3,
+        "p": 0.5,
+        "wins": 2,
+        "n": 4,
         "sufficient": true,
-        "alpha_mean": 251.0258,
-        "alpha_median": -24.384
+        "alpha_mean": 493.6508,
+        "alpha_median": 819.5392
       }
     },
     "000|Neutral": {
@@ -268,32 +268,6 @@
         "alpha_median": 540.9477
       }
     },
-    "100|RiskWatch": {
-      "6m": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -23.484,
-        "alpha_median": -23.484
-      },
-      "1y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -18.9333,
-        "alpha_median": -18.9333
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 1221.5258,
-        "alpha_median": 1221.5258
-      }
-    },
     "000|RiskWatch": {
       "6m": {
         "p": 0.25,
@@ -322,12 +296,12 @@
     },
     "011|Neutral": {
       "6m": {
-        "p": 0.5,
+        "p": 0.45,
         "wins": 4,
-        "n": 8,
+        "n": 9,
         "sufficient": true,
-        "alpha_mean": 90.8151,
-        "alpha_median": 64.4837
+        "alpha_mean": 75.0657,
+        "alpha_median": -3.8123
       },
       "1y": {
         "p": 0.8333,

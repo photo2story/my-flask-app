@@ -1,9 +1,9 @@
 {
   "ticker": "PLTR",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
@@ -36,27 +36,27 @@
     },
     "110|Neutral": {
       "6m": {
-        "p": 0.4167,
-        "wins": 2,
-        "n": 5,
+        "p": 0.4375,
+        "wins": 3,
+        "n": 7,
         "sufficient": false,
-        "alpha_mean": -7.2879,
-        "alpha_median": -18.7525
+        "alpha_mean": -5.3251,
+        "alpha_median": -14.9898
       },
       "1y": {
-        "p": 0.5,
-        "wins": 2,
-        "n": 4,
-        "sufficient": false,
-        "alpha_mean": 96.3247,
-        "alpha_median": 167.4673
+        "p": 0.5833,
+        "wins": 3,
+        "n": 5,
+        "sufficient": true,
+        "alpha_mean": 78.4917,
+        "alpha_median": 7.1599
       },
       "3y": {
-        "p": 0.5,
-        "wins": 2,
-        "n": 4,
+        "p": 0.5833,
+        "wins": 3,
+        "n": 5,
         "sufficient": true,
-        "alpha_mean": 112.2864,
+        "alpha_mean": 229.2354,
         "alpha_median": 236.3308
       }
     },
@@ -318,32 +318,6 @@
         "sufficient": true,
         "alpha_mean": 513.6774,
         "alpha_median": 554.8066
-      }
-    },
-    "110|RiskWatch": {
-      "6m": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -14.9898,
-        "alpha_median": -14.9898
-      },
-      "1y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 7.1599,
-        "alpha_median": 7.1599
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 697.0311,
-        "alpha_median": 697.0311
       }
     },
     "001|RiskWatch": {

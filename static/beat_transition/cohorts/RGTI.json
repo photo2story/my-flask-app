@@ -1,37 +1,37 @@
 {
   "ticker": "RGTI",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
   "by_pattern_signal": {
     "000|Neutral": {
       "6m": {
-        "p": 0.5667,
+        "p": 0.5312,
         "wins": 8,
-        "n": 14,
+        "n": 15,
         "sufficient": true,
-        "alpha_mean": 52.4139,
-        "alpha_median": 1.1322
+        "alpha_mean": 47.7132,
+        "alpha_median": 0.0838
       },
       "1y": {
-        "p": 0.5357,
+        "p": 0.5,
         "wins": 7,
-        "n": 13,
+        "n": 14,
         "sufficient": true,
-        "alpha_mean": 238.7011,
+        "alpha_mean": 218.0956,
         "alpha_median": 103.7469
       },
       "3y": {
-        "p": 0.7083,
-        "wins": 8,
-        "n": 11,
+        "p": 0.7308,
+        "wins": 9,
+        "n": 12,
         "sufficient": true,
-        "alpha_mean": 1489.5299,
-        "alpha_median": 1056.5935
+        "alpha_mean": 1605.4488,
+        "alpha_median": 1300.1896
       }
     },
     "100|GeoWatch": {
@@ -62,11 +62,11 @@
     },
     "111|Neutral": {
       "6m": {
-        "p": 0.375,
+        "p": 0.3462,
         "wins": 4,
-        "n": 11,
+        "n": 12,
         "sufficient": true,
-        "alpha_mean": 81.0241,
+        "alpha_mean": 70.66,
         "alpha_median": -17.8785
       },
       "1y": {
@@ -374,28 +374,28 @@
     },
     "000|RiskWatch": {
       "6m": {
-        "p": 0.5,
+        "p": 0.75,
         "wins": 1,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 4.5373,
+        "alpha_mean": 27.1702,
         "alpha_median": 27.1702
       },
       "1y": {
-        "p": 0.1667,
+        "p": 0.25,
         "wins": 0,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -45.7229,
+        "alpha_mean": -41.6698,
         "alpha_median": -41.6698
       },
       "3y": {
-        "p": 0.8333,
-        "wins": 2,
-        "n": 2,
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 2592.5665,
-        "alpha_median": 2880.5567
+        "alpha_mean": 2304.5763,
+        "alpha_median": 2304.5763
       }
     },
     "110|GeoWatch": {

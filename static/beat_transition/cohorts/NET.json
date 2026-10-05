@@ -1,36 +1,36 @@
 {
   "ticker": "NET",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
   "by_pattern_signal": {
     "111|Neutral": {
       "6m": {
-        "p": 0.6176,
-        "wins": 10,
-        "n": 16,
+        "p": 0.6389,
+        "wins": 11,
+        "n": 17,
         "sufficient": true,
-        "alpha_mean": 5.5128,
-        "alpha_median": 10.7519
+        "alpha_mean": 5.7769,
+        "alpha_median": 10.0026
       },
       "1y": {
-        "p": 0.3235,
+        "p": 0.3056,
         "wins": 5,
-        "n": 16,
+        "n": 17,
         "sufficient": true,
-        "alpha_mean": -2.766,
-        "alpha_median": -6.5025
+        "alpha_mean": -3.8653,
+        "alpha_median": -9.7679
       },
       "3y": {
-        "p": 0.6818,
-        "wins": 7,
-        "n": 10,
+        "p": 0.7083,
+        "wins": 8,
+        "n": 11,
         "sufficient": true,
-        "alpha_mean": 43.0125,
+        "alpha_mean": 50.3555,
         "alpha_median": 62.4614
       }
     },
@@ -62,11 +62,11 @@
     },
     "110|Neutral": {
       "6m": {
-        "p": 0.7222,
-        "wins": 6,
-        "n": 8,
+        "p": 0.75,
+        "wins": 7,
+        "n": 9,
         "sufficient": true,
-        "alpha_mean": 18.6704,
+        "alpha_mean": 20.8586,
         "alpha_median": 25.2788
       },
       "1y": {
@@ -114,28 +114,28 @@
     },
     "111|RiskWatch": {
       "6m": {
-        "p": 0.8333,
-        "wins": 2,
-        "n": 2,
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 12.6964,
+        "alpha_mean": 15.3903,
         "alpha_median": 15.3903
       },
       "1y": {
-        "p": 0.5,
+        "p": 0.75,
         "wins": 1,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 40.8778,
+        "alpha_mean": 103.2099,
         "alpha_median": 103.2099
       },
       "3y": {
-        "p": 0.8333,
-        "wins": 2,
-        "n": 2,
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 67.2584,
-        "alpha_median": 123.7846
+        "alpha_mean": 10.7323,
+        "alpha_median": 10.7323
       }
     },
     "011|RiskWatch": {

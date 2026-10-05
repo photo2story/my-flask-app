@@ -1,9 +1,9 @@
 {
   "ticker": "ASTS",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
@@ -62,28 +62,28 @@
     },
     "111|RiskWatch": {
       "6m": {
-        "p": 0.1667,
+        "p": 0.25,
         "wins": 0,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -33.9188,
+        "alpha_mean": -32.7587,
         "alpha_median": -32.7587
       },
       "1y": {
-        "p": 0.5,
-        "wins": 1,
-        "n": 2,
+        "p": 0.25,
+        "wins": 0,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 46.4995,
-        "alpha_median": 143.4538
+        "alpha_mean": -50.4547,
+        "alpha_median": -50.4547
       },
       "3y": {
-        "p": 0.5,
-        "wins": 1,
-        "n": 2,
+        "p": 0.25,
+        "wins": 0,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 842.1681,
-        "alpha_median": 1773.7948
+        "alpha_mean": -89.4586,
+        "alpha_median": -89.4586
       }
     },
     "001|RiskWatch": {
@@ -166,27 +166,27 @@
     },
     "111|Neutral": {
       "6m": {
-        "p": 0.35,
+        "p": 0.3182,
         "wins": 3,
-        "n": 9,
+        "n": 10,
         "sufficient": true,
-        "alpha_mean": 11.6558,
+        "alpha_mean": 6.9823,
         "alpha_median": -15.636
       },
       "1y": {
-        "p": 0.3889,
-        "wins": 3,
-        "n": 8,
+        "p": 0.45,
+        "wins": 4,
+        "n": 9,
         "sufficient": true,
-        "alpha_mean": 24.9209,
+        "alpha_mean": 38.0912,
         "alpha_median": -14.5403
       },
       "3y": {
-        "p": 0.6111,
-        "wins": 5,
-        "n": 8,
+        "p": 0.65,
+        "wins": 6,
+        "n": 9,
         "sufficient": true,
-        "alpha_mean": 152.7219,
+        "alpha_mean": 332.8411,
         "alpha_median": 136.3478
       }
     },
@@ -244,11 +244,11 @@
     },
     "011|Neutral": {
       "6m": {
-        "p": 0.4375,
+        "p": 0.3889,
         "wins": 3,
-        "n": 7,
-        "sufficient": false,
-        "alpha_mean": -13.4966,
+        "n": 8,
+        "sufficient": true,
+        "alpha_mean": -18.1139,
         "alpha_median": -26.707
       },
       "1y": {

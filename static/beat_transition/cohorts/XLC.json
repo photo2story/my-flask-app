@@ -1,20 +1,20 @@
 {
   "ticker": "XLC",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
   "by_pattern_signal": {
     "000|Neutral": {
       "6m": {
-        "p": 0.6389,
+        "p": 0.6053,
         "wins": 11,
-        "n": 17,
+        "n": 18,
         "sufficient": true,
-        "alpha_mean": 2.0419,
+        "alpha_mean": 1.5937,
         "alpha_median": 1.7984
       },
       "1y": {
@@ -62,27 +62,27 @@
     },
     "111|RiskWatch": {
       "6m": {
-        "p": 0.5833,
-        "wins": 3,
-        "n": 5,
+        "p": 0.5,
+        "wins": 2,
+        "n": 4,
         "sufficient": false,
-        "alpha_mean": 1.014,
+        "alpha_mean": 0.2916,
         "alpha_median": 1.1793
       },
       "1y": {
-        "p": 0.25,
+        "p": 0.3,
         "wins": 1,
-        "n": 5,
-        "sufficient": true,
-        "alpha_mean": -1.9144,
+        "n": 4,
+        "sufficient": false,
+        "alpha_mean": -2.303,
         "alpha_median": -4.1162
       },
       "3y": {
-        "p": 0.4167,
-        "wins": 2,
-        "n": 5,
+        "p": 0.3,
+        "wins": 1,
+        "n": 4,
         "sufficient": true,
-        "alpha_mean": -12.3338,
+        "alpha_mean": -16.5935,
         "alpha_median": -0.7825
       }
     },
@@ -322,28 +322,28 @@
     },
     "111|Neutral": {
       "6m": {
-        "p": 0.5278,
-        "wins": 9,
-        "n": 17,
+        "p": 0.5526,
+        "wins": 10,
+        "n": 18,
         "sufficient": true,
-        "alpha_mean": -0.0518,
-        "alpha_median": 1.2604
+        "alpha_mean": 0.168,
+        "alpha_median": 1.6371
       },
       "1y": {
-        "p": 0.5938,
+        "p": 0.5588,
         "wins": 9,
-        "n": 15,
+        "n": 16,
         "sufficient": true,
-        "alpha_mean": 0.9134,
+        "alpha_mean": 0.8338,
         "alpha_median": 2.5287
       },
       "3y": {
-        "p": 0.5,
-        "wins": 4,
-        "n": 8,
+        "p": 0.55,
+        "wins": 5,
+        "n": 9,
         "sufficient": true,
-        "alpha_mean": -3.4933,
-        "alpha_median": 12.2753
+        "alpha_mean": -2.5824,
+        "alpha_median": 4.7049
       }
     },
     "100|GeoWatch": {

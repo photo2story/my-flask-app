@@ -1,21 +1,21 @@
 {
   "ticker": "CRCL",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": null
   },
   "by_pattern_signal": {
     "100|Neutral": {
       "6m": {
-        "p": 0.5,
+        "p": 0.375,
         "wins": 1,
-        "n": 2,
+        "n": 3,
         "sufficient": false,
-        "alpha_mean": 11.9033,
-        "alpha_median": 57.4615
+        "alpha_mean": 0.9977,
+        "alpha_median": -20.8135
       },
       "1y": {
         "p": 0.5,

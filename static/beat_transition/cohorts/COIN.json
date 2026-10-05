@@ -1,9 +1,9 @@
 {
   "ticker": "COIN",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
@@ -270,27 +270,27 @@
     },
     "100|Neutral": {
       "6m": {
-        "p": 0.7,
-        "wins": 3,
-        "n": 4,
+        "p": 0.6429,
+        "wins": 4,
+        "n": 6,
         "sufficient": false,
-        "alpha_mean": 32.3672,
-        "alpha_median": 67.8347
+        "alpha_mean": 28.3434,
+        "alpha_median": 44.8138
       },
       "1y": {
-        "p": 0.5,
-        "wins": 2,
-        "n": 4,
-        "sufficient": false,
-        "alpha_mean": 34.0343,
+        "p": 0.5833,
+        "wins": 3,
+        "n": 5,
+        "sufficient": true,
+        "alpha_mean": 59.5317,
         "alpha_median": 70.531
       },
       "3y": {
-        "p": 0.625,
-        "wins": 2,
-        "n": 3,
+        "p": 0.7,
+        "wins": 3,
+        "n": 4,
         "sufficient": true,
-        "alpha_mean": 269.5129,
+        "alpha_mean": 246.7663,
         "alpha_median": 310.622
       }
     },
@@ -318,32 +318,6 @@
         "sufficient": false,
         "alpha_mean": 112.435,
         "alpha_median": 131.6754
-      }
-    },
-    "100|RiskWatch": {
-      "6m": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 44.8138,
-        "alpha_median": 44.8138
-      },
-      "1y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 161.5214,
-        "alpha_median": 161.5214
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 178.5264,
-        "alpha_median": 178.5264
       }
     },
     "111|RiskWatch": {

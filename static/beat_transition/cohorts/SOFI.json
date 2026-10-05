@@ -1,9 +1,9 @@
 {
   "ticker": "SOFI",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
@@ -36,27 +36,27 @@
     },
     "100|Neutral": {
       "6m": {
-        "p": 0.5,
+        "p": 0.4375,
         "wins": 3,
-        "n": 6,
+        "n": 7,
         "sufficient": false,
-        "alpha_mean": 9.5629,
-        "alpha_median": 12.9798
+        "alpha_mean": 5.2674,
+        "alpha_median": -15.3116
       },
       "1y": {
-        "p": 0.5,
+        "p": 0.4375,
         "wins": 3,
-        "n": 6,
+        "n": 7,
         "sufficient": true,
-        "alpha_mean": 36.8386,
-        "alpha_median": 81.8553
+        "alpha_mean": 25.5619,
+        "alpha_median": -11.582
       },
       "3y": {
-        "p": 0.7857,
-        "wins": 5,
-        "n": 6,
+        "p": 0.8125,
+        "wins": 6,
+        "n": 7,
         "sufficient": true,
-        "alpha_mean": 106.7,
+        "alpha_mean": 116.0023,
         "alpha_median": 86.1079
       }
     },
@@ -192,12 +192,12 @@
     },
     "110|Neutral": {
       "6m": {
-        "p": 0.5,
+        "p": 0.4167,
         "wins": 2,
-        "n": 4,
+        "n": 5,
         "sufficient": false,
-        "alpha_mean": -4.122,
-        "alpha_median": 14.3283
+        "alpha_mean": -6.3544,
+        "alpha_median": -15.2842
       },
       "1y": {
         "p": 0.7,
@@ -322,27 +322,27 @@
     },
     "100|RiskWatch": {
       "6m": {
-        "p": 0.1667,
+        "p": 0.25,
         "wins": 0,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -26.031,
-        "alpha_median": -20.5056
+        "alpha_mean": -31.5564,
+        "alpha_median": -31.5564
       },
       "1y": {
-        "p": 0.1667,
+        "p": 0.25,
         "wins": 0,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -50.314,
-        "alpha_median": -42.0983
+        "alpha_mean": -58.5296,
+        "alpha_median": -58.5296
       },
       "3y": {
-        "p": 0.8333,
-        "wins": 2,
-        "n": 2,
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": 172.5616,
+        "alpha_mean": 173.3072,
         "alpha_median": 173.3072
       }
     },

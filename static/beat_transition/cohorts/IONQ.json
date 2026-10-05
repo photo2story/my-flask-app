@@ -1,36 +1,36 @@
 {
   "ticker": "IONQ",
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-05",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-04-30",
+    "6m": "2026-05-31",
     "1y": "2025-12-31",
     "3y": "2024-08-31"
   },
   "by_pattern_signal": {
     "100|Neutral": {
       "6m": {
-        "p": 0.5,
+        "p": 0.4375,
         "wins": 3,
-        "n": 6,
+        "n": 7,
         "sufficient": false,
-        "alpha_mean": 31.1478,
-        "alpha_median": 50.0363
+        "alpha_mean": 18.9593,
+        "alpha_median": -8.1545
       },
       "1y": {
+        "p": 0.6875,
+        "wins": 5,
+        "n": 7,
+        "sufficient": true,
+        "alpha_mean": 121.8126,
+        "alpha_median": 87.9444
+      },
+      "3y": {
         "p": 0.7857,
         "wins": 5,
         "n": 6,
         "sufficient": true,
-        "alpha_mean": 155.7691,
-        "alpha_median": 171.5861
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 4,
-        "n": 5,
-        "sufficient": true,
-        "alpha_mean": 396.0077,
+        "alpha_mean": 356.3229,
         "alpha_median": 226.0917
       }
     },
@@ -296,11 +296,11 @@
     },
     "111|Neutral": {
       "6m": {
-        "p": 0.55,
+        "p": 0.5,
         "wins": 5,
-        "n": 9,
+        "n": 10,
         "sufficient": true,
-        "alpha_mean": 53.7615,
+        "alpha_mean": 44.2053,
         "alpha_median": 7.6887
       },
       "1y": {
@@ -344,32 +344,6 @@
         "sufficient": false,
         "alpha_mean": 310.6679,
         "alpha_median": 453.1478
-      }
-    },
-    "100|RiskWatch": {
-      "6m": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -54.1718,
-        "alpha_median": -54.1718
-      },
-      "1y": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -81.9263,
-        "alpha_median": -81.9263
-      },
-      "3y": {
-        "p": 0.75,
-        "wins": 1,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": 157.8987,
-        "alpha_median": 157.8987
       }
     },
     "000|RiskWatch": {
