@@ -1,7 +1,7 @@
 {
   "ticker": "URA",
-  "as_of": "2026-10-06",
-  "generated_at": "2026-10-06T21:02:37Z",
+  "as_of": "2026-10-07",
+  "generated_at": "2026-10-07T22:10:16Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": 3.6122,
-    "1m_alpha": -2.8168,
-    "3m_alpha": -2.7082,
-    "pattern": "100"
+    "5d_alpha": -0.6073,
+    "1m_alpha": -6.5205,
+    "3m_alpha": -7.8651,
+    "pattern": "000"
   },
   "mri": {
     "heat": 0.3443,
     "stress": 0.4193,
     "geo": 0.4461,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0178,
-    "stress_delta_20d": 0.0303,
-    "geo_delta_20d": -0.2085
+    "heat_delta_20d": -0.0871,
+    "stress_delta_20d": 0.0633,
+    "geo_delta_20d": -0.2
   },
   "horizons": {
     "6m": {
-      "p": 0.55,
-      "wins": 5,
-      "n": 9,
+      "p": 0.5682,
+      "wins": 12,
+      "n": 21,
       "sufficient": true,
-      "alpha_mean": 1.5999,
-      "alpha_median": 0.214
+      "alpha_mean": 8.2452,
+      "alpha_median": 5.1629
     },
     "1y": {
-      "p": 0.35,
-      "wins": 3,
-      "n": 9,
+      "p": 0.5476,
+      "wins": 11,
+      "n": 20,
       "sufficient": true,
-      "alpha_mean": 7.0547,
-      "alpha_median": -6.3061
+      "alpha_mean": 9.7747,
+      "alpha_median": 5.8101
     },
     "3y": {
-      "p": 0.5625,
-      "wins": 4,
-      "n": 7,
+      "p": 0.6944,
+      "wins": 12,
+      "n": 17,
       "sufficient": true,
-      "alpha_mean": 14.6582,
-      "alpha_median": 33.1244
+      "alpha_mean": 24.797,
+      "alpha_median": 23.9008
     }
   },
   "cohort": "same_ticker_exact",
