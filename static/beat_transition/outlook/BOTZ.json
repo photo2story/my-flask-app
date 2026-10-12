@@ -1,52 +1,52 @@
 {
   "ticker": "BOTZ",
-  "as_of": "2026-10-09",
-  "generated_at": "2026-10-09T21:32:18Z",
+  "as_of": "2026-10-12",
+  "generated_at": "2026-10-12T21:15:47Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
-    "1y": "2025-12-31",
+    "1y": "2026-01-31",
     "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": -2.6782,
-    "1m_alpha": -0.7245,
-    "3m_alpha": -5.8933,
+    "5d_alpha": -2.2692,
+    "1m_alpha": -2.6809,
+    "3m_alpha": -6.9102,
     "pattern": "000"
   },
   "mri": {
-    "heat": 0.3623,
-    "stress": 0.4216,
-    "geo": 0.4418,
+    "heat": 0.3875,
+    "stress": 0.4333,
+    "geo": 0.4508,
     "signal": "Neutral",
-    "heat_delta_20d": -0.056,
-    "stress_delta_20d": 0.0803,
-    "geo_delta_20d": -0.1987
+    "heat_delta_20d": -0.0568,
+    "stress_delta_20d": 0.098,
+    "geo_delta_20d": -0.1368
   },
   "horizons": {
     "6m": {
-      "p": 0.4423,
-      "wins": 11,
-      "n": 25,
+      "p": 0.42,
+      "wins": 10,
+      "n": 24,
       "sufficient": true,
-      "alpha_mean": -0.6053,
+      "alpha_mean": -1.1829,
       "alpha_median": -2.5817
     },
     "1y": {
-      "p": 0.4038,
-      "wins": 10,
-      "n": 25,
+      "p": 0.38,
+      "wins": 9,
+      "n": 24,
       "sufficient": true,
-      "alpha_mean": 0.2773,
+      "alpha_mean": 0.0221,
       "alpha_median": -2.3489
     },
     "3y": {
-      "p": 0.3571,
+      "p": 0.375,
       "wins": 7,
-      "n": 20,
+      "n": 19,
       "sufficient": true,
-      "alpha_mean": -9.1004,
+      "alpha_mean": -8.4969,
       "alpha_median": -14.7597
     }
   },

@@ -1,10 +1,10 @@
 {
   "ticker": "PL",
-  "as_of": "2026-10-09",
+  "as_of": "2026-10-12",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
-    "1y": "2025-12-31",
+    "1y": "2026-01-31",
     "3y": "2024-08-31"
   },
   "by_pattern_signal": {
@@ -174,12 +174,12 @@
         "alpha_median": 14.3429
       },
       "1y": {
-        "p": 0.7,
+        "p": 0.5833,
         "wins": 3,
-        "n": 4,
-        "sufficient": false,
-        "alpha_mean": 31.8124,
-        "alpha_median": 40.6228
+        "n": 5,
+        "sufficient": true,
+        "alpha_mean": 15.4465,
+        "alpha_median": 33.8553
       },
       "3y": {
         "p": 0.375,
