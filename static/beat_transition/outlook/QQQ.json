@@ -1,7 +1,7 @@
 {
   "ticker": "QQQ",
-  "as_of": "2026-10-12",
-  "generated_at": "2026-10-12T21:15:46Z",
+  "as_of": "2026-10-13",
+  "generated_at": "2026-10-13T21:16:43Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": -1.6524,
-    "1m_alpha": 0.2079,
-    "3m_alpha": 2.6724,
-    "pattern": "011"
+    "5d_alpha": -1.0861,
+    "1m_alpha": -0.9311,
+    "3m_alpha": 2.3619,
+    "pattern": "001"
   },
   "mri": {
-    "heat": 0.3875,
-    "stress": 0.4333,
-    "geo": 0.4508,
+    "heat": 0.3822,
+    "stress": 0.4396,
+    "geo": 0.4654,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0568,
-    "stress_delta_20d": 0.098,
-    "geo_delta_20d": -0.1368
+    "heat_delta_20d": -0.0385,
+    "stress_delta_20d": 0.0864,
+    "geo_delta_20d": -0.09
   },
   "horizons": {
     "6m": {
-      "p": 0.3438,
+      "p": 0.55,
       "wins": 5,
-      "n": 15,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": -0.0728,
-      "alpha_median": -1.3711
+      "alpha_mean": -0.1692,
+      "alpha_median": 0.0422
     },
     "1y": {
-      "p": 0.5938,
-      "wins": 9,
-      "n": 15,
+      "p": 0.75,
+      "wins": 7,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": 1.5803,
-      "alpha_median": 1.2374
+      "alpha_mean": 3.3464,
+      "alpha_median": 2.8325
     },
     "3y": {
-      "p": 0.75,
-      "wins": 10,
-      "n": 13,
+      "p": 0.9444,
+      "wins": 8,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 7.7026,
-      "alpha_median": 5.0383
+      "alpha_mean": 10.9792,
+      "alpha_median": 11.965
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_nearby",
   "schema_version": 2
 }
