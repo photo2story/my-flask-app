@@ -1,10 +1,10 @@
 {
   "ticker": "457480.KS",
-  "as_of": "2026-10-08",
+  "as_of": "2026-10-12",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
-    "1y": "2025-12-31",
+    "1y": "2026-01-31",
     "3y": "2024-08-31"
   },
   "by_pattern_signal": {
@@ -18,12 +18,12 @@
         "alpha_median": -0.293
       },
       "1y": {
-        "p": 0.7,
+        "p": 0.5833,
         "wins": 3,
-        "n": 4,
-        "sufficient": false,
-        "alpha_mean": 15.7707,
-        "alpha_median": 38.1142
+        "n": 5,
+        "sufficient": true,
+        "alpha_mean": 6.1997,
+        "alpha_median": 20.3664
       },
       "3y": {
         "p": 0.5,
