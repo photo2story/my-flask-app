@@ -1,0 +1,55 @@
+{
+  "ticker": "SPGI",
+  "as_of": "2026-10-16",
+  "generated_at": "2026-10-16T21:32:14Z",
+  "query_frequency": "latest_trading_day",
+  "anchor_frequency": "month_end",
+  "history_cutoff": {
+    "6m": "2026-05-31",
+    "1y": "2026-01-31",
+    "3y": "2024-08-31"
+  },
+  "short_grid": {
+    "5d_alpha": 7.2887,
+    "1m_alpha": 7.9233,
+    "3m_alpha": 4.4639,
+    "pattern": "111"
+  },
+  "mri": {
+    "heat": 0.3951,
+    "stress": 0.4915,
+    "geo": 0.5086,
+    "signal": "Neutral",
+    "heat_delta_20d": 0.0013,
+    "stress_delta_20d": 0.1083,
+    "geo_delta_20d": -0.0083
+  },
+  "horizons": {
+    "6m": {
+      "p": 0.3125,
+      "wins": 7,
+      "n": 23,
+      "sufficient": true,
+      "alpha_mean": -1.9204,
+      "alpha_median": -3.4885
+    },
+    "1y": {
+      "p": 0.3125,
+      "wins": 7,
+      "n": 23,
+      "sufficient": true,
+      "alpha_mean": -5.5607,
+      "alpha_median": -6.574
+    },
+    "3y": {
+      "p": 0.3095,
+      "wins": 6,
+      "n": 20,
+      "sufficient": true,
+      "alpha_mean": -9.6998,
+      "alpha_median": -11.4195
+    }
+  },
+  "cohort": "same_ticker_exact",
+  "schema_version": 2
+}

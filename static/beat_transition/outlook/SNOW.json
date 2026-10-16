@@ -1,7 +1,7 @@
 {
   "ticker": "SNOW",
-  "as_of": "2026-10-15",
-  "generated_at": "2026-10-15T21:16:01Z",
+  "as_of": "2026-10-16",
+  "generated_at": "2026-10-16T21:32:22Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": -8.1302,
-    "1m_alpha": -0.152,
-    "3m_alpha": 0.1432,
-    "pattern": "001"
+    "5d_alpha": -14.475,
+    "1m_alpha": -7.1326,
+    "3m_alpha": -4.7355,
+    "pattern": "000"
   },
   "mri": {
-    "heat": 0.3725,
-    "stress": 0.4748,
-    "geo": 0.4902,
+    "heat": 0.3951,
+    "stress": 0.4915,
+    "geo": 0.5086,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0213,
-    "stress_delta_20d": 0.0916,
-    "geo_delta_20d": -0.0267
+    "heat_delta_20d": 0.0013,
+    "stress_delta_20d": 0.1083,
+    "geo_delta_20d": -0.0083
   },
   "horizons": {
     "6m": {
-      "p": 0.3889,
-      "wins": 3,
-      "n": 8,
+      "p": 0.5417,
+      "wins": 6,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": -7.3001,
-      "alpha_median": -6.9516
+      "alpha_mean": 4.8622,
+      "alpha_median": 14.1308
     },
     "1y": {
-      "p": 0.2778,
-      "wins": 2,
-      "n": 8,
+      "p": 0.7083,
+      "wins": 8,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": -15.8501,
-      "alpha_median": -19.8527
+      "alpha_mean": 20.6528,
+      "alpha_median": 28.023
     },
     "3y": {
-      "p": 0.0714,
-      "wins": 0,
-      "n": 6,
+      "p": 0.35,
+      "wins": 3,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": -21.2204,
-      "alpha_median": -18.484
+      "alpha_mean": 24.8554,
+      "alpha_median": -9.6965
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }
