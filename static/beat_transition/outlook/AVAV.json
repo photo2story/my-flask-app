@@ -1,7 +1,7 @@
 {
   "ticker": "AVAV",
-  "as_of": "2026-10-21",
-  "generated_at": "2026-10-21T20:57:07Z",
+  "as_of": "2026-10-23",
+  "generated_at": "2026-10-24T00:17:20Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": -4.806,
-    "1m_alpha": -18.6288,
-    "3m_alpha": -32.1154,
-    "pattern": "000"
+    "5d_alpha": 1.6284,
+    "1m_alpha": -11.2018,
+    "3m_alpha": -22.0424,
+    "pattern": "100"
   },
   "mri": {
-    "heat": 0.3579,
-    "stress": 0.5126,
-    "geo": 0.5775,
+    "heat": 0.3469,
+    "stress": 0.5754,
+    "geo": 0.5481,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0283,
-    "stress_delta_20d": 0.0511,
-    "geo_delta_20d": 0.1124
+    "heat_delta_20d": 0.0063,
+    "stress_delta_20d": 0.16,
+    "geo_delta_20d": 0.0902
   },
   "horizons": {
     "6m": {
-      "p": 0.575,
-      "wins": 11,
-      "n": 19,
+      "p": 0.65,
+      "wins": 6,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": 13.8477,
-      "alpha_median": 4.666
+      "alpha_mean": -4.8383,
+      "alpha_median": 3.7673
     },
     "1y": {
-      "p": 0.6579,
-      "wins": 12,
-      "n": 18,
+      "p": 0.75,
+      "wins": 7,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": 13.6646,
-      "alpha_median": 19.2718
+      "alpha_mean": 11.9366,
+      "alpha_median": 11.7917
     },
     "3y": {
-      "p": 0.7083,
-      "wins": 8,
-      "n": 11,
+      "p": 0.65,
+      "wins": 6,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": 27.7168,
-      "alpha_median": 15.1057
+      "alpha_mean": 20.3108,
+      "alpha_median": 8.645
     }
   },
   "cohort": "same_ticker_exact",

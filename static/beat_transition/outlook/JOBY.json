@@ -1,7 +1,7 @@
 {
   "ticker": "JOBY",
-  "as_of": "2026-10-21",
-  "generated_at": "2026-10-21T20:57:08Z",
+  "as_of": "2026-10-23",
+  "generated_at": "2026-10-24T00:17:20Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-08-31"
   },
   "short_grid": {
-    "5d_alpha": -2.0098,
-    "1m_alpha": -24.2667,
-    "3m_alpha": -39.2458,
-    "pattern": "000"
+    "5d_alpha": 2.6685,
+    "1m_alpha": -18.4363,
+    "3m_alpha": -34.6053,
+    "pattern": "100"
   },
   "mri": {
-    "heat": 0.3579,
-    "stress": 0.5126,
-    "geo": 0.5775,
+    "heat": 0.3469,
+    "stress": 0.5754,
+    "geo": 0.5481,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0283,
-    "stress_delta_20d": 0.0511,
-    "geo_delta_20d": 0.1124
+    "heat_delta_20d": 0.0063,
+    "stress_delta_20d": 0.16,
+    "geo_delta_20d": 0.0902
   },
   "horizons": {
     "6m": {
-      "p": 0.5,
-      "wins": 7,
-      "n": 14,
-      "sufficient": true,
-      "alpha_mean": 23.0172,
-      "alpha_median": 0.3128
-    },
-    "1y": {
-      "p": 0.5,
-      "wins": 7,
-      "n": 14,
-      "sufficient": true,
-      "alpha_mean": 25.8397,
-      "alpha_median": 38.5337
-    },
-    "3y": {
-      "p": 0.5,
-      "wins": 4,
+      "p": 0.2778,
+      "wins": 2,
       "n": 8,
       "sufficient": true,
-      "alpha_mean": 5.3918,
-      "alpha_median": 7.014
+      "alpha_mean": -4.2609,
+      "alpha_median": -6.4688
+    },
+    "1y": {
+      "p": 0.5625,
+      "wins": 4,
+      "n": 7,
+      "sufficient": true,
+      "alpha_mean": 17.9521,
+      "alpha_median": 22.2253
+    },
+    "3y": {
+      "p": 0.75,
+      "wins": 4,
+      "n": 5,
+      "sufficient": true,
+      "alpha_mean": 53.3233,
+      "alpha_median": 49.7662
     }
   },
   "cohort": "same_ticker_exact",
