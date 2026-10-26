@@ -1,18 +1,18 @@
 {
   "ticker": "AVAX-USD",
-  "as_of": "2026-10-25",
-  "generated_at": "2026-10-25T20:32:47Z",
+  "as_of": "2026-10-26",
+  "generated_at": "2026-10-26T21:25:30Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
     "1y": "2026-01-31",
-    "3y": "2024-08-31"
+    "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -6.8276,
-    "1m_alpha": -17.7865,
-    "3m_alpha": 25.4103,
+    "5d_alpha": -8.8329,
+    "1m_alpha": -17.7746,
+    "3m_alpha": 20.2545,
     "pattern": "001"
   },
   "mri": {
@@ -20,9 +20,9 @@
     "stress": 0.5754,
     "geo": 0.5481,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0047,
-    "stress_delta_20d": 0.1527,
-    "geo_delta_20d": 0.0979
+    "heat_delta_20d": -0.0178,
+    "stress_delta_20d": 0.1749,
+    "geo_delta_20d": 0.097
   },
   "horizons": {
     "6m": {
@@ -42,12 +42,12 @@
       "alpha_median": -30.3495
     },
     "3y": {
-      "p": 0.2347,
+      "p": 0.23,
       "wins": 11,
-      "n": 48,
+      "n": 49,
       "sufficient": true,
-      "alpha_mean": -42.253,
-      "alpha_median": -58.128
+      "alpha_mean": -43.2682,
+      "alpha_median": -59.5014
     }
   },
   "cohort": "same_ticker_all",

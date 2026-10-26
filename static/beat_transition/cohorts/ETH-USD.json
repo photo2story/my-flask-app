@@ -1,11 +1,11 @@
 {
   "ticker": "ETH-USD",
-  "as_of": "2026-10-25",
+  "as_of": "2026-10-26",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
     "1y": "2026-01-31",
-    "3y": "2024-08-31"
+    "3y": "2024-09-30"
   },
   "by_pattern_signal": {
     "101|GeoWatch": {
@@ -520,12 +520,12 @@
         "alpha_median": 40.4737
       },
       "3y": {
-        "p": 0.5,
+        "p": 0.375,
         "wins": 1,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": -28.5853,
-        "alpha_median": 10.2546
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -35.9286,
+        "alpha_median": -50.6152
       }
     },
     "000|GeoWatch": {

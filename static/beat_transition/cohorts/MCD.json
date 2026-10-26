@@ -1,11 +1,11 @@
 {
   "ticker": "MCD",
-  "as_of": "2026-10-23",
+  "as_of": "2026-10-26",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
     "1y": "2026-01-31",
-    "3y": "2024-08-31"
+    "3y": "2024-09-30"
   },
   "by_pattern_signal": {
     "110|Neutral": {
@@ -208,12 +208,12 @@
         "alpha_median": -3.0265
       },
       "3y": {
-        "p": 0.5,
+        "p": 0.375,
         "wins": 1,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": 0.7132,
-        "alpha_median": 35.89
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -13.7126,
+        "alpha_median": -34.4635
       }
     },
     "111|Neutral": {

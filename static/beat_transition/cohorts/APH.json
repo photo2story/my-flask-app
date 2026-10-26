@@ -1,11 +1,11 @@
 {
   "ticker": "APH",
-  "as_of": "2026-10-23",
+  "as_of": "2026-10-26",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
     "1y": "2026-01-31",
-    "3y": "2024-08-31"
+    "3y": "2024-09-30"
   },
   "by_pattern_signal": {
     "011|Neutral": {
@@ -104,12 +104,12 @@
         "alpha_median": 33.3037
       },
       "3y": {
-        "p": 0.8333,
+        "p": 0.625,
         "wins": 2,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": 5.7726,
-        "alpha_median": 6.7374
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -3.0145,
+        "alpha_median": 4.8078
       }
     },
     "111|GeoWatch": {

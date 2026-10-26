@@ -1,55 +1,55 @@
 {
   "ticker": "AMZN",
-  "as_of": "2026-10-23",
-  "generated_at": "2026-10-24T00:17:13Z",
+  "as_of": "2026-10-26",
+  "generated_at": "2026-10-26T21:25:22Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
     "1y": "2026-01-31",
-    "3y": "2024-08-31"
+    "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -0.3683,
-    "1m_alpha": -0.1346,
-    "3m_alpha": -3.4073,
-    "pattern": "000"
+    "5d_alpha": -4.0307,
+    "1m_alpha": 0.3301,
+    "3m_alpha": -5.1847,
+    "pattern": "010"
   },
   "mri": {
     "heat": 0.3469,
     "stress": 0.5754,
     "geo": 0.5481,
     "signal": "Neutral",
-    "heat_delta_20d": 0.0063,
-    "stress_delta_20d": 0.16,
-    "geo_delta_20d": 0.0902
+    "heat_delta_20d": -0.0178,
+    "stress_delta_20d": 0.1749,
+    "geo_delta_20d": 0.097
   },
   "horizons": {
     "6m": {
-      "p": 0.3864,
-      "wins": 8,
-      "n": 21,
+      "p": 0.4798,
+      "wins": 59,
+      "n": 123,
       "sufficient": true,
-      "alpha_mean": -3.7823,
-      "alpha_median": -3.8791
+      "alpha_mean": 0.5594,
+      "alpha_median": -1.0955
     },
     "1y": {
-      "p": 0.4773,
-      "wins": 10,
-      "n": 21,
+      "p": 0.4625,
+      "wins": 55,
+      "n": 119,
       "sufficient": true,
-      "alpha_mean": -0.2245,
-      "alpha_median": -0.2135
+      "alpha_mean": 2.1597,
+      "alpha_median": -2.1798
     },
     "3y": {
-      "p": 0.4722,
-      "wins": 8,
-      "n": 17,
+      "p": 0.5721,
+      "wins": 59,
+      "n": 103,
       "sufficient": true,
-      "alpha_mean": 0.0225,
-      "alpha_median": -0.5539
+      "alpha_mean": 6.248,
+      "alpha_median": 6.6834
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_all",
   "schema_version": 2
 }

@@ -1,11 +1,11 @@
 {
   "ticker": "UUUU",
-  "as_of": "2026-10-23",
+  "as_of": "2026-10-26",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
     "1y": "2026-01-31",
-    "3y": "2024-08-31"
+    "3y": "2024-09-30"
   },
   "by_pattern_signal": {
     "001|Neutral": {
@@ -624,12 +624,12 @@
         "alpha_median": -1.5211
       },
       "3y": {
-        "p": 0.5,
+        "p": 0.375,
         "wins": 1,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": 83.7409,
-        "alpha_median": 232.228
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": 55.7058,
+        "alpha_median": -0.3643
       }
     },
     "010|GeoWatch": {
