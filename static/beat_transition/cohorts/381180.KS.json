@@ -1,11 +1,11 @@
 {
   "ticker": "381180.KS",
-  "as_of": "2026-10-23",
+  "as_of": "2026-10-26",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-05-31",
     "1y": "2026-01-31",
-    "3y": "2024-08-31"
+    "3y": "2024-09-30"
   },
   "by_pattern_signal": {
     "111|Neutral": {
@@ -338,10 +338,12 @@
         "alpha_median": 41.5898
       },
       "3y": {
-        "p": 0.5,
-        "wins": 0,
-        "n": 0,
-        "sufficient": false
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
+        "sufficient": false,
+        "alpha_mean": 37.6144,
+        "alpha_median": 37.6144
       }
     }
   },
