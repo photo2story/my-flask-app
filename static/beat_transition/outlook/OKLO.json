@@ -1,7 +1,7 @@
 {
   "ticker": "OKLO",
-  "as_of": "2026-10-26",
-  "generated_at": "2026-10-26T21:25:43Z",
+  "as_of": "2026-10-27",
+  "generated_at": "2026-10-27T20:50:32Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -5.0205,
-    "1m_alpha": -26.1318,
-    "3m_alpha": -34.9511,
-    "pattern": "000"
+    "5d_alpha": 0.1455,
+    "1m_alpha": -27.4104,
+    "3m_alpha": -38.8769,
+    "pattern": "100"
   },
   "mri": {
-    "heat": 0.3469,
-    "stress": 0.5754,
-    "geo": 0.5481,
+    "heat": 0.4065,
+    "stress": 0.5232,
+    "geo": 0.5278,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0178,
-    "stress_delta_20d": 0.1749,
-    "geo_delta_20d": 0.097
+    "heat_delta_20d": 0.038,
+    "stress_delta_20d": 0.11,
+    "geo_delta_20d": 0.0859
   },
   "horizons": {
     "6m": {
-      "p": 0.5833,
-      "wins": 10,
-      "n": 17,
+      "p": 0.5431,
+      "wins": 31,
+      "n": 57,
       "sufficient": true,
-      "alpha_mean": 46.5622,
+      "alpha_mean": 21.8689,
       "alpha_median": 2.9036
     },
     "1y": {
-      "p": 0.4412,
-      "wins": 7,
-      "n": 16,
+      "p": 0.5463,
+      "wins": 29,
+      "n": 53,
       "sufficient": true,
-      "alpha_mean": 57.05,
-      "alpha_median": -8.1067
+      "alpha_mean": 49.5417,
+      "alpha_median": 7.8286
     },
     "3y": {
-      "p": 0.9615,
-      "wins": 12,
-      "n": 12,
+      "p": 0.7763,
+      "wins": 29,
+      "n": 37,
       "sufficient": true,
-      "alpha_mean": 270.2433,
-      "alpha_median": 274.6688
+      "alpha_mean": 194.7319,
+      "alpha_median": 128.2309
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_all",
   "schema_version": 2
 }

@@ -1,7 +1,7 @@
 {
   "ticker": "AMGN",
-  "as_of": "2026-10-26",
-  "generated_at": "2026-10-26T21:25:19Z",
+  "as_of": "2026-10-27",
+  "generated_at": "2026-10-27T20:50:21Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": 2.4596,
-    "1m_alpha": 11.5707,
-    "3m_alpha": -0.0655,
-    "pattern": "110"
+    "5d_alpha": -0.592,
+    "1m_alpha": 12.4596,
+    "3m_alpha": 0.7617,
+    "pattern": "011"
   },
   "mri": {
-    "heat": 0.3469,
-    "stress": 0.5754,
-    "geo": 0.5481,
+    "heat": 0.4065,
+    "stress": 0.5232,
+    "geo": 0.5278,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0178,
-    "stress_delta_20d": 0.1749,
-    "geo_delta_20d": 0.097
+    "heat_delta_20d": 0.038,
+    "stress_delta_20d": 0.11,
+    "geo_delta_20d": 0.0859
   },
   "horizons": {
     "6m": {
-      "p": 0.5909,
+      "p": 0.65,
       "wins": 6,
-      "n": 10,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": -0.1464,
-      "alpha_median": 0.4587
+      "alpha_mean": 1.1701,
+      "alpha_median": 3.3143
     },
     "1y": {
-      "p": 0.5,
+      "p": 0.55,
       "wins": 5,
-      "n": 10,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": 2.3096,
-      "alpha_median": 5.3234
+      "alpha_mean": 4.5046,
+      "alpha_median": 6.0592
     },
     "3y": {
-      "p": 0.1667,
-      "wins": 1,
-      "n": 8,
+      "p": 0.5625,
+      "wins": 4,
+      "n": 7,
       "sufficient": true,
-      "alpha_mean": -6.6014,
-      "alpha_median": -6.564
+      "alpha_mean": -0.7545,
+      "alpha_median": 6.539
     }
   },
   "cohort": "same_ticker_exact",
