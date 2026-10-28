@@ -1,7 +1,7 @@
 {
   "ticker": "ORCL",
-  "as_of": "2026-10-27",
-  "generated_at": "2026-10-27T20:50:24Z",
+  "as_of": "2026-10-28",
+  "generated_at": "2026-10-28T21:09:16Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": 3.2297,
-    "1m_alpha": -8.6195,
-    "3m_alpha": -10.1852,
-    "pattern": "100"
+    "5d_alpha": 12.9393,
+    "1m_alpha": 1.3023,
+    "3m_alpha": -3.6389,
+    "pattern": "110"
   },
   "mri": {
     "heat": 0.4065,
     "stress": 0.5232,
     "geo": 0.5278,
     "signal": "Neutral",
-    "heat_delta_20d": 0.038,
-    "stress_delta_20d": 0.11,
-    "geo_delta_20d": 0.0859
+    "heat_delta_20d": 0.0486,
+    "stress_delta_20d": 0.09,
+    "geo_delta_20d": 0.086
   },
   "horizons": {
     "6m": {
-      "p": 0.4091,
-      "wins": 4,
-      "n": 10,
+      "p": 0.3929,
+      "wins": 5,
+      "n": 13,
       "sufficient": true,
-      "alpha_mean": 2.5382,
-      "alpha_median": -0.0704
+      "alpha_mean": -4.4099,
+      "alpha_median": -4.6999
     },
     "1y": {
-      "p": 0.5,
-      "wins": 5,
-      "n": 10,
+      "p": 0.5417,
+      "wins": 6,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": 2.0982,
-      "alpha_median": 1.6739
+      "alpha_mean": 0.0258,
+      "alpha_median": 4.541
     },
     "3y": {
-      "p": 0.7222,
-      "wins": 6,
-      "n": 8,
+      "p": 0.625,
+      "wins": 7,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": 9.7826,
-      "alpha_median": 10.355
+      "alpha_mean": 9.0378,
+      "alpha_median": 7.1667
     }
   },
   "cohort": "same_ticker_nearby",
