@@ -1,7 +1,7 @@
 {
   "ticker": "NVDA",
-  "as_of": "2026-11-09",
-  "generated_at": "2026-11-10T14:09:07Z",
+  "as_of": "2026-11-10",
+  "generated_at": "2026-11-10T22:12:28Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -8.8933,
-    "1m_alpha": -16.0528,
-    "3m_alpha": -20.5811,
+    "5d_alpha": -9.299,
+    "1m_alpha": -19.6657,
+    "3m_alpha": -23.4933,
     "pattern": "000"
   },
   "mri": {
-    "heat": 0.2725,
-    "stress": 0.6902,
-    "geo": 0.4216,
-    "signal": "RiskWatch",
-    "heat_delta_20d": -0.0933,
-    "stress_delta_20d": 0.1637,
-    "geo_delta_20d": -0.148
+    "heat": 0.3629,
+    "stress": 0.5848,
+    "geo": 0.3869,
+    "signal": "Neutral",
+    "heat_delta_20d": -0.0151,
+    "stress_delta_20d": 0.0834,
+    "geo_delta_20d": -0.177
   },
   "horizons": {
     "6m": {
-      "p": 0.5476,
-      "wins": 11,
-      "n": 20,
+      "p": 0.5667,
+      "wins": 8,
+      "n": 14,
       "sufficient": true,
-      "alpha_mean": 8.1278,
+      "alpha_mean": 9.8743,
       "alpha_median": 1.3955
     },
     "1y": {
-      "p": 0.725,
-      "wins": 14,
-      "n": 19,
+      "p": 0.6786,
+      "wins": 9,
+      "n": 13,
       "sufficient": true,
-      "alpha_mean": 32.5964,
-      "alpha_median": 30.2658
+      "alpha_mean": 41.9905,
+      "alpha_median": 36.2222
     },
     "3y": {
-      "p": 0.8333,
-      "wins": 12,
-      "n": 14,
+      "p": 0.9444,
+      "wins": 8,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 222.2199,
-      "alpha_median": 197.5565
+      "alpha_mean": 318.9814,
+      "alpha_median": 330.1707
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }
