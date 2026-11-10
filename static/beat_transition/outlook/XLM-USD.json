@@ -1,55 +1,55 @@
 {
   "ticker": "XLM-USD",
-  "as_of": "2026-10-28",
-  "generated_at": "2026-10-28T21:09:19Z",
+  "as_of": "2026-11-10",
+  "generated_at": "2026-11-10T14:09:19Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-05-31",
-    "1y": "2026-01-31",
+    "6m": "2026-06-30",
+    "1y": "2026-02-28",
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -2.8446,
-    "1m_alpha": -12.6153,
-    "3m_alpha": -7.1808,
+    "5d_alpha": -8.2103,
+    "1m_alpha": -18.0897,
+    "3m_alpha": -21.0087,
     "pattern": "000"
   },
   "mri": {
-    "heat": 0.4065,
-    "stress": 0.5232,
-    "geo": 0.5278,
-    "signal": "Neutral",
-    "heat_delta_20d": 0.0486,
-    "stress_delta_20d": 0.09,
-    "geo_delta_20d": 0.086
+    "heat": 0.2725,
+    "stress": 0.6902,
+    "geo": 0.4216,
+    "signal": "RiskWatch",
+    "heat_delta_20d": -0.1055,
+    "stress_delta_20d": 0.1888,
+    "geo_delta_20d": -0.1423
   },
   "horizons": {
     "6m": {
-      "p": 0.4318,
-      "wins": 9,
-      "n": 21,
+      "p": 0.4167,
+      "wins": 12,
+      "n": 29,
       "sufficient": true,
-      "alpha_mean": 8.5238,
-      "alpha_median": -4.4861
+      "alpha_mean": 9.5913,
+      "alpha_median": -10.5299
     },
     "1y": {
-      "p": 0.3864,
-      "wins": 8,
-      "n": 21,
+      "p": 0.3276,
+      "wins": 9,
+      "n": 28,
       "sufficient": true,
-      "alpha_mean": 58.0082,
-      "alpha_median": -14.2302
+      "alpha_mean": 44.1505,
+      "alpha_median": -14.7849
     },
     "3y": {
-      "p": 0.6333,
-      "wins": 9,
-      "n": 14,
+      "p": 0.5682,
+      "wins": 12,
+      "n": 21,
       "sufficient": true,
-      "alpha_mean": 107.7168,
-      "alpha_median": 17.5995
+      "alpha_mean": 103.3162,
+      "alpha_median": 17.0044
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_nearby",
   "schema_version": 2
 }
