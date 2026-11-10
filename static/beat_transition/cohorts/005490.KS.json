@@ -1,10 +1,10 @@
 {
   "ticker": "005490.KS",
-  "as_of": "2026-10-28",
+  "as_of": "2026-11-09",
   "anchor_frequency": "month_end",
   "history_cutoff": {
-    "6m": "2026-05-31",
-    "1y": "2026-01-31",
+    "6m": "2026-06-30",
+    "1y": "2026-02-28",
     "3y": "2024-09-30"
   },
   "by_pattern_signal": {
@@ -14,7 +14,7 @@
         "wins": 2,
         "n": 4,
         "sufficient": false,
-        "alpha_mean": 11.0256,
+        "alpha_mean": 11.0257,
         "alpha_median": 24.3591
       },
       "1y": {
@@ -30,7 +30,7 @@
         "wins": 1,
         "n": 4,
         "sufficient": true,
-        "alpha_mean": -35.0689,
+        "alpha_mean": -35.0688,
         "alpha_median": -21.2921
       }
     },
@@ -62,19 +62,19 @@
     },
     "100|GeoWatch": {
       "6m": {
-        "p": 0.875,
-        "wins": 3,
+        "p": 0.625,
+        "wins": 2,
         "n": 3,
         "sufficient": false,
-        "alpha_mean": 7.0555,
-        "alpha_median": 7.2868
+        "alpha_mean": -6.1318,
+        "alpha_median": 6.4214
       },
       "1y": {
         "p": 0.625,
         "wins": 2,
         "n": 3,
         "sufficient": false,
-        "alpha_mean": 4.4516,
+        "alpha_mean": -12.1732,
         "alpha_median": 2.174
       },
       "3y": {
@@ -82,7 +82,7 @@
         "wins": 1,
         "n": 3,
         "sufficient": true,
-        "alpha_mean": -17.29,
+        "alpha_mean": -31.9512,
         "alpha_median": -18.0535
       }
     },
@@ -118,7 +118,7 @@
         "wins": 12,
         "n": 14,
         "sufficient": true,
-        "alpha_mean": 14.5653,
+        "alpha_mean": 14.4978,
         "alpha_median": 13.7095
       },
       "1y": {
@@ -126,7 +126,7 @@
         "wins": 10,
         "n": 14,
         "sufficient": true,
-        "alpha_mean": 19.3288,
+        "alpha_mean": 19.0379,
         "alpha_median": 12.6239
       },
       "3y": {
@@ -144,7 +144,7 @@
         "wins": 1,
         "n": 4,
         "sufficient": false,
-        "alpha_mean": -15.5508,
+        "alpha_mean": -15.7696,
         "alpha_median": -10.3188
       },
       "1y": {
@@ -192,54 +192,54 @@
     },
     "111|Neutral": {
       "6m": {
-        "p": 0.4412,
-        "wins": 7,
-        "n": 16,
-        "sufficient": true,
-        "alpha_mean": -1.8276,
-        "alpha_median": -1.3478
-      },
-      "1y": {
-        "p": 0.2812,
-        "wins": 4,
-        "n": 15,
-        "sufficient": true,
-        "alpha_mean": -7.937,
-        "alpha_median": -9.0878
-      },
-      "3y": {
         "p": 0.4333,
         "wins": 6,
         "n": 14,
         "sufficient": true,
-        "alpha_mean": -24.2982,
-        "alpha_median": -32.1006
-      }
-    },
-    "000|Neutral": {
-      "6m": {
-        "p": 0.5208,
-        "wins": 12,
-        "n": 23,
-        "sufficient": true,
-        "alpha_mean": 1.6197,
-        "alpha_median": 1.7146
+        "alpha_mean": -2.0262,
+        "alpha_median": -1.3478
       },
       "1y": {
-        "p": 0.3958,
-        "wins": 9,
-        "n": 23,
+        "p": 0.3,
+        "wins": 4,
+        "n": 14,
         "sufficient": true,
-        "alpha_mean": 2.1167,
-        "alpha_median": -6.7204
+        "alpha_mean": -10.6961,
+        "alpha_median": -9.0878
       },
       "3y": {
         "p": 0.5,
-        "wins": 10,
-        "n": 20,
+        "wins": 6,
+        "n": 12,
         "sufficient": true,
-        "alpha_mean": -3.9652,
-        "alpha_median": 3.6659
+        "alpha_mean": -21.2962,
+        "alpha_median": 1.7842
+      }
+    },
+    "000|CashBuild": {
+      "6m": {
+        "p": 0.625,
+        "wins": 2,
+        "n": 3,
+        "sufficient": false,
+        "alpha_mean": 8.62,
+        "alpha_median": 8.0602
+      },
+      "1y": {
+        "p": 0.375,
+        "wins": 1,
+        "n": 3,
+        "sufficient": false,
+        "alpha_mean": -6.5631,
+        "alpha_median": -16.5348
+      },
+      "3y": {
+        "p": 0.125,
+        "wins": 0,
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -36.6153,
+        "alpha_median": -36.2786
       }
     },
     "010|CashBuild": {
@@ -270,54 +270,54 @@
     },
     "111|CashBuild": {
       "6m": {
-        "p": 0.25,
-        "wins": 0,
-        "n": 1,
+        "p": 0.375,
+        "wins": 1,
+        "n": 3,
         "sufficient": false,
-        "alpha_mean": -8.4854,
-        "alpha_median": -8.4854
+        "alpha_mean": -4.0379,
+        "alpha_median": -6.13
       },
       "1y": {
-        "p": 0.25,
+        "p": 0.125,
         "wins": 0,
-        "n": 1,
+        "n": 3,
         "sufficient": false,
-        "alpha_mean": -15.7805,
-        "alpha_median": -15.7805
+        "alpha_mean": -9.2866,
+        "alpha_median": -10.0921
       },
       "3y": {
-        "p": 0.25,
+        "p": 0.125,
         "wins": 0,
-        "n": 1,
-        "sufficient": false,
-        "alpha_mean": -49.6614,
-        "alpha_median": -49.6614
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -45.572,
+        "alpha_median": -46.9639
       }
     },
-    "000|GeoWatch": {
+    "100|CashBuild": {
       "6m": {
-        "p": 0.5,
-        "wins": 2,
-        "n": 4,
+        "p": 0.75,
+        "wins": 1,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -1.1764,
-        "alpha_median": 6.7057
+        "alpha_mean": 7.4582,
+        "alpha_median": 7.4582
       },
       "1y": {
-        "p": 0.1,
+        "p": 0.25,
         "wins": 0,
-        "n": 4,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -21.5308,
-        "alpha_median": -16.5348
+        "alpha_mean": -2.0797,
+        "alpha_median": -2.0797
       },
       "3y": {
-        "p": 0.3,
-        "wins": 1,
-        "n": 4,
-        "sufficient": true,
-        "alpha_mean": -9.5519,
-        "alpha_median": -27.3401
+        "p": 0.25,
+        "wins": 0,
+        "n": 1,
+        "sufficient": false,
+        "alpha_mean": -44.1636,
+        "alpha_median": -44.1636
       }
     },
     "110|GeoWatch": {
@@ -398,6 +398,32 @@
         "alpha_median": 18.7399
       }
     },
+    "000|Neutral": {
+      "6m": {
+        "p": 0.46,
+        "wins": 11,
+        "n": 24,
+        "sufficient": true,
+        "alpha_mean": -0.409,
+        "alpha_median": -4.6224
+      },
+      "1y": {
+        "p": 0.3542,
+        "wins": 8,
+        "n": 23,
+        "sufficient": true,
+        "alpha_mean": -0.3616,
+        "alpha_median": -10.4355
+      },
+      "3y": {
+        "p": 0.5,
+        "wins": 10,
+        "n": 20,
+        "sufficient": true,
+        "alpha_mean": -6.7766,
+        "alpha_median": 3.6659
+      }
+    },
     "110|Neutral": {
       "6m": {
         "p": 0.3,
@@ -420,60 +446,60 @@
         "wins": 1,
         "n": 4,
         "sufficient": true,
-        "alpha_mean": -6.7792,
+        "alpha_mean": -7.0938,
         "alpha_median": -1.5853
       }
     },
     "100|Neutral": {
       "6m": {
-        "p": 0.3929,
+        "p": 0.4231,
         "wins": 5,
-        "n": 13,
+        "n": 12,
         "sufficient": true,
-        "alpha_mean": -4.2955,
-        "alpha_median": -10.6451
+        "alpha_mean": -2.0587,
+        "alpha_median": -1.7889
       },
       "1y": {
-        "p": 0.3929,
+        "p": 0.4231,
         "wins": 5,
-        "n": 13,
+        "n": 12,
         "sufficient": true,
-        "alpha_mean": -5.1583,
-        "alpha_median": -2.745
+        "alpha_mean": -1.4162,
+        "alpha_median": -1.585
       },
       "3y": {
-        "p": 0.5,
+        "p": 0.5625,
         "wins": 4,
-        "n": 8,
+        "n": 7,
         "sufficient": true,
-        "alpha_mean": -12.231,
+        "alpha_mean": -1.3867,
         "alpha_median": 11.0178
       }
     },
     "000|RiskWatch": {
       "6m": {
-        "p": 0.375,
+        "p": 0.5,
         "wins": 1,
-        "n": 3,
+        "n": 2,
         "sufficient": false,
-        "alpha_mean": -0.8272,
-        "alpha_median": -0.0968
+        "alpha_mean": 5.1687,
+        "alpha_median": 10.4341
       },
       "1y": {
-        "p": 0.125,
+        "p": 0.1667,
         "wins": 0,
-        "n": 3,
+        "n": 2,
         "sufficient": false,
-        "alpha_mean": -23.3342,
-        "alpha_median": -15.7605
+        "alpha_mean": -13.783,
+        "alpha_median": -11.8056
       },
       "3y": {
-        "p": 0.375,
+        "p": 0.5,
         "wins": 1,
-        "n": 3,
-        "sufficient": true,
-        "alpha_mean": -28.3476,
-        "alpha_median": -11.9551
+        "n": 2,
+        "sufficient": false,
+        "alpha_mean": -3.592,
+        "alpha_median": 4.771
       }
     },
     "011|DeployReady": {
@@ -530,11 +556,11 @@
     },
     "010|GeoWatch": {
       "6m": {
-        "p": 0.1667,
+        "p": 0.25,
         "wins": 0,
-        "n": 2,
+        "n": 1,
         "sufficient": false,
-        "alpha_mean": -17.3218,
+        "alpha_mean": -11.9407,
         "alpha_median": -11.9407
       },
       "1y": {
@@ -560,7 +586,7 @@
         "wins": 4,
         "n": 8,
         "sufficient": true,
-        "alpha_mean": 6.5839,
+        "alpha_mean": 6.4481,
         "alpha_median": 0.7242
       },
       "1y": {
@@ -568,8 +594,8 @@
         "wins": 5,
         "n": 7,
         "sufficient": true,
-        "alpha_mean": 26.7054,
-        "alpha_median": 15.2404
+        "alpha_mean": 26.4245,
+        "alpha_median": 15.2312
       },
       "3y": {
         "p": 0.7,
@@ -630,6 +656,32 @@
         "sufficient": false,
         "alpha_mean": 52.8561,
         "alpha_median": 84.13
+      }
+    },
+    "000|GeoWatch": {
+      "6m": {
+        "p": 0.375,
+        "wins": 1,
+        "n": 3,
+        "sufficient": false,
+        "alpha_mean": -11.4358,
+        "alpha_median": -17.3072
+      },
+      "1y": {
+        "p": 0.1667,
+        "wins": 0,
+        "n": 2,
+        "sufficient": false,
+        "alpha_mean": -26.4221,
+        "alpha_median": -1.7198
+      },
+      "3y": {
+        "p": 0.5,
+        "wins": 1,
+        "n": 2,
+        "sufficient": false,
+        "alpha_mean": 18.8768,
+        "alpha_median": 66.2561
       }
     }
   },
