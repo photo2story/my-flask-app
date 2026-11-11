@@ -1,7 +1,7 @@
 {
   "ticker": "DOGE-USD",
-  "as_of": "2026-11-10",
-  "generated_at": "2026-11-10T22:12:38Z",
+  "as_of": "2026-11-11",
+  "generated_at": "2026-11-11T22:26:36Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -5.3863,
-    "1m_alpha": -13.2897,
-    "3m_alpha": -21.7271,
+    "5d_alpha": -8.9459,
+    "1m_alpha": -14.7023,
+    "3m_alpha": -20.7692,
     "pattern": "000"
   },
   "mri": {
-    "heat": 0.2725,
-    "stress": 0.6902,
-    "geo": 0.4216,
-    "signal": "RiskWatch",
-    "heat_delta_20d": -0.1055,
-    "stress_delta_20d": 0.1888,
-    "geo_delta_20d": -0.1423
+    "heat": 0.3629,
+    "stress": 0.5848,
+    "geo": 0.3869,
+    "signal": "Neutral",
+    "heat_delta_20d": -0.0048,
+    "stress_delta_20d": 0.0095,
+    "geo_delta_20d": -0.1665
   },
   "horizons": {
     "6m": {
-      "p": 0.46,
-      "wins": 11,
-      "n": 24,
+      "p": 0.375,
+      "wins": 7,
+      "n": 19,
       "sufficient": true,
-      "alpha_mean": 64.5312,
-      "alpha_median": -0.0096
+      "alpha_mean": 70.4364,
+      "alpha_median": -8.9179
     },
     "1y": {
-      "p": 0.5435,
-      "wins": 12,
-      "n": 22,
+      "p": 0.4722,
+      "wins": 8,
+      "n": 17,
       "sufficient": true,
-      "alpha_mean": 616.7934,
-      "alpha_median": 2.7894
+      "alpha_mean": 787.0003,
+      "alpha_median": -24.0232
     },
     "3y": {
-      "p": 0.6562,
-      "wins": 10,
-      "n": 15,
+      "p": 0.5909,
+      "wins": 6,
+      "n": 10,
       "sufficient": true,
-      "alpha_mean": 1284.8707,
+      "alpha_mean": 1080.2794,
       "alpha_median": 125.23
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }

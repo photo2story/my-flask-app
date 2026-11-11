@@ -1,7 +1,7 @@
 {
   "ticker": "KLAC",
-  "as_of": "2026-11-10",
-  "generated_at": "2026-11-10T22:12:28Z",
+  "as_of": "2026-11-11",
+  "generated_at": "2026-11-11T22:26:25Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": 15.5612,
-    "1m_alpha": -3.1617,
-    "3m_alpha": -17.4417,
-    "pattern": "100"
+    "5d_alpha": 12.9551,
+    "1m_alpha": 0.0376,
+    "3m_alpha": -12.1651,
+    "pattern": "110"
   },
   "mri": {
     "heat": 0.3629,
     "stress": 0.5848,
     "geo": 0.3869,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0151,
-    "stress_delta_20d": 0.0834,
-    "geo_delta_20d": -0.177
+    "heat_delta_20d": -0.0048,
+    "stress_delta_20d": 0.0095,
+    "geo_delta_20d": -0.1665
   },
   "horizons": {
     "6m": {
-      "p": 0.8636,
-      "wins": 9,
-      "n": 10,
+      "p": 0.7222,
+      "wins": 6,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 13.7808,
-      "alpha_median": 13.6833
+      "alpha_mean": 7.5177,
+      "alpha_median": 13.278
     },
     "1y": {
-      "p": 0.8636,
-      "wins": 9,
-      "n": 10,
+      "p": 0.8333,
+      "wins": 7,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 21.5545,
-      "alpha_median": 28.4716
+      "alpha_mean": 10.5181,
+      "alpha_median": 17.24
     },
     "3y": {
-      "p": 0.75,
+      "p": 0.8333,
       "wins": 7,
-      "n": 9,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 40.0759,
-      "alpha_median": 34.218
+      "alpha_mean": 37.5257,
+      "alpha_median": 35.2552
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }

@@ -1,7 +1,7 @@
 {
   "ticker": "TRX-USD",
-  "as_of": "2026-11-10",
-  "generated_at": "2026-11-10T22:12:38Z",
+  "as_of": "2026-11-11",
+  "generated_at": "2026-11-11T22:26:37Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -2.2516,
-    "1m_alpha": -1.4309,
-    "3m_alpha": -4.5899,
+    "5d_alpha": -3.7916,
+    "1m_alpha": -2.4562,
+    "3m_alpha": -6.8177,
     "pattern": "000"
   },
   "mri": {
-    "heat": 0.2725,
-    "stress": 0.6902,
-    "geo": 0.4216,
-    "signal": "RiskWatch",
-    "heat_delta_20d": -0.1055,
-    "stress_delta_20d": 0.1888,
-    "geo_delta_20d": -0.1423
+    "heat": 0.3629,
+    "stress": 0.5848,
+    "geo": 0.3869,
+    "signal": "Neutral",
+    "heat_delta_20d": -0.0048,
+    "stress_delta_20d": 0.0095,
+    "geo_delta_20d": -0.1665
   },
   "horizons": {
     "6m": {
-      "p": 0.5,
-      "wins": 10,
-      "n": 20,
+      "p": 0.3667,
+      "wins": 5,
+      "n": 14,
       "sufficient": true,
-      "alpha_mean": 18.0766,
-      "alpha_median": 1.1439
+      "alpha_mean": -11.2998,
+      "alpha_median": -4.4878
     },
     "1y": {
-      "p": 0.5526,
-      "wins": 10,
-      "n": 18,
+      "p": 0.3462,
+      "wins": 4,
+      "n": 12,
       "sufficient": true,
-      "alpha_mean": 23.2138,
-      "alpha_median": 3.6731
+      "alpha_mean": -2.794,
+      "alpha_median": -5.7392
     },
     "3y": {
-      "p": 0.7812,
-      "wins": 12,
-      "n": 15,
+      "p": 0.75,
+      "wins": 7,
+      "n": 9,
       "sufficient": true,
-      "alpha_mean": 102.0206,
+      "alpha_mean": 94.6017,
       "alpha_median": 92.6989
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }

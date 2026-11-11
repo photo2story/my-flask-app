@@ -1,7 +1,7 @@
 {
   "ticker": "FTNT",
-  "as_of": "2026-11-10",
-  "generated_at": "2026-11-10T22:12:45Z",
+  "as_of": "2026-11-11",
+  "generated_at": "2026-11-11T22:26:44Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -1.4356,
-    "1m_alpha": -25.2854,
-    "3m_alpha": -19.8572,
-    "pattern": "000"
+    "5d_alpha": 4.4875,
+    "1m_alpha": -24.6899,
+    "3m_alpha": -18.5879,
+    "pattern": "100"
   },
   "mri": {
     "heat": 0.3629,
     "stress": 0.5848,
     "geo": 0.3869,
     "signal": "Neutral",
-    "heat_delta_20d": -0.0151,
-    "stress_delta_20d": 0.0834,
-    "geo_delta_20d": -0.177
+    "heat_delta_20d": -0.0048,
+    "stress_delta_20d": 0.0095,
+    "geo_delta_20d": -0.1665
   },
   "horizons": {
     "6m": {
-      "p": 0.7667,
-      "wins": 11,
-      "n": 14,
+      "p": 0.5909,
+      "wins": 6,
+      "n": 10,
       "sufficient": true,
-      "alpha_mean": 9.1638,
-      "alpha_median": 14.1747
+      "alpha_mean": 16.8763,
+      "alpha_median": 19.3756
     },
     "1y": {
-      "p": 0.7,
-      "wins": 10,
-      "n": 14,
-      "sufficient": true,
-      "alpha_mean": 24.9835,
-      "alpha_median": 24.8616
-    },
-    "3y": {
       "p": 0.8636,
       "wins": 9,
       "n": 10,
       "sufficient": true,
-      "alpha_mean": 59.8019,
-      "alpha_median": 45.197
+      "alpha_mean": 19.0044,
+      "alpha_median": 12.8727
+    },
+    "3y": {
+      "p": 0.65,
+      "wins": 6,
+      "n": 9,
+      "sufficient": true,
+      "alpha_mean": 34.513,
+      "alpha_median": 24.6575
     }
   },
   "cohort": "same_ticker_exact",

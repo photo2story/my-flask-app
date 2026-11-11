@@ -1,7 +1,7 @@
 {
   "ticker": "LINK-USD",
-  "as_of": "2026-11-10",
-  "generated_at": "2026-11-10T22:12:38Z",
+  "as_of": "2026-11-11",
+  "generated_at": "2026-11-11T22:26:36Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -4.8993,
-    "1m_alpha": -13.1685,
-    "3m_alpha": -15.3399,
+    "5d_alpha": -7.9217,
+    "1m_alpha": -15.1933,
+    "3m_alpha": -12.4163,
     "pattern": "000"
   },
   "mri": {
-    "heat": 0.2725,
-    "stress": 0.6902,
-    "geo": 0.4216,
-    "signal": "RiskWatch",
-    "heat_delta_20d": -0.1055,
-    "stress_delta_20d": 0.1888,
-    "geo_delta_20d": -0.1423
+    "heat": 0.3629,
+    "stress": 0.5848,
+    "geo": 0.3869,
+    "signal": "Neutral",
+    "heat_delta_20d": -0.0048,
+    "stress_delta_20d": 0.0095,
+    "geo_delta_20d": -0.1665
   },
   "horizons": {
     "6m": {
-      "p": 0.4524,
-      "wins": 9,
-      "n": 20,
+      "p": 0.3824,
+      "wins": 6,
+      "n": 16,
       "sufficient": true,
-      "alpha_mean": 10.5937,
-      "alpha_median": -0.602
+      "alpha_mean": -1.4061,
+      "alpha_median": -19.4163
     },
     "1y": {
-      "p": 0.4167,
-      "wins": 7,
-      "n": 17,
+      "p": 0.3667,
+      "wins": 5,
+      "n": 14,
       "sufficient": true,
-      "alpha_mean": 23.2671,
-      "alpha_median": -12.8815
+      "alpha_mean": -7.8322,
+      "alpha_median": -14.6784
     },
     "3y": {
-      "p": 0.625,
-      "wins": 7,
-      "n": 11,
+      "p": 0.5,
+      "wins": 4,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 166.0541,
-      "alpha_median": 30.1306
+      "alpha_mean": 69.4925,
+      "alpha_median": 8.8017
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }
