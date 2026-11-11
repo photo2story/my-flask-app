@@ -1,6 +1,6 @@
 {
   "ticker": "006800.KS",
-  "as_of": "2026-11-09",
+  "as_of": "2026-11-10",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-06-30",
@@ -10,28 +10,28 @@
   "by_pattern_signal": {
     "001|Neutral": {
       "6m": {
-        "p": 0.8333,
-        "wins": 12,
-        "n": 14,
+        "p": 0.8438,
+        "wins": 13,
+        "n": 15,
         "sufficient": true,
-        "alpha_mean": 4.3846,
+        "alpha_mean": 5.3972,
         "alpha_median": 4.8027
       },
       "1y": {
+        "p": 0.4062,
+        "wins": 6,
+        "n": 15,
+        "sufficient": true,
+        "alpha_mean": 22.9796,
+        "alpha_median": -1.4965
+      },
+      "3y": {
         "p": 0.4333,
         "wins": 6,
         "n": 14,
         "sufficient": true,
-        "alpha_mean": 25.1139,
-        "alpha_median": -0.7462
-      },
-      "3y": {
-        "p": 0.3929,
-        "wins": 5,
-        "n": 13,
-        "sufficient": true,
-        "alpha_mean": 18.6183,
-        "alpha_median": -4.5409
+        "alpha_mean": 34.6871,
+        "alpha_median": -3.3579
       }
     },
     "111|RiskWatch": {
@@ -244,27 +244,27 @@
     },
     "001|GeoWatch": {
       "6m": {
-        "p": 0.5,
-        "wins": 2,
-        "n": 4,
+        "p": 0.375,
+        "wins": 1,
+        "n": 3,
         "sufficient": false,
-        "alpha_mean": -9.6927,
-        "alpha_median": 17.6564
+        "alpha_mean": -19.448,
+        "alpha_median": -12.532
       },
       "1y": {
-        "p": 0.375,
+        "p": 0.5,
         "wins": 1,
-        "n": 3,
+        "n": 2,
         "sufficient": false,
-        "alpha_mean": -9.5629,
-        "alpha_median": -6.9008
+        "alpha_mean": -10.8939,
+        "alpha_median": 0.3695
       },
       "3y": {
-        "p": 0.375,
-        "wins": 1,
-        "n": 3,
-        "sufficient": true,
-        "alpha_mean": 65.5043,
+        "p": 0.1667,
+        "wins": 0,
+        "n": 2,
+        "sufficient": false,
+        "alpha_mean": -23.5342,
         "alpha_median": -20.2915
       }
     },
