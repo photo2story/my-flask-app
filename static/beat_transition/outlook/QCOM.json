@@ -1,7 +1,7 @@
 {
   "ticker": "QCOM",
-  "as_of": "2026-11-12",
-  "generated_at": "2026-11-12T22:12:54Z",
+  "as_of": "2026-11-13",
+  "generated_at": "2026-11-13T22:26:40Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,10 +10,10 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": 4.1314,
-    "1m_alpha": 3.427,
-    "3m_alpha": 0.0412,
-    "pattern": "111"
+    "5d_alpha": 1.6969,
+    "1m_alpha": -1.1538,
+    "3m_alpha": -4.0598,
+    "pattern": "100"
   },
   "mri": {
     "heat": 0.3684,
@@ -26,28 +26,28 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.3864,
-      "wins": 8,
-      "n": 21,
+      "p": 0.3889,
+      "wins": 3,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": -1.1232,
-      "alpha_median": -3.6577
+      "alpha_mean": -4.531,
+      "alpha_median": -4.8272
     },
     "1y": {
-      "p": 0.4048,
-      "wins": 8,
-      "n": 20,
+      "p": 0.5,
+      "wins": 4,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": -3.2922,
-      "alpha_median": -7.5593
+      "alpha_mean": -0.1789,
+      "alpha_median": 3.132
     },
     "3y": {
-      "p": 0.2895,
-      "wins": 5,
-      "n": 18,
+      "p": 0.0714,
+      "wins": 0,
+      "n": 6,
       "sufficient": true,
-      "alpha_mean": -7.6934,
-      "alpha_median": -17.3414
+      "alpha_mean": -16.2138,
+      "alpha_median": -16.0626
     }
   },
   "cohort": "same_ticker_exact",

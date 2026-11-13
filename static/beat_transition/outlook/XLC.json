@@ -1,7 +1,7 @@
 {
   "ticker": "XLC",
-  "as_of": "2026-11-12",
-  "generated_at": "2026-11-12T22:13:01Z",
+  "as_of": "2026-11-13",
+  "generated_at": "2026-11-13T22:26:47Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,10 +10,10 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -0.6209,
-    "1m_alpha": 1.2529,
-    "3m_alpha": -3.135,
-    "pattern": "010"
+    "5d_alpha": 0.8834,
+    "1m_alpha": 3.9565,
+    "3m_alpha": -1.753,
+    "pattern": "110"
   },
   "mri": {
     "heat": 0.3684,
@@ -26,30 +26,30 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.4427,
-      "wins": 42,
-      "n": 95,
+      "p": 0.2778,
+      "wins": 2,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": -0.6928,
-      "alpha_median": -0.7287
+      "alpha_mean": -1.1304,
+      "alpha_median": -1.5988
     },
     "1y": {
-      "p": 0.4837,
-      "wins": 44,
-      "n": 91,
+      "p": 0.5,
+      "wins": 4,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": -1.339,
-      "alpha_median": -0.36
+      "alpha_mean": -2.7671,
+      "alpha_median": 0.755
     },
     "3y": {
-      "p": 0.4867,
-      "wins": 36,
-      "n": 74,
+      "p": 0.5625,
+      "wins": 4,
+      "n": 7,
       "sufficient": true,
-      "alpha_mean": -3.4864,
-      "alpha_median": -0.7825
+      "alpha_mean": 5.4998,
+      "alpha_median": 2.9168
     }
   },
-  "cohort": "same_ticker_all",
+  "cohort": "same_ticker_nearby",
   "schema_version": 2
 }

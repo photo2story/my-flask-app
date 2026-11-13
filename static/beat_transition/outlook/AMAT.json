@@ -1,7 +1,7 @@
 {
   "ticker": "AMAT",
-  "as_of": "2026-11-12",
-  "generated_at": "2026-11-12T22:12:49Z",
+  "as_of": "2026-11-13",
+  "generated_at": "2026-11-13T22:26:36Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,10 +10,10 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": 11.5341,
-    "1m_alpha": 2.1233,
-    "3m_alpha": -16.4385,
-    "pattern": "110"
+    "5d_alpha": 8.7816,
+    "1m_alpha": -1.2233,
+    "3m_alpha": -17.9428,
+    "pattern": "100"
   },
   "mri": {
     "heat": 0.3684,
@@ -30,26 +30,26 @@
       "wins": 4,
       "n": 9,
       "sufficient": true,
-      "alpha_mean": 0.9517,
-      "alpha_median": -1.0288
+      "alpha_mean": -6.7344,
+      "alpha_median": -13.3527
     },
     "1y": {
-      "p": 0.45,
-      "wins": 4,
+      "p": 0.35,
+      "wins": 3,
       "n": 9,
       "sufficient": true,
-      "alpha_mean": 4.1329,
-      "alpha_median": -14.4489
+      "alpha_mean": -4.2159,
+      "alpha_median": -11.5602
     },
     "3y": {
       "p": 0.65,
       "wins": 6,
       "n": 9,
       "sufficient": true,
-      "alpha_mean": 6.6398,
-      "alpha_median": 4.9232
+      "alpha_mean": 35.7766,
+      "alpha_median": 40.1599
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }

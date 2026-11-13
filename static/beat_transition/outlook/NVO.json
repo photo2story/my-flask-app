@@ -1,7 +1,7 @@
 {
   "ticker": "NVO",
-  "as_of": "2026-11-12",
-  "generated_at": "2026-11-12T22:12:53Z",
+  "as_of": "2026-11-13",
+  "generated_at": "2026-11-13T22:26:40Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,10 +10,10 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -2.1126,
-    "1m_alpha": 4.177,
-    "3m_alpha": -7.3147,
-    "pattern": "010"
+    "5d_alpha": 0.7038,
+    "1m_alpha": 7.5259,
+    "3m_alpha": -1.8435,
+    "pattern": "110"
   },
   "mri": {
     "heat": 0.3684,
@@ -26,30 +26,30 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.45,
-      "wins": 4,
-      "n": 9,
+      "p": 0.5,
+      "wins": 5,
+      "n": 10,
       "sufficient": true,
-      "alpha_mean": 0.9489,
-      "alpha_median": -1.5473
+      "alpha_mean": -0.9406,
+      "alpha_median": 7.7366
     },
     "1y": {
-      "p": 0.45,
-      "wins": 4,
-      "n": 9,
+      "p": 0.5,
+      "wins": 5,
+      "n": 10,
       "sufficient": true,
-      "alpha_mean": 0.5228,
-      "alpha_median": -2.4078
+      "alpha_mean": 3.9085,
+      "alpha_median": 10.5801
     },
     "3y": {
-      "p": 0.9444,
-      "wins": 8,
-      "n": 8,
+      "p": 0.6875,
+      "wins": 5,
+      "n": 7,
       "sufficient": true,
-      "alpha_mean": 42.9702,
-      "alpha_median": 37.1086
+      "alpha_mean": 30.5923,
+      "alpha_median": 39.972
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }

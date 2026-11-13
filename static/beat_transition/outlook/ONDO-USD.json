@@ -1,7 +1,7 @@
 {
   "ticker": "ONDO-USD",
-  "as_of": "2026-11-12",
-  "generated_at": "2026-11-12T22:12:59Z",
+  "as_of": "2026-11-13",
+  "generated_at": "2026-11-13T22:26:45Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,10 +10,10 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -6.9498,
-    "1m_alpha": -14.8633,
-    "3m_alpha": 5.1269,
-    "pattern": "001"
+    "5d_alpha": -7.488,
+    "1m_alpha": -17.1084,
+    "3m_alpha": -0.2719,
+    "pattern": "000"
   },
   "mri": {
     "heat": 0.3684,
@@ -26,19 +26,19 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.3966,
-      "wins": 11,
-      "n": 28,
+      "p": 0.375,
+      "wins": 4,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": -10.0369,
-      "alpha_median": -19.0872
+      "alpha_mean": -5.1237,
+      "alpha_median": -13.2227
     },
     "1y": {
-      "p": 0.18,
-      "wins": 4,
-      "n": 24,
+      "p": 0.2917,
+      "wins": 3,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": -32.8792,
+      "alpha_mean": -25.8571,
       "alpha_median": -49.6051
     },
     "3y": {
@@ -47,9 +47,10 @@
       "n": 7,
       "sufficient": true,
       "alpha_mean": -108.2634,
-      "alpha_median": -114.1631
+      "alpha_median": -114.1631,
+      "cohort_fallback": "same_ticker_all"
     }
   },
-  "cohort": "same_ticker_all",
+  "cohort": "same_ticker_exact",
   "schema_version": 2
 }

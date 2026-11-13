@@ -1,7 +1,7 @@
 {
   "ticker": "ANET",
-  "as_of": "2026-11-12",
-  "generated_at": "2026-11-12T22:12:48Z",
+  "as_of": "2026-11-13",
+  "generated_at": "2026-11-13T22:26:34Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,10 +10,10 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": 18.0195,
-    "1m_alpha": 21.301,
-    "3m_alpha": 8.5676,
-    "pattern": "111"
+    "5d_alpha": 12.9388,
+    "1m_alpha": 14.8637,
+    "3m_alpha": -0.5675,
+    "pattern": "110"
   },
   "mri": {
     "heat": 0.3684,
@@ -26,30 +26,30 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.4773,
-      "wins": 10,
-      "n": 21,
+      "p": 0.6111,
+      "wins": 5,
+      "n": 8,
       "sufficient": true,
-      "alpha_mean": 0.7816,
-      "alpha_median": -0.7775
+      "alpha_mean": 7.7321,
+      "alpha_median": 14.66
     },
     "1y": {
-      "p": 0.6429,
-      "wins": 13,
-      "n": 20,
+      "p": 0.6875,
+      "wins": 5,
+      "n": 7,
       "sufficient": true,
-      "alpha_mean": 7.1487,
-      "alpha_median": 11.0239
+      "alpha_mean": 18.6631,
+      "alpha_median": 27.4542
     },
     "3y": {
-      "p": 0.8056,
-      "wins": 14,
-      "n": 17,
+      "p": 0.6429,
+      "wins": 4,
+      "n": 6,
       "sufficient": true,
-      "alpha_mean": 47.5228,
-      "alpha_median": 46.1998
+      "alpha_mean": 66.7114,
+      "alpha_median": 102.3271
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_nearby",
   "schema_version": 2
 }

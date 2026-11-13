@@ -1,7 +1,7 @@
 {
   "ticker": "RKLB",
-  "as_of": "2026-11-12",
-  "generated_at": "2026-11-12T22:13:05Z",
+  "as_of": "2026-11-13",
+  "generated_at": "2026-11-13T22:26:50Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,10 +10,10 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": 17.0325,
-    "1m_alpha": 25.2998,
-    "3m_alpha": 1.8881,
-    "pattern": "111"
+    "5d_alpha": 12.7306,
+    "1m_alpha": 17.0985,
+    "3m_alpha": -2.1529,
+    "pattern": "110"
   },
   "mri": {
     "heat": 0.3684,
@@ -26,30 +26,30 @@
   },
   "horizons": {
     "6m": {
-      "p": 0.5588,
-      "wins": 9,
-      "n": 16,
+      "p": 0.5448,
+      "wins": 36,
+      "n": 66,
       "sufficient": true,
-      "alpha_mean": 31.4214,
-      "alpha_median": 9.1459
+      "alpha_mean": 23.9427,
+      "alpha_median": 5.517
     },
     "1y": {
-      "p": 0.6765,
-      "wins": 11,
-      "n": 16,
+      "p": 0.5794,
+      "wins": 36,
+      "n": 62,
       "sufficient": true,
-      "alpha_mean": 69.5127,
-      "alpha_median": 25.6126
+      "alpha_mean": 62.0219,
+      "alpha_median": 10.0738
     },
     "3y": {
-      "p": 0.875,
-      "wins": 10,
-      "n": 11,
+      "p": 0.6848,
+      "wins": 31,
+      "n": 45,
       "sufficient": true,
-      "alpha_mean": 460.682,
-      "alpha_median": 467.9324
+      "alpha_mean": 466.5431,
+      "alpha_median": 322.1245
     }
   },
-  "cohort": "same_ticker_exact",
+  "cohort": "same_ticker_all",
   "schema_version": 2
 }
