@@ -1,7 +1,7 @@
 {
   "ticker": "IBKR",
-  "as_of": "2026-11-18",
-  "generated_at": "2026-11-18T22:13:09Z",
+  "as_of": "2026-11-23",
+  "generated_at": "2026-11-23T22:27:38Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,46 +10,46 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": -3.5837,
-    "1m_alpha": -3.4011,
-    "3m_alpha": -9.3381,
-    "pattern": "000"
+    "5d_alpha": 1.3904,
+    "1m_alpha": 6.1499,
+    "3m_alpha": -11.492,
+    "pattern": "110"
   },
   "mri": {
-    "heat": 0.2829,
-    "stress": 0.6832,
-    "geo": 0.3377,
+    "heat": 0.2059,
+    "stress": 0.7836,
+    "geo": 0.3118,
     "signal": "RiskWatch",
-    "heat_delta_20d": -0.153,
-    "stress_delta_20d": 0.1687,
-    "geo_delta_20d": -0.203
+    "heat_delta_20d": -0.1336,
+    "stress_delta_20d": 0.1756,
+    "geo_delta_20d": -0.1908
   },
   "horizons": {
     "6m": {
-      "p": 0.6034,
-      "wins": 17,
-      "n": 28,
+      "p": 0.54,
+      "wins": 67,
+      "n": 124,
       "sufficient": true,
-      "alpha_mean": 8.5083,
-      "alpha_median": 6.988
+      "alpha_mean": 4.8667,
+      "alpha_median": 3.689
     },
     "1y": {
-      "p": 0.6724,
-      "wins": 19,
-      "n": 28,
+      "p": 0.5909,
+      "wins": 71,
+      "n": 120,
       "sufficient": true,
-      "alpha_mean": 15.5142,
-      "alpha_median": 19.1082
+      "alpha_mean": 9.9101,
+      "alpha_median": 2.3102
     },
     "3y": {
-      "p": 0.8333,
-      "wins": 22,
-      "n": 26,
+      "p": 0.7163,
+      "wins": 74,
+      "n": 103,
       "sufficient": true,
-      "alpha_mean": 50.2403,
-      "alpha_median": 36.6913
+      "alpha_mean": 30.719,
+      "alpha_median": 15.5893
     }
   },
-  "cohort": "same_ticker_nearby",
+  "cohort": "same_ticker_all",
   "schema_version": 2
 }
