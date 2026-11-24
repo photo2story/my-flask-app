@@ -1,7 +1,7 @@
 {
   "ticker": "SOL-USD",
-  "as_of": "2026-11-23",
-  "generated_at": "2026-11-23T22:27:28Z",
+  "as_of": "2026-11-24",
+  "generated_at": "2026-11-24T22:13:00Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
@@ -10,44 +10,44 @@
     "3y": "2024-09-30"
   },
   "short_grid": {
-    "5d_alpha": 0.1316,
-    "1m_alpha": -16.9817,
-    "3m_alpha": -32.5132,
-    "pattern": "100"
+    "5d_alpha": -4.6062,
+    "1m_alpha": -20.2011,
+    "3m_alpha": -34.3067,
+    "pattern": "000"
   },
   "mri": {
-    "heat": 0.2059,
-    "stress": 0.7836,
-    "geo": 0.3118,
+    "heat": 0.2677,
+    "stress": 0.7449,
+    "geo": 0.2807,
     "signal": "RiskWatch",
-    "heat_delta_20d": -0.1336,
-    "stress_delta_20d": 0.1756,
-    "geo_delta_20d": -0.1908
+    "heat_delta_20d": -0.1268,
+    "stress_delta_20d": 0.2209,
+    "geo_delta_20d": -0.181
   },
   "horizons": {
     "6m": {
-      "p": 0.2692,
-      "wins": 3,
-      "n": 12,
+      "p": 0.5357,
+      "wins": 7,
+      "n": 13,
       "sufficient": true,
-      "alpha_mean": 171.2948,
-      "alpha_median": -17.5209
+      "alpha_mean": 96.1869,
+      "alpha_median": 11.5572
     },
     "1y": {
-      "p": 0.2692,
-      "wins": 3,
-      "n": 12,
+      "p": 0.4583,
+      "wins": 5,
+      "n": 11,
       "sufficient": true,
-      "alpha_mean": 570.3549,
-      "alpha_median": -36.7563
+      "alpha_mean": 167.7061,
+      "alpha_median": -14.7904
     },
     "3y": {
-      "p": 0.55,
+      "p": 0.6875,
       "wins": 5,
-      "n": 9,
+      "n": 7,
       "sufficient": true,
-      "alpha_mean": 102.6157,
-      "alpha_median": 38.9397
+      "alpha_mean": 345.3391,
+      "alpha_median": 150.8439
     }
   },
   "cohort": "same_ticker_nearby",
