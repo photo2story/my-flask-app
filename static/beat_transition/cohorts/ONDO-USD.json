@@ -1,11 +1,11 @@
 {
   "ticker": "ONDO-USD",
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-26",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-06-30",
     "1y": "2026-02-28",
-    "3y": "2024-09-30"
+    "3y": "2024-10-31"
   },
   "by_pattern_signal": {
     "111|GeoWatch": {
@@ -182,10 +182,12 @@
         "alpha_median": 63.4401
       },
       "3y": {
-        "p": 0.5,
+        "p": 0.25,
         "wins": 0,
-        "n": 0,
-        "sufficient": false
+        "n": 1,
+        "sufficient": false,
+        "alpha_mean": -82.2335,
+        "alpha_median": -82.2335
       }
     },
     "010|GeoWatch": {

@@ -1,11 +1,11 @@
 {
   "ticker": "AVAX-USD",
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-26",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-06-30",
     "1y": "2026-02-28",
-    "3y": "2024-09-30"
+    "3y": "2024-10-31"
   },
   "by_pattern_signal": {
     "000|Neutral": {
@@ -156,12 +156,12 @@
         "alpha_median": -30.3495
       },
       "3y": {
-        "p": 0.1667,
+        "p": 0.125,
         "wins": 0,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": -91.7709,
-        "alpha_median": -66.6176
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -91.8704,
+        "alpha_median": -92.0695
       }
     },
     "110|Neutral": {
