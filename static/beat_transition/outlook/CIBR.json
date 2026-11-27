@@ -1,53 +1,53 @@
 {
   "ticker": "CIBR",
-  "as_of": "2026-11-25",
-  "generated_at": "2026-11-26T22:09:45Z",
+  "as_of": "2026-11-27",
+  "generated_at": "2026-11-27T22:13:09Z",
   "query_frequency": "latest_trading_day",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-06-30",
     "1y": "2026-02-28",
-    "3y": "2024-09-30"
+    "3y": "2024-10-31"
   },
   "short_grid": {
-    "5d_alpha": 0.0518,
-    "1m_alpha": 3.907,
-    "3m_alpha": -2.2805,
-    "pattern": "110"
+    "5d_alpha": 1.4628,
+    "1m_alpha": 8.2159,
+    "3m_alpha": 2.146,
+    "pattern": "111"
   },
   "mri": {
-    "heat": 0.2677,
-    "stress": 0.7449,
-    "geo": 0.2807,
+    "heat": 0.2929,
+    "stress": 0.73,
+    "geo": 0.282,
     "signal": "RiskWatch",
-    "heat_delta_20d": 0.0141,
-    "stress_delta_20d": 0.0085,
-    "geo_delta_20d": -0.1613
+    "heat_delta_20d": 0.0204,
+    "stress_delta_20d": 0.0398,
+    "geo_delta_20d": -0.1396
   },
   "horizons": {
     "6m": {
-      "p": 0.2917,
-      "wins": 3,
-      "n": 11,
+      "p": 0.3966,
+      "wins": 11,
+      "n": 28,
       "sufficient": true,
-      "alpha_mean": -0.9651,
-      "alpha_median": -1.3707
+      "alpha_mean": -0.5909,
+      "alpha_median": -0.9414
     },
     "1y": {
-      "p": 0.5417,
-      "wins": 6,
-      "n": 11,
+      "p": 0.3889,
+      "wins": 10,
+      "n": 26,
       "sufficient": true,
-      "alpha_mean": 2.1931,
-      "alpha_median": 2.8554
+      "alpha_mean": -1.7671,
+      "alpha_median": -1.0624
     },
     "3y": {
-      "p": 0.7727,
-      "wins": 8,
-      "n": 10,
+      "p": 0.5,
+      "wins": 12,
+      "n": 24,
       "sufficient": true,
-      "alpha_mean": 6.6245,
-      "alpha_median": 6.7001
+      "alpha_mean": 0.6144,
+      "alpha_median": 1.0617
     }
   },
   "cohort": "same_ticker_nearby",

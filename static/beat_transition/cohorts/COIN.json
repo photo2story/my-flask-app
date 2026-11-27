@@ -1,11 +1,11 @@
 {
   "ticker": "COIN",
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-27",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-06-30",
     "1y": "2026-02-28",
-    "3y": "2024-09-30"
+    "3y": "2024-10-31"
   },
   "by_pattern_signal": {
     "110|Neutral": {
@@ -338,11 +338,11 @@
         "alpha_median": 3.5125
       },
       "3y": {
-        "p": 0.1667,
+        "p": 0.125,
         "wins": 0,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": -86.1554,
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -83.0791,
         "alpha_median": -79.209
       }
     },

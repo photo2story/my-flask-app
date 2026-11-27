@@ -1,11 +1,11 @@
 {
   "ticker": "HOOD",
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-27",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-06-30",
     "1y": "2026-02-28",
-    "3y": "2024-09-30"
+    "3y": "2024-10-31"
   },
   "by_pattern_signal": {
     "011|Neutral": {
@@ -208,12 +208,12 @@
         "alpha_median": 95.8775
       },
       "3y": {
-        "p": 0.8333,
-        "wins": 2,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": 147.1814,
-        "alpha_median": 147.9056
+        "p": 0.875,
+        "wins": 3,
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": 120.5113,
+        "alpha_median": 146.4572
       }
     },
     "101|Neutral": {

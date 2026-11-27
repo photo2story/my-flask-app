@@ -1,11 +1,11 @@
 {
   "ticker": "CB",
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-27",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-06-30",
     "1y": "2026-02-28",
-    "3y": "2024-09-30"
+    "3y": "2024-10-31"
   },
   "by_pattern_signal": {
     "000|Neutral": {
@@ -260,12 +260,12 @@
         "alpha_median": 0.9588
       },
       "3y": {
-        "p": 0.375,
-        "wins": 1,
-        "n": 3,
+        "p": 0.5,
+        "wins": 2,
+        "n": 4,
         "sufficient": true,
-        "alpha_mean": -3.993,
-        "alpha_median": -3.6242
+        "alpha_mean": -0.1666,
+        "alpha_median": 4.0485
       }
     },
     "100|CashBuild": {

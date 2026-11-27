@@ -1,11 +1,11 @@
 {
   "ticker": "ARM",
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-27",
   "anchor_frequency": "month_end",
   "history_cutoff": {
     "6m": "2026-06-30",
     "1y": "2026-02-28",
-    "3y": "2024-09-30"
+    "3y": "2024-10-31"
   },
   "by_pattern_signal": {
     "011|Neutral": {
@@ -78,12 +78,12 @@
         "alpha_median": 16.1269
       },
       "3y": {
-        "p": 0.5,
+        "p": 0.375,
         "wins": 1,
-        "n": 2,
-        "sufficient": false,
-        "alpha_mean": -0.7436,
-        "alpha_median": 46.0877
+        "n": 3,
+        "sufficient": true,
+        "alpha_mean": -14.0645,
+        "alpha_median": -40.7062
       }
     },
     "001|GeoWatch": {
